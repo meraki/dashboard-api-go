@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Organization** | Pointer to [**DevicesSerialLiveToolsPingPostRequestOrganization**](DevicesSerialLiveToolsPingPostRequestOrganization.md) |  | [optional] 
-**Network** | Pointer to [**DevicesSerialLiveToolsPingPostRequestOrganization**](DevicesSerialLiveToolsPingPostRequestOrganization.md) |  | [optional] 
+**Organization** | Pointer to [**DevicesSerialLiveToolsArpTablePostRequestOrganization**](DevicesSerialLiveToolsArpTablePostRequestOrganization.md) |  | [optional] 
+**Network** | Pointer to [**DevicesSerialLiveToolsArpTablePostRequestOrganization**](DevicesSerialLiveToolsArpTablePostRequestOrganization.md) |  | [optional] 
 **SentAt** | Pointer to **string** |  | [optional] 
 **CallbackId** | Pointer to **string** |  | [optional] 
 **Message** | Pointer to [**GetOrganizationActionBatches200ResponseInner**](GetOrganizationActionBatches200ResponseInner.md) |  | [optional] 
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetOrganization
 
-`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) GetOrganization() DevicesSerialLiveToolsPingPostRequestOrganization`
+`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) GetOrganization() DevicesSerialLiveToolsArpTablePostRequestOrganization`
 
 GetOrganization returns the Organization field if non-nil, zero value otherwise.
 
 ### GetOrganizationOk
 
-`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) GetOrganizationOk() (*DevicesSerialLiveToolsPingPostRequestOrganization, bool)`
+`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) GetOrganizationOk() (*DevicesSerialLiveToolsArpTablePostRequestOrganization, bool)`
 
 GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrganization
 
-`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) SetOrganization(v DevicesSerialLiveToolsPingPostRequestOrganization)`
+`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) SetOrganization(v DevicesSerialLiveToolsArpTablePostRequestOrganization)`
 
 SetOrganization sets Organization field to given value.
 
@@ -56,20 +56,20 @@ HasOrganization returns a boolean if a field has been set.
 
 ### GetNetwork
 
-`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) GetNetwork() DevicesSerialLiveToolsPingPostRequestOrganization`
+`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) GetNetwork() DevicesSerialLiveToolsArpTablePostRequestOrganization`
 
 GetNetwork returns the Network field if non-nil, zero value otherwise.
 
 ### GetNetworkOk
 
-`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) GetNetworkOk() (*DevicesSerialLiveToolsPingPostRequestOrganization, bool)`
+`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) GetNetworkOk() (*DevicesSerialLiveToolsArpTablePostRequestOrganization, bool)`
 
 GetNetworkOk returns a tuple with the Network field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetwork
 
-`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) SetNetwork(v DevicesSerialLiveToolsPingPostRequestOrganization)`
+`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) SetNetwork(v DevicesSerialLiveToolsArpTablePostRequestOrganization)`
 
 SetNetwork sets Network field to given value.
 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Request** | Pointer to [**CreateDeviceLiveToolsPing201ResponseRequest**](CreateDeviceLiveToolsPing201ResponseRequest.md) |  | [optional] 
 **Status** | Pointer to **string** | Status of the ping request. | [optional] 
 **Results** | Pointer to [**DevicesSerialLiveToolsPingPostRequestMessageResults**](DevicesSerialLiveToolsPingPostRequestMessageResults.md) |  | [optional] 
-**Callback** | Pointer to [**CreateDeviceLiveToolsPing201ResponseCallback**](CreateDeviceLiveToolsPing201ResponseCallback.md) |  | [optional] 
+**Callback** | Pointer to [**CreateDeviceLiveToolsArpTable201ResponseCallback**](CreateDeviceLiveToolsArpTable201ResponseCallback.md) |  | [optional] 
 
 ## Methods
 
@@ -157,20 +157,20 @@ HasResults returns a boolean if a field has been set.
 
 ### GetCallback
 
-`func (o *GetDeviceLiveToolsPingDevice200Response) GetCallback() CreateDeviceLiveToolsPing201ResponseCallback`
+`func (o *GetDeviceLiveToolsPingDevice200Response) GetCallback() CreateDeviceLiveToolsArpTable201ResponseCallback`
 
 GetCallback returns the Callback field if non-nil, zero value otherwise.
 
 ### GetCallbackOk
 
-`func (o *GetDeviceLiveToolsPingDevice200Response) GetCallbackOk() (*CreateDeviceLiveToolsPing201ResponseCallback, bool)`
+`func (o *GetDeviceLiveToolsPingDevice200Response) GetCallbackOk() (*CreateDeviceLiveToolsArpTable201ResponseCallback, bool)`
 
 GetCallbackOk returns a tuple with the Callback field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCallback
 
-`func (o *GetDeviceLiveToolsPingDevice200Response) SetCallback(v CreateDeviceLiveToolsPing201ResponseCallback)`
+`func (o *GetDeviceLiveToolsPingDevice200Response) SetCallback(v CreateDeviceLiveToolsArpTable201ResponseCallback)`
 
 SetCallback sets Callback field to given value.
 

@@ -1446,6 +1446,20 @@ func Test_client_OrganizationsApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test OrganizationsApiService GetOrganizationSummaryTopNetworksByStatus", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.OrganizationsApi.GetOrganizationSummaryTopNetworksByStatus(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test OrganizationsApiService GetOrganizationSummaryTopSsidsByUsage", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

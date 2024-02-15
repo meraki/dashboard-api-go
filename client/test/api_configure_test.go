@@ -1015,6 +1015,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService CreateOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.CreateOrganizationSmAdminsRole(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService DeferNetworkFirmwareUpgradesStagedEvents", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -1739,6 +1753,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var samlRoleId string
 
 		httpRes, err := apiClient.ConfigureApi.DeleteOrganizationSamlRole(context.Background(), organizationId, samlRoleId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService DeleteOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		httpRes, err := apiClient.ConfigureApi.DeleteOrganizationSmAdminsRole(context.Background(), organizationId, roleId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -4656,6 +4684,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService GetOrganizationApplianceUplinksStatusesOverview", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationApplianceUplinksStatusesOverview(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService GetOrganizationApplianceVpnThirdPartyVPNPeers", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -4727,6 +4769,34 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService GetOrganizationCameraBoundariesAreasByDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationCameraBoundariesAreasByDevice(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService GetOrganizationCameraBoundariesLinesByDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationCameraBoundariesLinesByDevice(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService GetOrganizationCameraCustomAnalyticsArtifact", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -4749,6 +4819,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var organizationId string
 
 		resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationCameraCustomAnalyticsArtifacts(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService GetOrganizationCameraDetectionsHistoryByBoundaryByInterval", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationCameraDetectionsHistoryByBoundaryByInterval(context.Background(), organizationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -5305,6 +5389,35 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService GetOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationSmAdminsRole(context.Background(), organizationId, roleId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService GetOrganizationSmAdminsRoles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationSmAdminsRoles(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService GetOrganizationSmApnsCert", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -5312,6 +5425,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var organizationId string
 
 		resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationSmApnsCert(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService GetOrganizationSmSentryPoliciesAssignmentsByNetwork", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationSmSentryPoliciesAssignmentsByNetwork(context.Background(), organizationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -5529,6 +5656,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService RebootNetworkSmDevices", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.RebootNetworkSmDevices(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService RefreshNetworkSmDeviceDetails", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -5620,6 +5761,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var networkId string
 
 		resp, httpRes, err := apiClient.ConfigureApi.SetNetworkWirelessEthernetPortsProfilesDefault(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService ShutdownNetworkSmDevices", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.ShutdownNetworkSmDevices(context.Background(), networkId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -7822,6 +7977,35 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var samlRoleId string
 
 		resp, httpRes, err := apiClient.ConfigureApi.UpdateOrganizationSamlRole(context.Background(), organizationId, samlRoleId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService UpdateOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.UpdateOrganizationSmAdminsRole(context.Background(), organizationId, roleId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService UpdateOrganizationSmSentryPoliciesAssignments", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.UpdateOrganizationSmSentryPoliciesAssignments(context.Background(), organizationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

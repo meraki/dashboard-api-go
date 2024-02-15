@@ -6,7 +6,7 @@ info:
   description: |
     A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.
 
-    > Date: 03 January, 2024
+    > Date: 07 February, 2024
     >
     > [Recent Updates](https://meraki.io/whats-new/)
 
@@ -18,7 +18,7 @@ info:
 
     [Meraki Homepage](https://www.meraki.com)
   title: Meraki Dashboard API
-  version: 1.42.0
+  version: 1.43.0
 servers:
 - url: "https://api.meraki.com/{basePath}"
   variables:
@@ -58,7 +58,9 @@ tags:
 - name: applicationCategories
 - name: applicationUsage
 - name: applications
+- name: areas
 - name: arpInspection
+- name: arpTable
 - name: artifacts
 - name: assignments
 - name: authenticationToken
@@ -69,17 +71,21 @@ tags:
 - name: bluetooth
 - name: bluetoothClients
 - name: bonjourForwarding
+- name: boundaries
 - name: brandingPolicies
+- name: byBoundary
 - name: byClient
 - name: byDevice
 - name: byEnergyUsage
 - name: byInterval
 - name: byMetric
 - name: byNetwork
+- name: byStatus
 - name: bySwitch
 - name: byUsage
 - name: byUtilization
 - name: bypassActivationLockAttempts
+- name: cableTest
 - name: callbacks
 - name: categories
 - name: cellular
@@ -109,6 +115,7 @@ tags:
 - name: dataRateHistory
 - name: delegated
 - name: desktopLogs
+- name: detections
 - name: deviceCommandLogs
 - name: deviceProfiles
 - name: deviceTypeGroupPolicies
@@ -155,6 +162,7 @@ tags:
 - name: latest
 - name: licenses
 - name: licensing
+- name: lines
 - name: linkAggregations
 - name: linkLayer
 - name: live
@@ -234,6 +242,7 @@ tags:
 - name: securityCenters
 - name: seen
 - name: sense
+- name: sentry
 - name: servers
 - name: settings
 - name: signalQualityHistory
@@ -297,6 +306,7 @@ tags:
 - name: vpnExclusions
 - name: vpnFirewallRules
 - name: vppAccounts
+- name: wakeOnLan
 - name: warmSpare
 - name: warnings
 - name: webhookTests
@@ -496,6 +506,16 @@ paths:
     post:
       description: Claim a subscription into an organization.
       operationId: claimAdministeredLicensingSubscriptionSubscriptions
+      parameters:
+      - description: Check if the provided claim key is valid and can be claimed into
+          the organization.
+        explode: true
+        in: query
+        name: validate
+        required: false
+        schema:
+          type: boolean
+        style: form
       requestBody:
         content:
           application/json:
@@ -1185,6 +1205,7 @@ paths:
       - liveTools
   /devices/{serial}/camera/analytics/live:
     get:
+      deprecated: true
       description: Returns live state from camera of analytics zones
       operationId: getDeviceCameraAnalyticsLive
       parameters:
@@ -1216,6 +1237,7 @@ paths:
       - live
   /devices/{serial}/camera/analytics/overview:
     get:
+      deprecated: true
       description: Returns an overview of aggregate analytics data for a timespan
       operationId: getDeviceCameraAnalyticsOverview
       parameters:
@@ -1292,6 +1314,7 @@ paths:
       - overview
   /devices/{serial}/camera/analytics/recent:
     get:
+      deprecated: true
       description: Returns most recent record for analytics zones
       operationId: getDeviceCameraAnalyticsRecent
       parameters:
@@ -1338,6 +1361,7 @@ paths:
       - recent
   /devices/{serial}/camera/analytics/zones:
     get:
+      deprecated: true
       description: Returns all configured analytic zones for this camera
       operationId: getDeviceCameraAnalyticsZones
       parameters:
@@ -1375,6 +1399,7 @@ paths:
       - zones
   /devices/{serial}/camera/analytics/zones/{zoneId}/history:
     get:
+      deprecated: true
       description: Return historical records for analytic zones
       operationId: getDeviceCameraAnalyticsZoneHistory
       parameters:
@@ -2235,6 +2260,224 @@ paths:
       - devices
       - monitor
       - clients
+  /devices/{serial}/liveTools/arpTable:
+    post:
+      callbacks:
+        arpTable:
+          '{$request.body#/callback/url}':
+            post:
+              operationId: arpTable_Post
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/_devices__serial__liveTools_arpTable_post_request'
+                description: Callback payload
+                required: true
+              responses:
+                "2XX":
+                  description: Your server return this code if it accepts the callback
+              x-callback-request: true
+      description: Enqueue a job to perform a ARP table request for the device. This
+        endpoint currently supports switches.
+      operationId: createDeviceLiveToolsArpTable
+      parameters:
+      - description: Serial
+        explode: false
+        in: path
+        name: serial
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createDeviceLiveToolsArpTable_request'
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                arpTableId: "1284392014819"
+                url: /devices/Q234-ABCD-5678/liveTools/arpTable/1284392014819
+                request:
+                  serial: Q234-ABCD-5678
+                status: complete
+                callback:
+                  id: "1284392014819"
+                  url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
+                  status: new
+              schema:
+                $ref: '#/components/schemas/createDeviceLiveToolsArpTable_201_response'
+          description: Successful operation
+      summary: Enqueue a job to perform a ARP table request for the device
+      tags:
+      - devices
+      - liveTools
+      - arpTable
+  /devices/{serial}/liveTools/arpTable/{arpTableId}:
+    get:
+      description: Return an ARP table live tool job.
+      operationId: getDeviceLiveToolsArpTable
+      parameters:
+      - description: Serial
+        explode: false
+        in: path
+        name: serial
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Arp table ID
+        explode: false
+        in: path
+        name: arpTableId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                arpTableId: "1284392014819"
+                url: /devices/Q234-ABCD-5678/liveTools/arpTable/1284392014819
+                request:
+                  serial: Q234-ABCD-5678
+                status: complete
+                entries:
+                - ip: 10.0.0.0/24
+                  mac: 00:11:22:33:44:55
+                  vlanId: 100
+                  lastUpdatedAt: 2018-02-11T00:00:00.090210Z
+                error: The device is unreachable.
+              schema:
+                $ref: '#/components/schemas/_devices__serial__liveTools_arpTable_post_request_message'
+          description: Successful operation
+      summary: Return an ARP table live tool job.
+      tags:
+      - devices
+      - liveTools
+      - arpTable
+  /devices/{serial}/liveTools/cableTest:
+    post:
+      callbacks:
+        cableTest:
+          '{$request.body#/callback/url}':
+            post:
+              operationId: cableTest_Post
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/_devices__serial__liveTools_cableTest_post_request'
+                description: Callback payload
+                required: true
+              responses:
+                "2XX":
+                  description: Your server return this code if it accepts the callback
+              x-callback-request: true
+      description: Enqueue a job to perform a cable test for the device on the specified
+        ports.
+      operationId: createDeviceLiveToolsCableTest
+      parameters:
+      - description: Serial
+        explode: false
+        in: path
+        name: serial
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createDeviceLiveToolsCableTest_request'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                cableTestId: "1284392014819"
+                url: /devices/Q234-ABCD-5678/liveTools/cableTest/1284392014819
+                request:
+                  serial: Q234-ABCD-5678
+                  ports:
+                  - "2"
+                  - "8"
+                status: complete
+                callback:
+                  id: "1284392014819"
+                  url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
+                  status: new
+              schema:
+                $ref: '#/components/schemas/createDeviceLiveToolsCableTest_201_response'
+          description: Successful operation
+      summary: Enqueue a job to perform a cable test for the device on the specified
+        ports.
+      tags:
+      - devices
+      - liveTools
+      - cableTest
+  /devices/{serial}/liveTools/cableTest/{id}:
+    get:
+      description: Return a cable test live tool job.
+      operationId: getDeviceLiveToolsCableTest
+      parameters:
+      - description: Serial
+        explode: false
+        in: path
+        name: serial
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                cableTestId: "1284392014819"
+                url: /devices/Q234-ABCD-5678/liveTools/cableTest/1284392014819
+                request:
+                  serial: Q234-ABCD-5678
+                  ports:
+                  - "2"
+                  - "8"
+                status: complete
+                results:
+                - port: "2"
+                  status: up
+                  speedMbps: 10000
+                  error: An unexpected error occurred during the execution of the
+                    cable test.
+                  pairs:
+                  - index: 0
+                    status: ok
+                    lengthMeters: 1
+                error: The device is unreachable.
+              schema:
+                $ref: '#/components/schemas/_devices__serial__liveTools_cableTest_post_request_message'
+          description: Successful operation
+      summary: Return a cable test live tool job.
+      tags:
+      - devices
+      - liveTools
+      - cableTest
   /devices/{serial}/liveTools/ping:
     post:
       callbacks:
@@ -2467,6 +2710,108 @@ paths:
       - devices
       - liveTools
       - pingDevice
+  /devices/{serial}/liveTools/wakeOnLan:
+    post:
+      callbacks:
+        wakeOnLan:
+          '{$request.body#/callback/url}':
+            post:
+              operationId: wakeOnLan_Post
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/_devices__serial__liveTools_wakeOnLan_post_request'
+                description: Callback payload
+                required: true
+              responses:
+                "2XX":
+                  description: Your server return this code if it accepts the callback
+              x-callback-request: true
+      description: Enqueue a job to send a Wake-on-LAN packet from the device
+      operationId: createDeviceLiveToolsWakeOnLan
+      parameters:
+      - description: Serial
+        explode: false
+        in: path
+        name: serial
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createDeviceLiveToolsWakeOnLan_request'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                wakeOnLanId: "123"
+                url: /devices/QXXX-YYYY-ZZZZ/liveTools/wakeOnLan/1738
+                status: complete
+                request:
+                  serial: Q234-ABCD-5678
+                  vlanId: 12
+                  mac: 00:11:22:33:44:55
+                error: The device is unreachable.
+                callback:
+                  id: "1284392014819"
+                  url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
+                  status: new
+              schema:
+                $ref: '#/components/schemas/createDeviceLiveToolsWakeOnLan_201_response'
+          description: Successful operation
+      summary: Enqueue a job to send a Wake-on-LAN packet from the device
+      tags:
+      - devices
+      - liveTools
+      - wakeOnLan
+  /devices/{serial}/liveTools/wakeOnLan/{wakeOnLanId}:
+    get:
+      description: Return a Wake-on-LAN job
+      operationId: getDeviceLiveToolsWakeOnLan
+      parameters:
+      - description: Serial
+        explode: false
+        in: path
+        name: serial
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Wake on lan ID
+        explode: false
+        in: path
+        name: wakeOnLanId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                wakeOnLanId: "123"
+                url: /devices/QXXX-YYYY-ZZZZ/liveTools/wakeOnLan/1738
+                status: complete
+                request:
+                  serial: Q234-ABCD-5678
+                  vlanId: 12
+                  mac: 00:11:22:33:44:55
+                error: The device is unreachable.
+              schema:
+                $ref: '#/components/schemas/_devices__serial__liveTools_wakeOnLan_post_request_message'
+          description: Successful operation
+      summary: Return a Wake-on-LAN job
+      tags:
+      - devices
+      - liveTools
+      - wakeOnLan
   /devices/{serial}/lldpCdp:
     get:
       description: List LLDP and CDP information for a device
@@ -2948,6 +3293,9 @@ paths:
               - portId: "1"
                 enabled: true
                 status: Connected
+                spanningTree:
+                  statuses:
+                  - Learning
                 isUplink: false
                 errors:
                 - PoE overload
@@ -9580,7 +9928,8 @@ paths:
       - uplink
   /networks/{networkId}/clients:
     get:
-      description: List the clients that have used this network in the timespan
+      description: List the clients that have used this network in the timespan. The
+        data is updated at most once every five minutes.
       operationId: getNetworkClients
       parameters:
       - description: Network ID
@@ -14486,14 +14835,22 @@ paths:
                 - humidity
                 - door
                 counts:
+                  apparentPower: 0
+                  co2: 0
+                  current: 0
                   door: 0
+                  frequency: 0
                   humidity: 1
                   indoorAirQuality: 0
                   noise:
                     ambient: 0
                   pm25: 0
+                  powerFactor: 0
+                  realPower: 0
                   temperature: 4
                   tvoc: 0
+                  upstreamPower: 0
+                  voltage: 0
                   water: 0
               schema:
                 $ref: '#/components/schemas/getNetworkSensorAlertsCurrentOverviewByMetric_200_response'
@@ -14566,14 +14923,22 @@ paths:
               - startTs: 2022-08-21T00:00:00Z
                 endTs: 2022-08-27T23:59:59Z
                 counts:
+                  apparentPower: 0
+                  co2: 0
+                  current: 0
                   door: 0
+                  frequency: 1
                   humidity: 1
                   indoorAirQuality: 0
                   noise:
                     ambient: 2
                   pm25: 0
+                  powerFactor: 0
+                  realPower: 0
                   temperature: 4
                   tvoc: 0
+                  upstreamPower: 0
+                  voltage: 0
                   water: 0
               schema:
                 items:
@@ -14637,6 +15002,20 @@ paths:
                     indoorAirQuality:
                       score: 80
                       quality: fair
+                    realPower:
+                      draw: 14.1
+                    apparentPower:
+                      draw: 17.2
+                    powerFactor:
+                      percentage: 81
+                    current:
+                      draw: 0.14
+                    voltage:
+                      level: 119.5
+                    frequency:
+                      level: 58.8
+                    upstreamPower:
+                      outageDetected: true
                   direction: above
                   duration: 60
                 recipients:
@@ -14716,6 +15095,20 @@ paths:
                     indoorAirQuality:
                       score: 80
                       quality: fair
+                    realPower:
+                      draw: 14.1
+                    apparentPower:
+                      draw: 17.2
+                    powerFactor:
+                      percentage: 81
+                    current:
+                      draw: 0.14
+                    voltage:
+                      level: 119.5
+                    frequency:
+                      level: 58.8
+                    upstreamPower:
+                      outageDetected: true
                   direction: above
                   duration: 60
                 recipients:
@@ -14825,6 +15218,20 @@ paths:
                     indoorAirQuality:
                       score: 80
                       quality: fair
+                    realPower:
+                      draw: 14.1
+                    apparentPower:
+                      draw: 17.2
+                    powerFactor:
+                      percentage: 81
+                    current:
+                      draw: 0.14
+                    voltage:
+                      level: 119.5
+                    frequency:
+                      level: 58.8
+                    upstreamPower:
+                      outageDetected: true
                   direction: above
                   duration: 60
                 recipients:
@@ -14910,6 +15317,20 @@ paths:
                     indoorAirQuality:
                       score: 80
                       quality: fair
+                    realPower:
+                      draw: 14.1
+                    apparentPower:
+                      draw: 17.2
+                    powerFactor:
+                      percentage: 81
+                    current:
+                      draw: 0.14
+                    voltage:
+                      level: 119.5
+                    frequency:
+                      level: 58.8
+                    upstreamPower:
+                      outageDetected: true
                   direction: above
                   duration: 60
                 recipients:
@@ -15309,6 +15730,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Filter devices by system type(s).
+        explode: true
+        in: query
+        name: systemTypes
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: "Specify a scope (one of all, none, withAny, withAll, withoutAny,\
           \ or withoutAll) and a set of tags."
         explode: true
@@ -15573,6 +16004,76 @@ paths:
                 $ref: '#/components/schemas/moveNetworkSmDevices_200_response'
           description: Successful operation
       summary: Move a set of devices to a new network
+      tags:
+      - sm
+      - configure
+      - devices
+  /networks/{networkId}/sm/devices/reboot:
+    post:
+      description: Reboot a set of endpoints
+      operationId: rebootNetworkSmDevices
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/rebootNetworkSmDevices_request'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                ids:
+                - "1284392014819"
+                - "2983092129865"
+              schema:
+                $ref: '#/components/schemas/rebootNetworkSmDevices_200_response'
+          description: Successful operation
+      summary: Reboot a set of endpoints
+      tags:
+      - sm
+      - configure
+      - devices
+  /networks/{networkId}/sm/devices/shutdown:
+    post:
+      description: Shutdown a set of endpoints
+      operationId: shutdownNetworkSmDevices
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/shutdownNetworkSmDevices_request'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                ids:
+                - "1284392014819"
+                - "2983092129865"
+              schema:
+                $ref: '#/components/schemas/rebootNetworkSmDevices_200_response'
+          description: Successful operation
+      summary: Shutdown a set of endpoints
       tags:
       - sm
       - configure
@@ -17391,6 +17892,9 @@ paths:
                 urlRedirectWalledGardenEnabled: true
                 urlRedirectWalledGardenRanges:
                 - 192.168.1.0/24
+                counts:
+                  ports:
+                    withThisPolicy: 12
               schema:
                 items:
                   $ref: '#/components/schemas/getNetworkSwitchAccessPolicies_200_response_inner'
@@ -17454,6 +17958,9 @@ paths:
                 urlRedirectWalledGardenEnabled: true
                 urlRedirectWalledGardenRanges:
                 - 192.168.1.0/24
+                counts:
+                  ports:
+                    withThisPolicy: 12
               schema:
                 $ref: '#/components/schemas/getNetworkSwitchAccessPolicies_200_response_inner'
           description: Successful operation
@@ -17545,6 +18052,9 @@ paths:
                 urlRedirectWalledGardenEnabled: true
                 urlRedirectWalledGardenRanges:
                 - 192.168.1.0/24
+                counts:
+                  ports:
+                    withThisPolicy: 12
               schema:
                 $ref: '#/components/schemas/getNetworkSwitchAccessPolicies_200_response_inner'
           description: Successful operation
@@ -17614,6 +18124,9 @@ paths:
                 urlRedirectWalledGardenEnabled: true
                 urlRedirectWalledGardenRanges:
                 - 192.168.1.0/24
+                counts:
+                  ports:
+                    withThisPolicy: 12
               schema:
                 $ref: '#/components/schemas/getNetworkSwitchAccessPolicies_200_response_inner'
           description: Successful operation
@@ -25757,6 +26270,7 @@ paths:
                     duration: 5
                 regulatoryDomain:
                   name: FCC
+                  countryCode: US
                   permits6e: true
               schema:
                 $ref: '#/components/schemas/getNetworkWirelessSettings_200_response'
@@ -25800,6 +26314,7 @@ paths:
                     duration: 5
                 regulatoryDomain:
                   name: FCC
+                  countryCode: US
                   permits6e: true
               schema:
                 $ref: '#/components/schemas/getNetworkWirelessSettings_200_response'
@@ -30164,6 +30679,41 @@ paths:
       - monitor
       - uplinks
       - statuses
+  /organizations/{organizationId}/appliance/uplinks/statuses/overview:
+    get:
+      description: Returns an overview of uplink statuses
+      operationId: getOrganizationApplianceUplinksStatusesOverview
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                counts:
+                  byStatus:
+                    active: 5
+                    ready: 5
+                    failed: 4
+                    connecting: 2
+                    notConnected: 1
+              schema:
+                $ref: '#/components/schemas/getOrganizationApplianceUplinksStatusesOverview_200_response'
+          description: Successful operation
+      summary: Returns an overview of uplink statuses
+      tags:
+      - appliance
+      - configure
+      - uplinks
+      - statuses
+      - overview
   /organizations/{organizationId}/appliance/uplinks/usage/byNetwork:
     get:
       description: "Get the sent and received bytes for each uplink of all MX and\
@@ -31116,6 +31666,109 @@ paths:
       - organizations
       - configure
       - brandingPolicies
+  /organizations/{organizationId}/camera/boundaries/areas/byDevice:
+    get:
+      description: Returns all configured area boundaries of cameras
+      operationId: getOrganizationCameraBoundariesAreasByDevice
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of serial numbers. The returned cameras will be filtered
+          to only include these serials.
+        explode: true
+        in: query
+        name: serials
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - networkId: N_24329156
+                serial: Q234-ABCD-5678
+                boundaries:
+                  id: k74272e
+                  type: area
+                  name: myarea
+                  vertices:
+                  - x: 0.1
+                    "y": 0.1
+              schema:
+                items:
+                  $ref: '#/components/schemas/getOrganizationCameraBoundariesAreasByDevice_200_response_inner'
+                type: array
+          description: Successful operation
+      summary: Returns all configured area boundaries of cameras
+      tags:
+      - camera
+      - configure
+      - boundaries
+      - areas
+      - byDevice
+  /organizations/{organizationId}/camera/boundaries/lines/byDevice:
+    get:
+      description: Returns all configured crossingline boundaries of cameras
+      operationId: getOrganizationCameraBoundariesLinesByDevice
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of serial numbers. The returned cameras will be filtered
+          to only include these serials.
+        explode: true
+        in: query
+        name: serials
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - networkId: N_24329156
+                serial: Q234-ABCD-5678
+                boundaries:
+                  id: k74272e
+                  type: line
+                  name: mycline
+                  vertices:
+                  - x: 0.375
+                    "y": 0.5
+                  directionVertex:
+                    x: 0.5
+                    "y": 0.54
+              schema:
+                items:
+                  $ref: '#/components/schemas/getOrganizationCameraBoundariesLinesByDevice_200_response_inner'
+                type: array
+          description: Successful operation
+      summary: Returns all configured crossingline boundaries of cameras
+      tags:
+      - camera
+      - configure
+      - boundaries
+      - lines
+      - byDevice
   /organizations/{organizationId}/camera/customAnalytics/artifacts:
     get:
       description: List Custom Analytics Artifacts
@@ -31264,6 +31917,97 @@ paths:
       - configure
       - customAnalytics
       - artifacts
+  /organizations/{organizationId}/camera/detections/history/byBoundary/byInterval:
+    get:
+      description: Returns analytics data for timespans
+      operationId: getOrganizationCameraDetectionsHistoryByBoundaryByInterval
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of boundary ids. The returned cameras will be filtered
+          to only include these ids.
+        explode: true
+        in: query
+        name: boundaryIds
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of time ranges with intervals
+        explode: true
+        in: query
+        name: ranges
+        required: true
+        schema:
+          items:
+            $ref: '#/components/schemas/getOrganizationCameraDetectionsHistoryByBoundaryByInterval_ranges_parameter_inner'
+          type: array
+        style: form
+      - description: "The minimum time, in seconds, that the person or car remains\
+          \ in the area to be counted. Defaults to boundary configuration or 60."
+        explode: true
+        in: query
+        name: duration
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The number of entries per page returned. Acceptable range is
+          1 - 1000. Defaults to 1000.
+        explode: true
+        in: query
+        name: perPage
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The detection types. Defaults to 'person'.
+        explode: true
+        in: query
+        name: boundaryTypes
+        required: false
+        schema:
+          items:
+            enum:
+            - person
+            - vehicle
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - boundaryId: k74272e
+                type: line
+                results:
+                  startTime: 2018-02-11T00:00:00Z
+                  endTime: 2018-05-12T00:00:00Z
+                  objectType: person
+                  in: 22
+                  out: 13
+              schema:
+                items:
+                  $ref: '#/components/schemas/getOrganizationCameraDetectionsHistoryByBoundaryByInterval_200_response_inner'
+                type: array
+          description: Successful operation
+      summary: Returns analytics data for timespans
+      tags:
+      - camera
+      - configure
+      - detections
+      - history
+      - byBoundary
+      - byInterval
   /organizations/{organizationId}/camera/onboarding/statuses:
     get:
       description: Fetch onboarding status of cameras
@@ -34436,7 +35180,8 @@ paths:
       - upgrades
   /organizations/{organizationId}/firmware/upgrades/byDevice:
     get:
-      description: Get firmware upgrade status for the filtered devices
+      description: Get firmware upgrade status for the filtered devices. This endpoint
+        currently only supports Meraki switches.
       operationId: getOrganizationFirmwareUpgradesByDevice
       parameters:
       - description: Organization ID
@@ -34544,18 +35289,18 @@ paths:
             application/json:
               example:
               - serial: Q234-ABCD-5678
-                name: My AP
+                name: My switch
                 deviceStatus: completed
                 upgrade:
                   time: 2018-02-11T00:00:00.090210Z
                   fromVersion:
                     id: "1234"
-                    shortName: MV 10.8.1
+                    shortName: MS 16.7
                     releaseType: stable
                     releaseDate: 2018-02-11T00:00:00.090210Z
                   toVersion:
                     id: "1234"
-                    shortName: MV 11.2.1
+                    shortName: MS 16.7.1
                     releaseType: stable
                     releaseDate: 2018-02-11T00:00:00.090210Z
                   status: Completed
@@ -37414,8 +38159,9 @@ paths:
         style: form
       - description: "Types of sensor readings to retrieve. If no metrics are supplied,\
           \ all available types of readings will be retrieved. Allowed values are\
-          \ battery, button, door, humidity, indoorAirQuality, noise, pm25, temperature,\
-          \ tvoc, and water."
+          \ apparentPower, battery, button, co2, current, door, downstreamPower, frequency,\
+          \ humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, remoteLockoutSwitch,\
+          \ temperature, tvoc, voltage, and water."
         explode: true
         in: query
         name: metrics
@@ -37434,14 +38180,24 @@ paths:
                 network:
                   id: N_24329156
                   name: Main Office
-                ts: 2021-10-18T23:54:48Z
+                ts: 2021-10-18T23:54:48.000000Z
                 metric: temperature
+                apparentPower:
+                  draw: 15.9
                 battery:
                   percentage: 91
                 button:
                   pressType: short
+                co2:
+                  concentration: 100
+                current:
+                  draw: 0.13
                 door:
                   open: true
+                downstreamPower:
+                  enabled: true
+                frequency:
+                  level: 60.1
                 humidity:
                   relativePercentage: 34
                 indoorAirQuality:
@@ -37451,11 +38207,19 @@ paths:
                     level: 45
                 pm25:
                   concentration: 100
+                powerFactor:
+                  percentage: 86
+                realPower:
+                  draw: 13.7
+                remoteLockoutSwitch:
+                  locked: false
                 temperature:
                   fahrenheit: 77.81
                   celsius: 25.45
                 tvoc:
                   concentration: 100
+                voltage:
+                  level: 122.4
                 water:
                   present: true
               schema:
@@ -37547,8 +38311,9 @@ paths:
         style: form
       - description: "Types of sensor readings to retrieve. If no metrics are supplied,\
           \ all available types of readings will be retrieved. Allowed values are\
-          \ battery, button, door, humidity, indoorAirQuality, noise, pm25, temperature,\
-          \ tvoc, and water."
+          \ apparentPower, battery, button, co2, current, door, downstreamPower, frequency,\
+          \ humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, remoteLockoutSwitch,\
+          \ temperature, tvoc, voltage, and water."
         explode: true
         in: query
         name: metrics
@@ -37568,14 +38333,24 @@ paths:
                   id: N_24329156
                   name: Main Office
                 readings:
-                - ts: 2021-10-18T23:54:48Z
+                - ts: 2021-10-18T23:54:48.000000Z
                   metric: temperature
+                  apparentPower:
+                    draw: 15.9
                   battery:
                     percentage: 91
                   button:
                     pressType: short
+                  co2:
+                    concentration: 100
+                  current:
+                    draw: 0.13
                   door:
                     open: true
+                  downstreamPower:
+                    enabled: true
+                  frequency:
+                    level: 60.1
                   humidity:
                     relativePercentage: 34
                   indoorAirQuality:
@@ -37585,11 +38360,19 @@ paths:
                       level: 45
                   pm25:
                     concentration: 100
+                  powerFactor:
+                    percentage: 86
+                  realPower:
+                    draw: 13.7
+                  remoteLockoutSwitch:
+                    locked: false
                   temperature:
                     fahrenheit: 77.81
                     celsius: 25.45
                   tvoc:
                     concentration: 100
+                  voltage:
+                    level: 122.4
                   water:
                     present: true
               schema:
@@ -37612,6 +38395,236 @@ paths:
       - monitor
       - readings
       - latest
+  /organizations/{organizationId}/sm/admins/roles:
+    get:
+      description: List the Limited Access Roles for an organization
+      operationId: getOrganizationSmAdminsRoles
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The number of entries per page returned. Acceptable range is
+          3 - 1000. Default is 50.
+        explode: true
+        in: query
+        name: perPage
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "A token used by the server to indicate the start of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: startingAfter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A token used by the server to indicate the end of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: endingBefore
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                items:
+                - roleId: "1284392014819"
+                  name: sample name
+                  scope: all_tags
+                  tags:
+                  - tag
+                meta:
+                  counts:
+                    items:
+                      total: 10
+                      remaining: 0
+              schema:
+                $ref: '#/components/schemas/getOrganizationSmAdminsRoles_200_response'
+          description: Successful operation
+          headers:
+            Link:
+              description: "A comma-separated list of first, last, prev, and next\
+                \ relative links used for subsequent paginated requests."
+              explode: false
+              schema:
+                type: string
+              style: simple
+      summary: List the Limited Access Roles for an organization
+      tags:
+      - sm
+      - configure
+      - admins
+      - roles
+    post:
+      description: Create a Limited Access Role
+      operationId: createOrganizationSmAdminsRole
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createOrganizationSmAdminsRole_request'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                roleId: "1284392014819"
+                name: sample name
+                scope: all_tags
+                tags:
+                - tag
+              schema:
+                $ref: '#/components/schemas/getOrganizationSmAdminsRoles_200_response_items_inner'
+          description: Successful operation
+      summary: Create a Limited Access Role
+      tags:
+      - sm
+      - configure
+      - admins
+      - roles
+  /organizations/{organizationId}/sm/admins/roles/{roleId}:
+    delete:
+      description: Delete a Limited Access Role
+      operationId: deleteOrganizationSmAdminsRole
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Role ID
+        explode: false
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Successful operation
+      summary: Delete a Limited Access Role
+      tags:
+      - sm
+      - configure
+      - admins
+      - roles
+    get:
+      description: Return a Limited Access Role
+      operationId: getOrganizationSmAdminsRole
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Role ID
+        explode: false
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                roleId: "1284392014819"
+                name: sample name
+                scope: all_tags
+                tags:
+                - tag
+              schema:
+                $ref: '#/components/schemas/getOrganizationSmAdminsRoles_200_response_items_inner'
+          description: Successful operation
+      summary: Return a Limited Access Role
+      tags:
+      - sm
+      - configure
+      - admins
+      - roles
+    put:
+      description: Update a Limited Access Role
+      operationId: updateOrganizationSmAdminsRole
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Role ID
+        explode: false
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateOrganizationSmAdminsRole_request'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                roleId: "1284392014819"
+                name: sample name
+                scope: all_tags
+                tags:
+                - tag
+              schema:
+                $ref: '#/components/schemas/getOrganizationSmAdminsRoles_200_response_items_inner'
+          description: Successful operation
+      summary: Update a Limited Access Role
+      tags:
+      - sm
+      - configure
+      - admins
+      - roles
   /organizations/{organizationId}/sm/apnsCert:
     get:
       description: Get the organization's APNS certificate
@@ -37671,6 +38684,162 @@ paths:
       - sm
       - configure
       - apnsCert
+  /organizations/{organizationId}/sm/sentry/policies/assignments:
+    put:
+      description: "Update an Organizations Sentry Policies using the provided list.\
+        \ Sentry Policies are ordered in descending order of priority (i.e. highest\
+        \ priority at the bottom, this is opposite the Dashboard UI). Policies not\
+        \ present in the request will be deleted."
+      operationId: updateOrganizationSmSentryPoliciesAssignments
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateOrganizationSmSentryPoliciesAssignments_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                items:
+                - networkId: N_24329156
+                  policies:
+                  - policyId: "1284392014819"
+                    networkId: N_24329156
+                    smNetworkId: N_24329156
+                    tags:
+                    - tag1
+                    - tag2
+                    scope: withAny
+                    groupNumber: "1234"
+                    groupPolicyId: "1284392014819"
+                    priority: "1"
+                    createdAt: 2018-05-12T00:00:00Z
+                    lastUpdatedAt: 2018-05-12T00:00:00Z
+              schema:
+                $ref: '#/components/schemas/updateOrganizationSmSentryPoliciesAssignments_200_response'
+          description: Successful operation
+      summary: Update an Organizations Sentry Policies using the provided list
+      tags:
+      - sm
+      - configure
+      - sentry
+      - policies
+      - assignments
+  /organizations/{organizationId}/sm/sentry/policies/assignments/byNetwork:
+    get:
+      description: List the Sentry Policies for an organization ordered in ascending
+        order of priority
+      operationId: getOrganizationSmSentryPoliciesAssignmentsByNetwork
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The number of entries per page returned. Acceptable range is
+          3 - 1000. Default is 50.
+        explode: true
+        in: query
+        name: perPage
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "A token used by the server to indicate the start of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: startingAfter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A token used by the server to indicate the end of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: endingBefore
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Optional parameter to filter Sentry Policies by Network Id
+        explode: true
+        in: query
+        name: networkIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - items:
+                - networkId: N_24329156
+                  policies:
+                  - policyId: "1284392014819"
+                    networkId: N_24329156
+                    smNetworkId: N_24329156
+                    tags:
+                    - tag1
+                    - tag2
+                    scope: withAny
+                    groupNumber: "1234"
+                    groupPolicyId: "1284392014819"
+                    priority: "1"
+                    createdAt: 2018-05-12T00:00:00Z
+                    lastUpdatedAt: 2018-05-12T00:00:00Z
+                meta:
+                  counts:
+                    items:
+                      total: 10
+                      remaining: 0
+              schema:
+                items:
+                  $ref: '#/components/schemas/getOrganizationSmSentryPoliciesAssignmentsByNetwork_200_response_inner'
+                type: array
+          description: Successful operation
+          headers:
+            Link:
+              description: "A comma-separated list of first, last, prev, and next\
+                \ relative links used for subsequent paginated requests."
+              explode: false
+              schema:
+                type: string
+              style: simple
+      summary: List the Sentry Policies for an organization ordered in ascending order
+        of priority
+      tags:
+      - sm
+      - configure
+      - sentry
+      - policies
+      - assignments
+      - byNetwork
   /organizations/{organizationId}/sm/vppAccounts:
     get:
       description: List the VPP accounts in the organization
@@ -38281,6 +39450,110 @@ paths:
       - devices
       - models
       - byUsage
+  /organizations/{organizationId}/summary/top/networks/byStatus:
+    get:
+      description: List the client and status overview information for the networks
+        in an organization. Usage is measured in kilobytes and from the last seven
+        days.
+      operationId: getOrganizationSummaryTopNetworksByStatus
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The number of entries per page returned. Acceptable range is
+          3 - 5000.
+        explode: true
+        in: query
+        name: perPage
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "A token used by the server to indicate the start of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: startingAfter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A token used by the server to indicate the end of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: endingBefore
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - networkId: N_24329156
+                name: Main Office
+                url: https://n1.meraki.com//n//manage/nodes/list
+                tags:
+                - tag1
+                - tag2
+                clients:
+                  counts:
+                    total: 72
+                  usage:
+                    upstream: 3732658.44
+                    downstream: 9.8373265887E8
+                statuses:
+                  overall: online
+                  byProductType:
+                  - productType: wireless
+                    counts:
+                      online: 2
+                      offline: 1
+                      alerting: 0
+                      dormant: 3
+                devices:
+                  byProductType:
+                  - productType: wireless
+                    url: https://n1.meraki.com//n//manage/nodes/new_list/000000000000
+                productTypes:
+                - appliance
+                - switch
+                - wireless
+              schema:
+                items:
+                  $ref: '#/components/schemas/getOrganizationSummaryTopNetworksByStatus_200_response_inner'
+                type: array
+          description: Successful operation
+          headers:
+            Link:
+              description: "A comma-separated list of first, last, prev, and next\
+                \ relative links used for subsequent paginated requests."
+              explode: false
+              schema:
+                type: string
+              style: simple
+      summary: List the client and status overview information for the networks in
+        an organization
+      tags:
+      - organizations
+      - monitor
+      - summary
+      - top
+      - networks
+      - byStatus
   /organizations/{organizationId}/summary/top/ssids/byUsage:
     get:
       description: Return metrics for organization's top 10 ssids by data usage over
@@ -38737,6 +40010,9 @@ paths:
                 serial: Q234-ABCD-5678
                 model: MX68C
                 lastReportedAt: 2018-02-11T00:00:00Z
+                highAvailability:
+                  enabled: true
+                  role: primary
                 uplinks:
                 - interface: wan1
                   status: active
@@ -40863,6 +42139,19 @@ components:
         sunday:
           $ref: '#/components/schemas/getNetworkSwitchPortSchedules_200_response_inner_portSchedule_sunday'
       type: object
+    createDeviceLiveToolsArpTable_request:
+      example:
+        callback:
+          url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
+          sharedSecret: secret
+          httpServer:
+            id: aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vd2ViaG9va3M=
+          payloadTemplate:
+            id: wpt_2100
+      properties:
+        callback:
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_request_callback'
+      type: object
     getNetworkSwitchDhcpV4ServersSeen_200_response_inner_lastAck_ipv4:
       description: IPv4 attributes of the last ack.
       example:
@@ -40871,6 +42160,19 @@ components:
         address:
           description: IPv4 address of the last ack.
           type: string
+      type: object
+    _devices__serial__liveTools_cableTest_post_request:
+      properties:
+        organization:
+          $ref: '#/components/schemas/_devices__serial__liveTools_arpTable_post_request_organization'
+        network:
+          $ref: '#/components/schemas/_devices__serial__liveTools_arpTable_post_request_organization'
+        sentAt:
+          type: string
+        callbackId:
+          type: string
+        message:
+          $ref: '#/components/schemas/_devices__serial__liveTools_cableTest_post_request_message'
       type: object
     createNetworkWebhooksWebhookTest_201_response:
       example:
@@ -40920,7 +42222,7 @@ components:
           description: Status of the ping request.
           type: string
         callback:
-          $ref: '#/components/schemas/createDeviceLiveToolsPing_201_response_callback'
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_201_response_callback'
       type: object
     getOrganizationFirmwareUpgrades_200_response_inner_toVersion:
       description: ID of the upgrade's target version
@@ -41103,6 +42405,30 @@ components:
             of null will reset this to the default.
           type: integer
       type: object
+    getDeviceSwitchPortsStatuses_200_response_inner_spanningTree:
+      description: The Spanning Tree Protocol (STP) information of the connected device.
+      example:
+        statuses:
+        - statuses
+        - statuses
+      properties:
+        statuses:
+          description: The current Spanning Tree Protocol statuses of the port.
+          items:
+            type: string
+          type: array
+      type: object
+    getOrganizationSensorReadingsHistory_200_response_inner_voltage:
+      description: Reading for the 'voltage' metric. This will only be present if
+        the 'metric' property equals 'voltage'.
+      example:
+        level: 1.4894159
+      properties:
+        level:
+          description: Voltage reading in volts.
+          format: float
+          type: number
+      type: object
     updateNetworkApplianceFirewallL7FirewallRules_request:
       example:
         rules:
@@ -41211,7 +42537,7 @@ components:
       example:
         wifiMac: 00:11:22:33:44:55
         id: "1284392014819"
-        serial: Q234-ABCD-5678
+        serial: XY0XX0Y0X0
         deviceFields:
           name: Miles's phone
           notes: Here's some info about my device
@@ -41463,6 +42789,44 @@ components:
       required:
       - quality
       - resolution
+      type: object
+    updateOrganizationSmSentryPoliciesAssignments_200_response_items_inner:
+      example:
+        policies:
+        - createdAt: createdAt
+          policyId: policyId
+          lastUpdatedAt: lastUpdatedAt
+          scope: all
+          smNetworkId: smNetworkId
+          networkId: networkId
+          priority: priority
+          groupNumber: groupNumber
+          groupPolicyId: groupPolicyId
+          tags:
+          - tags
+          - tags
+        - createdAt: createdAt
+          policyId: policyId
+          lastUpdatedAt: lastUpdatedAt
+          scope: all
+          smNetworkId: smNetworkId
+          networkId: networkId
+          priority: priority
+          groupNumber: groupNumber
+          groupPolicyId: groupPolicyId
+          tags:
+          - tags
+          - tags
+        networkId: networkId
+      properties:
+        networkId:
+          description: The Id of the Network
+          type: string
+        policies:
+          description: Array of Sentry Group Policies for the Network
+          items:
+            $ref: '#/components/schemas/updateOrganizationSmSentryPoliciesAssignments_200_response_items_inner_policies_inner'
+          type: array
       type: object
     updateDeviceWirelessBluetoothSettings_request:
       example:
@@ -42134,6 +43498,31 @@ components:
             \ E.g.: \"www.google.com\""
           type: string
       type: object
+    getOrganizationCameraDetectionsHistoryByBoundaryByInterval_200_response_inner_results:
+      description: The analytics data
+      example:
+        in: 0
+        startTime: startTime
+        endTime: endTime
+        objectType: objectType
+        out: 6
+      properties:
+        startTime:
+          description: The period start time
+          type: string
+        endTime:
+          description: The period end time
+          type: string
+        objectType:
+          description: The detection type
+          type: string
+        in:
+          description: The number of detections entered
+          type: integer
+        out:
+          description: The number of detections exited
+          type: integer
+      type: object
     getNetworkEvents_200_response_events_inner:
       example:
         ssidNumber: 0
@@ -42669,6 +44058,70 @@ components:
           description: "New authorization status for the SSID (true, false)."
           type: boolean
       type: object
+    _devices__serial__liveTools_cableTest_post_request_message:
+      example:
+        request:
+          serial: serial
+          ports:
+          - ports
+          - ports
+        cableTestId: cableTestId
+        error: error
+        results:
+        - port: port
+          speedMbps: 0
+          error: error
+          pairs:
+          - index: 6
+            lengthMeters: 1
+            status: abnormal
+          - index: 6
+            lengthMeters: 1
+            status: abnormal
+          status: down
+        - port: port
+          speedMbps: 0
+          error: error
+          pairs:
+          - index: 6
+            lengthMeters: 1
+            status: abnormal
+          - index: 6
+            lengthMeters: 1
+            status: abnormal
+          status: down
+        url: url
+        status: complete
+      properties:
+        cableTestId:
+          description: Id of the cable test request. Used to check the status of the
+            request.
+          type: string
+        url:
+          description: GET this url to check the status of your cable test request.
+          type: string
+        request:
+          $ref: '#/components/schemas/createDeviceLiveToolsCableTest_201_response_request'
+        status:
+          description: Status of the cable test request.
+          enum:
+          - complete
+          - failed
+          - new
+          - ready
+          - running
+          - scheduled
+          type: string
+        results:
+          description: "Results of the cable test request, one for each requested\
+            \ port."
+          items:
+            $ref: '#/components/schemas/_devices__serial__liveTools_cableTest_post_request_message_results_inner'
+          type: array
+        error:
+          description: An error message for a failed execution
+          type: string
+      type: object
     createOrganizationAdaptivePolicyPolicy_request:
       example:
         sourceGroup:
@@ -42968,6 +44421,10 @@ components:
           active: true
           enabled: true
           authenticationStatus: Authentication failure
+        spanningTree:
+          statuses:
+          - statuses
+          - statuses
         clientCount: 7
         errors:
         - errors
@@ -43000,6 +44457,8 @@ components:
           - Disabled
           - Disconnected
           type: string
+        spanningTree:
+          $ref: '#/components/schemas/getDeviceSwitchPortsStatuses_200_response_inner_spanningTree'
         isUplink:
           description: Whether the port is the switch's uplink.
           type: boolean
@@ -43371,6 +44830,18 @@ components:
         spoofingProtection:
           $ref: '#/components/schemas/updateNetworkApplianceFirewallSettings_request_spoofingProtection'
       type: object
+    getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_powerFactor:
+      description: Power factor threshold. 'percentage' must be provided.
+      example:
+        percentage: 2
+      properties:
+        percentage:
+          description: Alerting threshold as the ratio of active power to apparent
+            power. Must be between 0 and 100.
+          type: integer
+      required:
+      - percentage
+      type: object
     setNetworkWirelessEthernetPortsProfilesDefault_request:
       example:
         profileId: "1001"
@@ -43420,6 +44891,17 @@ components:
       - access
       - tag
       type: object
+    getOrganizationSensorReadingsHistory_200_response_inner_realPower:
+      description: Reading for the 'realPower' metric. This will only be present if
+        the 'metric' property equals 'realPower'.
+      example:
+        draw: 4.145608
+      properties:
+        draw:
+          description: Real power reading in watts.
+          format: float
+          type: number
+      type: object
     getNetworkCameraSchedules_200_response_inner:
       example:
         name: name
@@ -43431,6 +44913,48 @@ components:
         name:
           description: Schedule name
           type: string
+      type: object
+    _devices__serial__liveTools_cableTest_post_request_message_results_inner:
+      example:
+        port: port
+        speedMbps: 0
+        error: error
+        pairs:
+        - index: 6
+          lengthMeters: 1
+          status: abnormal
+        - index: 6
+          lengthMeters: 1
+          status: abnormal
+        status: down
+      properties:
+        port:
+          description: The port for which the test was performed.
+          type: string
+        status:
+          description: "The current status of the port. If the cable test is still\
+            \ being performed on the port, \"in-progress\" is used. If an error occurred\
+            \ during the cable test, \"error\" is used and the error property will\
+            \ be populated."
+          enum:
+          - down
+          - error
+          - in-progress
+          - up
+          type: string
+        speedMbps:
+          description: Speed in Mbps.  A speed of 0 indicates the port is down or
+            the port speed is automatic.
+          type: integer
+        error:
+          description: "If an error occurred during the cable test, the error message\
+            \ will be populated here."
+          type: string
+        pairs:
+          description: Results for each twisted pair within the cable.
+          items:
+            $ref: '#/components/schemas/_devices__serial__liveTools_cableTest_post_request_message_results_inner_pairs_inner'
+          type: array
       type: object
     createOrganizationInventoryOnboardingCloudMonitoringImport_201_response_inner:
       example:
@@ -44216,6 +45740,19 @@ components:
           description: VLAN name that will be used to tag traffic.
           type: string
       type: object
+    updateOrganizationSmSentryPoliciesAssignments_request_items_inner:
+      properties:
+        networkId:
+          description: The Id of the Network
+          type: string
+        policies:
+          description: Array of Sentry Group Policies for the Network
+          items:
+            $ref: '#/components/schemas/updateOrganizationSmSentryPoliciesAssignments_request_items_inner_policies_inner'
+          type: array
+      required:
+      - networkId
+      type: object
     createOrganizationInventoryOnboardingCloudMonitoringPrepare_201_response_inner_configParams_user:
       description: User credentials used to connect to the device
       example:
@@ -44272,6 +45809,23 @@ components:
           description: Total energy usage of the switch
           format: float
           type: number
+      type: object
+    createDeviceLiveToolsCableTest_201_response_request:
+      description: Cable test request parameters
+      example:
+        serial: serial
+        ports:
+        - ports
+        - ports
+      properties:
+        serial:
+          description: Device serial number
+          type: string
+        ports:
+          description: A list of ports for which to perform the cable test.
+          items:
+            type: string
+          type: array
       type: object
     getNetworkWebhooksHttpServers_200_response_inner_payloadTemplate:
       description: The payload template to use when posting data to the HTTP server.
@@ -44433,9 +45987,9 @@ components:
     _organizations__organizationId__actionBatches_get_request:
       properties:
         organization:
-          $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_organization'
+          $ref: '#/components/schemas/_devices__serial__liveTools_arpTable_post_request_organization'
         network:
-          $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_organization'
+          $ref: '#/components/schemas/_devices__serial__liveTools_arpTable_post_request_organization'
         sentAt:
           type: string
         callbackId:
@@ -44606,19 +46160,42 @@ components:
     getNetworkSensorAlertsCurrentOverviewByMetric_200_response_counts:
       description: "Counts of currently alerting sensors, aggregated by alerting metric"
       example:
-        tvoc: 7
-        door: 0
-        pm25: 5
+        tvoc: 1
+        door: 5
+        apparentPower: 0
+        co2: 6
+        upstreamPower: 1
+        water: 6
+        frequency: 5
+        voltage: 1
+        current: 1
+        pm25: 3
+        realPower: 4
         noise:
-          ambient: 5
-        temperature: 2
-        humidity: 6
-        indoorAirQuality: 1
-        water: 9
+          ambient: 9
+        temperature: 7
+        humidity: 2
+        indoorAirQuality: 7
+        powerFactor: 2
       properties:
+        apparentPower:
+          description: Number of sensors that are currently alerting due to apparent
+            power readings
+          type: integer
+        co2:
+          description: Number of sensors that are currently alerting due to CO2 readings
+          type: integer
+        current:
+          description: Number of sensors that are currently alerting due to electrical
+            current readings
+          type: integer
         door:
           description: Number of sensors that are currently alerting due to an open
             door
+          type: integer
+        frequency:
+          description: Number of sensors that are currently alerting due to frequency
+            readings
           type: integer
         humidity:
           description: Number of sensors that are currently alerting due to humidity
@@ -44634,12 +46211,28 @@ components:
           description: Number of sensors that are currently alerting due to PM2.5
             readings
           type: integer
+        powerFactor:
+          description: Number of sensors that are currently alerting due to power
+            factor readings
+          type: integer
+        realPower:
+          description: Number of sensors that are currently alerting due to real power
+            readings
+          type: integer
         temperature:
           description: Number of sensors that are currently alerting due to temperature
             readings
           type: integer
         tvoc:
           description: Number of sensors that are currently alerting due to TVOC readings
+          type: integer
+        upstreamPower:
+          description: Number of sensors that are currently alerting due to an upstream
+            power outage
+          type: integer
+        voltage:
+          description: Number of sensors that are currently alerting due to voltage
+            readings
           type: integer
         water:
           description: Number of sensors that are currently alerting due to the presence
@@ -44839,30 +46432,48 @@ components:
       type: object
     getOrganizationSensorReadingsLatest_200_response_inner_readings_inner:
       example:
-        button:
-          pressType: long
         tvoc:
-          concentration: 9
+          concentration: 1
         door:
           open: true
-        pm25:
-          concentration: 5
-        metric: battery
-        noise:
-          ambient:
-            level: 5
-        temperature:
-          celsius: 7.0614014
-          fahrenheit: 2.302136
-        humidity:
-          relativePercentage: 6
-        indoorAirQuality:
-          score: 1
+        apparentPower:
+          draw: 0.8008282
+        co2:
+          concentration: 1
+        downstreamPower:
+          enabled: true
         battery:
-          percentage: 0
+          percentage: 6
         water:
           present: true
+        frequency:
+          level: 5.637377
+        voltage:
+          level: 1.4894159
+        button:
+          pressType: long
+        current:
+          draw: 5.962134
+        pm25:
+          concentration: 3
+        realPower:
+          draw: 4.145608
+        metric: apparentPower
+        remoteLockoutSwitch:
+          locked: true
+        noise:
+          ambient:
+            level: 9
+        temperature:
+          celsius: 1.2315135
+          fahrenheit: 7.386282
+        humidity:
+          relativePercentage: 2
+        indoorAirQuality:
+          score: 7
         ts: ts
+        powerFactor:
+          percentage: 2
       properties:
         ts:
           description: "Time at which the reading occurred, in ISO8601 format."
@@ -44870,23 +46481,42 @@ components:
         metric:
           description: Type of sensor reading.
           enum:
+          - apparentPower
           - battery
           - button
+          - co2
+          - current
           - door
+          - downstreamPower
+          - frequency
           - humidity
           - indoorAirQuality
           - noise
           - pm25
+          - powerFactor
+          - realPower
+          - remoteLockoutSwitch
           - temperature
           - tvoc
+          - voltage
           - water
           type: string
+        apparentPower:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_apparentPower'
         battery:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_battery'
         button:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_button'
+        co2:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_co2'
+        current:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_current'
         door:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_door'
+        downstreamPower:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_downstreamPower'
+        frequency:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_frequency'
         humidity:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_humidity'
         indoorAirQuality:
@@ -44895,10 +46525,18 @@ components:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_noise'
         pm25:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_pm25'
+        powerFactor:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_powerFactor'
+        realPower:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_realPower'
+        remoteLockoutSwitch:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_remoteLockoutSwitch'
         temperature:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_temperature'
         tvoc:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_tvoc'
+        voltage:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_voltage'
         water:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_water'
       type: object
@@ -45195,6 +46833,9 @@ components:
           status: active
         networkId: networkId
         model: model
+        highAvailability:
+          role: role
+          enabled: true
       properties:
         networkId:
           description: Network identifier
@@ -45209,6 +46850,8 @@ components:
           description: Last reported time for the device
           format: date-time
           type: string
+        highAvailability:
+          $ref: '#/components/schemas/getOrganizationUplinksStatuses_200_response_inner_highAvailability'
         uplinks:
           description: Uplinks
           items:
@@ -45544,6 +47187,36 @@ components:
         image:
           $ref: '#/components/schemas/getOrganizationBrandingPolicies_200_response_inner_customLogo_image'
       type: object
+    getNetworkSwitchAccessPolicies_200_response_inner_counts:
+      description: Counts associated with the access policy
+      example:
+        ports:
+          withThisPolicy: 9
+      properties:
+        ports:
+          $ref: '#/components/schemas/getNetworkSwitchAccessPolicies_200_response_inner_counts_ports'
+      type: object
+    getOrganizationSummaryTopNetworksByStatus_200_response_inner_statuses_byProductType_inner_counts:
+      description: Counts of devices by status
+      example:
+        offline: 5
+        dormant: 7
+        online: 5
+        alerting: 2
+      properties:
+        online:
+          description: Count of online devices
+          type: integer
+        offline:
+          description: Count of offline devices
+          type: integer
+        alerting:
+          description: Count of alerting devices
+          type: integer
+        dormant:
+          description: Count of dormant devices
+          type: integer
+      type: object
     getNetworkWirelessRfProfiles_200_response_perSsidSettings_13:
       description: Settings for SSID 13
       example:
@@ -45637,6 +47310,38 @@ components:
         notes:
           description: Notes associated with the device.
           type: string
+      type: object
+    updateOrganizationSmSentryPoliciesAssignments_request_items_inner_policies_inner:
+      properties:
+        policyId:
+          description: "The Sentry Policy Id, if updating an existing Sentry Policy"
+          type: string
+        smNetworkId:
+          description: The Id of the Systems Manager Network
+          type: string
+        scope:
+          description: The scope of the Sentry Policy
+          enum:
+          - all
+          - none
+          - withAll
+          - withAny
+          - withoutAll
+          - withoutAny
+          type: string
+        tags:
+          description: The tags for the Sentry Policy
+          items:
+            type: string
+          type: array
+        groupPolicyId:
+          description: The Group Policy Id
+          type: string
+      required:
+      - groupPolicyId
+      - scope
+      - smNetworkId
+      - tags
       type: object
     updateNetworkClientPolicy_request:
       example:
@@ -45950,6 +47655,18 @@ components:
       - quality
       - resolution
       type: object
+    getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_frequency:
+      description: Electrical frequency threshold. 'level' must be provided.
+      example:
+        level: 1.2315135
+      properties:
+        level:
+          description: Alerting threshold in hertz. Must be between 0 and 60.
+          format: float
+          type: number
+      required:
+      - level
+      type: object
     createOrganizationInventoryOnboardingCloudMonitoringImport_request:
       example:
         devices:
@@ -46051,6 +47768,40 @@ components:
           description: "The value of the configuration, after the change was applied."
           type: string
       type: object
+    createDeviceLiveToolsArpTable_201_response:
+      example:
+        arpTableId: arpTableId
+        request:
+          serial: serial
+        callback:
+          id: id
+          url: url
+          status: status
+        url: url
+        status: complete
+      properties:
+        arpTableId:
+          description: Id of the ARP table request. Used to check the status of the
+            request.
+          type: string
+        url:
+          description: GET this url to check the status of your ARP table request.
+          type: string
+        request:
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_201_response_request'
+        status:
+          description: Status of the ARP table request.
+          enum:
+          - complete
+          - failed
+          - new
+          - ready
+          - running
+          - scheduled
+          type: string
+        callback:
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_201_response_callback'
+      type: object
     updateNetworkCellularGatewayUplink_request:
       example:
         bandwidthLimits:
@@ -46084,6 +47835,38 @@ components:
           type: string
       required:
       - serial
+      type: object
+    getOrganizationCameraBoundariesLinesByDevice_200_response_inner_boundaries:
+      description: Configured line boundaries of the camera
+      example:
+        vertices:
+        - x: 0.8008282
+          "y": 6.0274563
+        - x: 0.8008282
+          "y": 6.0274563
+        name: name
+        directionVertex:
+          x: 0.8008282
+          "y": 6.0274563
+        id: id
+        type: type
+      properties:
+        id:
+          description: The line boundary id
+          type: string
+        type:
+          description: The line boundary type
+          type: string
+        name:
+          description: The line boundary name
+          type: string
+        vertices:
+          description: The line boundary vertices
+          items:
+            $ref: '#/components/schemas/getOrganizationCameraBoundariesAreasByDevice_200_response_inner_boundaries_vertices_inner'
+          type: array
+        directionVertex:
+          $ref: '#/components/schemas/getOrganizationCameraBoundariesLinesByDevice_200_response_inner_boundaries_directionVertex'
       type: object
     provisionNetworkClients_request:
       example:
@@ -46142,6 +47925,42 @@ components:
           description: Downstream data usage by client
           format: float
           type: number
+      type: object
+    _devices__serial__liveTools_cableTest_post_request_message_results_inner_pairs_inner:
+      example:
+        index: 6
+        lengthMeters: 1
+        status: abnormal
+      properties:
+        index:
+          description: The index of the twisted pair tested.
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          type: integer
+        status:
+          description: The test result of the twisted pair tested.
+          enum:
+          - abnormal
+          - couplex
+          - fail
+          - forced
+          - in-progress
+          - invalid
+          - not-supported
+          - ok
+          - open
+          - open or short
+          - short
+          - short or abnormal
+          - short or couplex
+          - unknown
+          type: string
+        lengthMeters:
+          description: The detected length of the twisted pair.
+          type: integer
       type: object
     updateNetworkWirelessSsidSplashSettings_request_splashLogo_image:
       description: Properties for setting a new image.
@@ -46488,6 +48307,30 @@ components:
       required:
       - type
       type: object
+    updateOrganizationSmAdminsRole_request:
+      example:
+        name: sample name
+        scope: all_tags
+        tags:
+        - tag
+      properties:
+        name:
+          description: The name of the Limited Access Role
+          type: string
+        scope:
+          description: The scope of the Limited Access Role
+          enum:
+          - all_tags
+          - some
+          - without_all_tags
+          - without_some
+          type: string
+        tags:
+          description: The tags of the Limited Access Role
+          items:
+            type: string
+          type: array
+      type: object
     updateNetworkApplianceVpnBgp_request_neighbors_inner:
       properties:
         ip:
@@ -46578,6 +48421,30 @@ components:
           description: Name of the network.
           type: string
       type: object
+    createDeviceLiveToolsWakeOnLan_request:
+      example:
+        vlanId: 12
+        mac: 00:11:22:33:44:55
+        callback:
+          url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
+          sharedSecret: secret
+          httpServer:
+            id: aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vd2ViaG9va3M=
+          payloadTemplate:
+            id: wpt_2100
+      properties:
+        vlanId:
+          description: The target's VLAN (1 to 4094)
+          type: integer
+        mac:
+          description: The target's MAC address
+          type: string
+        callback:
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_request_callback'
+      required:
+      - mac
+      - vlanId
+      type: object
     updateNetwork_request:
       example:
         name: Main Office
@@ -46644,6 +48511,15 @@ components:
           description: User supplied description of the alert
           type: string
       type: object
+    getNetworkSwitchAccessPolicies_200_response_inner_counts_ports:
+      description: Counts associated with ports
+      example:
+        withThisPolicy: 9
+      properties:
+        withThisPolicy:
+          description: Number of ports in the network with this policy
+          type: integer
+      type: object
     getNetworkWirelessSettings_200_response:
       example:
         ipv6BridgeEnabled: true
@@ -46656,6 +48532,7 @@ components:
         upgradeStrategy: minimizeClientDowntime
         ledLightsOn: true
         regulatoryDomain:
+          countryCode: countryCode
           name: name
           permits6e: true
       properties:
@@ -46999,6 +48876,15 @@ components:
           description: Set a manual target power for 2.4 GHz. Can be between '5' or
             '30' or null for using auto power range.
           type: integer
+      type: object
+    createDeviceLiveToolsArpTable_201_response_request:
+      description: ARP table request parameters
+      example:
+        serial: serial
+      properties:
+        serial:
+          description: Device serial number
+          type: string
       type: object
     getOrganizationSummaryTopAppliancesByUtilization_200_response_inner_utilization:
       description: Utilization of the appliance
@@ -47476,12 +49362,13 @@ components:
       properties:
         size:
           description: "The size of the vMX you claim. It can be one of: small, medium,\
-            \ large, 100"
+            \ large, xlarge, 100"
           enum:
           - "100"
           - large
           - medium
           - small
+          - xlarge
           type: string
       required:
       - size
@@ -47546,6 +49433,17 @@ components:
         iccid:
           description: Integrated Circuit Card Identification Number
           type: string
+      type: object
+    getOrganizationSmAdminsRoles_200_response_meta:
+      description: Metadata relevant to the paginated dataset
+      example:
+        counts:
+          items:
+            total: 0
+            remaining: 6
+      properties:
+        counts:
+          $ref: '#/components/schemas/getOrganizationSmAdminsRoles_200_response_meta_counts'
       type: object
     generateDeviceCameraSnapshot_request:
       example:
@@ -47634,6 +49532,18 @@ components:
             $ref: '#/components/schemas/getNetworkSwitchDhcpV4ServersSeen_200_response_inner_lastPacket_fields_options_inner'
           type: array
       type: object
+    rebootNetworkSmDevices_200_response:
+      example:
+        ids:
+        - ids
+        - ids
+      properties:
+        ids:
+          description: The Meraki Ids of the set of endpoints.
+          items:
+            type: string
+          type: array
+      type: object
     getOrganizationInsightApplications_200_response_inner_thresholds:
       description: Thresholds defined by a user or Meraki models for each application
       example:
@@ -47654,6 +49564,32 @@ components:
           items:
             $ref: '#/components/schemas/getOrganizationInsightApplications_200_response_inner_thresholds_byNetwork_inner'
           type: array
+      type: object
+    createOrganizationSmAdminsRole_request:
+      example:
+        name: sample name
+        scope: all_tags
+        tags:
+        - tag
+      properties:
+        name:
+          description: The name of the Limited Access Role
+          type: string
+        scope:
+          description: The scope of the Limited Access Role
+          enum:
+          - all_tags
+          - some
+          - without_all_tags
+          - without_some
+          type: string
+        tags:
+          description: The tags of the Limited Access Role
+          items:
+            type: string
+          type: array
+      required:
+      - name
       type: object
     assignNetworkWirelessEthernetPortsProfiles_request:
       example:
@@ -47696,25 +49632,6 @@ components:
           description: dormant count
           type: integer
       type: object
-    createDeviceLiveToolsPing_request_callback:
-      description: Details for the callback. Please include either an httpServerId
-        OR url and sharedSecret
-      properties:
-        url:
-          description: "The callback URL for the webhook target. If using this field,\
-            \ please also specify a sharedSecret."
-          type: string
-        sharedSecret:
-          description: "A shared secret that will be included in the requests sent\
-            \ to the callback URL. It can be used to verify that the request was sent\
-            \ by Meraki. If using this field, please also specify an url."
-          type: string
-        httpServer:
-          $ref: '#/components/schemas/createDeviceLiveToolsPing_request_callback_httpServer'
-        payloadTemplate:
-          $ref: '#/components/schemas/createDeviceLiveToolsPing_request_callback_payloadTemplate'
-      type: object
-      x-release-stage: general_availability
     _devices__serial__liveTools_ping_post_request_message:
       example:
         request:
@@ -47871,6 +49788,67 @@ components:
         hasTrustedPort:
           description: Whether this switch has a trusted DAI port. Always false if
             supportsInspection is false.
+          type: boolean
+      type: object
+    rebootNetworkSmDevices_request:
+      example:
+        wifiMacs:
+        - 00:11:22:33:44:55
+        ids:
+        - "1284392014819"
+        - "2983092129865"
+        serials:
+        - XY0XX0Y0X0
+        - A01B01CD00E
+        - X02YZ1ZYZX
+        scope:
+        - withAny
+        - tag1
+        - tag2
+        kextPaths:
+        - test
+        notifyUser: true
+        rebuildKernelCache: true
+        requestRequiresNetworkTether: true
+      properties:
+        wifiMacs:
+          description: The wifiMacs of the endpoints to be rebooted.
+          items:
+            type: string
+          type: array
+        ids:
+          description: The ids of the endpoints to be rebooted.
+          items:
+            type: string
+          type: array
+        serials:
+          description: The serials of the endpoints to be rebooted.
+          items:
+            type: string
+          type: array
+        scope:
+          description: "The scope (one of all, none, withAny, withAll, withoutAny,\
+            \ or withoutAll) and a set of tags of the endpoints to be rebooted."
+          items:
+            type: string
+          type: array
+        kextPaths:
+          description: The KextPaths of the endpoints to be rebooted. Available for
+            macOS 11+
+          items:
+            type: string
+          type: array
+        notifyUser:
+          description: Whether or not to notify the user before rebooting the endpoint.
+            Available for macOS 11.3+
+          type: boolean
+        rebuildKernelCache:
+          description: Whether or not to rebuild the kernel cache when rebooting the
+            endpoint. Available for macOS 11+
+          type: boolean
+        requestRequiresNetworkTether:
+          description: Whether or not the request requires network tethering. Available
+            for macOS and supervised iOS or tvOS
           type: boolean
       type: object
     updateNetworkApplianceTrafficShapingUplinkBandwidth_request_bandwidthLimits:
@@ -48254,9 +50232,23 @@ components:
           quality: fair
         door:
           open: true
+        apparentPower:
+          draw: 3.6160767
+        upstreamPower:
+          outageDetected: true
+        water:
+          present: true
+        voltage:
+          level: 7.386282
+        frequency:
+          level: 1.2315135
+        current:
+          draw: 4.145608
         pm25:
           concentration: 5
           quality: fair
+        realPower:
+          draw: 9.301444
         temperature:
           celsius: 0.8008282
           fahrenheit: 6.0274563
@@ -48271,8 +50263,8 @@ components:
         indoorAirQuality:
           score: 7
           quality: fair
-        water:
-          present: true
+        powerFactor:
+          percentage: 2
       properties:
         temperature:
           $ref: '#/components/schemas/getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_temperature'
@@ -48290,6 +50282,20 @@ components:
           $ref: '#/components/schemas/getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_noise'
         indoorAirQuality:
           $ref: '#/components/schemas/getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_indoorAirQuality'
+        realPower:
+          $ref: '#/components/schemas/getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_realPower'
+        apparentPower:
+          $ref: '#/components/schemas/getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_apparentPower'
+        powerFactor:
+          $ref: '#/components/schemas/getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_powerFactor'
+        current:
+          $ref: '#/components/schemas/getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_current'
+        voltage:
+          $ref: '#/components/schemas/getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_voltage'
+        frequency:
+          $ref: '#/components/schemas/getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_frequency'
+        upstreamPower:
+          $ref: '#/components/schemas/getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_upstreamPower'
       type: object
     updateNetworkWirelessSsid_request_namedVlans_radius:
       description: RADIUS settings. This param is only valid when authMode is 'open-with-radius'
@@ -49091,13 +51097,6 @@ components:
           description: Dynamic DNS enabled
           type: boolean
       type: object
-    _devices__serial__liveTools_ping_post_request_organization:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-      type: object
     getNetworkSmTrustedAccessConfigs_200_response_inner:
       example:
         ssidName: ssidName
@@ -49176,6 +51175,14 @@ components:
         guestCanRequestTimeframe:
           description: Whether or not guests can specify how much time they are requesting.
           type: boolean
+      type: object
+    createDeviceLiveToolsArpTable_request_callback_payloadTemplate:
+      description: The payload template of the webhook used for the callback
+      properties:
+        id:
+          description: The ID of the payload template. Defaults to 'wpt_00005' for
+            the Callback (included) template.
+          type: string
       type: object
     getOrganizationWirelessDevicesChannelUtilizationByDevice_200_response_inner_byBand_inner:
       example:
@@ -49272,7 +51279,7 @@ components:
         'metric' property equals 'noise'.
       example:
         ambient:
-          level: 5
+          level: 9
       properties:
         ambient:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_noise_ambient'
@@ -49282,6 +51289,18 @@ components:
       properties:
         byPortSchedules:
           $ref: '#/components/schemas/updateNetworkAlertsSettings_request_muting_byPortSchedules'
+      type: object
+    getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_realPower:
+      description: Real power threshold. 'draw' must be provided.
+      example:
+        draw: 9.301444
+      properties:
+        draw:
+          description: Alerting threshold in watts. Must be between 0 and 3750.
+          format: float
+          type: number
+      required:
+      - draw
       type: object
     getNetworkApplianceSsids_200_response_inner:
       example:
@@ -49436,6 +51455,18 @@ components:
       required:
       - rules
       type: object
+    getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_voltage:
+      description: Voltage threshold. 'level' must be provided.
+      example:
+        level: 7.386282
+      properties:
+        level:
+          description: Alerting threshold in volts. Must be between 0 and 250.
+          format: float
+          type: number
+      required:
+      - level
+      type: object
     getNetworkWirelessSsids_200_response_inner_radiusServers_inner:
       example:
         port: 6
@@ -49492,6 +51523,21 @@ components:
           type: string
       required:
       - devicePolicy
+      type: object
+    getOrganizationSummaryTopNetworksByStatus_200_response_inner_devices:
+      description: Network device information
+      example:
+        byProductType:
+        - productType: productType
+          url: url
+        - productType: productType
+          url: url
+      properties:
+        byProductType:
+          description: URLs by product type
+          items:
+            $ref: '#/components/schemas/getOrganizationSummaryTopNetworksByStatus_200_response_inner_devices_byProductType_inner'
+          type: array
       type: object
     getNetworkHealthAlerts_200_response_inner_scope_devices_inner_lldp:
       description: Lldp information
@@ -49578,14 +51624,41 @@ components:
             $ref: '#/components/schemas/updateNetworkWirelessBilling_request_plans_inner'
           type: array
       type: object
+    createDeviceLiveToolsCableTest_request:
+      example:
+        ports:
+        - "2"
+        - "8"
+        callback:
+          url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
+          sharedSecret: secret
+          httpServer:
+            id: aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vd2ViaG9va3M=
+          payloadTemplate:
+            id: wpt_2100
+      properties:
+        ports:
+          description: A list of ports for which to perform the cable test.
+          items:
+            type: string
+          type: array
+        callback:
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_request_callback'
+      required:
+      - ports
+      type: object
     getNetworkWirelessSettings_200_response_regulatoryDomain:
       description: Regulatory domain information for this network.
       example:
+        countryCode: countryCode
         name: name
         permits6e: true
       properties:
         name:
           description: The name of the regulatory domain for this network.
+          type: string
+        countryCode:
+          description: The country code of the regulatory domain.
           type: string
         permits6e:
           description: Whether or not the regulatory domain for this network permits
@@ -50279,7 +52352,7 @@ components:
       example:
         wifiMac: 00:11:22:33:44:55
         id: "1284392014819"
-        serial: Q234-ABCD-5678
+        serial: XY0XX0Y0X0
         pin: 123456
       properties:
         wifiMac:
@@ -50324,7 +52397,7 @@ components:
       description: Reading for the 'indoorAirQuality' metric. This will only be present
         if the 'metric' property equals 'indoorAirQuality'.
       example:
-        score: 1
+        score: 7
       properties:
         score:
           description: Indoor air quality score between 0 and 100.
@@ -50778,6 +52851,20 @@ components:
             indoorAirQuality:
               score: 80
               quality: fair
+            realPower:
+              draw: 14.1
+            apparentPower:
+              draw: 17.2
+            powerFactor:
+              percentage: 81
+            current:
+              draw: 0.14
+            voltage:
+              level: 119.5
+            frequency:
+              level: 58.8
+            upstreamPower:
+              outageDetected: true
           direction: above
           duration: 60
         recipients:
@@ -50849,7 +52936,7 @@ components:
             $ref: '#/components/schemas/createOrganizationActionBatch_request_actions_inner'
           type: array
         callback:
-          $ref: '#/components/schemas/createDeviceLiveToolsPing_request_callback'
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_request_callback'
       required:
       - actions
       type: object
@@ -50941,6 +53028,21 @@ components:
           description: Longitude
           format: float
           type: number
+      type: object
+    getOrganizationUplinksStatuses_200_response_inner_highAvailability:
+      description: Device High Availability Capabilities
+      example:
+        role: role
+        enabled: true
+      properties:
+        enabled:
+          description: "Indicates whether High Availability is enabled for the device.\
+            \ For devices that do not support HA, this will be 'false'"
+          type: boolean
+        role:
+          description: "The HA role of the device on the network. For devices that\
+            \ do not support HA, this will be 'primary'"
+          type: string
       type: object
     getNetworkWebhooksPayloadTemplates_200_response_inner_headers_inner:
       example:
@@ -52215,6 +54317,20 @@ components:
           - deny
           type: string
       type: object
+    getOrganizationSmAdminsRoles_200_response_meta_counts_items:
+      description: Counts relating to the paginated items
+      example:
+        total: 0
+        remaining: 6
+      properties:
+        total:
+          description: The total number of items in the dataset
+          type: integer
+        remaining:
+          description: The number of items in the dataset that are available on subsequent
+            pages
+          type: integer
+      type: object
     getNetworkSwitchDhcpV4ServersSeen_200_response_inner_lastPacket_ethernet:
       description: Additional ethernet attributes of the packet.
       example:
@@ -52710,6 +54826,19 @@ components:
         toVersion:
           $ref: '#/components/schemas/createNetworkFirmwareUpgradesStagedEvent_request_products_switch_nextUpgrade_toVersion'
       type: object
+    getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_upstreamPower:
+      description: Upstream power threshold. 'outageDetected' must be provided and
+        set to true.
+      example:
+        outageDetected: true
+      properties:
+        outageDetected:
+          description: Alerting threshold for an upstream power event. Must be set
+            to true.
+          type: boolean
+      required:
+      - outageDetected
+      type: object
     getDeviceApplianceUplinksSettings_200_response_interfaces:
       description: Interface settings.
       example:
@@ -52772,6 +54901,17 @@ components:
           $ref: '#/components/schemas/getDeviceApplianceUplinksSettings_200_response_interfaces_wan1'
         wan2:
           $ref: '#/components/schemas/getDeviceApplianceUplinksSettings_200_response_interfaces_wan2'
+      type: object
+    getOrganizationSensorReadingsHistory_200_response_inner_apparentPower:
+      description: Reading for the 'apparentPower' metric. This will only be present
+        if the 'metric' property equals 'apparentPower'.
+      example:
+        draw: 0.8008282
+      properties:
+        draw:
+          description: Apparent power reading in volt-amperes.
+          format: float
+          type: number
       type: object
     createNetworkApplianceRfProfile_request_twoFourGhzSettings:
       description: Settings related to 2.4Ghz band
@@ -52952,6 +55092,23 @@ components:
       required:
       - enabled
       type: object
+    createDeviceLiveToolsWakeOnLan_201_response_request:
+      description: The parameters of the Wake-on-LAN request
+      example:
+        serial: serial
+        vlanId: 0
+        mac: mac
+      properties:
+        serial:
+          description: Device serial number
+          type: string
+        vlanId:
+          description: The target's VLAN (1 to 4094)
+          type: integer
+        mac:
+          description: The target's MAC address
+          type: string
+      type: object
     getNetworkFirmwareUpgradesStagedGroups_200_response_inner_assignedDevices_switchStacks_inner:
       example:
         name: name
@@ -52963,6 +55120,21 @@ components:
         name:
           description: Name of the Switch Stack
           type: string
+      type: object
+    getOrganizationCameraBoundariesLinesByDevice_200_response_inner_boundaries_directionVertex:
+      description: The line boundary crossing direction vertex
+      example:
+        x: 0.8008282
+        "y": 6.0274563
+      properties:
+        x:
+          description: The vertex x coordinate
+          format: float
+          type: number
+        "y":
+          description: The vertex y coordinate
+          format: float
+          type: number
       type: object
     getNetworkWirelessRfProfiles_200_response_fiveGhzSettings:
       description: Settings related to 5Ghz band
@@ -53140,6 +55312,19 @@ components:
             \ If there is no head license, it returns nil."
           type: string
       type: object
+    getOrganizationApplianceUplinksStatusesOverview_200_response:
+      example:
+        counts:
+          byStatus:
+            ready: 6
+            notConnected: 5
+            active: 0
+            failed: 1
+            connecting: 5
+      properties:
+        counts:
+          $ref: '#/components/schemas/getOrganizationApplianceUplinksStatusesOverview_200_response_counts'
+      type: object
     updateNetworkApplianceVpnSiteToSiteVpn_request_subnets_inner:
       properties:
         localSubnet:
@@ -53274,9 +55459,9 @@ components:
     _devices__serial__liveTools_ping_post_request:
       properties:
         organization:
-          $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_organization'
+          $ref: '#/components/schemas/_devices__serial__liveTools_arpTable_post_request_organization'
         network:
-          $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_organization'
+          $ref: '#/components/schemas/_devices__serial__liveTools_arpTable_post_request_organization'
         sentAt:
           type: string
         callbackId:
@@ -53621,6 +55806,18 @@ components:
       - operation
       - resource
       type: object
+    getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_current:
+      description: Electrical current threshold. 'level' must be provided.
+      example:
+        draw: 4.145608
+      properties:
+        draw:
+          description: Alerting threshold in amps. Must be between 0 and 15.
+          format: float
+          type: number
+      required:
+      - draw
+      type: object
     createNetworkGroupPolicy_request_scheduling_sunday:
       description: The schedule object for Sunday.
       properties:
@@ -53694,6 +55891,18 @@ components:
       - comment
       - end
       - start
+      type: object
+    getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_apparentPower:
+      description: Apparent power threshold. 'draw' must be provided.
+      example:
+        draw: 3.6160767
+      properties:
+        draw:
+          description: Alerting threshold in volt-amps. Must be between 0 and 3750.
+          format: float
+          type: number
+      required:
+      - draw
       type: object
     getOrganizationApiRequestsOverviewResponseCodesByInterval_200_response_inner_counts_inner:
       example:
@@ -54214,9 +56423,9 @@ components:
         - "1284392014819"
         - "2983092129865"
         serials:
-        - Q234-ABCD-0001
-        - Q234-ABCD-0002
-        - Q234-ABCD-0003
+        - XY0XX0Y0X0
+        - A01B01CD00E
+        - X02YZ1ZYZX
         scope:
         - "withAny, old_tag"
         tags:
@@ -54371,6 +56580,65 @@ components:
             $ref: '#/components/schemas/getNetworkPoliciesByClient_200_response_inner_assigned_inner'
           type: array
       type: object
+    updateOrganizationSmSentryPoliciesAssignments_200_response_items_inner_policies_inner:
+      example:
+        createdAt: createdAt
+        policyId: policyId
+        lastUpdatedAt: lastUpdatedAt
+        scope: all
+        smNetworkId: smNetworkId
+        networkId: networkId
+        priority: priority
+        groupNumber: groupNumber
+        groupPolicyId: groupPolicyId
+        tags:
+        - tags
+        - tags
+      properties:
+        policyId:
+          description: The Id of the Sentry Policy
+          type: string
+        networkId:
+          description: "The Id of the Network the Sentry Policy is associated with.\
+            \ In a locale, this should be the Wireless Group if present, otherwise\
+            \ the Wired Group."
+          type: string
+        smNetworkId:
+          description: The Id of the Systems Manager Network the Sentry Policy is
+            assigned to
+          type: string
+        tags:
+          description: The tags of the Sentry Policy
+          items:
+            type: string
+          type: array
+        scope:
+          description: The scope of the Sentry Policy
+          enum:
+          - all
+          - none
+          - withAll
+          - withAny
+          - withoutAll
+          - withoutAny
+          type: string
+        groupNumber:
+          description: The number of the Group Policy
+          type: string
+        groupPolicyId:
+          description: The Id of the Group Policy. This is associated with the network
+            specified by the networkId.
+          type: string
+        priority:
+          description: The priority of the Sentry Policy
+          type: string
+        createdAt:
+          description: The creation time of the Sentry Policy
+          type: string
+        lastUpdatedAt:
+          description: The last update time of the Sentry Policy
+          type: string
+      type: object
     updateNetworkApplianceTrafficShapingUplinkSelection_request_wanTrafficUplinkPreferences_inner_trafficFilters_inner_value_source:
       description: Source of this custom type traffic filter
       properties:
@@ -54417,6 +56685,43 @@ components:
           description: Release date of the firmware version
           format: date-time
           type: string
+      type: object
+    createDeviceLiveToolsCableTest_201_response:
+      example:
+        request:
+          serial: serial
+          ports:
+          - ports
+          - ports
+        cableTestId: cableTestId
+        callback:
+          id: id
+          url: url
+          status: status
+        url: url
+        status: complete
+      properties:
+        cableTestId:
+          description: Id of the cable test request. Used to check the status of the
+            request.
+          type: string
+        url:
+          description: GET this url to check the status of your cable test request.
+          type: string
+        request:
+          $ref: '#/components/schemas/createDeviceLiveToolsCableTest_201_response_request'
+        status:
+          description: Status of the cable test request.
+          enum:
+          - complete
+          - failed
+          - new
+          - ready
+          - running
+          - scheduled
+          type: string
+        callback:
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_201_response_callback'
       type: object
     getDeviceWirelessStatus_200_response_basicServiceSets_inner:
       example:
@@ -54470,9 +56775,9 @@ components:
         - "1284392014819"
         - "2983092129865"
         serials:
-        - Q234-ABCD-0001
-        - Q234-ABCD-0002
-        - Q234-ABCD-0003
+        - XY0XX0Y0X0
+        - A01B01CD00E
+        - X02YZ1ZYZX
         scope:
         - withAny
         - tag1
@@ -54496,7 +56801,7 @@ components:
           type: array
         scope:
           description: "The scope (one of all, none, withAny, withAll, withoutAny,\
-            \ or withoutAll) and a set of tags of the devices to be wiped."
+            \ or withoutAll) and a set of tags of the devices to be locked."
           items:
             type: string
           type: array
@@ -54828,6 +57133,26 @@ components:
         utilization:
           $ref: '#/components/schemas/getOrganizationSummaryTopAppliancesByUtilization_200_response_inner_utilization'
       type: object
+    createDeviceLiveToolsArpTable_201_response_callback:
+      description: Information for callback used to send back results
+      example:
+        id: id
+        url: url
+        status: status
+      properties:
+        id:
+          description: "The ID of the callback. To check the status of the callback,\
+            \ use this ID in a request to /webhooks/callbacks/statuses/{id}"
+          type: string
+        url:
+          description: The callback URL for the webhook target. This was either provided
+            in the original request or comes from a configured webhook receiver
+          type: string
+        status:
+          description: The status of the callback
+          type: string
+      type: object
+      x-release-stage: general_availability
     getNetworkApplianceTrafficShapingUplinkSelection_200_response_wanTrafficUplinkPreferences_inner_trafficFilters_inner_value:
       description: Value of traffic filter
       example:
@@ -55104,6 +57429,52 @@ components:
         webhook:
           $ref: '#/components/schemas/getOrganizationWebhooksCallbacksStatus_200_response_webhook'
       type: object
+    _devices__serial__liveTools_arpTable_post_request_message_entries_inner:
+      example:
+        vlanId: 0
+        lastUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        ip: ip
+        mac: mac
+      properties:
+        ip:
+          description: The IP address of the ARP table entry
+          type: string
+        mac:
+          description: The MAC address of the ARP table entry
+          type: string
+        vlanId:
+          description: The VLAN ID of the ARP table entry
+          type: integer
+        lastUpdatedAt:
+          description: Time of the last update of the ARP table entry
+          format: date-time
+          type: string
+      type: object
+    getOrganizationApplianceUplinksStatusesOverview_200_response_counts_byStatus:
+      description: byStatus
+      example:
+        ready: 6
+        notConnected: 5
+        active: 0
+        failed: 1
+        connecting: 5
+      properties:
+        active:
+          description: number of uplinks that are active and working
+          type: integer
+        ready:
+          description: number of uplinks that are working but on standby
+          type: integer
+        failed:
+          description: number of uplinks that were working but have failed
+          type: integer
+        connecting:
+          description: number of uplinks currently connecting
+          type: integer
+        notConnected:
+          description: number of uplinks currently where nothing is plugged in
+          type: integer
+      type: object
     getNetworkHealthAlerts_200_response_inner_scope_peers_inner_network:
       description: Network of the peer
       example:
@@ -55247,6 +57618,29 @@ components:
           description: "New authorization status for the SSID (true, false)."
           type: boolean
       type: object
+    getOrganizationCameraBoundariesAreasByDevice_200_response_inner:
+      example:
+        serial: serial
+        boundaries:
+          vertices:
+          - x: 0.8008282
+            "y": 6.0274563
+          - x: 0.8008282
+            "y": 6.0274563
+          name: name
+          id: id
+          type: type
+        networkId: networkId
+      properties:
+        networkId:
+          description: The network id of the camera
+          type: string
+        serial:
+          description: The serial number of the camera
+          type: string
+        boundaries:
+          $ref: '#/components/schemas/getOrganizationCameraBoundariesAreasByDevice_200_response_inner_boundaries'
+      type: object
     updateNetworkClientSplashAuthorizationStatus_request_ssids_12:
       description: Splash authorization for SSID 12
       properties:
@@ -55260,6 +57654,52 @@ components:
         isAuthorized:
           description: "New authorization status for the SSID (true, false)."
           type: boolean
+      type: object
+    _devices__serial__liveTools_arpTable_post_request_message:
+      example:
+        arpTableId: arpTableId
+        request:
+          serial: serial
+        entries:
+        - vlanId: 0
+          lastUpdatedAt: 2000-01-23T04:56:07.000+00:00
+          ip: ip
+          mac: mac
+        - vlanId: 0
+          lastUpdatedAt: 2000-01-23T04:56:07.000+00:00
+          ip: ip
+          mac: mac
+        error: error
+        url: url
+        status: complete
+      properties:
+        arpTableId:
+          description: Id of the ARP table request. Used to check the status of the
+            request.
+          type: string
+        url:
+          description: GET this url to check the status of your ARP table request.
+          type: string
+        request:
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_201_response_request'
+        status:
+          description: Status of the ARP table request.
+          enum:
+          - complete
+          - failed
+          - new
+          - ready
+          - running
+          - scheduled
+          type: string
+        entries:
+          description: The ARP table entries
+          items:
+            $ref: '#/components/schemas/_devices__serial__liveTools_arpTable_post_request_message_entries_inner'
+          type: array
+        error:
+          description: An error message for a failed execution
+          type: string
       type: object
     updateNetworkWirelessBluetoothSettings_request:
       example:
@@ -55380,6 +57820,32 @@ components:
         detectionModelId:
           description: The ID of the object detection model
           type: string
+      type: object
+    getOrganizationCameraBoundariesLinesByDevice_200_response_inner:
+      example:
+        serial: serial
+        boundaries:
+          vertices:
+          - x: 0.8008282
+            "y": 6.0274563
+          - x: 0.8008282
+            "y": 6.0274563
+          name: name
+          directionVertex:
+            x: 0.8008282
+            "y": 6.0274563
+          id: id
+          type: type
+        networkId: networkId
+      properties:
+        networkId:
+          description: The network id of the camera
+          type: string
+        serial:
+          description: The serial number of the camera
+          type: string
+        boundaries:
+          $ref: '#/components/schemas/getOrganizationCameraBoundariesLinesByDevice_200_response_inner_boundaries'
       type: object
     createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_accessList_vtyIn:
       description: VTY in ACL
@@ -56040,6 +58506,20 @@ components:
             $ref: '#/components/schemas/getNetwork_200_response'
           type: array
       type: object
+    getOrganizationCameraBoundariesAreasByDevice_200_response_inner_boundaries_vertices_inner:
+      example:
+        x: 0.8008282
+        "y": 6.0274563
+      properties:
+        x:
+          description: The vertex x coordinate
+          format: float
+          type: number
+        "y":
+          description: The vertex y coordinate
+          format: float
+          type: number
+      type: object
     createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer_request:
       example:
         mac: 00:11:22:33:44:55
@@ -56250,6 +58730,26 @@ components:
           $ref: '#/components/schemas/createOrganizationBrandingPolicy_request_helpSettings'
         customLogo:
           $ref: '#/components/schemas/getOrganizationBrandingPolicies_200_response_inner_customLogo'
+      type: object
+    getOrganizationCameraDetectionsHistoryByBoundaryByInterval_200_response_inner:
+      example:
+        boundaryId: boundaryId
+        type: type
+        results:
+          in: 0
+          startTime: startTime
+          endTime: endTime
+          objectType: objectType
+          out: 6
+      properties:
+        boundaryId:
+          description: The boundary id
+          type: string
+        type:
+          description: The boundary type
+          type: string
+        results:
+          $ref: '#/components/schemas/getOrganizationCameraDetectionsHistoryByBoundaryByInterval_200_response_inner_results'
       type: object
     createNetworkGroupPolicy_request_firewallAndTrafficShaping:
       description: |2
@@ -57214,6 +59714,21 @@ components:
             \ as \"any\")"
           type: string
       type: object
+    getOrganizationSummaryTopNetworksByStatus_200_response_inner_statuses_byProductType_inner:
+      example:
+        counts:
+          offline: 5
+          dormant: 7
+          online: 5
+          alerting: 2
+        productType: productType
+      properties:
+        productType:
+          description: Product type
+          type: string
+        counts:
+          $ref: '#/components/schemas/getOrganizationSummaryTopNetworksByStatus_200_response_inner_statuses_byProductType_inner_counts'
+      type: object
     updateNetworkWirelessSsid_request_dot11r:
       description: The current setting for 802.11r
       properties:
@@ -57466,11 +59981,50 @@ components:
       description: Reading for the 'battery' metric. This will only be present if
         the 'metric' property equals 'battery'.
       example:
-        percentage: 0
+        percentage: 6
       properties:
         percentage:
           description: Remaining battery life.
           type: integer
+      type: object
+    createDeviceLiveToolsWakeOnLan_201_response:
+      example:
+        request:
+          serial: serial
+          vlanId: 0
+          mac: mac
+        wakeOnLanId: wakeOnLanId
+        callback:
+          id: id
+          url: url
+          status: status
+        error: error
+        url: url
+        status: complete
+      properties:
+        wakeOnLanId:
+          description: ID of the Wake-on-LAN job
+          type: string
+        url:
+          description: GET this url to check the status of your ping request
+          type: string
+        status:
+          description: Status of the Wake-on-LAN request
+          enum:
+          - complete
+          - failed
+          - new
+          - ready
+          - running
+          - scheduled
+          type: string
+        request:
+          $ref: '#/components/schemas/createDeviceLiveToolsWakeOnLan_201_response_request'
+        error:
+          description: An error message for a failed execution
+          type: string
+        callback:
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_201_response_callback'
       type: object
     checkinNetworkSmDevices_request:
       example:
@@ -57480,9 +60034,9 @@ components:
         - "1284392014819"
         - "2983092129865"
         serials:
-        - Q234-ABCD-0001
-        - Q234-ABCD-0002
-        - Q234-ABCD-0003
+        - XY0XX0Y0X0
+        - A01B01CD00E
+        - X02YZ1ZYZX
         scope:
         - withAny
         - tag1
@@ -57633,6 +60187,15 @@ components:
           items:
             $ref: '#/components/schemas/getNetworkWirelessSsidTrafficShapingRules_200_response_rules_inner'
           type: array
+      type: object
+    getOrganizationSummaryTopNetworksByStatus_200_response_inner_clients_counts:
+      description: Network client counts
+      example:
+        total: 0
+      properties:
+        total:
+          description: Total count of clients in network
+          type: integer
       type: object
     getNetworkSwitchPortSchedules_200_response_inner_portSchedule_monday:
       description: Monday schedule
@@ -57949,6 +60512,17 @@ components:
             \ ServiceNow (included) template use 'wpt_00006'"
           type: string
       type: object
+    getOrganizationSensorReadingsHistory_200_response_inner_current:
+      description: Reading for the 'current' metric. This will only be present if
+        the 'metric' property equals 'current'.
+      example:
+        draw: 5.962134
+      properties:
+        draw:
+          description: Electrical current reading in amperes.
+          format: float
+          type: number
+      type: object
     getOrganizationInsightApplications_200_response_inner:
       example:
         thresholds:
@@ -58194,9 +60768,9 @@ components:
         - "1284392014819"
         - "2983092129865"
         serials:
-        - Q234-ABCD-0001
-        - Q234-ABCD-0002
-        - Q234-ABCD-0003
+        - XY0XX0Y0X0
+        - A01B01CD00E
+        - X02YZ1ZYZX
         scope:
         - withAny
         - tag1
@@ -58442,7 +61016,7 @@ components:
           description: "Count parameter to pass to ping. [1..5], default 5"
           type: integer
         callback:
-          $ref: '#/components/schemas/createDeviceLiveToolsPing_request_callback'
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_request_callback'
       type: object
     getNetworkFirmwareUpgradesStagedEvents_200_response_products_switch:
       description: The Switch network to be updated
@@ -58677,6 +61251,46 @@ components:
             type: string
           type: array
       type: object
+    _devices__serial__liveTools_wakeOnLan_post_request_message:
+      example:
+        request:
+          serial: serial
+          vlanId: 0
+          mac: mac
+        wakeOnLanId: wakeOnLanId
+        error: error
+        url: url
+        status: complete
+      properties:
+        wakeOnLanId:
+          description: ID of the Wake-on-LAN job
+          type: string
+        url:
+          description: GET this url to check the status of your ping request
+          type: string
+        status:
+          description: Status of the Wake-on-LAN request
+          enum:
+          - complete
+          - failed
+          - new
+          - ready
+          - running
+          - scheduled
+          type: string
+        request:
+          $ref: '#/components/schemas/createDeviceLiveToolsWakeOnLan_201_response_request'
+        error:
+          description: An error message for a failed execution
+          type: string
+      type: object
+    _devices__serial__liveTools_arpTable_post_request_organization:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      type: object
     updateDevice_request:
       example:
         name: My AP
@@ -58743,15 +61357,23 @@ components:
     getNetworkSensorAlertsOverviewByMetric_200_response_inner:
       example:
         counts:
-          tvoc: 7
-          door: 0
-          pm25: 5
+          tvoc: 1
+          door: 5
+          apparentPower: 0
+          co2: 6
+          upstreamPower: 1
+          water: 6
+          frequency: 5
+          voltage: 1
+          current: 1
+          pm25: 3
+          realPower: 4
           noise:
-            ambient: 5
-          temperature: 2
-          humidity: 6
-          indoorAirQuality: 1
-          water: 9
+            ambient: 9
+          temperature: 7
+          humidity: 2
+          indoorAirQuality: 7
+          powerFactor: 2
         endTs: 2000-01-23T04:56:07.000+00:00
         startTs: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -58827,6 +61449,22 @@ components:
         to:
           description: "The time, from '00:00' to '24:00'"
           type: string
+      type: object
+    getOrganizationCameraDetectionsHistoryByBoundaryByInterval_ranges_parameter_inner:
+      properties:
+        startTime:
+          description: The range start time
+          type: string
+        endTime:
+          description: The range end time
+          type: string
+        interval:
+          description: The range interval in seconds
+          type: integer
+      required:
+      - endTime
+      - interval
+      - startTime
       type: object
     createNetworkWirelessRfProfile_request_perSsidSettings_13:
       description: Settings for SSID 13
@@ -59365,7 +62003,7 @@ components:
           - httpServerIds
         name: name
         conditions:
-        - duration: 9
+        - duration: 1
           metric: metric
           threshold:
             tvoc:
@@ -59373,9 +62011,23 @@ components:
               quality: fair
             door:
               open: true
+            apparentPower:
+              draw: 3.6160767
+            upstreamPower:
+              outageDetected: true
+            water:
+              present: true
+            voltage:
+              level: 7.386282
+            frequency:
+              level: 1.2315135
+            current:
+              draw: 4.145608
             pm25:
               concentration: 5
               quality: fair
+            realPower:
+              draw: 9.301444
             temperature:
               celsius: 0.8008282
               fahrenheit: 6.0274563
@@ -59390,10 +62042,10 @@ components:
             indoorAirQuality:
               score: 7
               quality: fair
-            water:
-              present: true
+            powerFactor:
+              percentage: 2
           direction: above
-        - duration: 9
+        - duration: 1
           metric: metric
           threshold:
             tvoc:
@@ -59401,9 +62053,23 @@ components:
               quality: fair
             door:
               open: true
+            apparentPower:
+              draw: 3.6160767
+            upstreamPower:
+              outageDetected: true
+            water:
+              present: true
+            voltage:
+              level: 7.386282
+            frequency:
+              level: 1.2315135
+            current:
+              draw: 4.145608
             pm25:
               concentration: 5
               quality: fair
+            realPower:
+              draw: 9.301444
             temperature:
               celsius: 0.8008282
               fahrenheit: 6.0274563
@@ -59418,8 +62084,8 @@ components:
             indoorAirQuality:
               score: 7
               quality: fair
-            water:
-              present: true
+            powerFactor:
+              percentage: 2
           direction: above
       properties:
         profileId:
@@ -59765,54 +62431,90 @@ components:
     getOrganizationSensorReadingsLatest_200_response_inner:
       example:
         readings:
-        - button:
-            pressType: long
-          tvoc:
-            concentration: 9
+        - tvoc:
+            concentration: 1
           door:
             open: true
-          pm25:
-            concentration: 5
-          metric: battery
-          noise:
-            ambient:
-              level: 5
-          temperature:
-            celsius: 7.0614014
-            fahrenheit: 2.302136
-          humidity:
-            relativePercentage: 6
-          indoorAirQuality:
-            score: 1
+          apparentPower:
+            draw: 0.8008282
+          co2:
+            concentration: 1
+          downstreamPower:
+            enabled: true
           battery:
-            percentage: 0
+            percentage: 6
           water:
             present: true
-          ts: ts
-        - button:
+          frequency:
+            level: 5.637377
+          voltage:
+            level: 1.4894159
+          button:
             pressType: long
-          tvoc:
-            concentration: 9
+          current:
+            draw: 5.962134
+          pm25:
+            concentration: 3
+          realPower:
+            draw: 4.145608
+          metric: apparentPower
+          remoteLockoutSwitch:
+            locked: true
+          noise:
+            ambient:
+              level: 9
+          temperature:
+            celsius: 1.2315135
+            fahrenheit: 7.386282
+          humidity:
+            relativePercentage: 2
+          indoorAirQuality:
+            score: 7
+          ts: ts
+          powerFactor:
+            percentage: 2
+        - tvoc:
+            concentration: 1
           door:
             open: true
-          pm25:
-            concentration: 5
-          metric: battery
-          noise:
-            ambient:
-              level: 5
-          temperature:
-            celsius: 7.0614014
-            fahrenheit: 2.302136
-          humidity:
-            relativePercentage: 6
-          indoorAirQuality:
-            score: 1
+          apparentPower:
+            draw: 0.8008282
+          co2:
+            concentration: 1
+          downstreamPower:
+            enabled: true
           battery:
-            percentage: 0
+            percentage: 6
           water:
             present: true
+          frequency:
+            level: 5.637377
+          voltage:
+            level: 1.4894159
+          button:
+            pressType: long
+          current:
+            draw: 5.962134
+          pm25:
+            concentration: 3
+          realPower:
+            draw: 4.145608
+          metric: apparentPower
+          remoteLockoutSwitch:
+            locked: true
+          noise:
+            ambient:
+              level: 9
+          temperature:
+            celsius: 1.2315135
+            fahrenheit: 7.386282
+          humidity:
+            relativePercentage: 2
+          indoorAirQuality:
+            score: 7
           ts: ts
+          powerFactor:
+            percentage: 2
         serial: serial
         network:
           name: name
@@ -60019,31 +62721,47 @@ components:
     getNetworkSensorAlertsCurrentOverviewByMetric_200_response:
       example:
         supportedMetrics:
-        - door
-        - door
+        - apparentPower
+        - apparentPower
         counts:
-          tvoc: 7
-          door: 0
-          pm25: 5
+          tvoc: 1
+          door: 5
+          apparentPower: 0
+          co2: 6
+          upstreamPower: 1
+          water: 6
+          frequency: 5
+          voltage: 1
+          current: 1
+          pm25: 3
+          realPower: 4
           noise:
-            ambient: 5
-          temperature: 2
-          humidity: 6
-          indoorAirQuality: 1
-          water: 9
+            ambient: 9
+          temperature: 7
+          humidity: 2
+          indoorAirQuality: 7
+          powerFactor: 2
       properties:
         supportedMetrics:
           description: "List of metrics that are supported for alerts, based on available\
             \ sensor devices in the network"
           items:
             enum:
+            - apparentPower
+            - co2
+            - current
             - door
+            - frequency
             - humidity
             - indoorAirQuality
             - noise
             - pm25
+            - powerFactor
+            - realPower
             - temperature
             - tvoc
+            - upstreamPower
+            - voltage
             - water
             type: string
           type: array
@@ -60358,7 +63076,7 @@ components:
       type: object
     getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner:
       example:
-        duration: 9
+        duration: 1
         metric: metric
         threshold:
           tvoc:
@@ -60366,9 +63084,23 @@ components:
             quality: fair
           door:
             open: true
+          apparentPower:
+            draw: 3.6160767
+          upstreamPower:
+            outageDetected: true
+          water:
+            present: true
+          voltage:
+            level: 7.386282
+          frequency:
+            level: 1.2315135
+          current:
+            draw: 4.145608
           pm25:
             concentration: 5
             quality: fair
+          realPower:
+            draw: 9.301444
           temperature:
             celsius: 0.8008282
             fahrenheit: 6.0274563
@@ -60383,21 +63115,23 @@ components:
           indoorAirQuality:
             score: 7
             quality: fair
-          water:
-            present: true
+          powerFactor:
+            percentage: 2
         direction: above
       properties:
         metric:
           description: "The type of sensor metric that will be monitored for changes.\
-            \ Available metrics are door, humidity, indoorAirQuality, noise, pm25,\
-            \ temperature, tvoc, and water."
+            \ Available metrics are apparentPower, co2, current, door, frequency,\
+            \ humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, temperature,\
+            \ tvoc, upstreamPower, voltage, and water."
           type: string
         threshold:
           $ref: '#/components/schemas/getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold'
         direction:
           description: "If 'above', an alert will be sent when a sensor reads above\
             \ the threshold. If 'below', an alert will be sent when a sensor reads\
-            \ below the threshold. Only applicable for temperature and humidity thresholds."
+            \ below the threshold. Only applicable for temperature, humidity, realPower,\
+            \ apparentPower, powerFactor, voltage, current, and frequency thresholds."
           enum:
           - above
           - below
@@ -60874,26 +63608,6 @@ components:
             type: string
           type: array
       type: object
-    createDeviceLiveToolsPing_201_response_callback:
-      description: Information for callback used to send back results
-      example:
-        id: id
-        url: url
-        status: status
-      properties:
-        id:
-          description: "The ID of the callback. To check the status of the callback,\
-            \ use this ID in a request to /webhooks/callbacks/statuses/{id}"
-          type: string
-        url:
-          description: The callback URL for the webhook target. This was either provided
-            in the original request or comes from a configured webhook receiver
-          type: string
-        status:
-          description: The status of the callback
-          type: string
-      type: object
-      x-release-stage: general_availability
     rebootDevice_202_response:
       example:
         success: true
@@ -61025,6 +63739,17 @@ components:
           description: Destination ipv4 address of the packet.
           type: string
       type: object
+    getOrganizationSensorReadingsHistory_200_response_inner_downstreamPower:
+      description: Reading for the 'downstreamPower' metric. This will only be present
+        if the 'metric' property equals 'downstreamPower'.
+      example:
+        enabled: true
+      properties:
+        enabled:
+          description: True if power is turned on to the device that is connected
+            downstream of the MT40 power monitor.
+          type: boolean
+      type: object
     getOrganizations_200_response_inner_cloud_region:
       description: Region info
       example:
@@ -61034,13 +63759,34 @@ components:
           description: Name of region
           type: string
       type: object
-    createDeviceLiveToolsPing_request_callback_payloadTemplate:
-      description: The payload template of the webhook used for the callback
+    getOrganizationSmAdminsRoles_200_response_items_inner:
+      example:
+        roleId: roleId
+        scope: all_tags
+        name: name
+        tags:
+        - tags
+        - tags
       properties:
-        id:
-          description: The ID of the payload template. Defaults to 'wpt_00005' for
-            the Callback (included) template.
+        roleId:
+          description: The Id of the limited access role
           type: string
+        name:
+          description: The name of the limited access role
+          type: string
+        scope:
+          description: The scope of the limited access role
+          enum:
+          - all_tags
+          - some
+          - without_all_tags
+          - without_some
+          type: string
+        tags:
+          description: The tags of the limited access role
+          items:
+            type: string
+          type: array
       type: object
     getOrganizationEarlyAccessFeatures_200_response_inner:
       example:
@@ -61102,18 +63848,40 @@ components:
     getNetworkSensorAlertsOverviewByMetric_200_response_inner_counts:
       description: "Counts of sensor alerts over the timespan, by reading metric"
       example:
-        tvoc: 7
-        door: 0
-        pm25: 5
+        tvoc: 1
+        door: 5
+        apparentPower: 0
+        co2: 6
+        upstreamPower: 1
+        water: 6
+        frequency: 5
+        voltage: 1
+        current: 1
+        pm25: 3
+        realPower: 4
         noise:
-          ambient: 5
-        temperature: 2
-        humidity: 6
-        indoorAirQuality: 1
-        water: 9
+          ambient: 9
+        temperature: 7
+        humidity: 2
+        indoorAirQuality: 7
+        powerFactor: 2
       properties:
+        apparentPower:
+          description: Number of sensor alerts that occurred due to apparent power
+            readings
+          type: integer
+        co2:
+          description: Number of sensors that are currently alerting due to CO2 readings
+          type: integer
+        current:
+          description: Number of sensor alerts that occurred due to electrical current
+            readings
+          type: integer
         door:
           description: Number of sensor alerts that occurred due to an open door
+          type: integer
+        frequency:
+          description: Number of sensor alerts that occurred due to frequency readings
           type: integer
         humidity:
           description: Number of sensor alerts that occurred due to humidity readings
@@ -61127,11 +63895,24 @@ components:
         pm25:
           description: Number of sensor alerts that occurred due to PM2.5 readings
           type: integer
+        powerFactor:
+          description: Number of sensor alerts that occurred due to power factor readings
+          type: integer
+        realPower:
+          description: Number of sensor alerts that occurred due to real power readings
+          type: integer
         temperature:
           description: Number of sensor alerts that occurred due to temperature readings
           type: integer
         tvoc:
           description: Number of sensor alerts that occurred due to TVOC readings
+          type: integer
+        upstreamPower:
+          description: Number of sensor alerts that occurred due to upstream power
+            outages
+          type: integer
+        voltage:
+          description: Number of sensor alerts that occurred due to voltage readings
           type: integer
         water:
           description: Number of sensor alerts that occurred due to the presence of
@@ -62224,7 +65005,7 @@ components:
       description: Reading for the 'tvoc' metric. This will only be present if the
         'metric' property equals 'tvoc'.
       example:
-        concentration: 9
+        concentration: 1
       properties:
         concentration:
           description: TVOC reading in micrograms per cubic meter.
@@ -62387,6 +65168,35 @@ components:
       - privateSubnets
       - secret
       type: object
+    getOrganizationSmAdminsRoles_200_response:
+      example:
+        meta:
+          counts:
+            items:
+              total: 0
+              remaining: 6
+        items:
+        - roleId: roleId
+          scope: all_tags
+          name: name
+          tags:
+          - tags
+          - tags
+        - roleId: roleId
+          scope: all_tags
+          name: name
+          tags:
+          - tags
+          - tags
+      properties:
+        items:
+          description: Array of Limited Access Roles
+          items:
+            $ref: '#/components/schemas/getOrganizationSmAdminsRoles_200_response_items_inner'
+          type: array
+        meta:
+          $ref: '#/components/schemas/getOrganizationSmAdminsRoles_200_response_meta'
+      type: object
     updateNetworkWirelessSsid_request_ldap_servers_inner:
       properties:
         host:
@@ -62399,8 +65209,23 @@ components:
       - host
       - port
       type: object
+    getOrganizationSummaryTopNetworksByStatus_200_response_inner_clients:
+      description: Network clients data
+      example:
+        counts:
+          total: 0
+        usage:
+          upstream: 6.0274563
+          downstream: 1.4658129
+      properties:
+        counts:
+          $ref: '#/components/schemas/getOrganizationSummaryTopNetworksByStatus_200_response_inner_clients_counts'
+        usage:
+          $ref: '#/components/schemas/getOrganizationSummaryTopNetworksByStatus_200_response_inner_clients_usage'
+      type: object
     claimAdministeredLicensingSubscriptionSubscriptions_request:
       example:
+        validate: true
         claimKey: S2345-6789A-BCDEF-GHJKM
         organizationId: "12345678910"
         name: Corporate subscription
@@ -62593,6 +65418,44 @@ components:
           description: "A list of network tags that will connect with this peer. Use\
             \ ['all'] for all networks. Use ['none'] for no networks. If not included,\
             \ the default is ['all']."
+          items:
+            type: string
+          type: array
+      type: object
+    shutdownNetworkSmDevices_request:
+      example:
+        wifiMacs:
+        - 00:11:22:33:44:55
+        ids:
+        - "1284392014819"
+        - "2983092129865"
+        serials:
+        - XY0XX0Y0X0
+        - A01B01CD00E
+        - X02YZ1ZYZX
+        scope:
+        - withAny
+        - tag1
+        - tag2
+      properties:
+        wifiMacs:
+          description: The wifiMacs of the endpoints to be shutdown.
+          items:
+            type: string
+          type: array
+        ids:
+          description: The ids of the endpoints to be shutdown.
+          items:
+            type: string
+          type: array
+        serials:
+          description: The serials of the endpoints to be shutdown.
+          items:
+            type: string
+          type: array
+        scope:
+          description: "The scope (one of all, none, withAny, withAll, withoutAny,\
+            \ or withoutAll) and a set of tags of the endpoints to be shutdown."
           items:
             type: string
           type: array
@@ -63024,6 +65887,33 @@ components:
       properties:
         c:
           $ref: '#/components/schemas/getNetworkSmDevicePerformanceHistory_200_response_inner_diskUsage_c'
+      type: object
+    getOrganizationCameraBoundariesAreasByDevice_200_response_inner_boundaries:
+      description: Configured area boundaries of the camera
+      example:
+        vertices:
+        - x: 0.8008282
+          "y": 6.0274563
+        - x: 0.8008282
+          "y": 6.0274563
+        name: name
+        id: id
+        type: type
+      properties:
+        id:
+          description: The area boundary id
+          type: string
+        type:
+          description: The area boundary type
+          type: string
+        name:
+          description: The area boundary name
+          type: string
+        vertices:
+          description: The area boundary vertices
+          items:
+            $ref: '#/components/schemas/getOrganizationCameraBoundariesAreasByDevice_200_response_inner_boundaries_vertices_inner'
+          type: array
       type: object
     createNetworkGroupPolicy_request_contentFiltering_allowedUrlPatterns:
       description: Settings for allowed URL patterns
@@ -63586,14 +66476,6 @@ components:
           - poor
           type: string
       type: object
-    createDeviceLiveToolsPing_request_callback_httpServer:
-      description: The webhook receiver used for the callback webhook.
-      properties:
-        id:
-          description: "The webhook receiver ID that will receive information. If\
-            \ specifying this, please leave the url and sharedSecret fields blank."
-          type: string
-      type: object
     updateDeviceSensorRelationships_request:
       example: {}
       properties:
@@ -64140,6 +67022,69 @@ components:
           type: string
       required:
       - ruleId
+      type: object
+    updateOrganizationSmSentryPoliciesAssignments_200_response:
+      example:
+        items:
+        - policies:
+          - createdAt: createdAt
+            policyId: policyId
+            lastUpdatedAt: lastUpdatedAt
+            scope: all
+            smNetworkId: smNetworkId
+            networkId: networkId
+            priority: priority
+            groupNumber: groupNumber
+            groupPolicyId: groupPolicyId
+            tags:
+            - tags
+            - tags
+          - createdAt: createdAt
+            policyId: policyId
+            lastUpdatedAt: lastUpdatedAt
+            scope: all
+            smNetworkId: smNetworkId
+            networkId: networkId
+            priority: priority
+            groupNumber: groupNumber
+            groupPolicyId: groupPolicyId
+            tags:
+            - tags
+            - tags
+          networkId: networkId
+        - policies:
+          - createdAt: createdAt
+            policyId: policyId
+            lastUpdatedAt: lastUpdatedAt
+            scope: all
+            smNetworkId: smNetworkId
+            networkId: networkId
+            priority: priority
+            groupNumber: groupNumber
+            groupPolicyId: groupPolicyId
+            tags:
+            - tags
+            - tags
+          - createdAt: createdAt
+            policyId: policyId
+            lastUpdatedAt: lastUpdatedAt
+            scope: all
+            smNetworkId: smNetworkId
+            networkId: networkId
+            priority: priority
+            groupNumber: groupNumber
+            groupPolicyId: groupPolicyId
+            tags:
+            - tags
+            - tags
+          networkId: networkId
+      properties:
+        items:
+          description: Sentry Group Policies for the Organization keyed by Network
+            Id
+          items:
+            $ref: '#/components/schemas/updateOrganizationSmSentryPoliciesAssignments_200_response_items_inner'
+          type: array
       type: object
     createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_authentication:
       description: VTY AAA authentication
@@ -64722,7 +67667,7 @@ components:
         results:
           $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_message_results'
         callback:
-          $ref: '#/components/schemas/createDeviceLiveToolsPing_201_response_callback'
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_201_response_callback'
       type: object
     updateNetworkFirmwareUpgradesStagedEvents_request:
       example:
@@ -64941,6 +67886,14 @@ components:
           description: "The maximum download limit (integer, in Kbps)."
           type: integer
       type: object
+    createDeviceLiveToolsArpTable_request_callback_httpServer:
+      description: The webhook receiver used for the callback webhook.
+      properties:
+        id:
+          description: "The webhook receiver ID that will receive information. If\
+            \ specifying this, please leave the url and sharedSecret fields blank."
+          type: string
+      type: object
     getOrganizationFirmwareUpgradesByDevice_200_response_inner_upgrade:
       description: The devices upgrade details and status
       example:
@@ -65013,6 +67966,20 @@ components:
             indoorAirQuality:
               score: 80
               quality: fair
+            realPower:
+              draw: 14.1
+            apparentPower:
+              draw: 17.2
+            powerFactor:
+              percentage: 81
+            current:
+              draw: 0.14
+            voltage:
+              level: 119.5
+            frequency:
+              level: 58.8
+            upstreamPower:
+              outageDetected: true
           direction: above
           duration: 60
         recipients:
@@ -65411,7 +68378,7 @@ components:
     getOrganizationSensorReadingsHistory_200_response_inner_noise_ambient:
       description: Ambient noise reading.
       example:
-        level: 5
+        level: 9
       properties:
         level:
           description: Ambient noise reading in adjusted decibels.
@@ -65610,7 +68577,7 @@ components:
             $ref: '#/components/schemas/getOrganizationActionBatches_200_response_inner_actions_inner'
           type: array
         callback:
-          $ref: '#/components/schemas/createDeviceLiveToolsPing_201_response_callback'
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_201_response_callback'
       required:
       - actions
       type: object
@@ -65618,7 +68585,7 @@ components:
       description: Reading for the 'pm25' metric. This will only be present if the
         'metric' property equals 'pm25'.
       example:
-        concentration: 5
+        concentration: 3
       properties:
         concentration:
           description: PM2.5 reading in micrograms per cubic meter.
@@ -66055,33 +69022,51 @@ components:
     getOrganizationSensorReadingsHistory_200_response_inner:
       example:
         tvoc:
-          concentration: 9
+          concentration: 1
         door:
           open: true
+        apparentPower:
+          draw: 0.8008282
+        co2:
+          concentration: 1
+        downstreamPower:
+          enabled: true
         battery:
-          percentage: 0
+          percentage: 6
         water:
           present: true
         network:
           name: name
           id: id
+        frequency:
+          level: 5.637377
+        voltage:
+          level: 1.4894159
         button:
           pressType: long
+        current:
+          draw: 5.962134
         pm25:
-          concentration: 5
+          concentration: 3
+        realPower:
+          draw: 4.145608
         serial: serial
-        metric: battery
+        metric: apparentPower
+        remoteLockoutSwitch:
+          locked: true
         noise:
           ambient:
-            level: 5
+            level: 9
         temperature:
-          celsius: 7.0614014
-          fahrenheit: 2.302136
+          celsius: 1.2315135
+          fahrenheit: 7.386282
         humidity:
-          relativePercentage: 6
+          relativePercentage: 2
         indoorAirQuality:
-          score: 1
+          score: 7
         ts: ts
+        powerFactor:
+          percentage: 2
       properties:
         serial:
           description: Serial number of the sensor that took the reading.
@@ -66094,23 +69079,42 @@ components:
         metric:
           description: Type of sensor reading.
           enum:
+          - apparentPower
           - battery
           - button
+          - co2
+          - current
           - door
+          - downstreamPower
+          - frequency
           - humidity
           - indoorAirQuality
           - noise
           - pm25
+          - powerFactor
+          - realPower
+          - remoteLockoutSwitch
           - temperature
           - tvoc
+          - voltage
           - water
           type: string
+        apparentPower:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_apparentPower'
         battery:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_battery'
         button:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_button'
+        co2:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_co2'
+        current:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_current'
         door:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_door'
+        downstreamPower:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_downstreamPower'
+        frequency:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_frequency'
         humidity:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_humidity'
         indoorAirQuality:
@@ -66119,10 +69123,18 @@ components:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_noise'
         pm25:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_pm25'
+        powerFactor:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_powerFactor'
+        realPower:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_realPower'
+        remoteLockoutSwitch:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_remoteLockoutSwitch'
         temperature:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_temperature'
         tvoc:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_tvoc'
+        voltage:
+          $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_voltage'
         water:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_water'
       type: object
@@ -66212,6 +69224,17 @@ components:
       properties:
         group:
           $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_authentication_group'
+      type: object
+    getOrganizationSensorReadingsHistory_200_response_inner_frequency:
+      description: Reading for the 'frequency' metric. This will only be present if
+        the 'metric' property equals 'frequency'.
+      example:
+        level: 5.637377
+      properties:
+        level:
+          description: Electrical current frequency reading in hertz.
+          format: float
+          type: number
       type: object
     getOrganizationDevicesProvisioningStatuses_200_response_inner:
       example:
@@ -66672,7 +69695,7 @@ components:
       description: Object containing the number of sensor alerts that occurred due
         to noise readings
       example:
-        ambient: 5
+        ambient: 9
       properties:
         ambient:
           description: Number of sensor alerts that occurred due to ambient noise
@@ -66849,8 +69872,8 @@ components:
       description: Reading for the 'temperature' metric. This will only be present
         if the 'metric' property equals 'temperature'.
       example:
-        celsius: 7.0614014
-        fahrenheit: 2.302136
+        celsius: 1.2315135
+        fahrenheit: 7.386282
       properties:
         fahrenheit:
           description: Temperature reading in degrees Fahrenheit.
@@ -66989,11 +70012,33 @@ components:
       required:
       - definitions
       type: object
+    updateOrganizationSmSentryPoliciesAssignments_request:
+      example:
+        items:
+        - networkId: N_24329156
+          policies:
+          - policyId: "1284392014819"
+            smNetworkId: N_24329156
+            scope: withAny
+            tags:
+            - tag1
+            - tag2
+            groupPolicyId: "1284392014819"
+      properties:
+        items:
+          description: Sentry Group Policies for the Organization keyed by Network
+            Id
+          items:
+            $ref: '#/components/schemas/updateOrganizationSmSentryPoliciesAssignments_request_items_inner'
+          type: array
+      required:
+      - items
+      type: object
     getNetworkSensorAlertsCurrentOverviewByMetric_200_response_counts_noise:
       description: Object containing the number of sensors that are currently alerting
         due to noise readings
       example:
-        ambient: 5
+        ambient: 9
       properties:
         ambient:
           description: Number of sensors that are currently alerting due to ambient
@@ -67867,6 +70912,19 @@ components:
         public:
           $ref: '#/components/schemas/getOrganizationDevicesUplinksAddressesByDevice_200_response_inner_uplinks_inner_addresses_inner_public'
       type: object
+    _devices__serial__liveTools_arpTable_post_request:
+      properties:
+        organization:
+          $ref: '#/components/schemas/_devices__serial__liveTools_arpTable_post_request_organization'
+        network:
+          $ref: '#/components/schemas/_devices__serial__liveTools_arpTable_post_request_organization'
+        sentAt:
+          type: string
+        callbackId:
+          type: string
+        message:
+          $ref: '#/components/schemas/_devices__serial__liveTools_arpTable_post_request_message'
+      type: object
     getOrganizationWebhooksCallbacksStatus_200_response_webhook_httpServer:
       description: The webhook receiver used for the callback webhook
       example:
@@ -68177,6 +71235,16 @@ components:
             type: string
           type: array
       type: object
+    getOrganizationSmAdminsRoles_200_response_meta_counts:
+      description: Counts relating to the paginated dataset
+      example:
+        items:
+          total: 0
+          remaining: 6
+      properties:
+        items:
+          $ref: '#/components/schemas/getOrganizationSmAdminsRoles_200_response_meta_counts_items'
+      type: object
     createNetworkSwitchLinkAggregation_request_switchProfilePorts_inner:
       properties:
         profile:
@@ -68421,6 +71489,16 @@ components:
       - name
       - orgAccess
       type: object
+    getOrganizationSensorReadingsHistory_200_response_inner_powerFactor:
+      description: Reading for the 'powerFactor' metric. This will only be present
+        if the 'metric' property equals 'powerFactor'.
+      example:
+        percentage: 2
+      properties:
+        percentage:
+          description: Power factor reading as a percentage.
+          type: integer
+      type: object
     updateNetworkApplianceTrafficShapingUplinkSelection_request:
       example:
         activeActiveAutoVpnEnabled: true
@@ -68587,7 +71665,7 @@ components:
       description: Reading for the 'humidity' metric. This will only be present if
         the 'metric' property equals 'humidity'.
       example:
-        relativePercentage: 6
+        relativePercentage: 2
       properties:
         relativePercentage:
           description: Humidity reading in %RH.
@@ -68968,6 +72046,17 @@ components:
           items:
             $ref: '#/components/schemas/getNetworkSmUserAccessDevices_200_response_inner_trustedAccessConnections_inner'
           type: array
+      type: object
+    getOrganizationSensorReadingsHistory_200_response_inner_remoteLockoutSwitch:
+      description: Reading for the 'remoteLockoutSwitch' metric. This will only be
+        present if the 'metric' property equals 'remoteLockoutSwitch'.
+      example:
+        locked: true
+      properties:
+        locked:
+          description: True if power controls are disabled via the MT40's physical
+            remote lockout switch.
+          type: boolean
       type: object
     createNetworkGroupPolicy_request_scheduling_saturday:
       description: The schedule object for Saturday.
@@ -69511,6 +72600,33 @@ components:
           description: The name of the server protected by the certificate
           type: string
       type: object
+    getOrganizationSummaryTopNetworksByStatus_200_response_inner_statuses:
+      description: Network device statuses
+      example:
+        byProductType:
+        - counts:
+            offline: 5
+            dormant: 7
+            online: 5
+            alerting: 2
+          productType: productType
+        - counts:
+            offline: 5
+            dormant: 7
+            online: 5
+            alerting: 2
+          productType: productType
+        overall: overall
+      properties:
+        overall:
+          description: Overall status of network
+          type: string
+        byProductType:
+          description: List of status counts by product type
+          items:
+            $ref: '#/components/schemas/getOrganizationSummaryTopNetworksByStatus_200_response_inner_statuses_byProductType_inner'
+          type: array
+      type: object
     getDeviceApplianceRadioSettings_200_response_fiveGhzSettings:
       description: Manual radio settings for 5 GHz
       example:
@@ -69913,6 +73029,90 @@ components:
       required:
       - url
       type: object
+    getOrganizationSummaryTopNetworksByStatus_200_response_inner:
+      example:
+        clients:
+          counts:
+            total: 0
+          usage:
+            upstream: 6.0274563
+            downstream: 1.4658129
+        devices:
+          byProductType:
+          - productType: productType
+            url: url
+          - productType: productType
+            url: url
+        name: name
+        statuses:
+          byProductType:
+          - counts:
+              offline: 5
+              dormant: 7
+              online: 5
+              alerting: 2
+            productType: productType
+          - counts:
+              offline: 5
+              dormant: 7
+              online: 5
+              alerting: 2
+            productType: productType
+          overall: overall
+        networkId: networkId
+        productTypes:
+        - productTypes
+        - productTypes
+        url: url
+        tags:
+        - tags
+        - tags
+      properties:
+        networkId:
+          description: Network identifier
+          type: string
+        name:
+          description: Network name
+          type: string
+        url:
+          description: Network clients list URL
+          type: string
+        tags:
+          description: Network tags
+          items:
+            type: string
+          type: array
+        clients:
+          $ref: '#/components/schemas/getOrganizationSummaryTopNetworksByStatus_200_response_inner_clients'
+        statuses:
+          $ref: '#/components/schemas/getOrganizationSummaryTopNetworksByStatus_200_response_inner_statuses'
+        devices:
+          $ref: '#/components/schemas/getOrganizationSummaryTopNetworksByStatus_200_response_inner_devices'
+        productTypes:
+          description: Product types in network
+          items:
+            type: string
+          type: array
+      type: object
+    createDeviceLiveToolsArpTable_request_callback:
+      description: Details for the callback. Please include either an httpServerId
+        OR url and sharedSecret
+      properties:
+        url:
+          description: "The callback URL for the webhook target. If using this field,\
+            \ please also specify a sharedSecret."
+          type: string
+        sharedSecret:
+          description: "A shared secret that will be included in the requests sent\
+            \ to the callback URL. It can be used to verify that the request was sent\
+            \ by Meraki. If using this field, please also specify an url."
+          type: string
+        httpServer:
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_request_callback_httpServer'
+        payloadTemplate:
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_request_callback_payloadTemplate'
+      type: object
+      x-release-stage: general_availability
     updateNetworkApplianceSettings_request:
       example:
         clientTrackingMethod: MAC address
@@ -70146,6 +73346,19 @@ components:
       - name
       - ssid
       type: object
+    _devices__serial__liveTools_wakeOnLan_post_request:
+      properties:
+        organization:
+          $ref: '#/components/schemas/_devices__serial__liveTools_arpTable_post_request_organization'
+        network:
+          $ref: '#/components/schemas/_devices__serial__liveTools_arpTable_post_request_organization'
+        sentAt:
+          type: string
+        callbackId:
+          type: string
+        message:
+          $ref: '#/components/schemas/_devices__serial__liveTools_wakeOnLan_post_request_message'
+      type: object
     updateNetworkWirelessSsidIdentityPsk_request:
       example:
         id: "1284392014819"
@@ -70326,6 +73539,18 @@ components:
           items:
             $ref: '#/components/schemas/getOrganizations_200_response_inner_management_details_inner'
           type: array
+      type: object
+    getOrganizationSummaryTopNetworksByStatus_200_response_inner_devices_byProductType_inner:
+      example:
+        productType: productType
+        url: url
+      properties:
+        productType:
+          description: Product type
+          type: string
+        url:
+          description: URL to clients list for the relevant product type
+          type: string
       type: object
     createOrganizationInventoryOnboardingCloudMonitoringExportEvent_request:
       example:
@@ -70687,6 +73912,76 @@ components:
       required:
       - name
       - url
+      type: object
+    getOrganizationSmSentryPoliciesAssignmentsByNetwork_200_response_inner:
+      example:
+        meta:
+          counts:
+            items:
+              total: 0
+              remaining: 6
+        items:
+        - policies:
+          - createdAt: createdAt
+            policyId: policyId
+            lastUpdatedAt: lastUpdatedAt
+            scope: all
+            smNetworkId: smNetworkId
+            networkId: networkId
+            priority: priority
+            groupNumber: groupNumber
+            groupPolicyId: groupPolicyId
+            tags:
+            - tags
+            - tags
+          - createdAt: createdAt
+            policyId: policyId
+            lastUpdatedAt: lastUpdatedAt
+            scope: all
+            smNetworkId: smNetworkId
+            networkId: networkId
+            priority: priority
+            groupNumber: groupNumber
+            groupPolicyId: groupPolicyId
+            tags:
+            - tags
+            - tags
+          networkId: networkId
+        - policies:
+          - createdAt: createdAt
+            policyId: policyId
+            lastUpdatedAt: lastUpdatedAt
+            scope: all
+            smNetworkId: smNetworkId
+            networkId: networkId
+            priority: priority
+            groupNumber: groupNumber
+            groupPolicyId: groupPolicyId
+            tags:
+            - tags
+            - tags
+          - createdAt: createdAt
+            policyId: policyId
+            lastUpdatedAt: lastUpdatedAt
+            scope: all
+            smNetworkId: smNetworkId
+            networkId: networkId
+            priority: priority
+            groupNumber: groupNumber
+            groupPolicyId: groupPolicyId
+            tags:
+            - tags
+            - tags
+          networkId: networkId
+      properties:
+        items:
+          description: Sentry Group Policies for the Organization keyed by the Network
+            or Locale Id the Policy belongs to
+          items:
+            $ref: '#/components/schemas/updateOrganizationSmSentryPoliciesAssignments_200_response_items_inner'
+          type: array
+        meta:
+          $ref: '#/components/schemas/getOrganizationSmAdminsRoles_200_response_meta'
       type: object
     getOrganizationWirelessDevicesEthernetStatuses_200_response_inner_ports_inner:
       example:
@@ -71096,6 +74391,16 @@ components:
             type: string
           type: array
       type: object
+    getOrganizationSensorReadingsHistory_200_response_inner_co2:
+      description: Reading for the 'co2' metric. This will only be present if the
+        'metric' property equals 'co2'.
+      example:
+        concentration: 1
+      properties:
+        concentration:
+          description: CO2 reading in parts per million.
+          type: integer
+      type: object
     getNetworkApplianceTrafficShapingUplinkSelection_200_response_wanTrafficUplinkPreferences_inner_trafficFilters_inner:
       example:
         type: custom
@@ -71491,6 +74796,19 @@ components:
           format: byte
           type: string
       type: object
+    getOrganizationApplianceUplinksStatusesOverview_200_response_counts:
+      description: counts
+      example:
+        byStatus:
+          ready: 6
+          notConnected: 5
+          active: 0
+          failed: 1
+          connecting: 5
+      properties:
+        byStatus:
+          $ref: '#/components/schemas/getOrganizationApplianceUplinksStatusesOverview_200_response_counts_byStatus'
+      type: object
     updateOrganizationConfigTemplateSwitchProfilePort_request:
       example:
         name: My switch port
@@ -71797,6 +75115,9 @@ components:
           host: host
         dot1x:
           controlDirection: both
+        counts:
+          ports:
+            withThisPolicy: 9
         radiusGroupAttribute: radiusGroupAttribute
         voiceVlanClients: true
         radiusTestingEnabled: true
@@ -71899,6 +75220,8 @@ components:
           items:
             type: string
           type: array
+        counts:
+          $ref: '#/components/schemas/getNetworkSwitchAccessPolicies_200_response_inner_counts'
       type: object
     getNetworkFirmwareUpgrades_200_response_products:
       description: The network devices to be updated
@@ -72601,9 +75924,24 @@ components:
           description: "Count parameter to pass to ping. [1..5], default 5"
           type: integer
         callback:
-          $ref: '#/components/schemas/createDeviceLiveToolsPing_request_callback'
+          $ref: '#/components/schemas/createDeviceLiveToolsArpTable_request_callback'
       required:
       - target
+      type: object
+    getOrganizationSummaryTopNetworksByStatus_200_response_inner_clients_usage:
+      description: Network client usage data
+      example:
+        upstream: 6.0274563
+        downstream: 1.4658129
+      properties:
+        upstream:
+          description: "Total upstream usage in network, in KB"
+          format: float
+          type: number
+        downstream:
+          description: "Total downstream usage in network, in KB"
+          format: float
+          type: number
       type: object
     getOrganizationDevicesStatuses_200_response_inner_components_powerSupplies_inner_poe:
       description: PoE info of the power supply
@@ -73508,6 +76846,25 @@ x-batchable-actions:
   summary: Update the site-to-site VPN settings of a network. Only valid for MX networks
     in NAT mode.
   resource: "/networks/{networkId}/appliance/vpn/siteToSiteVpn"
+  operation: update
+- group: Sm/actions/admins/role
+  summary: Create a Limited Access Role
+  resource: "/organizations/{organizationId}/sm/admins/roles"
+  operation: create
+- group: Sm/actions/admins/role
+  summary: Delete a Limited Access Role
+  resource: "/organizations/{organizationId}/sm/admins/roles/{roleId}"
+  operation: destroy
+- group: Sm/actions/admins/role
+  summary: Update a Limited Access Role
+  resource: "/organizations/{organizationId}/sm/admins/roles/{roleId}"
+  operation: update
+- group: Sm/actions/sentry/policies/assignments
+  summary: "Update an Organizations Sentry Policies using the provided list. Sentry\
+    \ Policies are ordered in descending order of priority (i.e. highest priority\
+    \ at the bottom, this is opposite the Dashboard UI). Policies not present in the\
+    \ request will be deleted."
+  resource: "/organizations/{organizationId}/sm/sentry/policies/assignments"
   operation: update
 - group: Ssid
   summary: Update the attributes of an MR SSID

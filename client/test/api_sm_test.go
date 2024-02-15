@@ -64,6 +64,20 @@ func Test_client_SmApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test SmApiService CreateOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.SmApi.CreateOrganizationSmAdminsRole(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SmApiService DeleteNetworkSmTargetGroup", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -86,6 +100,20 @@ func Test_client_SmApiService(t *testing.T) {
 		var userAccessDeviceId string
 
 		httpRes, err := apiClient.SmApi.DeleteNetworkSmUserAccessDevice(context.Background(), networkId, userAccessDeviceId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SmApiService DeleteOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		httpRes, err := apiClient.SmApi.DeleteOrganizationSmAdminsRole(context.Background(), organizationId, roleId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -416,6 +444,35 @@ func Test_client_SmApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test SmApiService GetOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		resp, httpRes, err := apiClient.SmApi.GetOrganizationSmAdminsRole(context.Background(), organizationId, roleId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SmApiService GetOrganizationSmAdminsRoles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.SmApi.GetOrganizationSmAdminsRoles(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SmApiService GetOrganizationSmApnsCert", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -423,6 +480,20 @@ func Test_client_SmApiService(t *testing.T) {
 		var organizationId string
 
 		resp, httpRes, err := apiClient.SmApi.GetOrganizationSmApnsCert(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SmApiService GetOrganizationSmSentryPoliciesAssignmentsByNetwork", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.SmApi.GetOrganizationSmSentryPoliciesAssignmentsByNetwork(context.Background(), organizationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -515,6 +586,20 @@ func Test_client_SmApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test SmApiService RebootNetworkSmDevices", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.SmApi.RebootNetworkSmDevices(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SmApiService RefreshNetworkSmDeviceDetails", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -525,6 +610,20 @@ func Test_client_SmApiService(t *testing.T) {
 		httpRes, err := apiClient.SmApi.RefreshNetworkSmDeviceDetails(context.Background(), networkId, deviceId).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SmApiService ShutdownNetworkSmDevices", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.SmApi.ShutdownNetworkSmDevices(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -580,6 +679,35 @@ func Test_client_SmApiService(t *testing.T) {
 		var targetGroupId string
 
 		resp, httpRes, err := apiClient.SmApi.UpdateNetworkSmTargetGroup(context.Background(), networkId, targetGroupId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SmApiService UpdateOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		resp, httpRes, err := apiClient.SmApi.UpdateOrganizationSmAdminsRole(context.Background(), organizationId, roleId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SmApiService UpdateOrganizationSmSentryPoliciesAssignments", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.SmApi.UpdateOrganizationSmSentryPoliciesAssignments(context.Background(), organizationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

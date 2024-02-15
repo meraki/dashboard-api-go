@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Synchronous** | Pointer to **bool** | Flag describing whether actions should run synchronously or asynchronously | [optional] 
 **Status** | Pointer to [**GetOrganizationActionBatches200ResponseInnerStatus**](GetOrganizationActionBatches200ResponseInnerStatus.md) |  | [optional] 
 **Actions** | [**[]GetOrganizationActionBatches200ResponseInnerActionsInner**](GetOrganizationActionBatches200ResponseInnerActionsInner.md) | A set of changes made as part of this action (&lt;a href&#x3D;&#39;https://developer.cisco.com/meraki/api/#/rest/guides/action-batches/&#39;&gt;more details&lt;/a&gt;) | 
-**Callback** | Pointer to [**CreateDeviceLiveToolsPing201ResponseCallback**](CreateDeviceLiveToolsPing201ResponseCallback.md) |  | [optional] 
+**Callback** | Pointer to [**CreateDeviceLiveToolsArpTable201ResponseCallback**](CreateDeviceLiveToolsArpTable201ResponseCallback.md) |  | [optional] 
 
 ## Methods
 
@@ -178,20 +178,20 @@ SetActions sets Actions field to given value.
 
 ### GetCallback
 
-`func (o *CreateOrganizationActionBatch201Response) GetCallback() CreateDeviceLiveToolsPing201ResponseCallback`
+`func (o *CreateOrganizationActionBatch201Response) GetCallback() CreateDeviceLiveToolsArpTable201ResponseCallback`
 
 GetCallback returns the Callback field if non-nil, zero value otherwise.
 
 ### GetCallbackOk
 
-`func (o *CreateOrganizationActionBatch201Response) GetCallbackOk() (*CreateDeviceLiveToolsPing201ResponseCallback, bool)`
+`func (o *CreateOrganizationActionBatch201Response) GetCallbackOk() (*CreateDeviceLiveToolsArpTable201ResponseCallback, bool)`
 
 GetCallbackOk returns a tuple with the Callback field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCallback
 
-`func (o *CreateOrganizationActionBatch201Response) SetCallback(v CreateDeviceLiveToolsPing201ResponseCallback)`
+`func (o *CreateOrganizationActionBatch201Response) SetCallback(v CreateDeviceLiveToolsArpTable201ResponseCallback)`
 
 SetCallback sets Callback field to given value.
 

@@ -75,6 +75,7 @@ Method | HTTP request | Description
 [**CreateOrganizationPolicyObjectsGroup**](ConfigureApi.md#CreateOrganizationPolicyObjectsGroup) | **Post** /organizations/{organizationId}/policyObjects/groups | Creates a new Policy Object Group.
 [**CreateOrganizationSamlIdp**](ConfigureApi.md#CreateOrganizationSamlIdp) | **Post** /organizations/{organizationId}/saml/idps | Create a SAML IdP for your organization.
 [**CreateOrganizationSamlRole**](ConfigureApi.md#CreateOrganizationSamlRole) | **Post** /organizations/{organizationId}/samlRoles | Create a SAML role
+[**CreateOrganizationSmAdminsRole**](ConfigureApi.md#CreateOrganizationSmAdminsRole) | **Post** /organizations/{organizationId}/sm/admins/roles | Create a Limited Access Role
 [**DeferNetworkFirmwareUpgradesStagedEvents**](ConfigureApi.md#DeferNetworkFirmwareUpgradesStagedEvents) | **Post** /networks/{networkId}/firmwareUpgrades/staged/events/defer | Postpone by 1 week all pending staged upgrade stages for a network
 [**DeleteDeviceSwitchRoutingInterface**](ConfigureApi.md#DeleteDeviceSwitchRoutingInterface) | **Delete** /devices/{serial}/switch/routing/interfaces/{interfaceId} | Delete a layer 3 interface from the switch
 [**DeleteDeviceSwitchRoutingStaticRoute**](ConfigureApi.md#DeleteDeviceSwitchRoutingStaticRoute) | **Delete** /devices/{serial}/switch/routing/staticRoutes/{staticRouteId} | Delete a layer 3 static route for a switch
@@ -127,6 +128,7 @@ Method | HTTP request | Description
 [**DeleteOrganizationPolicyObjectsGroup**](ConfigureApi.md#DeleteOrganizationPolicyObjectsGroup) | **Delete** /organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId} | Deletes a Policy Object Group.
 [**DeleteOrganizationSamlIdp**](ConfigureApi.md#DeleteOrganizationSamlIdp) | **Delete** /organizations/{organizationId}/saml/idps/{idpId} | Remove a SAML IdP in your organization.
 [**DeleteOrganizationSamlRole**](ConfigureApi.md#DeleteOrganizationSamlRole) | **Delete** /organizations/{organizationId}/samlRoles/{samlRoleId} | Remove a SAML role
+[**DeleteOrganizationSmAdminsRole**](ConfigureApi.md#DeleteOrganizationSmAdminsRole) | **Delete** /organizations/{organizationId}/sm/admins/roles/{roleId} | Delete a Limited Access Role
 [**GetAdministeredLicensingSubscriptionSubscriptions**](ConfigureApi.md#GetAdministeredLicensingSubscriptionSubscriptions) | **Get** /administered/licensing/subscription/subscriptions | List available subscriptions
 [**GetDevice**](ConfigureApi.md#GetDevice) | **Get** /devices/{serial} | Return a single device
 [**GetDeviceApplianceRadioSettings**](ConfigureApi.md#GetDeviceApplianceRadioSettings) | **Get** /devices/{serial}/appliance/radio/settings | Return the radio settings of an appliance
@@ -330,13 +332,17 @@ Method | HTTP request | Description
 [**GetOrganizationAlertsProfiles**](ConfigureApi.md#GetOrganizationAlertsProfiles) | **Get** /organizations/{organizationId}/alerts/profiles | List all organization-wide alert configurations
 [**GetOrganizationApplianceSecurityIntrusion**](ConfigureApi.md#GetOrganizationApplianceSecurityIntrusion) | **Get** /organizations/{organizationId}/appliance/security/intrusion | Returns all supported intrusion settings for an organization
 [**GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork**](ConfigureApi.md#GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork) | **Get** /organizations/{organizationId}/appliance/trafficShaping/vpnExclusions/byNetwork | Display VPN exclusion rules for MX networks.
+[**GetOrganizationApplianceUplinksStatusesOverview**](ConfigureApi.md#GetOrganizationApplianceUplinksStatusesOverview) | **Get** /organizations/{organizationId}/appliance/uplinks/statuses/overview | Returns an overview of uplink statuses
 [**GetOrganizationApplianceVpnThirdPartyVPNPeers**](ConfigureApi.md#GetOrganizationApplianceVpnThirdPartyVPNPeers) | **Get** /organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers | Return the third party VPN peers for an organization
 [**GetOrganizationApplianceVpnVpnFirewallRules**](ConfigureApi.md#GetOrganizationApplianceVpnVpnFirewallRules) | **Get** /organizations/{organizationId}/appliance/vpn/vpnFirewallRules | Return the firewall rules for an organization&#39;s site-to-site VPN
 [**GetOrganizationBrandingPolicies**](ConfigureApi.md#GetOrganizationBrandingPolicies) | **Get** /organizations/{organizationId}/brandingPolicies | List the branding policies of an organization
 [**GetOrganizationBrandingPoliciesPriorities**](ConfigureApi.md#GetOrganizationBrandingPoliciesPriorities) | **Get** /organizations/{organizationId}/brandingPolicies/priorities | Return the branding policy IDs of an organization in priority order
 [**GetOrganizationBrandingPolicy**](ConfigureApi.md#GetOrganizationBrandingPolicy) | **Get** /organizations/{organizationId}/brandingPolicies/{brandingPolicyId} | Return a branding policy
+[**GetOrganizationCameraBoundariesAreasByDevice**](ConfigureApi.md#GetOrganizationCameraBoundariesAreasByDevice) | **Get** /organizations/{organizationId}/camera/boundaries/areas/byDevice | Returns all configured area boundaries of cameras
+[**GetOrganizationCameraBoundariesLinesByDevice**](ConfigureApi.md#GetOrganizationCameraBoundariesLinesByDevice) | **Get** /organizations/{organizationId}/camera/boundaries/lines/byDevice | Returns all configured crossingline boundaries of cameras
 [**GetOrganizationCameraCustomAnalyticsArtifact**](ConfigureApi.md#GetOrganizationCameraCustomAnalyticsArtifact) | **Get** /organizations/{organizationId}/camera/customAnalytics/artifacts/{artifactId} | Get Custom Analytics Artifact
 [**GetOrganizationCameraCustomAnalyticsArtifacts**](ConfigureApi.md#GetOrganizationCameraCustomAnalyticsArtifacts) | **Get** /organizations/{organizationId}/camera/customAnalytics/artifacts | List Custom Analytics Artifacts
+[**GetOrganizationCameraDetectionsHistoryByBoundaryByInterval**](ConfigureApi.md#GetOrganizationCameraDetectionsHistoryByBoundaryByInterval) | **Get** /organizations/{organizationId}/camera/detections/history/byBoundary/byInterval | Returns analytics data for timespans
 [**GetOrganizationCameraOnboardingStatuses**](ConfigureApi.md#GetOrganizationCameraOnboardingStatuses) | **Get** /organizations/{organizationId}/camera/onboarding/statuses | Fetch onboarding status of cameras
 [**GetOrganizationCameraPermission**](ConfigureApi.md#GetOrganizationCameraPermission) | **Get** /organizations/{organizationId}/camera/permissions/{permissionScopeId} | Retrieve a single permission scope
 [**GetOrganizationCameraPermissions**](ConfigureApi.md#GetOrganizationCameraPermissions) | **Get** /organizations/{organizationId}/camera/permissions | List the permissions scopes for this organization
@@ -375,7 +381,10 @@ Method | HTTP request | Description
 [**GetOrganizationSamlIdps**](ConfigureApi.md#GetOrganizationSamlIdps) | **Get** /organizations/{organizationId}/saml/idps | List the SAML IdPs in your organization.
 [**GetOrganizationSamlRole**](ConfigureApi.md#GetOrganizationSamlRole) | **Get** /organizations/{organizationId}/samlRoles/{samlRoleId} | Return a SAML role
 [**GetOrganizationSamlRoles**](ConfigureApi.md#GetOrganizationSamlRoles) | **Get** /organizations/{organizationId}/samlRoles | List the SAML roles for this organization
+[**GetOrganizationSmAdminsRole**](ConfigureApi.md#GetOrganizationSmAdminsRole) | **Get** /organizations/{organizationId}/sm/admins/roles/{roleId} | Return a Limited Access Role
+[**GetOrganizationSmAdminsRoles**](ConfigureApi.md#GetOrganizationSmAdminsRoles) | **Get** /organizations/{organizationId}/sm/admins/roles | List the Limited Access Roles for an organization
 [**GetOrganizationSmApnsCert**](ConfigureApi.md#GetOrganizationSmApnsCert) | **Get** /organizations/{organizationId}/sm/apnsCert | Get the organization&#39;s APNS certificate
+[**GetOrganizationSmSentryPoliciesAssignmentsByNetwork**](ConfigureApi.md#GetOrganizationSmSentryPoliciesAssignmentsByNetwork) | **Get** /organizations/{organizationId}/sm/sentry/policies/assignments/byNetwork | List the Sentry Policies for an organization ordered in ascending order of priority
 [**GetOrganizationSmVppAccount**](ConfigureApi.md#GetOrganizationSmVppAccount) | **Get** /organizations/{organizationId}/sm/vppAccounts/{vppAccountId} | Get a hash containing the unparsed token of the VPP account with the given ID
 [**GetOrganizationSmVppAccounts**](ConfigureApi.md#GetOrganizationSmVppAccounts) | **Get** /organizations/{organizationId}/sm/vppAccounts | List the VPP accounts in the organization
 [**GetOrganizationSnmp**](ConfigureApi.md#GetOrganizationSnmp) | **Get** /organizations/{organizationId}/snmp | Return the SNMP settings for an organization
@@ -391,6 +400,7 @@ Method | HTTP request | Description
 [**MoveOrganizationLicensingCotermLicenses**](ConfigureApi.md#MoveOrganizationLicensingCotermLicenses) | **Post** /organizations/{organizationId}/licensing/coterm/licenses/move | Moves a license to a different organization (coterm only)
 [**ProvisionNetworkClients**](ConfigureApi.md#ProvisionNetworkClients) | **Post** /networks/{networkId}/clients/provision | Provisions a client with a name and policy
 [**ReassignNetworkVlanProfilesAssignments**](ConfigureApi.md#ReassignNetworkVlanProfilesAssignments) | **Post** /networks/{networkId}/vlanProfiles/assignments/reassign | Update the assigned VLAN Profile for devices in a network
+[**RebootNetworkSmDevices**](ConfigureApi.md#RebootNetworkSmDevices) | **Post** /networks/{networkId}/sm/devices/reboot | Reboot a set of endpoints
 [**RefreshNetworkSmDeviceDetails**](ConfigureApi.md#RefreshNetworkSmDeviceDetails) | **Post** /networks/{networkId}/sm/devices/{deviceId}/refreshDetails | Refresh the details of a device
 [**ReleaseFromOrganizationInventory**](ConfigureApi.md#ReleaseFromOrganizationInventory) | **Post** /organizations/{organizationId}/inventory/release | Release a list of claimed devices from an organization.
 [**RemoveNetworkDevices**](ConfigureApi.md#RemoveNetworkDevices) | **Post** /networks/{networkId}/devices/remove | Remove a single device
@@ -398,6 +408,7 @@ Method | HTTP request | Description
 [**RenewOrganizationLicensesSeats**](ConfigureApi.md#RenewOrganizationLicensesSeats) | **Post** /organizations/{organizationId}/licenses/renewSeats | Renew SM seats of a license
 [**RollbacksNetworkFirmwareUpgradesStagedEvents**](ConfigureApi.md#RollbacksNetworkFirmwareUpgradesStagedEvents) | **Post** /networks/{networkId}/firmwareUpgrades/staged/events/rollbacks | Rollback a Staged Upgrade Event for a network
 [**SetNetworkWirelessEthernetPortsProfilesDefault**](ConfigureApi.md#SetNetworkWirelessEthernetPortsProfilesDefault) | **Post** /networks/{networkId}/wireless/ethernet/ports/profiles/setDefault | Set the AP port profile to be default for this network
+[**ShutdownNetworkSmDevices**](ConfigureApi.md#ShutdownNetworkSmDevices) | **Post** /networks/{networkId}/sm/devices/shutdown | Shutdown a set of endpoints
 [**SplitNetwork**](ConfigureApi.md#SplitNetwork) | **Post** /networks/{networkId}/split | Split a combined network into individual networks for each type of device
 [**SwapNetworkApplianceWarmSpare**](ConfigureApi.md#SwapNetworkApplianceWarmSpare) | **Post** /networks/{networkId}/appliance/warmSpare/swap | Swap MX primary and warm spare appliances
 [**UnbindNetwork**](ConfigureApi.md#UnbindNetwork) | **Post** /networks/{networkId}/unbind | Unbind a network from a template.
@@ -550,6 +561,8 @@ Method | HTTP request | Description
 [**UpdateOrganizationSaml**](ConfigureApi.md#UpdateOrganizationSaml) | **Put** /organizations/{organizationId}/saml | Updates the SAML SSO enabled settings for an organization.
 [**UpdateOrganizationSamlIdp**](ConfigureApi.md#UpdateOrganizationSamlIdp) | **Put** /organizations/{organizationId}/saml/idps/{idpId} | Update a SAML IdP in your organization
 [**UpdateOrganizationSamlRole**](ConfigureApi.md#UpdateOrganizationSamlRole) | **Put** /organizations/{organizationId}/samlRoles/{samlRoleId} | Update a SAML role
+[**UpdateOrganizationSmAdminsRole**](ConfigureApi.md#UpdateOrganizationSmAdminsRole) | **Put** /organizations/{organizationId}/sm/admins/roles/{roleId} | Update a Limited Access Role
+[**UpdateOrganizationSmSentryPoliciesAssignments**](ConfigureApi.md#UpdateOrganizationSmSentryPoliciesAssignments) | **Put** /organizations/{organizationId}/sm/sentry/policies/assignments | Update an Organizations Sentry Policies using the provided list
 [**UpdateOrganizationSnmp**](ConfigureApi.md#UpdateOrganizationSnmp) | **Put** /organizations/{organizationId}/snmp | Update the SNMP settings for an organization
 [**ValidateAdministeredLicensingSubscriptionSubscriptionsClaimKey**](ConfigureApi.md#ValidateAdministeredLicensingSubscriptionSubscriptionsClaimKey) | **Post** /administered/licensing/subscription/subscriptions/claimKey/validate | Find a subscription by claim key
 [**VmxNetworkDevicesClaim**](ConfigureApi.md#VmxNetworkDevicesClaim) | **Post** /networks/{networkId}/devices/claim/vmx | Claim a vMX into a network
@@ -1002,7 +1015,7 @@ Name | Type | Description  | Notes
 
 ## ClaimAdministeredLicensingSubscriptionSubscriptions
 
-> GetAdministeredLicensingSubscriptionSubscriptions200ResponseInner ClaimAdministeredLicensingSubscriptionSubscriptions(ctx).ClaimAdministeredLicensingSubscriptionSubscriptionsRequest(claimAdministeredLicensingSubscriptionSubscriptionsRequest).Execute()
+> GetAdministeredLicensingSubscriptionSubscriptions200ResponseInner ClaimAdministeredLicensingSubscriptionSubscriptions(ctx).ClaimAdministeredLicensingSubscriptionSubscriptionsRequest(claimAdministeredLicensingSubscriptionSubscriptionsRequest).Validate(validate).Execute()
 
 Claim a subscription into an organization.
 
@@ -1022,11 +1035,12 @@ import (
 
 func main() {
     claimAdministeredLicensingSubscriptionSubscriptionsRequest := *openapiclient.NewClaimAdministeredLicensingSubscriptionSubscriptionsRequest("ClaimKey_example", "OrganizationId_example") // ClaimAdministeredLicensingSubscriptionSubscriptionsRequest | 
+    validate := true // bool | Check if the provided claim key is valid and can be claimed into the organization. (optional)
 
     configuration := openapiclient.NewConfiguration()
 
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.ClaimAdministeredLicensingSubscriptionSubscriptions(context.Background()).ClaimAdministeredLicensingSubscriptionSubscriptionsRequest(claimAdministeredLicensingSubscriptionSubscriptionsRequest).Execute()
+    resp, r, err := apiClient.ConfigureApi.ClaimAdministeredLicensingSubscriptionSubscriptions(context.Background()).ClaimAdministeredLicensingSubscriptionSubscriptionsRequest(claimAdministeredLicensingSubscriptionSubscriptionsRequest).Validate(validate).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.ClaimAdministeredLicensingSubscriptionSubscriptions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1048,6 +1062,7 @@ Other parameters are passed through a pointer to a apiClaimAdministeredLicensing
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **claimAdministeredLicensingSubscriptionSubscriptionsRequest** | [**ClaimAdministeredLicensingSubscriptionSubscriptionsRequest**](ClaimAdministeredLicensingSubscriptionSubscriptionsRequest.md) |  | 
+ **validate** | **bool** | Check if the provided claim key is valid and can be claimed into the organization. | 
 
 ### Return type
 
@@ -5738,6 +5753,79 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateOrganizationSmAdminsRole
+
+> GetOrganizationSmAdminsRoles200ResponseItemsInner CreateOrganizationSmAdminsRole(ctx, organizationId).CreateOrganizationSmAdminsRoleRequest(createOrganizationSmAdminsRoleRequest).Execute()
+
+Create a Limited Access Role
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | Organization ID
+    createOrganizationSmAdminsRoleRequest := *openapiclient.NewCreateOrganizationSmAdminsRoleRequest("Name_example") // CreateOrganizationSmAdminsRoleRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationSmAdminsRole(context.Background(), organizationId).CreateOrganizationSmAdminsRoleRequest(createOrganizationSmAdminsRoleRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationSmAdminsRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateOrganizationSmAdminsRole`: GetOrganizationSmAdminsRoles200ResponseItemsInner
+    fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateOrganizationSmAdminsRole`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** | Organization ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateOrganizationSmAdminsRoleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createOrganizationSmAdminsRoleRequest** | [**CreateOrganizationSmAdminsRoleRequest**](CreateOrganizationSmAdminsRoleRequest.md) |  | 
+
+### Return type
+
+[**GetOrganizationSmAdminsRoles200ResponseItemsInner**](GetOrganizationSmAdminsRoles200ResponseItemsInner.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeferNetworkFirmwareUpgradesStagedEvents
 
 > GetNetworkFirmwareUpgradesStagedEvents200Response DeferNetworkFirmwareUpgradesStagedEvents(ctx, networkId).Execute()
@@ -9463,6 +9551,78 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteOrganizationSamlRoleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteOrganizationSmAdminsRole
+
+> DeleteOrganizationSmAdminsRole(ctx, organizationId, roleId).Execute()
+
+Delete a Limited Access Role
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | Organization ID
+    roleId := "roleId_example" // string | Role ID
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ConfigureApi.DeleteOrganizationSmAdminsRole(context.Background(), organizationId, roleId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.DeleteOrganizationSmAdminsRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** | Organization ID | 
+**roleId** | **string** | Role ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteOrganizationSmAdminsRoleRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -17883,7 +18043,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDevices
 
-> []GetNetworkSmDevices200ResponseInner GetNetworkSmDevices(ctx, networkId).Fields(fields).WifiMacs(wifiMacs).Serials(serials).Ids(ids).Uuids(uuids).Scope(scope).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSmDevices200ResponseInner GetNetworkSmDevices(ctx, networkId).Fields(fields).WifiMacs(wifiMacs).Serials(serials).Ids(ids).Uuids(uuids).SystemTypes(systemTypes).Scope(scope).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 List the devices enrolled in an SM network with various specified fields and filters
 
@@ -17908,6 +18068,7 @@ func main() {
     serials := []string{"Inner_example"} // []string | Filter devices by serial(s). (optional)
     ids := []string{"Inner_example"} // []string | Filter devices by id(s). (optional)
     uuids := []string{"Inner_example"} // []string | Filter devices by uuid(s). (optional)
+    systemTypes := []string{"Inner_example"} // []string | Filter devices by system type(s). (optional)
     scope := []string{"Inner_example"} // []string | Specify a scope (one of all, none, withAny, withAll, withoutAny, or withoutAll) and a set of tags. (optional)
     perPage := int32(56) // int32 | The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000. (optional)
     startingAfter := "startingAfter_example" // string | A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
@@ -17916,7 +18077,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
 
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.GetNetworkSmDevices(context.Background(), networkId).Fields(fields).WifiMacs(wifiMacs).Serials(serials).Ids(ids).Uuids(uuids).Scope(scope).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+    resp, r, err := apiClient.ConfigureApi.GetNetworkSmDevices(context.Background(), networkId).Fields(fields).WifiMacs(wifiMacs).Serials(serials).Ids(ids).Uuids(uuids).SystemTypes(systemTypes).Scope(scope).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSmDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -17947,6 +18108,7 @@ Name | Type | Description  | Notes
  **serials** | **[]string** | Filter devices by serial(s). | 
  **ids** | **[]string** | Filter devices by id(s). | 
  **uuids** | **[]string** | Filter devices by uuid(s). | 
+ **systemTypes** | **[]string** | Filter devices by system type(s). | 
  **scope** | **[]string** | Specify a scope (one of all, none, withAny, withAll, withoutAny, or withoutAll) and a set of tags. | 
  **perPage** | **int32** | The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000. | 
  **startingAfter** | **string** | A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. | 
@@ -24263,6 +24425,77 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetOrganizationApplianceUplinksStatusesOverview
+
+> GetOrganizationApplianceUplinksStatusesOverview200Response GetOrganizationApplianceUplinksStatusesOverview(ctx, organizationId).Execute()
+
+Returns an overview of uplink statuses
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | Organization ID
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConfigureApi.GetOrganizationApplianceUplinksStatusesOverview(context.Background(), organizationId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationApplianceUplinksStatusesOverview``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrganizationApplianceUplinksStatusesOverview`: GetOrganizationApplianceUplinksStatusesOverview200Response
+    fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationApplianceUplinksStatusesOverview`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** | Organization ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrganizationApplianceUplinksStatusesOverviewRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**GetOrganizationApplianceUplinksStatusesOverview200Response**](GetOrganizationApplianceUplinksStatusesOverview200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetOrganizationApplianceVpnThirdPartyVPNPeers
 
 > GetOrganizationApplianceVpnThirdPartyVPNPeers200Response GetOrganizationApplianceVpnThirdPartyVPNPeers(ctx, organizationId).Execute()
@@ -24621,6 +24854,152 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetOrganizationCameraBoundariesAreasByDevice
+
+> []GetOrganizationCameraBoundariesAreasByDevice200ResponseInner GetOrganizationCameraBoundariesAreasByDevice(ctx, organizationId).Serials(serials).Execute()
+
+Returns all configured area boundaries of cameras
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | Organization ID
+    serials := []string{"Inner_example"} // []string | A list of serial numbers. The returned cameras will be filtered to only include these serials. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConfigureApi.GetOrganizationCameraBoundariesAreasByDevice(context.Background(), organizationId).Serials(serials).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationCameraBoundariesAreasByDevice``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrganizationCameraBoundariesAreasByDevice`: []GetOrganizationCameraBoundariesAreasByDevice200ResponseInner
+    fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationCameraBoundariesAreasByDevice`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** | Organization ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrganizationCameraBoundariesAreasByDeviceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **serials** | **[]string** | A list of serial numbers. The returned cameras will be filtered to only include these serials. | 
+
+### Return type
+
+[**[]GetOrganizationCameraBoundariesAreasByDevice200ResponseInner**](GetOrganizationCameraBoundariesAreasByDevice200ResponseInner.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetOrganizationCameraBoundariesLinesByDevice
+
+> []GetOrganizationCameraBoundariesLinesByDevice200ResponseInner GetOrganizationCameraBoundariesLinesByDevice(ctx, organizationId).Serials(serials).Execute()
+
+Returns all configured crossingline boundaries of cameras
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | Organization ID
+    serials := []string{"Inner_example"} // []string | A list of serial numbers. The returned cameras will be filtered to only include these serials. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConfigureApi.GetOrganizationCameraBoundariesLinesByDevice(context.Background(), organizationId).Serials(serials).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationCameraBoundariesLinesByDevice``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrganizationCameraBoundariesLinesByDevice`: []GetOrganizationCameraBoundariesLinesByDevice200ResponseInner
+    fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationCameraBoundariesLinesByDevice`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** | Organization ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrganizationCameraBoundariesLinesByDeviceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **serials** | **[]string** | A list of serial numbers. The returned cameras will be filtered to only include these serials. | 
+
+### Return type
+
+[**[]GetOrganizationCameraBoundariesLinesByDevice200ResponseInner**](GetOrganizationCameraBoundariesLinesByDevice200ResponseInner.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetOrganizationCameraCustomAnalyticsArtifact
 
 > map[string]interface{} GetOrganizationCameraCustomAnalyticsArtifact(ctx, organizationId, artifactId).Execute()
@@ -24751,6 +25130,87 @@ Name | Type | Description  | Notes
 ### Return type
 
 **[]map[string]interface{}**
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetOrganizationCameraDetectionsHistoryByBoundaryByInterval
+
+> []GetOrganizationCameraDetectionsHistoryByBoundaryByInterval200ResponseInner GetOrganizationCameraDetectionsHistoryByBoundaryByInterval(ctx, organizationId).BoundaryIds(boundaryIds).Ranges(ranges).Duration(duration).PerPage(perPage).BoundaryTypes(boundaryTypes).Execute()
+
+Returns analytics data for timespans
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | Organization ID
+    boundaryIds := []string{"Inner_example"} // []string | A list of boundary ids. The returned cameras will be filtered to only include these ids.
+    ranges := []openapiclient.GetOrganizationCameraDetectionsHistoryByBoundaryByIntervalRangesParameterInner{*openapiclient.NewGetOrganizationCameraDetectionsHistoryByBoundaryByIntervalRangesParameterInner("StartTime_example", "EndTime_example", int32(123))} // []GetOrganizationCameraDetectionsHistoryByBoundaryByIntervalRangesParameterInner | A list of time ranges with intervals
+    duration := int32(56) // int32 | The minimum time, in seconds, that the person or car remains in the area to be counted. Defaults to boundary configuration or 60. (optional)
+    perPage := int32(56) // int32 | The number of entries per page returned. Acceptable range is 1 - 1000. Defaults to 1000. (optional)
+    boundaryTypes := []string{"BoundaryTypes_example"} // []string | The detection types. Defaults to 'person'. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConfigureApi.GetOrganizationCameraDetectionsHistoryByBoundaryByInterval(context.Background(), organizationId).BoundaryIds(boundaryIds).Ranges(ranges).Duration(duration).PerPage(perPage).BoundaryTypes(boundaryTypes).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationCameraDetectionsHistoryByBoundaryByInterval``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrganizationCameraDetectionsHistoryByBoundaryByInterval`: []GetOrganizationCameraDetectionsHistoryByBoundaryByInterval200ResponseInner
+    fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationCameraDetectionsHistoryByBoundaryByInterval`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** | Organization ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrganizationCameraDetectionsHistoryByBoundaryByIntervalRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **boundaryIds** | **[]string** | A list of boundary ids. The returned cameras will be filtered to only include these ids. | 
+ **ranges** | [**[]GetOrganizationCameraDetectionsHistoryByBoundaryByIntervalRangesParameterInner**](GetOrganizationCameraDetectionsHistoryByBoundaryByIntervalRangesParameterInner.md) | A list of time ranges with intervals | 
+ **duration** | **int32** | The minimum time, in seconds, that the person or car remains in the area to be counted. Defaults to boundary configuration or 60. | 
+ **perPage** | **int32** | The number of entries per page returned. Acceptable range is 1 - 1000. Defaults to 1000. | 
+ **boundaryTypes** | **[]string** | The detection types. Defaults to &#39;person&#39;. | 
+
+### Return type
+
+[**[]GetOrganizationCameraDetectionsHistoryByBoundaryByInterval200ResponseInner**](GetOrganizationCameraDetectionsHistoryByBoundaryByInterval200ResponseInner.md)
 
 ### Authorization
 
@@ -27673,6 +28133,157 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetOrganizationSmAdminsRole
+
+> GetOrganizationSmAdminsRoles200ResponseItemsInner GetOrganizationSmAdminsRole(ctx, organizationId, roleId).Execute()
+
+Return a Limited Access Role
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | Organization ID
+    roleId := "roleId_example" // string | Role ID
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConfigureApi.GetOrganizationSmAdminsRole(context.Background(), organizationId, roleId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationSmAdminsRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrganizationSmAdminsRole`: GetOrganizationSmAdminsRoles200ResponseItemsInner
+    fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationSmAdminsRole`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** | Organization ID | 
+**roleId** | **string** | Role ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrganizationSmAdminsRoleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**GetOrganizationSmAdminsRoles200ResponseItemsInner**](GetOrganizationSmAdminsRoles200ResponseItemsInner.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetOrganizationSmAdminsRoles
+
+> GetOrganizationSmAdminsRoles200Response GetOrganizationSmAdminsRoles(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+
+List the Limited Access Roles for an organization
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | Organization ID
+    perPage := int32(56) // int32 | The number of entries per page returned. Acceptable range is 3 - 1000. Default is 50. (optional)
+    startingAfter := "startingAfter_example" // string | A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
+    endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConfigureApi.GetOrganizationSmAdminsRoles(context.Background(), organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationSmAdminsRoles``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrganizationSmAdminsRoles`: GetOrganizationSmAdminsRoles200Response
+    fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationSmAdminsRoles`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** | Organization ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrganizationSmAdminsRolesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **perPage** | **int32** | The number of entries per page returned. Acceptable range is 3 - 1000. Default is 50. | 
+ **startingAfter** | **string** | A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. | 
+ **endingBefore** | **string** | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. | 
+
+### Return type
+
+[**GetOrganizationSmAdminsRoles200Response**](GetOrganizationSmAdminsRoles200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetOrganizationSmApnsCert
 
 > GetOrganizationSmApnsCert200Response GetOrganizationSmApnsCert(ctx, organizationId).Execute()
@@ -27729,6 +28340,85 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetOrganizationSmApnsCert200Response**](GetOrganizationSmApnsCert200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetOrganizationSmSentryPoliciesAssignmentsByNetwork
+
+> []GetOrganizationSmSentryPoliciesAssignmentsByNetwork200ResponseInner GetOrganizationSmSentryPoliciesAssignmentsByNetwork(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Execute()
+
+List the Sentry Policies for an organization ordered in ascending order of priority
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | Organization ID
+    perPage := int32(56) // int32 | The number of entries per page returned. Acceptable range is 3 - 1000. Default is 50. (optional)
+    startingAfter := "startingAfter_example" // string | A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
+    endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
+    networkIds := []string{"Inner_example"} // []string | Optional parameter to filter Sentry Policies by Network Id (optional)
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConfigureApi.GetOrganizationSmSentryPoliciesAssignmentsByNetwork(context.Background(), organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationSmSentryPoliciesAssignmentsByNetwork``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrganizationSmSentryPoliciesAssignmentsByNetwork`: []GetOrganizationSmSentryPoliciesAssignmentsByNetwork200ResponseInner
+    fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationSmSentryPoliciesAssignmentsByNetwork`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** | Organization ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrganizationSmSentryPoliciesAssignmentsByNetworkRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **perPage** | **int32** | The number of entries per page returned. Acceptable range is 3 - 1000. Default is 50. | 
+ **startingAfter** | **string** | A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. | 
+ **endingBefore** | **string** | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. | 
+ **networkIds** | **[]string** | Optional parameter to filter Sentry Policies by Network Id | 
+
+### Return type
+
+[**[]GetOrganizationSmSentryPoliciesAssignmentsByNetwork200ResponseInner**](GetOrganizationSmSentryPoliciesAssignmentsByNetwork200ResponseInner.md)
 
 ### Authorization
 
@@ -28847,6 +29537,79 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## RebootNetworkSmDevices
+
+> RebootNetworkSmDevices200Response RebootNetworkSmDevices(ctx, networkId).RebootNetworkSmDevicesRequest(rebootNetworkSmDevicesRequest).Execute()
+
+Reboot a set of endpoints
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    networkId := "networkId_example" // string | Network ID
+    rebootNetworkSmDevicesRequest := *openapiclient.NewRebootNetworkSmDevicesRequest() // RebootNetworkSmDevicesRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConfigureApi.RebootNetworkSmDevices(context.Background(), networkId).RebootNetworkSmDevicesRequest(rebootNetworkSmDevicesRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.RebootNetworkSmDevices``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RebootNetworkSmDevices`: RebootNetworkSmDevices200Response
+    fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.RebootNetworkSmDevices`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkId** | **string** | Network ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRebootNetworkSmDevicesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **rebootNetworkSmDevicesRequest** | [**RebootNetworkSmDevicesRequest**](RebootNetworkSmDevicesRequest.md) |  | 
+
+### Return type
+
+[**RebootNetworkSmDevices200Response**](RebootNetworkSmDevices200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## RefreshNetworkSmDeviceDetails
 
 > RefreshNetworkSmDeviceDetails(ctx, networkId, deviceId).Execute()
@@ -29343,6 +30106,79 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SetNetworkWirelessEthernetPortsProfilesDefault200Response**](SetNetworkWirelessEthernetPortsProfilesDefault200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ShutdownNetworkSmDevices
+
+> RebootNetworkSmDevices200Response ShutdownNetworkSmDevices(ctx, networkId).ShutdownNetworkSmDevicesRequest(shutdownNetworkSmDevicesRequest).Execute()
+
+Shutdown a set of endpoints
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    networkId := "networkId_example" // string | Network ID
+    shutdownNetworkSmDevicesRequest := *openapiclient.NewShutdownNetworkSmDevicesRequest() // ShutdownNetworkSmDevicesRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConfigureApi.ShutdownNetworkSmDevices(context.Background(), networkId).ShutdownNetworkSmDevicesRequest(shutdownNetworkSmDevicesRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.ShutdownNetworkSmDevices``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ShutdownNetworkSmDevices`: RebootNetworkSmDevices200Response
+    fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.ShutdownNetworkSmDevices`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkId** | **string** | Network ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiShutdownNetworkSmDevicesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **shutdownNetworkSmDevicesRequest** | [**ShutdownNetworkSmDevicesRequest**](ShutdownNetworkSmDevicesRequest.md) |  | 
+
+### Return type
+
+[**RebootNetworkSmDevices200Response**](RebootNetworkSmDevices200Response.md)
 
 ### Authorization
 
@@ -40656,6 +41492,155 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetOrganizationSamlRoles200ResponseInner**](GetOrganizationSamlRoles200ResponseInner.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateOrganizationSmAdminsRole
+
+> GetOrganizationSmAdminsRoles200ResponseItemsInner UpdateOrganizationSmAdminsRole(ctx, organizationId, roleId).UpdateOrganizationSmAdminsRoleRequest(updateOrganizationSmAdminsRoleRequest).Execute()
+
+Update a Limited Access Role
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | Organization ID
+    roleId := "roleId_example" // string | Role ID
+    updateOrganizationSmAdminsRoleRequest := *openapiclient.NewUpdateOrganizationSmAdminsRoleRequest() // UpdateOrganizationSmAdminsRoleRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationSmAdminsRole(context.Background(), organizationId, roleId).UpdateOrganizationSmAdminsRoleRequest(updateOrganizationSmAdminsRoleRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationSmAdminsRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateOrganizationSmAdminsRole`: GetOrganizationSmAdminsRoles200ResponseItemsInner
+    fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateOrganizationSmAdminsRole`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** | Organization ID | 
+**roleId** | **string** | Role ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateOrganizationSmAdminsRoleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **updateOrganizationSmAdminsRoleRequest** | [**UpdateOrganizationSmAdminsRoleRequest**](UpdateOrganizationSmAdminsRoleRequest.md) |  | 
+
+### Return type
+
+[**GetOrganizationSmAdminsRoles200ResponseItemsInner**](GetOrganizationSmAdminsRoles200ResponseItemsInner.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateOrganizationSmSentryPoliciesAssignments
+
+> UpdateOrganizationSmSentryPoliciesAssignments200Response UpdateOrganizationSmSentryPoliciesAssignments(ctx, organizationId).UpdateOrganizationSmSentryPoliciesAssignmentsRequest(updateOrganizationSmSentryPoliciesAssignmentsRequest).Execute()
+
+Update an Organizations Sentry Policies using the provided list
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | Organization ID
+    updateOrganizationSmSentryPoliciesAssignmentsRequest := *openapiclient.NewUpdateOrganizationSmSentryPoliciesAssignmentsRequest([]openapiclient.UpdateOrganizationSmSentryPoliciesAssignmentsRequestItemsInner{*openapiclient.NewUpdateOrganizationSmSentryPoliciesAssignmentsRequestItemsInner("NetworkId_example")}) // UpdateOrganizationSmSentryPoliciesAssignmentsRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationSmSentryPoliciesAssignments(context.Background(), organizationId).UpdateOrganizationSmSentryPoliciesAssignmentsRequest(updateOrganizationSmSentryPoliciesAssignmentsRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationSmSentryPoliciesAssignments``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateOrganizationSmSentryPoliciesAssignments`: UpdateOrganizationSmSentryPoliciesAssignments200Response
+    fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateOrganizationSmSentryPoliciesAssignments`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** | Organization ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateOrganizationSmSentryPoliciesAssignmentsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **updateOrganizationSmSentryPoliciesAssignmentsRequest** | [**UpdateOrganizationSmSentryPoliciesAssignmentsRequest**](UpdateOrganizationSmSentryPoliciesAssignmentsRequest.md) |  | 
+
+### Return type
+
+[**UpdateOrganizationSmSentryPoliciesAssignments200Response**](UpdateOrganizationSmSentryPoliciesAssignments200Response.md)
 
 ### Authorization
 

@@ -8,13 +8,19 @@ Method | HTTP request | Description
 [**CheckinNetworkSmDevices**](DevicesApi.md#CheckinNetworkSmDevices) | **Post** /networks/{networkId}/sm/devices/checkin | Force check-in a set of devices
 [**ClaimNetworkDevices**](DevicesApi.md#ClaimNetworkDevices) | **Post** /networks/{networkId}/devices/claim | Claim devices into a network. (Note: for recently claimed devices, it may take a few minutes for API requsts against that device to succeed)
 [**CloneOrganizationSwitchDevices**](DevicesApi.md#CloneOrganizationSwitchDevices) | **Post** /organizations/{organizationId}/switch/devices/clone | Clone port-level and some switch-level configuration settings from a source switch to one or more target switches
+[**CreateDeviceLiveToolsArpTable**](DevicesApi.md#CreateDeviceLiveToolsArpTable) | **Post** /devices/{serial}/liveTools/arpTable | Enqueue a job to perform a ARP table request for the device
+[**CreateDeviceLiveToolsCableTest**](DevicesApi.md#CreateDeviceLiveToolsCableTest) | **Post** /devices/{serial}/liveTools/cableTest | Enqueue a job to perform a cable test for the device on the specified ports.
 [**CreateDeviceLiveToolsPing**](DevicesApi.md#CreateDeviceLiveToolsPing) | **Post** /devices/{serial}/liveTools/ping | Enqueue a job to ping a target host from the device
 [**CreateDeviceLiveToolsPingDevice**](DevicesApi.md#CreateDeviceLiveToolsPingDevice) | **Post** /devices/{serial}/liveTools/pingDevice | Enqueue a job to check connectivity status to the device
+[**CreateDeviceLiveToolsWakeOnLan**](DevicesApi.md#CreateDeviceLiveToolsWakeOnLan) | **Post** /devices/{serial}/liveTools/wakeOnLan | Enqueue a job to send a Wake-on-LAN packet from the device
 [**GetDevice**](DevicesApi.md#GetDevice) | **Get** /devices/{serial} | Return a single device
 [**GetDeviceCellularSims**](DevicesApi.md#GetDeviceCellularSims) | **Get** /devices/{serial}/cellular/sims | Return the SIM and APN configurations for a cellular device.
 [**GetDeviceClients**](DevicesApi.md#GetDeviceClients) | **Get** /devices/{serial}/clients | List the clients of a device, up to a maximum of a month ago
+[**GetDeviceLiveToolsArpTable**](DevicesApi.md#GetDeviceLiveToolsArpTable) | **Get** /devices/{serial}/liveTools/arpTable/{arpTableId} | Return an ARP table live tool job.
+[**GetDeviceLiveToolsCableTest**](DevicesApi.md#GetDeviceLiveToolsCableTest) | **Get** /devices/{serial}/liveTools/cableTest/{id} | Return a cable test live tool job.
 [**GetDeviceLiveToolsPing**](DevicesApi.md#GetDeviceLiveToolsPing) | **Get** /devices/{serial}/liveTools/ping/{id} | Return a ping job
 [**GetDeviceLiveToolsPingDevice**](DevicesApi.md#GetDeviceLiveToolsPingDevice) | **Get** /devices/{serial}/liveTools/pingDevice/{id} | Return a ping device job
+[**GetDeviceLiveToolsWakeOnLan**](DevicesApi.md#GetDeviceLiveToolsWakeOnLan) | **Get** /devices/{serial}/liveTools/wakeOnLan/{wakeOnLanId} | Return a Wake-on-LAN job
 [**GetDeviceLldpCdp**](DevicesApi.md#GetDeviceLldpCdp) | **Get** /devices/{serial}/lldpCdp | List LLDP and CDP information for a device
 [**GetDeviceLossAndLatencyHistory**](DevicesApi.md#GetDeviceLossAndLatencyHistory) | **Get** /devices/{serial}/lossAndLatencyHistory | Get the uplink loss percentage and latency in milliseconds, and goodput in kilobits per second for MX, MG and Z devices.
 [**GetDeviceManagementInterface**](DevicesApi.md#GetDeviceManagementInterface) | **Get** /devices/{serial}/managementInterface | Return the management interface settings for a device
@@ -60,8 +66,10 @@ Method | HTTP request | Description
 [**ModifyNetworkSmDevicesTags**](DevicesApi.md#ModifyNetworkSmDevicesTags) | **Post** /networks/{networkId}/sm/devices/modifyTags | Add, delete, or update the tags of a set of devices
 [**MoveNetworkSmDevices**](DevicesApi.md#MoveNetworkSmDevices) | **Post** /networks/{networkId}/sm/devices/move | Move a set of devices to a new network
 [**RebootDevice**](DevicesApi.md#RebootDevice) | **Post** /devices/{serial}/reboot | Reboot a device
+[**RebootNetworkSmDevices**](DevicesApi.md#RebootNetworkSmDevices) | **Post** /networks/{networkId}/sm/devices/reboot | Reboot a set of endpoints
 [**RefreshNetworkSmDeviceDetails**](DevicesApi.md#RefreshNetworkSmDeviceDetails) | **Post** /networks/{networkId}/sm/devices/{deviceId}/refreshDetails | Refresh the details of a device
 [**RemoveNetworkDevices**](DevicesApi.md#RemoveNetworkDevices) | **Post** /networks/{networkId}/devices/remove | Remove a single device
+[**ShutdownNetworkSmDevices**](DevicesApi.md#ShutdownNetworkSmDevices) | **Post** /networks/{networkId}/sm/devices/shutdown | Shutdown a set of endpoints
 [**UnenrollNetworkSmDevice**](DevicesApi.md#UnenrollNetworkSmDevice) | **Post** /networks/{networkId}/sm/devices/{deviceId}/unenroll | Unenroll a device
 [**UninstallNetworkSmDeviceApps**](DevicesApi.md#UninstallNetworkSmDeviceApps) | **Post** /networks/{networkId}/sm/devices/{deviceId}/uninstallApps | Uninstall applications on a device
 [**UpdateDevice**](DevicesApi.md#UpdateDevice) | **Put** /devices/{serial} | Update the attributes of a device
@@ -363,6 +371,152 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateDeviceLiveToolsArpTable
+
+> CreateDeviceLiveToolsArpTable201Response CreateDeviceLiveToolsArpTable(ctx, serial).CreateDeviceLiveToolsArpTableRequest(createDeviceLiveToolsArpTableRequest).Execute()
+
+Enqueue a job to perform a ARP table request for the device
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    serial := "serial_example" // string | Serial
+    createDeviceLiveToolsArpTableRequest := *openapiclient.NewCreateDeviceLiveToolsArpTableRequest() // CreateDeviceLiveToolsArpTableRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.CreateDeviceLiveToolsArpTable(context.Background(), serial).CreateDeviceLiveToolsArpTableRequest(createDeviceLiveToolsArpTableRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.CreateDeviceLiveToolsArpTable``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateDeviceLiveToolsArpTable`: CreateDeviceLiveToolsArpTable201Response
+    fmt.Fprintf(os.Stdout, "Response from `DevicesApi.CreateDeviceLiveToolsArpTable`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serial** | **string** | Serial | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateDeviceLiveToolsArpTableRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createDeviceLiveToolsArpTableRequest** | [**CreateDeviceLiveToolsArpTableRequest**](CreateDeviceLiveToolsArpTableRequest.md) |  | 
+
+### Return type
+
+[**CreateDeviceLiveToolsArpTable201Response**](CreateDeviceLiveToolsArpTable201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateDeviceLiveToolsCableTest
+
+> CreateDeviceLiveToolsCableTest201Response CreateDeviceLiveToolsCableTest(ctx, serial).CreateDeviceLiveToolsCableTestRequest(createDeviceLiveToolsCableTestRequest).Execute()
+
+Enqueue a job to perform a cable test for the device on the specified ports.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    serial := "serial_example" // string | Serial
+    createDeviceLiveToolsCableTestRequest := *openapiclient.NewCreateDeviceLiveToolsCableTestRequest([]string{"Ports_example"}) // CreateDeviceLiveToolsCableTestRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.CreateDeviceLiveToolsCableTest(context.Background(), serial).CreateDeviceLiveToolsCableTestRequest(createDeviceLiveToolsCableTestRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.CreateDeviceLiveToolsCableTest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateDeviceLiveToolsCableTest`: CreateDeviceLiveToolsCableTest201Response
+    fmt.Fprintf(os.Stdout, "Response from `DevicesApi.CreateDeviceLiveToolsCableTest`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serial** | **string** | Serial | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateDeviceLiveToolsCableTestRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createDeviceLiveToolsCableTestRequest** | [**CreateDeviceLiveToolsCableTestRequest**](CreateDeviceLiveToolsCableTestRequest.md) |  | 
+
+### Return type
+
+[**CreateDeviceLiveToolsCableTest201Response**](CreateDeviceLiveToolsCableTest201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateDeviceLiveToolsPing
 
 > CreateDeviceLiveToolsPing201Response CreateDeviceLiveToolsPing(ctx, serial).CreateDeviceLiveToolsPingRequest(createDeviceLiveToolsPingRequest).Execute()
@@ -494,6 +648,79 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CreateDeviceLiveToolsPing201Response**](CreateDeviceLiveToolsPing201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateDeviceLiveToolsWakeOnLan
+
+> CreateDeviceLiveToolsWakeOnLan201Response CreateDeviceLiveToolsWakeOnLan(ctx, serial).CreateDeviceLiveToolsWakeOnLanRequest(createDeviceLiveToolsWakeOnLanRequest).Execute()
+
+Enqueue a job to send a Wake-on-LAN packet from the device
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    serial := "serial_example" // string | Serial
+    createDeviceLiveToolsWakeOnLanRequest := *openapiclient.NewCreateDeviceLiveToolsWakeOnLanRequest(int32(123), "Mac_example") // CreateDeviceLiveToolsWakeOnLanRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.CreateDeviceLiveToolsWakeOnLan(context.Background(), serial).CreateDeviceLiveToolsWakeOnLanRequest(createDeviceLiveToolsWakeOnLanRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.CreateDeviceLiveToolsWakeOnLan``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateDeviceLiveToolsWakeOnLan`: CreateDeviceLiveToolsWakeOnLan201Response
+    fmt.Fprintf(os.Stdout, "Response from `DevicesApi.CreateDeviceLiveToolsWakeOnLan`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serial** | **string** | Serial | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateDeviceLiveToolsWakeOnLanRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createDeviceLiveToolsWakeOnLanRequest** | [**CreateDeviceLiveToolsWakeOnLanRequest**](CreateDeviceLiveToolsWakeOnLanRequest.md) |  | 
+
+### Return type
+
+[**CreateDeviceLiveToolsWakeOnLan201Response**](CreateDeviceLiveToolsWakeOnLan201Response.md)
 
 ### Authorization
 
@@ -726,6 +953,154 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetDeviceLiveToolsArpTable
+
+> DevicesSerialLiveToolsArpTablePostRequestMessage GetDeviceLiveToolsArpTable(ctx, serial, arpTableId).Execute()
+
+Return an ARP table live tool job.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    serial := "serial_example" // string | Serial
+    arpTableId := "arpTableId_example" // string | Arp table ID
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.GetDeviceLiveToolsArpTable(context.Background(), serial, arpTableId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.GetDeviceLiveToolsArpTable``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetDeviceLiveToolsArpTable`: DevicesSerialLiveToolsArpTablePostRequestMessage
+    fmt.Fprintf(os.Stdout, "Response from `DevicesApi.GetDeviceLiveToolsArpTable`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serial** | **string** | Serial | 
+**arpTableId** | **string** | Arp table ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDeviceLiveToolsArpTableRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**DevicesSerialLiveToolsArpTablePostRequestMessage**](DevicesSerialLiveToolsArpTablePostRequestMessage.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetDeviceLiveToolsCableTest
+
+> DevicesSerialLiveToolsCableTestPostRequestMessage GetDeviceLiveToolsCableTest(ctx, serial, id).Execute()
+
+Return a cable test live tool job.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    serial := "serial_example" // string | Serial
+    id := "id_example" // string | ID
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.GetDeviceLiveToolsCableTest(context.Background(), serial, id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.GetDeviceLiveToolsCableTest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetDeviceLiveToolsCableTest`: DevicesSerialLiveToolsCableTestPostRequestMessage
+    fmt.Fprintf(os.Stdout, "Response from `DevicesApi.GetDeviceLiveToolsCableTest`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serial** | **string** | Serial | 
+**id** | **string** | ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDeviceLiveToolsCableTestRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**DevicesSerialLiveToolsCableTestPostRequestMessage**](DevicesSerialLiveToolsCableTestPostRequestMessage.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetDeviceLiveToolsPing
 
 > DevicesSerialLiveToolsPingPostRequestMessage GetDeviceLiveToolsPing(ctx, serial, id).Execute()
@@ -859,6 +1234,80 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetDeviceLiveToolsPingDevice200Response**](GetDeviceLiveToolsPingDevice200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetDeviceLiveToolsWakeOnLan
+
+> DevicesSerialLiveToolsWakeOnLanPostRequestMessage GetDeviceLiveToolsWakeOnLan(ctx, serial, wakeOnLanId).Execute()
+
+Return a Wake-on-LAN job
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    serial := "serial_example" // string | Serial
+    wakeOnLanId := "wakeOnLanId_example" // string | Wake on lan ID
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.GetDeviceLiveToolsWakeOnLan(context.Background(), serial, wakeOnLanId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.GetDeviceLiveToolsWakeOnLan``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetDeviceLiveToolsWakeOnLan`: DevicesSerialLiveToolsWakeOnLanPostRequestMessage
+    fmt.Fprintf(os.Stdout, "Response from `DevicesApi.GetDeviceLiveToolsWakeOnLan`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serial** | **string** | Serial | 
+**wakeOnLanId** | **string** | Wake on lan ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDeviceLiveToolsWakeOnLanRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**DevicesSerialLiveToolsWakeOnLanPostRequestMessage**](DevicesSerialLiveToolsWakeOnLanPostRequestMessage.md)
 
 ### Authorization
 
@@ -2084,7 +2533,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDevices
 
-> []GetNetworkSmDevices200ResponseInner GetNetworkSmDevices(ctx, networkId).Fields(fields).WifiMacs(wifiMacs).Serials(serials).Ids(ids).Uuids(uuids).Scope(scope).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSmDevices200ResponseInner GetNetworkSmDevices(ctx, networkId).Fields(fields).WifiMacs(wifiMacs).Serials(serials).Ids(ids).Uuids(uuids).SystemTypes(systemTypes).Scope(scope).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 List the devices enrolled in an SM network with various specified fields and filters
 
@@ -2109,6 +2558,7 @@ func main() {
     serials := []string{"Inner_example"} // []string | Filter devices by serial(s). (optional)
     ids := []string{"Inner_example"} // []string | Filter devices by id(s). (optional)
     uuids := []string{"Inner_example"} // []string | Filter devices by uuid(s). (optional)
+    systemTypes := []string{"Inner_example"} // []string | Filter devices by system type(s). (optional)
     scope := []string{"Inner_example"} // []string | Specify a scope (one of all, none, withAny, withAll, withoutAny, or withoutAll) and a set of tags. (optional)
     perPage := int32(56) // int32 | The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000. (optional)
     startingAfter := "startingAfter_example" // string | A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
@@ -2117,7 +2567,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
 
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.GetNetworkSmDevices(context.Background(), networkId).Fields(fields).WifiMacs(wifiMacs).Serials(serials).Ids(ids).Uuids(uuids).Scope(scope).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+    resp, r, err := apiClient.DevicesApi.GetNetworkSmDevices(context.Background(), networkId).Fields(fields).WifiMacs(wifiMacs).Serials(serials).Ids(ids).Uuids(uuids).SystemTypes(systemTypes).Scope(scope).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.GetNetworkSmDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2148,6 +2598,7 @@ Name | Type | Description  | Notes
  **serials** | **[]string** | Filter devices by serial(s). | 
  **ids** | **[]string** | Filter devices by id(s). | 
  **uuids** | **[]string** | Filter devices by uuid(s). | 
+ **systemTypes** | **[]string** | Filter devices by system type(s). | 
  **scope** | **[]string** | Specify a scope (one of all, none, withAny, withAll, withoutAny, or withoutAll) and a set of tags. | 
  **perPage** | **int32** | The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000. | 
  **startingAfter** | **string** | A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. | 
@@ -4533,6 +4984,79 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## RebootNetworkSmDevices
+
+> RebootNetworkSmDevices200Response RebootNetworkSmDevices(ctx, networkId).RebootNetworkSmDevicesRequest(rebootNetworkSmDevicesRequest).Execute()
+
+Reboot a set of endpoints
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    networkId := "networkId_example" // string | Network ID
+    rebootNetworkSmDevicesRequest := *openapiclient.NewRebootNetworkSmDevicesRequest() // RebootNetworkSmDevicesRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.RebootNetworkSmDevices(context.Background(), networkId).RebootNetworkSmDevicesRequest(rebootNetworkSmDevicesRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.RebootNetworkSmDevices``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RebootNetworkSmDevices`: RebootNetworkSmDevices200Response
+    fmt.Fprintf(os.Stdout, "Response from `DevicesApi.RebootNetworkSmDevices`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkId** | **string** | Network ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRebootNetworkSmDevicesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **rebootNetworkSmDevicesRequest** | [**RebootNetworkSmDevicesRequest**](RebootNetworkSmDevicesRequest.md) |  | 
+
+### Return type
+
+[**RebootNetworkSmDevices200Response**](RebootNetworkSmDevices200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## RefreshNetworkSmDeviceDetails
 
 > RefreshNetworkSmDeviceDetails(ctx, networkId, deviceId).Execute()
@@ -4670,6 +5194,79 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ShutdownNetworkSmDevices
+
+> RebootNetworkSmDevices200Response ShutdownNetworkSmDevices(ctx, networkId).ShutdownNetworkSmDevicesRequest(shutdownNetworkSmDevicesRequest).Execute()
+
+Shutdown a set of endpoints
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    networkId := "networkId_example" // string | Network ID
+    shutdownNetworkSmDevicesRequest := *openapiclient.NewShutdownNetworkSmDevicesRequest() // ShutdownNetworkSmDevicesRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.ShutdownNetworkSmDevices(context.Background(), networkId).ShutdownNetworkSmDevicesRequest(shutdownNetworkSmDevicesRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.ShutdownNetworkSmDevices``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ShutdownNetworkSmDevices`: RebootNetworkSmDevices200Response
+    fmt.Fprintf(os.Stdout, "Response from `DevicesApi.ShutdownNetworkSmDevices`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkId** | **string** | Network ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiShutdownNetworkSmDevicesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **shutdownNetworkSmDevicesRequest** | [**ShutdownNetworkSmDevicesRequest**](ShutdownNetworkSmDevicesRequest.md) |  | 
+
+### Return type
+
+[**RebootNetworkSmDevices200Response**](RebootNetworkSmDevices200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

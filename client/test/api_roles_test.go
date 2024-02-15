@@ -36,6 +36,20 @@ func Test_client_RolesApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test RolesApiService CreateOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.RolesApi.CreateOrganizationSmAdminsRole(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test RolesApiService DeleteOrganizationCameraRole", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -44,6 +58,20 @@ func Test_client_RolesApiService(t *testing.T) {
 		var roleId string
 
 		httpRes, err := apiClient.RolesApi.DeleteOrganizationCameraRole(context.Background(), organizationId, roleId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RolesApiService DeleteOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		httpRes, err := apiClient.RolesApi.DeleteOrganizationSmAdminsRole(context.Background(), organizationId, roleId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -79,6 +107,35 @@ func Test_client_RolesApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test RolesApiService GetOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		resp, httpRes, err := apiClient.RolesApi.GetOrganizationSmAdminsRole(context.Background(), organizationId, roleId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RolesApiService GetOrganizationSmAdminsRoles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.RolesApi.GetOrganizationSmAdminsRoles(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test RolesApiService UpdateOrganizationCameraRole", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -87,6 +144,21 @@ func Test_client_RolesApiService(t *testing.T) {
 		var roleId string
 
 		resp, httpRes, err := apiClient.RolesApi.UpdateOrganizationCameraRole(context.Background(), organizationId, roleId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RolesApiService UpdateOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		resp, httpRes, err := apiClient.RolesApi.UpdateOrganizationSmAdminsRole(context.Background(), organizationId, roleId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -78,6 +78,20 @@ func Test_client_UplinksApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test UplinksApiService GetOrganizationApplianceUplinksStatusesOverview", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.UplinksApi.GetOrganizationApplianceUplinksStatusesOverview(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test UplinksApiService GetOrganizationApplianceUplinksUsageByNetwork", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

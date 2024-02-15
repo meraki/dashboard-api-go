@@ -36,6 +36,20 @@ func Test_client_AdminsApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test AdminsApiService CreateOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.AdminsApi.CreateOrganizationSmAdminsRole(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test AdminsApiService DeleteOrganizationAdmin", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -44,6 +58,20 @@ func Test_client_AdminsApiService(t *testing.T) {
 		var adminId string
 
 		httpRes, err := apiClient.AdminsApi.DeleteOrganizationAdmin(context.Background(), organizationId, adminId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AdminsApiService DeleteOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		httpRes, err := apiClient.AdminsApi.DeleteOrganizationSmAdminsRole(context.Background(), organizationId, roleId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -64,6 +92,35 @@ func Test_client_AdminsApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test AdminsApiService GetOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		resp, httpRes, err := apiClient.AdminsApi.GetOrganizationSmAdminsRole(context.Background(), organizationId, roleId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AdminsApiService GetOrganizationSmAdminsRoles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.AdminsApi.GetOrganizationSmAdminsRoles(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test AdminsApiService UpdateOrganizationAdmin", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -72,6 +129,21 @@ func Test_client_AdminsApiService(t *testing.T) {
 		var adminId string
 
 		resp, httpRes, err := apiClient.AdminsApi.UpdateOrganizationAdmin(context.Background(), organizationId, adminId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AdminsApiService UpdateOrganizationSmAdminsRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		resp, httpRes, err := apiClient.AdminsApi.UpdateOrganizationSmAdminsRole(context.Background(), organizationId, roleId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

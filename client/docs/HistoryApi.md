@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetDeviceCameraAnalyticsZoneHistory**](HistoryApi.md#GetDeviceCameraAnalyticsZoneHistory) | **Get** /devices/{serial}/camera/analytics/zones/{zoneId}/history | Return historical records for analytic zones
 [**GetNetworkAlertsHistory**](HistoryApi.md#GetNetworkAlertsHistory) | **Get** /networks/{networkId}/alerts/history | Return the alert history for this network
+[**GetOrganizationCameraDetectionsHistoryByBoundaryByInterval**](HistoryApi.md#GetOrganizationCameraDetectionsHistoryByBoundaryByInterval) | **Get** /organizations/{organizationId}/camera/detections/history/byBoundary/byInterval | Returns analytics data for timespans
 [**GetOrganizationSensorReadingsHistory**](HistoryApi.md#GetOrganizationSensorReadingsHistory) | **Get** /organizations/{organizationId}/sensor/readings/history | Return all reported readings from sensors in a given timespan, sorted by timestamp
 [**GetOrganizationSummarySwitchPowerHistory**](HistoryApi.md#GetOrganizationSummarySwitchPowerHistory) | **Get** /organizations/{organizationId}/summary/switch/power/history | Returns the total PoE power draw for all switch ports in the organization over the requested timespan (by default the last 24 hours)
 [**GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval**](HistoryApi.md#GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval) | **Get** /organizations/{organizationId}/wireless/devices/channelUtilization/history/byDevice/byInterval | Get a time-series of average channel utilization for all bands, segmented by device.
@@ -174,6 +175,87 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetOrganizationCameraDetectionsHistoryByBoundaryByInterval
+
+> []GetOrganizationCameraDetectionsHistoryByBoundaryByInterval200ResponseInner GetOrganizationCameraDetectionsHistoryByBoundaryByInterval(ctx, organizationId).BoundaryIds(boundaryIds).Ranges(ranges).Duration(duration).PerPage(perPage).BoundaryTypes(boundaryTypes).Execute()
+
+Returns analytics data for timespans
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | Organization ID
+    boundaryIds := []string{"Inner_example"} // []string | A list of boundary ids. The returned cameras will be filtered to only include these ids.
+    ranges := []openapiclient.GetOrganizationCameraDetectionsHistoryByBoundaryByIntervalRangesParameterInner{*openapiclient.NewGetOrganizationCameraDetectionsHistoryByBoundaryByIntervalRangesParameterInner("StartTime_example", "EndTime_example", int32(123))} // []GetOrganizationCameraDetectionsHistoryByBoundaryByIntervalRangesParameterInner | A list of time ranges with intervals
+    duration := int32(56) // int32 | The minimum time, in seconds, that the person or car remains in the area to be counted. Defaults to boundary configuration or 60. (optional)
+    perPage := int32(56) // int32 | The number of entries per page returned. Acceptable range is 1 - 1000. Defaults to 1000. (optional)
+    boundaryTypes := []string{"BoundaryTypes_example"} // []string | The detection types. Defaults to 'person'. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.HistoryApi.GetOrganizationCameraDetectionsHistoryByBoundaryByInterval(context.Background(), organizationId).BoundaryIds(boundaryIds).Ranges(ranges).Duration(duration).PerPage(perPage).BoundaryTypes(boundaryTypes).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `HistoryApi.GetOrganizationCameraDetectionsHistoryByBoundaryByInterval``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrganizationCameraDetectionsHistoryByBoundaryByInterval`: []GetOrganizationCameraDetectionsHistoryByBoundaryByInterval200ResponseInner
+    fmt.Fprintf(os.Stdout, "Response from `HistoryApi.GetOrganizationCameraDetectionsHistoryByBoundaryByInterval`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** | Organization ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrganizationCameraDetectionsHistoryByBoundaryByIntervalRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **boundaryIds** | **[]string** | A list of boundary ids. The returned cameras will be filtered to only include these ids. | 
+ **ranges** | [**[]GetOrganizationCameraDetectionsHistoryByBoundaryByIntervalRangesParameterInner**](GetOrganizationCameraDetectionsHistoryByBoundaryByIntervalRangesParameterInner.md) | A list of time ranges with intervals | 
+ **duration** | **int32** | The minimum time, in seconds, that the person or car remains in the area to be counted. Defaults to boundary configuration or 60. | 
+ **perPage** | **int32** | The number of entries per page returned. Acceptable range is 1 - 1000. Defaults to 1000. | 
+ **boundaryTypes** | **[]string** | The detection types. Defaults to &#39;person&#39;. | 
+
+### Return type
+
+[**[]GetOrganizationCameraDetectionsHistoryByBoundaryByInterval200ResponseInner**](GetOrganizationCameraDetectionsHistoryByBoundaryByInterval200ResponseInner.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetOrganizationSensorReadingsHistory
 
 > []GetOrganizationSensorReadingsHistory200ResponseInner GetOrganizationSensorReadingsHistory(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).T0(t0).T1(t1).Timespan(timespan).NetworkIds(networkIds).Serials(serials).Metrics(metrics).Execute()
@@ -204,7 +286,7 @@ func main() {
     timespan := float32(3.4) // float32 | The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 7 days. The default is 2 hours. (optional)
     networkIds := []string{"Inner_example"} // []string | Optional parameter to filter readings by network. (optional)
     serials := []string{"Inner_example"} // []string | Optional parameter to filter readings by sensor. (optional)
-    metrics := []string{"Inner_example"} // []string | Types of sensor readings to retrieve. If no metrics are supplied, all available types of readings will be retrieved. Allowed values are battery, button, door, humidity, indoorAirQuality, noise, pm25, temperature, tvoc, and water. (optional)
+    metrics := []string{"Inner_example"} // []string | Types of sensor readings to retrieve. If no metrics are supplied, all available types of readings will be retrieved. Allowed values are apparentPower, battery, button, co2, current, door, downstreamPower, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, remoteLockoutSwitch, temperature, tvoc, voltage, and water. (optional)
 
     configuration := openapiclient.NewConfiguration()
 
@@ -243,7 +325,7 @@ Name | Type | Description  | Notes
  **timespan** | **float32** | The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 7 days. The default is 2 hours. | 
  **networkIds** | **[]string** | Optional parameter to filter readings by network. | 
  **serials** | **[]string** | Optional parameter to filter readings by sensor. | 
- **metrics** | **[]string** | Types of sensor readings to retrieve. If no metrics are supplied, all available types of readings will be retrieved. Allowed values are battery, button, door, humidity, indoorAirQuality, noise, pm25, temperature, tvoc, and water. | 
+ **metrics** | **[]string** | Types of sensor readings to retrieve. If no metrics are supplied, all available types of readings will be retrieved. Allowed values are apparentPower, battery, button, co2, current, door, downstreamPower, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, remoteLockoutSwitch, temperature, tvoc, voltage, and water. | 
 
 ### Return type
 

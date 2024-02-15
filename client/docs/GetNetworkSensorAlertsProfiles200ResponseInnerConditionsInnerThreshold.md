@@ -12,6 +12,13 @@ Name | Type | Description | Notes
 **Pm25** | Pointer to [**GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdPm25**](GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdPm25.md) |  | [optional] 
 **Noise** | Pointer to [**GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoise**](GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoise.md) |  | [optional] 
 **IndoorAirQuality** | Pointer to [**GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdIndoorAirQuality**](GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdIndoorAirQuality.md) |  | [optional] 
+**RealPower** | Pointer to [**GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdRealPower**](GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdRealPower.md) |  | [optional] 
+**ApparentPower** | Pointer to [**GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdApparentPower**](GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdApparentPower.md) |  | [optional] 
+**PowerFactor** | Pointer to [**GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdPowerFactor**](GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdPowerFactor.md) |  | [optional] 
+**Current** | Pointer to [**GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdCurrent**](GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdCurrent.md) |  | [optional] 
+**Voltage** | Pointer to [**GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdVoltage**](GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdVoltage.md) |  | [optional] 
+**Frequency** | Pointer to [**GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdFrequency**](GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdFrequency.md) |  | [optional] 
+**UpstreamPower** | Pointer to [**GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdUpstreamPower**](GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdUpstreamPower.md) |  | [optional] 
 
 ## Methods
 
@@ -231,6 +238,181 @@ SetIndoorAirQuality sets IndoorAirQuality field to given value.
 `func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasIndoorAirQuality() bool`
 
 HasIndoorAirQuality returns a boolean if a field has been set.
+
+### GetRealPower
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetRealPower() GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdRealPower`
+
+GetRealPower returns the RealPower field if non-nil, zero value otherwise.
+
+### GetRealPowerOk
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetRealPowerOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdRealPower, bool)`
+
+GetRealPowerOk returns a tuple with the RealPower field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRealPower
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) SetRealPower(v GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdRealPower)`
+
+SetRealPower sets RealPower field to given value.
+
+### HasRealPower
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasRealPower() bool`
+
+HasRealPower returns a boolean if a field has been set.
+
+### GetApparentPower
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetApparentPower() GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdApparentPower`
+
+GetApparentPower returns the ApparentPower field if non-nil, zero value otherwise.
+
+### GetApparentPowerOk
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetApparentPowerOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdApparentPower, bool)`
+
+GetApparentPowerOk returns a tuple with the ApparentPower field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApparentPower
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) SetApparentPower(v GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdApparentPower)`
+
+SetApparentPower sets ApparentPower field to given value.
+
+### HasApparentPower
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasApparentPower() bool`
+
+HasApparentPower returns a boolean if a field has been set.
+
+### GetPowerFactor
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetPowerFactor() GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdPowerFactor`
+
+GetPowerFactor returns the PowerFactor field if non-nil, zero value otherwise.
+
+### GetPowerFactorOk
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetPowerFactorOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdPowerFactor, bool)`
+
+GetPowerFactorOk returns a tuple with the PowerFactor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPowerFactor
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) SetPowerFactor(v GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdPowerFactor)`
+
+SetPowerFactor sets PowerFactor field to given value.
+
+### HasPowerFactor
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasPowerFactor() bool`
+
+HasPowerFactor returns a boolean if a field has been set.
+
+### GetCurrent
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetCurrent() GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdCurrent`
+
+GetCurrent returns the Current field if non-nil, zero value otherwise.
+
+### GetCurrentOk
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetCurrentOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdCurrent, bool)`
+
+GetCurrentOk returns a tuple with the Current field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCurrent
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) SetCurrent(v GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdCurrent)`
+
+SetCurrent sets Current field to given value.
+
+### HasCurrent
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasCurrent() bool`
+
+HasCurrent returns a boolean if a field has been set.
+
+### GetVoltage
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetVoltage() GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdVoltage`
+
+GetVoltage returns the Voltage field if non-nil, zero value otherwise.
+
+### GetVoltageOk
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetVoltageOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdVoltage, bool)`
+
+GetVoltageOk returns a tuple with the Voltage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVoltage
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) SetVoltage(v GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdVoltage)`
+
+SetVoltage sets Voltage field to given value.
+
+### HasVoltage
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasVoltage() bool`
+
+HasVoltage returns a boolean if a field has been set.
+
+### GetFrequency
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetFrequency() GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdFrequency`
+
+GetFrequency returns the Frequency field if non-nil, zero value otherwise.
+
+### GetFrequencyOk
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetFrequencyOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdFrequency, bool)`
+
+GetFrequencyOk returns a tuple with the Frequency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFrequency
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) SetFrequency(v GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdFrequency)`
+
+SetFrequency sets Frequency field to given value.
+
+### HasFrequency
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasFrequency() bool`
+
+HasFrequency returns a boolean if a field has been set.
+
+### GetUpstreamPower
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetUpstreamPower() GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdUpstreamPower`
+
+GetUpstreamPower returns the UpstreamPower field if non-nil, zero value otherwise.
+
+### GetUpstreamPowerOk
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetUpstreamPowerOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdUpstreamPower, bool)`
+
+GetUpstreamPowerOk returns a tuple with the UpstreamPower field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpstreamPower
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) SetUpstreamPower(v GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdUpstreamPower)`
+
+SetUpstreamPower sets UpstreamPower field to given value.
+
+### HasUpstreamPower
+
+`func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasUpstreamPower() bool`
+
+HasUpstreamPower returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

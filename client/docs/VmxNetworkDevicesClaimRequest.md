@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Size** | **string** | The size of the vMX you claim. It can be one of: small, medium, large, 100 | 
+**Size** | **string** | The size of the vMX you claim. It can be one of: small, medium, large, xlarge, 100 | 
 
 ## Methods
 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Confirmed** | Pointer to **bool** | Set to true for immediate execution. Set to false if the action should be previewed before executing. This property cannot be unset once it is true. Defaults to false. | [optional] 
 **Synchronous** | Pointer to **bool** | Set to true to force the batch to run synchronous. There can be at most 20 actions in synchronous batch. Defaults to false. | [optional] 
 **Actions** | [**[]CreateOrganizationActionBatchRequestActionsInner**](CreateOrganizationActionBatchRequestActionsInner.md) | A set of changes to make as part of this action (&lt;a href&#x3D;&#39;https://developer.cisco.com/meraki/api/#/rest/guides/action-batches/&#39;&gt;more details&lt;/a&gt;) | 
-**Callback** | Pointer to [**CreateDeviceLiveToolsPingRequestCallback**](CreateDeviceLiveToolsPingRequestCallback.md) |  | [optional] 
+**Callback** | Pointer to [**CreateDeviceLiveToolsArpTableRequestCallback**](CreateDeviceLiveToolsArpTableRequestCallback.md) |  | [optional] 
 
 ## Methods
 
@@ -100,20 +100,20 @@ SetActions sets Actions field to given value.
 
 ### GetCallback
 
-`func (o *CreateOrganizationActionBatchRequest) GetCallback() CreateDeviceLiveToolsPingRequestCallback`
+`func (o *CreateOrganizationActionBatchRequest) GetCallback() CreateDeviceLiveToolsArpTableRequestCallback`
 
 GetCallback returns the Callback field if non-nil, zero value otherwise.
 
 ### GetCallbackOk
 
-`func (o *CreateOrganizationActionBatchRequest) GetCallbackOk() (*CreateDeviceLiveToolsPingRequestCallback, bool)`
+`func (o *CreateOrganizationActionBatchRequest) GetCallbackOk() (*CreateDeviceLiveToolsArpTableRequestCallback, bool)`
 
 GetCallbackOk returns a tuple with the Callback field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCallback
 
-`func (o *CreateOrganizationActionBatchRequest) SetCallback(v CreateDeviceLiveToolsPingRequestCallback)`
+`func (o *CreateOrganizationActionBatchRequest) SetCallback(v CreateDeviceLiveToolsArpTableRequestCallback)`
 
 SetCallback sets Callback field to given value.
 

@@ -77,6 +77,34 @@ func Test_client_DevicesApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test DevicesApiService CreateDeviceLiveToolsArpTable", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serial string
+
+		resp, httpRes, err := apiClient.DevicesApi.CreateDeviceLiveToolsArpTable(context.Background(), serial).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DevicesApiService CreateDeviceLiveToolsCableTest", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serial string
+
+		resp, httpRes, err := apiClient.DevicesApi.CreateDeviceLiveToolsCableTest(context.Background(), serial).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DevicesApiService CreateDeviceLiveToolsPing", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -98,6 +126,20 @@ func Test_client_DevicesApiService(t *testing.T) {
 		var serial string
 
 		resp, httpRes, err := apiClient.DevicesApi.CreateDeviceLiveToolsPingDevice(context.Background(), serial).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DevicesApiService CreateDeviceLiveToolsWakeOnLan", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serial string
+
+		resp, httpRes, err := apiClient.DevicesApi.CreateDeviceLiveToolsWakeOnLan(context.Background(), serial).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -147,6 +189,36 @@ func Test_client_DevicesApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test DevicesApiService GetDeviceLiveToolsArpTable", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serial string
+		var arpTableId string
+
+		resp, httpRes, err := apiClient.DevicesApi.GetDeviceLiveToolsArpTable(context.Background(), serial, arpTableId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DevicesApiService GetDeviceLiveToolsCableTest", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serial string
+		var id string
+
+		resp, httpRes, err := apiClient.DevicesApi.GetDeviceLiveToolsCableTest(context.Background(), serial, id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DevicesApiService GetDeviceLiveToolsPing", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -170,6 +242,21 @@ func Test_client_DevicesApiService(t *testing.T) {
 		var id string
 
 		resp, httpRes, err := apiClient.DevicesApi.GetDeviceLiveToolsPingDevice(context.Background(), serial, id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DevicesApiService GetDeviceLiveToolsWakeOnLan", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serial string
+		var wakeOnLanId string
+
+		resp, httpRes, err := apiClient.DevicesApi.GetDeviceLiveToolsWakeOnLan(context.Background(), serial, wakeOnLanId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -820,6 +907,20 @@ func Test_client_DevicesApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test DevicesApiService RebootNetworkSmDevices", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.DevicesApi.RebootNetworkSmDevices(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DevicesApiService RefreshNetworkSmDeviceDetails", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -843,6 +944,20 @@ func Test_client_DevicesApiService(t *testing.T) {
 		httpRes, err := apiClient.DevicesApi.RemoveNetworkDevices(context.Background(), networkId).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DevicesApiService ShutdownNetworkSmDevices", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.DevicesApi.ShutdownNetworkSmDevices(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## ClaimAdministeredLicensingSubscriptionSubscriptions
 
-> GetAdministeredLicensingSubscriptionSubscriptions200ResponseInner ClaimAdministeredLicensingSubscriptionSubscriptions(ctx).ClaimAdministeredLicensingSubscriptionSubscriptionsRequest(claimAdministeredLicensingSubscriptionSubscriptionsRequest).Execute()
+> GetAdministeredLicensingSubscriptionSubscriptions200ResponseInner ClaimAdministeredLicensingSubscriptionSubscriptions(ctx).ClaimAdministeredLicensingSubscriptionSubscriptionsRequest(claimAdministeredLicensingSubscriptionSubscriptionsRequest).Validate(validate).Execute()
 
 Claim a subscription into an organization.
 
@@ -108,11 +108,12 @@ import (
 
 func main() {
     claimAdministeredLicensingSubscriptionSubscriptionsRequest := *openapiclient.NewClaimAdministeredLicensingSubscriptionSubscriptionsRequest("ClaimKey_example", "OrganizationId_example") // ClaimAdministeredLicensingSubscriptionSubscriptionsRequest | 
+    validate := true // bool | Check if the provided claim key is valid and can be claimed into the organization. (optional)
 
     configuration := openapiclient.NewConfiguration()
 
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubscriptionApi.ClaimAdministeredLicensingSubscriptionSubscriptions(context.Background()).ClaimAdministeredLicensingSubscriptionSubscriptionsRequest(claimAdministeredLicensingSubscriptionSubscriptionsRequest).Execute()
+    resp, r, err := apiClient.SubscriptionApi.ClaimAdministeredLicensingSubscriptionSubscriptions(context.Background()).ClaimAdministeredLicensingSubscriptionSubscriptionsRequest(claimAdministeredLicensingSubscriptionSubscriptionsRequest).Validate(validate).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionApi.ClaimAdministeredLicensingSubscriptionSubscriptions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -134,6 +135,7 @@ Other parameters are passed through a pointer to a apiClaimAdministeredLicensing
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **claimAdministeredLicensingSubscriptionSubscriptionsRequest** | [**ClaimAdministeredLicensingSubscriptionSubscriptionsRequest**](ClaimAdministeredLicensingSubscriptionSubscriptionsRequest.md) |  | 
+ **validate** | **bool** | Check if the provided claim key is valid and can be claimed into the organization. | 
 
 ### Return type
 
