@@ -4,13 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ApparentPower** | Pointer to **int32** | Number of sensors that are currently alerting due to apparent power readings | [optional] 
+**Co2** | Pointer to **int32** | Number of sensors that are currently alerting due to CO2 readings | [optional] 
+**Current** | Pointer to **int32** | Number of sensors that are currently alerting due to electrical current readings | [optional] 
 **Door** | Pointer to **int32** | Number of sensors that are currently alerting due to an open door | [optional] 
+**Frequency** | Pointer to **int32** | Number of sensors that are currently alerting due to frequency readings | [optional] 
 **Humidity** | Pointer to **int32** | Number of sensors that are currently alerting due to humidity readings | [optional] 
 **IndoorAirQuality** | Pointer to **int32** | Number of sensors that are currently alerting due to indoor air quality readings | [optional] 
 **Noise** | Pointer to [**GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCountsNoise**](GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCountsNoise.md) |  | [optional] 
 **Pm25** | Pointer to **int32** | Number of sensors that are currently alerting due to PM2.5 readings | [optional] 
+**PowerFactor** | Pointer to **int32** | Number of sensors that are currently alerting due to power factor readings | [optional] 
+**RealPower** | Pointer to **int32** | Number of sensors that are currently alerting due to real power readings | [optional] 
 **Temperature** | Pointer to **int32** | Number of sensors that are currently alerting due to temperature readings | [optional] 
 **Tvoc** | Pointer to **int32** | Number of sensors that are currently alerting due to TVOC readings | [optional] 
+**UpstreamPower** | Pointer to **int32** | Number of sensors that are currently alerting due to an upstream power outage | [optional] 
+**Voltage** | Pointer to **int32** | Number of sensors that are currently alerting due to voltage readings | [optional] 
 **Water** | Pointer to **int32** | Number of sensors that are currently alerting due to the presence of water | [optional] 
 
 ## Methods
@@ -31,6 +39,81 @@ will change when the set of required properties is changed
 NewGetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCountsWithDefaults instantiates a new GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetApparentPower
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetApparentPower() int32`
+
+GetApparentPower returns the ApparentPower field if non-nil, zero value otherwise.
+
+### GetApparentPowerOk
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetApparentPowerOk() (*int32, bool)`
+
+GetApparentPowerOk returns a tuple with the ApparentPower field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApparentPower
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) SetApparentPower(v int32)`
+
+SetApparentPower sets ApparentPower field to given value.
+
+### HasApparentPower
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) HasApparentPower() bool`
+
+HasApparentPower returns a boolean if a field has been set.
+
+### GetCo2
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetCo2() int32`
+
+GetCo2 returns the Co2 field if non-nil, zero value otherwise.
+
+### GetCo2Ok
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetCo2Ok() (*int32, bool)`
+
+GetCo2Ok returns a tuple with the Co2 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCo2
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) SetCo2(v int32)`
+
+SetCo2 sets Co2 field to given value.
+
+### HasCo2
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) HasCo2() bool`
+
+HasCo2 returns a boolean if a field has been set.
+
+### GetCurrent
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetCurrent() int32`
+
+GetCurrent returns the Current field if non-nil, zero value otherwise.
+
+### GetCurrentOk
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetCurrentOk() (*int32, bool)`
+
+GetCurrentOk returns a tuple with the Current field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCurrent
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) SetCurrent(v int32)`
+
+SetCurrent sets Current field to given value.
+
+### HasCurrent
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) HasCurrent() bool`
+
+HasCurrent returns a boolean if a field has been set.
 
 ### GetDoor
 
@@ -56,6 +139,31 @@ SetDoor sets Door field to given value.
 `func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) HasDoor() bool`
 
 HasDoor returns a boolean if a field has been set.
+
+### GetFrequency
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetFrequency() int32`
+
+GetFrequency returns the Frequency field if non-nil, zero value otherwise.
+
+### GetFrequencyOk
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetFrequencyOk() (*int32, bool)`
+
+GetFrequencyOk returns a tuple with the Frequency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFrequency
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) SetFrequency(v int32)`
+
+SetFrequency sets Frequency field to given value.
+
+### HasFrequency
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) HasFrequency() bool`
+
+HasFrequency returns a boolean if a field has been set.
 
 ### GetHumidity
 
@@ -157,6 +265,56 @@ SetPm25 sets Pm25 field to given value.
 
 HasPm25 returns a boolean if a field has been set.
 
+### GetPowerFactor
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetPowerFactor() int32`
+
+GetPowerFactor returns the PowerFactor field if non-nil, zero value otherwise.
+
+### GetPowerFactorOk
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetPowerFactorOk() (*int32, bool)`
+
+GetPowerFactorOk returns a tuple with the PowerFactor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPowerFactor
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) SetPowerFactor(v int32)`
+
+SetPowerFactor sets PowerFactor field to given value.
+
+### HasPowerFactor
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) HasPowerFactor() bool`
+
+HasPowerFactor returns a boolean if a field has been set.
+
+### GetRealPower
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetRealPower() int32`
+
+GetRealPower returns the RealPower field if non-nil, zero value otherwise.
+
+### GetRealPowerOk
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetRealPowerOk() (*int32, bool)`
+
+GetRealPowerOk returns a tuple with the RealPower field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRealPower
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) SetRealPower(v int32)`
+
+SetRealPower sets RealPower field to given value.
+
+### HasRealPower
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) HasRealPower() bool`
+
+HasRealPower returns a boolean if a field has been set.
+
 ### GetTemperature
 
 `func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetTemperature() int32`
@@ -206,6 +364,56 @@ SetTvoc sets Tvoc field to given value.
 `func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) HasTvoc() bool`
 
 HasTvoc returns a boolean if a field has been set.
+
+### GetUpstreamPower
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetUpstreamPower() int32`
+
+GetUpstreamPower returns the UpstreamPower field if non-nil, zero value otherwise.
+
+### GetUpstreamPowerOk
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetUpstreamPowerOk() (*int32, bool)`
+
+GetUpstreamPowerOk returns a tuple with the UpstreamPower field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpstreamPower
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) SetUpstreamPower(v int32)`
+
+SetUpstreamPower sets UpstreamPower field to given value.
+
+### HasUpstreamPower
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) HasUpstreamPower() bool`
+
+HasUpstreamPower returns a boolean if a field has been set.
+
+### GetVoltage
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetVoltage() int32`
+
+GetVoltage returns the Voltage field if non-nil, zero value otherwise.
+
+### GetVoltageOk
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) GetVoltageOk() (*int32, bool)`
+
+GetVoltageOk returns a tuple with the Voltage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVoltage
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) SetVoltage(v int32)`
+
+SetVoltage sets Voltage field to given value.
+
+### HasVoltage
+
+`func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts) HasVoltage() bool`
+
+HasVoltage returns a boolean if a field has been set.
 
 ### GetWater
 

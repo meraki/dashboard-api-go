@@ -36,6 +36,20 @@ func Test_client_AssignmentsApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test AssignmentsApiService GetOrganizationSmSentryPoliciesAssignmentsByNetwork", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.AssignmentsApi.GetOrganizationSmSentryPoliciesAssignmentsByNetwork(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test AssignmentsApiService ReassignNetworkVlanProfilesAssignments", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -43,6 +57,20 @@ func Test_client_AssignmentsApiService(t *testing.T) {
 		var networkId string
 
 		resp, httpRes, err := apiClient.AssignmentsApi.ReassignNetworkVlanProfilesAssignments(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AssignmentsApiService UpdateOrganizationSmSentryPoliciesAssignments", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.AssignmentsApi.UpdateOrganizationSmSentryPoliciesAssignments(context.Background(), organizationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Serial** | Pointer to **string** | The uplink serial | [optional] 
 **Model** | Pointer to **string** | The uplink model | [optional] 
 **LastReportedAt** | Pointer to **time.Time** | Last reported time for the device | [optional] 
+**HighAvailability** | Pointer to [**GetOrganizationUplinksStatuses200ResponseInnerHighAvailability**](GetOrganizationUplinksStatuses200ResponseInnerHighAvailability.md) |  | [optional] 
 **Uplinks** | Pointer to [**[]GetOrganizationUplinksStatuses200ResponseInnerUplinksInner**](GetOrganizationUplinksStatuses200ResponseInnerUplinksInner.md) | Uplinks | [optional] 
 
 ## Methods
@@ -128,6 +129,31 @@ SetLastReportedAt sets LastReportedAt field to given value.
 `func (o *GetOrganizationUplinksStatuses200ResponseInner) HasLastReportedAt() bool`
 
 HasLastReportedAt returns a boolean if a field has been set.
+
+### GetHighAvailability
+
+`func (o *GetOrganizationUplinksStatuses200ResponseInner) GetHighAvailability() GetOrganizationUplinksStatuses200ResponseInnerHighAvailability`
+
+GetHighAvailability returns the HighAvailability field if non-nil, zero value otherwise.
+
+### GetHighAvailabilityOk
+
+`func (o *GetOrganizationUplinksStatuses200ResponseInner) GetHighAvailabilityOk() (*GetOrganizationUplinksStatuses200ResponseInnerHighAvailability, bool)`
+
+GetHighAvailabilityOk returns a tuple with the HighAvailability field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHighAvailability
+
+`func (o *GetOrganizationUplinksStatuses200ResponseInner) SetHighAvailability(v GetOrganizationUplinksStatuses200ResponseInnerHighAvailability)`
+
+SetHighAvailability sets HighAvailability field to given value.
+
+### HasHighAvailability
+
+`func (o *GetOrganizationUplinksStatuses200ResponseInner) HasHighAvailability() bool`
+
+HasHighAvailability returns a boolean if a field has been set.
 
 ### GetUplinks
 

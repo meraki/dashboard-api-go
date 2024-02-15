@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **PortId** | Pointer to **string** | The string identifier of this port on the switch. This is commonly just the port number but may contain additional identifying information such as the slot and module-type if the port is located on a port module. | [optional] 
 **Enabled** | Pointer to **bool** | Whether the port is configured to be enabled. | [optional] 
 **Status** | Pointer to **string** | The current connection status of the port. | [optional] 
+**SpanningTree** | Pointer to [**GetDeviceSwitchPortsStatuses200ResponseInnerSpanningTree**](GetDeviceSwitchPortsStatuses200ResponseInnerSpanningTree.md) |  | [optional] 
 **IsUplink** | Pointer to **bool** | Whether the port is the switch&#39;s uplink. | [optional] 
 **Errors** | Pointer to **[]string** | All errors present on the port. | [optional] 
 **Warnings** | Pointer to **[]string** | All warnings present on the port. | [optional] 
@@ -113,6 +114,31 @@ SetStatus sets Status field to given value.
 `func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
+
+### GetSpanningTree
+
+`func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetSpanningTree() GetDeviceSwitchPortsStatuses200ResponseInnerSpanningTree`
+
+GetSpanningTree returns the SpanningTree field if non-nil, zero value otherwise.
+
+### GetSpanningTreeOk
+
+`func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetSpanningTreeOk() (*GetDeviceSwitchPortsStatuses200ResponseInnerSpanningTree, bool)`
+
+GetSpanningTreeOk returns a tuple with the SpanningTree field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSpanningTree
+
+`func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetSpanningTree(v GetDeviceSwitchPortsStatuses200ResponseInnerSpanningTree)`
+
+SetSpanningTree sets SpanningTree field to given value.
+
+### HasSpanningTree
+
+`func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasSpanningTree() bool`
+
+HasSpanningTree returns a boolean if a field has been set.
 
 ### GetIsUplink
 

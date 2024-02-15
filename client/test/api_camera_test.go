@@ -389,6 +389,34 @@ func Test_client_CameraApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test CameraApiService GetOrganizationCameraBoundariesAreasByDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.CameraApi.GetOrganizationCameraBoundariesAreasByDevice(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test CameraApiService GetOrganizationCameraBoundariesLinesByDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.CameraApi.GetOrganizationCameraBoundariesLinesByDevice(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test CameraApiService GetOrganizationCameraCustomAnalyticsArtifact", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -411,6 +439,20 @@ func Test_client_CameraApiService(t *testing.T) {
 		var organizationId string
 
 		resp, httpRes, err := apiClient.CameraApi.GetOrganizationCameraCustomAnalyticsArtifacts(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test CameraApiService GetOrganizationCameraDetectionsHistoryByBoundaryByInterval", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.CameraApi.GetOrganizationCameraDetectionsHistoryByBoundaryByInterval(context.Background(), organizationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

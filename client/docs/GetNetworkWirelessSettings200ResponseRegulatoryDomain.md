@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | The name of the regulatory domain for this network. | [optional] 
+**CountryCode** | Pointer to **string** | The country code of the regulatory domain. | [optional] 
 **Permits6e** | Pointer to **bool** | Whether or not the regulatory domain for this network permits Wifi 6E. | [optional] 
 
 ## Methods
@@ -50,6 +51,31 @@ SetName sets Name field to given value.
 `func (o *GetNetworkWirelessSettings200ResponseRegulatoryDomain) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetCountryCode
+
+`func (o *GetNetworkWirelessSettings200ResponseRegulatoryDomain) GetCountryCode() string`
+
+GetCountryCode returns the CountryCode field if non-nil, zero value otherwise.
+
+### GetCountryCodeOk
+
+`func (o *GetNetworkWirelessSettings200ResponseRegulatoryDomain) GetCountryCodeOk() (*string, bool)`
+
+GetCountryCodeOk returns a tuple with the CountryCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCountryCode
+
+`func (o *GetNetworkWirelessSettings200ResponseRegulatoryDomain) SetCountryCode(v string)`
+
+SetCountryCode sets CountryCode field to given value.
+
+### HasCountryCode
+
+`func (o *GetNetworkWirelessSettings200ResponseRegulatoryDomain) HasCountryCode() bool`
+
+HasCountryCode returns a boolean if a field has been set.
 
 ### GetPermits6e
 

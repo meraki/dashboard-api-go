@@ -36,6 +36,34 @@ func Test_client_LiveToolsApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test LiveToolsApiService CreateDeviceLiveToolsArpTable", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serial string
+
+		resp, httpRes, err := apiClient.LiveToolsApi.CreateDeviceLiveToolsArpTable(context.Background(), serial).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test LiveToolsApiService CreateDeviceLiveToolsCableTest", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serial string
+
+		resp, httpRes, err := apiClient.LiveToolsApi.CreateDeviceLiveToolsCableTest(context.Background(), serial).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test LiveToolsApiService CreateDeviceLiveToolsPing", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -64,6 +92,20 @@ func Test_client_LiveToolsApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test LiveToolsApiService CreateDeviceLiveToolsWakeOnLan", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serial string
+
+		resp, httpRes, err := apiClient.LiveToolsApi.CreateDeviceLiveToolsWakeOnLan(context.Background(), serial).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test LiveToolsApiService CycleDeviceSwitchPorts", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -71,6 +113,36 @@ func Test_client_LiveToolsApiService(t *testing.T) {
 		var serial string
 
 		resp, httpRes, err := apiClient.LiveToolsApi.CycleDeviceSwitchPorts(context.Background(), serial).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test LiveToolsApiService GetDeviceLiveToolsArpTable", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serial string
+		var arpTableId string
+
+		resp, httpRes, err := apiClient.LiveToolsApi.GetDeviceLiveToolsArpTable(context.Background(), serial, arpTableId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test LiveToolsApiService GetDeviceLiveToolsCableTest", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serial string
+		var id string
+
+		resp, httpRes, err := apiClient.LiveToolsApi.GetDeviceLiveToolsCableTest(context.Background(), serial, id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -101,6 +173,21 @@ func Test_client_LiveToolsApiService(t *testing.T) {
 		var id string
 
 		resp, httpRes, err := apiClient.LiveToolsApi.GetDeviceLiveToolsPingDevice(context.Background(), serial, id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test LiveToolsApiService GetDeviceLiveToolsWakeOnLan", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serial string
+		var wakeOnLanId string
+
+		resp, httpRes, err := apiClient.LiveToolsApi.GetDeviceLiveToolsWakeOnLan(context.Background(), serial, wakeOnLanId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

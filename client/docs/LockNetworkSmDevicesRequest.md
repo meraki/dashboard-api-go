@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **WifiMacs** | Pointer to **[]string** | The wifiMacs of the devices to be locked. | [optional] 
 **Ids** | Pointer to **[]string** | The ids of the devices to be locked. | [optional] 
 **Serials** | Pointer to **[]string** | The serials of the devices to be locked. | [optional] 
-**Scope** | Pointer to **[]string** | The scope (one of all, none, withAny, withAll, withoutAny, or withoutAll) and a set of tags of the devices to be wiped. | [optional] 
+**Scope** | Pointer to **[]string** | The scope (one of all, none, withAny, withAll, withoutAny, or withoutAll) and a set of tags of the devices to be locked. | [optional] 
 **Pin** | Pointer to **int32** | The pin number for locking macOS devices (a six digit number). Required only for macOS devices. | [optional] 
 
 ## Methods

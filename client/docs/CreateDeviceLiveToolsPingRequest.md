@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Target** | **string** | FQDN, IPv4 or IPv6 address | 
 **Count** | Pointer to **int32** | Count parameter to pass to ping. [1..5], default 5 | [optional] 
-**Callback** | Pointer to [**CreateDeviceLiveToolsPingRequestCallback**](CreateDeviceLiveToolsPingRequestCallback.md) |  | [optional] 
+**Callback** | Pointer to [**CreateDeviceLiveToolsArpTableRequestCallback**](CreateDeviceLiveToolsArpTableRequestCallback.md) |  | [optional] 
 
 ## Methods
 
@@ -74,20 +74,20 @@ HasCount returns a boolean if a field has been set.
 
 ### GetCallback
 
-`func (o *CreateDeviceLiveToolsPingRequest) GetCallback() CreateDeviceLiveToolsPingRequestCallback`
+`func (o *CreateDeviceLiveToolsPingRequest) GetCallback() CreateDeviceLiveToolsArpTableRequestCallback`
 
 GetCallback returns the Callback field if non-nil, zero value otherwise.
 
 ### GetCallbackOk
 
-`func (o *CreateDeviceLiveToolsPingRequest) GetCallbackOk() (*CreateDeviceLiveToolsPingRequestCallback, bool)`
+`func (o *CreateDeviceLiveToolsPingRequest) GetCallbackOk() (*CreateDeviceLiveToolsArpTableRequestCallback, bool)`
 
 GetCallbackOk returns a tuple with the Callback field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCallback
 
-`func (o *CreateDeviceLiveToolsPingRequest) SetCallback(v CreateDeviceLiveToolsPingRequestCallback)`
+`func (o *CreateDeviceLiveToolsPingRequest) SetCallback(v CreateDeviceLiveToolsArpTableRequestCallback)`
 
 SetCallback sets Callback field to given value.
 

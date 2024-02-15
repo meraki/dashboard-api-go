@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **VoiceVlanClients** | Pointer to **bool** | CDP/LLDP capable voice clients will be able to use this VLAN. Automatically true when hostMode is &#39;Multi-Domain&#39;. | [optional] 
 **UrlRedirectWalledGardenEnabled** | Pointer to **bool** | Enable to restrict access for clients to a response_objectific set of IP addresses or hostnames prior to authentication | [optional] 
 **UrlRedirectWalledGardenRanges** | Pointer to **[]string** | IP address ranges, in CIDR notation, to restrict access for clients to a specific set of IP addresses or hostnames prior to authentication | [optional] 
+**Counts** | Pointer to [**GetNetworkSwitchAccessPolicies200ResponseInnerCounts**](GetNetworkSwitchAccessPolicies200ResponseInnerCounts.md) |  | [optional] 
 
 ## Methods
 
@@ -465,6 +466,31 @@ SetUrlRedirectWalledGardenRanges sets UrlRedirectWalledGardenRanges field to giv
 `func (o *GetNetworkSwitchAccessPolicies200ResponseInner) HasUrlRedirectWalledGardenRanges() bool`
 
 HasUrlRedirectWalledGardenRanges returns a boolean if a field has been set.
+
+### GetCounts
+
+`func (o *GetNetworkSwitchAccessPolicies200ResponseInner) GetCounts() GetNetworkSwitchAccessPolicies200ResponseInnerCounts`
+
+GetCounts returns the Counts field if non-nil, zero value otherwise.
+
+### GetCountsOk
+
+`func (o *GetNetworkSwitchAccessPolicies200ResponseInner) GetCountsOk() (*GetNetworkSwitchAccessPolicies200ResponseInnerCounts, bool)`
+
+GetCountsOk returns a tuple with the Counts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCounts
+
+`func (o *GetNetworkSwitchAccessPolicies200ResponseInner) SetCounts(v GetNetworkSwitchAccessPolicies200ResponseInnerCounts)`
+
+SetCounts sets Counts field to given value.
+
+### HasCounts
+
+`func (o *GetNetworkSwitchAccessPolicies200ResponseInner) HasCounts() bool`
+
+HasCounts returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

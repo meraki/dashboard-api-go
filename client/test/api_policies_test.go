@@ -93,6 +93,20 @@ func Test_client_PoliciesApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test PoliciesApiService GetOrganizationSmSentryPoliciesAssignmentsByNetwork", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.PoliciesApi.GetOrganizationSmSentryPoliciesAssignmentsByNetwork(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test PoliciesApiService UpdateOrganizationAdaptivePolicyPolicy", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -101,6 +115,20 @@ func Test_client_PoliciesApiService(t *testing.T) {
 		var id string
 
 		resp, httpRes, err := apiClient.PoliciesApi.UpdateOrganizationAdaptivePolicyPolicy(context.Background(), organizationId, id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test PoliciesApiService UpdateOrganizationSmSentryPoliciesAssignments", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.PoliciesApi.UpdateOrganizationSmSentryPoliciesAssignments(context.Background(), organizationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
