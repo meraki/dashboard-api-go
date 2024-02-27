@@ -7,24 +7,25 @@ assignees: ''
 
 ---
 
+**Prerequisites**
+* [ ] Have you tested the operation in the API directly?
+* [ ] Do you have the latest SDK version?
+* [ ] Review [compability matrix](https://github.com/cisco-en-programmability/dnacenter-go-sdk/tree/main#compatibility-matrix)
+
 **Describe the bug**
 A clear and concise description of what the bug is.
-
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Example Code
-2. Error Message
-3. Debug
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
 **Screenshots**
-If applicable, add screenshots to help explain your problem.
+Please provide an screenshot of the successful API call with cuRL, Postman, etc.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS8.1]
- - Dashboard-API-Go Version [e.g. v1.30.0]
+**Environment (please complete the following information):**
+* Cisco DNA Center Version and patch: 
+* Go Version:
+* SDK version:
+* OS Version: 
 
 **Additional context**
 Add any other context about the problem here.
