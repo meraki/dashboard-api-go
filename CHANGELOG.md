@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.1] - 2024-02-26
+### Changed
+`ResponseApplianceUpdateNetworkApplianceVLAN` changes ID from `string` to `int`.
+
 ## [2.0.0] - 2024-02-26
 ### Added
 - administered service.
@@ -1285,4 +1289,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - model_wipe_network_sm_devices_request service
 
 [2.0.0]: https://github.com/meraki/dashboard-api-go/commits/v2.0.0
+[2.0.1]: https://github.com/meraki/dashboard-api-go/compare/v2.0.0...2.0.1
 [Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v2.0.0...main
