@@ -2,8 +2,11 @@ package meraki
 
 import (
 	"crypto/tls"
+	"errors"
 	"fmt"
+	"net/http"
 	"os"
+	"time"
 
 	"io/ioutil"
 	"path/filepath"
@@ -59,6 +62,10 @@ func (s *Client) SetAuthToken(accessToken string) {
 	s.common.client.SetHeader("Authorization", accessToken)
 }
 
+func (s *Client) SetUserAgent(userAgent string) {
+	s.common.client.SetHeader("User-Agent", userAgent)
+}
+
 // Error indicates an error from the invocation of a Cisco DNA Center API.
 var Error map[string]interface{}
 
@@ -76,6 +83,19 @@ func NewClient() (*Client, error) {
 		return c, err
 	}
 
+	c.SetUserAgent("MerakiGolang/2.0.2 Cisco")
+
+	c.common.client.AddRetryCondition(
+		// RetryConditionFunc type is for retry condition function
+		// input: non-nil Response OR request execution error
+		func(r *resty.Response, err error) bool {
+			return r.StatusCode() == http.StatusTooManyRequests
+		},
+	)
+	c.common.client.SetRetryCount(1)
+	c.common.client.SetRetryAfter(func(client *resty.Client, resp *resty.Response) (time.Duration, error) {
+		return 5 * time.Second, errors.New("quota exceeded")
+	})
 	return c, nil
 }
 
