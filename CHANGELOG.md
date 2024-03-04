@@ -6,9 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.3] - 2024-03-03
+### Changed
+- `Rate-Limit` bug fixed.
+
+## [2.0.2] - 2024-03-01
+### Added
+- `User-Agent` added.
+- `Rate-Limit` handled.
+
 ## [2.0.1] - 2024-02-26
 ### Changed
-`ResponseApplianceUpdateNetworkApplianceVLAN` changes ID from `string` to `int`.
+- `ResponseApplianceUpdateNetworkApplianceVLAN` changes ID from `string` to `int`.
 
 ## [2.0.0] - 2024-02-26
 ### Added

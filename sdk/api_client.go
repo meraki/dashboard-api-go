@@ -2,7 +2,6 @@ package meraki
 
 import (
 	"crypto/tls"
-	"errors"
 	"fmt"
 	"net/http"
 	"os"
@@ -92,10 +91,8 @@ func NewClient() (*Client, error) {
 			return r.StatusCode() == http.StatusTooManyRequests
 		},
 	)
-	c.common.client.SetRetryCount(1)
-	c.common.client.SetRetryAfter(func(client *resty.Client, resp *resty.Response) (time.Duration, error) {
-		return 5 * time.Second, errors.New("quota exceeded")
-	})
+	c.common.client.SetRetryCount(2)
+	c.common.client.SetRetryWaitTime(5 * time.Second)
 	return c, nil
 }
 
