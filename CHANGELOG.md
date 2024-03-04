@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.4] - 2024-03-04
+### Added
+- Added custom logger. Censure API Key.
+
 ## [2.0.3] - 2024-03-03
 ### Changed
 - `Rate-Limit` bug fixed.
@@ -1299,4 +1303,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [2.0.0]: https://github.com/meraki/dashboard-api-go/commits/v2.0.0
 [2.0.1]: https://github.com/meraki/dashboard-api-go/compare/v2.0.0...2.0.1
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v2.0.0...main
+[2.0.2]: https://github.com/meraki/dashboard-api-go/compare/v2.0.1...2.0.2
+[2.0.3]: https://github.com/meraki/dashboard-api-go/compare/v2.0.2...2.0.3
+[2.0.4]: https://github.com/meraki/dashboard-api-go/compare/v2.0.3...2.0.4
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v2.0.4...main
