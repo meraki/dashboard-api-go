@@ -82,8 +82,8 @@ func NewClient() (*Client, error) {
 		return c, err
 	}
 
-	c.SetUserAgent("MerakiGolang/2.0.2 Cisco")
-
+	c.SetUserAgent("MerakiGolang/2.0.4 Cisco")
+	c.common.client.SetLogger(&CustomLogger{})
 	c.common.client.AddRetryCondition(
 		// RetryConditionFunc type is for retry condition function
 		// input: non-nil Response OR request execution error
