@@ -17,7 +17,7 @@ func (l *CustomLogger) Debugf(format string, v ...interface{}) {
 	// Censurar el encabezado de autorización
 	// re := regexp.MustCompile(`Authorization: .*`)
 	// censoredMessage := re.ReplaceAllString(message, "Authorization: [censored]")
-	re := regexp.MustCompile(`Authorization: Bearer [a-zA-Z0-9]+([a-zA-Z0-9]{5})`)
+	re := regexp.MustCompile(`Authorization: Bearer.*([a-zA-Z0-9]{5})`)
 	censoredMessage := re.ReplaceAllString(message, "Authorization: Bearer ****$1")
 
 	// Imprimir la salida de depuración censurada

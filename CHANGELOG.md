@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.5] - 2024-03-04
+### Changed
+- Changed custom logger. Censure API Key.
+
 ## [2.0.4] - 2024-03-04
 ### Added
 - Added custom logger. Censure API Key.
