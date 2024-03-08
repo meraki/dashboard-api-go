@@ -2084,7 +2084,7 @@ type ResponseNetworksGetNetworkSyslogServers struct {
 }
 type ResponseNetworksGetNetworkSyslogServersServers struct {
 	Host  string   `json:"host,omitempty"`  // The IP address of the syslog server
-	Port  *int     `json:"port,omitempty"`  // The port of the syslog server
+	Port  string   `json:"port,omitempty"`  // The port of the syslog server
 	Roles []string `json:"roles,omitempty"` // A list of roles for the syslog server. Options (case-insensitive): 'Wireless event log', 'Appliance event log', 'Switch event log', 'Air Marshal events', 'Flows', 'URLs', 'IDS alerts', 'Security events'
 }
 type ResponseNetworksUpdateNetworkSyslogServers struct {
@@ -2363,7 +2363,11 @@ type RequestNetworksUpdateNetworkAlertsSettingsAlertsAlertDestinations struct {
 	HTTPServerIDs []string `json:"httpServerIds,omitempty"` // A list of HTTP server IDs to send a Webhook to for this alert
 	SNMP          *bool    `json:"snmp,omitempty"`          // If true, then an SNMP trap will be sent for this alert if there is an SNMP trap server configured for this network
 }
-type RequestNetworksUpdateNetworkAlertsSettingsAlertsFilters interface{}
+type RequestNetworksUpdateNetworkAlertsSettingsAlertsFilters struct {
+	Timeout   *int `json:"timeout,omitempty"`
+	Threshold *int `json:"threshold,omitempty"`
+	Period    *int `json:"period,omitempty"`
+}
 type RequestNetworksUpdateNetworkAlertsSettingsDefaultDestinations struct {
 	AllAdmins     *bool    `json:"allAdmins,omitempty"`     // If true, then all network admins will receive emails.
 	Emails        []string `json:"emails,omitempty"`        // A list of emails that will recieve the alert(s).
@@ -2535,7 +2539,7 @@ type RequestNetworksUpdateNetworkClientSplashAuthorizationStatusSSIDs9 struct {
 	IsAuthorized *bool `json:"isAuthorized,omitempty"` // New authorization status for the SSID (true, false).
 }
 type RequestNetworksClaimNetworkDevices struct {
-	Serials []string `json:"serials,omitempty"` // A list of serials of devices to claim
+	Serials []string `json:"serials"` // A list of serials of devices to claim
 }
 type RequestNetworksVmxNetworkDevicesClaim struct {
 	Size string `json:"size,omitempty"` // The size of the vMX you claim. It can be one of: small, medium, large, 100
@@ -3160,7 +3164,7 @@ type RequestNetworksUpdateNetworkSyslogServers struct {
 }
 type RequestNetworksUpdateNetworkSyslogServersServers struct {
 	Host  string   `json:"host,omitempty"`  // The IP address of the syslog server
-	Port  *int     `json:"port,omitempty"`  // The port of the syslog server
+	Port  string   `json:"port,omitempty"`  // The port of the syslog server
 	Roles []string `json:"roles,omitempty"` // A list of roles for the syslog server. Options (case-insensitive): 'Wireless event log', 'Appliance event log', 'Switch event log', 'Air Marshal events', 'Flows', 'URLs', 'IDS alerts', 'Security events'
 }
 type RequestNetworksUpdateNetworkTrafficAnalysis struct {

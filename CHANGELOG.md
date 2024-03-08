@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.6] - 2024-03-08
+### Changed
+- `ResponseNetworksGetNetworkSyslogServersServers` changes Port from `int` to `string`.
+- `RequestNetworksUpdateNetworkSyslogServersServers` changes Port from `int` to `string`.
+- `RequestNetworksUpdateNetworkAlertsSettingsAlertsFilters` changes from `interface` to `struct`.
+- `ResponseWirelessGetNetworkWirelessBillingPlans` changes Price from `int` to `float64`.
+
 ## [2.0.5] - 2024-03-04
 ### Changed
 - Changed custom logger. Censure API Key.
