@@ -2092,7 +2092,7 @@ type ResponseNetworksUpdateNetworkSyslogServers struct {
 }
 type ResponseNetworksUpdateNetworkSyslogServersServers struct {
 	Host  string   `json:"host,omitempty"`  // The IP address of the syslog server
-	Port  *int     `json:"port,omitempty"`  // The port of the syslog server
+	Port  string   `json:"port,omitempty"`  // The port of the syslog server
 	Roles []string `json:"roles,omitempty"` // A list of roles for the syslog server. Options (case-insensitive): 'Wireless event log', 'Appliance event log', 'Switch event log', 'Air Marshal events', 'Flows', 'URLs', 'IDS alerts', 'Security events'
 }
 type ResponseNetworksGetNetworkTopologyLinkLayer struct {
