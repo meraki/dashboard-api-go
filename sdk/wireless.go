@@ -349,7 +349,7 @@ type ResponseWirelessGetNetworkWirelessBilling struct {
 type ResponseWirelessGetNetworkWirelessBillingPlans struct {
 	BandwidthLimits *ResponseWirelessGetNetworkWirelessBillingPlansBandwidthLimits `json:"bandwidthLimits,omitempty"` //
 	ID              string                                                         `json:"id,omitempty"`              //
-	Price           *int                                                           `json:"price,omitempty"`           //
+	Price           *float64                                                       `json:"price,omitempty"`           //
 	TimeLimit       string                                                         `json:"timeLimit,omitempty"`       //
 }
 type ResponseWirelessGetNetworkWirelessBillingPlansBandwidthLimits struct {
