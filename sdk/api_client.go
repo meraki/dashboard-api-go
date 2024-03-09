@@ -7,30 +7,15 @@ import (
 	"os"
 	"time"
 
-	"io/ioutil"
-	"path/filepath"
-
 	"github.com/go-resty/resty/v2"
 )
-
-var apiURL = "https://api.meraki.com/"
 
 const MERAKI_BASE_URL = "MERAKI_BASE_URL"
 const MERAKI_DASHBOARD_API_KEY = "MERAKI_DASHBOARD_API_KEY"
 const MERAKI_DEBUG = "MERAKI_DEBUG"
 const MERAKI_SSL_VERIFY = "MERAKI_SSL_VERIFY"
 
-type FileDownload struct {
-	FileName string
-	FileData []byte
-}
-
-func (f *FileDownload) SaveDownload(path string) error {
-	fpath := filepath.Join(path, f.FileName)
-	return ioutil.WriteFile(fpath, f.FileData, 0664)
-}
-
-// Client manages communication with the Cisco DNA Center API
+// Client manages communication with the Cisco Meraki API
 type Client struct {
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
@@ -65,11 +50,7 @@ func (s *Client) SetUserAgent(userAgent string) {
 	s.common.client.SetHeader("User-Agent", userAgent)
 }
 
-// Error indicates an error from the invocation of a Cisco DNA Center API.
-var Error map[string]interface{}
-
-// NewClient creates a new API client. Requires a userAgent string describing your application.
-// optionally a custom http.Client to allow for advanced features such as caching.
+// NewClient creates a new API client.
 func NewClient() (*Client, error) {
 	var err error
 	c, err := NewClientNoAuth()
