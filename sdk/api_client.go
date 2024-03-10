@@ -5,32 +5,22 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strconv"
 	"time"
 
-	"io/ioutil"
-	"path/filepath"
-
 	"github.com/go-resty/resty/v2"
+	"github.com/juju/ratelimit"
 )
 
-var apiURL = "https://api.meraki.com/"
+const (
+	MERAKI_BASE_URL          = "MERAKI_BASE_URL"
+	MERAKI_DASHBOARD_API_KEY = "MERAKI_DASHBOARD_API_KEY"
+	MERAKI_DEBUG             = "MERAKI_DEBUG"
+	MERAKI_SSL_VERIFY        = "MERAKI_SSL_VERIFY"
+	DEFAULT_USER_AGENT       = "MerakiGolang/2.0.4 Cisco"
+)
 
-const MERAKI_BASE_URL = "MERAKI_BASE_URL"
-const MERAKI_DASHBOARD_API_KEY = "MERAKI_DASHBOARD_API_KEY"
-const MERAKI_DEBUG = "MERAKI_DEBUG"
-const MERAKI_SSL_VERIFY = "MERAKI_SSL_VERIFY"
-
-type FileDownload struct {
-	FileName string
-	FileData []byte
-}
-
-func (f *FileDownload) SaveDownload(path string) error {
-	fpath := filepath.Join(path, f.FileName)
-	return ioutil.WriteFile(fpath, f.FileData, 0664)
-}
-
-// Client manages communication with the Cisco DNA Center API
+// Client manages communication with the Cisco Meraki API
 type Client struct {
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
@@ -52,55 +42,93 @@ type Client struct {
 }
 
 type service struct {
-	client *resty.Client
+	client            *resty.Client
+	rateLimiterBucket *ratelimit.Bucket
 }
 
-// SetAuthToken defines the X-Auth-Token token sent in the request
-func (s *Client) SetAuthToken(accessToken string) {
+// SetAuthToken sets the Authorization bearer token sent in the request
+func (c *Client) SetAuthToken(accessToken string) {
 	accessToken = "Bearer " + accessToken
-	s.common.client.SetHeader("Authorization", accessToken)
+	c.common.client.SetHeader("Authorization", accessToken)
 }
 
-func (s *Client) SetUserAgent(userAgent string) {
-	s.common.client.SetHeader("User-Agent", userAgent)
+// SetUserAgent sets the User-Agent header in the request
+func (c *Client) SetUserAgent(userAgent string) {
+	c.common.client.SetHeader("User-Agent", userAgent)
 }
 
-// Error indicates an error from the invocation of a Cisco DNA Center API.
+// Error indicates an error from the invocation of a Cisco Meraki API.
 var Error map[string]interface{}
 
-// NewClient creates a new API client. Requires a userAgent string describing your application.
-// optionally a custom http.Client to allow for advanced features such as caching.
+// NewClient creates a new API client.
 func NewClient() (*Client, error) {
-	var err error
-	c, err := NewClientNoAuth()
-	if err != nil {
-		return nil, err
+	client := resty.New()
+	c := &Client{}
+	c.common.client = client
+	c.common.rateLimiterBucket = ratelimit.NewBucketWithQuantum(time.Second, 10, 10)
+
+	if os.Getenv(MERAKI_DEBUG) == "true" {
+		client.SetDebug(true)
 	}
 
-	err = c.AuthClient()
-	if err != nil {
-		return c, err
+	if os.Getenv(MERAKI_SSL_VERIFY) == "false" {
+		client.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
 	}
 
-	c.SetUserAgent("MerakiGolang/2.0.4 Cisco")
-	c.common.client.SetLogger(&CustomLogger{})
-	c.common.client.AddRetryCondition(
-		// RetryConditionFunc type is for retry condition function
-		// input: non-nil Response OR request execution error
+	if os.Getenv(MERAKI_BASE_URL) != "" {
+		client.SetBaseURL(os.Getenv(MERAKI_BASE_URL))
+	} else {
+		return nil, fmt.Errorf("enviroment variable %s was not defined", MERAKI_BASE_URL)
+	}
+
+	if os.Getenv(MERAKI_DASHBOARD_API_KEY) != "" {
+		c.SetAuthToken(os.Getenv(MERAKI_DASHBOARD_API_KEY))
+	} else {
+		return nil, fmt.Errorf("enviroment variable %s was not defined", MERAKI_DASHBOARD_API_KEY)
+	}
+
+	c.SetUserAgent(DEFAULT_USER_AGENT)
+	client.SetLogger(&CustomLogger{})
+	client.SetRetryCount(2)
+	client.SetRetryWaitTime(time.Second)
+	client.SetRetryMaxWaitTime(5 * time.Second)
+	// Respect "Retry-After" header in response
+	client.SetRetryAfter(func(client *resty.Client, resp *resty.Response) (time.Duration, error) {
+		retryHeader := resp.Header().Get("Retry-After")
+		if _, err := strconv.Atoi(retryHeader); err == nil {
+			t, _ := time.ParseDuration(retryHeader + "s")
+			return t, nil
+		}
+		return 0, nil
+	})
+	// Retry on 429
+	client.AddRetryCondition(
 		func(r *resty.Response, err error) bool {
-			return r.StatusCode() == http.StatusTooManyRequests
+			return err != nil || r.StatusCode() == http.StatusTooManyRequests
 		},
 	)
-	c.common.client.SetRetryCount(2)
-	c.common.client.SetRetryWaitTime(5 * time.Second)
+
+	c.Administered = (*AdministeredService)(&c.common)
+	c.Appliance = (*ApplianceService)(&c.common)
+	c.Camera = (*CameraService)(&c.common)
+	c.CellularGateway = (*CellularGatewayService)(&c.common)
+	c.Devices = (*DevicesService)(&c.common)
+	c.Insight = (*InsightService)(&c.common)
+	c.Licensing = (*LicensingService)(&c.common)
+	c.Networks = (*NetworksService)(&c.common)
+	c.Organizations = (*OrganizationsService)(&c.common)
+	c.Sensor = (*SensorService)(&c.common)
+	c.Sm = (*SmService)(&c.common)
+	c.Switch = (*SwitchService)(&c.common)
+	c.Wireless = (*WirelessService)(&c.common)
+	c.CustomCall = (*CustomCallService)(&c.common)
+
 	return c, nil
 }
 
-// NewClientWithOptions is the client with options passed with parameters
+// NewClientWithOptions creates a new API client with options passed with parameters
 func NewClientWithOptions(baseURL string, dashboardApiKey string, debug string, sslVerify string) (*Client, error) {
-	var err error
-
-	err = SetOptions(baseURL, dashboardApiKey, debug, sslVerify)
+	err := SetOptions(baseURL, dashboardApiKey, debug, sslVerify)
 	if err != nil {
 		return nil, err
 	}
@@ -108,7 +136,7 @@ func NewClientWithOptions(baseURL string, dashboardApiKey string, debug string, 
 	return NewClient()
 }
 
-// SetOptions sets the environment variables
+// SetOptions sets the required environment variables
 func SetOptions(baseURL string, dashboardApiKey string, debug string, sslVerify string) error {
 	var err error
 	err = os.Setenv(MERAKI_BASE_URL, baseURL)
@@ -130,76 +158,70 @@ func SetOptions(baseURL string, dashboardApiKey string, debug string, sslVerify 
 	return nil
 }
 
-// NewClientNoAuth returns the client object without trying to authenticate
-func NewClientNoAuth() (*Client, error) {
-	var err error
-
-	client := resty.New()
-	c := &Client{}
-	c.common.client = client
-
-	if os.Getenv(MERAKI_DEBUG) == "true" {
-		client.SetDebug(true)
-	}
-
-	if os.Getenv(MERAKI_SSL_VERIFY) == "false" {
-		client.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
-	}
-
-	if os.Getenv(MERAKI_BASE_URL) != "" {
-		client.SetBaseURL(os.Getenv(MERAKI_BASE_URL))
-	} else {
-		err = fmt.Errorf("enviroment variable %s was not defined", MERAKI_BASE_URL)
-	}
-
-	if err != nil {
-		return nil, err
-	}
-
-	c.Administered = (*AdministeredService)(&c.common)
-	c.Appliance = (*ApplianceService)(&c.common)
-	c.Camera = (*CameraService)(&c.common)
-	c.CellularGateway = (*CellularGatewayService)(&c.common)
-	c.Devices = (*DevicesService)(&c.common)
-	c.Insight = (*InsightService)(&c.common)
-	c.Licensing = (*LicensingService)(&c.common)
-	c.Networks = (*NetworksService)(&c.common)
-	c.Organizations = (*OrganizationsService)(&c.common)
-	c.Sensor = (*SensorService)(&c.common)
-	c.Sm = (*SmService)(&c.common)
-	c.Switch = (*SwitchService)(&c.common)
-	c.Wireless = (*WirelessService)(&c.common)
-	c.CustomCall = (*CustomCallService)(&c.common)
-
-	return c, nil
-}
-
-// NewClientWithOptionsNoAuth returns the client object without trying to authenticate and sets environment variables
-func NewClientWithOptionsNoAuth(baseURL string, dashboardApiKey string, debug string, sslVerify string) (*Client, error) {
-	var err error
-
-	err = SetOptions(baseURL, dashboardApiKey, debug, sslVerify)
-	if err != nil {
-		return nil, err
-	}
-
-	return NewClientNoAuth()
-}
-
-func (s *Client) AuthClient() error {
-	var meraki_key string
-	if os.Getenv(MERAKI_DASHBOARD_API_KEY) != "" {
-		meraki_key = os.Getenv(MERAKI_DASHBOARD_API_KEY)
-	} else {
-		return fmt.Errorf("enviroment variable %s was not defined", MERAKI_DASHBOARD_API_KEY)
-	}
-
-	s.SetAuthToken(meraki_key)
-
-	return nil
-}
-
 // RestyClient returns the resty.Client used by the sdk
-func (s *Client) RestyClient() *resty.Client {
-	return s.common.client
+func (c *Client) RestyClient() *resty.Client {
+	return c.common.client
+}
+
+// Get performs a GET request
+func Get[R any](client *resty.Client, rateLimiterBucket *ratelimit.Bucket, path string, result *R) (*R, *resty.Response, error) {
+	rateLimiterBucket.Wait(1)
+	response, err := client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(result).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with get operation: %s", path)
+	}
+
+	return response.Result().(*R), response, err
+}
+
+// Post performs a POST request
+func Post[B, R any](client *resty.Client, rateLimiterBucket *ratelimit.Bucket, path string, body *B, result *R) (*R, *resty.Response, error) {
+	rateLimiterBucket.Wait(1)
+	response, err := client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(result).
+		SetError(&Error).
+		SetBody(body).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with post operation: %s", path)
+	}
+
+	return response.Result().(*R), response, err
+}
+
+// Delete performs a DELETE request
+func Delete(client *resty.Client, rateLimiterBucket *ratelimit.Bucket, path string) (*resty.Response, error) {
+	rateLimiterBucket.Wait(1)
+	response, err := client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, err
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with delete operation: %s", path)
+	}
+
+	return response, err
 }
