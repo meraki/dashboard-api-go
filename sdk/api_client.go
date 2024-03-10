@@ -206,6 +206,28 @@ func Post[B, R any](client *resty.Client, rateLimiterBucket *ratelimit.Bucket, p
 	return response.Result().(*R), response, err
 }
 
+// Put performs a PUT request
+func Put[B, R any](client *resty.Client, rateLimiterBucket *ratelimit.Bucket, path string, body *B, result *R) (*R, *resty.Response, error) {
+	rateLimiterBucket.Wait(1)
+	response, err := client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(result).
+		SetError(&Error).
+		SetBody(body).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with put operation: %s", path)
+	}
+
+	return response.Result().(*R), response, err
+}
+
 // Delete performs a DELETE request
 func Delete(client *resty.Client, rateLimiterBucket *ratelimit.Bucket, path string) (*resty.Response, error) {
 	rateLimiterBucket.Wait(1)

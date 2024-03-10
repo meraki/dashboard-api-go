@@ -135,6 +135,29 @@ func TestPost(t *testing.T) {
 	assert.Equal(t, response.StatusCode(), 405)
 }
 
+// TestPut tests the Client.Put method.
+func TestPut(t *testing.T) {
+	defer gock.Off()
+	client := testClient(t)
+	type body struct{ b string }
+
+	// Success
+	gock.New(TEST_MERAKI_BASE_URL).Put("/url").Reply(200)
+	_, response, err := Put[body, result](client.common.client, client.common.rateLimiterBucket, "/url", &body{b: "body"}, &result{})
+	assert.NoError(t, err)
+	assert.True(t, response.IsSuccess())
+
+	// HTTP error
+	gock.New(TEST_MERAKI_BASE_URL).Put("/url").ReplyError(errors.New("fail"))
+	_, _, err = Put[body, result](client.common.client, client.common.rateLimiterBucket, "/url", &body{b: "body"}, &result{})
+	assert.Error(t, err)
+
+	// HTTP status code
+	gock.New(TEST_MERAKI_BASE_URL).Put("/url").Reply(405)
+	_, response, _ = Put[body, result](client.common.client, client.common.rateLimiterBucket, "/url", &body{b: "body"}, &result{})
+	assert.Equal(t, response.StatusCode(), 405)
+}
+
 // TestDelete tests the Client.Delete method.
 func TestDelete(t *testing.T) {
 	defer gock.Off()
