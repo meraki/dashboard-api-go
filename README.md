@@ -1,6 +1,6 @@
 # dashboard-api-go
 
-dashboard-api-go is a Go client library for [MERAKI Center Platform]().
+dashboard-api-go is a Go client library for the [Meraki Dashboard API](https://developer.cisco.com/meraki/api/).
 
 ## Usage
 
@@ -10,13 +10,13 @@ import meraki "github.com/meraki/dashboard-api-go/sdk"
 
 ## Introduction
 
-The dashboard-api-go makes it easier to work with the Dashboard Meraki Platform RESTFul APIs from Go.
+The dashboard-api-go makes it easier to work with the Meraki Dashboard RESTFul APIs from Go.
 
 It supports version 1.33.0
 
 ## Getting started
 
-The first think you need to do is to generate an API client. There are two options to do it:
+The first thing you need to do is to generate an API client. There are two options to do it:
 
 1. Parameters
 2. Environment variables
@@ -51,7 +51,7 @@ The client can be configured with the following environment variables:
 - `MERAKI_SSL_VERIFY`: Boolean to enable or disable SSL certificate verification.
 
 ```go
-Client, err = dnac.NewClient()
+Client, err = meraki.NewClient()
 devicesCount, _, err := Client.Devices.GetDeviceCount()
 ```
 
