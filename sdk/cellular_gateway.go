@@ -174,10 +174,11 @@ type RequestCellularGatewayUpdateNetworkCellularGatewayUplinkBandwidthLimits str
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-cellular-gateway-lan
+
 */
 func (s *CellularGatewayService) GetDeviceCellularGatewayLan(serial string) (*ResponseCellularGatewayGetDeviceCellularGatewayLan, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/cellularGateway/lan"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -206,10 +207,11 @@ func (s *CellularGatewayService) GetDeviceCellularGatewayLan(serial string) (*Re
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-cellular-gateway-port-forwarding-rules
+
 */
 func (s *CellularGatewayService) GetDeviceCellularGatewayPortForwardingRules(serial string) (*ResponseCellularGatewayGetDeviceCellularGatewayPortForwardingRules, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/cellularGateway/portForwardingRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -238,10 +240,11 @@ func (s *CellularGatewayService) GetDeviceCellularGatewayPortForwardingRules(ser
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cellular-gateway-connectivity-monitoring-destinations
+
 */
 func (s *CellularGatewayService) GetNetworkCellularGatewayConnectivityMonitoringDestinations(networkID string) (*ResponseCellularGatewayGetNetworkCellularGatewayConnectivityMonitoringDestinations, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/connectivityMonitoringDestinations"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -270,10 +273,11 @@ func (s *CellularGatewayService) GetNetworkCellularGatewayConnectivityMonitoring
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cellular-gateway-dhcp
+
 */
 func (s *CellularGatewayService) GetNetworkCellularGatewayDhcp(networkID string) (*ResponseCellularGatewayGetNetworkCellularGatewayDhcp, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/dhcp"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -302,10 +306,11 @@ func (s *CellularGatewayService) GetNetworkCellularGatewayDhcp(networkID string)
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cellular-gateway-subnet-pool
+
 */
 func (s *CellularGatewayService) GetNetworkCellularGatewaySubnetPool(networkID string) (*ResponseCellularGatewayGetNetworkCellularGatewaySubnetPool, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/subnetPool"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -334,10 +339,11 @@ func (s *CellularGatewayService) GetNetworkCellularGatewaySubnetPool(networkID s
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cellular-gateway-uplink
+
 */
 func (s *CellularGatewayService) GetNetworkCellularGatewayUplink(networkID string) (*ResponseCellularGatewayGetNetworkCellularGatewayUplink, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/uplink"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -367,10 +373,11 @@ func (s *CellularGatewayService) GetNetworkCellularGatewayUplink(networkID strin
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationCellularGatewayUplinkStatusesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-cellular-gateway-uplink-statuses
+
 */
 func (s *CellularGatewayService) GetOrganizationCellularGatewayUplinkStatuses(organizationID string, getOrganizationCellularGatewayUplinkStatusesQueryParams *GetOrganizationCellularGatewayUplinkStatusesQueryParams) (*ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/cellularGateway/uplink/statuses"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationCellularGatewayUplinkStatusesQueryParams)
@@ -403,6 +410,7 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayUplinkStatuses(or
 */
 func (s *CellularGatewayService) UpdateDeviceCellularGatewayLan(serial string, requestCellularGatewayUpdateDeviceCellularGatewayLan *RequestCellularGatewayUpdateDeviceCellularGatewayLan) (*resty.Response, error) {
 	path := "/api/v1/devices/{serial}/cellularGateway/lan"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -432,6 +440,7 @@ func (s *CellularGatewayService) UpdateDeviceCellularGatewayLan(serial string, r
 */
 func (s *CellularGatewayService) UpdateDeviceCellularGatewayPortForwardingRules(serial string, requestCellularGatewayUpdateDeviceCellularGatewayPortForwardingRules *RequestCellularGatewayUpdateDeviceCellularGatewayPortForwardingRules) (*resty.Response, error) {
 	path := "/api/v1/devices/{serial}/cellularGateway/portForwardingRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -461,6 +470,7 @@ func (s *CellularGatewayService) UpdateDeviceCellularGatewayPortForwardingRules(
 */
 func (s *CellularGatewayService) UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(networkID string, requestCellularGatewayUpdateNetworkCellularGatewayConnectivityMonitoringDestinations *RequestCellularGatewayUpdateNetworkCellularGatewayConnectivityMonitoringDestinations) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/connectivityMonitoringDestinations"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -490,6 +500,7 @@ func (s *CellularGatewayService) UpdateNetworkCellularGatewayConnectivityMonitor
 */
 func (s *CellularGatewayService) UpdateNetworkCellularGatewayDhcp(networkID string, requestCellularGatewayUpdateNetworkCellularGatewayDhcp *RequestCellularGatewayUpdateNetworkCellularGatewayDhcp) (*ResponseCellularGatewayUpdateNetworkCellularGatewayDhcp, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/dhcp"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -521,6 +532,7 @@ func (s *CellularGatewayService) UpdateNetworkCellularGatewayDhcp(networkID stri
 */
 func (s *CellularGatewayService) UpdateNetworkCellularGatewaySubnetPool(networkID string, requestCellularGatewayUpdateNetworkCellularGatewaySubnetPool *RequestCellularGatewayUpdateNetworkCellularGatewaySubnetPool) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/subnetPool"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -550,6 +562,7 @@ func (s *CellularGatewayService) UpdateNetworkCellularGatewaySubnetPool(networkI
 */
 func (s *CellularGatewayService) UpdateNetworkCellularGatewayUplink(networkID string, requestCellularGatewayUpdateNetworkCellularGatewayUplink *RequestCellularGatewayUpdateNetworkCellularGatewayUplink) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/uplink"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
