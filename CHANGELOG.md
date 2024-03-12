@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.8] - 2024-03-08
+- New main branch SDK doesn't use the intended user agent string format #21
+- Incorrect links to documentation in code #23 [Removed]
+- API Rate limiting is not handled in client #20
+- Refactor api client to adhere to rate limits #25
+
 ## [2.0.7] - 2024-03-08
 - `ResponseNetworksUpdateNetworkSyslogServersServers` changes Port from `int` to `string`.
 
@@ -1320,4 +1326,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.0.2]: https://github.com/meraki/dashboard-api-go/compare/v2.0.1...2.0.2
 [2.0.3]: https://github.com/meraki/dashboard-api-go/compare/v2.0.2...2.0.3
 [2.0.4]: https://github.com/meraki/dashboard-api-go/compare/v2.0.3...2.0.4
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v2.0.4...main
+[2.0.5]: https://github.com/meraki/dashboard-api-go/compare/v2.0.4...2.0.5
+[2.0.6]: https://github.com/meraki/dashboard-api-go/compare/v2.0.6...2.0.7
+[2.0.8]: https://github.com/meraki/dashboard-api-go/compare/v2.0.7...2.0.8
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v2.0.8...main
