@@ -28,12 +28,13 @@ The client could be generated with the following parameters:
 - `baseURL`: The base URL, FQDN or IP, of the MERAKI instance.
 - `dashboardApiKey`: The meraki_key for access to API.
 - `debug`: Boolean to enable debugging
-- `sslVerify`: Boolean to enable or disable SSL certificate verification.
+- `customUserAgent`: Set Custom user agent, if is nil, default is: (golang/*)
+- `requestPerSecond`: Set request per second allowed for client, if is nil, default is: (10)
 
 ```go
 client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
 		"MERAKI_KEY",
-		"true", "false")
+		"true", nil,nil)
 nResponse, _, err := client.Administered.GetAdministeredIDentitiesMe()
 	if err != nil {
 		fmt.Println(err)
@@ -48,10 +49,10 @@ The client can be configured with the following environment variables:
 - `MERAKI_BASE_URL`: The base URL, FQDN or IP, of the MERAKI instance.
 - `MERAKI_DASHBOARD_API_KEY`: The meraki_key for access to API.
 - `MERAKI_DEBUG`: Boolean to enable debugging
-- `MERAKI_SSL_VERIFY`: Boolean to enable or disable SSL certificate verification.
+- `MERAKI_USER_AGENT`: Custom user agent can be set. Default (golang/*)
 
 ```go
-Client, err = meraki.NewClient()
+Client, err = meraki.NewClient(nil)
 devicesCount, _, err := Client.Devices.GetDeviceCount()
 ```
 
@@ -60,9 +61,12 @@ devicesCount, _, err := Client.Devices.GetDeviceCount()
 Here is an example of how we can generate a client, get a device count and then a list of devices filtering them using query params.
 
 ```go
-client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
-		"Meraki_key",
-		"true", "false")
+
+	requestPerSecond := 5
+	custom_user_agent := "customUA"
+	client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
+		"APIKEY",
+		"true", &custom_user_agent, &requestPerSecond)
 	if err != nil {
 		fmt.Println(err)
 		return
