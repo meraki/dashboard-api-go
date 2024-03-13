@@ -80,11 +80,10 @@ type RequestInsightUpdateOrganizationInsightMonitoredMediaServer struct {
 @param applicationID applicationId path parameter. Application ID
 @param getNetworkInsightApplicationHealthByTimeQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-insight-application-health-by-time
 */
 func (s *InsightService) GetNetworkInsightApplicationHealthByTime(networkID string, applicationID string, getNetworkInsightApplicationHealthByTimeQueryParams *GetNetworkInsightApplicationHealthByTimeQueryParams) (*ResponseInsightGetNetworkInsightApplicationHealthByTime, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/insight/applications/{applicationId}/healthByTime"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{applicationId}", fmt.Sprintf("%v", applicationID), -1)
 
@@ -116,11 +115,10 @@ func (s *InsightService) GetNetworkInsightApplicationHealthByTime(networkID stri
 
 @param organizationID organizationId path parameter. Organization ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-insight-applications
 */
 func (s *InsightService) GetOrganizationInsightApplications(organizationID string) (*ResponseInsightGetOrganizationInsightApplications, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/applications"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -149,11 +147,10 @@ func (s *InsightService) GetOrganizationInsightApplications(organizationID strin
 
 @param organizationID organizationId path parameter. Organization ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-insight-monitored-media-servers
 */
 func (s *InsightService) GetOrganizationInsightMonitoredMediaServers(organizationID string) (*ResponseInsightGetOrganizationInsightMonitoredMediaServers, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -183,11 +180,10 @@ func (s *InsightService) GetOrganizationInsightMonitoredMediaServers(organizatio
 @param organizationID organizationId path parameter. Organization ID
 @param monitoredMediaServerID monitoredMediaServerId path parameter. Monitored media server ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-insight-monitored-media-server
 */
 func (s *InsightService) GetOrganizationInsightMonitoredMediaServer(organizationID string, monitoredMediaServerID string) (*ResponseInsightGetOrganizationInsightMonitoredMediaServer, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers/{monitoredMediaServerId}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{monitoredMediaServerId}", fmt.Sprintf("%v", monitoredMediaServerID), -1)
 
@@ -217,12 +213,11 @@ func (s *InsightService) GetOrganizationInsightMonitoredMediaServer(organization
 
 @param organizationID organizationId path parameter. Organization ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organization-insight-monitored-media-server
 */
 
 func (s *InsightService) CreateOrganizationInsightMonitoredMediaServer(organizationID string, requestInsightCreateOrganizationInsightMonitoredMediaServer *RequestInsightCreateOrganizationInsightMonitoredMediaServer) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -254,7 +249,6 @@ func (s *InsightService) CreateOrganizationInsightMonitoredMediaServer(organizat
 */
 func (s *InsightService) UpdateOrganizationInsightMonitoredMediaServer(organizationID string, monitoredMediaServerID string, requestInsightUpdateOrganizationInsightMonitoredMediaServer *RequestInsightUpdateOrganizationInsightMonitoredMediaServer) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers/{monitoredMediaServerId}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{monitoredMediaServerId}", fmt.Sprintf("%v", monitoredMediaServerID), -1)
 
@@ -284,12 +278,11 @@ func (s *InsightService) UpdateOrganizationInsightMonitoredMediaServer(organizat
 @param organizationID organizationId path parameter. Organization ID
 @param monitoredMediaServerID monitoredMediaServerId path parameter. Monitored media server ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organization-insight-monitored-media-server
 */
 func (s *InsightService) DeleteOrganizationInsightMonitoredMediaServer(organizationID string, monitoredMediaServerID string) (*resty.Response, error) {
 	//organizationID string,monitoredMediaServerID string
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers/{monitoredMediaServerId}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{monitoredMediaServerId}", fmt.Sprintf("%v", monitoredMediaServerID), -1)
 
