@@ -14,10 +14,11 @@ import (
 )
 
 const (
-	TEST_MERAKI_BASE_URL          = "https://api.meraki.com"
-	TEST_MERAKI_DASHBOARD_API_KEY = "0123456789"
-	TEST_MERAKI_DEBUG             = "false"
-	TEST_MERAKI_SSL_VERIFY        = "true"
+	TEST_MERAKI_BASE_URL            = "https://api.meraki.com"
+	TEST_MERAKI_DASHBOARD_API_KEY   = "0123456789"
+	TEST_MERAKI_DEBUG               = "false"
+	TEST_MERAKI_SSL_VERIFY          = "true"
+	TEST_MERAKI_REQUESTS_PER_SECOND = 5
 )
 
 type result struct{}
@@ -44,6 +45,17 @@ func TestSetOptions(t *testing.T) {
 	assert.Equal(t, os.Getenv(MERAKI_SSL_VERIFY), TEST_MERAKI_SSL_VERIFY)
 }
 
+// TestSetOptions tests the Client.SetOptionsWithRequests method.
+func TestSetOptionsWithRequests(t *testing.T) {
+	err := SetOptionsWithRequests(TEST_MERAKI_BASE_URL, TEST_MERAKI_DASHBOARD_API_KEY, TEST_MERAKI_DEBUG, TEST_MERAKI_SSL_VERIFY, TEST_MERAKI_REQUESTS_PER_SECOND)
+	assert.Equal(t, err, nil)
+	assert.Equal(t, os.Getenv(MERAKI_BASE_URL), TEST_MERAKI_BASE_URL)
+	assert.Equal(t, os.Getenv(MERAKI_DASHBOARD_API_KEY), TEST_MERAKI_DASHBOARD_API_KEY)
+	assert.Equal(t, os.Getenv(MERAKI_DEBUG), TEST_MERAKI_DEBUG)
+	assert.Equal(t, os.Getenv(MERAKI_SSL_VERIFY), TEST_MERAKI_SSL_VERIFY)
+	assert.Equal(t, os.Getenv(MERAKI_REQUESTS_PER_SECOND), strconv.Itoa(TEST_MERAKI_REQUESTS_PER_SECOND))
+}
+
 // TestNewClient tests the Client.NewClient method.
 func TestNewClient(t *testing.T) {
 	client := testClient(t)
@@ -67,6 +79,22 @@ func TestNewClientWithOptions(t *testing.T) {
 	assert.Equal(t, client.common.client.Header.Get("Authorization"), fmt.Sprintf("Bearer %s", key))
 }
 
+// TestNewClientWithOptions tests the Client.NewClientWithOptions method.
+func TestNewClientWithOptionsAndRequests(t *testing.T) {
+	url := "url"
+	key := "key"
+	debug := false
+	requests := 6
+	client, err := NewClientWithOptionsAndRequests(url, key, strconv.FormatBool(debug), "false", requests)
+	assert.Equal(t, err, nil)
+	assert.NotEqual(t, client, nil)
+	assert.Equal(t, client.common.client.HostURL, url)
+	assert.Equal(t, client.common.client.Debug, debug)
+	assert.Equal(t, client.common.client.Header.Get("Authorization"), fmt.Sprintf("Bearer %s", key))
+	assert.Equal(t, client.common.rateLimiterBucket.Capacity(), int64(requests))
+	assert.Equal(t, client.common.rateLimiterBucket.Rate(), float64(requests))
+}
+
 // TestSetAuthToken tests the Client.SetAuthToken method.
 func TestSetAuthToken(t *testing.T) {
 	newToken := "new"
@@ -81,6 +109,15 @@ func TestSetUserAgent(t *testing.T) {
 	client := testClient(t)
 	client.SetUserAgent(newUserAgent)
 	assert.Equal(t, client.common.client.Header.Get("User-Agent"), newUserAgent)
+}
+
+// TestSetRequestsPerSecond tests the Client.SetRequestsPerSecond method.
+func TestSetRequestsPerSecond(t *testing.T) {
+	requestsPerSecond := 10
+	client := testClient(t)
+	client.SetRequestsPerSecond(requestsPerSecond)
+	assert.Equal(t, client.common.rateLimiterBucket.Capacity(), int64(requestsPerSecond))
+	assert.Equal(t, client.common.rateLimiterBucket.Rate(), float64(requestsPerSecond))
 }
 
 // TestRestyClient tests the Client.RestyClient method.

@@ -13,11 +13,13 @@ import (
 )
 
 const (
-	MERAKI_BASE_URL          = "MERAKI_BASE_URL"
-	MERAKI_DASHBOARD_API_KEY = "MERAKI_DASHBOARD_API_KEY"
-	MERAKI_DEBUG             = "MERAKI_DEBUG"
-	MERAKI_SSL_VERIFY        = "MERAKI_SSL_VERIFY"
-	DEFAULT_USER_AGENT       = "MerakiGolang/2.0.4 Cisco"
+	MERAKI_BASE_URL             = "MERAKI_BASE_URL"
+	MERAKI_DASHBOARD_API_KEY    = "MERAKI_DASHBOARD_API_KEY"
+	MERAKI_DEBUG                = "MERAKI_DEBUG"
+	MERAKI_SSL_VERIFY           = "MERAKI_SSL_VERIFY"
+	MERAKI_REQUESTS_PER_SECOND  = "MERAKI_REQUESTS_PER_SECOND"
+	DEFAULT_USER_AGENT          = "MerakiGolang/2.0.4 Cisco"
+	DEFAULT_REQUESTS_PER_SECOND = 10
 )
 
 // Client manages communication with the Cisco Meraki API
@@ -57,6 +59,11 @@ func (c *Client) SetUserAgent(userAgent string) {
 	c.common.client.SetHeader("User-Agent", userAgent)
 }
 
+// SetRequestsPerSecond sets the maximum number of requests per second
+func (c *Client) SetRequestsPerSecond(requestsPerSecond int) {
+	c.common.rateLimiterBucket = ratelimit.NewBucketWithQuantum(time.Second, int64(requestsPerSecond), int64(requestsPerSecond))
+}
+
 // Error indicates an error from the invocation of a Cisco Meraki API.
 var Error map[string]interface{}
 
@@ -65,7 +72,6 @@ func NewClient() (*Client, error) {
 	client := resty.New()
 	c := &Client{}
 	c.common.client = client
-	c.common.rateLimiterBucket = ratelimit.NewBucketWithQuantum(time.Second, 10, 10)
 
 	if os.Getenv(MERAKI_DEBUG) == "true" {
 		client.SetDebug(true)
@@ -85,6 +91,16 @@ func NewClient() (*Client, error) {
 		c.SetAuthToken(os.Getenv(MERAKI_DASHBOARD_API_KEY))
 	} else {
 		return nil, fmt.Errorf("enviroment variable %s was not defined", MERAKI_DASHBOARD_API_KEY)
+	}
+
+	if os.Getenv(MERAKI_REQUESTS_PER_SECOND) != "" {
+		v, err := strconv.Atoi(os.Getenv(MERAKI_REQUESTS_PER_SECOND))
+		if err != nil || v < 0 {
+			return nil, fmt.Errorf("enviroment variable %s is not a valid integer greater or equal to zero", MERAKI_REQUESTS_PER_SECOND)
+		}
+		c.SetRequestsPerSecond(v)
+	} else {
+		c.SetRequestsPerSecond(DEFAULT_REQUESTS_PER_SECOND)
 	}
 
 	c.SetUserAgent(DEFAULT_USER_AGENT)
@@ -136,6 +152,16 @@ func NewClientWithOptions(baseURL string, dashboardApiKey string, debug string, 
 	return NewClient()
 }
 
+// NewClientWithOptionsAndRequests creates a new API client with options passed with parameters including the requests per second
+func NewClientWithOptionsAndRequests(baseURL string, dashboardApiKey string, debug string, sslVerify string, requestsPerSecond int) (*Client, error) {
+	err := SetOptionsWithRequests(baseURL, dashboardApiKey, debug, sslVerify, requestsPerSecond)
+	if err != nil {
+		return nil, err
+	}
+
+	return NewClient()
+}
+
 // SetOptions sets the required environment variables
 func SetOptions(baseURL string, dashboardApiKey string, debug string, sslVerify string) error {
 	var err error
@@ -152,6 +178,19 @@ func SetOptions(baseURL string, dashboardApiKey string, debug string, sslVerify 
 		return err
 	}
 	err = os.Setenv(MERAKI_DASHBOARD_API_KEY, dashboardApiKey)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// SetOptionsWithRequests sets the required environment variables including the requests per second
+func SetOptionsWithRequests(baseURL string, dashboardApiKey string, debug string, sslVerify string, requestsPerSecond int) error {
+	err := SetOptions(baseURL, dashboardApiKey, debug, sslVerify)
+	if err != nil {
+		return err
+	}
+	err = os.Setenv(MERAKI_REQUESTS_PER_SECOND, strconv.Itoa(requestsPerSecond))
 	if err != nil {
 		return err
 	}
