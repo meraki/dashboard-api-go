@@ -84,6 +84,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-in
 */
 func (s *InsightService) GetNetworkInsightApplicationHealthByTime(networkID string, applicationID string, getNetworkInsightApplicationHealthByTimeQueryParams *GetNetworkInsightApplicationHealthByTimeQueryParams) (*ResponseInsightGetNetworkInsightApplicationHealthByTime, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/insight/applications/{applicationId}/healthByTime"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{applicationId}", fmt.Sprintf("%v", applicationID), -1)
 
@@ -119,6 +120,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *InsightService) GetOrganizationInsightApplications(organizationID string) (*ResponseInsightGetOrganizationInsightApplications, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/applications"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -151,6 +153,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *InsightService) GetOrganizationInsightMonitoredMediaServers(organizationID string) (*ResponseInsightGetOrganizationInsightMonitoredMediaServers, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -184,6 +187,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *InsightService) GetOrganizationInsightMonitoredMediaServer(organizationID string, monitoredMediaServerID string) (*ResponseInsightGetOrganizationInsightMonitoredMediaServer, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers/{monitoredMediaServerId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{monitoredMediaServerId}", fmt.Sprintf("%v", monitoredMediaServerID), -1)
 
@@ -218,6 +222,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *InsightService) CreateOrganizationInsightMonitoredMediaServer(organizationID string, requestInsightCreateOrganizationInsightMonitoredMediaServer *RequestInsightCreateOrganizationInsightMonitoredMediaServer) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -249,6 +254,7 @@ func (s *InsightService) CreateOrganizationInsightMonitoredMediaServer(organizat
 */
 func (s *InsightService) UpdateOrganizationInsightMonitoredMediaServer(organizationID string, monitoredMediaServerID string, requestInsightUpdateOrganizationInsightMonitoredMediaServer *RequestInsightUpdateOrganizationInsightMonitoredMediaServer) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers/{monitoredMediaServerId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{monitoredMediaServerId}", fmt.Sprintf("%v", monitoredMediaServerID), -1)
 
@@ -283,6 +289,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *InsightService) DeleteOrganizationInsightMonitoredMediaServer(organizationID string, monitoredMediaServerID string) (*resty.Response, error) {
 	//organizationID string,monitoredMediaServerID string
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers/{monitoredMediaServerId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{monitoredMediaServerId}", fmt.Sprintf("%v", monitoredMediaServerID), -1)
 

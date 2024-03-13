@@ -1,6 +1,8 @@
 package meraki
 
 import (
+	"fmt"
+
 	"github.com/go-resty/resty/v2"
 )
 
@@ -39,6 +41,24 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-administer
 */
 func (s *AdministeredService) GetAdministeredIDentitiesMe() (*ResponseAdministeredGetAdministeredIDentitiesMe, *resty.Response, error) {
 	path := "/api/v1/administered/identities/me"
+	s.rateLimiterBucket.Wait(1)
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseAdministeredGetAdministeredIDentitiesMe{}).
+		SetError(&Error).
+		Get(path)
 
-	return Get[ResponseAdministeredGetAdministeredIDentitiesMe](s.client, s.rateLimiterBucket, path, &ResponseAdministeredGetAdministeredIDentitiesMe{})
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetAdministeredIdentitiesMe")
+	}
+
+	result := response.Result().(*ResponseAdministeredGetAdministeredIDentitiesMe)
+	return result, response, err
+
 }
