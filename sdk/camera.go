@@ -503,11 +503,10 @@ type RequestCameraUpdateOrganizationCameraOnboardingStatuses struct {
 
 @param serial serial path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-camera-analytics-live
 */
 func (s *CameraService) GetDeviceCameraAnalyticsLive(serial string) (*ResponseCameraGetDeviceCameraAnalyticsLive, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/analytics/live"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -537,11 +536,10 @@ func (s *CameraService) GetDeviceCameraAnalyticsLive(serial string) (*ResponseCa
 @param serial serial path parameter.
 @param getDeviceCameraAnalyticsOverviewQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-camera-analytics-overview
 */
 func (s *CameraService) GetDeviceCameraAnalyticsOverview(serial string, getDeviceCameraAnalyticsOverviewQueryParams *GetDeviceCameraAnalyticsOverviewQueryParams) (*ResponseCameraGetDeviceCameraAnalyticsOverview, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/analytics/overview"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	queryString, _ := query.Values(getDeviceCameraAnalyticsOverviewQueryParams)
@@ -573,11 +571,10 @@ func (s *CameraService) GetDeviceCameraAnalyticsOverview(serial string, getDevic
 @param serial serial path parameter.
 @param getDeviceCameraAnalyticsRecentQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-camera-analytics-recent
 */
 func (s *CameraService) GetDeviceCameraAnalyticsRecent(serial string, getDeviceCameraAnalyticsRecentQueryParams *GetDeviceCameraAnalyticsRecentQueryParams) (*ResponseCameraGetDeviceCameraAnalyticsRecent, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/analytics/recent"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	queryString, _ := query.Values(getDeviceCameraAnalyticsRecentQueryParams)
@@ -608,11 +605,10 @@ func (s *CameraService) GetDeviceCameraAnalyticsRecent(serial string, getDeviceC
 
 @param serial serial path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-camera-analytics-zones
 */
 func (s *CameraService) GetDeviceCameraAnalyticsZones(serial string) (*ResponseCameraGetDeviceCameraAnalyticsZones, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/analytics/zones"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -643,11 +639,10 @@ func (s *CameraService) GetDeviceCameraAnalyticsZones(serial string) (*ResponseC
 @param zoneID zoneId path parameter. Zone ID
 @param getDeviceCameraAnalyticsZoneHistoryQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-camera-analytics-zone-history
 */
 func (s *CameraService) GetDeviceCameraAnalyticsZoneHistory(serial string, zoneID string, getDeviceCameraAnalyticsZoneHistoryQueryParams *GetDeviceCameraAnalyticsZoneHistoryQueryParams) (*ResponseCameraGetDeviceCameraAnalyticsZoneHistory, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/analytics/zones/{zoneId}/history"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{zoneId}", fmt.Sprintf("%v", zoneID), -1)
 
@@ -679,11 +674,10 @@ func (s *CameraService) GetDeviceCameraAnalyticsZoneHistory(serial string, zoneI
 
 @param serial serial path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-camera-custom-analytics
 */
 func (s *CameraService) GetDeviceCameraCustomAnalytics(serial string) (*ResponseCameraGetDeviceCameraCustomAnalytics, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/customAnalytics"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -712,11 +706,10 @@ func (s *CameraService) GetDeviceCameraCustomAnalytics(serial string) (*Response
 
 @param serial serial path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-camera-quality-and-retention
 */
 func (s *CameraService) GetDeviceCameraQualityAndRetention(serial string) (*ResponseCameraGetDeviceCameraQualityAndRetention, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/qualityAndRetention"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -745,11 +738,10 @@ func (s *CameraService) GetDeviceCameraQualityAndRetention(serial string) (*Resp
 
 @param serial serial path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-camera-sense
 */
 func (s *CameraService) GetDeviceCameraSense(serial string) (*ResponseCameraGetDeviceCameraSense, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/sense"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -778,11 +770,10 @@ func (s *CameraService) GetDeviceCameraSense(serial string) (*ResponseCameraGetD
 
 @param serial serial path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-camera-sense-object-detection-models
 */
 func (s *CameraService) GetDeviceCameraSenseObjectDetectionModels(serial string) (*ResponseCameraGetDeviceCameraSenseObjectDetectionModels, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/sense/objectDetectionModels"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -811,11 +802,10 @@ func (s *CameraService) GetDeviceCameraSenseObjectDetectionModels(serial string)
 
 @param serial serial path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-camera-video-settings
 */
 func (s *CameraService) GetDeviceCameraVideoSettings(serial string) (*ResponseCameraGetDeviceCameraVideoSettings, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/video/settings"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -845,11 +835,10 @@ func (s *CameraService) GetDeviceCameraVideoSettings(serial string) (*ResponseCa
 @param serial serial path parameter.
 @param getDeviceCameraVideoLinkQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-camera-video-link
 */
 func (s *CameraService) GetDeviceCameraVideoLink(serial string, getDeviceCameraVideoLinkQueryParams *GetDeviceCameraVideoLinkQueryParams) (*ResponseCameraGetDeviceCameraVideoLink, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/videoLink"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	queryString, _ := query.Values(getDeviceCameraVideoLinkQueryParams)
@@ -880,11 +869,10 @@ func (s *CameraService) GetDeviceCameraVideoLink(serial string, getDeviceCameraV
 
 @param serial serial path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-camera-wireless-profiles
 */
 func (s *CameraService) GetDeviceCameraWirelessProfiles(serial string) (*ResponseCameraGetDeviceCameraWirelessProfiles, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/wirelessProfiles"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -913,11 +901,10 @@ func (s *CameraService) GetDeviceCameraWirelessProfiles(serial string) (*Respons
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-camera-quality-retention-profiles
 */
 func (s *CameraService) GetNetworkCameraQualityRetentionProfiles(networkID string) (*ResponseCameraGetNetworkCameraQualityRetentionProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/qualityRetentionProfiles"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -947,11 +934,10 @@ func (s *CameraService) GetNetworkCameraQualityRetentionProfiles(networkID strin
 @param networkID networkId path parameter. Network ID
 @param qualityRetentionProfileID qualityRetentionProfileId path parameter. Quality retention profile ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-camera-quality-retention-profile
 */
 func (s *CameraService) GetNetworkCameraQualityRetentionProfile(networkID string, qualityRetentionProfileID string) (*ResponseCameraGetNetworkCameraQualityRetentionProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/qualityRetentionProfiles/{qualityRetentionProfileId}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{qualityRetentionProfileId}", fmt.Sprintf("%v", qualityRetentionProfileID), -1)
 
@@ -981,11 +967,10 @@ func (s *CameraService) GetNetworkCameraQualityRetentionProfile(networkID string
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-camera-schedules
 */
 func (s *CameraService) GetNetworkCameraSchedules(networkID string) (*ResponseCameraGetNetworkCameraSchedules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/schedules"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -1014,11 +999,10 @@ func (s *CameraService) GetNetworkCameraSchedules(networkID string) (*ResponseCa
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-camera-wireless-profiles
 */
 func (s *CameraService) GetNetworkCameraWirelessProfiles(networkID string) (*ResponseCameraGetNetworkCameraWirelessProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/wirelessProfiles"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -1048,11 +1032,10 @@ func (s *CameraService) GetNetworkCameraWirelessProfiles(networkID string) (*Res
 @param networkID networkId path parameter. Network ID
 @param wirelessProfileID wirelessProfileId path parameter. Wireless profile ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-camera-wireless-profile
 */
 func (s *CameraService) GetNetworkCameraWirelessProfile(networkID string, wirelessProfileID string) (*ResponseCameraGetNetworkCameraWirelessProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/wirelessProfiles/{wirelessProfileId}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{wirelessProfileId}", fmt.Sprintf("%v", wirelessProfileID), -1)
 
@@ -1082,11 +1065,10 @@ func (s *CameraService) GetNetworkCameraWirelessProfile(networkID string, wirele
 
 @param organizationID organizationId path parameter. Organization ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-camera-custom-analytics-artifacts
 */
 func (s *CameraService) GetOrganizationCameraCustomAnalyticsArtifacts(organizationID string) (*ResponseCameraGetOrganizationCameraCustomAnalyticsArtifacts, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/customAnalytics/artifacts"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -1116,11 +1098,10 @@ func (s *CameraService) GetOrganizationCameraCustomAnalyticsArtifacts(organizati
 @param organizationID organizationId path parameter. Organization ID
 @param artifactID artifactId path parameter. Artifact ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-camera-custom-analytics-artifact
 */
 func (s *CameraService) GetOrganizationCameraCustomAnalyticsArtifact(organizationID string, artifactID string) (*ResponseCameraGetOrganizationCameraCustomAnalyticsArtifact, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/customAnalytics/artifacts/{artifactId}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{artifactId}", fmt.Sprintf("%v", artifactID), -1)
 
@@ -1151,11 +1132,10 @@ func (s *CameraService) GetOrganizationCameraCustomAnalyticsArtifact(organizatio
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationCameraOnboardingStatusesQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-camera-onboarding-statuses
 */
 func (s *CameraService) GetOrganizationCameraOnboardingStatuses(organizationID string, getOrganizationCameraOnboardingStatusesQueryParams *GetOrganizationCameraOnboardingStatusesQueryParams) (*ResponseCameraGetOrganizationCameraOnboardingStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/onboarding/statuses"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationCameraOnboardingStatusesQueryParams)
@@ -1186,12 +1166,11 @@ func (s *CameraService) GetOrganizationCameraOnboardingStatuses(organizationID s
 
 @param serial serial path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!generate-device-camera-snapshot
 */
 
 func (s *CameraService) GenerateDeviceCameraSnapshot(serial string, requestCameraGenerateDeviceCameraSnapshot *RequestCameraGenerateDeviceCameraSnapshot) (*resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/generateSnapshot"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -1220,12 +1199,11 @@ func (s *CameraService) GenerateDeviceCameraSnapshot(serial string, requestCamer
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-camera-quality-retention-profile
 */
 
 func (s *CameraService) CreateNetworkCameraQualityRetentionProfile(networkID string, requestCameraCreateNetworkCameraQualityRetentionProfile *RequestCameraCreateNetworkCameraQualityRetentionProfile) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/qualityRetentionProfiles"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -1254,12 +1232,11 @@ func (s *CameraService) CreateNetworkCameraQualityRetentionProfile(networkID str
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-camera-wireless-profile
 */
 
 func (s *CameraService) CreateNetworkCameraWirelessProfile(networkID string, requestCameraCreateNetworkCameraWirelessProfile *RequestCameraCreateNetworkCameraWirelessProfile) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/wirelessProfiles"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -1288,12 +1265,11 @@ func (s *CameraService) CreateNetworkCameraWirelessProfile(networkID string, req
 
 @param organizationID organizationId path parameter. Organization ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organization-camera-custom-analytics-artifact
 */
 
 func (s *CameraService) CreateOrganizationCameraCustomAnalyticsArtifact(organizationID string, requestCameraCreateOrganizationCameraCustomAnalyticsArtifact *RequestCameraCreateOrganizationCameraCustomAnalyticsArtifact) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/customAnalytics/artifacts"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -1324,7 +1300,6 @@ func (s *CameraService) CreateOrganizationCameraCustomAnalyticsArtifact(organiza
 */
 func (s *CameraService) UpdateDeviceCameraCustomAnalytics(serial string, requestCameraUpdateDeviceCameraCustomAnalytics *RequestCameraUpdateDeviceCameraCustomAnalytics) (*resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/customAnalytics"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -1354,7 +1329,6 @@ func (s *CameraService) UpdateDeviceCameraCustomAnalytics(serial string, request
 */
 func (s *CameraService) UpdateDeviceCameraQualityAndRetention(serial string, requestCameraUpdateDeviceCameraQualityAndRetention *RequestCameraUpdateDeviceCameraQualityAndRetention) (*resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/qualityAndRetention"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -1384,7 +1358,6 @@ func (s *CameraService) UpdateDeviceCameraQualityAndRetention(serial string, req
 */
 func (s *CameraService) UpdateDeviceCameraSense(serial string, requestCameraUpdateDeviceCameraSense *RequestCameraUpdateDeviceCameraSense) (*resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/sense"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -1414,7 +1387,6 @@ func (s *CameraService) UpdateDeviceCameraSense(serial string, requestCameraUpda
 */
 func (s *CameraService) UpdateDeviceCameraVideoSettings(serial string, requestCameraUpdateDeviceCameraVideoSettings *RequestCameraUpdateDeviceCameraVideoSettings) (*resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/video/settings"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -1444,7 +1416,6 @@ func (s *CameraService) UpdateDeviceCameraVideoSettings(serial string, requestCa
 */
 func (s *CameraService) UpdateDeviceCameraWirelessProfiles(serial string, requestCameraUpdateDeviceCameraWirelessProfiles *RequestCameraUpdateDeviceCameraWirelessProfiles) (*resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/wirelessProfiles"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -1475,7 +1446,6 @@ func (s *CameraService) UpdateDeviceCameraWirelessProfiles(serial string, reques
 */
 func (s *CameraService) UpdateNetworkCameraQualityRetentionProfile(networkID string, qualityRetentionProfileID string, requestCameraUpdateNetworkCameraQualityRetentionProfile *RequestCameraUpdateNetworkCameraQualityRetentionProfile) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/qualityRetentionProfiles/{qualityRetentionProfileId}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{qualityRetentionProfileId}", fmt.Sprintf("%v", qualityRetentionProfileID), -1)
 
@@ -1507,7 +1477,6 @@ func (s *CameraService) UpdateNetworkCameraQualityRetentionProfile(networkID str
 */
 func (s *CameraService) UpdateNetworkCameraWirelessProfile(networkID string, wirelessProfileID string, requestCameraUpdateNetworkCameraWirelessProfile *RequestCameraUpdateNetworkCameraWirelessProfile) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/wirelessProfiles/{wirelessProfileId}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{wirelessProfileId}", fmt.Sprintf("%v", wirelessProfileID), -1)
 
@@ -1538,7 +1507,6 @@ func (s *CameraService) UpdateNetworkCameraWirelessProfile(networkID string, wir
 */
 func (s *CameraService) UpdateOrganizationCameraOnboardingStatuses(organizationID string, requestCameraUpdateOrganizationCameraOnboardingStatuses *RequestCameraUpdateOrganizationCameraOnboardingStatuses) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/onboarding/statuses"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -1567,12 +1535,11 @@ func (s *CameraService) UpdateOrganizationCameraOnboardingStatuses(organizationI
 @param networkID networkId path parameter. Network ID
 @param qualityRetentionProfileID qualityRetentionProfileId path parameter. Quality retention profile ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-camera-quality-retention-profile
 */
 func (s *CameraService) DeleteNetworkCameraQualityRetentionProfile(networkID string, qualityRetentionProfileID string) (*resty.Response, error) {
 	//networkID string,qualityRetentionProfileID string
 	path := "/api/v1/networks/{networkId}/camera/qualityRetentionProfiles/{qualityRetentionProfileId}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{qualityRetentionProfileId}", fmt.Sprintf("%v", qualityRetentionProfileID), -1)
 
@@ -1601,12 +1568,11 @@ func (s *CameraService) DeleteNetworkCameraQualityRetentionProfile(networkID str
 @param networkID networkId path parameter. Network ID
 @param wirelessProfileID wirelessProfileId path parameter. Wireless profile ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-camera-wireless-profile
 */
 func (s *CameraService) DeleteNetworkCameraWirelessProfile(networkID string, wirelessProfileID string) (*resty.Response, error) {
 	//networkID string,wirelessProfileID string
 	path := "/api/v1/networks/{networkId}/camera/wirelessProfiles/{wirelessProfileId}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{wirelessProfileId}", fmt.Sprintf("%v", wirelessProfileID), -1)
 
@@ -1635,12 +1601,11 @@ func (s *CameraService) DeleteNetworkCameraWirelessProfile(networkID string, wir
 @param organizationID organizationId path parameter. Organization ID
 @param artifactID artifactId path parameter. Artifact ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organization-camera-custom-analytics-artifact
 */
 func (s *CameraService) DeleteOrganizationCameraCustomAnalyticsArtifact(organizationID string, artifactID string) (*resty.Response, error) {
 	//organizationID string,artifactID string
 	path := "/api/v1/organizations/{organizationId}/camera/customAnalytics/artifacts/{artifactId}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{artifactId}", fmt.Sprintf("%v", artifactID), -1)
 
