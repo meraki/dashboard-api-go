@@ -2558,6 +2558,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizations() (*ResponseOrganizationsGetOrganizations, *resty.Response, error) {
 	path := "/api/v1/organizations"
+	s.rateLimiterBucket.Wait(1)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -2589,6 +2590,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganization(organizationID string) (*ResponseOrganizationsGetOrganization, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -2622,6 +2624,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationActionBatches(organizationID string, getOrganizationActionBatchesQueryParams *GetOrganizationActionBatchesQueryParams) (*ResponseOrganizationsGetOrganizationActionBatches, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/actionBatches"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationActionBatchesQueryParams)
@@ -2657,6 +2660,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationActionBatch(organizationID string, actionBatchID string) (*ResponseOrganizationsGetOrganizationActionBatch, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/actionBatches/{actionBatchId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{actionBatchId}", fmt.Sprintf("%v", actionBatchID), -1)
 
@@ -2690,6 +2694,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationAdaptivePolicyACLs(organizationID string) (*ResponseOrganizationsGetOrganizationAdaptivePolicyACLs, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/acls"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -2723,6 +2728,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationAdaptivePolicyACL(organizationID string, aclID string) (*ResponseOrganizationsGetOrganizationAdaptivePolicyACL, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/acls/{aclId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{aclId}", fmt.Sprintf("%v", aclID), -1)
 
@@ -2756,6 +2762,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationAdaptivePolicyGroups(organizationID string) (*ResponseOrganizationsGetOrganizationAdaptivePolicyGroups, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/groups"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -2789,6 +2796,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationAdaptivePolicyGroup(organizationID string, id string) (*ResponseOrganizationsGetOrganizationAdaptivePolicyGroup, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/groups/{id}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
@@ -2822,6 +2830,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationAdaptivePolicyOverview(organizationID string) (*ResponseOrganizationsGetOrganizationAdaptivePolicyOverview, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/overview"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -2854,6 +2863,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationAdaptivePolicyPolicies(organizationID string) (*ResponseOrganizationsGetOrganizationAdaptivePolicyPolicies, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/policies"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -2887,6 +2897,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationAdaptivePolicyPolicy(organizationID string, id string) (*ResponseOrganizationsGetOrganizationAdaptivePolicyPolicy, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/policies/{id}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
@@ -2920,6 +2931,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationAdaptivePolicySettings(organizationID string) (*ResponseOrganizationsGetOrganizationAdaptivePolicySettings, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -2952,6 +2964,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationAdmins(organizationID string) (*ResponseOrganizationsGetOrganizationAdmins, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/admins"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -2984,6 +2997,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationAlertsProfiles(organizationID string) (*ResponseOrganizationsGetOrganizationAlertsProfiles, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/alerts/profiles"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -3017,6 +3031,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationAPIRequests(organizationID string, getOrganizationApiRequestsQueryParams *GetOrganizationAPIRequestsQueryParams) (*ResponseOrganizationsGetOrganizationAPIRequests, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/apiRequests"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationApiRequestsQueryParams)
@@ -3052,6 +3067,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationAPIRequestsOverview(organizationID string, getOrganizationApiRequestsOverviewQueryParams *GetOrganizationAPIRequestsOverviewQueryParams) (*ResponseOrganizationsGetOrganizationAPIRequestsOverview, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/apiRequests/overview"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationApiRequestsOverviewQueryParams)
@@ -3087,6 +3103,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationAPIRequestsOverviewResponseCodesByInterval(organizationID string, getOrganizationApiRequestsOverviewResponseCodesByIntervalQueryParams *GetOrganizationAPIRequestsOverviewResponseCodesByIntervalQueryParams) (*ResponseOrganizationsGetOrganizationAPIRequestsOverviewResponseCodesByInterval, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/apiRequests/overview/responseCodes/byInterval"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationApiRequestsOverviewResponseCodesByIntervalQueryParams)
@@ -3121,6 +3138,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationBrandingPolicies(organizationID string) (*ResponseOrganizationsGetOrganizationBrandingPolicies, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/brandingPolicies"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -3153,6 +3171,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationBrandingPoliciesPriorities(organizationID string) (*ResponseOrganizationsGetOrganizationBrandingPoliciesPriorities, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/brandingPolicies/priorities"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -3186,6 +3205,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationBrandingPolicy(organizationID string, brandingPolicyID string) (*ResponseOrganizationsGetOrganizationBrandingPolicy, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/brandingPolicies/{brandingPolicyId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{brandingPolicyId}", fmt.Sprintf("%v", brandingPolicyID), -1)
 
@@ -3220,6 +3240,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationClientsBandwidthUsageHistory(organizationID string, getOrganizationClientsBandwidthUsageHistoryQueryParams *GetOrganizationClientsBandwidthUsageHistoryQueryParams) (*ResponseOrganizationsGetOrganizationClientsBandwidthUsageHistory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/clients/bandwidthUsageHistory"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationClientsBandwidthUsageHistoryQueryParams)
@@ -3255,6 +3276,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationClientsOverview(organizationID string, getOrganizationClientsOverviewQueryParams *GetOrganizationClientsOverviewQueryParams) (*ResponseOrganizationsGetOrganizationClientsOverview, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/clients/overview"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationClientsOverviewQueryParams)
@@ -3290,6 +3312,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationClientsSearch(organizationID string, getOrganizationClientsSearchQueryParams *GetOrganizationClientsSearchQueryParams) (*ResponseOrganizationsGetOrganizationClientsSearch, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/clients/search"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationClientsSearchQueryParams)
@@ -3324,6 +3347,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationConfigTemplates(organizationID string) (*ResponseOrganizationsGetOrganizationConfigTemplates, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configTemplates"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -3357,6 +3381,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationConfigTemplate(organizationID string, configTemplateID string) (*ResponseOrganizationsGetOrganizationConfigTemplate, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configTemplates/{configTemplateId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{configTemplateId}", fmt.Sprintf("%v", configTemplateID), -1)
 
@@ -3391,6 +3416,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationConfigurationChanges(organizationID string, getOrganizationConfigurationChangesQueryParams *GetOrganizationConfigurationChangesQueryParams) (*ResponseOrganizationsGetOrganizationConfigurationChanges, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configurationChanges"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationConfigurationChangesQueryParams)
@@ -3426,6 +3452,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationDevices(organizationID string, getOrganizationDevicesQueryParams *GetOrganizationDevicesQueryParams) (*ResponseOrganizationsGetOrganizationDevices, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationDevicesQueryParams)
@@ -3461,6 +3488,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationDevicesAvailabilities(organizationID string, getOrganizationDevicesAvailabilitiesQueryParams *GetOrganizationDevicesAvailabilitiesQueryParams) (*ResponseOrganizationsGetOrganizationDevicesAvailabilities, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/availabilities"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationDevicesAvailabilitiesQueryParams)
@@ -3496,6 +3524,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationDevicesPowerModulesStatusesByDevice(organizationID string, getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams *GetOrganizationDevicesPowerModulesStatusesByDeviceQueryParams) (*ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/powerModules/statuses/byDevice"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams)
@@ -3531,6 +3560,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationDevicesProvisioningStatuses(organizationID string, getOrganizationDevicesProvisioningStatusesQueryParams *GetOrganizationDevicesProvisioningStatusesQueryParams) (*ResponseOrganizationsGetOrganizationDevicesProvisioningStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/provisioning/statuses"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationDevicesProvisioningStatusesQueryParams)
@@ -3566,6 +3596,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationDevicesStatuses(organizationID string, getOrganizationDevicesStatusesQueryParams *GetOrganizationDevicesStatusesQueryParams) (*ResponseOrganizationsGetOrganizationDevicesStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/statuses"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationDevicesStatusesQueryParams)
@@ -3601,6 +3632,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationDevicesStatusesOverview(organizationID string, getOrganizationDevicesStatusesOverviewQueryParams *GetOrganizationDevicesStatusesOverviewQueryParams) (*ResponseOrganizationsGetOrganizationDevicesStatusesOverview, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/statuses/overview"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationDevicesStatusesOverviewQueryParams)
@@ -3636,6 +3668,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationDevicesUplinksAddressesByDevice(organizationID string, getOrganizationDevicesUplinksAddressesByDeviceQueryParams *GetOrganizationDevicesUplinksAddressesByDeviceQueryParams) (*ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/uplinks/addresses/byDevice"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationDevicesUplinksAddressesByDeviceQueryParams)
@@ -3671,6 +3704,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationDevicesUplinksLossAndLatency(organizationID string, getOrganizationDevicesUplinksLossAndLatencyQueryParams *GetOrganizationDevicesUplinksLossAndLatencyQueryParams) (*ResponseOrganizationsGetOrganizationDevicesUplinksLossAndLatency, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/uplinksLossAndLatency"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationDevicesUplinksLossAndLatencyQueryParams)
@@ -3705,6 +3739,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationEarlyAccessFeatures(organizationID string) (*ResponseOrganizationsGetOrganizationEarlyAccessFeatures, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/earlyAccess/features"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -3737,6 +3772,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationEarlyAccessFeaturesOptIns(organizationID string) (*ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptIns, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/earlyAccess/features/optIns"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -3770,6 +3806,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationEarlyAccessFeaturesOptIn(organizationID string, optInID string) (*ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptIn, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{optInId}", fmt.Sprintf("%v", optInID), -1)
 
@@ -3804,6 +3841,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationFirmwareUpgrades(organizationID string, getOrganizationFirmwareUpgradesQueryParams *GetOrganizationFirmwareUpgradesQueryParams) (*ResponseOrganizationsGetOrganizationFirmwareUpgrades, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/firmware/upgrades"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationFirmwareUpgradesQueryParams)
@@ -3839,6 +3877,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationFirmwareUpgradesByDevice(organizationID string, getOrganizationFirmwareUpgradesByDeviceQueryParams *GetOrganizationFirmwareUpgradesByDeviceQueryParams) (*ResponseOrganizationsGetOrganizationFirmwareUpgradesByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/firmware/upgrades/byDevice"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationFirmwareUpgradesByDeviceQueryParams)
@@ -3874,6 +3913,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationInventoryDevices(organizationID string, getOrganizationInventoryDevicesQueryParams *GetOrganizationInventoryDevicesQueryParams) (*ResponseOrganizationsGetOrganizationInventoryDevices, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/devices"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationInventoryDevicesQueryParams)
@@ -3909,6 +3949,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationInventoryDevice(organizationID string, serial string) (*ResponseOrganizationsGetOrganizationInventoryDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/devices/{serial}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
@@ -3943,6 +3984,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationInventoryOnboardingCloudMonitoringImports(organizationID string, getOrganizationInventoryOnboardingCloudMonitoringImportsQueryParams *GetOrganizationInventoryOnboardingCloudMonitoringImportsQueryParams) (*ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringImports, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/imports"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationInventoryOnboardingCloudMonitoringImportsQueryParams)
@@ -3978,6 +4020,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationInventoryOnboardingCloudMonitoringNetworks(organizationID string, getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams *GetOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams) (*ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringNetworks, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/networks"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams)
@@ -4013,6 +4056,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationLicenses(organizationID string, getOrganizationLicensesQueryParams *GetOrganizationLicensesQueryParams) (*ResponseOrganizationsGetOrganizationLicenses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licenses"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationLicensesQueryParams)
@@ -4047,6 +4091,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationLicensesOverview(organizationID string) (*ResponseOrganizationsGetOrganizationLicensesOverview, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licenses/overview"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -4080,6 +4125,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationLicense(organizationID string, licenseID string) (*ResponseOrganizationsGetOrganizationLicense, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licenses/{licenseId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{licenseId}", fmt.Sprintf("%v", licenseID), -1)
 
@@ -4113,6 +4159,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationLoginSecurity(organizationID string) (*ResponseOrganizationsGetOrganizationLoginSecurity, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/loginSecurity"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -4146,6 +4193,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationNetworks(organizationID string, getOrganizationNetworksQueryParams *GetOrganizationNetworksQueryParams) (*ResponseOrganizationsGetOrganizationNetworks, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/networks"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationNetworksQueryParams)
@@ -4180,6 +4228,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationOpenapiSpec(organizationID string) (*ResponseOrganizationsGetOrganizationOpenapiSpec, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/openapiSpec"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -4213,6 +4262,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationPolicyObjects(organizationID string, getOrganizationPolicyObjectsQueryParams *GetOrganizationPolicyObjectsQueryParams) (*ResponseOrganizationsGetOrganizationPolicyObjects, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationPolicyObjectsQueryParams)
@@ -4248,6 +4298,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationPolicyObjectsGroups(organizationID string, getOrganizationPolicyObjectsGroupsQueryParams *GetOrganizationPolicyObjectsGroupsQueryParams) (*ResponseOrganizationsGetOrganizationPolicyObjectsGroups, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects/groups"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationPolicyObjectsGroupsQueryParams)
@@ -4283,6 +4334,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationPolicyObjectsGroup(organizationID string, policyObjectGroupID string) (*ResponseOrganizationsGetOrganizationPolicyObjectsGroup, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{policyObjectGroupId}", fmt.Sprintf("%v", policyObjectGroupID), -1)
 
@@ -4317,6 +4369,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationPolicyObject(organizationID string, policyObjectID string) (*ResponseOrganizationsGetOrganizationPolicyObject, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects/{policyObjectId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{policyObjectId}", fmt.Sprintf("%v", policyObjectID), -1)
 
@@ -4350,6 +4403,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationSaml(organizationID string) (*ResponseOrganizationsGetOrganizationSaml, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/saml"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -4382,6 +4436,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationSamlIDps(organizationID string) (*ResponseOrganizationsGetOrganizationSamlIDps, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/saml/idps"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -4415,6 +4470,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationSamlIDp(organizationID string, idpID string) (*ResponseOrganizationsGetOrganizationSamlIDp, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/saml/idps/{idpId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{idpId}", fmt.Sprintf("%v", idpID), -1)
 
@@ -4448,6 +4504,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationSamlRoles(organizationID string) (*ResponseOrganizationsGetOrganizationSamlRoles, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/samlRoles"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -4481,6 +4538,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationSamlRole(organizationID string, samlRoleID string) (*ResponseOrganizationsGetOrganizationSamlRole, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/samlRoles/{samlRoleId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{samlRoleId}", fmt.Sprintf("%v", samlRoleID), -1)
 
@@ -4514,6 +4572,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationSNMP(organizationID string) (*ResponseOrganizationsGetOrganizationSNMP, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/snmp"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -4547,6 +4606,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationSummaryTopAppliancesByUtilization(organizationID string, getOrganizationSummaryTopAppliancesByUtilizationQueryParams *GetOrganizationSummaryTopAppliancesByUtilizationQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopAppliancesByUtilization, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/appliances/byUtilization"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSummaryTopAppliancesByUtilizationQueryParams)
@@ -4582,6 +4642,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationSummaryTopClientsByUsage(organizationID string, getOrganizationSummaryTopClientsByUsageQueryParams *GetOrganizationSummaryTopClientsByUsageQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopClientsByUsage, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/clients/byUsage"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSummaryTopClientsByUsageQueryParams)
@@ -4617,6 +4678,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationSummaryTopClientsManufacturersByUsage(organizationID string, getOrganizationSummaryTopClientsManufacturersByUsageQueryParams *GetOrganizationSummaryTopClientsManufacturersByUsageQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopClientsManufacturersByUsage, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/clients/manufacturers/byUsage"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSummaryTopClientsManufacturersByUsageQueryParams)
@@ -4652,6 +4714,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationSummaryTopDevicesByUsage(organizationID string, getOrganizationSummaryTopDevicesByUsageQueryParams *GetOrganizationSummaryTopDevicesByUsageQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopDevicesByUsage, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/devices/byUsage"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSummaryTopDevicesByUsageQueryParams)
@@ -4687,6 +4750,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationSummaryTopDevicesModelsByUsage(organizationID string, getOrganizationSummaryTopDevicesModelsByUsageQueryParams *GetOrganizationSummaryTopDevicesModelsByUsageQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopDevicesModelsByUsage, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/devices/models/byUsage"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSummaryTopDevicesModelsByUsageQueryParams)
@@ -4722,6 +4786,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationSummaryTopSSIDsByUsage(organizationID string, getOrganizationSummaryTopSsidsByUsageQueryParams *GetOrganizationSummaryTopSSIDsByUsageQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopSSIDsByUsage, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/ssids/byUsage"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSummaryTopSsidsByUsageQueryParams)
@@ -4757,6 +4822,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationSummaryTopSwitchesByEnergyUsage(organizationID string, getOrganizationSummaryTopSwitchesByEnergyUsageQueryParams *GetOrganizationSummaryTopSwitchesByEnergyUsageQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopSwitchesByEnergyUsage, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/switches/byEnergyUsage"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSummaryTopSwitchesByEnergyUsageQueryParams)
@@ -4792,6 +4858,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationUplinksStatuses(organizationID string, getOrganizationUplinksStatusesQueryParams *GetOrganizationUplinksStatusesQueryParams) (*ResponseOrganizationsGetOrganizationUplinksStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/uplinks/statuses"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationUplinksStatusesQueryParams)
@@ -4827,6 +4894,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationWebhooksAlertTypes(organizationID string, getOrganizationWebhooksAlertTypesQueryParams *GetOrganizationWebhooksAlertTypesQueryParams) (*ResponseOrganizationsGetOrganizationWebhooksAlertTypes, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/webhooks/alertTypes"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWebhooksAlertTypesQueryParams)
@@ -4862,6 +4930,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *OrganizationsService) GetOrganizationWebhooksLogs(organizationID string, getOrganizationWebhooksLogsQueryParams *GetOrganizationWebhooksLogsQueryParams) (*ResponseOrganizationsGetOrganizationWebhooksLogs, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/webhooks/logs"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWebhooksLogsQueryParams)
@@ -4896,6 +4965,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganization(requestOrganizationsCreateOrganization *RequestOrganizationsCreateOrganization) (*ResponseOrganizationsCreateOrganization, *resty.Response, error) {
 	path := "/api/v1/organizations"
+	s.rateLimiterBucket.Wait(1)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -4929,6 +4999,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationActionBatch(organizationID string, requestOrganizationsCreateOrganizationActionBatch *RequestOrganizationsCreateOrganizationActionBatch) (*ResponseOrganizationsCreateOrganizationActionBatch, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/actionBatches"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -4963,6 +5034,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationAdaptivePolicyACL(organizationID string, requestOrganizationsCreateOrganizationAdaptivePolicyAcl *RequestOrganizationsCreateOrganizationAdaptivePolicyACL) (*ResponseOrganizationsCreateOrganizationAdaptivePolicyACL, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/acls"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -4997,6 +5069,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationAdaptivePolicyGroup(organizationID string, requestOrganizationsCreateOrganizationAdaptivePolicyGroup *RequestOrganizationsCreateOrganizationAdaptivePolicyGroup) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/groups"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5030,6 +5103,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationAdaptivePolicyPolicy(organizationID string, requestOrganizationsCreateOrganizationAdaptivePolicyPolicy *RequestOrganizationsCreateOrganizationAdaptivePolicyPolicy) (*ResponseOrganizationsCreateOrganizationAdaptivePolicyPolicy, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/policies"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5064,6 +5138,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationAdmin(organizationID string, requestOrganizationsCreateOrganizationAdmin *RequestOrganizationsCreateOrganizationAdmin) (*ResponseOrganizationsCreateOrganizationAdmin, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/admins"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5098,6 +5173,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationAlertsProfile(organizationID string, requestOrganizationsCreateOrganizationAlertsProfile *RequestOrganizationsCreateOrganizationAlertsProfile) (*ResponseOrganizationsCreateOrganizationAlertsProfile, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/alerts/profiles"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5132,6 +5208,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationBrandingPolicy(organizationID string, requestOrganizationsCreateOrganizationBrandingPolicy *RequestOrganizationsCreateOrganizationBrandingPolicy) (*ResponseOrganizationsCreateOrganizationBrandingPolicy, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/brandingPolicies"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5166,6 +5243,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!claim-into-org
 
 func (s *OrganizationsService) ClaimIntoOrganization(organizationID string, requestOrganizationsClaimIntoOrganization *RequestOrganizationsClaimIntoOrganization) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/claim"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5199,6 +5277,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!clone-organiza
 
 func (s *OrganizationsService) CloneOrganization(organizationID string, requestOrganizationsCloneOrganization *RequestOrganizationsCloneOrganization) (*ResponseOrganizationsCloneOrganization, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/clone"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5233,6 +5312,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationConfigTemplate(organizationID string, requestOrganizationsCreateOrganizationConfigTemplate *RequestOrganizationsCreateOrganizationConfigTemplate) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configTemplates"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5266,6 +5346,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationEarlyAccessFeaturesOptIn(organizationID string, requestOrganizationsCreateOrganizationEarlyAccessFeaturesOptIn *RequestOrganizationsCreateOrganizationEarlyAccessFeaturesOptIn) (*ResponseOrganizationsCreateOrganizationEarlyAccessFeaturesOptIn, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/earlyAccess/features/optIns"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5300,6 +5381,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!claim-into-org
 
 func (s *OrganizationsService) ClaimIntoOrganizationInventory(organizationID string, requestOrganizationsClaimIntoOrganizationInventory *RequestOrganizationsClaimIntoOrganizationInventory) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/claim"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5333,6 +5415,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent(organizationID string, requestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringExportEvent *RequestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringExportEvent) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/exportEvents"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5366,6 +5449,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationInventoryOnboardingCloudMonitoringImport(organizationID string, requestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringImport *RequestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringImport) (*ResponseOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringImport, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/imports"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5400,6 +5484,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(organizationID string, requestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringPrepare *RequestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringPrepare) (*ResponseOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringPrepare, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/prepare"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5434,6 +5519,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!release-from-o
 
 func (s *OrganizationsService) ReleaseFromOrganizationInventory(organizationID string, requestOrganizationsReleaseFromOrganizationInventory *RequestOrganizationsReleaseFromOrganizationInventory) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/release"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5467,6 +5553,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-organiz
 
 func (s *OrganizationsService) AssignOrganizationLicensesSeats(organizationID string, requestOrganizationsAssignOrganizationLicensesSeats *RequestOrganizationsAssignOrganizationLicensesSeats) (*ResponseOrganizationsAssignOrganizationLicensesSeats, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licenses/assignSeats"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5501,6 +5588,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!move-organizat
 
 func (s *OrganizationsService) MoveOrganizationLicenses(organizationID string, requestOrganizationsMoveOrganizationLicenses *RequestOrganizationsMoveOrganizationLicenses) (*ResponseOrganizationsMoveOrganizationLicenses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licenses/move"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5535,6 +5623,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!move-organizat
 
 func (s *OrganizationsService) MoveOrganizationLicensesSeats(organizationID string, requestOrganizationsMoveOrganizationLicensesSeats *RequestOrganizationsMoveOrganizationLicensesSeats) (*ResponseOrganizationsMoveOrganizationLicensesSeats, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licenses/moveSeats"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5569,6 +5658,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!renew-organiza
 
 func (s *OrganizationsService) RenewOrganizationLicensesSeats(organizationID string, requestOrganizationsRenewOrganizationLicensesSeats *RequestOrganizationsRenewOrganizationLicensesSeats) (*ResponseOrganizationsRenewOrganizationLicensesSeats, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licenses/renewSeats"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5603,6 +5693,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationNetwork(organizationID string, requestOrganizationsCreateOrganizationNetwork *RequestOrganizationsCreateOrganizationNetwork) (*ResponseOrganizationsCreateOrganizationNetwork, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/networks"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5637,6 +5728,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!combine-organi
 
 func (s *OrganizationsService) CombineOrganizationNetworks(organizationID string, requestOrganizationsCombineOrganizationNetworks *RequestOrganizationsCombineOrganizationNetworks) (*ResponseOrganizationsCombineOrganizationNetworks, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/networks/combine"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5671,6 +5763,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationPolicyObject(organizationID string, requestOrganizationsCreateOrganizationPolicyObject *RequestOrganizationsCreateOrganizationPolicyObject) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5704,6 +5797,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationPolicyObjectsGroup(organizationID string, requestOrganizationsCreateOrganizationPolicyObjectsGroup *RequestOrganizationsCreateOrganizationPolicyObjectsGroup) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects/groups"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5737,6 +5831,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationSamlIDp(organizationID string, requestOrganizationsCreateOrganizationSamlIdp *RequestOrganizationsCreateOrganizationSamlIDp) (*ResponseOrganizationsCreateOrganizationSamlIDp, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/saml/idps"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5771,6 +5866,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organiz
 
 func (s *OrganizationsService) CreateOrganizationSamlRole(organizationID string, requestOrganizationsCreateOrganizationSamlRole *RequestOrganizationsCreateOrganizationSamlRole) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/samlRoles"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5801,6 +5897,7 @@ func (s *OrganizationsService) CreateOrganizationSamlRole(organizationID string,
 */
 func (s *OrganizationsService) UpdateOrganization(organizationID string, requestOrganizationsUpdateOrganization *RequestOrganizationsUpdateOrganization) (*ResponseOrganizationsUpdateOrganization, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5833,6 +5930,7 @@ func (s *OrganizationsService) UpdateOrganization(organizationID string, request
 */
 func (s *OrganizationsService) UpdateOrganizationActionBatch(organizationID string, actionBatchID string, requestOrganizationsUpdateOrganizationActionBatch *RequestOrganizationsUpdateOrganizationActionBatch) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/actionBatches/{actionBatchId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{actionBatchId}", fmt.Sprintf("%v", actionBatchID), -1)
 
@@ -5864,6 +5962,7 @@ func (s *OrganizationsService) UpdateOrganizationActionBatch(organizationID stri
 */
 func (s *OrganizationsService) UpdateOrganizationAdaptivePolicyACL(organizationID string, aclID string, requestOrganizationsUpdateOrganizationAdaptivePolicyAcl *RequestOrganizationsUpdateOrganizationAdaptivePolicyACL) (*ResponseOrganizationsUpdateOrganizationAdaptivePolicyACL, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/acls/{aclId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{aclId}", fmt.Sprintf("%v", aclID), -1)
 
@@ -5897,6 +5996,7 @@ func (s *OrganizationsService) UpdateOrganizationAdaptivePolicyACL(organizationI
 */
 func (s *OrganizationsService) UpdateOrganizationAdaptivePolicyGroup(organizationID string, id string, requestOrganizationsUpdateOrganizationAdaptivePolicyGroup *RequestOrganizationsUpdateOrganizationAdaptivePolicyGroup) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/groups/{id}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
@@ -5928,6 +6028,7 @@ func (s *OrganizationsService) UpdateOrganizationAdaptivePolicyGroup(organizatio
 */
 func (s *OrganizationsService) UpdateOrganizationAdaptivePolicyPolicy(organizationID string, id string, requestOrganizationsUpdateOrganizationAdaptivePolicyPolicy *RequestOrganizationsUpdateOrganizationAdaptivePolicyPolicy) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/policies/{id}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
@@ -5958,6 +6059,7 @@ func (s *OrganizationsService) UpdateOrganizationAdaptivePolicyPolicy(organizati
 */
 func (s *OrganizationsService) UpdateOrganizationAdaptivePolicySettings(organizationID string, requestOrganizationsUpdateOrganizationAdaptivePolicySettings *RequestOrganizationsUpdateOrganizationAdaptivePolicySettings) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5988,6 +6090,7 @@ func (s *OrganizationsService) UpdateOrganizationAdaptivePolicySettings(organiza
 */
 func (s *OrganizationsService) UpdateOrganizationAdmin(organizationID string, adminID string, requestOrganizationsUpdateOrganizationAdmin *RequestOrganizationsUpdateOrganizationAdmin) (*ResponseOrganizationsUpdateOrganizationAdmin, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/admins/{adminId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{adminId}", fmt.Sprintf("%v", adminID), -1)
 
@@ -6021,6 +6124,7 @@ func (s *OrganizationsService) UpdateOrganizationAdmin(organizationID string, ad
 */
 func (s *OrganizationsService) UpdateOrganizationAlertsProfile(organizationID string, alertConfigID string, requestOrganizationsUpdateOrganizationAlertsProfile *RequestOrganizationsUpdateOrganizationAlertsProfile) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/alerts/profiles/{alertConfigId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{alertConfigId}", fmt.Sprintf("%v", alertConfigID), -1)
 
@@ -6051,6 +6155,7 @@ func (s *OrganizationsService) UpdateOrganizationAlertsProfile(organizationID st
 */
 func (s *OrganizationsService) UpdateOrganizationBrandingPoliciesPriorities(organizationID string, requestOrganizationsUpdateOrganizationBrandingPoliciesPriorities *RequestOrganizationsUpdateOrganizationBrandingPoliciesPriorities) (*ResponseOrganizationsUpdateOrganizationBrandingPoliciesPriorities, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/brandingPolicies/priorities"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -6083,6 +6188,7 @@ func (s *OrganizationsService) UpdateOrganizationBrandingPoliciesPriorities(orga
 */
 func (s *OrganizationsService) UpdateOrganizationBrandingPolicy(organizationID string, brandingPolicyID string, requestOrganizationsUpdateOrganizationBrandingPolicy *RequestOrganizationsUpdateOrganizationBrandingPolicy) (*ResponseOrganizationsUpdateOrganizationBrandingPolicy, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/brandingPolicies/{brandingPolicyId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{brandingPolicyId}", fmt.Sprintf("%v", brandingPolicyID), -1)
 
@@ -6116,6 +6222,7 @@ func (s *OrganizationsService) UpdateOrganizationBrandingPolicy(organizationID s
 */
 func (s *OrganizationsService) UpdateOrganizationConfigTemplate(organizationID string, configTemplateID string, requestOrganizationsUpdateOrganizationConfigTemplate *RequestOrganizationsUpdateOrganizationConfigTemplate) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configTemplates/{configTemplateId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{configTemplateId}", fmt.Sprintf("%v", configTemplateID), -1)
 
@@ -6147,6 +6254,7 @@ func (s *OrganizationsService) UpdateOrganizationConfigTemplate(organizationID s
 */
 func (s *OrganizationsService) UpdateOrganizationEarlyAccessFeaturesOptIn(organizationID string, optInID string, requestOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn *RequestOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{optInId}", fmt.Sprintf("%v", optInID), -1)
 
@@ -6178,6 +6286,7 @@ func (s *OrganizationsService) UpdateOrganizationEarlyAccessFeaturesOptIn(organi
 */
 func (s *OrganizationsService) UpdateOrganizationLicense(organizationID string, licenseID string, requestOrganizationsUpdateOrganizationLicense *RequestOrganizationsUpdateOrganizationLicense) (*ResponseOrganizationsUpdateOrganizationLicense, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licenses/{licenseId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{licenseId}", fmt.Sprintf("%v", licenseID), -1)
 
@@ -6210,6 +6319,7 @@ func (s *OrganizationsService) UpdateOrganizationLicense(organizationID string, 
 */
 func (s *OrganizationsService) UpdateOrganizationLoginSecurity(organizationID string, requestOrganizationsUpdateOrganizationLoginSecurity *RequestOrganizationsUpdateOrganizationLoginSecurity) (*ResponseOrganizationsUpdateOrganizationLoginSecurity, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/loginSecurity"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -6242,6 +6352,7 @@ func (s *OrganizationsService) UpdateOrganizationLoginSecurity(organizationID st
 */
 func (s *OrganizationsService) UpdateOrganizationPolicyObjectsGroup(organizationID string, policyObjectGroupID string, requestOrganizationsUpdateOrganizationPolicyObjectsGroup *RequestOrganizationsUpdateOrganizationPolicyObjectsGroup) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{policyObjectGroupId}", fmt.Sprintf("%v", policyObjectGroupID), -1)
 
@@ -6273,6 +6384,7 @@ func (s *OrganizationsService) UpdateOrganizationPolicyObjectsGroup(organization
 */
 func (s *OrganizationsService) UpdateOrganizationPolicyObject(organizationID string, policyObjectID string, requestOrganizationsUpdateOrganizationPolicyObject *RequestOrganizationsUpdateOrganizationPolicyObject) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects/{policyObjectId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{policyObjectId}", fmt.Sprintf("%v", policyObjectID), -1)
 
@@ -6303,6 +6415,7 @@ func (s *OrganizationsService) UpdateOrganizationPolicyObject(organizationID str
 */
 func (s *OrganizationsService) UpdateOrganizationSaml(organizationID string, requestOrganizationsUpdateOrganizationSaml *RequestOrganizationsUpdateOrganizationSaml) (*ResponseOrganizationsUpdateOrganizationSaml, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/saml"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -6335,6 +6448,7 @@ func (s *OrganizationsService) UpdateOrganizationSaml(organizationID string, req
 */
 func (s *OrganizationsService) UpdateOrganizationSamlIDp(organizationID string, idpID string, requestOrganizationsUpdateOrganizationSamlIdp *RequestOrganizationsUpdateOrganizationSamlIDp) (*ResponseOrganizationsUpdateOrganizationSamlIDp, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/saml/idps/{idpId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{idpId}", fmt.Sprintf("%v", idpID), -1)
 
@@ -6368,6 +6482,7 @@ func (s *OrganizationsService) UpdateOrganizationSamlIDp(organizationID string, 
 */
 func (s *OrganizationsService) UpdateOrganizationSamlRole(organizationID string, samlRoleID string, requestOrganizationsUpdateOrganizationSamlRole *RequestOrganizationsUpdateOrganizationSamlRole) (*ResponseOrganizationsUpdateOrganizationSamlRole, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/samlRoles/{samlRoleId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{samlRoleId}", fmt.Sprintf("%v", samlRoleID), -1)
 
@@ -6400,6 +6515,7 @@ func (s *OrganizationsService) UpdateOrganizationSamlRole(organizationID string,
 */
 func (s *OrganizationsService) UpdateOrganizationSNMP(organizationID string, requestOrganizationsUpdateOrganizationSnmp *RequestOrganizationsUpdateOrganizationSNMP) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/snmp"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -6432,6 +6548,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *OrganizationsService) DeleteOrganization(organizationID string) (*resty.Response, error) {
 	//organizationID string
 	path := "/api/v1/organizations/{organizationId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -6464,6 +6581,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *OrganizationsService) DeleteOrganizationActionBatch(organizationID string, actionBatchID string) (*resty.Response, error) {
 	//organizationID string,actionBatchID string
 	path := "/api/v1/organizations/{organizationId}/actionBatches/{actionBatchId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{actionBatchId}", fmt.Sprintf("%v", actionBatchID), -1)
 
@@ -6497,6 +6615,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *OrganizationsService) DeleteOrganizationAdaptivePolicyACL(organizationID string, aclID string) (*resty.Response, error) {
 	//organizationID string,aclID string
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/acls/{aclId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{aclId}", fmt.Sprintf("%v", aclID), -1)
 
@@ -6530,6 +6649,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *OrganizationsService) DeleteOrganizationAdaptivePolicyGroup(organizationID string, id string) (*resty.Response, error) {
 	//organizationID string,id string
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/groups/{id}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
@@ -6563,6 +6683,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *OrganizationsService) DeleteOrganizationAdaptivePolicyPolicy(organizationID string, id string) (*resty.Response, error) {
 	//organizationID string,id string
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/policies/{id}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
@@ -6596,6 +6717,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *OrganizationsService) DeleteOrganizationAdmin(organizationID string, adminID string) (*resty.Response, error) {
 	//organizationID string,adminID string
 	path := "/api/v1/organizations/{organizationId}/admins/{adminId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{adminId}", fmt.Sprintf("%v", adminID), -1)
 
@@ -6629,6 +6751,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *OrganizationsService) DeleteOrganizationAlertsProfile(organizationID string, alertConfigID string) (*resty.Response, error) {
 	//organizationID string,alertConfigID string
 	path := "/api/v1/organizations/{organizationId}/alerts/profiles/{alertConfigId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{alertConfigId}", fmt.Sprintf("%v", alertConfigID), -1)
 
@@ -6662,6 +6785,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *OrganizationsService) DeleteOrganizationBrandingPolicy(organizationID string, brandingPolicyID string) (*resty.Response, error) {
 	//organizationID string,brandingPolicyID string
 	path := "/api/v1/organizations/{organizationId}/brandingPolicies/{brandingPolicyId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{brandingPolicyId}", fmt.Sprintf("%v", brandingPolicyID), -1)
 
@@ -6695,6 +6819,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *OrganizationsService) DeleteOrganizationConfigTemplate(organizationID string, configTemplateID string) (*resty.Response, error) {
 	//organizationID string,configTemplateID string
 	path := "/api/v1/organizations/{organizationId}/configTemplates/{configTemplateId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{configTemplateId}", fmt.Sprintf("%v", configTemplateID), -1)
 
@@ -6728,6 +6853,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *OrganizationsService) DeleteOrganizationEarlyAccessFeaturesOptIn(organizationID string, optInID string) (*resty.Response, error) {
 	//organizationID string,optInID string
 	path := "/api/v1/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{optInId}", fmt.Sprintf("%v", optInID), -1)
 
@@ -6761,6 +6887,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *OrganizationsService) DeleteOrganizationPolicyObjectsGroup(organizationID string, policyObjectGroupID string) (*resty.Response, error) {
 	//organizationID string,policyObjectGroupID string
 	path := "/api/v1/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{policyObjectGroupId}", fmt.Sprintf("%v", policyObjectGroupID), -1)
 
@@ -6794,6 +6921,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *OrganizationsService) DeleteOrganizationPolicyObject(organizationID string, policyObjectID string) (*resty.Response, error) {
 	//organizationID string,policyObjectID string
 	path := "/api/v1/organizations/{organizationId}/policyObjects/{policyObjectId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{policyObjectId}", fmt.Sprintf("%v", policyObjectID), -1)
 
@@ -6827,6 +6955,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *OrganizationsService) DeleteOrganizationSamlIDp(organizationID string, idpID string) (*resty.Response, error) {
 	//organizationID string,idpID string
 	path := "/api/v1/organizations/{organizationId}/saml/idps/{idpId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{idpId}", fmt.Sprintf("%v", idpID), -1)
 
@@ -6860,6 +6989,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *OrganizationsService) DeleteOrganizationSamlRole(organizationID string, samlRoleID string) (*resty.Response, error) {
 	//organizationID string,samlRoleID string
 	path := "/api/v1/organizations/{organizationId}/samlRoles/{samlRoleId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{samlRoleId}", fmt.Sprintf("%v", samlRoleID), -1)
 
@@ -6893,6 +7023,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organiz
 func (s *OrganizationsService) DeleteOrganizationUser(organizationID string, userID string) (*resty.Response, error) {
 	//organizationID string,userID string
 	path := "/api/v1/organizations/{organizationId}/users/{userId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{userId}", fmt.Sprintf("%v", userID), -1)
 
