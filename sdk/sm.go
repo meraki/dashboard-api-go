@@ -452,10 +452,11 @@ type RequestSmUpdateNetworkSmTargetGroup struct {
 @param networkID networkId path parameter. Network ID
 @param attemptID attemptId path parameter. Attempt ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-bypass-activation-lock-attempt
+
 */
 func (s *SmService) GetNetworkSmBypassActivationLockAttempt(networkID string, attemptID string) (*ResponseSmGetNetworkSmBypassActivationLockAttempt, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/bypassActivationLockAttempts/{attemptId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{attemptId}", fmt.Sprintf("%v", attemptID), -1)
 
@@ -486,10 +487,11 @@ func (s *SmService) GetNetworkSmBypassActivationLockAttempt(networkID string, at
 @param networkID networkId path parameter. Network ID
 @param getNetworkSmDevicesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-devices
+
 */
 func (s *SmService) GetNetworkSmDevices(networkID string, getNetworkSmDevicesQueryParams *GetNetworkSmDevicesQueryParams) (*ResponseSmGetNetworkSmDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSmDevicesQueryParams)
@@ -521,10 +523,11 @@ func (s *SmService) GetNetworkSmDevices(networkID string, getNetworkSmDevicesQue
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-cellular-usage-history
+
 */
 func (s *SmService) GetNetworkSmDeviceCellularUsageHistory(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceCellularUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/cellularUsageHistory"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -555,10 +558,11 @@ func (s *SmService) GetNetworkSmDeviceCellularUsageHistory(networkID string, dev
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-certs
+
 */
 func (s *SmService) GetNetworkSmDeviceCerts(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceCerts, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/certs"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -590,10 +594,11 @@ func (s *SmService) GetNetworkSmDeviceCerts(networkID string, deviceID string) (
 @param deviceID deviceId path parameter. Device ID
 @param getNetworkSmDeviceConnectivityQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-connectivity
+
 */
 func (s *SmService) GetNetworkSmDeviceConnectivity(networkID string, deviceID string, getNetworkSmDeviceConnectivityQueryParams *GetNetworkSmDeviceConnectivityQueryParams) (*ResponseSmGetNetworkSmDeviceConnectivity, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/connectivity"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -627,10 +632,11 @@ func (s *SmService) GetNetworkSmDeviceConnectivity(networkID string, deviceID st
 @param deviceID deviceId path parameter. Device ID
 @param getNetworkSmDeviceDesktopLogsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-desktop-logs
+
 */
 func (s *SmService) GetNetworkSmDeviceDesktopLogs(networkID string, deviceID string, getNetworkSmDeviceDesktopLogsQueryParams *GetNetworkSmDeviceDesktopLogsQueryParams) (*ResponseSmGetNetworkSmDeviceDesktopLogs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/desktopLogs"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -664,10 +670,11 @@ func (s *SmService) GetNetworkSmDeviceDesktopLogs(networkID string, deviceID str
 @param deviceID deviceId path parameter. Device ID
 @param getNetworkSmDeviceDeviceCommandLogsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-device-command-logs
+
 */
 func (s *SmService) GetNetworkSmDeviceDeviceCommandLogs(networkID string, deviceID string, getNetworkSmDeviceDeviceCommandLogsQueryParams *GetNetworkSmDeviceDeviceCommandLogsQueryParams) (*ResponseSmGetNetworkSmDeviceDeviceCommandLogs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/deviceCommandLogs"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -700,10 +707,11 @@ func (s *SmService) GetNetworkSmDeviceDeviceCommandLogs(networkID string, device
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-device-profiles
+
 */
 func (s *SmService) GetNetworkSmDeviceDeviceProfiles(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceDeviceProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/deviceProfiles"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -734,10 +742,11 @@ func (s *SmService) GetNetworkSmDeviceDeviceProfiles(networkID string, deviceID 
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-network-adapters
+
 */
 func (s *SmService) GetNetworkSmDeviceNetworkAdapters(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceNetworkAdapters, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/networkAdapters"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -769,10 +778,11 @@ func (s *SmService) GetNetworkSmDeviceNetworkAdapters(networkID string, deviceID
 @param deviceID deviceId path parameter. Device ID
 @param getNetworkSmDevicePerformanceHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-performance-history
+
 */
 func (s *SmService) GetNetworkSmDevicePerformanceHistory(networkID string, deviceID string, getNetworkSmDevicePerformanceHistoryQueryParams *GetNetworkSmDevicePerformanceHistoryQueryParams) (*ResponseSmGetNetworkSmDevicePerformanceHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/performanceHistory"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -805,10 +815,11 @@ func (s *SmService) GetNetworkSmDevicePerformanceHistory(networkID string, devic
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-restrictions
+
 */
 func (s *SmService) GetNetworkSmDeviceRestrictions(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceRestrictions, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/restrictions"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -839,10 +850,11 @@ func (s *SmService) GetNetworkSmDeviceRestrictions(networkID string, deviceID st
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-security-centers
+
 */
 func (s *SmService) GetNetworkSmDeviceSecurityCenters(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceSecurityCenters, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/securityCenters"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -873,10 +885,11 @@ func (s *SmService) GetNetworkSmDeviceSecurityCenters(networkID string, deviceID
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-softwares
+
 */
 func (s *SmService) GetNetworkSmDeviceSoftwares(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceSoftwares, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/softwares"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -907,10 +920,11 @@ func (s *SmService) GetNetworkSmDeviceSoftwares(networkID string, deviceID strin
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-wlan-lists
+
 */
 func (s *SmService) GetNetworkSmDeviceWLANLists(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceWLANLists, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/wlanLists"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -940,10 +954,11 @@ func (s *SmService) GetNetworkSmDeviceWLANLists(networkID string, deviceID strin
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-profiles
+
 */
 func (s *SmService) GetNetworkSmProfiles(networkID string) (*ResponseSmGetNetworkSmProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/profiles"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -973,10 +988,11 @@ func (s *SmService) GetNetworkSmProfiles(networkID string) (*ResponseSmGetNetwor
 @param networkID networkId path parameter. Network ID
 @param getNetworkSmTargetGroupsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-target-groups
+
 */
 func (s *SmService) GetNetworkSmTargetGroups(networkID string, getNetworkSmTargetGroupsQueryParams *GetNetworkSmTargetGroupsQueryParams) (*ResponseSmGetNetworkSmTargetGroups, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/targetGroups"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSmTargetGroupsQueryParams)
@@ -1009,10 +1025,11 @@ func (s *SmService) GetNetworkSmTargetGroups(networkID string, getNetworkSmTarge
 @param targetGroupID targetGroupId path parameter. Target group ID
 @param getNetworkSmTargetGroupQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-target-group
+
 */
 func (s *SmService) GetNetworkSmTargetGroup(networkID string, targetGroupID string, getNetworkSmTargetGroupQueryParams *GetNetworkSmTargetGroupQueryParams) (*ResponseSmGetNetworkSmTargetGroup, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/targetGroups/{targetGroupId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{targetGroupId}", fmt.Sprintf("%v", targetGroupID), -1)
 
@@ -1045,10 +1062,11 @@ func (s *SmService) GetNetworkSmTargetGroup(networkID string, targetGroupID stri
 @param networkID networkId path parameter. Network ID
 @param getNetworkSmTrustedAccessConfigsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-trusted-access-configs
+
 */
 func (s *SmService) GetNetworkSmTrustedAccessConfigs(networkID string, getNetworkSmTrustedAccessConfigsQueryParams *GetNetworkSmTrustedAccessConfigsQueryParams) (*ResponseSmGetNetworkSmTrustedAccessConfigs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/trustedAccessConfigs"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSmTrustedAccessConfigsQueryParams)
@@ -1080,10 +1098,11 @@ func (s *SmService) GetNetworkSmTrustedAccessConfigs(networkID string, getNetwor
 @param networkID networkId path parameter. Network ID
 @param getNetworkSmUserAccessDevicesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-user-access-devices
+
 */
 func (s *SmService) GetNetworkSmUserAccessDevices(networkID string, getNetworkSmUserAccessDevicesQueryParams *GetNetworkSmUserAccessDevicesQueryParams) (*ResponseSmGetNetworkSmUserAccessDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/userAccessDevices"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSmUserAccessDevicesQueryParams)
@@ -1115,10 +1134,11 @@ func (s *SmService) GetNetworkSmUserAccessDevices(networkID string, getNetworkSm
 @param networkID networkId path parameter. Network ID
 @param getNetworkSmUsersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-users
+
 */
 func (s *SmService) GetNetworkSmUsers(networkID string, getNetworkSmUsersQueryParams *GetNetworkSmUsersQueryParams) (*ResponseSmGetNetworkSmUsers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/users"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSmUsersQueryParams)
@@ -1150,10 +1170,11 @@ func (s *SmService) GetNetworkSmUsers(networkID string, getNetworkSmUsersQueryPa
 @param networkID networkId path parameter. Network ID
 @param userID userId path parameter. User ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-user-device-profiles
+
 */
 func (s *SmService) GetNetworkSmUserDeviceProfiles(networkID string, userID string) (*ResponseSmGetNetworkSmUserDeviceProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/users/{userId}/deviceProfiles"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{userId}", fmt.Sprintf("%v", userID), -1)
 
@@ -1184,10 +1205,11 @@ func (s *SmService) GetNetworkSmUserDeviceProfiles(networkID string, userID stri
 @param networkID networkId path parameter. Network ID
 @param userID userId path parameter. User ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-user-softwares
+
 */
 func (s *SmService) GetNetworkSmUserSoftwares(networkID string, userID string) (*ResponseSmGetNetworkSmUserSoftwares, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/users/{userId}/softwares"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{userId}", fmt.Sprintf("%v", userID), -1)
 
@@ -1217,10 +1239,11 @@ func (s *SmService) GetNetworkSmUserSoftwares(networkID string, userID string) (
 
 @param organizationID organizationId path parameter. Organization ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-sm-apns-cert
+
 */
 func (s *SmService) GetOrganizationSmApnsCert(organizationID string) (*ResponseSmGetOrganizationSmApnsCert, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sm/apnsCert"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -1249,10 +1272,11 @@ func (s *SmService) GetOrganizationSmApnsCert(organizationID string) (*ResponseS
 
 @param organizationID organizationId path parameter. Organization ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-sm-vpp-accounts
+
 */
 func (s *SmService) GetOrganizationSmVppAccounts(organizationID string) (*ResponseSmGetOrganizationSmVppAccounts, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sm/vppAccounts"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -1282,10 +1306,11 @@ func (s *SmService) GetOrganizationSmVppAccounts(organizationID string) (*Respon
 @param organizationID organizationId path parameter. Organization ID
 @param vppAccountID vppAccountId path parameter. Vpp account ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-sm-vpp-account
+
 */
 func (s *SmService) GetOrganizationSmVppAccount(organizationID string, vppAccountID string) (*ResponseSmGetOrganizationSmVppAccount, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sm/vppAccounts/{vppAccountId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{vppAccountId}", fmt.Sprintf("%v", vppAccountID), -1)
 
@@ -1315,11 +1340,12 @@ func (s *SmService) GetOrganizationSmVppAccount(organizationID string, vppAccoun
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-sm-bypass-activation-lock-attempt
+
 */
 
 func (s *SmService) CreateNetworkSmBypassActivationLockAttempt(networkID string, requestSmCreateNetworkSmBypassActivationLockAttempt *RequestSmCreateNetworkSmBypassActivationLockAttempt) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/bypassActivationLockAttempts"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -1348,11 +1374,12 @@ func (s *SmService) CreateNetworkSmBypassActivationLockAttempt(networkID string,
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!checkin-network-sm-devices
+
 */
 
 func (s *SmService) CheckinNetworkSmDevices(networkID string, requestSmCheckinNetworkSmDevices *RequestSmCheckinNetworkSmDevices) (*ResponseSmCheckinNetworkSmDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/checkin"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -1382,11 +1409,12 @@ func (s *SmService) CheckinNetworkSmDevices(networkID string, requestSmCheckinNe
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!lock-network-sm-devices
+
 */
 
 func (s *SmService) LockNetworkSmDevices(networkID string, requestSmLockNetworkSmDevices *RequestSmLockNetworkSmDevices) (*ResponseSmLockNetworkSmDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/lock"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -1416,11 +1444,12 @@ func (s *SmService) LockNetworkSmDevices(networkID string, requestSmLockNetworkS
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!modify-network-sm-devices-tags
+
 */
 
 func (s *SmService) ModifyNetworkSmDevicesTags(networkID string, requestSmModifyNetworkSmDevicesTags *RequestSmModifyNetworkSmDevicesTags) (*ResponseSmModifyNetworkSmDevicesTags, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/modifyTags"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -1450,11 +1479,12 @@ func (s *SmService) ModifyNetworkSmDevicesTags(networkID string, requestSmModify
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!move-network-sm-devices
+
 */
 
 func (s *SmService) MoveNetworkSmDevices(networkID string, requestSmMoveNetworkSmDevices *RequestSmMoveNetworkSmDevices) (*ResponseSmMoveNetworkSmDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/move"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -1484,11 +1514,12 @@ func (s *SmService) MoveNetworkSmDevices(networkID string, requestSmMoveNetworkS
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!wipe-network-sm-devices
+
 */
 
 func (s *SmService) WipeNetworkSmDevices(networkID string, requestSmWipeNetworkSmDevices *RequestSmWipeNetworkSmDevices) (*ResponseSmWipeNetworkSmDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/wipe"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -1519,11 +1550,12 @@ func (s *SmService) WipeNetworkSmDevices(networkID string, requestSmWipeNetworkS
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!refresh-network-sm-device-details
+
 */
 
 func (s *SmService) RefreshNetworkSmDeviceDetails(networkID string, deviceID string) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/refreshDetails"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -1552,11 +1584,12 @@ func (s *SmService) RefreshNetworkSmDeviceDetails(networkID string, deviceID str
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!unenroll-network-sm-device
+
 */
 
 func (s *SmService) UnenrollNetworkSmDevice(networkID string, deviceID string) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/unenroll"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -1586,11 +1619,12 @@ func (s *SmService) UnenrollNetworkSmDevice(networkID string, deviceID string) (
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-sm-target-group
+
 */
 
 func (s *SmService) CreateNetworkSmTargetGroup(networkID string, requestSmCreateNetworkSmTargetGroup *RequestSmCreateNetworkSmTargetGroup) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/targetGroups"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -1621,6 +1655,7 @@ func (s *SmService) CreateNetworkSmTargetGroup(networkID string, requestSmCreate
 */
 func (s *SmService) UpdateNetworkSmDevicesFields(networkID string, requestSmUpdateNetworkSmDevicesFields *RequestSmUpdateNetworkSmDevicesFields) (*ResponseSmUpdateNetworkSmDevicesFields, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/fields"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -1653,6 +1688,7 @@ func (s *SmService) UpdateNetworkSmDevicesFields(networkID string, requestSmUpda
 */
 func (s *SmService) UpdateNetworkSmTargetGroup(networkID string, targetGroupID string, requestSmUpdateNetworkSmTargetGroup *RequestSmUpdateNetworkSmTargetGroup) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/targetGroups/{targetGroupId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{targetGroupId}", fmt.Sprintf("%v", targetGroupID), -1)
 
@@ -1682,11 +1718,12 @@ func (s *SmService) UpdateNetworkSmTargetGroup(networkID string, targetGroupID s
 @param networkID networkId path parameter. Network ID
 @param targetGroupID targetGroupId path parameter. Target group ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-sm-target-group
+
 */
 func (s *SmService) DeleteNetworkSmTargetGroup(networkID string, targetGroupID string) (*resty.Response, error) {
 	//networkID string,targetGroupID string
 	path := "/api/v1/networks/{networkId}/sm/targetGroups/{targetGroupId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{targetGroupId}", fmt.Sprintf("%v", targetGroupID), -1)
 
@@ -1715,11 +1752,12 @@ func (s *SmService) DeleteNetworkSmTargetGroup(networkID string, targetGroupID s
 @param networkID networkId path parameter. Network ID
 @param userAccessDeviceID userAccessDeviceId path parameter. User access device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-sm-user-access-device
+
 */
 func (s *SmService) DeleteNetworkSmUserAccessDevice(networkID string, userAccessDeviceID string) (*resty.Response, error) {
 	//networkID string,userAccessDeviceID string
 	path := "/api/v1/networks/{networkId}/sm/userAccessDevices/{userAccessDeviceId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{userAccessDeviceId}", fmt.Sprintf("%v", userAccessDeviceID), -1)
 
