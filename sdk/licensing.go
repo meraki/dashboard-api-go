@@ -109,11 +109,10 @@ type RequestLicensingMoveOrganizationLicensingCotermLicensesLicensesCounts struc
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationLicensingCotermLicensesQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-licensing-coterm-licenses
 */
 func (s *LicensingService) GetOrganizationLicensingCotermLicenses(organizationID string, getOrganizationLicensingCotermLicensesQueryParams *GetOrganizationLicensingCotermLicensesQueryParams) (*ResponseLicensingGetOrganizationLicensingCotermLicenses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licensing/coterm/licenses"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationLicensingCotermLicensesQueryParams)
@@ -144,12 +143,11 @@ func (s *LicensingService) GetOrganizationLicensingCotermLicenses(organizationID
 
 @param organizationID organizationId path parameter. Organization ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!move-organization-licensing-coterm-licenses
 */
 
 func (s *LicensingService) MoveOrganizationLicensingCotermLicenses(organizationID string, requestLicensingMoveOrganizationLicensingCotermLicenses *RequestLicensingMoveOrganizationLicensingCotermLicenses) (*ResponseLicensingMoveOrganizationLicensingCotermLicenses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licensing/coterm/licenses/move"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
