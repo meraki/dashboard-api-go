@@ -1,6 +1,7 @@
 package meraki
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"strings"
@@ -418,10 +419,47 @@ type ResponseApplianceGetNetworkApplianceFirewallL7FirewallRules struct {
 	Rules *[]ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRules `json:"rules,omitempty"` //
 }
 type ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRules struct {
-	Policy string `json:"policy,omitempty"` //
-	Type   string `json:"type,omitempty"`   //
-	Value  string `json:"value,omitempty"`  //
+	Policy    string                                                                    `json:"policy,omitempty"` //
+	Type      string                                                                    `json:"type,omitempty"`   //
+	Value     *string                                                                   //
+	ValueObj  *ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj //
+	ValueList *[]string                                                                 //
 }
+type ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj struct {
+	ID   string `json:"id,omitempty"`   //
+	Name string `json:"name,omitempty"` //
+}
+
+func (r *ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRules) UnmarshalJSON(data []byte) error {
+	type Alias ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRules
+	aux := &struct {
+		Value interface{} `json:"value"`
+		*Alias
+	}{
+		Alias: (*Alias)(r),
+	}
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+	switch v := aux.Value.(type) {
+	case string:
+		r.Value = &v
+	case []interface{}:
+		strList := make([]string, len(v))
+		for i, item := range v {
+			strList[i] = item.(string)
+		}
+		r.ValueList = &strList
+	case map[string]interface{}:
+		valueObj := &ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj{
+			ID:   v["id"].(string),
+			Name: v["name"].(string),
+		}
+		r.ValueObj = valueObj
+	}
+	return nil
+}
+
 type ResponseApplianceUpdateNetworkApplianceFirewallL7FirewallRules interface{}
 type ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategories struct {
 	ApplicationCategories *[]ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesApplicationCategories `json:"applicationCategories,omitempty"` //
@@ -1597,9 +1635,13 @@ type RequestApplianceUpdateNetworkApplianceFirewallL7FirewallRules struct {
 	Rules *[]RequestApplianceUpdateNetworkApplianceFirewallL7FirewallRulesRules `json:"rules,omitempty"` // An ordered array of the MX L7 firewall rules
 }
 type RequestApplianceUpdateNetworkApplianceFirewallL7FirewallRulesRules struct {
-	Policy string `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
-	Type   string `json:"type,omitempty"`   // Type of the L7 rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
-	Value  string `json:"value,omitempty"`  // The 'value' of what you want to block. Format of 'value' varies depending on type of the rule. The application categories and application ids can be retrieved from the the 'MX L7 application categories' endpoint. The countries follow the two-letter ISO 3166-1 alpha-2 format.
+	Policy string      `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
+	Type   string      `json:"type,omitempty"`   // Type of the L7 rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
+	Value  interface{} `json:"value,omitempty"`  // The 'value' of what you want to block. Format of 'value' varies depending on type of the rule. The application categories and application ids can be retrieved from the the 'MX L7 application categories' endpoint. The countries follow the two-letter ISO 3166-1 alpha-2 format.
+}
+type RequestApplianceUpdateNetworkApplianceFirewallL7FirewallRulesRulesValue struct {
+	ID   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 }
 type RequestApplianceUpdateNetworkApplianceFirewallOneToManyNatRules struct {
 	Rules *[]RequestApplianceUpdateNetworkApplianceFirewallOneToManyNatRulesRules `json:"rules,omitempty"` // An array of 1:Many nat rules
@@ -2092,10 +2134,11 @@ type RequestApplianceUpdateOrganizationApplianceVpnVpnFirewallRulesRules struct 
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-appliance-dhcp-subnets
+
 */
 func (s *ApplianceService) GetDeviceApplianceDhcpSubnets(serial string) (*ResponseApplianceGetDeviceApplianceDhcpSubnets, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/dhcp/subnets"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -2124,10 +2167,11 @@ func (s *ApplianceService) GetDeviceApplianceDhcpSubnets(serial string) (*Respon
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-appliance-performance
+
 */
 func (s *ApplianceService) GetDeviceAppliancePerformance(serial string) (*ResponseApplianceGetDeviceAppliancePerformance, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/performance"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -2156,10 +2200,11 @@ func (s *ApplianceService) GetDeviceAppliancePerformance(serial string) (*Respon
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-appliance-prefixes-delegated
+
 */
 func (s *ApplianceService) GetDeviceAppliancePrefixesDelegated(serial string) (*ResponseApplianceGetDeviceAppliancePrefixesDelegated, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/prefixes/delegated"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -2188,10 +2233,11 @@ func (s *ApplianceService) GetDeviceAppliancePrefixesDelegated(serial string) (*
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-appliance-prefixes-delegated-vlan-assignments
+
 */
 func (s *ApplianceService) GetDeviceAppliancePrefixesDelegatedVLANAssignments(serial string) (*ResponseApplianceGetDeviceAppliancePrefixesDelegatedVLANAssignments, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/prefixes/delegated/vlanAssignments"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -2220,10 +2266,11 @@ func (s *ApplianceService) GetDeviceAppliancePrefixesDelegatedVLANAssignments(se
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-appliance-uplinks-settings
+
 */
 func (s *ApplianceService) GetDeviceApplianceUplinksSettings(serial string) (*ResponseApplianceGetDeviceApplianceUplinksSettings, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/uplinks/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -2254,10 +2301,11 @@ func (s *ApplianceService) GetDeviceApplianceUplinksSettings(serial string) (*Re
 @param clientID clientId path parameter. Client ID
 @param getNetworkApplianceClientSecurityEventsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-client-security-events
+
 */
 func (s *ApplianceService) GetNetworkApplianceClientSecurityEvents(networkID string, clientID string, getNetworkApplianceClientSecurityEventsQueryParams *GetNetworkApplianceClientSecurityEventsQueryParams) (*ResponseApplianceGetNetworkApplianceClientSecurityEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/clients/{clientId}/security/events"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
@@ -2289,10 +2337,11 @@ func (s *ApplianceService) GetNetworkApplianceClientSecurityEvents(networkID str
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-connectivity-monitoring-destinations
+
 */
 func (s *ApplianceService) GetNetworkApplianceConnectivityMonitoringDestinations(networkID string) (*ResponseApplianceGetNetworkApplianceConnectivityMonitoringDestinations, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/connectivityMonitoringDestinations"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2321,10 +2370,11 @@ func (s *ApplianceService) GetNetworkApplianceConnectivityMonitoringDestinations
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-content-filtering
+
 */
 func (s *ApplianceService) GetNetworkApplianceContentFiltering(networkID string) (*ResponseApplianceGetNetworkApplianceContentFiltering, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/contentFiltering"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2353,10 +2403,11 @@ func (s *ApplianceService) GetNetworkApplianceContentFiltering(networkID string)
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-content-filtering-categories
+
 */
 func (s *ApplianceService) GetNetworkApplianceContentFilteringCategories(networkID string) (*ResponseApplianceGetNetworkApplianceContentFilteringCategories, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/contentFiltering/categories"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2385,10 +2436,11 @@ func (s *ApplianceService) GetNetworkApplianceContentFilteringCategories(network
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-cellular-firewall-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallCellularFirewallRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallCellularFirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/cellularFirewallRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2417,10 +2469,11 @@ func (s *ApplianceService) GetNetworkApplianceFirewallCellularFirewallRules(netw
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-firewalled-services
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledServices(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallFirewalledServices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/firewalledServices"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2450,10 +2503,11 @@ func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledServices(network
 @param networkID networkId path parameter. Network ID
 @param service service path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-firewalled-service
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledService(networkID string, service string) (*ResponseApplianceGetNetworkApplianceFirewallFirewalledService, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/firewalledServices/{service}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{service}", fmt.Sprintf("%v", service), -1)
 
@@ -2483,10 +2537,11 @@ func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledService(networkI
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-inbound-cellular-firewall-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallInboundCellularFirewallRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallInboundCellularFirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/inboundCellularFirewallRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2515,10 +2570,11 @@ func (s *ApplianceService) GetNetworkApplianceFirewallInboundCellularFirewallRul
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-inbound-firewall-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallInboundFirewallRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallInboundFirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/inboundFirewallRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2547,10 +2603,11 @@ func (s *ApplianceService) GetNetworkApplianceFirewallInboundFirewallRules(netwo
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-l3-firewall-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallL3FirewallRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallL3FirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/l3FirewallRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2579,10 +2636,11 @@ func (s *ApplianceService) GetNetworkApplianceFirewallL3FirewallRules(networkID 
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-l7-firewall-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallL7FirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/l7FirewallRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2611,10 +2669,11 @@ func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRules(networkID 
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-l7-firewall-rules-application-categories
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategories, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/l7FirewallRules/applicationCategories"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2643,10 +2702,11 @@ func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRulesApplication
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-one-to-many-nat-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallOneToManyNatRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallOneToManyNatRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/oneToManyNatRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2675,10 +2735,11 @@ func (s *ApplianceService) GetNetworkApplianceFirewallOneToManyNatRules(networkI
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-one-to-one-nat-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallOneToOneNatRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallOneToOneNatRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/oneToOneNatRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2707,10 +2768,11 @@ func (s *ApplianceService) GetNetworkApplianceFirewallOneToOneNatRules(networkID
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-port-forwarding-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallPortForwardingRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallPortForwardingRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/portForwardingRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2739,10 +2801,11 @@ func (s *ApplianceService) GetNetworkApplianceFirewallPortForwardingRules(networ
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-settings
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallSettings(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2771,10 +2834,11 @@ func (s *ApplianceService) GetNetworkApplianceFirewallSettings(networkID string)
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-ports
+
 */
 func (s *ApplianceService) GetNetworkAppliancePorts(networkID string) (*ResponseApplianceGetNetworkAppliancePorts, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/ports"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2804,10 +2868,11 @@ func (s *ApplianceService) GetNetworkAppliancePorts(networkID string) (*Response
 @param networkID networkId path parameter. Network ID
 @param portID portId path parameter. Port ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-port
+
 */
 func (s *ApplianceService) GetNetworkAppliancePort(networkID string, portID string) (*ResponseApplianceGetNetworkAppliancePort, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/ports/{portId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{portId}", fmt.Sprintf("%v", portID), -1)
 
@@ -2837,10 +2902,11 @@ func (s *ApplianceService) GetNetworkAppliancePort(networkID string, portID stri
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-prefixes-delegated-statics
+
 */
 func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatics(networkID string) (*ResponseApplianceGetNetworkAppliancePrefixesDelegatedStatics, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/prefixes/delegated/statics"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2870,10 +2936,11 @@ func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatics(networkID
 @param networkID networkId path parameter. Network ID
 @param staticDelegatedPrefixID staticDelegatedPrefixId path parameter. Static delegated prefix ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-prefixes-delegated-static
+
 */
 func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatic(networkID string, staticDelegatedPrefixID string) (*ResponseApplianceGetNetworkAppliancePrefixesDelegatedStatic, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{staticDelegatedPrefixId}", fmt.Sprintf("%v", staticDelegatedPrefixID), -1)
 
@@ -2904,10 +2971,11 @@ func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatic(networkID 
 @param networkID networkId path parameter. Network ID
 @param getNetworkApplianceSecurityEventsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-security-events
+
 */
 func (s *ApplianceService) GetNetworkApplianceSecurityEvents(networkID string, getNetworkApplianceSecurityEventsQueryParams *GetNetworkApplianceSecurityEventsQueryParams) (*ResponseApplianceGetNetworkApplianceSecurityEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/security/events"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkApplianceSecurityEventsQueryParams)
@@ -2938,10 +3006,11 @@ func (s *ApplianceService) GetNetworkApplianceSecurityEvents(networkID string, g
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-security-intrusion
+
 */
 func (s *ApplianceService) GetNetworkApplianceSecurityIntrusion(networkID string) (*ResponseApplianceGetNetworkApplianceSecurityIntrusion, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/security/intrusion"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2970,10 +3039,11 @@ func (s *ApplianceService) GetNetworkApplianceSecurityIntrusion(networkID string
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-security-malware
+
 */
 func (s *ApplianceService) GetNetworkApplianceSecurityMalware(networkID string) (*ResponseApplianceGetNetworkApplianceSecurityMalware, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/security/malware"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3002,10 +3072,11 @@ func (s *ApplianceService) GetNetworkApplianceSecurityMalware(networkID string) 
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-settings
+
 */
 func (s *ApplianceService) GetNetworkApplianceSettings(networkID string) (*ResponseApplianceGetNetworkApplianceSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3034,10 +3105,11 @@ func (s *ApplianceService) GetNetworkApplianceSettings(networkID string) (*Respo
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-single-lan
+
 */
 func (s *ApplianceService) GetNetworkApplianceSingleLan(networkID string) (*ResponseApplianceGetNetworkApplianceSingleLan, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/singleLan"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3066,10 +3138,11 @@ func (s *ApplianceService) GetNetworkApplianceSingleLan(networkID string) (*Resp
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-ssids
+
 */
 func (s *ApplianceService) GetNetworkApplianceSSIDs(networkID string) (*ResponseApplianceGetNetworkApplianceSSIDs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/ssids"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3099,10 +3172,11 @@ func (s *ApplianceService) GetNetworkApplianceSSIDs(networkID string) (*Response
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-ssid
+
 */
 func (s *ApplianceService) GetNetworkApplianceSSID(networkID string, number string) (*ResponseApplianceGetNetworkApplianceSSID, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/ssids/{number}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
@@ -3132,10 +3206,11 @@ func (s *ApplianceService) GetNetworkApplianceSSID(networkID string, number stri
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-static-routes
+
 */
 func (s *ApplianceService) GetNetworkApplianceStaticRoutes(networkID string) (*ResponseApplianceGetNetworkApplianceStaticRoutes, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/staticRoutes"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3165,10 +3240,11 @@ func (s *ApplianceService) GetNetworkApplianceStaticRoutes(networkID string) (*R
 @param networkID networkId path parameter. Network ID
 @param staticRouteID staticRouteId path parameter. Static route ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-static-route
+
 */
 func (s *ApplianceService) GetNetworkApplianceStaticRoute(networkID string, staticRouteID string) (*ResponseApplianceGetNetworkApplianceStaticRoute, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/staticRoutes/{staticRouteId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
 
@@ -3198,10 +3274,11 @@ func (s *ApplianceService) GetNetworkApplianceStaticRoute(networkID string, stat
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-traffic-shaping
+
 */
 func (s *ApplianceService) GetNetworkApplianceTrafficShaping(networkID string) (*ResponseApplianceGetNetworkApplianceTrafficShaping, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3230,10 +3307,11 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShaping(networkID string) (
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-traffic-shaping-custom-performance-classes
+
 */
 func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceClasses(networkID string) (*ResponseApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClasses, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3263,10 +3341,11 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceCla
 @param networkID networkId path parameter. Network ID
 @param customPerformanceClassID customPerformanceClassId path parameter. Custom performance class ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-traffic-shaping-custom-performance-class
+
 */
 func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceClass(networkID string, customPerformanceClassID string) (*ResponseApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClass, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses/{customPerformanceClassId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{customPerformanceClassId}", fmt.Sprintf("%v", customPerformanceClassID), -1)
 
@@ -3296,10 +3375,11 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceCla
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-traffic-shaping-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceTrafficShapingRules(networkID string) (*ResponseApplianceGetNetworkApplianceTrafficShapingRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/rules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3328,10 +3408,11 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingRules(networkID stri
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-traffic-shaping-uplink-bandwidth
+
 */
 func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkBandwidth(networkID string) (*ResponseApplianceGetNetworkApplianceTrafficShapingUplinkBandwidth, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/uplinkBandwidth"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3360,10 +3441,11 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkBandwidth(netw
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-traffic-shaping-uplink-selection
+
 */
 func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkSelection(networkID string) (*ResponseApplianceGetNetworkApplianceTrafficShapingUplinkSelection, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/uplinkSelection"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3393,10 +3475,11 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkSelection(netw
 @param networkID networkId path parameter. Network ID
 @param getNetworkApplianceUplinksUsageHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-uplinks-usage-history
+
 */
 func (s *ApplianceService) GetNetworkApplianceUplinksUsageHistory(networkID string, getNetworkApplianceUplinksUsageHistoryQueryParams *GetNetworkApplianceUplinksUsageHistoryQueryParams) (*ResponseApplianceGetNetworkApplianceUplinksUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/uplinks/usageHistory"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkApplianceUplinksUsageHistoryQueryParams)
@@ -3427,10 +3510,11 @@ func (s *ApplianceService) GetNetworkApplianceUplinksUsageHistory(networkID stri
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-vlans
+
 */
 func (s *ApplianceService) GetNetworkApplianceVLANs(networkID string) (*ResponseApplianceGetNetworkApplianceVLANs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vlans"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3463,10 +3547,11 @@ func (s *ApplianceService) GetNetworkApplianceVLANs(networkID string) (*Response
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-vlans-settings
+
 */
 func (s *ApplianceService) GetNetworkApplianceVLANsSettings(networkID string) (*ResponseApplianceGetNetworkApplianceVLANsSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vlans/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3496,10 +3581,11 @@ func (s *ApplianceService) GetNetworkApplianceVLANsSettings(networkID string) (*
 @param networkID networkId path parameter. Network ID
 @param vlanID vlanId path parameter. Vlan ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-vlan
+
 */
 func (s *ApplianceService) GetNetworkApplianceVLAN(networkID string, vlanID string) (*ResponseApplianceGetNetworkApplianceVLAN, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vlans/{vlanId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{vlanId}", fmt.Sprintf("%v", vlanID), -1)
 
@@ -3529,10 +3615,11 @@ func (s *ApplianceService) GetNetworkApplianceVLAN(networkID string, vlanID stri
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-vpn-bgp
+
 */
 func (s *ApplianceService) GetNetworkApplianceVpnBgp(networkID string) (*ResponseApplianceGetNetworkApplianceVpnBgp, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vpn/bgp"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3561,10 +3648,11 @@ func (s *ApplianceService) GetNetworkApplianceVpnBgp(networkID string) (*Respons
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-vpn-site-to-site-vpn
+
 */
 func (s *ApplianceService) GetNetworkApplianceVpnSiteToSiteVpn(networkID string) (*ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpn, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vpn/siteToSiteVpn"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3593,10 +3681,11 @@ func (s *ApplianceService) GetNetworkApplianceVpnSiteToSiteVpn(networkID string)
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-warm-spare
+
 */
 func (s *ApplianceService) GetNetworkApplianceWarmSpare(networkID string) (*ResponseApplianceGetNetworkApplianceWarmSpare, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/warmSpare"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3626,10 +3715,11 @@ func (s *ApplianceService) GetNetworkApplianceWarmSpare(networkID string) (*Resp
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationApplianceSecurityEventsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-appliance-security-events
+
 */
 func (s *ApplianceService) GetOrganizationApplianceSecurityEvents(organizationID string, getOrganizationApplianceSecurityEventsQueryParams *GetOrganizationApplianceSecurityEventsQueryParams) (*ResponseApplianceGetOrganizationApplianceSecurityEvents, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/security/events"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationApplianceSecurityEventsQueryParams)
@@ -3660,10 +3750,11 @@ func (s *ApplianceService) GetOrganizationApplianceSecurityEvents(organizationID
 
 @param organizationID organizationId path parameter. Organization ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-appliance-security-intrusion
+
 */
 func (s *ApplianceService) GetOrganizationApplianceSecurityIntrusion(organizationID string) (*ResponseApplianceGetOrganizationApplianceSecurityIntrusion, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/security/intrusion"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -3693,10 +3784,11 @@ func (s *ApplianceService) GetOrganizationApplianceSecurityIntrusion(organizatio
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationApplianceUplinkStatusesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-appliance-uplink-statuses
+
 */
 func (s *ApplianceService) GetOrganizationApplianceUplinkStatuses(organizationID string, getOrganizationApplianceUplinkStatusesQueryParams *GetOrganizationApplianceUplinkStatusesQueryParams) (*ResponseApplianceGetOrganizationApplianceUplinkStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/uplink/statuses"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationApplianceUplinkStatusesQueryParams)
@@ -3728,10 +3820,11 @@ func (s *ApplianceService) GetOrganizationApplianceUplinkStatuses(organizationID
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationApplianceVpnStatsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-appliance-vpn-stats
+
 */
 func (s *ApplianceService) GetOrganizationApplianceVpnStats(organizationID string, getOrganizationApplianceVpnStatsQueryParams *GetOrganizationApplianceVpnStatsQueryParams) (*ResponseApplianceGetOrganizationApplianceVpnStats, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/stats"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationApplianceVpnStatsQueryParams)
@@ -3763,10 +3856,11 @@ func (s *ApplianceService) GetOrganizationApplianceVpnStats(organizationID strin
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationApplianceVpnStatusesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-appliance-vpn-statuses
+
 */
 func (s *ApplianceService) GetOrganizationApplianceVpnStatuses(organizationID string, getOrganizationApplianceVpnStatusesQueryParams *GetOrganizationApplianceVpnStatusesQueryParams) (*ResponseApplianceGetOrganizationApplianceVpnStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/statuses"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationApplianceVpnStatusesQueryParams)
@@ -3797,10 +3891,11 @@ func (s *ApplianceService) GetOrganizationApplianceVpnStatuses(organizationID st
 
 @param organizationID organizationId path parameter. Organization ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-appliance-vpn-third-party-vpnpeers
+
 */
 func (s *ApplianceService) GetOrganizationApplianceVpnThirdPartyVpnpeers(organizationID string) (*ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeers, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -3829,10 +3924,11 @@ func (s *ApplianceService) GetOrganizationApplianceVpnThirdPartyVpnpeers(organiz
 
 @param organizationID organizationId path parameter. Organization ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-appliance-vpn-vpn-firewall-rules
+
 */
 func (s *ApplianceService) GetOrganizationApplianceVpnVpnFirewallRules(organizationID string) (*ResponseApplianceGetOrganizationApplianceVpnVpnFirewallRules, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/vpnFirewallRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -3861,11 +3957,12 @@ func (s *ApplianceService) GetOrganizationApplianceVpnVpnFirewallRules(organizat
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-appliance-vmx-authentication-token
+
 */
 
 func (s *ApplianceService) CreateDeviceApplianceVmxAuthenticationToken(serial string) (*ResponseApplianceCreateDeviceApplianceVmxAuthenticationToken, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/vmx/authenticationToken"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -3894,11 +3991,12 @@ func (s *ApplianceService) CreateDeviceApplianceVmxAuthenticationToken(serial st
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-appliance-prefixes-delegated-static
+
 */
 
 func (s *ApplianceService) CreateNetworkAppliancePrefixesDelegatedStatic(networkID string, requestApplianceCreateNetworkAppliancePrefixesDelegatedStatic *RequestApplianceCreateNetworkAppliancePrefixesDelegatedStatic) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/prefixes/delegated/statics"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3927,11 +4025,12 @@ func (s *ApplianceService) CreateNetworkAppliancePrefixesDelegatedStatic(network
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-appliance-static-route
+
 */
 
 func (s *ApplianceService) CreateNetworkApplianceStaticRoute(networkID string, requestApplianceCreateNetworkApplianceStaticRoute *RequestApplianceCreateNetworkApplianceStaticRoute) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/staticRoutes"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3960,11 +4059,12 @@ func (s *ApplianceService) CreateNetworkApplianceStaticRoute(networkID string, r
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-appliance-traffic-shaping-custom-performance-class
+
 */
 
 func (s *ApplianceService) CreateNetworkApplianceTrafficShapingCustomPerformanceClass(networkID string, requestApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass *RequestApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3993,11 +4093,12 @@ func (s *ApplianceService) CreateNetworkApplianceTrafficShapingCustomPerformance
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-appliance-vlan
+
 */
 
 func (s *ApplianceService) CreateNetworkApplianceVLAN(networkID string, requestApplianceCreateNetworkApplianceVlan *RequestApplianceCreateNetworkApplianceVLAN) (*ResponseApplianceCreateNetworkApplianceVLAN, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vlans"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4027,11 +4128,12 @@ func (s *ApplianceService) CreateNetworkApplianceVLAN(networkID string, requestA
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!swap-network-appliance-warm-spare
+
 */
 
 func (s *ApplianceService) SwapNetworkApplianceWarmSpare(networkID string) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/warmSpare/swap"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4062,6 +4164,7 @@ func (s *ApplianceService) SwapNetworkApplianceWarmSpare(networkID string) (*res
 */
 func (s *ApplianceService) UpdateDeviceApplianceUplinksSettings(serial string, requestApplianceUpdateDeviceApplianceUplinksSettings *RequestApplianceUpdateDeviceApplianceUplinksSettings) (*ResponseApplianceUpdateDeviceApplianceUplinksSettings, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/uplinks/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -4093,6 +4196,7 @@ func (s *ApplianceService) UpdateDeviceApplianceUplinksSettings(serial string, r
 */
 func (s *ApplianceService) UpdateNetworkApplianceConnectivityMonitoringDestinations(networkID string, requestApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations *RequestApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/connectivityMonitoringDestinations"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4122,6 +4226,7 @@ func (s *ApplianceService) UpdateNetworkApplianceConnectivityMonitoringDestinati
 */
 func (s *ApplianceService) UpdateNetworkApplianceContentFiltering(networkID string, requestApplianceUpdateNetworkApplianceContentFiltering *RequestApplianceUpdateNetworkApplianceContentFiltering) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/contentFiltering"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4151,6 +4256,7 @@ func (s *ApplianceService) UpdateNetworkApplianceContentFiltering(networkID stri
 */
 func (s *ApplianceService) UpdateNetworkApplianceFirewallCellularFirewallRules(networkID string, requestApplianceUpdateNetworkApplianceFirewallCellularFirewallRules *RequestApplianceUpdateNetworkApplianceFirewallCellularFirewallRules) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/cellularFirewallRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4181,6 +4287,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallCellularFirewallRules(n
 */
 func (s *ApplianceService) UpdateNetworkApplianceFirewallFirewalledService(networkID string, service string, requestApplianceUpdateNetworkApplianceFirewallFirewalledService *RequestApplianceUpdateNetworkApplianceFirewallFirewalledService) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/firewalledServices/{service}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{service}", fmt.Sprintf("%v", service), -1)
 
@@ -4211,6 +4318,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallFirewalledService(netwo
 */
 func (s *ApplianceService) UpdateNetworkApplianceFirewallInboundCellularFirewallRules(networkID string, requestApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules *RequestApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules) (*ResponseApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/inboundCellularFirewallRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4242,6 +4350,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallInboundCellularFirewall
 */
 func (s *ApplianceService) UpdateNetworkApplianceFirewallInboundFirewallRules(networkID string, requestApplianceUpdateNetworkApplianceFirewallInboundFirewallRules *RequestApplianceUpdateNetworkApplianceFirewallInboundFirewallRules) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/inboundFirewallRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4271,6 +4380,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallInboundFirewallRules(ne
 */
 func (s *ApplianceService) UpdateNetworkApplianceFirewallL3FirewallRules(networkID string, requestApplianceUpdateNetworkApplianceFirewallL3FirewallRules *RequestApplianceUpdateNetworkApplianceFirewallL3FirewallRules) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/l3FirewallRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4300,6 +4410,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallL3FirewallRules(network
 */
 func (s *ApplianceService) UpdateNetworkApplianceFirewallL7FirewallRules(networkID string, requestApplianceUpdateNetworkApplianceFirewallL7FirewallRules *RequestApplianceUpdateNetworkApplianceFirewallL7FirewallRules) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/l7FirewallRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4329,6 +4440,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallL7FirewallRules(network
 */
 func (s *ApplianceService) UpdateNetworkApplianceFirewallOneToManyNatRules(networkID string, requestApplianceUpdateNetworkApplianceFirewallOneToManyNatRules *RequestApplianceUpdateNetworkApplianceFirewallOneToManyNatRules) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/oneToManyNatRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4358,6 +4470,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallOneToManyNatRules(netwo
 */
 func (s *ApplianceService) UpdateNetworkApplianceFirewallOneToOneNatRules(networkID string, requestApplianceUpdateNetworkApplianceFirewallOneToOneNatRules *RequestApplianceUpdateNetworkApplianceFirewallOneToOneNatRules) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/oneToOneNatRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4387,6 +4500,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallOneToOneNatRules(networ
 */
 func (s *ApplianceService) UpdateNetworkApplianceFirewallPortForwardingRules(networkID string, requestApplianceUpdateNetworkApplianceFirewallPortForwardingRules *RequestApplianceUpdateNetworkApplianceFirewallPortForwardingRules) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/portForwardingRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4416,6 +4530,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallPortForwardingRules(net
 */
 func (s *ApplianceService) UpdateNetworkApplianceFirewallSettings(networkID string, requestApplianceUpdateNetworkApplianceFirewallSettings *RequestApplianceUpdateNetworkApplianceFirewallSettings) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4446,6 +4561,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallSettings(networkID stri
 */
 func (s *ApplianceService) UpdateNetworkAppliancePort(networkID string, portID string, requestApplianceUpdateNetworkAppliancePort *RequestApplianceUpdateNetworkAppliancePort) (*ResponseApplianceUpdateNetworkAppliancePort, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/ports/{portId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{portId}", fmt.Sprintf("%v", portID), -1)
 
@@ -4479,6 +4595,7 @@ func (s *ApplianceService) UpdateNetworkAppliancePort(networkID string, portID s
 */
 func (s *ApplianceService) UpdateNetworkAppliancePrefixesDelegatedStatic(networkID string, staticDelegatedPrefixID string, requestApplianceUpdateNetworkAppliancePrefixesDelegatedStatic *RequestApplianceUpdateNetworkAppliancePrefixesDelegatedStatic) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{staticDelegatedPrefixId}", fmt.Sprintf("%v", staticDelegatedPrefixID), -1)
 
@@ -4509,6 +4626,7 @@ func (s *ApplianceService) UpdateNetworkAppliancePrefixesDelegatedStatic(network
 */
 func (s *ApplianceService) UpdateNetworkApplianceSecurityIntrusion(networkID string, requestApplianceUpdateNetworkApplianceSecurityIntrusion *RequestApplianceUpdateNetworkApplianceSecurityIntrusion) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/security/intrusion"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4538,6 +4656,7 @@ func (s *ApplianceService) UpdateNetworkApplianceSecurityIntrusion(networkID str
 */
 func (s *ApplianceService) UpdateNetworkApplianceSecurityMalware(networkID string, requestApplianceUpdateNetworkApplianceSecurityMalware *RequestApplianceUpdateNetworkApplianceSecurityMalware) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/security/malware"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4567,6 +4686,7 @@ func (s *ApplianceService) UpdateNetworkApplianceSecurityMalware(networkID strin
 */
 func (s *ApplianceService) UpdateNetworkApplianceSettings(networkID string, requestApplianceUpdateNetworkApplianceSettings *RequestApplianceUpdateNetworkApplianceSettings) (*ResponseApplianceUpdateNetworkApplianceSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4598,6 +4718,7 @@ func (s *ApplianceService) UpdateNetworkApplianceSettings(networkID string, requ
 */
 func (s *ApplianceService) UpdateNetworkApplianceSingleLan(networkID string, requestApplianceUpdateNetworkApplianceSingleLan *RequestApplianceUpdateNetworkApplianceSingleLan) (*ResponseApplianceUpdateNetworkApplianceSingleLan, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/singleLan"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4630,6 +4751,7 @@ func (s *ApplianceService) UpdateNetworkApplianceSingleLan(networkID string, req
 */
 func (s *ApplianceService) UpdateNetworkApplianceSSID(networkID string, number string, requestApplianceUpdateNetworkApplianceSsid *RequestApplianceUpdateNetworkApplianceSSID) (*ResponseApplianceUpdateNetworkApplianceSSID, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/ssids/{number}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
@@ -4663,6 +4785,7 @@ func (s *ApplianceService) UpdateNetworkApplianceSSID(networkID string, number s
 */
 func (s *ApplianceService) UpdateNetworkApplianceStaticRoute(networkID string, staticRouteID string, requestApplianceUpdateNetworkApplianceStaticRoute *RequestApplianceUpdateNetworkApplianceStaticRoute) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/staticRoutes/{staticRouteId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
 
@@ -4693,6 +4816,7 @@ func (s *ApplianceService) UpdateNetworkApplianceStaticRoute(networkID string, s
 */
 func (s *ApplianceService) UpdateNetworkApplianceTrafficShaping(networkID string, requestApplianceUpdateNetworkApplianceTrafficShaping *RequestApplianceUpdateNetworkApplianceTrafficShaping) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4723,6 +4847,7 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShaping(networkID string
 */
 func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(networkID string, customPerformanceClassID string, requestApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass *RequestApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses/{customPerformanceClassId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{customPerformanceClassId}", fmt.Sprintf("%v", customPerformanceClassID), -1)
 
@@ -4753,6 +4878,7 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingCustomPerformance
 */
 func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingRules(networkID string, requestApplianceUpdateNetworkApplianceTrafficShapingRules *RequestApplianceUpdateNetworkApplianceTrafficShapingRules) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/rules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4782,6 +4908,7 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingRules(networkID s
 */
 func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingUplinkBandwidth(networkID string, requestApplianceUpdateNetworkApplianceTrafficShapingUplinkBandwidth *RequestApplianceUpdateNetworkApplianceTrafficShapingUplinkBandwidth) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/uplinkBandwidth"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4811,6 +4938,7 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingUplinkBandwidth(n
 */
 func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingUplinkSelection(networkID string, requestApplianceUpdateNetworkApplianceTrafficShapingUplinkSelection *RequestApplianceUpdateNetworkApplianceTrafficShapingUplinkSelection) (*ResponseApplianceUpdateNetworkApplianceTrafficShapingUplinkSelection, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/uplinkSelection"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4842,6 +4970,7 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingUplinkSelection(n
 */
 func (s *ApplianceService) UpdateNetworkApplianceVLANsSettings(networkID string, requestApplianceUpdateNetworkApplianceVlansSettings *RequestApplianceUpdateNetworkApplianceVLANsSettings) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vlans/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4872,6 +5001,7 @@ func (s *ApplianceService) UpdateNetworkApplianceVLANsSettings(networkID string,
 */
 func (s *ApplianceService) UpdateNetworkApplianceVLAN(networkID string, vlanID string, requestApplianceUpdateNetworkApplianceVlan *RequestApplianceUpdateNetworkApplianceVLAN) (*ResponseApplianceUpdateNetworkApplianceVLAN, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vlans/{vlanId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{vlanId}", fmt.Sprintf("%v", vlanID), -1)
 
@@ -4904,6 +5034,7 @@ func (s *ApplianceService) UpdateNetworkApplianceVLAN(networkID string, vlanID s
 */
 func (s *ApplianceService) UpdateNetworkApplianceVpnBgp(networkID string, requestApplianceUpdateNetworkApplianceVpnBgp *RequestApplianceUpdateNetworkApplianceVpnBgp) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vpn/bgp"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4933,6 +5064,7 @@ func (s *ApplianceService) UpdateNetworkApplianceVpnBgp(networkID string, reques
 */
 func (s *ApplianceService) UpdateNetworkApplianceVpnSiteToSiteVpn(networkID string, requestApplianceUpdateNetworkApplianceVpnSiteToSiteVpn *RequestApplianceUpdateNetworkApplianceVpnSiteToSiteVpn) (*ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpn, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vpn/siteToSiteVpn"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4964,6 +5096,7 @@ func (s *ApplianceService) UpdateNetworkApplianceVpnSiteToSiteVpn(networkID stri
 */
 func (s *ApplianceService) UpdateNetworkApplianceWarmSpare(networkID string, requestApplianceUpdateNetworkApplianceWarmSpare *RequestApplianceUpdateNetworkApplianceWarmSpare) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/warmSpare"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4993,6 +5126,7 @@ func (s *ApplianceService) UpdateNetworkApplianceWarmSpare(networkID string, req
 */
 func (s *ApplianceService) UpdateOrganizationApplianceSecurityIntrusion(organizationID string, requestApplianceUpdateOrganizationApplianceSecurityIntrusion *RequestApplianceUpdateOrganizationApplianceSecurityIntrusion) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/security/intrusion"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5022,6 +5156,7 @@ func (s *ApplianceService) UpdateOrganizationApplianceSecurityIntrusion(organiza
 */
 func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(organizationID string, requestApplianceUpdateOrganizationApplianceVpnThirdPartyVPNPeers *RequestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers) (*ResponseApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5053,6 +5188,7 @@ func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(orga
 */
 func (s *ApplianceService) UpdateOrganizationApplianceVpnVpnFirewallRules(organizationID string, requestApplianceUpdateOrganizationApplianceVpnVpnFirewallRules *RequestApplianceUpdateOrganizationApplianceVpnVpnFirewallRules) (*ResponseApplianceUpdateOrganizationApplianceVpnVpnFirewallRules, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/vpnFirewallRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5083,11 +5219,12 @@ func (s *ApplianceService) UpdateOrganizationApplianceVpnVpnFirewallRules(organi
 @param networkID networkId path parameter. Network ID
 @param staticDelegatedPrefixID staticDelegatedPrefixId path parameter. Static delegated prefix ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-appliance-prefixes-delegated-static
+
 */
 func (s *ApplianceService) DeleteNetworkAppliancePrefixesDelegatedStatic(networkID string, staticDelegatedPrefixID string) (*resty.Response, error) {
 	//networkID string,staticDelegatedPrefixID string
 	path := "/api/v1/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{staticDelegatedPrefixId}", fmt.Sprintf("%v", staticDelegatedPrefixID), -1)
 
@@ -5116,11 +5253,12 @@ func (s *ApplianceService) DeleteNetworkAppliancePrefixesDelegatedStatic(network
 @param networkID networkId path parameter. Network ID
 @param staticRouteID staticRouteId path parameter. Static route ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-appliance-static-route
+
 */
 func (s *ApplianceService) DeleteNetworkApplianceStaticRoute(networkID string, staticRouteID string) (*resty.Response, error) {
 	//networkID string,staticRouteID string
 	path := "/api/v1/networks/{networkId}/appliance/staticRoutes/{staticRouteId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
 
@@ -5149,11 +5287,12 @@ func (s *ApplianceService) DeleteNetworkApplianceStaticRoute(networkID string, s
 @param networkID networkId path parameter. Network ID
 @param customPerformanceClassID customPerformanceClassId path parameter. Custom performance class ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-appliance-traffic-shaping-custom-performance-class
+
 */
 func (s *ApplianceService) DeleteNetworkApplianceTrafficShapingCustomPerformanceClass(networkID string, customPerformanceClassID string) (*resty.Response, error) {
 	//networkID string,customPerformanceClassID string
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses/{customPerformanceClassId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{customPerformanceClassId}", fmt.Sprintf("%v", customPerformanceClassID), -1)
 
@@ -5182,11 +5321,12 @@ func (s *ApplianceService) DeleteNetworkApplianceTrafficShapingCustomPerformance
 @param networkID networkId path parameter. Network ID
 @param vlanID vlanId path parameter. Vlan ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-appliance-vlan
+
 */
 func (s *ApplianceService) DeleteNetworkApplianceVLAN(networkID string, vlanID string) (*resty.Response, error) {
 	//networkID string,vlanID string
 	path := "/api/v1/networks/{networkId}/appliance/vlans/{vlanId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{vlanId}", fmt.Sprintf("%v", vlanID), -1)
 
