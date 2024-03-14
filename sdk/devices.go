@@ -530,7 +530,7 @@ type RequestOrganizationsCloneOrganizationSwitchDevices struct {
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device
+
 */
 func (s *DevicesService) GetDevice(serial string) (*ResponseDevicesGetDevice, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}"
@@ -563,7 +563,7 @@ func (s *DevicesService) GetDevice(serial string) (*ResponseDevicesGetDevice, *r
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-cellular-sims
+
 */
 func (s *DevicesService) GetDeviceCellularSims(serial string) (*ResponseDevicesGetDeviceCellularSims, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/cellular/sims"
@@ -597,7 +597,7 @@ func (s *DevicesService) GetDeviceCellularSims(serial string) (*ResponseDevicesG
 @param serial serial path parameter.
 @param getDeviceClientsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-clients
+
 */
 func (s *DevicesService) GetDeviceClients(serial string, getDeviceClientsQueryParams *GetDeviceClientsQueryParams) (*ResponseDevicesGetDeviceClients, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/clients"
@@ -633,7 +633,7 @@ func (s *DevicesService) GetDeviceClients(serial string, getDeviceClientsQueryPa
 @param serial serial path parameter.
 @param id id path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-live-tools-ping
+
 */
 func (s *DevicesService) GetDeviceLiveToolsPing(serial string, id string) (*ResponseDevicesGetDeviceLiveToolsPing, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/liveTools/ping/{id}"
@@ -668,7 +668,7 @@ func (s *DevicesService) GetDeviceLiveToolsPing(serial string, id string) (*Resp
 @param serial serial path parameter.
 @param id id path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-live-tools-ping-device
+
 */
 func (s *DevicesService) GetDeviceLiveToolsPingDevice(serial string, id string) (*ResponseDevicesGetDeviceLiveToolsPingDevice, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/liveTools/pingDevice/{id}"
@@ -702,7 +702,7 @@ func (s *DevicesService) GetDeviceLiveToolsPingDevice(serial string, id string) 
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-lldp-cdp
+
 */
 func (s *DevicesService) GetDeviceLldpCdp(serial string) (*ResponseDevicesGetDeviceLldpCdp, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/lldpCdp"
@@ -736,7 +736,7 @@ func (s *DevicesService) GetDeviceLldpCdp(serial string) (*ResponseDevicesGetDev
 @param serial serial path parameter.
 @param getDeviceLossAndLatencyHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-loss-and-latency-history
+
 */
 func (s *DevicesService) GetDeviceLossAndLatencyHistory(serial string, getDeviceLossAndLatencyHistoryQueryParams *GetDeviceLossAndLatencyHistoryQueryParams) (*ResponseDevicesGetDeviceLossAndLatencyHistory, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/lossAndLatencyHistory"
@@ -771,7 +771,7 @@ func (s *DevicesService) GetDeviceLossAndLatencyHistory(serial string, getDevice
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-management-interface
+
 */
 func (s *DevicesService) GetDeviceManagementInterface(serial string) (*ResponseDevicesGetDeviceManagementInterface, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/managementInterface"
@@ -804,7 +804,7 @@ func (s *DevicesService) GetDeviceManagementInterface(serial string) (*ResponseD
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-devices
+
 */
 func (s *DevicesService) GetNetworkDevices(networkID string) (*ResponseDevicesGetNetworkDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/devices"
@@ -838,7 +838,7 @@ func (s *DevicesService) GetNetworkDevices(networkID string) (*ResponseDevicesGe
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-cellular-usage-history
+
 */
 func (s *DevicesService) GetNetworkSmDeviceCellularUsageHistory(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceCellularUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/cellularUsageHistory"
@@ -873,7 +873,7 @@ func (s *DevicesService) GetNetworkSmDeviceCellularUsageHistory(networkID string
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-certs
+
 */
 func (s *DevicesService) GetNetworkSmDeviceCerts(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceCerts, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/certs"
@@ -908,7 +908,7 @@ func (s *DevicesService) GetNetworkSmDeviceCerts(networkID string, deviceID stri
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-device-profiles
+
 */
 func (s *DevicesService) GetNetworkSmDeviceDeviceProfiles(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceDeviceProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/deviceProfiles"
@@ -943,7 +943,7 @@ func (s *DevicesService) GetNetworkSmDeviceDeviceProfiles(networkID string, devi
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-network-adapters
+
 */
 func (s *DevicesService) GetNetworkSmDeviceNetworkAdapters(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceNetworkAdapters, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/networkAdapters"
@@ -978,7 +978,7 @@ func (s *DevicesService) GetNetworkSmDeviceNetworkAdapters(networkID string, dev
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-restrictions
+
 */
 func (s *DevicesService) GetNetworkSmDeviceRestrictions(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceRestrictions, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/restrictions"
@@ -1013,7 +1013,7 @@ func (s *DevicesService) GetNetworkSmDeviceRestrictions(networkID string, device
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-security-centers
+
 */
 func (s *DevicesService) GetNetworkSmDeviceSecurityCenters(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceSecurityCenters, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/securityCenters"
@@ -1048,7 +1048,7 @@ func (s *DevicesService) GetNetworkSmDeviceSecurityCenters(networkID string, dev
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-softwares
+
 */
 func (s *DevicesService) GetNetworkSmDeviceSoftwares(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceSoftwares, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/softwares"
@@ -1083,7 +1083,7 @@ func (s *DevicesService) GetNetworkSmDeviceSoftwares(networkID string, deviceID 
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-wlan-lists
+
 */
 func (s *DevicesService) GetNetworkSmDeviceWLANLists(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceWLANLists, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/wlanLists"
@@ -1118,7 +1118,7 @@ func (s *DevicesService) GetNetworkSmDeviceWLANLists(networkID string, deviceID 
 @param organizationID organizationId path parameter. Organization ID
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-inventory-device
+
 */
 func (s *DevicesService) GetOrganizationInventoryDevice(organizationID string, serial string) (*ResponseDevicesGetOrganizationInventoryDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/devices/{serial}"
@@ -1152,7 +1152,7 @@ func (s *DevicesService) GetOrganizationInventoryDevice(organizationID string, s
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!blink-device-leds
+
 */
 
 func (s *DevicesService) BlinkDeviceLeds(serial string, requestDevicesBlinkDeviceLeds *RequestDevicesBlinkDeviceLeds) (*ResponseDevicesBlinkDeviceLeds, *resty.Response, error) {
@@ -1187,7 +1187,7 @@ func (s *DevicesService) BlinkDeviceLeds(serial string, requestDevicesBlinkDevic
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-live-tools-ping
+
 */
 
 func (s *DevicesService) CreateDeviceLiveToolsPing(serial string, requestDevicesCreateDeviceLiveToolsPing *RequestDevicesCreateDeviceLiveToolsPing) (*ResponseDevicesCreateDeviceLiveToolsPing, *resty.Response, error) {
@@ -1222,7 +1222,7 @@ func (s *DevicesService) CreateDeviceLiveToolsPing(serial string, requestDevices
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-live-tools-ping-device
+
 */
 
 func (s *DevicesService) CreateDeviceLiveToolsPingDevice(serial string, requestDevicesCreateDeviceLiveToolsPingDevice *RequestDevicesCreateDeviceLiveToolsPingDevice) (*ResponseDevicesCreateDeviceLiveToolsPingDevice, *resty.Response, error) {
@@ -1257,7 +1257,7 @@ func (s *DevicesService) CreateDeviceLiveToolsPingDevice(serial string, requestD
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!reboot-device
+
 */
 
 func (s *DevicesService) RebootDevice(serial string) (*resty.Response, error) {
@@ -1291,7 +1291,7 @@ func (s *DevicesService) RebootDevice(serial string) (*resty.Response, error) {
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!claim-network-devices
+
 */
 
 func (s *DevicesService) ClaimNetworkDevices(networkID string, requestDevicesClaimNetworkDevices *RequestDevicesClaimNetworkDevices) (*resty.Response, error) {
@@ -1324,7 +1324,7 @@ func (s *DevicesService) ClaimNetworkDevices(networkID string, requestDevicesCla
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!vmx-network-devices-claim
+
 */
 
 func (s *DevicesService) VmxNetworkDevicesClaim(networkID string, requestDevicesVmxNetworkDevicesClaim *RequestDevicesVmxNetworkDevicesClaim) (*resty.Response, error) {
@@ -1358,7 +1358,7 @@ func (s *DevicesService) VmxNetworkDevicesClaim(networkID string, requestDevices
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-network-devices
+
 */
 
 func (s *DevicesService) RemoveNetworkDevices(networkID string, requestDevicesRemoveNetworkDevices *RequestDevicesRemoveNetworkDevices) (*resty.Response, error) {
@@ -1391,7 +1391,7 @@ func (s *DevicesService) RemoveNetworkDevices(networkID string, requestDevicesRe
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!checkin-network-sm-devices
+
 */
 
 func (s *DevicesService) CheckinNetworkSmDevices(networkID string, requestDevicesCheckinNetworkSmDevices *RequestDevicesCheckinNetworkSmDevices) (*ResponseDevicesCheckinNetworkSmDevices, *resty.Response, error) {
@@ -1426,7 +1426,7 @@ func (s *DevicesService) CheckinNetworkSmDevices(networkID string, requestDevice
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!lock-network-sm-devices
+
 */
 
 func (s *DevicesService) LockNetworkSmDevices(networkID string, requestDevicesLockNetworkSmDevices *RequestDevicesLockNetworkSmDevices) (*ResponseDevicesLockNetworkSmDevices, *resty.Response, error) {
@@ -1461,7 +1461,7 @@ func (s *DevicesService) LockNetworkSmDevices(networkID string, requestDevicesLo
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!modify-network-sm-devices-tags
+
 */
 
 func (s *DevicesService) ModifyNetworkSmDevicesTags(networkID string, requestDevicesModifyNetworkSmDevicesTags *RequestDevicesModifyNetworkSmDevicesTags) (*ResponseDevicesModifyNetworkSmDevicesTags, *resty.Response, error) {
@@ -1496,7 +1496,7 @@ func (s *DevicesService) ModifyNetworkSmDevicesTags(networkID string, requestDev
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!move-network-sm-devices
+
 */
 
 func (s *DevicesService) MoveNetworkSmDevices(networkID string, requestDevicesMoveNetworkSmDevices *RequestDevicesMoveNetworkSmDevices) (*ResponseDevicesMoveNetworkSmDevices, *resty.Response, error) {
@@ -1531,7 +1531,7 @@ func (s *DevicesService) MoveNetworkSmDevices(networkID string, requestDevicesMo
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!wipe-network-sm-devices
+
 */
 
 func (s *DevicesService) WipeNetworkSmDevices(networkID string, requestDevicesWipeNetworkSmDevices *RequestDevicesWipeNetworkSmDevices) (*ResponseDevicesWipeNetworkSmDevices, *resty.Response, error) {
@@ -1567,7 +1567,7 @@ func (s *DevicesService) WipeNetworkSmDevices(networkID string, requestDevicesWi
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!refresh-network-sm-device-details
+
 */
 
 func (s *DevicesService) RefreshNetworkSmDeviceDetails(networkID string, deviceID string) (*resty.Response, error) {
@@ -1601,7 +1601,7 @@ func (s *DevicesService) RefreshNetworkSmDeviceDetails(networkID string, deviceI
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!unenroll-network-sm-device
+
 */
 
 func (s *DevicesService) UnenrollNetworkSmDevice(networkID string, deviceID string) (*resty.Response, error) {
@@ -1636,7 +1636,7 @@ func (s *DevicesService) UnenrollNetworkSmDevice(networkID string, deviceID stri
 
 @param organizationID organizationId path parameter. Organization ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!clone-organization-switch-devices
+
 */
 
 func (s *DevicesService) CloneOrganizationSwitchDevices(organizationID string) (*resty.Response, error) {

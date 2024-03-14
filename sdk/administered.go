@@ -37,8 +37,8 @@ type ResponseAdministeredGetAdministeredIDentitiesMeAuthenticationTwoFactor stru
 /* Returns the identity of the current user.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-administered-identities-me
-*/
+
+ */
 func (s *AdministeredService) GetAdministeredIDentitiesMe() (*ResponseAdministeredGetAdministeredIDentitiesMe, *resty.Response, error) {
 	path := "/api/v1/administered/identities/me"
 	s.rateLimiterBucket.Wait(1)

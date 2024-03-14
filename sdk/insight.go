@@ -80,7 +80,7 @@ type RequestInsightUpdateOrganizationInsightMonitoredMediaServer struct {
 @param applicationID applicationId path parameter. Application ID
 @param getNetworkInsightApplicationHealthByTimeQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-insight-application-health-by-time
+
 */
 func (s *InsightService) GetNetworkInsightApplicationHealthByTime(networkID string, applicationID string, getNetworkInsightApplicationHealthByTimeQueryParams *GetNetworkInsightApplicationHealthByTimeQueryParams) (*ResponseInsightGetNetworkInsightApplicationHealthByTime, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/insight/applications/{applicationId}/healthByTime"
@@ -116,7 +116,7 @@ func (s *InsightService) GetNetworkInsightApplicationHealthByTime(networkID stri
 
 @param organizationID organizationId path parameter. Organization ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-insight-applications
+
 */
 func (s *InsightService) GetOrganizationInsightApplications(organizationID string) (*ResponseInsightGetOrganizationInsightApplications, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/applications"
@@ -149,7 +149,7 @@ func (s *InsightService) GetOrganizationInsightApplications(organizationID strin
 
 @param organizationID organizationId path parameter. Organization ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-insight-monitored-media-servers
+
 */
 func (s *InsightService) GetOrganizationInsightMonitoredMediaServers(organizationID string) (*ResponseInsightGetOrganizationInsightMonitoredMediaServers, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers"
@@ -183,7 +183,7 @@ func (s *InsightService) GetOrganizationInsightMonitoredMediaServers(organizatio
 @param organizationID organizationId path parameter. Organization ID
 @param monitoredMediaServerID monitoredMediaServerId path parameter. Monitored media server ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-insight-monitored-media-server
+
 */
 func (s *InsightService) GetOrganizationInsightMonitoredMediaServer(organizationID string, monitoredMediaServerID string) (*ResponseInsightGetOrganizationInsightMonitoredMediaServer, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers/{monitoredMediaServerId}"
@@ -217,7 +217,7 @@ func (s *InsightService) GetOrganizationInsightMonitoredMediaServer(organization
 
 @param organizationID organizationId path parameter. Organization ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organization-insight-monitored-media-server
+
 */
 
 func (s *InsightService) CreateOrganizationInsightMonitoredMediaServer(organizationID string, requestInsightCreateOrganizationInsightMonitoredMediaServer *RequestInsightCreateOrganizationInsightMonitoredMediaServer) (*resty.Response, error) {
@@ -284,7 +284,7 @@ func (s *InsightService) UpdateOrganizationInsightMonitoredMediaServer(organizat
 @param organizationID organizationId path parameter. Organization ID
 @param monitoredMediaServerID monitoredMediaServerId path parameter. Monitored media server ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-organization-insight-monitored-media-server
+
 */
 func (s *InsightService) DeleteOrganizationInsightMonitoredMediaServer(organizationID string, monitoredMediaServerID string) (*resty.Response, error) {
 	//organizationID string,monitoredMediaServerID string

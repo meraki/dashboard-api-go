@@ -1,7 +1,6 @@
 package meraki
 
 import (
-	"crypto/tls"
 	"fmt"
 	"net/http"
 	"os"
@@ -16,9 +15,8 @@ const (
 	MERAKI_BASE_URL             = "MERAKI_BASE_URL"
 	MERAKI_DASHBOARD_API_KEY    = "MERAKI_DASHBOARD_API_KEY"
 	MERAKI_DEBUG                = "MERAKI_DEBUG"
-	MERAKI_SSL_VERIFY           = "MERAKI_SSL_VERIFY"
 	MERAKI_REQUESTS_PER_SECOND  = "MERAKI_REQUESTS_PER_SECOND"
-	DEFAULT_USER_AGENT          = "MerakiGolang/2.0.4 Cisco"
+	DEFAULT_USER_AGENT          = "go-meraki/1.33.0"
 	DEFAULT_REQUESTS_PER_SECOND = 10
 )
 
@@ -75,10 +73,6 @@ func NewClient() (*Client, error) {
 
 	if os.Getenv(MERAKI_DEBUG) == "true" {
 		client.SetDebug(true)
-	}
-
-	if os.Getenv(MERAKI_SSL_VERIFY) == "false" {
-		client.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
 	}
 
 	if os.Getenv(MERAKI_BASE_URL) != "" {
@@ -143,8 +137,8 @@ func NewClient() (*Client, error) {
 }
 
 // NewClientWithOptions creates a new API client with options passed with parameters
-func NewClientWithOptions(baseURL string, dashboardApiKey string, debug string, sslVerify string) (*Client, error) {
-	err := SetOptions(baseURL, dashboardApiKey, debug, sslVerify)
+func NewClientWithOptions(baseURL string, dashboardApiKey string, debug string) (*Client, error) {
+	err := SetOptions(baseURL, dashboardApiKey, debug)
 	if err != nil {
 		return nil, err
 	}
@@ -153,8 +147,8 @@ func NewClientWithOptions(baseURL string, dashboardApiKey string, debug string, 
 }
 
 // NewClientWithOptionsAndRequests creates a new API client with options passed with parameters including the requests per second
-func NewClientWithOptionsAndRequests(baseURL string, dashboardApiKey string, debug string, sslVerify string, requestsPerSecond int) (*Client, error) {
-	err := SetOptionsWithRequests(baseURL, dashboardApiKey, debug, sslVerify, requestsPerSecond)
+func NewClientWithOptionsAndRequests(baseURL string, dashboardApiKey string, debug string, requestsPerSecond int) (*Client, error) {
+	err := SetOptionsWithRequests(baseURL, dashboardApiKey, debug, requestsPerSecond)
 	if err != nil {
 		return nil, err
 	}
@@ -163,17 +157,13 @@ func NewClientWithOptionsAndRequests(baseURL string, dashboardApiKey string, deb
 }
 
 // SetOptions sets the required environment variables
-func SetOptions(baseURL string, dashboardApiKey string, debug string, sslVerify string) error {
+func SetOptions(baseURL string, dashboardApiKey string, debug string) error {
 	var err error
 	err = os.Setenv(MERAKI_BASE_URL, baseURL)
 	if err != nil {
 		return err
 	}
 	err = os.Setenv(MERAKI_DEBUG, debug)
-	if err != nil {
-		return err
-	}
-	err = os.Setenv(MERAKI_SSL_VERIFY, sslVerify)
 	if err != nil {
 		return err
 	}
@@ -185,8 +175,8 @@ func SetOptions(baseURL string, dashboardApiKey string, debug string, sslVerify 
 }
 
 // SetOptionsWithRequests sets the required environment variables including the requests per second
-func SetOptionsWithRequests(baseURL string, dashboardApiKey string, debug string, sslVerify string, requestsPerSecond int) error {
-	err := SetOptions(baseURL, dashboardApiKey, debug, sslVerify)
+func SetOptionsWithRequests(baseURL string, dashboardApiKey string, debug string, requestsPerSecond int) error {
+	err := SetOptions(baseURL, dashboardApiKey, debug)
 	if err != nil {
 		return err
 	}
@@ -285,4 +275,15 @@ func Delete(client *resty.Client, rateLimiterBucket *ratelimit.Bucket, path stri
 	}
 
 	return response, err
+}
+
+func convertToString(i interface{}) string {
+	switch v := i.(type) {
+	case float64:
+		return strconv.Itoa(int(v))
+	case string:
+		return v
+	default:
+		return ""
+	}
 }

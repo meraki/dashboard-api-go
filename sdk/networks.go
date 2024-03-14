@@ -3237,7 +3237,7 @@ type RequestNetworksCombineOrganizationNetworks struct {
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network
+
 */
 func (s *NetworksService) GetNetwork(networkID string) (*ResponseNetworksGetNetwork, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}"
@@ -3271,7 +3271,7 @@ func (s *NetworksService) GetNetwork(networkID string) (*ResponseNetworksGetNetw
 @param networkID networkId path parameter. Network ID
 @param getNetworkAlertsHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-alerts-history
+
 */
 func (s *NetworksService) GetNetworkAlertsHistory(networkID string, getNetworkAlertsHistoryQueryParams *GetNetworkAlertsHistoryQueryParams) (*ResponseNetworksGetNetworkAlertsHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/alerts/history"
@@ -3306,7 +3306,7 @@ func (s *NetworksService) GetNetworkAlertsHistory(networkID string, getNetworkAl
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-alerts-settings
+
 */
 func (s *NetworksService) GetNetworkAlertsSettings(networkID string) (*ResponseNetworksGetNetworkAlertsSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/alerts/settings"
@@ -3340,7 +3340,7 @@ func (s *NetworksService) GetNetworkAlertsSettings(networkID string) (*ResponseN
 @param networkID networkId path parameter. Network ID
 @param getNetworkBluetoothClientsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-bluetooth-clients
+
 */
 func (s *NetworksService) GetNetworkBluetoothClients(networkID string, getNetworkBluetoothClientsQueryParams *GetNetworkBluetoothClientsQueryParams) (*ResponseNetworksGetNetworkBluetoothClients, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/bluetoothClients"
@@ -3377,7 +3377,7 @@ func (s *NetworksService) GetNetworkBluetoothClients(networkID string, getNetwor
 @param bluetoothClientID bluetoothClientId path parameter. Bluetooth client ID
 @param getNetworkBluetoothClientQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-bluetooth-client
+
 */
 func (s *NetworksService) GetNetworkBluetoothClient(networkID string, bluetoothClientID string, getNetworkBluetoothClientQueryParams *GetNetworkBluetoothClientQueryParams) (*ResponseNetworksGetNetworkBluetoothClient, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/bluetoothClients/{bluetoothClientId}"
@@ -3414,7 +3414,7 @@ func (s *NetworksService) GetNetworkBluetoothClient(networkID string, bluetoothC
 @param networkID networkId path parameter. Network ID
 @param getNetworkClientsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-clients
+
 */
 func (s *NetworksService) GetNetworkClients(networkID string, getNetworkClientsQueryParams *GetNetworkClientsQueryParams) (*[]ResponseNetworksGetNetworkClients, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients"
@@ -3450,7 +3450,7 @@ func (s *NetworksService) GetNetworkClients(networkID string, getNetworkClientsQ
 @param networkID networkId path parameter. Network ID
 @param getNetworkClientsApplicationUsageQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-clients-application-usage
+
 */
 func (s *NetworksService) GetNetworkClientsApplicationUsage(networkID string, getNetworkClientsApplicationUsageQueryParams *GetNetworkClientsApplicationUsageQueryParams) (*ResponseNetworksGetNetworkClientsApplicationUsage, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/applicationUsage"
@@ -3486,7 +3486,7 @@ func (s *NetworksService) GetNetworkClientsApplicationUsage(networkID string, ge
 @param networkID networkId path parameter. Network ID
 @param getNetworkClientsBandwidthUsageHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-clients-bandwidth-usage-history
+
 */
 func (s *NetworksService) GetNetworkClientsBandwidthUsageHistory(networkID string, getNetworkClientsBandwidthUsageHistoryQueryParams *GetNetworkClientsBandwidthUsageHistoryQueryParams) (*ResponseNetworksGetNetworkClientsBandwidthUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/bandwidthUsageHistory"
@@ -3522,7 +3522,7 @@ func (s *NetworksService) GetNetworkClientsBandwidthUsageHistory(networkID strin
 @param networkID networkId path parameter. Network ID
 @param getNetworkClientsOverviewQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-clients-overview
+
 */
 func (s *NetworksService) GetNetworkClientsOverview(networkID string, getNetworkClientsOverviewQueryParams *GetNetworkClientsOverviewQueryParams) (*ResponseNetworksGetNetworkClientsOverview, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/overview"
@@ -3558,7 +3558,7 @@ func (s *NetworksService) GetNetworkClientsOverview(networkID string, getNetwork
 @param networkID networkId path parameter. Network ID
 @param getNetworkClientsUsageHistoriesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-clients-usage-histories
+
 */
 func (s *NetworksService) GetNetworkClientsUsageHistories(networkID string, getNetworkClientsUsageHistoriesQueryParams *GetNetworkClientsUsageHistoriesQueryParams) (*ResponseNetworksGetNetworkClientsUsageHistories, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/usageHistories"
@@ -3594,7 +3594,7 @@ func (s *NetworksService) GetNetworkClientsUsageHistories(networkID string, getN
 @param networkID networkId path parameter. Network ID
 @param clientID clientId path parameter. Client ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-client
+
 */
 func (s *NetworksService) GetNetworkClient(networkID string, clientID string) (*ResponseNetworksGetNetworkClient, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}"
@@ -3629,7 +3629,7 @@ func (s *NetworksService) GetNetworkClient(networkID string, clientID string) (*
 @param networkID networkId path parameter. Network ID
 @param clientID clientId path parameter. Client ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-client-policy
+
 */
 func (s *NetworksService) GetNetworkClientPolicy(networkID string, clientID string) (*ResponseNetworksGetNetworkClientPolicy, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/policy"
@@ -3664,7 +3664,7 @@ func (s *NetworksService) GetNetworkClientPolicy(networkID string, clientID stri
 @param networkID networkId path parameter. Network ID
 @param clientID clientId path parameter. Client ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-client-splash-authorization-status
+
 */
 func (s *NetworksService) GetNetworkClientSplashAuthorizationStatus(networkID string, clientID string) (*ResponseNetworksGetNetworkClientSplashAuthorizationStatus, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/splashAuthorizationStatus"
@@ -3700,7 +3700,7 @@ func (s *NetworksService) GetNetworkClientSplashAuthorizationStatus(networkID st
 @param clientID clientId path parameter. Client ID
 @param getNetworkClientTrafficHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-client-traffic-history
+
 */
 func (s *NetworksService) GetNetworkClientTrafficHistory(networkID string, clientID string, getNetworkClientTrafficHistoryQueryParams *GetNetworkClientTrafficHistoryQueryParams) (*ResponseNetworksGetNetworkClientTrafficHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/trafficHistory"
@@ -3737,7 +3737,7 @@ func (s *NetworksService) GetNetworkClientTrafficHistory(networkID string, clien
 @param networkID networkId path parameter. Network ID
 @param clientID clientId path parameter. Client ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-client-usage-history
+
 */
 func (s *NetworksService) GetNetworkClientUsageHistory(networkID string, clientID string) (*ResponseNetworksGetNetworkClientUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/usageHistory"
@@ -3771,7 +3771,7 @@ func (s *NetworksService) GetNetworkClientUsageHistory(networkID string, clientI
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-devices
+
 */
 func (s *NetworksService) GetNetworkDevices(networkID string) (*ResponseNetworksGetNetworkDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/devices"
@@ -3805,7 +3805,7 @@ func (s *NetworksService) GetNetworkDevices(networkID string) (*ResponseNetworks
 @param networkID networkId path parameter. Network ID
 @param getNetworkEventsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-events
+
 */
 func (s *NetworksService) GetNetworkEvents(networkID string, getNetworkEventsQueryParams *GetNetworkEventsQueryParams) (*ResponseNetworksGetNetworkEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/events"
@@ -3840,7 +3840,7 @@ func (s *NetworksService) GetNetworkEvents(networkID string, getNetworkEventsQue
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-events-event-types
+
 */
 func (s *NetworksService) GetNetworkEventsEventTypes(networkID string) (*ResponseNetworksGetNetworkEventsEventTypes, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/events/eventTypes"
@@ -3873,7 +3873,7 @@ func (s *NetworksService) GetNetworkEventsEventTypes(networkID string) (*Respons
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-firmware-upgrades
+
 */
 func (s *NetworksService) GetNetworkFirmwareUpgrades(networkID string) (*ResponseNetworksGetNetworkFirmwareUpgrades, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades"
@@ -3906,7 +3906,7 @@ func (s *NetworksService) GetNetworkFirmwareUpgrades(networkID string) (*Respons
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-firmware-upgrades-staged-events
+
 */
 func (s *NetworksService) GetNetworkFirmwareUpgradesStagedEvents(networkID string) (*ResponseNetworksGetNetworkFirmwareUpgradesStagedEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/events"
@@ -3939,7 +3939,7 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedEvents(networkID strin
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-firmware-upgrades-staged-groups
+
 */
 func (s *NetworksService) GetNetworkFirmwareUpgradesStagedGroups(networkID string) (*ResponseNetworksGetNetworkFirmwareUpgradesStagedGroups, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/groups"
@@ -3973,7 +3973,7 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedGroups(networkID strin
 @param networkID networkId path parameter. Network ID
 @param groupID groupId path parameter. Group ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-firmware-upgrades-staged-group
+
 */
 func (s *NetworksService) GetNetworkFirmwareUpgradesStagedGroup(networkID string, groupID string) (*ResponseNetworksGetNetworkFirmwareUpgradesStagedGroup, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/groups/{groupId}"
@@ -4007,7 +4007,7 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedGroup(networkID string
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-firmware-upgrades-staged-stages
+
 */
 func (s *NetworksService) GetNetworkFirmwareUpgradesStagedStages(networkID string) (*ResponseNetworksGetNetworkFirmwareUpgradesStagedStages, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/stages"
@@ -4040,7 +4040,7 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedStages(networkID strin
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-floor-plans
+
 */
 func (s *NetworksService) GetNetworkFloorPlans(networkID string) (*ResponseNetworksGetNetworkFloorPlans, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/floorPlans"
@@ -4074,7 +4074,7 @@ func (s *NetworksService) GetNetworkFloorPlans(networkID string) (*ResponseNetwo
 @param networkID networkId path parameter. Network ID
 @param floorPlanID floorPlanId path parameter. Floor plan ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-floor-plan
+
 */
 func (s *NetworksService) GetNetworkFloorPlan(networkID string, floorPlanID string) (*ResponseNetworksGetNetworkFloorPlan, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/floorPlans/{floorPlanId}"
@@ -4108,7 +4108,7 @@ func (s *NetworksService) GetNetworkFloorPlan(networkID string, floorPlanID stri
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-group-policies
+
 */
 func (s *NetworksService) GetNetworkGroupPolicies(networkID string) (*ResponseNetworksGetNetworkGroupPolicies, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/groupPolicies"
@@ -4142,7 +4142,7 @@ func (s *NetworksService) GetNetworkGroupPolicies(networkID string) (*ResponseNe
 @param networkID networkId path parameter. Network ID
 @param groupPolicyID groupPolicyId path parameter. Group policy ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-group-policy
+
 */
 func (s *NetworksService) GetNetworkGroupPolicy(networkID string, groupPolicyID string) (*ResponseNetworksGetNetworkGroupPolicy, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/groupPolicies/{groupPolicyId}"
@@ -4176,7 +4176,7 @@ func (s *NetworksService) GetNetworkGroupPolicy(networkID string, groupPolicyID 
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-health-alerts
+
 */
 func (s *NetworksService) GetNetworkHealthAlerts(networkID string) (*ResponseNetworksGetNetworkHealthAlerts, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/health/alerts"
@@ -4209,7 +4209,7 @@ func (s *NetworksService) GetNetworkHealthAlerts(networkID string) (*ResponseNet
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-meraki-auth-users
+
 */
 func (s *NetworksService) GetNetworkMerakiAuthUsers(networkID string) (*ResponseNetworksGetNetworkMerakiAuthUsers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/merakiAuthUsers"
@@ -4243,7 +4243,7 @@ func (s *NetworksService) GetNetworkMerakiAuthUsers(networkID string) (*Response
 @param networkID networkId path parameter. Network ID
 @param merakiAuthUserID merakiAuthUserId path parameter. Meraki auth user ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-meraki-auth-user
+
 */
 func (s *NetworksService) GetNetworkMerakiAuthUser(networkID string, merakiAuthUserID string) (*ResponseNetworksGetNetworkMerakiAuthUser, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/merakiAuthUsers/{merakiAuthUserId}"
@@ -4277,7 +4277,7 @@ func (s *NetworksService) GetNetworkMerakiAuthUser(networkID string, merakiAuthU
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-mqtt-brokers
+
 */
 func (s *NetworksService) GetNetworkMqttBrokers(networkID string) (*ResponseNetworksGetNetworkMqttBrokers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/mqttBrokers"
@@ -4311,7 +4311,7 @@ func (s *NetworksService) GetNetworkMqttBrokers(networkID string) (*ResponseNetw
 @param networkID networkId path parameter. Network ID
 @param mqttBrokerID mqttBrokerId path parameter. Mqtt broker ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-mqtt-broker
+
 */
 func (s *NetworksService) GetNetworkMqttBroker(networkID string, mqttBrokerID string) (*ResponseNetworksGetNetworkMqttBroker, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/mqttBrokers/{mqttBrokerId}"
@@ -4345,7 +4345,7 @@ func (s *NetworksService) GetNetworkMqttBroker(networkID string, mqttBrokerID st
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-netflow
+
 */
 func (s *NetworksService) GetNetworkNetflow(networkID string) (*ResponseNetworksGetNetworkNetflow, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/netflow"
@@ -4379,7 +4379,7 @@ func (s *NetworksService) GetNetworkNetflow(networkID string) (*ResponseNetworks
 @param networkID networkId path parameter. Network ID
 @param getNetworkNetworkHealthChannelUtilizationQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-network-health-channel-utilization
+
 */
 func (s *NetworksService) GetNetworkNetworkHealthChannelUtilization(networkID string, getNetworkNetworkHealthChannelUtilizationQueryParams *GetNetworkNetworkHealthChannelUtilizationQueryParams) (*ResponseNetworksGetNetworkNetworkHealthChannelUtilization, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/networkHealth/channelUtilization"
@@ -4421,7 +4421,7 @@ func (s *NetworksService) GetNetworkNetworkHealthChannelUtilization(networkID st
 @param networkID networkId path parameter. Network ID
 @param getNetworkPiiPiiKeysQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-pii-pii-keys
+
 */
 func (s *NetworksService) GetNetworkPiiPiiKeys(networkID string, getNetworkPiiPiiKeysQueryParams *GetNetworkPiiPiiKeysQueryParams) (*ResponseNetworksGetNetworkPiiPiiKeys, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/piiKeys"
@@ -4462,7 +4462,7 @@ func (s *NetworksService) GetNetworkPiiPiiKeys(networkID string, getNetworkPiiPi
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-pii-requests
+
 */
 func (s *NetworksService) GetNetworkPiiRequests(networkID string) (*ResponseNetworksGetNetworkPiiRequests, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/requests"
@@ -4502,7 +4502,7 @@ func (s *NetworksService) GetNetworkPiiRequests(networkID string) (*ResponseNetw
 @param networkID networkId path parameter. Network ID
 @param requestID requestId path parameter. Request ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-pii-request
+
 */
 func (s *NetworksService) GetNetworkPiiRequest(networkID string, requestID string) (*ResponseNetworksGetNetworkPiiRequest, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/requests/{requestId}"
@@ -4543,7 +4543,7 @@ func (s *NetworksService) GetNetworkPiiRequest(networkID string, requestID strin
 @param networkID networkId path parameter. Network ID
 @param getNetworkPiiSmDevicesForKeyQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-pii-sm-devices-for-key
+
 */
 func (s *NetworksService) GetNetworkPiiSmDevicesForKey(networkID string, getNetworkPiiSmDevicesForKeyQueryParams *GetNetworkPiiSmDevicesForKeyQueryParams) (*ResponseNetworksGetNetworkPiiSmDevicesForKey, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/smDevicesForKey"
@@ -4585,7 +4585,7 @@ func (s *NetworksService) GetNetworkPiiSmDevicesForKey(networkID string, getNetw
 @param networkID networkId path parameter. Network ID
 @param getNetworkPiiSmOwnersForKeyQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-pii-sm-owners-for-key
+
 */
 func (s *NetworksService) GetNetworkPiiSmOwnersForKey(networkID string, getNetworkPiiSmOwnersForKeyQueryParams *GetNetworkPiiSmOwnersForKeyQueryParams) (*ResponseNetworksGetNetworkPiiSmOwnersForKey, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/smOwnersForKey"
@@ -4621,7 +4621,7 @@ func (s *NetworksService) GetNetworkPiiSmOwnersForKey(networkID string, getNetwo
 @param networkID networkId path parameter. Network ID
 @param getNetworkPoliciesByClientQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-policies-by-client
+
 */
 func (s *NetworksService) GetNetworkPoliciesByClient(networkID string, getNetworkPoliciesByClientQueryParams *GetNetworkPoliciesByClientQueryParams) (*ResponseNetworksGetNetworkPoliciesByClient, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/policies/byClient"
@@ -4656,7 +4656,7 @@ func (s *NetworksService) GetNetworkPoliciesByClient(networkID string, getNetwor
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-settings
+
 */
 func (s *NetworksService) GetNetworkSettings(networkID string) (*ResponseNetworksGetNetworkSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/settings"
@@ -4689,7 +4689,7 @@ func (s *NetworksService) GetNetworkSettings(networkID string) (*ResponseNetwork
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-snmp
+
 */
 func (s *NetworksService) GetNetworkSNMP(networkID string) (*ResponseNetworksGetNetworkSNMP, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/snmp"
@@ -4723,7 +4723,7 @@ func (s *NetworksService) GetNetworkSNMP(networkID string) (*ResponseNetworksGet
 @param networkID networkId path parameter. Network ID
 @param getNetworkSplashLoginAttemptsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-splash-login-attempts
+
 */
 func (s *NetworksService) GetNetworkSplashLoginAttempts(networkID string, getNetworkSplashLoginAttemptsQueryParams *GetNetworkSplashLoginAttemptsQueryParams) (*ResponseNetworksGetNetworkSplashLoginAttempts, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/splashLoginAttempts"
@@ -4758,7 +4758,7 @@ func (s *NetworksService) GetNetworkSplashLoginAttempts(networkID string, getNet
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-syslog-servers
+
 */
 func (s *NetworksService) GetNetworkSyslogServers(networkID string) (*ResponseNetworksGetNetworkSyslogServers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/syslogServers"
@@ -4791,7 +4791,7 @@ func (s *NetworksService) GetNetworkSyslogServers(networkID string) (*ResponseNe
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-topology-link-layer
+
 */
 func (s *NetworksService) GetNetworkTopologyLinkLayer(networkID string) (*ResponseNetworksGetNetworkTopologyLinkLayer, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/topology/linkLayer"
@@ -4825,7 +4825,7 @@ func (s *NetworksService) GetNetworkTopologyLinkLayer(networkID string) (*Respon
 @param networkID networkId path parameter. Network ID
 @param getNetworkTrafficQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-traffic
+
 */
 func (s *NetworksService) GetNetworkTraffic(networkID string, getNetworkTrafficQueryParams *GetNetworkTrafficQueryParams) (*ResponseNetworksGetNetworkTraffic, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/traffic"
@@ -4860,7 +4860,7 @@ func (s *NetworksService) GetNetworkTraffic(networkID string, getNetworkTrafficQ
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-traffic-analysis
+
 */
 func (s *NetworksService) GetNetworkTrafficAnalysis(networkID string) (*ResponseNetworksGetNetworkTrafficAnalysis, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/trafficAnalysis"
@@ -4893,7 +4893,7 @@ func (s *NetworksService) GetNetworkTrafficAnalysis(networkID string) (*Response
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-traffic-shaping-application-categories
+
 */
 func (s *NetworksService) GetNetworkTrafficShapingApplicationCategories(networkID string) (*ResponseNetworksGetNetworkTrafficShapingApplicationCategories, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/trafficShaping/applicationCategories"
@@ -4926,7 +4926,7 @@ func (s *NetworksService) GetNetworkTrafficShapingApplicationCategories(networkI
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-traffic-shaping-dscp-tagging-options
+
 */
 func (s *NetworksService) GetNetworkTrafficShapingDscpTaggingOptions(networkID string) (*ResponseNetworksGetNetworkTrafficShapingDscpTaggingOptions, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/trafficShaping/dscpTaggingOptions"
@@ -4959,7 +4959,7 @@ func (s *NetworksService) GetNetworkTrafficShapingDscpTaggingOptions(networkID s
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-webhooks-http-servers
+
 */
 func (s *NetworksService) GetNetworkWebhooksHTTPServers(networkID string) (*ResponseNetworksGetNetworkWebhooksHTTPServers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/httpServers"
@@ -4993,7 +4993,7 @@ func (s *NetworksService) GetNetworkWebhooksHTTPServers(networkID string) (*Resp
 @param networkID networkId path parameter. Network ID
 @param httpServerID httpServerId path parameter. Http server ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-webhooks-http-server
+
 */
 func (s *NetworksService) GetNetworkWebhooksHTTPServer(networkID string, httpServerID string) (*ResponseNetworksGetNetworkWebhooksHTTPServer, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/httpServers/{httpServerId}"
@@ -5027,7 +5027,7 @@ func (s *NetworksService) GetNetworkWebhooksHTTPServer(networkID string, httpSer
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-webhooks-payload-templates
+
 */
 func (s *NetworksService) GetNetworkWebhooksPayloadTemplates(networkID string) (*ResponseNetworksGetNetworkWebhooksPayloadTemplates, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/payloadTemplates"
@@ -5061,7 +5061,7 @@ func (s *NetworksService) GetNetworkWebhooksPayloadTemplates(networkID string) (
 @param networkID networkId path parameter. Network ID
 @param payloadTemplateID payloadTemplateId path parameter. Payload template ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-webhooks-payload-template
+
 */
 func (s *NetworksService) GetNetworkWebhooksPayloadTemplate(networkID string, payloadTemplateID string) (*ResponseNetworksGetNetworkWebhooksPayloadTemplate, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/payloadTemplates/{payloadTemplateId}"
@@ -5096,7 +5096,7 @@ func (s *NetworksService) GetNetworkWebhooksPayloadTemplate(networkID string, pa
 @param networkID networkId path parameter. Network ID
 @param webhookTestID webhookTestId path parameter. Webhook test ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-webhooks-webhook-test
+
 */
 func (s *NetworksService) GetNetworkWebhooksWebhookTest(networkID string, webhookTestID string) (*ResponseNetworksGetNetworkWebhooksWebhookTest, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/webhookTests/{webhookTestId}"
@@ -5130,7 +5130,7 @@ func (s *NetworksService) GetNetworkWebhooksWebhookTest(networkID string, webhoo
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!bind-network
+
 */
 
 func (s *NetworksService) BindNetwork(networkID string, requestNetworksBindNetwork *RequestNetworksBindNetwork) (*resty.Response, error) {
@@ -5164,7 +5164,7 @@ func (s *NetworksService) BindNetwork(networkID string, requestNetworksBindNetwo
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!provision-network-clients
+
 */
 
 func (s *NetworksService) ProvisionNetworkClients(networkID string, requestNetworksProvisionNetworkClients *RequestNetworksProvisionNetworkClients) (*resty.Response, error) {
@@ -5198,7 +5198,7 @@ func (s *NetworksService) ProvisionNetworkClients(networkID string, requestNetwo
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!claim-network-devices
+
 */
 
 func (s *NetworksService) ClaimNetworkDevices(networkID string, requestNetworksClaimNetworkDevices *RequestNetworksClaimNetworkDevices) (*resty.Response, error) {
@@ -5231,7 +5231,7 @@ func (s *NetworksService) ClaimNetworkDevices(networkID string, requestNetworksC
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!vmx-network-devices-claim
+
 */
 
 func (s *NetworksService) VmxNetworkDevicesClaim(networkID string, requestNetworksVmxNetworkDevicesClaim *RequestNetworksVmxNetworkDevicesClaim) (*resty.Response, error) {
@@ -5265,7 +5265,7 @@ func (s *NetworksService) VmxNetworkDevicesClaim(networkID string, requestNetwor
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-network-devices
+
 */
 
 func (s *NetworksService) RemoveNetworkDevices(networkID string, requestNetworksRemoveNetworkDevices *RequestNetworksRemoveNetworkDevices) (*resty.Response, error) {
@@ -5298,7 +5298,7 @@ func (s *NetworksService) RemoveNetworkDevices(networkID string, requestNetworks
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-firmware-upgrades-rollback
+
 */
 
 func (s *NetworksService) CreateNetworkFirmwareUpgradesRollback(networkID string, requestNetworksCreateNetworkFirmwareUpgradesRollback *RequestNetworksCreateNetworkFirmwareUpgradesRollback) (*ResponseNetworksCreateNetworkFirmwareUpgradesRollback, *resty.Response, error) {
@@ -5333,7 +5333,7 @@ func (s *NetworksService) CreateNetworkFirmwareUpgradesRollback(networkID string
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-firmware-upgrades-staged-event
+
 */
 
 func (s *NetworksService) CreateNetworkFirmwareUpgradesStagedEvent(networkID string, requestNetworksCreateNetworkFirmwareUpgradesStagedEvent *RequestNetworksCreateNetworkFirmwareUpgradesStagedEvent) (*ResponseNetworksCreateNetworkFirmwareUpgradesStagedEvent, *resty.Response, error) {
@@ -5368,7 +5368,7 @@ func (s *NetworksService) CreateNetworkFirmwareUpgradesStagedEvent(networkID str
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!defer-network-firmware-upgrades-staged-events
+
 */
 
 func (s *NetworksService) DeferNetworkFirmwareUpgradesStagedEvents(networkID string) (*ResponseNetworksDeferNetworkFirmwareUpgradesStagedEvents, *resty.Response, error) {
@@ -5402,7 +5402,7 @@ func (s *NetworksService) DeferNetworkFirmwareUpgradesStagedEvents(networkID str
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!rollbacks-network-firmware-upgrades-staged-events
+
 */
 
 func (s *NetworksService) RollbacksNetworkFirmwareUpgradesStagedEvents(networkID string, requestNetworksRollbacksNetworkFirmwareUpgradesStagedEvents *RequestNetworksRollbacksNetworkFirmwareUpgradesStagedEvents) (*ResponseNetworksRollbacksNetworkFirmwareUpgradesStagedEvents, *resty.Response, error) {
@@ -5437,7 +5437,7 @@ func (s *NetworksService) RollbacksNetworkFirmwareUpgradesStagedEvents(networkID
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-firmware-upgrades-staged-group
+
 */
 
 func (s *NetworksService) CreateNetworkFirmwareUpgradesStagedGroup(networkID string, requestNetworksCreateNetworkFirmwareUpgradesStagedGroup *RequestNetworksCreateNetworkFirmwareUpgradesStagedGroup) (*resty.Response, error) {
@@ -5471,7 +5471,7 @@ func (s *NetworksService) CreateNetworkFirmwareUpgradesStagedGroup(networkID str
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-floor-plan
+
 */
 
 func (s *NetworksService) CreateNetworkFloorPlan(networkID string, requestNetworksCreateNetworkFloorPlan *RequestNetworksCreateNetworkFloorPlan) (*resty.Response, error) {
@@ -5505,7 +5505,7 @@ func (s *NetworksService) CreateNetworkFloorPlan(networkID string, requestNetwor
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-group-policy
+
 */
 
 func (s *NetworksService) CreateNetworkGroupPolicy(networkID string, requestNetworksCreateNetworkGroupPolicy *RequestNetworksCreateNetworkGroupPolicy) (*resty.Response, error) {
@@ -5539,7 +5539,7 @@ func (s *NetworksService) CreateNetworkGroupPolicy(networkID string, requestNetw
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-meraki-auth-user
+
 */
 
 func (s *NetworksService) CreateNetworkMerakiAuthUser(networkID string, requestNetworksCreateNetworkMerakiAuthUser *RequestNetworksCreateNetworkMerakiAuthUser) (*ResponseNetworksCreateNetworkMerakiAuthUser, *resty.Response, error) {
@@ -5574,7 +5574,7 @@ func (s *NetworksService) CreateNetworkMerakiAuthUser(networkID string, requestN
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-mqtt-broker
+
 */
 
 func (s *NetworksService) CreateNetworkMqttBroker(networkID string, requestNetworksCreateNetworkMqttBroker *RequestNetworksCreateNetworkMqttBroker) (*resty.Response, error) {
@@ -5614,7 +5614,7 @@ func (s *NetworksService) CreateNetworkMqttBroker(networkID string, requestNetwo
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-pii-request
+
 */
 
 func (s *NetworksService) CreateNetworkPiiRequest(networkID string, requestNetworksCreateNetworkPiiRequest *RequestNetworksCreateNetworkPiiRequest) (*resty.Response, error) {
@@ -5648,7 +5648,7 @@ func (s *NetworksService) CreateNetworkPiiRequest(networkID string, requestNetwo
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!split-network
+
 */
 
 func (s *NetworksService) SplitNetwork(networkID string) (*ResponseNetworksSplitNetwork, *resty.Response, error) {
@@ -5682,7 +5682,7 @@ func (s *NetworksService) SplitNetwork(networkID string) (*ResponseNetworksSplit
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!unbind-network
+
 */
 
 func (s *NetworksService) UnbindNetwork(networkID string, requestNetworksUnbindNetwork *RequestNetworksUnbindNetwork) (*ResponseNetworksUnbindNetwork, *resty.Response, error) {
@@ -5717,7 +5717,7 @@ func (s *NetworksService) UnbindNetwork(networkID string, requestNetworksUnbindN
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-webhooks-http-server
+
 */
 
 func (s *NetworksService) CreateNetworkWebhooksHTTPServer(networkID string, requestNetworksCreateNetworkWebhooksHttpServer *RequestNetworksCreateNetworkWebhooksHTTPServer) (*ResponseNetworksCreateNetworkWebhooksHTTPServer, *resty.Response, error) {
@@ -5752,7 +5752,7 @@ func (s *NetworksService) CreateNetworkWebhooksHTTPServer(networkID string, requ
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-webhooks-payload-template
+
 */
 
 func (s *NetworksService) CreateNetworkWebhooksPayloadTemplate(networkID string, requestNetworksCreateNetworkWebhooksPayloadTemplate *RequestNetworksCreateNetworkWebhooksPayloadTemplate) (*ResponseNetworksCreateNetworkWebhooksPayloadTemplate, *resty.Response, error) {
@@ -5787,7 +5787,7 @@ func (s *NetworksService) CreateNetworkWebhooksPayloadTemplate(networkID string,
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-webhooks-webhook-test
+
 */
 
 func (s *NetworksService) CreateNetworkWebhooksWebhookTest(networkID string, requestNetworksCreateNetworkWebhooksWebhookTest *RequestNetworksCreateNetworkWebhooksWebhookTest) (*ResponseNetworksCreateNetworkWebhooksWebhookTest, *resty.Response, error) {
@@ -5822,7 +5822,7 @@ func (s *NetworksService) CreateNetworkWebhooksWebhookTest(networkID string, req
 
 @param organizationID organizationId path parameter. Organization ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!combine-organization-networks
+
 */
 func (s *NetworksService) CombineOrganizationNetworks(organizationID string, requestNetworksCombineOrganizationNetworks *RequestNetworksCombineOrganizationNetworks) (*ResponseNetworksCombineOrganizationNetworks, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/networks/combine"
@@ -6462,7 +6462,7 @@ func (s *NetworksService) UpdateNetworkWebhooksPayloadTemplate(networkID string,
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
+
 */
 func (s *NetworksService) DeleteNetwork(networkID string) (*resty.Response, error) {
 	//networkID string
@@ -6495,7 +6495,7 @@ func (s *NetworksService) DeleteNetwork(networkID string) (*resty.Response, erro
 @param networkID networkId path parameter. Network ID
 @param groupID groupId path parameter. Group ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-firmware-upgrades-staged-group
+
 */
 func (s *NetworksService) DeleteNetworkFirmwareUpgradesStagedGroup(networkID string, groupID string) (*resty.Response, error) {
 	//networkID string,groupID string
@@ -6529,7 +6529,7 @@ func (s *NetworksService) DeleteNetworkFirmwareUpgradesStagedGroup(networkID str
 @param networkID networkId path parameter. Network ID
 @param floorPlanID floorPlanId path parameter. Floor plan ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-floor-plan
+
 */
 func (s *NetworksService) DeleteNetworkFloorPlan(networkID string, floorPlanID string) (*resty.Response, error) {
 	//networkID string,floorPlanID string
@@ -6563,7 +6563,7 @@ func (s *NetworksService) DeleteNetworkFloorPlan(networkID string, floorPlanID s
 @param networkID networkId path parameter. Network ID
 @param groupPolicyID groupPolicyId path parameter. Group policy ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-group-policy
+
 */
 func (s *NetworksService) DeleteNetworkGroupPolicy(networkID string, groupPolicyID string) (*resty.Response, error) {
 	//networkID string,groupPolicyID string
@@ -6597,7 +6597,7 @@ func (s *NetworksService) DeleteNetworkGroupPolicy(networkID string, groupPolicy
 @param networkID networkId path parameter. Network ID
 @param merakiAuthUserID merakiAuthUserId path parameter. Meraki auth user ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-meraki-auth-user
+
 */
 func (s *NetworksService) DeleteNetworkMerakiAuthUser(networkID string, merakiAuthUserID string) (*resty.Response, error) {
 	//networkID string,merakiAuthUserID string
@@ -6631,7 +6631,7 @@ func (s *NetworksService) DeleteNetworkMerakiAuthUser(networkID string, merakiAu
 @param networkID networkId path parameter. Network ID
 @param mqttBrokerID mqttBrokerId path parameter. Mqtt broker ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-mqtt-broker
+
 */
 func (s *NetworksService) DeleteNetworkMqttBroker(networkID string, mqttBrokerID string) (*resty.Response, error) {
 	//networkID string,mqttBrokerID string
@@ -6671,7 +6671,7 @@ func (s *NetworksService) DeleteNetworkMqttBroker(networkID string, mqttBrokerID
 @param networkID networkId path parameter. Network ID
 @param requestID requestId path parameter. Request ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-pii-request
+
 */
 func (s *NetworksService) DeleteNetworkPiiRequest(networkID string, requestID string) (*resty.Response, error) {
 	//networkID string,requestID string
@@ -6705,7 +6705,7 @@ func (s *NetworksService) DeleteNetworkPiiRequest(networkID string, requestID st
 @param networkID networkId path parameter. Network ID
 @param httpServerID httpServerId path parameter. Http server ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-webhooks-http-server
+
 */
 func (s *NetworksService) DeleteNetworkWebhooksHTTPServer(networkID string, httpServerID string) (*resty.Response, error) {
 	//networkID string,httpServerID string
@@ -6739,7 +6739,7 @@ func (s *NetworksService) DeleteNetworkWebhooksHTTPServer(networkID string, http
 @param networkID networkId path parameter. Network ID
 @param payloadTemplateID payloadTemplateId path parameter. Payload template ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-webhooks-payload-template
+
 */
 func (s *NetworksService) DeleteNetworkWebhooksPayloadTemplate(networkID string, payloadTemplateID string) (*resty.Response, error) {
 	//networkID string,payloadTemplateID string

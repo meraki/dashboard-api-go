@@ -2448,7 +2448,7 @@ type RequestWirelessUpdateNetworkWirelessSSIDVpnSplitTunnelRules struct {
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-wireless-bluetooth-settings
+
 */
 func (s *WirelessService) GetDeviceWirelessBluetoothSettings(serial string) (*ResponseWirelessGetDeviceWirelessBluetoothSettings, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/bluetooth/settings"
@@ -2482,7 +2482,7 @@ func (s *WirelessService) GetDeviceWirelessBluetoothSettings(serial string) (*Re
 @param serial serial path parameter.
 @param getDeviceWirelessConnectionStatsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-wireless-connection-stats
+
 */
 func (s *WirelessService) GetDeviceWirelessConnectionStats(serial string, getDeviceWirelessConnectionStatsQueryParams *GetDeviceWirelessConnectionStatsQueryParams) (*ResponseWirelessGetDeviceWirelessConnectionStats, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/connectionStats"
@@ -2518,7 +2518,7 @@ func (s *WirelessService) GetDeviceWirelessConnectionStats(serial string, getDev
 @param serial serial path parameter.
 @param getDeviceWirelessLatencyStatsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-wireless-latency-stats
+
 */
 func (s *WirelessService) GetDeviceWirelessLatencyStats(serial string, getDeviceWirelessLatencyStatsQueryParams *GetDeviceWirelessLatencyStatsQueryParams) (*ResponseWirelessGetDeviceWirelessLatencyStats, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/latencyStats"
@@ -2553,7 +2553,7 @@ func (s *WirelessService) GetDeviceWirelessLatencyStats(serial string, getDevice
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-wireless-radio-settings
+
 */
 func (s *WirelessService) GetDeviceWirelessRadioSettings(serial string) (*ResponseWirelessGetDeviceWirelessRadioSettings, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/radio/settings"
@@ -2586,7 +2586,7 @@ func (s *WirelessService) GetDeviceWirelessRadioSettings(serial string) (*Respon
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-wireless-status
+
 */
 func (s *WirelessService) GetDeviceWirelessStatus(serial string) (*ResponseWirelessGetDeviceWirelessStatus, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/status"
@@ -2620,7 +2620,7 @@ func (s *WirelessService) GetDeviceWirelessStatus(serial string) (*ResponseWirel
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessAirMarshalQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-air-marshal
+
 */
 func (s *WirelessService) GetNetworkWirelessAirMarshal(networkID string, getNetworkWirelessAirMarshalQueryParams *GetNetworkWirelessAirMarshalQueryParams) (*ResponseWirelessGetNetworkWirelessAirMarshal, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/airMarshal"
@@ -2655,7 +2655,7 @@ func (s *WirelessService) GetNetworkWirelessAirMarshal(networkID string, getNetw
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-alternate-management-interface
+
 */
 func (s *WirelessService) GetNetworkWirelessAlternateManagementInterface(networkID string) (*ResponseWirelessGetNetworkWirelessAlternateManagementInterface, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/alternateManagementInterface"
@@ -2688,7 +2688,7 @@ func (s *WirelessService) GetNetworkWirelessAlternateManagementInterface(network
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-billing
+
 */
 func (s *WirelessService) GetNetworkWirelessBilling(networkID string) (*ResponseWirelessGetNetworkWirelessBilling, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/billing"
@@ -2723,7 +2723,7 @@ Bluetooth settings
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-bluetooth-settings
+
 */
 func (s *WirelessService) GetNetworkWirelessBluetoothSettings(networkID string) (*ResponseWirelessGetNetworkWirelessBluetoothSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/bluetooth/settings"
@@ -2757,7 +2757,7 @@ func (s *WirelessService) GetNetworkWirelessBluetoothSettings(networkID string) 
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessChannelUtilizationHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-channel-utilization-history
+
 */
 func (s *WirelessService) GetNetworkWirelessChannelUtilizationHistory(networkID string, getNetworkWirelessChannelUtilizationHistoryQueryParams *GetNetworkWirelessChannelUtilizationHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessChannelUtilizationHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/channelUtilizationHistory"
@@ -2793,7 +2793,7 @@ func (s *WirelessService) GetNetworkWirelessChannelUtilizationHistory(networkID 
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessClientCountHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-client-count-history
+
 */
 func (s *WirelessService) GetNetworkWirelessClientCountHistory(networkID string, getNetworkWirelessClientCountHistoryQueryParams *GetNetworkWirelessClientCountHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessClientCountHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clientCountHistory"
@@ -2829,7 +2829,7 @@ func (s *WirelessService) GetNetworkWirelessClientCountHistory(networkID string,
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessClientsConnectionStatsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-clients-connection-stats
+
 */
 func (s *WirelessService) GetNetworkWirelessClientsConnectionStats(networkID string, getNetworkWirelessClientsConnectionStatsQueryParams *GetNetworkWirelessClientsConnectionStatsQueryParams) (*ResponseWirelessGetNetworkWirelessClientsConnectionStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/connectionStats"
@@ -2865,7 +2865,7 @@ func (s *WirelessService) GetNetworkWirelessClientsConnectionStats(networkID str
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessClientsLatencyStatsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-clients-latency-stats
+
 */
 func (s *WirelessService) GetNetworkWirelessClientsLatencyStats(networkID string, getNetworkWirelessClientsLatencyStatsQueryParams *GetNetworkWirelessClientsLatencyStatsQueryParams) (*ResponseWirelessGetNetworkWirelessClientsLatencyStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/latencyStats"
@@ -2902,7 +2902,7 @@ func (s *WirelessService) GetNetworkWirelessClientsLatencyStats(networkID string
 @param clientID clientId path parameter. Client ID
 @param getNetworkWirelessClientConnectionStatsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-client-connection-stats
+
 */
 func (s *WirelessService) GetNetworkWirelessClientConnectionStats(networkID string, clientID string, getNetworkWirelessClientConnectionStatsQueryParams *GetNetworkWirelessClientConnectionStatsQueryParams) (*ResponseWirelessGetNetworkWirelessClientConnectionStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/{clientId}/connectionStats"
@@ -2940,7 +2940,7 @@ func (s *WirelessService) GetNetworkWirelessClientConnectionStats(networkID stri
 @param clientID clientId path parameter. Client ID
 @param getNetworkWirelessClientConnectivityEventsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-client-connectivity-events
+
 */
 func (s *WirelessService) GetNetworkWirelessClientConnectivityEvents(networkID string, clientID string, getNetworkWirelessClientConnectivityEventsQueryParams *GetNetworkWirelessClientConnectivityEventsQueryParams) (*ResponseWirelessGetNetworkWirelessClientConnectivityEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/{clientId}/connectivityEvents"
@@ -2978,7 +2978,7 @@ func (s *WirelessService) GetNetworkWirelessClientConnectivityEvents(networkID s
 @param clientID clientId path parameter. Client ID
 @param getNetworkWirelessClientLatencyHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-client-latency-history
+
 */
 func (s *WirelessService) GetNetworkWirelessClientLatencyHistory(networkID string, clientID string, getNetworkWirelessClientLatencyHistoryQueryParams *GetNetworkWirelessClientLatencyHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessClientLatencyHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/{clientId}/latencyHistory"
@@ -3016,7 +3016,7 @@ func (s *WirelessService) GetNetworkWirelessClientLatencyHistory(networkID strin
 @param clientID clientId path parameter. Client ID
 @param getNetworkWirelessClientLatencyStatsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-client-latency-stats
+
 */
 func (s *WirelessService) GetNetworkWirelessClientLatencyStats(networkID string, clientID string, getNetworkWirelessClientLatencyStatsQueryParams *GetNetworkWirelessClientLatencyStatsQueryParams) (*ResponseWirelessGetNetworkWirelessClientLatencyStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/{clientId}/latencyStats"
@@ -3053,7 +3053,7 @@ func (s *WirelessService) GetNetworkWirelessClientLatencyStats(networkID string,
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessConnectionStatsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-connection-stats
+
 */
 func (s *WirelessService) GetNetworkWirelessConnectionStats(networkID string, getNetworkWirelessConnectionStatsQueryParams *GetNetworkWirelessConnectionStatsQueryParams) (*ResponseWirelessGetNetworkWirelessConnectionStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/connectionStats"
@@ -3089,7 +3089,7 @@ func (s *WirelessService) GetNetworkWirelessConnectionStats(networkID string, ge
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessDataRateHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-data-rate-history
+
 */
 func (s *WirelessService) GetNetworkWirelessDataRateHistory(networkID string, getNetworkWirelessDataRateHistoryQueryParams *GetNetworkWirelessDataRateHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessDataRateHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/dataRateHistory"
@@ -3125,7 +3125,7 @@ func (s *WirelessService) GetNetworkWirelessDataRateHistory(networkID string, ge
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessDevicesConnectionStatsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-devices-connection-stats
+
 */
 func (s *WirelessService) GetNetworkWirelessDevicesConnectionStats(networkID string, getNetworkWirelessDevicesConnectionStatsQueryParams *GetNetworkWirelessDevicesConnectionStatsQueryParams) (*ResponseWirelessGetNetworkWirelessDevicesConnectionStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/devices/connectionStats"
@@ -3161,7 +3161,7 @@ func (s *WirelessService) GetNetworkWirelessDevicesConnectionStats(networkID str
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessDevicesLatencyStatsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-devices-latency-stats
+
 */
 func (s *WirelessService) GetNetworkWirelessDevicesLatencyStats(networkID string, getNetworkWirelessDevicesLatencyStatsQueryParams *GetNetworkWirelessDevicesLatencyStatsQueryParams) (*ResponseWirelessGetNetworkWirelessDevicesLatencyStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/devices/latencyStats"
@@ -3197,7 +3197,7 @@ func (s *WirelessService) GetNetworkWirelessDevicesLatencyStats(networkID string
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessFailedConnectionsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-failed-connections
+
 */
 func (s *WirelessService) GetNetworkWirelessFailedConnections(networkID string, getNetworkWirelessFailedConnectionsQueryParams *GetNetworkWirelessFailedConnectionsQueryParams) (*ResponseWirelessGetNetworkWirelessFailedConnections, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/failedConnections"
@@ -3233,7 +3233,7 @@ func (s *WirelessService) GetNetworkWirelessFailedConnections(networkID string, 
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessLatencyHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-latency-history
+
 */
 func (s *WirelessService) GetNetworkWirelessLatencyHistory(networkID string, getNetworkWirelessLatencyHistoryQueryParams *GetNetworkWirelessLatencyHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessLatencyHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/latencyHistory"
@@ -3269,7 +3269,7 @@ func (s *WirelessService) GetNetworkWirelessLatencyHistory(networkID string, get
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessLatencyStatsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-latency-stats
+
 */
 func (s *WirelessService) GetNetworkWirelessLatencyStats(networkID string, getNetworkWirelessLatencyStatsQueryParams *GetNetworkWirelessLatencyStatsQueryParams) (*ResponseWirelessGetNetworkWirelessLatencyStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/latencyStats"
@@ -3305,7 +3305,7 @@ func (s *WirelessService) GetNetworkWirelessLatencyStats(networkID string, getNe
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessMeshStatusesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-mesh-statuses
+
 */
 func (s *WirelessService) GetNetworkWirelessMeshStatuses(networkID string, getNetworkWirelessMeshStatusesQueryParams *GetNetworkWirelessMeshStatusesQueryParams) (*ResponseWirelessGetNetworkWirelessMeshStatuses, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/meshStatuses"
@@ -3341,7 +3341,7 @@ func (s *WirelessService) GetNetworkWirelessMeshStatuses(networkID string, getNe
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessRfProfilesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-rf-profiles
+
 */
 func (s *WirelessService) GetNetworkWirelessRfProfiles(networkID string, getNetworkWirelessRfProfilesQueryParams *GetNetworkWirelessRfProfilesQueryParams) (*ResponseWirelessGetNetworkWirelessRfProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/rfProfiles"
@@ -3377,7 +3377,7 @@ func (s *WirelessService) GetNetworkWirelessRfProfiles(networkID string, getNetw
 @param networkID networkId path parameter. Network ID
 @param rfProfileID rfProfileId path parameter. Rf profile ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-rf-profile
+
 */
 func (s *WirelessService) GetNetworkWirelessRfProfile(networkID string, rfProfileID string) (*ResponseWirelessGetNetworkWirelessRfProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/rfProfiles/{rfProfileId}"
@@ -3411,7 +3411,7 @@ func (s *WirelessService) GetNetworkWirelessRfProfile(networkID string, rfProfil
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-settings
+
 */
 func (s *WirelessService) GetNetworkWirelessSettings(networkID string) (*ResponseWirelessGetNetworkWirelessSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/settings"
@@ -3445,7 +3445,7 @@ func (s *WirelessService) GetNetworkWirelessSettings(networkID string) (*Respons
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessSignalQualityHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-signal-quality-history
+
 */
 func (s *WirelessService) GetNetworkWirelessSignalQualityHistory(networkID string, getNetworkWirelessSignalQualityHistoryQueryParams *GetNetworkWirelessSignalQualityHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessSignalQualityHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/signalQualityHistory"
@@ -3480,7 +3480,7 @@ func (s *WirelessService) GetNetworkWirelessSignalQualityHistory(networkID strin
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssids
+
 */
 func (s *WirelessService) GetNetworkWirelessSSIDs(networkID string) (*ResponseWirelessGetNetworkWirelessSSIDs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids"
@@ -3514,7 +3514,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDs(networkID string) (*ResponseWi
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid
+
 */
 func (s *WirelessService) GetNetworkWirelessSSID(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSID, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}"
@@ -3549,7 +3549,7 @@ func (s *WirelessService) GetNetworkWirelessSSID(networkID string, number string
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-bonjour-forwarding
+
 */
 func (s *WirelessService) GetNetworkWirelessSSIDBonjourForwarding(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDBonjourForwarding, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/bonjourForwarding"
@@ -3584,7 +3584,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDBonjourForwarding(networkID stri
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-device-type-group-policies
+
 */
 func (s *WirelessService) GetNetworkWirelessSSIDDeviceTypeGroupPolicies(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDDeviceTypeGroupPolicies, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/deviceTypeGroupPolicies"
@@ -3619,7 +3619,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDDeviceTypeGroupPolicies(networkI
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-eap-override
+
 */
 func (s *WirelessService) GetNetworkWirelessSSIDEapOverride(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDEapOverride, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/eapOverride"
@@ -3654,7 +3654,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDEapOverride(networkID string, nu
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-firewall-l3-firewall-rules
+
 */
 func (s *WirelessService) GetNetworkWirelessSSIDFirewallL3FirewallRules(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDFirewallL3FirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/firewall/l3FirewallRules"
@@ -3689,7 +3689,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDFirewallL3FirewallRules(networkI
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-firewall-l7-firewall-rules
+
 */
 func (s *WirelessService) GetNetworkWirelessSSIDFirewallL7FirewallRules(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/firewall/l7FirewallRules"
@@ -3724,7 +3724,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDFirewallL7FirewallRules(networkI
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-hotspot20
+
 */
 func (s *WirelessService) GetNetworkWirelessSSIDHotspot20(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDHotspot20, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/hotspot20"
@@ -3759,7 +3759,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDHotspot20(networkID string, numb
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-identity-psks
+
 */
 func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsks(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDIDentityPsks, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/identityPsks"
@@ -3795,7 +3795,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsks(networkID string, n
 @param number number path parameter.
 @param identityPskID identityPskId path parameter. Identity psk ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-identity-psk
+
 */
 func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsk(networkID string, number string, identityPskID string) (*ResponseWirelessGetNetworkWirelessSSIDIDentityPsk, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/identityPsks/{identityPskId}"
@@ -3831,7 +3831,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsk(networkID string, nu
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-schedules
+
 */
 func (s *WirelessService) GetNetworkWirelessSSIDSchedules(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDSchedules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/schedules"
@@ -3866,7 +3866,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDSchedules(networkID string, numb
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-splash-settings
+
 */
 func (s *WirelessService) GetNetworkWirelessSSIDSplashSettings(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDSplashSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/splash/settings"
@@ -3901,7 +3901,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDSplashSettings(networkID string,
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-traffic-shaping-rules
+
 */
 func (s *WirelessService) GetNetworkWirelessSSIDTrafficShapingRules(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/trafficShaping/rules"
@@ -3936,7 +3936,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDTrafficShapingRules(networkID st
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-vpn
+
 */
 func (s *WirelessService) GetNetworkWirelessSSIDVpn(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDVpn, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/vpn"
@@ -3971,7 +3971,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDVpn(networkID string, number str
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessUsageHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-usage-history
+
 */
 func (s *WirelessService) GetNetworkWirelessUsageHistory(networkID string, getNetworkWirelessUsageHistoryQueryParams *GetNetworkWirelessUsageHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/usageHistory"
@@ -4007,7 +4007,7 @@ func (s *WirelessService) GetNetworkWirelessUsageHistory(networkID string, getNe
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationWirelessDevicesEthernetStatusesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-ethernet-statuses
+
 */
 func (s *WirelessService) GetOrganizationWirelessDevicesEthernetStatuses(organizationID string, getOrganizationWirelessDevicesEthernetStatusesQueryParams *GetOrganizationWirelessDevicesEthernetStatusesQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/ethernet/statuses"
@@ -4042,7 +4042,7 @@ func (s *WirelessService) GetOrganizationWirelessDevicesEthernetStatuses(organiz
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-wireless-rf-profile
+
 */
 
 func (s *WirelessService) CreateNetworkWirelessRfProfile(networkID string, requestWirelessCreateNetworkWirelessRfProfile *RequestWirelessCreateNetworkWirelessRfProfile) (*ResponseWirelessCreateNetworkWirelessRfProfile, *resty.Response, error) {
@@ -4078,7 +4078,7 @@ func (s *WirelessService) CreateNetworkWirelessRfProfile(networkID string, reque
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-wireless-ssid-identity-psk
+
 */
 
 func (s *WirelessService) CreateNetworkWirelessSSIDIDentityPsk(networkID string, number string, requestWirelessCreateNetworkWirelessSsidIdentityPsk *RequestWirelessCreateNetworkWirelessSSIDIDentityPsk) (*resty.Response, error) {
@@ -4726,7 +4726,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDVpn(networkID string, number 
 @param networkID networkId path parameter. Network ID
 @param rfProfileID rfProfileId path parameter. Rf profile ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-wireless-rf-profile
+
 */
 func (s *WirelessService) DeleteNetworkWirelessRfProfile(networkID string, rfProfileID string) (*resty.Response, error) {
 	//networkID string,rfProfileID string
@@ -4761,7 +4761,7 @@ func (s *WirelessService) DeleteNetworkWirelessRfProfile(networkID string, rfPro
 @param number number path parameter.
 @param identityPskID identityPskId path parameter. Identity psk ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-wireless-ssid-identity-psk
+
 */
 func (s *WirelessService) DeleteNetworkWirelessSSIDIDentityPsk(networkID string, number string, identityPskID string) (*resty.Response, error) {
 	//networkID string,number string,identityPskID string
