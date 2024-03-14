@@ -656,11 +656,10 @@ type RequestSensorUpdateNetworkSensorMqttBroker struct {
 
 @param serial serial path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-sensor-relationships
 */
 func (s *SensorService) GetDeviceSensorRelationships(serial string) (*ResponseSensorGetDeviceSensorRelationships, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/sensor/relationships"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -689,11 +688,10 @@ func (s *SensorService) GetDeviceSensorRelationships(serial string) (*ResponseSe
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sensor-alerts-current-overview-by-metric
 */
 func (s *SensorService) GetNetworkSensorAlertsCurrentOverviewByMetric(networkID string) (*ResponseSensorGetNetworkSensorAlertsCurrentOverviewByMetric, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/alerts/current/overview/byMetric"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -723,11 +721,10 @@ func (s *SensorService) GetNetworkSensorAlertsCurrentOverviewByMetric(networkID 
 @param networkID networkId path parameter. Network ID
 @param getNetworkSensorAlertsOverviewByMetricQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sensor-alerts-overview-by-metric
 */
 func (s *SensorService) GetNetworkSensorAlertsOverviewByMetric(networkID string, getNetworkSensorAlertsOverviewByMetricQueryParams *GetNetworkSensorAlertsOverviewByMetricQueryParams) (*ResponseSensorGetNetworkSensorAlertsOverviewByMetric, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/alerts/overview/byMetric"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSensorAlertsOverviewByMetricQueryParams)
@@ -758,11 +755,10 @@ func (s *SensorService) GetNetworkSensorAlertsOverviewByMetric(networkID string,
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sensor-alerts-profiles
 */
 func (s *SensorService) GetNetworkSensorAlertsProfiles(networkID string) (*ResponseSensorGetNetworkSensorAlertsProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/alerts/profiles"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -792,11 +788,10 @@ func (s *SensorService) GetNetworkSensorAlertsProfiles(networkID string) (*Respo
 @param networkID networkId path parameter. Network ID
 @param id id path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sensor-alerts-profile
 */
 func (s *SensorService) GetNetworkSensorAlertsProfile(networkID string, id string) (*ResponseSensorGetNetworkSensorAlertsProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/alerts/profiles/{id}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
@@ -826,11 +821,10 @@ func (s *SensorService) GetNetworkSensorAlertsProfile(networkID string, id strin
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sensor-mqtt-brokers
 */
 func (s *SensorService) GetNetworkSensorMqttBrokers(networkID string) (*ResponseSensorGetNetworkSensorMqttBrokers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/mqttBrokers"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -860,11 +854,10 @@ func (s *SensorService) GetNetworkSensorMqttBrokers(networkID string) (*Response
 @param networkID networkId path parameter. Network ID
 @param mqttBrokerID mqttBrokerId path parameter. Mqtt broker ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sensor-mqtt-broker
 */
 func (s *SensorService) GetNetworkSensorMqttBroker(networkID string, mqttBrokerID string) (*ResponseSensorGetNetworkSensorMqttBroker, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/mqttBrokers/{mqttBrokerId}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{mqttBrokerId}", fmt.Sprintf("%v", mqttBrokerID), -1)
 
@@ -894,11 +887,10 @@ func (s *SensorService) GetNetworkSensorMqttBroker(networkID string, mqttBrokerI
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sensor-relationships
 */
 func (s *SensorService) GetNetworkSensorRelationships(networkID string) (*ResponseSensorGetNetworkSensorRelationships, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/relationships"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -928,11 +920,10 @@ func (s *SensorService) GetNetworkSensorRelationships(networkID string) (*Respon
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationSensorReadingsHistoryQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-sensor-readings-history
 */
 func (s *SensorService) GetOrganizationSensorReadingsHistory(organizationID string, getOrganizationSensorReadingsHistoryQueryParams *GetOrganizationSensorReadingsHistoryQueryParams) (*ResponseSensorGetOrganizationSensorReadingsHistory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sensor/readings/history"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSensorReadingsHistoryQueryParams)
@@ -964,11 +955,10 @@ func (s *SensorService) GetOrganizationSensorReadingsHistory(organizationID stri
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationSensorReadingsLatestQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-sensor-readings-latest
 */
 func (s *SensorService) GetOrganizationSensorReadingsLatest(organizationID string, getOrganizationSensorReadingsLatestQueryParams *GetOrganizationSensorReadingsLatestQueryParams) (*ResponseSensorGetOrganizationSensorReadingsLatest, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sensor/readings/latest"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSensorReadingsLatestQueryParams)
@@ -999,12 +989,11 @@ func (s *SensorService) GetOrganizationSensorReadingsLatest(organizationID strin
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-sensor-alerts-profile
 */
 
 func (s *SensorService) CreateNetworkSensorAlertsProfile(networkID string, requestSensorCreateNetworkSensorAlertsProfile *RequestSensorCreateNetworkSensorAlertsProfile) (*ResponseSensorCreateNetworkSensorAlertsProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/alerts/profiles"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -1036,7 +1025,6 @@ func (s *SensorService) CreateNetworkSensorAlertsProfile(networkID string, reque
 */
 func (s *SensorService) UpdateDeviceSensorRelationships(serial string, requestSensorUpdateDeviceSensorRelationships *RequestSensorUpdateDeviceSensorRelationships) (*ResponseSensorUpdateDeviceSensorRelationships, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/sensor/relationships"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -1069,7 +1057,6 @@ func (s *SensorService) UpdateDeviceSensorRelationships(serial string, requestSe
 */
 func (s *SensorService) UpdateNetworkSensorAlertsProfile(networkID string, id string, requestSensorUpdateNetworkSensorAlertsProfile *RequestSensorUpdateNetworkSensorAlertsProfile) (*ResponseSensorUpdateNetworkSensorAlertsProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/alerts/profiles/{id}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
@@ -1103,7 +1090,6 @@ func (s *SensorService) UpdateNetworkSensorAlertsProfile(networkID string, id st
 */
 func (s *SensorService) UpdateNetworkSensorMqttBroker(networkID string, mqttBrokerID string, requestSensorUpdateNetworkSensorMqttBroker *RequestSensorUpdateNetworkSensorMqttBroker) (*ResponseSensorUpdateNetworkSensorMqttBroker, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/mqttBrokers/{mqttBrokerId}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{mqttBrokerId}", fmt.Sprintf("%v", mqttBrokerID), -1)
 
@@ -1135,12 +1121,11 @@ func (s *SensorService) UpdateNetworkSensorMqttBroker(networkID string, mqttBrok
 @param networkID networkId path parameter. Network ID
 @param id id path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-sensor-alerts-profile
 */
 func (s *SensorService) DeleteNetworkSensorAlertsProfile(networkID string, id string) (*resty.Response, error) {
 	//networkID string,id string
 	path := "/api/v1/networks/{networkId}/sensor/alerts/profiles/{id}"
-	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 

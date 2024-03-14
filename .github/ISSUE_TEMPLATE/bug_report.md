@@ -10,7 +10,7 @@ assignees: ''
 **Prerequisites**
 * [ ] Have you tested the operation in the API directly?
 * [ ] Do you have the latest SDK version?
-* [ ] Review [compability matrix](https://github.com/meraki/dashboard-api-go?tab=readme-ov-file#compatibility-matrix)
+* [ ] Review [compability matrix](https://github.com/cisco-en-programmability/dnacenter-go-sdk/tree/main#compatibility-matrix)
 
 **Describe the bug**
 A clear and concise description of what the bug is.
@@ -22,7 +22,7 @@ A clear and concise description of what you expected to happen.
 Please provide an screenshot of the successful API call with cuRL, Postman, etc.
 
 **Environment (please complete the following information):**
-* Cisco Dasboard Meraki Version and patch: 
+* Cisco DNA Center Version and patch: 
 * Go Version:
 * SDK version:
 * OS Version: 
