@@ -33,7 +33,7 @@ The client could be generated with the following parameters:
 ```go
 client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
 		"MERAKI_KEY",
-		"true", "false")
+		"true")
 nResponse, _, err := client.Administered.GetAdministeredIDentitiesMe()
 	if err != nil {
 		fmt.Println(err)
@@ -62,7 +62,7 @@ Here is an example of how we can generate a client, get a device count and then 
 ```go
 client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
 		"Meraki_key",
-		"true", "false")
+		"true")
 	if err != nil {
 		fmt.Println(err)
 		return

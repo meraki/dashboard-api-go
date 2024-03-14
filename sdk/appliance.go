@@ -1,6 +1,7 @@
 package meraki
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"strings"
@@ -418,10 +419,47 @@ type ResponseApplianceGetNetworkApplianceFirewallL7FirewallRules struct {
 	Rules *[]ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRules `json:"rules,omitempty"` //
 }
 type ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRules struct {
-	Policy string `json:"policy,omitempty"` //
-	Type   string `json:"type,omitempty"`   //
-	Value  string `json:"value,omitempty"`  //
+	Policy    string                                                                    `json:"policy,omitempty"` //
+	Type      string                                                                    `json:"type,omitempty"`   //
+	Value     *string                                                                   //
+	ValueObj  *ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj //
+	ValueList *[]string                                                                 //
 }
+type ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj struct {
+	ID   string `json:"id,omitempty"`   //
+	Name string `json:"name,omitempty"` //
+}
+
+func (r *ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRules) UnmarshalJSON(data []byte) error {
+	type Alias ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRules
+	aux := &struct {
+		Value interface{} `json:"value"`
+		*Alias
+	}{
+		Alias: (*Alias)(r),
+	}
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+	switch v := aux.Value.(type) {
+	case string:
+		r.Value = &v
+	case []interface{}:
+		strList := make([]string, len(v))
+		for i, item := range v {
+			strList[i] = item.(string)
+		}
+		r.ValueList = &strList
+	case map[string]interface{}:
+		valueObj := &ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj{
+			ID:   v["id"].(string),
+			Name: v["name"].(string),
+		}
+		r.ValueObj = valueObj
+	}
+	return nil
+}
+
 type ResponseApplianceUpdateNetworkApplianceFirewallL7FirewallRules interface{}
 type ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategories struct {
 	ApplicationCategories *[]ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesApplicationCategories `json:"applicationCategories,omitempty"` //
@@ -1597,9 +1635,13 @@ type RequestApplianceUpdateNetworkApplianceFirewallL7FirewallRules struct {
 	Rules *[]RequestApplianceUpdateNetworkApplianceFirewallL7FirewallRulesRules `json:"rules,omitempty"` // An ordered array of the MX L7 firewall rules
 }
 type RequestApplianceUpdateNetworkApplianceFirewallL7FirewallRulesRules struct {
-	Policy string `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
-	Type   string `json:"type,omitempty"`   // Type of the L7 rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
-	Value  string `json:"value,omitempty"`  // The 'value' of what you want to block. Format of 'value' varies depending on type of the rule. The application categories and application ids can be retrieved from the the 'MX L7 application categories' endpoint. The countries follow the two-letter ISO 3166-1 alpha-2 format.
+	Policy string      `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
+	Type   string      `json:"type,omitempty"`   // Type of the L7 rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
+	Value  interface{} `json:"value,omitempty"`  // The 'value' of what you want to block. Format of 'value' varies depending on type of the rule. The application categories and application ids can be retrieved from the the 'MX L7 application categories' endpoint. The countries follow the two-letter ISO 3166-1 alpha-2 format.
+}
+type RequestApplianceUpdateNetworkApplianceFirewallL7FirewallRulesRulesValue struct {
+	ID   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 }
 type RequestApplianceUpdateNetworkApplianceFirewallOneToManyNatRules struct {
 	Rules *[]RequestApplianceUpdateNetworkApplianceFirewallOneToManyNatRulesRules `json:"rules,omitempty"` // An array of 1:Many nat rules
@@ -2092,7 +2134,7 @@ type RequestApplianceUpdateOrganizationApplianceVpnVpnFirewallRulesRules struct 
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-appliance-dhcp-subnets
+
 */
 func (s *ApplianceService) GetDeviceApplianceDhcpSubnets(serial string) (*ResponseApplianceGetDeviceApplianceDhcpSubnets, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/dhcp/subnets"
@@ -2125,7 +2167,7 @@ func (s *ApplianceService) GetDeviceApplianceDhcpSubnets(serial string) (*Respon
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-appliance-performance
+
 */
 func (s *ApplianceService) GetDeviceAppliancePerformance(serial string) (*ResponseApplianceGetDeviceAppliancePerformance, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/performance"
@@ -2158,7 +2200,7 @@ func (s *ApplianceService) GetDeviceAppliancePerformance(serial string) (*Respon
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-appliance-prefixes-delegated
+
 */
 func (s *ApplianceService) GetDeviceAppliancePrefixesDelegated(serial string) (*ResponseApplianceGetDeviceAppliancePrefixesDelegated, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/prefixes/delegated"
@@ -2191,7 +2233,7 @@ func (s *ApplianceService) GetDeviceAppliancePrefixesDelegated(serial string) (*
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-appliance-prefixes-delegated-vlan-assignments
+
 */
 func (s *ApplianceService) GetDeviceAppliancePrefixesDelegatedVLANAssignments(serial string) (*ResponseApplianceGetDeviceAppliancePrefixesDelegatedVLANAssignments, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/prefixes/delegated/vlanAssignments"
@@ -2224,7 +2266,7 @@ func (s *ApplianceService) GetDeviceAppliancePrefixesDelegatedVLANAssignments(se
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-appliance-uplinks-settings
+
 */
 func (s *ApplianceService) GetDeviceApplianceUplinksSettings(serial string) (*ResponseApplianceGetDeviceApplianceUplinksSettings, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/uplinks/settings"
@@ -2259,7 +2301,7 @@ func (s *ApplianceService) GetDeviceApplianceUplinksSettings(serial string) (*Re
 @param clientID clientId path parameter. Client ID
 @param getNetworkApplianceClientSecurityEventsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-client-security-events
+
 */
 func (s *ApplianceService) GetNetworkApplianceClientSecurityEvents(networkID string, clientID string, getNetworkApplianceClientSecurityEventsQueryParams *GetNetworkApplianceClientSecurityEventsQueryParams) (*ResponseApplianceGetNetworkApplianceClientSecurityEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/clients/{clientId}/security/events"
@@ -2295,7 +2337,7 @@ func (s *ApplianceService) GetNetworkApplianceClientSecurityEvents(networkID str
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-connectivity-monitoring-destinations
+
 */
 func (s *ApplianceService) GetNetworkApplianceConnectivityMonitoringDestinations(networkID string) (*ResponseApplianceGetNetworkApplianceConnectivityMonitoringDestinations, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/connectivityMonitoringDestinations"
@@ -2328,7 +2370,7 @@ func (s *ApplianceService) GetNetworkApplianceConnectivityMonitoringDestinations
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-content-filtering
+
 */
 func (s *ApplianceService) GetNetworkApplianceContentFiltering(networkID string) (*ResponseApplianceGetNetworkApplianceContentFiltering, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/contentFiltering"
@@ -2361,7 +2403,7 @@ func (s *ApplianceService) GetNetworkApplianceContentFiltering(networkID string)
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-content-filtering-categories
+
 */
 func (s *ApplianceService) GetNetworkApplianceContentFilteringCategories(networkID string) (*ResponseApplianceGetNetworkApplianceContentFilteringCategories, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/contentFiltering/categories"
@@ -2394,7 +2436,7 @@ func (s *ApplianceService) GetNetworkApplianceContentFilteringCategories(network
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-cellular-firewall-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallCellularFirewallRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallCellularFirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/cellularFirewallRules"
@@ -2427,7 +2469,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallCellularFirewallRules(netw
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-firewalled-services
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledServices(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallFirewalledServices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/firewalledServices"
@@ -2461,7 +2503,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledServices(network
 @param networkID networkId path parameter. Network ID
 @param service service path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-firewalled-service
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledService(networkID string, service string) (*ResponseApplianceGetNetworkApplianceFirewallFirewalledService, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/firewalledServices/{service}"
@@ -2495,7 +2537,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledService(networkI
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-inbound-cellular-firewall-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallInboundCellularFirewallRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallInboundCellularFirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/inboundCellularFirewallRules"
@@ -2528,7 +2570,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallInboundCellularFirewallRul
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-inbound-firewall-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallInboundFirewallRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallInboundFirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/inboundFirewallRules"
@@ -2561,7 +2603,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallInboundFirewallRules(netwo
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-l3-firewall-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallL3FirewallRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallL3FirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/l3FirewallRules"
@@ -2594,7 +2636,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallL3FirewallRules(networkID 
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-l7-firewall-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallL7FirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/l7FirewallRules"
@@ -2627,7 +2669,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRules(networkID 
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-l7-firewall-rules-application-categories
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategories, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/l7FirewallRules/applicationCategories"
@@ -2660,7 +2702,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRulesApplication
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-one-to-many-nat-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallOneToManyNatRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallOneToManyNatRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/oneToManyNatRules"
@@ -2693,7 +2735,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallOneToManyNatRules(networkI
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-one-to-one-nat-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallOneToOneNatRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallOneToOneNatRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/oneToOneNatRules"
@@ -2726,7 +2768,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallOneToOneNatRules(networkID
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-port-forwarding-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallPortForwardingRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallPortForwardingRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/portForwardingRules"
@@ -2759,7 +2801,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallPortForwardingRules(networ
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-firewall-settings
+
 */
 func (s *ApplianceService) GetNetworkApplianceFirewallSettings(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/settings"
@@ -2792,7 +2834,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallSettings(networkID string)
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-ports
+
 */
 func (s *ApplianceService) GetNetworkAppliancePorts(networkID string) (*ResponseApplianceGetNetworkAppliancePorts, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/ports"
@@ -2826,7 +2868,7 @@ func (s *ApplianceService) GetNetworkAppliancePorts(networkID string) (*Response
 @param networkID networkId path parameter. Network ID
 @param portID portId path parameter. Port ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-port
+
 */
 func (s *ApplianceService) GetNetworkAppliancePort(networkID string, portID string) (*ResponseApplianceGetNetworkAppliancePort, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/ports/{portId}"
@@ -2860,7 +2902,7 @@ func (s *ApplianceService) GetNetworkAppliancePort(networkID string, portID stri
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-prefixes-delegated-statics
+
 */
 func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatics(networkID string) (*ResponseApplianceGetNetworkAppliancePrefixesDelegatedStatics, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/prefixes/delegated/statics"
@@ -2894,7 +2936,7 @@ func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatics(networkID
 @param networkID networkId path parameter. Network ID
 @param staticDelegatedPrefixID staticDelegatedPrefixId path parameter. Static delegated prefix ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-prefixes-delegated-static
+
 */
 func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatic(networkID string, staticDelegatedPrefixID string) (*ResponseApplianceGetNetworkAppliancePrefixesDelegatedStatic, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}"
@@ -2929,7 +2971,7 @@ func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatic(networkID 
 @param networkID networkId path parameter. Network ID
 @param getNetworkApplianceSecurityEventsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-security-events
+
 */
 func (s *ApplianceService) GetNetworkApplianceSecurityEvents(networkID string, getNetworkApplianceSecurityEventsQueryParams *GetNetworkApplianceSecurityEventsQueryParams) (*ResponseApplianceGetNetworkApplianceSecurityEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/security/events"
@@ -2964,7 +3006,7 @@ func (s *ApplianceService) GetNetworkApplianceSecurityEvents(networkID string, g
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-security-intrusion
+
 */
 func (s *ApplianceService) GetNetworkApplianceSecurityIntrusion(networkID string) (*ResponseApplianceGetNetworkApplianceSecurityIntrusion, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/security/intrusion"
@@ -2997,7 +3039,7 @@ func (s *ApplianceService) GetNetworkApplianceSecurityIntrusion(networkID string
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-security-malware
+
 */
 func (s *ApplianceService) GetNetworkApplianceSecurityMalware(networkID string) (*ResponseApplianceGetNetworkApplianceSecurityMalware, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/security/malware"
@@ -3030,7 +3072,7 @@ func (s *ApplianceService) GetNetworkApplianceSecurityMalware(networkID string) 
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-settings
+
 */
 func (s *ApplianceService) GetNetworkApplianceSettings(networkID string) (*ResponseApplianceGetNetworkApplianceSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/settings"
@@ -3063,7 +3105,7 @@ func (s *ApplianceService) GetNetworkApplianceSettings(networkID string) (*Respo
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-single-lan
+
 */
 func (s *ApplianceService) GetNetworkApplianceSingleLan(networkID string) (*ResponseApplianceGetNetworkApplianceSingleLan, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/singleLan"
@@ -3096,7 +3138,7 @@ func (s *ApplianceService) GetNetworkApplianceSingleLan(networkID string) (*Resp
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-ssids
+
 */
 func (s *ApplianceService) GetNetworkApplianceSSIDs(networkID string) (*ResponseApplianceGetNetworkApplianceSSIDs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/ssids"
@@ -3130,7 +3172,7 @@ func (s *ApplianceService) GetNetworkApplianceSSIDs(networkID string) (*Response
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-ssid
+
 */
 func (s *ApplianceService) GetNetworkApplianceSSID(networkID string, number string) (*ResponseApplianceGetNetworkApplianceSSID, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/ssids/{number}"
@@ -3164,7 +3206,7 @@ func (s *ApplianceService) GetNetworkApplianceSSID(networkID string, number stri
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-static-routes
+
 */
 func (s *ApplianceService) GetNetworkApplianceStaticRoutes(networkID string) (*ResponseApplianceGetNetworkApplianceStaticRoutes, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/staticRoutes"
@@ -3198,7 +3240,7 @@ func (s *ApplianceService) GetNetworkApplianceStaticRoutes(networkID string) (*R
 @param networkID networkId path parameter. Network ID
 @param staticRouteID staticRouteId path parameter. Static route ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-static-route
+
 */
 func (s *ApplianceService) GetNetworkApplianceStaticRoute(networkID string, staticRouteID string) (*ResponseApplianceGetNetworkApplianceStaticRoute, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/staticRoutes/{staticRouteId}"
@@ -3232,7 +3274,7 @@ func (s *ApplianceService) GetNetworkApplianceStaticRoute(networkID string, stat
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-traffic-shaping
+
 */
 func (s *ApplianceService) GetNetworkApplianceTrafficShaping(networkID string) (*ResponseApplianceGetNetworkApplianceTrafficShaping, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping"
@@ -3265,7 +3307,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShaping(networkID string) (
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-traffic-shaping-custom-performance-classes
+
 */
 func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceClasses(networkID string) (*ResponseApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClasses, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses"
@@ -3299,7 +3341,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceCla
 @param networkID networkId path parameter. Network ID
 @param customPerformanceClassID customPerformanceClassId path parameter. Custom performance class ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-traffic-shaping-custom-performance-class
+
 */
 func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceClass(networkID string, customPerformanceClassID string) (*ResponseApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClass, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses/{customPerformanceClassId}"
@@ -3333,7 +3375,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceCla
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-traffic-shaping-rules
+
 */
 func (s *ApplianceService) GetNetworkApplianceTrafficShapingRules(networkID string) (*ResponseApplianceGetNetworkApplianceTrafficShapingRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/rules"
@@ -3366,7 +3408,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingRules(networkID stri
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-traffic-shaping-uplink-bandwidth
+
 */
 func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkBandwidth(networkID string) (*ResponseApplianceGetNetworkApplianceTrafficShapingUplinkBandwidth, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/uplinkBandwidth"
@@ -3399,7 +3441,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkBandwidth(netw
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-traffic-shaping-uplink-selection
+
 */
 func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkSelection(networkID string) (*ResponseApplianceGetNetworkApplianceTrafficShapingUplinkSelection, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/uplinkSelection"
@@ -3433,7 +3475,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkSelection(netw
 @param networkID networkId path parameter. Network ID
 @param getNetworkApplianceUplinksUsageHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-uplinks-usage-history
+
 */
 func (s *ApplianceService) GetNetworkApplianceUplinksUsageHistory(networkID string, getNetworkApplianceUplinksUsageHistoryQueryParams *GetNetworkApplianceUplinksUsageHistoryQueryParams) (*ResponseApplianceGetNetworkApplianceUplinksUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/uplinks/usageHistory"
@@ -3468,7 +3510,7 @@ func (s *ApplianceService) GetNetworkApplianceUplinksUsageHistory(networkID stri
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-vlans
+
 */
 func (s *ApplianceService) GetNetworkApplianceVLANs(networkID string) (*ResponseApplianceGetNetworkApplianceVLANs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vlans"
@@ -3505,7 +3547,7 @@ func (s *ApplianceService) GetNetworkApplianceVLANs(networkID string) (*Response
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-vlans-settings
+
 */
 func (s *ApplianceService) GetNetworkApplianceVLANsSettings(networkID string) (*ResponseApplianceGetNetworkApplianceVLANsSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vlans/settings"
@@ -3539,7 +3581,7 @@ func (s *ApplianceService) GetNetworkApplianceVLANsSettings(networkID string) (*
 @param networkID networkId path parameter. Network ID
 @param vlanID vlanId path parameter. Vlan ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-vlan
+
 */
 func (s *ApplianceService) GetNetworkApplianceVLAN(networkID string, vlanID string) (*ResponseApplianceGetNetworkApplianceVLAN, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vlans/{vlanId}"
@@ -3573,7 +3615,7 @@ func (s *ApplianceService) GetNetworkApplianceVLAN(networkID string, vlanID stri
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-vpn-bgp
+
 */
 func (s *ApplianceService) GetNetworkApplianceVpnBgp(networkID string) (*ResponseApplianceGetNetworkApplianceVpnBgp, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vpn/bgp"
@@ -3606,7 +3648,7 @@ func (s *ApplianceService) GetNetworkApplianceVpnBgp(networkID string) (*Respons
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-vpn-site-to-site-vpn
+
 */
 func (s *ApplianceService) GetNetworkApplianceVpnSiteToSiteVpn(networkID string) (*ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpn, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vpn/siteToSiteVpn"
@@ -3639,7 +3681,7 @@ func (s *ApplianceService) GetNetworkApplianceVpnSiteToSiteVpn(networkID string)
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-appliance-warm-spare
+
 */
 func (s *ApplianceService) GetNetworkApplianceWarmSpare(networkID string) (*ResponseApplianceGetNetworkApplianceWarmSpare, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/warmSpare"
@@ -3673,7 +3715,7 @@ func (s *ApplianceService) GetNetworkApplianceWarmSpare(networkID string) (*Resp
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationApplianceSecurityEventsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-appliance-security-events
+
 */
 func (s *ApplianceService) GetOrganizationApplianceSecurityEvents(organizationID string, getOrganizationApplianceSecurityEventsQueryParams *GetOrganizationApplianceSecurityEventsQueryParams) (*ResponseApplianceGetOrganizationApplianceSecurityEvents, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/security/events"
@@ -3708,7 +3750,7 @@ func (s *ApplianceService) GetOrganizationApplianceSecurityEvents(organizationID
 
 @param organizationID organizationId path parameter. Organization ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-appliance-security-intrusion
+
 */
 func (s *ApplianceService) GetOrganizationApplianceSecurityIntrusion(organizationID string) (*ResponseApplianceGetOrganizationApplianceSecurityIntrusion, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/security/intrusion"
@@ -3742,7 +3784,7 @@ func (s *ApplianceService) GetOrganizationApplianceSecurityIntrusion(organizatio
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationApplianceUplinkStatusesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-appliance-uplink-statuses
+
 */
 func (s *ApplianceService) GetOrganizationApplianceUplinkStatuses(organizationID string, getOrganizationApplianceUplinkStatusesQueryParams *GetOrganizationApplianceUplinkStatusesQueryParams) (*ResponseApplianceGetOrganizationApplianceUplinkStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/uplink/statuses"
@@ -3778,7 +3820,7 @@ func (s *ApplianceService) GetOrganizationApplianceUplinkStatuses(organizationID
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationApplianceVpnStatsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-appliance-vpn-stats
+
 */
 func (s *ApplianceService) GetOrganizationApplianceVpnStats(organizationID string, getOrganizationApplianceVpnStatsQueryParams *GetOrganizationApplianceVpnStatsQueryParams) (*ResponseApplianceGetOrganizationApplianceVpnStats, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/stats"
@@ -3814,7 +3856,7 @@ func (s *ApplianceService) GetOrganizationApplianceVpnStats(organizationID strin
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationApplianceVpnStatusesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-appliance-vpn-statuses
+
 */
 func (s *ApplianceService) GetOrganizationApplianceVpnStatuses(organizationID string, getOrganizationApplianceVpnStatusesQueryParams *GetOrganizationApplianceVpnStatusesQueryParams) (*ResponseApplianceGetOrganizationApplianceVpnStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/statuses"
@@ -3849,7 +3891,7 @@ func (s *ApplianceService) GetOrganizationApplianceVpnStatuses(organizationID st
 
 @param organizationID organizationId path parameter. Organization ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-appliance-vpn-third-party-vpnpeers
+
 */
 func (s *ApplianceService) GetOrganizationApplianceVpnThirdPartyVpnpeers(organizationID string) (*ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeers, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers"
@@ -3882,7 +3924,7 @@ func (s *ApplianceService) GetOrganizationApplianceVpnThirdPartyVpnpeers(organiz
 
 @param organizationID organizationId path parameter. Organization ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-appliance-vpn-vpn-firewall-rules
+
 */
 func (s *ApplianceService) GetOrganizationApplianceVpnVpnFirewallRules(organizationID string) (*ResponseApplianceGetOrganizationApplianceVpnVpnFirewallRules, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/vpnFirewallRules"
@@ -3915,7 +3957,7 @@ func (s *ApplianceService) GetOrganizationApplianceVpnVpnFirewallRules(organizat
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-appliance-vmx-authentication-token
+
 */
 
 func (s *ApplianceService) CreateDeviceApplianceVmxAuthenticationToken(serial string) (*ResponseApplianceCreateDeviceApplianceVmxAuthenticationToken, *resty.Response, error) {
@@ -3949,7 +3991,7 @@ func (s *ApplianceService) CreateDeviceApplianceVmxAuthenticationToken(serial st
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-appliance-prefixes-delegated-static
+
 */
 
 func (s *ApplianceService) CreateNetworkAppliancePrefixesDelegatedStatic(networkID string, requestApplianceCreateNetworkAppliancePrefixesDelegatedStatic *RequestApplianceCreateNetworkAppliancePrefixesDelegatedStatic) (*resty.Response, error) {
@@ -3983,7 +4025,7 @@ func (s *ApplianceService) CreateNetworkAppliancePrefixesDelegatedStatic(network
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-appliance-static-route
+
 */
 
 func (s *ApplianceService) CreateNetworkApplianceStaticRoute(networkID string, requestApplianceCreateNetworkApplianceStaticRoute *RequestApplianceCreateNetworkApplianceStaticRoute) (*resty.Response, error) {
@@ -4017,7 +4059,7 @@ func (s *ApplianceService) CreateNetworkApplianceStaticRoute(networkID string, r
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-appliance-traffic-shaping-custom-performance-class
+
 */
 
 func (s *ApplianceService) CreateNetworkApplianceTrafficShapingCustomPerformanceClass(networkID string, requestApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass *RequestApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass) (*resty.Response, error) {
@@ -4051,7 +4093,7 @@ func (s *ApplianceService) CreateNetworkApplianceTrafficShapingCustomPerformance
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-appliance-vlan
+
 */
 
 func (s *ApplianceService) CreateNetworkApplianceVLAN(networkID string, requestApplianceCreateNetworkApplianceVlan *RequestApplianceCreateNetworkApplianceVLAN) (*ResponseApplianceCreateNetworkApplianceVLAN, *resty.Response, error) {
@@ -4086,7 +4128,7 @@ func (s *ApplianceService) CreateNetworkApplianceVLAN(networkID string, requestA
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!swap-network-appliance-warm-spare
+
 */
 
 func (s *ApplianceService) SwapNetworkApplianceWarmSpare(networkID string) (*resty.Response, error) {
@@ -5177,7 +5219,7 @@ func (s *ApplianceService) UpdateOrganizationApplianceVpnVpnFirewallRules(organi
 @param networkID networkId path parameter. Network ID
 @param staticDelegatedPrefixID staticDelegatedPrefixId path parameter. Static delegated prefix ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-appliance-prefixes-delegated-static
+
 */
 func (s *ApplianceService) DeleteNetworkAppliancePrefixesDelegatedStatic(networkID string, staticDelegatedPrefixID string) (*resty.Response, error) {
 	//networkID string,staticDelegatedPrefixID string
@@ -5211,7 +5253,7 @@ func (s *ApplianceService) DeleteNetworkAppliancePrefixesDelegatedStatic(network
 @param networkID networkId path parameter. Network ID
 @param staticRouteID staticRouteId path parameter. Static route ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-appliance-static-route
+
 */
 func (s *ApplianceService) DeleteNetworkApplianceStaticRoute(networkID string, staticRouteID string) (*resty.Response, error) {
 	//networkID string,staticRouteID string
@@ -5245,7 +5287,7 @@ func (s *ApplianceService) DeleteNetworkApplianceStaticRoute(networkID string, s
 @param networkID networkId path parameter. Network ID
 @param customPerformanceClassID customPerformanceClassId path parameter. Custom performance class ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-appliance-traffic-shaping-custom-performance-class
+
 */
 func (s *ApplianceService) DeleteNetworkApplianceTrafficShapingCustomPerformanceClass(networkID string, customPerformanceClassID string) (*resty.Response, error) {
 	//networkID string,customPerformanceClassID string
@@ -5279,7 +5321,7 @@ func (s *ApplianceService) DeleteNetworkApplianceTrafficShapingCustomPerformance
 @param networkID networkId path parameter. Network ID
 @param vlanID vlanId path parameter. Vlan ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-appliance-vlan
+
 */
 func (s *ApplianceService) DeleteNetworkApplianceVLAN(networkID string, vlanID string) (*resty.Response, error) {
 	//networkID string,vlanID string

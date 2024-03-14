@@ -25,7 +25,7 @@ type result struct{}
 
 // testClient returns a new Client for testing.
 func testClient(t *testing.T) *Client {
-	err := SetOptions(TEST_MERAKI_BASE_URL, TEST_MERAKI_DASHBOARD_API_KEY, TEST_MERAKI_DEBUG, TEST_MERAKI_SSL_VERIFY)
+	err := SetOptions(TEST_MERAKI_BASE_URL, TEST_MERAKI_DASHBOARD_API_KEY, TEST_MERAKI_DEBUG)
 	assert.Equal(t, err, nil)
 	client, err := NewClient()
 	assert.Equal(t, err, nil)
@@ -37,22 +37,20 @@ func testClient(t *testing.T) *Client {
 
 // TestSetOptions tests the Client.SetOptions method.
 func TestSetOptions(t *testing.T) {
-	err := SetOptions(TEST_MERAKI_BASE_URL, TEST_MERAKI_DASHBOARD_API_KEY, TEST_MERAKI_DEBUG, TEST_MERAKI_SSL_VERIFY)
+	err := SetOptions(TEST_MERAKI_BASE_URL, TEST_MERAKI_DASHBOARD_API_KEY, TEST_MERAKI_DEBUG)
 	assert.Equal(t, err, nil)
 	assert.Equal(t, os.Getenv(MERAKI_BASE_URL), TEST_MERAKI_BASE_URL)
 	assert.Equal(t, os.Getenv(MERAKI_DASHBOARD_API_KEY), TEST_MERAKI_DASHBOARD_API_KEY)
 	assert.Equal(t, os.Getenv(MERAKI_DEBUG), TEST_MERAKI_DEBUG)
-	assert.Equal(t, os.Getenv(MERAKI_SSL_VERIFY), TEST_MERAKI_SSL_VERIFY)
 }
 
 // TestSetOptions tests the Client.SetOptionsWithRequests method.
 func TestSetOptionsWithRequests(t *testing.T) {
-	err := SetOptionsWithRequests(TEST_MERAKI_BASE_URL, TEST_MERAKI_DASHBOARD_API_KEY, TEST_MERAKI_DEBUG, TEST_MERAKI_SSL_VERIFY, TEST_MERAKI_REQUESTS_PER_SECOND)
+	err := SetOptionsWithRequests(TEST_MERAKI_BASE_URL, TEST_MERAKI_DASHBOARD_API_KEY, TEST_MERAKI_DEBUG, TEST_MERAKI_REQUESTS_PER_SECOND)
 	assert.Equal(t, err, nil)
 	assert.Equal(t, os.Getenv(MERAKI_BASE_URL), TEST_MERAKI_BASE_URL)
 	assert.Equal(t, os.Getenv(MERAKI_DASHBOARD_API_KEY), TEST_MERAKI_DASHBOARD_API_KEY)
 	assert.Equal(t, os.Getenv(MERAKI_DEBUG), TEST_MERAKI_DEBUG)
-	assert.Equal(t, os.Getenv(MERAKI_SSL_VERIFY), TEST_MERAKI_SSL_VERIFY)
 	assert.Equal(t, os.Getenv(MERAKI_REQUESTS_PER_SECOND), strconv.Itoa(TEST_MERAKI_REQUESTS_PER_SECOND))
 }
 
@@ -71,7 +69,7 @@ func TestNewClientWithOptions(t *testing.T) {
 	url := "url"
 	key := "key"
 	debug := false
-	client, err := NewClientWithOptions(url, key, strconv.FormatBool(debug), "false")
+	client, err := NewClientWithOptions(url, key, strconv.FormatBool(debug))
 	assert.Equal(t, err, nil)
 	assert.NotEqual(t, client, nil)
 	assert.Equal(t, client.common.client.HostURL, url)
@@ -85,7 +83,7 @@ func TestNewClientWithOptionsAndRequests(t *testing.T) {
 	key := "key"
 	debug := false
 	requests := 6
-	client, err := NewClientWithOptionsAndRequests(url, key, strconv.FormatBool(debug), "false", requests)
+	client, err := NewClientWithOptionsAndRequests(url, key, strconv.FormatBool(debug), requests)
 	assert.Equal(t, err, nil)
 	assert.NotEqual(t, client, nil)
 	assert.Equal(t, client.common.client.HostURL, url)

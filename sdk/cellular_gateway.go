@@ -174,7 +174,7 @@ type RequestCellularGatewayUpdateNetworkCellularGatewayUplinkBandwidthLimits str
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-cellular-gateway-lan
+
 */
 func (s *CellularGatewayService) GetDeviceCellularGatewayLan(serial string) (*ResponseCellularGatewayGetDeviceCellularGatewayLan, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/cellularGateway/lan"
@@ -207,7 +207,7 @@ func (s *CellularGatewayService) GetDeviceCellularGatewayLan(serial string) (*Re
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-cellular-gateway-port-forwarding-rules
+
 */
 func (s *CellularGatewayService) GetDeviceCellularGatewayPortForwardingRules(serial string) (*ResponseCellularGatewayGetDeviceCellularGatewayPortForwardingRules, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/cellularGateway/portForwardingRules"
@@ -240,7 +240,7 @@ func (s *CellularGatewayService) GetDeviceCellularGatewayPortForwardingRules(ser
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cellular-gateway-connectivity-monitoring-destinations
+
 */
 func (s *CellularGatewayService) GetNetworkCellularGatewayConnectivityMonitoringDestinations(networkID string) (*ResponseCellularGatewayGetNetworkCellularGatewayConnectivityMonitoringDestinations, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/connectivityMonitoringDestinations"
@@ -273,7 +273,7 @@ func (s *CellularGatewayService) GetNetworkCellularGatewayConnectivityMonitoring
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cellular-gateway-dhcp
+
 */
 func (s *CellularGatewayService) GetNetworkCellularGatewayDhcp(networkID string) (*ResponseCellularGatewayGetNetworkCellularGatewayDhcp, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/dhcp"
@@ -306,7 +306,7 @@ func (s *CellularGatewayService) GetNetworkCellularGatewayDhcp(networkID string)
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cellular-gateway-subnet-pool
+
 */
 func (s *CellularGatewayService) GetNetworkCellularGatewaySubnetPool(networkID string) (*ResponseCellularGatewayGetNetworkCellularGatewaySubnetPool, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/subnetPool"
@@ -339,7 +339,7 @@ func (s *CellularGatewayService) GetNetworkCellularGatewaySubnetPool(networkID s
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cellular-gateway-uplink
+
 */
 func (s *CellularGatewayService) GetNetworkCellularGatewayUplink(networkID string) (*ResponseCellularGatewayGetNetworkCellularGatewayUplink, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/uplink"
@@ -373,7 +373,7 @@ func (s *CellularGatewayService) GetNetworkCellularGatewayUplink(networkID strin
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationCellularGatewayUplinkStatusesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-cellular-gateway-uplink-statuses
+
 */
 func (s *CellularGatewayService) GetOrganizationCellularGatewayUplinkStatuses(organizationID string, getOrganizationCellularGatewayUplinkStatusesQueryParams *GetOrganizationCellularGatewayUplinkStatusesQueryParams) (*ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/cellularGateway/uplink/statuses"
