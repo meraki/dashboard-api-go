@@ -3241,6 +3241,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network
 */
 func (s *NetworksService) GetNetwork(networkID string) (*ResponseNetworksGetNetwork, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3274,6 +3275,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-al
 */
 func (s *NetworksService) GetNetworkAlertsHistory(networkID string, getNetworkAlertsHistoryQueryParams *GetNetworkAlertsHistoryQueryParams) (*ResponseNetworksGetNetworkAlertsHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/alerts/history"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkAlertsHistoryQueryParams)
@@ -3308,6 +3310,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-al
 */
 func (s *NetworksService) GetNetworkAlertsSettings(networkID string) (*ResponseNetworksGetNetworkAlertsSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/alerts/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3341,6 +3344,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-bl
 */
 func (s *NetworksService) GetNetworkBluetoothClients(networkID string, getNetworkBluetoothClientsQueryParams *GetNetworkBluetoothClientsQueryParams) (*ResponseNetworksGetNetworkBluetoothClients, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/bluetoothClients"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkBluetoothClientsQueryParams)
@@ -3377,6 +3381,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-bl
 */
 func (s *NetworksService) GetNetworkBluetoothClient(networkID string, bluetoothClientID string, getNetworkBluetoothClientQueryParams *GetNetworkBluetoothClientQueryParams) (*ResponseNetworksGetNetworkBluetoothClient, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/bluetoothClients/{bluetoothClientId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{bluetoothClientId}", fmt.Sprintf("%v", bluetoothClientID), -1)
 
@@ -3413,6 +3418,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cl
 */
 func (s *NetworksService) GetNetworkClients(networkID string, getNetworkClientsQueryParams *GetNetworkClientsQueryParams) (*[]ResponseNetworksGetNetworkClients, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkClientsQueryParams)
@@ -3448,6 +3454,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cl
 */
 func (s *NetworksService) GetNetworkClientsApplicationUsage(networkID string, getNetworkClientsApplicationUsageQueryParams *GetNetworkClientsApplicationUsageQueryParams) (*ResponseNetworksGetNetworkClientsApplicationUsage, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/applicationUsage"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkClientsApplicationUsageQueryParams)
@@ -3483,6 +3490,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cl
 */
 func (s *NetworksService) GetNetworkClientsBandwidthUsageHistory(networkID string, getNetworkClientsBandwidthUsageHistoryQueryParams *GetNetworkClientsBandwidthUsageHistoryQueryParams) (*ResponseNetworksGetNetworkClientsBandwidthUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/bandwidthUsageHistory"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkClientsBandwidthUsageHistoryQueryParams)
@@ -3518,6 +3526,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cl
 */
 func (s *NetworksService) GetNetworkClientsOverview(networkID string, getNetworkClientsOverviewQueryParams *GetNetworkClientsOverviewQueryParams) (*ResponseNetworksGetNetworkClientsOverview, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/overview"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkClientsOverviewQueryParams)
@@ -3553,6 +3562,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cl
 */
 func (s *NetworksService) GetNetworkClientsUsageHistories(networkID string, getNetworkClientsUsageHistoriesQueryParams *GetNetworkClientsUsageHistoriesQueryParams) (*ResponseNetworksGetNetworkClientsUsageHistories, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/usageHistories"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkClientsUsageHistoriesQueryParams)
@@ -3588,6 +3598,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cl
 */
 func (s *NetworksService) GetNetworkClient(networkID string, clientID string) (*ResponseNetworksGetNetworkClient, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
@@ -3622,6 +3633,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cl
 */
 func (s *NetworksService) GetNetworkClientPolicy(networkID string, clientID string) (*ResponseNetworksGetNetworkClientPolicy, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/policy"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
@@ -3656,6 +3668,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cl
 */
 func (s *NetworksService) GetNetworkClientSplashAuthorizationStatus(networkID string, clientID string) (*ResponseNetworksGetNetworkClientSplashAuthorizationStatus, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/splashAuthorizationStatus"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
@@ -3691,6 +3704,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cl
 */
 func (s *NetworksService) GetNetworkClientTrafficHistory(networkID string, clientID string, getNetworkClientTrafficHistoryQueryParams *GetNetworkClientTrafficHistoryQueryParams) (*ResponseNetworksGetNetworkClientTrafficHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/trafficHistory"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
@@ -3727,6 +3741,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-cl
 */
 func (s *NetworksService) GetNetworkClientUsageHistory(networkID string, clientID string) (*ResponseNetworksGetNetworkClientUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/usageHistory"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
@@ -3760,6 +3775,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-de
 */
 func (s *NetworksService) GetNetworkDevices(networkID string) (*ResponseNetworksGetNetworkDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/devices"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3793,6 +3809,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-ev
 */
 func (s *NetworksService) GetNetworkEvents(networkID string, getNetworkEventsQueryParams *GetNetworkEventsQueryParams) (*ResponseNetworksGetNetworkEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/events"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkEventsQueryParams)
@@ -3827,6 +3844,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-ev
 */
 func (s *NetworksService) GetNetworkEventsEventTypes(networkID string) (*ResponseNetworksGetNetworkEventsEventTypes, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/events/eventTypes"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3859,6 +3877,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-fi
 */
 func (s *NetworksService) GetNetworkFirmwareUpgrades(networkID string) (*ResponseNetworksGetNetworkFirmwareUpgrades, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3891,6 +3910,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-fi
 */
 func (s *NetworksService) GetNetworkFirmwareUpgradesStagedEvents(networkID string) (*ResponseNetworksGetNetworkFirmwareUpgradesStagedEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/events"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3923,6 +3943,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-fi
 */
 func (s *NetworksService) GetNetworkFirmwareUpgradesStagedGroups(networkID string) (*ResponseNetworksGetNetworkFirmwareUpgradesStagedGroups, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/groups"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3956,6 +3977,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-fi
 */
 func (s *NetworksService) GetNetworkFirmwareUpgradesStagedGroup(networkID string, groupID string) (*ResponseNetworksGetNetworkFirmwareUpgradesStagedGroup, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/groups/{groupId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{groupId}", fmt.Sprintf("%v", groupID), -1)
 
@@ -3989,6 +4011,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-fi
 */
 func (s *NetworksService) GetNetworkFirmwareUpgradesStagedStages(networkID string) (*ResponseNetworksGetNetworkFirmwareUpgradesStagedStages, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/stages"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4021,6 +4044,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-fl
 */
 func (s *NetworksService) GetNetworkFloorPlans(networkID string) (*ResponseNetworksGetNetworkFloorPlans, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/floorPlans"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4054,6 +4078,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-fl
 */
 func (s *NetworksService) GetNetworkFloorPlan(networkID string, floorPlanID string) (*ResponseNetworksGetNetworkFloorPlan, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/floorPlans/{floorPlanId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{floorPlanId}", fmt.Sprintf("%v", floorPlanID), -1)
 
@@ -4087,6 +4112,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-gr
 */
 func (s *NetworksService) GetNetworkGroupPolicies(networkID string) (*ResponseNetworksGetNetworkGroupPolicies, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/groupPolicies"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4120,6 +4146,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-gr
 */
 func (s *NetworksService) GetNetworkGroupPolicy(networkID string, groupPolicyID string) (*ResponseNetworksGetNetworkGroupPolicy, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/groupPolicies/{groupPolicyId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{groupPolicyId}", fmt.Sprintf("%v", groupPolicyID), -1)
 
@@ -4153,6 +4180,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-he
 */
 func (s *NetworksService) GetNetworkHealthAlerts(networkID string) (*ResponseNetworksGetNetworkHealthAlerts, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/health/alerts"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4185,6 +4213,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-me
 */
 func (s *NetworksService) GetNetworkMerakiAuthUsers(networkID string) (*ResponseNetworksGetNetworkMerakiAuthUsers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/merakiAuthUsers"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4218,6 +4247,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-me
 */
 func (s *NetworksService) GetNetworkMerakiAuthUser(networkID string, merakiAuthUserID string) (*ResponseNetworksGetNetworkMerakiAuthUser, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/merakiAuthUsers/{merakiAuthUserId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{merakiAuthUserId}", fmt.Sprintf("%v", merakiAuthUserID), -1)
 
@@ -4251,6 +4281,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-mq
 */
 func (s *NetworksService) GetNetworkMqttBrokers(networkID string) (*ResponseNetworksGetNetworkMqttBrokers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/mqttBrokers"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4284,6 +4315,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-mq
 */
 func (s *NetworksService) GetNetworkMqttBroker(networkID string, mqttBrokerID string) (*ResponseNetworksGetNetworkMqttBroker, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/mqttBrokers/{mqttBrokerId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{mqttBrokerId}", fmt.Sprintf("%v", mqttBrokerID), -1)
 
@@ -4317,6 +4349,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-ne
 */
 func (s *NetworksService) GetNetworkNetflow(networkID string) (*ResponseNetworksGetNetworkNetflow, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/netflow"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4350,6 +4383,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-ne
 */
 func (s *NetworksService) GetNetworkNetworkHealthChannelUtilization(networkID string, getNetworkNetworkHealthChannelUtilizationQueryParams *GetNetworkNetworkHealthChannelUtilizationQueryParams) (*ResponseNetworksGetNetworkNetworkHealthChannelUtilization, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/networkHealth/channelUtilization"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkNetworkHealthChannelUtilizationQueryParams)
@@ -4391,6 +4425,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-pi
 */
 func (s *NetworksService) GetNetworkPiiPiiKeys(networkID string, getNetworkPiiPiiKeysQueryParams *GetNetworkPiiPiiKeysQueryParams) (*ResponseNetworksGetNetworkPiiPiiKeys, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/piiKeys"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkPiiPiiKeysQueryParams)
@@ -4431,6 +4466,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-pi
 */
 func (s *NetworksService) GetNetworkPiiRequests(networkID string) (*ResponseNetworksGetNetworkPiiRequests, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/requests"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4470,6 +4506,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-pi
 */
 func (s *NetworksService) GetNetworkPiiRequest(networkID string, requestID string) (*ResponseNetworksGetNetworkPiiRequest, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/requests/{requestId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{requestId}", fmt.Sprintf("%v", requestID), -1)
 
@@ -4510,6 +4547,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-pi
 */
 func (s *NetworksService) GetNetworkPiiSmDevicesForKey(networkID string, getNetworkPiiSmDevicesForKeyQueryParams *GetNetworkPiiSmDevicesForKeyQueryParams) (*ResponseNetworksGetNetworkPiiSmDevicesForKey, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/smDevicesForKey"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkPiiSmDevicesForKeyQueryParams)
@@ -4551,6 +4589,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-pi
 */
 func (s *NetworksService) GetNetworkPiiSmOwnersForKey(networkID string, getNetworkPiiSmOwnersForKeyQueryParams *GetNetworkPiiSmOwnersForKeyQueryParams) (*ResponseNetworksGetNetworkPiiSmOwnersForKey, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/smOwnersForKey"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkPiiSmOwnersForKeyQueryParams)
@@ -4586,6 +4625,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-po
 */
 func (s *NetworksService) GetNetworkPoliciesByClient(networkID string, getNetworkPoliciesByClientQueryParams *GetNetworkPoliciesByClientQueryParams) (*ResponseNetworksGetNetworkPoliciesByClient, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/policies/byClient"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkPoliciesByClientQueryParams)
@@ -4620,6 +4660,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-se
 */
 func (s *NetworksService) GetNetworkSettings(networkID string) (*ResponseNetworksGetNetworkSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4652,6 +4693,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sn
 */
 func (s *NetworksService) GetNetworkSNMP(networkID string) (*ResponseNetworksGetNetworkSNMP, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/snmp"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4685,6 +4727,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sp
 */
 func (s *NetworksService) GetNetworkSplashLoginAttempts(networkID string, getNetworkSplashLoginAttemptsQueryParams *GetNetworkSplashLoginAttemptsQueryParams) (*ResponseNetworksGetNetworkSplashLoginAttempts, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/splashLoginAttempts"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSplashLoginAttemptsQueryParams)
@@ -4719,6 +4762,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sy
 */
 func (s *NetworksService) GetNetworkSyslogServers(networkID string) (*ResponseNetworksGetNetworkSyslogServers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/syslogServers"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4751,6 +4795,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-to
 */
 func (s *NetworksService) GetNetworkTopologyLinkLayer(networkID string) (*ResponseNetworksGetNetworkTopologyLinkLayer, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/topology/linkLayer"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4784,6 +4829,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-tr
 */
 func (s *NetworksService) GetNetworkTraffic(networkID string, getNetworkTrafficQueryParams *GetNetworkTrafficQueryParams) (*ResponseNetworksGetNetworkTraffic, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/traffic"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkTrafficQueryParams)
@@ -4818,6 +4864,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-tr
 */
 func (s *NetworksService) GetNetworkTrafficAnalysis(networkID string) (*ResponseNetworksGetNetworkTrafficAnalysis, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/trafficAnalysis"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4850,6 +4897,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-tr
 */
 func (s *NetworksService) GetNetworkTrafficShapingApplicationCategories(networkID string) (*ResponseNetworksGetNetworkTrafficShapingApplicationCategories, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/trafficShaping/applicationCategories"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4882,6 +4930,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-tr
 */
 func (s *NetworksService) GetNetworkTrafficShapingDscpTaggingOptions(networkID string) (*ResponseNetworksGetNetworkTrafficShapingDscpTaggingOptions, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/trafficShaping/dscpTaggingOptions"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4914,6 +4963,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-we
 */
 func (s *NetworksService) GetNetworkWebhooksHTTPServers(networkID string) (*ResponseNetworksGetNetworkWebhooksHTTPServers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/httpServers"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4947,6 +4997,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-we
 */
 func (s *NetworksService) GetNetworkWebhooksHTTPServer(networkID string, httpServerID string) (*ResponseNetworksGetNetworkWebhooksHTTPServer, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/httpServers/{httpServerId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{httpServerId}", fmt.Sprintf("%v", httpServerID), -1)
 
@@ -4980,6 +5031,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-we
 */
 func (s *NetworksService) GetNetworkWebhooksPayloadTemplates(networkID string) (*ResponseNetworksGetNetworkWebhooksPayloadTemplates, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/payloadTemplates"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5013,6 +5065,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-we
 */
 func (s *NetworksService) GetNetworkWebhooksPayloadTemplate(networkID string, payloadTemplateID string) (*ResponseNetworksGetNetworkWebhooksPayloadTemplate, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/payloadTemplates/{payloadTemplateId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{payloadTemplateId}", fmt.Sprintf("%v", payloadTemplateID), -1)
 
@@ -5047,6 +5100,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-we
 */
 func (s *NetworksService) GetNetworkWebhooksWebhookTest(networkID string, webhookTestID string) (*ResponseNetworksGetNetworkWebhooksWebhookTest, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/webhookTests/{webhookTestId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{webhookTestId}", fmt.Sprintf("%v", webhookTestID), -1)
 
@@ -5081,6 +5135,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!bind-network
 
 func (s *NetworksService) BindNetwork(networkID string, requestNetworksBindNetwork *RequestNetworksBindNetwork) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/bind"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5114,6 +5169,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!provision-netw
 
 func (s *NetworksService) ProvisionNetworkClients(networkID string, requestNetworksProvisionNetworkClients *RequestNetworksProvisionNetworkClients) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/provision"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5147,6 +5203,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!claim-network-
 
 func (s *NetworksService) ClaimNetworkDevices(networkID string, requestNetworksClaimNetworkDevices *RequestNetworksClaimNetworkDevices) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/devices/claim"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5179,6 +5236,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!vmx-network-de
 
 func (s *NetworksService) VmxNetworkDevicesClaim(networkID string, requestNetworksVmxNetworkDevicesClaim *RequestNetworksVmxNetworkDevicesClaim) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/devices/claim/vmx"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5212,6 +5270,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-network
 
 func (s *NetworksService) RemoveNetworkDevices(networkID string, requestNetworksRemoveNetworkDevices *RequestNetworksRemoveNetworkDevices) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/devices/remove"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5244,6 +5303,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *NetworksService) CreateNetworkFirmwareUpgradesRollback(networkID string, requestNetworksCreateNetworkFirmwareUpgradesRollback *RequestNetworksCreateNetworkFirmwareUpgradesRollback) (*ResponseNetworksCreateNetworkFirmwareUpgradesRollback, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/rollbacks"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5278,6 +5338,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *NetworksService) CreateNetworkFirmwareUpgradesStagedEvent(networkID string, requestNetworksCreateNetworkFirmwareUpgradesStagedEvent *RequestNetworksCreateNetworkFirmwareUpgradesStagedEvent) (*ResponseNetworksCreateNetworkFirmwareUpgradesStagedEvent, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/events"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5312,6 +5373,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!defer-network-
 
 func (s *NetworksService) DeferNetworkFirmwareUpgradesStagedEvents(networkID string) (*ResponseNetworksDeferNetworkFirmwareUpgradesStagedEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/events/defer"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5345,6 +5407,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!rollbacks-netw
 
 func (s *NetworksService) RollbacksNetworkFirmwareUpgradesStagedEvents(networkID string, requestNetworksRollbacksNetworkFirmwareUpgradesStagedEvents *RequestNetworksRollbacksNetworkFirmwareUpgradesStagedEvents) (*ResponseNetworksRollbacksNetworkFirmwareUpgradesStagedEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/events/rollbacks"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5379,6 +5442,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *NetworksService) CreateNetworkFirmwareUpgradesStagedGroup(networkID string, requestNetworksCreateNetworkFirmwareUpgradesStagedGroup *RequestNetworksCreateNetworkFirmwareUpgradesStagedGroup) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/groups"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5412,6 +5476,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *NetworksService) CreateNetworkFloorPlan(networkID string, requestNetworksCreateNetworkFloorPlan *RequestNetworksCreateNetworkFloorPlan) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/floorPlans"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5445,6 +5510,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *NetworksService) CreateNetworkGroupPolicy(networkID string, requestNetworksCreateNetworkGroupPolicy *RequestNetworksCreateNetworkGroupPolicy) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/groupPolicies"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5478,6 +5544,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *NetworksService) CreateNetworkMerakiAuthUser(networkID string, requestNetworksCreateNetworkMerakiAuthUser *RequestNetworksCreateNetworkMerakiAuthUser) (*ResponseNetworksCreateNetworkMerakiAuthUser, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/merakiAuthUsers"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5512,6 +5579,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *NetworksService) CreateNetworkMqttBroker(networkID string, requestNetworksCreateNetworkMqttBroker *RequestNetworksCreateNetworkMqttBroker) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/mqttBrokers"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5551,6 +5619,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *NetworksService) CreateNetworkPiiRequest(networkID string, requestNetworksCreateNetworkPiiRequest *RequestNetworksCreateNetworkPiiRequest) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/requests"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5584,6 +5653,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!split-network
 
 func (s *NetworksService) SplitNetwork(networkID string) (*ResponseNetworksSplitNetwork, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/split"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5617,6 +5687,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!unbind-network
 
 func (s *NetworksService) UnbindNetwork(networkID string, requestNetworksUnbindNetwork *RequestNetworksUnbindNetwork) (*ResponseNetworksUnbindNetwork, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/unbind"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5651,6 +5722,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *NetworksService) CreateNetworkWebhooksHTTPServer(networkID string, requestNetworksCreateNetworkWebhooksHttpServer *RequestNetworksCreateNetworkWebhooksHTTPServer) (*ResponseNetworksCreateNetworkWebhooksHTTPServer, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/httpServers"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5685,6 +5757,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *NetworksService) CreateNetworkWebhooksPayloadTemplate(networkID string, requestNetworksCreateNetworkWebhooksPayloadTemplate *RequestNetworksCreateNetworkWebhooksPayloadTemplate) (*ResponseNetworksCreateNetworkWebhooksPayloadTemplate, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/payloadTemplates"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5719,6 +5792,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *NetworksService) CreateNetworkWebhooksWebhookTest(networkID string, requestNetworksCreateNetworkWebhooksWebhookTest *RequestNetworksCreateNetworkWebhooksWebhookTest) (*ResponseNetworksCreateNetworkWebhooksWebhookTest, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/webhookTests"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5752,6 +5826,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!combine-organi
 */
 func (s *NetworksService) CombineOrganizationNetworks(organizationID string, requestNetworksCombineOrganizationNetworks *RequestNetworksCombineOrganizationNetworks) (*ResponseNetworksCombineOrganizationNetworks, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/networks/combine"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -5783,6 +5858,7 @@ func (s *NetworksService) CombineOrganizationNetworks(organizationID string, req
 */
 func (s *NetworksService) UpdateNetwork(networkID string, requestNetworksUpdateNetwork *RequestNetworksUpdateNetwork) (*ResponseNetworksUpdateNetwork, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5814,6 +5890,7 @@ func (s *NetworksService) UpdateNetwork(networkID string, requestNetworksUpdateN
 */
 func (s *NetworksService) UpdateNetworkAlertsSettings(networkID string, requestNetworksUpdateNetworkAlertsSettings *RequestNetworksUpdateNetworkAlertsSettings) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/alerts/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5844,6 +5921,7 @@ func (s *NetworksService) UpdateNetworkAlertsSettings(networkID string, requestN
 */
 func (s *NetworksService) UpdateNetworkClientPolicy(networkID string, clientID string, requestNetworksUpdateNetworkClientPolicy *RequestNetworksUpdateNetworkClientPolicy) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/policy"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
@@ -5875,6 +5953,7 @@ func (s *NetworksService) UpdateNetworkClientPolicy(networkID string, clientID s
 */
 func (s *NetworksService) UpdateNetworkClientSplashAuthorizationStatus(networkID string, clientID string, requestNetworksUpdateNetworkClientSplashAuthorizationStatus *RequestNetworksUpdateNetworkClientSplashAuthorizationStatus) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/splashAuthorizationStatus"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
@@ -5905,6 +5984,7 @@ func (s *NetworksService) UpdateNetworkClientSplashAuthorizationStatus(networkID
 */
 func (s *NetworksService) UpdateNetworkFirmwareUpgrades(networkID string, requestNetworksUpdateNetworkFirmwareUpgrades *RequestNetworksUpdateNetworkFirmwareUpgrades) (*ResponseNetworksUpdateNetworkFirmwareUpgrades, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5936,6 +6016,7 @@ func (s *NetworksService) UpdateNetworkFirmwareUpgrades(networkID string, reques
 */
 func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedEvents(networkID string, requestNetworksUpdateNetworkFirmwareUpgradesStagedEvents *RequestNetworksUpdateNetworkFirmwareUpgradesStagedEvents) (*ResponseNetworksUpdateNetworkFirmwareUpgradesStagedEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/events"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -5968,6 +6049,7 @@ func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedEvents(networkID st
 */
 func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedGroup(networkID string, groupID string, requestNetworksUpdateNetworkFirmwareUpgradesStagedGroup *RequestNetworksUpdateNetworkFirmwareUpgradesStagedGroup) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/groups/{groupId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{groupId}", fmt.Sprintf("%v", groupID), -1)
 
@@ -5998,6 +6080,7 @@ func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedGroup(networkID str
 */
 func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedStages(networkID string, requestNetworksUpdateNetworkFirmwareUpgradesStagedStages *RequestNetworksUpdateNetworkFirmwareUpgradesStagedStages) (*ResponseNetworksUpdateNetworkFirmwareUpgradesStagedStages, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/stages"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -6030,6 +6113,7 @@ func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedStages(networkID st
 */
 func (s *NetworksService) UpdateNetworkFloorPlan(networkID string, floorPlanID string, requestNetworksUpdateNetworkFloorPlan *RequestNetworksUpdateNetworkFloorPlan) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/floorPlans/{floorPlanId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{floorPlanId}", fmt.Sprintf("%v", floorPlanID), -1)
 
@@ -6061,6 +6145,7 @@ func (s *NetworksService) UpdateNetworkFloorPlan(networkID string, floorPlanID s
 */
 func (s *NetworksService) UpdateNetworkGroupPolicy(networkID string, groupPolicyID string, requestNetworksUpdateNetworkGroupPolicy *RequestNetworksUpdateNetworkGroupPolicy) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/groupPolicies/{groupPolicyId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{groupPolicyId}", fmt.Sprintf("%v", groupPolicyID), -1)
 
@@ -6092,6 +6177,7 @@ func (s *NetworksService) UpdateNetworkGroupPolicy(networkID string, groupPolicy
 */
 func (s *NetworksService) UpdateNetworkMerakiAuthUser(networkID string, merakiAuthUserID string, requestNetworksUpdateNetworkMerakiAuthUser *RequestNetworksUpdateNetworkMerakiAuthUser) (*ResponseNetworksUpdateNetworkMerakiAuthUser, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/merakiAuthUsers/{merakiAuthUserId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{merakiAuthUserId}", fmt.Sprintf("%v", merakiAuthUserID), -1)
 
@@ -6125,6 +6211,7 @@ func (s *NetworksService) UpdateNetworkMerakiAuthUser(networkID string, merakiAu
 */
 func (s *NetworksService) UpdateNetworkMqttBroker(networkID string, mqttBrokerID string, requestNetworksUpdateNetworkMqttBroker *RequestNetworksUpdateNetworkMqttBroker) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/mqttBrokers/{mqttBrokerId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{mqttBrokerId}", fmt.Sprintf("%v", mqttBrokerID), -1)
 
@@ -6155,6 +6242,7 @@ func (s *NetworksService) UpdateNetworkMqttBroker(networkID string, mqttBrokerID
 */
 func (s *NetworksService) UpdateNetworkNetflow(networkID string, requestNetworksUpdateNetworkNetflow *RequestNetworksUpdateNetworkNetflow) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/netflow"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -6184,6 +6272,7 @@ func (s *NetworksService) UpdateNetworkNetflow(networkID string, requestNetworks
 */
 func (s *NetworksService) UpdateNetworkSettings(networkID string, requestNetworksUpdateNetworkSettings *RequestNetworksUpdateNetworkSettings) (*ResponseNetworksUpdateNetworkSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -6215,6 +6304,7 @@ func (s *NetworksService) UpdateNetworkSettings(networkID string, requestNetwork
 */
 func (s *NetworksService) UpdateNetworkSNMP(networkID string, requestNetworksUpdateNetworkSnmp *RequestNetworksUpdateNetworkSNMP) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/snmp"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -6244,6 +6334,7 @@ func (s *NetworksService) UpdateNetworkSNMP(networkID string, requestNetworksUpd
 */
 func (s *NetworksService) UpdateNetworkSyslogServers(networkID string, requestNetworksUpdateNetworkSyslogServers *RequestNetworksUpdateNetworkSyslogServers) (*ResponseNetworksUpdateNetworkSyslogServers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/syslogServers"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -6275,6 +6366,7 @@ func (s *NetworksService) UpdateNetworkSyslogServers(networkID string, requestNe
 */
 func (s *NetworksService) UpdateNetworkTrafficAnalysis(networkID string, requestNetworksUpdateNetworkTrafficAnalysis *RequestNetworksUpdateNetworkTrafficAnalysis) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/trafficAnalysis"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -6305,6 +6397,7 @@ func (s *NetworksService) UpdateNetworkTrafficAnalysis(networkID string, request
 */
 func (s *NetworksService) UpdateNetworkWebhooksHTTPServer(networkID string, httpServerID string, requestNetworksUpdateNetworkWebhooksHttpServer *RequestNetworksUpdateNetworkWebhooksHTTPServer) (*ResponseNetworksUpdateNetworkWebhooksHTTPServer, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/httpServers/{httpServerId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{httpServerId}", fmt.Sprintf("%v", httpServerID), -1)
 
@@ -6338,6 +6431,7 @@ func (s *NetworksService) UpdateNetworkWebhooksHTTPServer(networkID string, http
 */
 func (s *NetworksService) UpdateNetworkWebhooksPayloadTemplate(networkID string, payloadTemplateID string, requestNetworksUpdateNetworkWebhooksPayloadTemplate *RequestNetworksUpdateNetworkWebhooksPayloadTemplate) (*ResponseNetworksUpdateNetworkWebhooksPayloadTemplate, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/payloadTemplates/{payloadTemplateId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{payloadTemplateId}", fmt.Sprintf("%v", payloadTemplateID), -1)
 
@@ -6373,6 +6467,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *NetworksService) DeleteNetwork(networkID string) (*resty.Response, error) {
 	//networkID string
 	path := "/api/v1/networks/{networkId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -6405,6 +6500,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *NetworksService) DeleteNetworkFirmwareUpgradesStagedGroup(networkID string, groupID string) (*resty.Response, error) {
 	//networkID string,groupID string
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/groups/{groupId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{groupId}", fmt.Sprintf("%v", groupID), -1)
 
@@ -6438,6 +6534,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *NetworksService) DeleteNetworkFloorPlan(networkID string, floorPlanID string) (*resty.Response, error) {
 	//networkID string,floorPlanID string
 	path := "/api/v1/networks/{networkId}/floorPlans/{floorPlanId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{floorPlanId}", fmt.Sprintf("%v", floorPlanID), -1)
 
@@ -6471,6 +6568,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *NetworksService) DeleteNetworkGroupPolicy(networkID string, groupPolicyID string) (*resty.Response, error) {
 	//networkID string,groupPolicyID string
 	path := "/api/v1/networks/{networkId}/groupPolicies/{groupPolicyId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{groupPolicyId}", fmt.Sprintf("%v", groupPolicyID), -1)
 
@@ -6504,6 +6602,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *NetworksService) DeleteNetworkMerakiAuthUser(networkID string, merakiAuthUserID string) (*resty.Response, error) {
 	//networkID string,merakiAuthUserID string
 	path := "/api/v1/networks/{networkId}/merakiAuthUsers/{merakiAuthUserId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{merakiAuthUserId}", fmt.Sprintf("%v", merakiAuthUserID), -1)
 
@@ -6537,6 +6636,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *NetworksService) DeleteNetworkMqttBroker(networkID string, mqttBrokerID string) (*resty.Response, error) {
 	//networkID string,mqttBrokerID string
 	path := "/api/v1/networks/{networkId}/mqttBrokers/{mqttBrokerId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{mqttBrokerId}", fmt.Sprintf("%v", mqttBrokerID), -1)
 
@@ -6576,6 +6676,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *NetworksService) DeleteNetworkPiiRequest(networkID string, requestID string) (*resty.Response, error) {
 	//networkID string,requestID string
 	path := "/api/v1/networks/{networkId}/pii/requests/{requestId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{requestId}", fmt.Sprintf("%v", requestID), -1)
 
@@ -6609,6 +6710,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *NetworksService) DeleteNetworkWebhooksHTTPServer(networkID string, httpServerID string) (*resty.Response, error) {
 	//networkID string,httpServerID string
 	path := "/api/v1/networks/{networkId}/webhooks/httpServers/{httpServerId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{httpServerId}", fmt.Sprintf("%v", httpServerID), -1)
 
@@ -6642,6 +6744,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *NetworksService) DeleteNetworkWebhooksPayloadTemplate(networkID string, payloadTemplateID string) (*resty.Response, error) {
 	//networkID string,payloadTemplateID string
 	path := "/api/v1/networks/{networkId}/webhooks/payloadTemplates/{payloadTemplateId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{payloadTemplateId}", fmt.Sprintf("%v", payloadTemplateID), -1)
 

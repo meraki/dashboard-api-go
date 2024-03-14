@@ -41,7 +41,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-administer
 */
 func (s *AdministeredService) GetAdministeredIDentitiesMe() (*ResponseAdministeredGetAdministeredIDentitiesMe, *resty.Response, error) {
 	path := "/api/v1/administered/identities/me"
-
+	s.rateLimiterBucket.Wait(1)
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").

@@ -1894,6 +1894,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-swi
 */
 func (s *SwitchService) GetDeviceSwitchPorts(serial string) (*ResponseSwitchGetDeviceSwitchPorts, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/ports"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -1927,6 +1928,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-swi
 */
 func (s *SwitchService) GetDeviceSwitchPortsStatuses(serial string, getDeviceSwitchPortsStatusesQueryParams *GetDeviceSwitchPortsStatusesQueryParams) (*ResponseSwitchGetDeviceSwitchPortsStatuses, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/ports/statuses"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	queryString, _ := query.Values(getDeviceSwitchPortsStatusesQueryParams)
@@ -1962,6 +1964,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-swi
 */
 func (s *SwitchService) GetDeviceSwitchPortsStatusesPackets(serial string, getDeviceSwitchPortsStatusesPacketsQueryParams *GetDeviceSwitchPortsStatusesPacketsQueryParams) (*ResponseSwitchGetDeviceSwitchPortsStatusesPackets, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/ports/statuses/packets"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	queryString, _ := query.Values(getDeviceSwitchPortsStatusesPacketsQueryParams)
@@ -1997,6 +2000,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-swi
 */
 func (s *SwitchService) GetDeviceSwitchPort(serial string, portID string) (*ResponseSwitchGetDeviceSwitchPort, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/ports/{portId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{portId}", fmt.Sprintf("%v", portID), -1)
 
@@ -2030,6 +2034,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-swi
 */
 func (s *SwitchService) GetDeviceSwitchRoutingInterfaces(serial string) (*ResponseSwitchGetDeviceSwitchRoutingInterfaces, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/interfaces"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -2063,6 +2068,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-swi
 */
 func (s *SwitchService) GetDeviceSwitchRoutingInterface(serial string, interfaceID string) (*ResponseSwitchGetDeviceSwitchRoutingInterface, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/interfaces/{interfaceId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
 
@@ -2097,6 +2103,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-swi
 */
 func (s *SwitchService) GetDeviceSwitchRoutingInterfaceDhcp(serial string, interfaceID string) (*ResponseSwitchGetDeviceSwitchRoutingInterfaceDhcp, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/interfaces/{interfaceId}/dhcp"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
 
@@ -2130,6 +2137,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-swi
 */
 func (s *SwitchService) GetDeviceSwitchRoutingStaticRoutes(serial string) (*ResponseSwitchGetDeviceSwitchRoutingStaticRoutes, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/staticRoutes"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -2163,6 +2171,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-swi
 */
 func (s *SwitchService) GetDeviceSwitchRoutingStaticRoute(serial string, staticRouteID string) (*ResponseSwitchGetDeviceSwitchRoutingStaticRoute, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/staticRoutes/{staticRouteId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
 
@@ -2196,6 +2205,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-swi
 */
 func (s *SwitchService) GetDeviceSwitchWarmSpare(serial string) (*ResponseSwitchGetDeviceSwitchWarmSpare, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/warmSpare"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -2228,6 +2238,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchAccessControlLists(networkID string) (*ResponseSwitchGetNetworkSwitchAccessControlLists, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/accessControlLists"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2260,6 +2271,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchAccessPolicies(networkID string) (*ResponseSwitchGetNetworkSwitchAccessPolicies, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/accessPolicies"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2293,6 +2305,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchAccessPolicy(networkID string, accessPolicyNumber string) (*ResponseSwitchGetNetworkSwitchAccessPolicy, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/accessPolicies/{accessPolicyNumber}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{accessPolicyNumber}", fmt.Sprintf("%v", accessPolicyNumber), -1)
 
@@ -2326,6 +2339,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchAlternateManagementInterface(networkID string) (*ResponseSwitchGetNetworkSwitchAlternateManagementInterface, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/alternateManagementInterface"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2359,6 +2373,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchDhcpV4ServersSeen(networkID string, getNetworkSwitchDhcpV4ServersSeenQueryParams *GetNetworkSwitchDhcpV4ServersSeenQueryParams) (*ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dhcp/v4/servers/seen"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSwitchDhcpV4ServersSeenQueryParams)
@@ -2393,6 +2408,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchDhcpServerPolicy(networkID string) (*ResponseSwitchGetNetworkSwitchDhcpServerPolicy, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dhcpServerPolicy"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2426,6 +2442,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers(networkID string, getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams *GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams) (*ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dhcpServerPolicy/arpInspection/trustedServers"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams)
@@ -2461,6 +2478,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice(networkID string, getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams) (*ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dhcpServerPolicy/arpInspection/warnings/byDevice"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams)
@@ -2495,6 +2513,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchDscpToCosMappings(networkID string) (*ResponseSwitchGetNetworkSwitchDscpToCosMappings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dscpToCosMappings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2527,6 +2546,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchLinkAggregations(networkID string) (*ResponseSwitchGetNetworkSwitchLinkAggregations, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/linkAggregations"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2559,6 +2579,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchMtu(networkID string) (*ResponseSwitchGetNetworkSwitchMtu, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/mtu"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2591,6 +2612,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchPortSchedules(networkID string) (*ResponseSwitchGetNetworkSwitchPortSchedules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/portSchedules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2623,6 +2645,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchQosRules(networkID string) (*ResponseSwitchGetNetworkSwitchQosRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/qosRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2655,6 +2678,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchQosRulesOrder(networkID string) (*ResponseSwitchGetNetworkSwitchQosRulesOrder, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/qosRules/order"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2688,6 +2712,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchQosRule(networkID string, qosRuleID string) (*ResponseSwitchGetNetworkSwitchQosRule, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/qosRules/{qosRuleId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{qosRuleId}", fmt.Sprintf("%v", qosRuleID), -1)
 
@@ -2721,6 +2746,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchRoutingMulticast(networkID string) (*ResponseSwitchGetNetworkSwitchRoutingMulticast, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/routing/multicast"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2753,6 +2779,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchRoutingMulticastRendezvousPoints(networkID string) (*ResponseSwitchGetNetworkSwitchRoutingMulticastRendezvousPoints, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/routing/multicast/rendezvousPoints"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2786,6 +2813,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchRoutingMulticastRendezvousPoint(networkID string, rendezvousPointID string) (*ResponseSwitchGetNetworkSwitchRoutingMulticastRendezvousPoint, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/routing/multicast/rendezvousPoints/{rendezvousPointId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{rendezvousPointId}", fmt.Sprintf("%v", rendezvousPointID), -1)
 
@@ -2819,6 +2847,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchRoutingOspf(networkID string) (*ResponseSwitchGetNetworkSwitchRoutingOspf, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/routing/ospf"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2851,6 +2880,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchSettings(networkID string) (*ResponseSwitchGetNetworkSwitchSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2883,6 +2913,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchStacks(networkID string) (*ResponseSwitchGetNetworkSwitchStacks, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -2916,6 +2947,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchStack(networkID string, switchStackID string) (*ResponseSwitchGetNetworkSwitchStack, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
@@ -2950,6 +2982,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchStackRoutingInterfaces(networkID string, switchStackID string) (*ResponseSwitchGetNetworkSwitchStackRoutingInterfaces, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
@@ -2985,6 +3018,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchStackRoutingInterface(networkID string, switchStackID string, interfaceID string) (*ResponseSwitchGetNetworkSwitchStackRoutingInterface, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
@@ -3021,6 +3055,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchStackRoutingInterfaceDhcp(networkID string, switchStackID string, interfaceID string) (*ResponseSwitchGetNetworkSwitchStackRoutingInterfaceDhcp, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}/dhcp"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
@@ -3056,6 +3091,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchStackRoutingStaticRoutes(networkID string, switchStackID string) (*ResponseSwitchGetNetworkSwitchStackRoutingStaticRoutes, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/staticRoutes"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
@@ -3091,6 +3127,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchStackRoutingStaticRoute(networkID string, switchStackID string, staticRouteID string) (*ResponseSwitchGetNetworkSwitchStackRoutingStaticRoute, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/staticRoutes/{staticRouteId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
@@ -3125,6 +3162,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchStormControl(networkID string) (*ResponseSwitchGetNetworkSwitchStormControl, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stormControl"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3157,6 +3195,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sw
 */
 func (s *SwitchService) GetNetworkSwitchStp(networkID string) (*ResponseSwitchGetNetworkSwitchStp, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stp"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3190,6 +3229,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *SwitchService) GetOrganizationConfigTemplateSwitchProfiles(organizationID string, configTemplateID string) (*ResponseSwitchGetOrganizationConfigTemplateSwitchProfiles, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{configTemplateId}", fmt.Sprintf("%v", configTemplateID), -1)
 
@@ -3225,6 +3265,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *SwitchService) GetOrganizationConfigTemplateSwitchProfilePorts(organizationID string, configTemplateID string, profileID string) (*ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePorts, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles/{profileId}/ports"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{configTemplateId}", fmt.Sprintf("%v", configTemplateID), -1)
 	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
@@ -3262,6 +3303,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *SwitchService) GetOrganizationConfigTemplateSwitchProfilePort(organizationID string, configTemplateID string, profileID string, portID string) (*ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePort, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles/{profileId}/ports/{portId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{configTemplateId}", fmt.Sprintf("%v", configTemplateID), -1)
 	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
@@ -3298,6 +3340,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organizati
 */
 func (s *SwitchService) GetOrganizationSwitchPortsBySwitch(organizationID string, getOrganizationSwitchPortsBySwitchQueryParams *GetOrganizationSwitchPortsBySwitchQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsBySwitch, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/switch/ports/bySwitch"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSwitchPortsBySwitchQueryParams)
@@ -3333,6 +3376,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!cycle-device-s
 
 func (s *SwitchService) CycleDeviceSwitchPorts(serial string, requestSwitchCycleDeviceSwitchPorts *RequestSwitchCycleDeviceSwitchPorts) (*ResponseSwitchCycleDeviceSwitchPorts, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/ports/cycle"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -3367,6 +3411,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-
 
 func (s *SwitchService) CreateDeviceSwitchRoutingInterface(serial string, requestSwitchCreateDeviceSwitchRoutingInterface *RequestSwitchCreateDeviceSwitchRoutingInterface) (*ResponseSwitchCreateDeviceSwitchRoutingInterface, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/interfaces"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -3401,6 +3446,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-
 
 func (s *SwitchService) CreateDeviceSwitchRoutingStaticRoute(serial string, requestSwitchCreateDeviceSwitchRoutingStaticRoute *RequestSwitchCreateDeviceSwitchRoutingStaticRoute) (*resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/staticRoutes"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -3434,6 +3480,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *SwitchService) CreateNetworkSwitchAccessPolicy(networkID string, requestSwitchCreateNetworkSwitchAccessPolicy *RequestSwitchCreateNetworkSwitchAccessPolicy) (*ResponseSwitchCreateNetworkSwitchAccessPolicy, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/accessPolicies"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3468,6 +3515,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *SwitchService) CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(networkID string, requestSwitchCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer *RequestSwitchCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer) (*ResponseSwitchCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dhcpServerPolicy/arpInspection/trustedServers"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3502,6 +3550,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *SwitchService) CreateNetworkSwitchLinkAggregation(networkID string, requestSwitchCreateNetworkSwitchLinkAggregation *RequestSwitchCreateNetworkSwitchLinkAggregation) (*ResponseSwitchCreateNetworkSwitchLinkAggregation, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/linkAggregations"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3536,6 +3585,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *SwitchService) CreateNetworkSwitchPortSchedule(networkID string, requestSwitchCreateNetworkSwitchPortSchedule *RequestSwitchCreateNetworkSwitchPortSchedule) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/portSchedules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3569,6 +3619,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *SwitchService) CreateNetworkSwitchQosRule(networkID string, requestSwitchCreateNetworkSwitchQosRule *RequestSwitchCreateNetworkSwitchQosRule) (*ResponseSwitchCreateNetworkSwitchQosRule, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/qosRules"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3603,6 +3654,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *SwitchService) CreateNetworkSwitchRoutingMulticastRendezvousPoint(networkID string, requestSwitchCreateNetworkSwitchRoutingMulticastRendezvousPoint *RequestSwitchCreateNetworkSwitchRoutingMulticastRendezvousPoint) (*ResponseSwitchCreateNetworkSwitchRoutingMulticastRendezvousPoint, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/routing/multicast/rendezvousPoints"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3637,6 +3689,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *SwitchService) CreateNetworkSwitchStack(networkID string, requestSwitchCreateNetworkSwitchStack *RequestSwitchCreateNetworkSwitchStack) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -3671,6 +3724,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-network-sw
 
 func (s *SwitchService) AddNetworkSwitchStack(networkID string, switchStackID string, requestSwitchAddNetworkSwitchStack *RequestSwitchAddNetworkSwitchStack) (*ResponseSwitchAddNetworkSwitchStack, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/add"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
@@ -3707,6 +3761,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-network
 
 func (s *SwitchService) RemoveNetworkSwitchStack(networkID string, switchStackID string, requestSwitchRemoveNetworkSwitchStack *RequestSwitchRemoveNetworkSwitchStack) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/remove"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
@@ -3742,6 +3797,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *SwitchService) CreateNetworkSwitchStackRoutingInterface(networkID string, switchStackID string, requestSwitchCreateNetworkSwitchStackRoutingInterface *RequestSwitchCreateNetworkSwitchStackRoutingInterface) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
@@ -3777,6 +3833,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 
 func (s *SwitchService) CreateNetworkSwitchStackRoutingStaticRoute(networkID string, switchStackID string, requestSwitchCreateNetworkSwitchStackRoutingStaticRoute *RequestSwitchCreateNetworkSwitchStackRoutingStaticRoute) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/staticRoutes"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
@@ -3811,6 +3868,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!clone-organiza
 
 func (s *SwitchService) CloneOrganizationSwitchDevices(organizationID string, requestSwitchCloneOrganizationSwitchDevices *RequestSwitchCloneOrganizationSwitchDevices) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/switch/devices/clone"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	response, err := s.client.R().
@@ -3842,6 +3900,7 @@ func (s *SwitchService) CloneOrganizationSwitchDevices(organizationID string, re
 */
 func (s *SwitchService) UpdateDeviceSwitchPort(serial string, portID string, requestSwitchUpdateDeviceSwitchPort *RequestSwitchUpdateDeviceSwitchPort) (*ResponseSwitchUpdateDeviceSwitchPort, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/ports/{portId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{portId}", fmt.Sprintf("%v", portID), -1)
 
@@ -3875,6 +3934,7 @@ func (s *SwitchService) UpdateDeviceSwitchPort(serial string, portID string, req
 */
 func (s *SwitchService) UpdateDeviceSwitchRoutingInterface(serial string, interfaceID string, requestSwitchUpdateDeviceSwitchRoutingInterface *RequestSwitchUpdateDeviceSwitchRoutingInterface) (*ResponseSwitchUpdateDeviceSwitchRoutingInterface, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/interfaces/{interfaceId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
 
@@ -3908,6 +3968,7 @@ func (s *SwitchService) UpdateDeviceSwitchRoutingInterface(serial string, interf
 */
 func (s *SwitchService) UpdateDeviceSwitchRoutingInterfaceDhcp(serial string, interfaceID string, requestSwitchUpdateDeviceSwitchRoutingInterfaceDhcp *RequestSwitchUpdateDeviceSwitchRoutingInterfaceDhcp) (*resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/interfaces/{interfaceId}/dhcp"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
 
@@ -3939,6 +4000,7 @@ func (s *SwitchService) UpdateDeviceSwitchRoutingInterfaceDhcp(serial string, in
 */
 func (s *SwitchService) UpdateDeviceSwitchRoutingStaticRoute(serial string, staticRouteID string, requestSwitchUpdateDeviceSwitchRoutingStaticRoute *RequestSwitchUpdateDeviceSwitchRoutingStaticRoute) (*resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/staticRoutes/{staticRouteId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
 
@@ -3969,6 +4031,7 @@ func (s *SwitchService) UpdateDeviceSwitchRoutingStaticRoute(serial string, stat
 */
 func (s *SwitchService) UpdateDeviceSwitchWarmSpare(serial string, requestSwitchUpdateDeviceSwitchWarmSpare *RequestSwitchUpdateDeviceSwitchWarmSpare) (*resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/warmSpare"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	response, err := s.client.R().
@@ -3998,6 +4061,7 @@ func (s *SwitchService) UpdateDeviceSwitchWarmSpare(serial string, requestSwitch
 */
 func (s *SwitchService) UpdateNetworkSwitchAccessControlLists(networkID string, requestSwitchUpdateNetworkSwitchAccessControlLists *RequestSwitchUpdateNetworkSwitchAccessControlLists) (*ResponseSwitchUpdateNetworkSwitchAccessControlLists, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/accessControlLists"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4030,6 +4094,7 @@ func (s *SwitchService) UpdateNetworkSwitchAccessControlLists(networkID string, 
 */
 func (s *SwitchService) UpdateNetworkSwitchAccessPolicy(networkID string, accessPolicyNumber string, requestSwitchUpdateNetworkSwitchAccessPolicy *RequestSwitchUpdateNetworkSwitchAccessPolicy) (*ResponseSwitchUpdateNetworkSwitchAccessPolicy, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/accessPolicies/{accessPolicyNumber}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{accessPolicyNumber}", fmt.Sprintf("%v", accessPolicyNumber), -1)
 
@@ -4062,6 +4127,7 @@ func (s *SwitchService) UpdateNetworkSwitchAccessPolicy(networkID string, access
 */
 func (s *SwitchService) UpdateNetworkSwitchAlternateManagementInterface(networkID string, requestSwitchUpdateNetworkSwitchAlternateManagementInterface *RequestSwitchUpdateNetworkSwitchAlternateManagementInterface) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/alternateManagementInterface"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4091,6 +4157,7 @@ func (s *SwitchService) UpdateNetworkSwitchAlternateManagementInterface(networkI
 */
 func (s *SwitchService) UpdateNetworkSwitchDhcpServerPolicy(networkID string, requestSwitchUpdateNetworkSwitchDhcpServerPolicy *RequestSwitchUpdateNetworkSwitchDhcpServerPolicy) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dhcpServerPolicy"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4121,6 +4188,7 @@ func (s *SwitchService) UpdateNetworkSwitchDhcpServerPolicy(networkID string, re
 */
 func (s *SwitchService) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(networkID string, trustedServerID string, requestSwitchUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer *RequestSwitchUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer) (*ResponseSwitchUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dhcpServerPolicy/arpInspection/trustedServers/{trustedServerId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{trustedServerId}", fmt.Sprintf("%v", trustedServerID), -1)
 
@@ -4153,6 +4221,7 @@ func (s *SwitchService) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedS
 */
 func (s *SwitchService) UpdateNetworkSwitchDscpToCosMappings(networkID string, requestSwitchUpdateNetworkSwitchDscpToCosMappings *RequestSwitchUpdateNetworkSwitchDscpToCosMappings) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dscpToCosMappings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4183,6 +4252,7 @@ func (s *SwitchService) UpdateNetworkSwitchDscpToCosMappings(networkID string, r
 */
 func (s *SwitchService) UpdateNetworkSwitchLinkAggregation(networkID string, linkAggregationID string, requestSwitchUpdateNetworkSwitchLinkAggregation *RequestSwitchUpdateNetworkSwitchLinkAggregation) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/linkAggregations/{linkAggregationId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{linkAggregationId}", fmt.Sprintf("%v", linkAggregationID), -1)
 
@@ -4213,6 +4283,7 @@ func (s *SwitchService) UpdateNetworkSwitchLinkAggregation(networkID string, lin
 */
 func (s *SwitchService) UpdateNetworkSwitchMtu(networkID string, requestSwitchUpdateNetworkSwitchMtu *RequestSwitchUpdateNetworkSwitchMtu) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/mtu"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4243,6 +4314,7 @@ func (s *SwitchService) UpdateNetworkSwitchMtu(networkID string, requestSwitchUp
 */
 func (s *SwitchService) UpdateNetworkSwitchPortSchedule(networkID string, portScheduleID string, requestSwitchUpdateNetworkSwitchPortSchedule *RequestSwitchUpdateNetworkSwitchPortSchedule) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/portSchedules/{portScheduleId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{portScheduleId}", fmt.Sprintf("%v", portScheduleID), -1)
 
@@ -4273,6 +4345,7 @@ func (s *SwitchService) UpdateNetworkSwitchPortSchedule(networkID string, portSc
 */
 func (s *SwitchService) UpdateNetworkSwitchQosRulesOrder(networkID string, requestSwitchUpdateNetworkSwitchQosRulesOrder *RequestSwitchUpdateNetworkSwitchQosRulesOrder) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/qosRules/order"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4303,6 +4376,7 @@ func (s *SwitchService) UpdateNetworkSwitchQosRulesOrder(networkID string, reque
 */
 func (s *SwitchService) UpdateNetworkSwitchQosRule(networkID string, qosRuleID string, requestSwitchUpdateNetworkSwitchQosRule *RequestSwitchUpdateNetworkSwitchQosRule) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/qosRules/{qosRuleId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{qosRuleId}", fmt.Sprintf("%v", qosRuleID), -1)
 
@@ -4333,6 +4407,7 @@ func (s *SwitchService) UpdateNetworkSwitchQosRule(networkID string, qosRuleID s
 */
 func (s *SwitchService) UpdateNetworkSwitchRoutingMulticast(networkID string, requestSwitchUpdateNetworkSwitchRoutingMulticast *RequestSwitchUpdateNetworkSwitchRoutingMulticast) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/routing/multicast"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4363,6 +4438,7 @@ func (s *SwitchService) UpdateNetworkSwitchRoutingMulticast(networkID string, re
 */
 func (s *SwitchService) UpdateNetworkSwitchRoutingMulticastRendezvousPoint(networkID string, rendezvousPointID string, requestSwitchUpdateNetworkSwitchRoutingMulticastRendezvousPoint *RequestSwitchUpdateNetworkSwitchRoutingMulticastRendezvousPoint) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/routing/multicast/rendezvousPoints/{rendezvousPointId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{rendezvousPointId}", fmt.Sprintf("%v", rendezvousPointID), -1)
 
@@ -4393,6 +4469,7 @@ func (s *SwitchService) UpdateNetworkSwitchRoutingMulticastRendezvousPoint(netwo
 */
 func (s *SwitchService) UpdateNetworkSwitchRoutingOspf(networkID string, requestSwitchUpdateNetworkSwitchRoutingOspf *RequestSwitchUpdateNetworkSwitchRoutingOspf) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/routing/ospf"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4422,6 +4499,7 @@ func (s *SwitchService) UpdateNetworkSwitchRoutingOspf(networkID string, request
 */
 func (s *SwitchService) UpdateNetworkSwitchSettings(networkID string, requestSwitchUpdateNetworkSwitchSettings *RequestSwitchUpdateNetworkSwitchSettings) (*ResponseSwitchUpdateNetworkSwitchSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/settings"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4455,6 +4533,7 @@ func (s *SwitchService) UpdateNetworkSwitchSettings(networkID string, requestSwi
 */
 func (s *SwitchService) UpdateNetworkSwitchStackRoutingInterface(networkID string, switchStackID string, interfaceID string, requestSwitchUpdateNetworkSwitchStackRoutingInterface *RequestSwitchUpdateNetworkSwitchStackRoutingInterface) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
@@ -4488,6 +4567,7 @@ func (s *SwitchService) UpdateNetworkSwitchStackRoutingInterface(networkID strin
 */
 func (s *SwitchService) UpdateNetworkSwitchStackRoutingInterfaceDhcp(networkID string, switchStackID string, interfaceID string, requestSwitchUpdateNetworkSwitchStackRoutingInterfaceDhcp *RequestSwitchUpdateNetworkSwitchStackRoutingInterfaceDhcp) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}/dhcp"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
@@ -4521,6 +4601,7 @@ func (s *SwitchService) UpdateNetworkSwitchStackRoutingInterfaceDhcp(networkID s
 */
 func (s *SwitchService) UpdateNetworkSwitchStackRoutingStaticRoute(networkID string, switchStackID string, staticRouteID string, requestSwitchUpdateNetworkSwitchStackRoutingStaticRoute *RequestSwitchUpdateNetworkSwitchStackRoutingStaticRoute) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/staticRoutes/{staticRouteId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
@@ -4552,6 +4633,7 @@ func (s *SwitchService) UpdateNetworkSwitchStackRoutingStaticRoute(networkID str
 */
 func (s *SwitchService) UpdateNetworkSwitchStormControl(networkID string, requestSwitchUpdateNetworkSwitchStormControl *RequestSwitchUpdateNetworkSwitchStormControl) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stormControl"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4581,6 +4663,7 @@ func (s *SwitchService) UpdateNetworkSwitchStormControl(networkID string, reques
 */
 func (s *SwitchService) UpdateNetworkSwitchStp(networkID string, requestSwitchUpdateNetworkSwitchStp *RequestSwitchUpdateNetworkSwitchStp) (*resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stp"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	response, err := s.client.R().
@@ -4613,6 +4696,7 @@ func (s *SwitchService) UpdateNetworkSwitchStp(networkID string, requestSwitchUp
 */
 func (s *SwitchService) UpdateOrganizationConfigTemplateSwitchProfilePort(organizationID string, configTemplateID string, profileID string, portID string, requestSwitchUpdateOrganizationConfigTemplateSwitchProfilePort *RequestSwitchUpdateOrganizationConfigTemplateSwitchProfilePort) (*ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePort, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles/{profileId}/ports/{portId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{configTemplateId}", fmt.Sprintf("%v", configTemplateID), -1)
 	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
@@ -4651,6 +4735,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-device-
 func (s *SwitchService) DeleteDeviceSwitchRoutingInterface(serial string, interfaceID string) (*resty.Response, error) {
 	//serial string,interfaceID string
 	path := "/api/v1/devices/{serial}/switch/routing/interfaces/{interfaceId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
 
@@ -4684,6 +4769,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-device-
 func (s *SwitchService) DeleteDeviceSwitchRoutingStaticRoute(serial string, staticRouteID string) (*resty.Response, error) {
 	//serial string,staticRouteID string
 	path := "/api/v1/devices/{serial}/switch/routing/staticRoutes/{staticRouteId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
 
@@ -4717,6 +4803,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *SwitchService) DeleteNetworkSwitchAccessPolicy(networkID string, accessPolicyNumber string) (*resty.Response, error) {
 	//networkID string,accessPolicyNumber string
 	path := "/api/v1/networks/{networkId}/switch/accessPolicies/{accessPolicyNumber}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{accessPolicyNumber}", fmt.Sprintf("%v", accessPolicyNumber), -1)
 
@@ -4750,6 +4837,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *SwitchService) DeleteNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(networkID string, trustedServerID string) (*resty.Response, error) {
 	//networkID string,trustedServerID string
 	path := "/api/v1/networks/{networkId}/switch/dhcpServerPolicy/arpInspection/trustedServers/{trustedServerId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{trustedServerId}", fmt.Sprintf("%v", trustedServerID), -1)
 
@@ -4783,6 +4871,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *SwitchService) DeleteNetworkSwitchLinkAggregation(networkID string, linkAggregationID string) (*resty.Response, error) {
 	//networkID string,linkAggregationID string
 	path := "/api/v1/networks/{networkId}/switch/linkAggregations/{linkAggregationId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{linkAggregationId}", fmt.Sprintf("%v", linkAggregationID), -1)
 
@@ -4816,6 +4905,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *SwitchService) DeleteNetworkSwitchPortSchedule(networkID string, portScheduleID string) (*resty.Response, error) {
 	//networkID string,portScheduleID string
 	path := "/api/v1/networks/{networkId}/switch/portSchedules/{portScheduleId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{portScheduleId}", fmt.Sprintf("%v", portScheduleID), -1)
 
@@ -4849,6 +4939,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *SwitchService) DeleteNetworkSwitchQosRule(networkID string, qosRuleID string) (*resty.Response, error) {
 	//networkID string,qosRuleID string
 	path := "/api/v1/networks/{networkId}/switch/qosRules/{qosRuleId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{qosRuleId}", fmt.Sprintf("%v", qosRuleID), -1)
 
@@ -4882,6 +4973,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *SwitchService) DeleteNetworkSwitchRoutingMulticastRendezvousPoint(networkID string, rendezvousPointID string) (*resty.Response, error) {
 	//networkID string,rendezvousPointID string
 	path := "/api/v1/networks/{networkId}/switch/routing/multicast/rendezvousPoints/{rendezvousPointId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{rendezvousPointId}", fmt.Sprintf("%v", rendezvousPointID), -1)
 
@@ -4915,6 +5007,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *SwitchService) DeleteNetworkSwitchStack(networkID string, switchStackID string) (*resty.Response, error) {
 	//networkID string,switchStackID string
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
@@ -4949,6 +5042,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *SwitchService) DeleteNetworkSwitchStackRoutingInterface(networkID string, switchStackID string, interfaceID string) (*resty.Response, error) {
 	//networkID string,switchStackID string,interfaceID string
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
@@ -4984,6 +5078,7 @@ Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network
 func (s *SwitchService) DeleteNetworkSwitchStackRoutingStaticRoute(networkID string, switchStackID string, staticRouteID string) (*resty.Response, error) {
 	//networkID string,switchStackID string,staticRouteID string
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/staticRoutes/{staticRouteId}"
+	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
