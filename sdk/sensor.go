@@ -25,25 +25,24 @@ type GetOrganizationSensorReadingsHistoryQueryParams struct {
 	Timespan      float64  `url:"timespan,omitempty"`      //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 7 days. The default is 2 hours.
 	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Optional parameter to filter readings by network.
 	Serials       []string `url:"serials[],omitempty"`     //Optional parameter to filter readings by sensor.
-	Metrics       []string `url:"metrics[],omitempty"`     //Types of sensor readings to retrieve. If no metrics are supplied, all available types of readings will be retrieved. Allowed values are battery, button, door, humidity, indoorAirQuality, noise, pm25, temperature, tvoc, and water.
+	Metrics       []string `url:"metrics[],omitempty"`     //Types of sensor readings to retrieve. If no metrics are supplied, all available types of readings will be retrieved. Allowed values are apparentPower, battery, button, co2, current, door, downstreamPower, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, remoteLockoutSwitch, temperature, tvoc, voltage, and water.
 }
 type GetOrganizationSensorReadingsLatestQueryParams struct {
-	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 100. Default is 100.
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
 	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Optional parameter to filter readings by network.
 	Serials       []string `url:"serials[],omitempty"`     //Optional parameter to filter readings by sensor.
-	Metrics       []string `url:"metrics[],omitempty"`     //Types of sensor readings to retrieve. If no metrics are supplied, all available types of readings will be retrieved. Allowed values are battery, button, door, humidity, indoorAirQuality, noise, pm25, temperature, tvoc, and water.
+	Metrics       []string `url:"metrics[],omitempty"`     //Types of sensor readings to retrieve. If no metrics are supplied, all available types of readings will be retrieved. Allowed values are apparentPower, battery, button, co2, current, door, downstreamPower, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, remoteLockoutSwitch, temperature, tvoc, voltage, and water.
 }
 
-type ResponseSensorGetDeviceSensorRelationships []ResponseItemSensorGetDeviceSensorRelationships // Array of ResponseSensorGetDeviceSensorRelationships
-type ResponseItemSensorGetDeviceSensorRelationships struct {
-	Livestream *ResponseItemSensorGetDeviceSensorRelationshipsLivestream `json:"livestream,omitempty"` // A role defined between an MT sensor and an MV camera that adds the camera's livestream to the sensor's details page. Snapshots from the camera will also appear in alert notifications that the sensor triggers.
+type ResponseSensorGetDeviceSensorRelationships struct {
+	Livestream *ResponseSensorGetDeviceSensorRelationshipsLivestream `json:"livestream,omitempty"` // A role defined between an MT sensor and an MV camera that adds the camera's livestream to the sensor's details page. Snapshots from the camera will also appear in alert notifications that the sensor triggers.
 }
-type ResponseItemSensorGetDeviceSensorRelationshipsLivestream struct {
-	RelatedDevices *[]ResponseItemSensorGetDeviceSensorRelationshipsLivestreamRelatedDevices `json:"relatedDevices,omitempty"` // An array of the related devices for the role
+type ResponseSensorGetDeviceSensorRelationshipsLivestream struct {
+	RelatedDevices *[]ResponseSensorGetDeviceSensorRelationshipsLivestreamRelatedDevices `json:"relatedDevices,omitempty"` // An array of the related devices for the role
 }
-type ResponseItemSensorGetDeviceSensorRelationshipsLivestreamRelatedDevices struct {
+type ResponseSensorGetDeviceSensorRelationshipsLivestreamRelatedDevices struct {
 	ProductType string `json:"productType,omitempty"` // The product type of the related device
 	Serial      string `json:"serial,omitempty"`      // The serial of the related device
 }
@@ -62,13 +61,21 @@ type ResponseSensorGetNetworkSensorAlertsCurrentOverviewByMetric struct {
 	SupportedMetrics []string                                                           `json:"supportedMetrics,omitempty"` // List of metrics that are supported for alerts, based on available sensor devices in the network
 }
 type ResponseSensorGetNetworkSensorAlertsCurrentOverviewByMetricCounts struct {
+	ApparentPower    *int                                                                    `json:"apparentPower,omitempty"`    // Number of sensors that are currently alerting due to apparent power readings
+	Co2              *int                                                                    `json:"co2,omitempty"`              // Number of sensors that are currently alerting due to CO2 readings
+	Current          *int                                                                    `json:"current,omitempty"`          // Number of sensors that are currently alerting due to electrical current readings
 	Door             *int                                                                    `json:"door,omitempty"`             // Number of sensors that are currently alerting due to an open door
+	Frequency        *int                                                                    `json:"frequency,omitempty"`        // Number of sensors that are currently alerting due to frequency readings
 	Humidity         *int                                                                    `json:"humidity,omitempty"`         // Number of sensors that are currently alerting due to humidity readings
 	IndoorAirQuality *int                                                                    `json:"indoorAirQuality,omitempty"` // Number of sensors that are currently alerting due to indoor air quality readings
 	Noise            *ResponseSensorGetNetworkSensorAlertsCurrentOverviewByMetricCountsNoise `json:"noise,omitempty"`            // Object containing the number of sensors that are currently alerting due to noise readings
 	Pm25             *int                                                                    `json:"pm25,omitempty"`             // Number of sensors that are currently alerting due to PM2.5 readings
+	PowerFactor      *int                                                                    `json:"powerFactor,omitempty"`      // Number of sensors that are currently alerting due to power factor readings
+	RealPower        *int                                                                    `json:"realPower,omitempty"`        // Number of sensors that are currently alerting due to real power readings
 	Temperature      *int                                                                    `json:"temperature,omitempty"`      // Number of sensors that are currently alerting due to temperature readings
 	Tvoc             *int                                                                    `json:"tvoc,omitempty"`             // Number of sensors that are currently alerting due to TVOC readings
+	UpstreamPower    *int                                                                    `json:"upstreamPower,omitempty"`    // Number of sensors that are currently alerting due to an upstream power outage
+	Voltage          *int                                                                    `json:"voltage,omitempty"`          // Number of sensors that are currently alerting due to voltage readings
 	Water            *int                                                                    `json:"water,omitempty"`            // Number of sensors that are currently alerting due to the presence of water
 }
 type ResponseSensorGetNetworkSensorAlertsCurrentOverviewByMetricCountsNoise struct {
@@ -81,13 +88,21 @@ type ResponseItemSensorGetNetworkSensorAlertsOverviewByMetric struct {
 	StartTs string                                                          `json:"startTs,omitempty"` // Start of the timespan over which sensor alerts are counted
 }
 type ResponseItemSensorGetNetworkSensorAlertsOverviewByMetricCounts struct {
+	ApparentPower    *int                                                                 `json:"apparentPower,omitempty"`    // Number of sensor alerts that occurred due to apparent power readings
+	Co2              *int                                                                 `json:"co2,omitempty"`              // Number of sensors that are currently alerting due to CO2 readings
+	Current          *int                                                                 `json:"current,omitempty"`          // Number of sensor alerts that occurred due to electrical current readings
 	Door             *int                                                                 `json:"door,omitempty"`             // Number of sensor alerts that occurred due to an open door
+	Frequency        *int                                                                 `json:"frequency,omitempty"`        // Number of sensor alerts that occurred due to frequency readings
 	Humidity         *int                                                                 `json:"humidity,omitempty"`         // Number of sensor alerts that occurred due to humidity readings
 	IndoorAirQuality *int                                                                 `json:"indoorAirQuality,omitempty"` // Number of sensor alerts that occurred due to indoor air quality readings
 	Noise            *ResponseItemSensorGetNetworkSensorAlertsOverviewByMetricCountsNoise `json:"noise,omitempty"`            // Object containing the number of sensor alerts that occurred due to noise readings
 	Pm25             *int                                                                 `json:"pm25,omitempty"`             // Number of sensor alerts that occurred due to PM2.5 readings
+	PowerFactor      *int                                                                 `json:"powerFactor,omitempty"`      // Number of sensor alerts that occurred due to power factor readings
+	RealPower        *int                                                                 `json:"realPower,omitempty"`        // Number of sensor alerts that occurred due to real power readings
 	Temperature      *int                                                                 `json:"temperature,omitempty"`      // Number of sensor alerts that occurred due to temperature readings
 	Tvoc             *int                                                                 `json:"tvoc,omitempty"`             // Number of sensor alerts that occurred due to TVOC readings
+	UpstreamPower    *int                                                                 `json:"upstreamPower,omitempty"`    // Number of sensor alerts that occurred due to upstream power outages
+	Voltage          *int                                                                 `json:"voltage,omitempty"`          // Number of sensor alerts that occurred due to voltage readings
 	Water            *int                                                                 `json:"water,omitempty"`            // Number of sensor alerts that occurred due to the presence of water
 }
 type ResponseItemSensorGetNetworkSensorAlertsOverviewByMetricCountsNoise struct {
@@ -98,28 +113,44 @@ type ResponseItemSensorGetNetworkSensorAlertsProfiles struct {
 	Conditions *[]ResponseItemSensorGetNetworkSensorAlertsProfilesConditions `json:"conditions,omitempty"` // List of conditions that will cause the profile to send an alert.
 	Name       string                                                        `json:"name,omitempty"`       // Name of the sensor alert profile.
 	ProfileID  string                                                        `json:"profileId,omitempty"`  // ID of the sensor alert profile.
-	Recipients *ResponseItemSensorGetNetworkSensorAlertsProfilesRecipients   `json:"recipients,omitempty"` // List of recipients that will recieve the alert.
+	Recipients *ResponseItemSensorGetNetworkSensorAlertsProfilesRecipients   `json:"recipients,omitempty"` // List of recipients that will receive the alert.
 	Schedule   *ResponseItemSensorGetNetworkSensorAlertsProfilesSchedule     `json:"schedule,omitempty"`   // The sensor schedule to use with the alert profile.
 	Serials    []string                                                      `json:"serials,omitempty"`    // List of device serials assigned to this sensor alert profile.
 }
 type ResponseItemSensorGetNetworkSensorAlertsProfilesConditions struct {
-	Direction string                                                               `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature and humidity thresholds.
-	Duration  *int                                                                 `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, and 1 hour. Default is 0.
-	Metric    string                                                               `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are door, humidity, indoorAirQuality, noise, pm25, temperature, tvoc, and water.
+	Direction string                                                               `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
+	Duration  *int                                                                 `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, 1 hour, 2 hours, 4 hours, and 8 hours. Default is 0.
+	Metric    string                                                               `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are apparentPower, co2, current, door, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, temperature, tvoc, upstreamPower, voltage, and water.
 	Threshold *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThreshold `json:"threshold,omitempty"` // Threshold for sensor readings that will cause an alert to be sent. This object should contain a single property key matching the condition's 'metric' value.
 }
 type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThreshold struct {
+	ApparentPower    *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdApparentPower    `json:"apparentPower,omitempty"`    // Apparent power threshold. 'draw' must be provided.
+	Current          *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdCurrent          `json:"current,omitempty"`          // Electrical current threshold. 'level' must be provided.
 	Door             *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdDoor             `json:"door,omitempty"`             // Door open threshold. 'open' must be provided and set to true.
+	Frequency        *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdFrequency        `json:"frequency,omitempty"`        // Electrical frequency threshold. 'level' must be provided.
 	Humidity         *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdHumidity         `json:"humidity,omitempty"`         // Humidity threshold. One of 'relativePercentage' or 'quality' must be provided.
 	IndoorAirQuality *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdIndoorAirQuality `json:"indoorAirQuality,omitempty"` // Indoor air quality score threshold. One of 'score' or 'quality' must be provided.
 	Noise            *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdNoise            `json:"noise,omitempty"`            // Noise threshold. 'ambient' must be provided.
 	Pm25             *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdPm25             `json:"pm25,omitempty"`             // PM2.5 concentration threshold. One of 'concentration' or 'quality' must be provided.
+	PowerFactor      *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdPowerFactor      `json:"powerFactor,omitempty"`      // Power factor threshold. 'percentage' must be provided.
+	RealPower        *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdRealPower        `json:"realPower,omitempty"`        // Real power threshold. 'draw' must be provided.
 	Temperature      *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdTemperature      `json:"temperature,omitempty"`      // Temperature threshold. One of 'celsius', 'fahrenheit', or 'quality' must be provided.
 	Tvoc             *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdTvoc             `json:"tvoc,omitempty"`             // TVOC concentration threshold. One of 'concentration' or 'quality' must be provided.
+	UpstreamPower    *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdUpstreamPower    `json:"upstreamPower,omitempty"`    // Upstream power threshold. 'outageDetected' must be provided and set to true.
+	Voltage          *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdVoltage          `json:"voltage,omitempty"`          // Voltage threshold. 'level' must be provided.
 	Water            *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdWater            `json:"water,omitempty"`            // Water detection threshold. 'present' must be provided and set to true.
+}
+type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdApparentPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in volt-amps. Must be between 0 and 3750.
+}
+type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdCurrent struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in amps. Must be between 0 and 15.
 }
 type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdDoor struct {
 	Open *bool `json:"open,omitempty"` // Alerting threshold for a door open event. Must be set to true.
+}
+type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdFrequency struct {
+	Level *float64 `json:"level,omitempty"` // Alerting threshold in hertz. Must be between 0 and 60.
 }
 type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdHumidity struct {
 	Quality            string `json:"quality,omitempty"`            // Alerting threshold as a qualitative humidity level.
@@ -140,6 +171,12 @@ type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdPm25 str
 	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as PM2.5 parts per million.
 	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative PM2.5 level.
 }
+type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdPowerFactor struct {
+	Percentage *int `json:"percentage,omitempty"` // Alerting threshold as the ratio of active power to apparent power. Must be between 0 and 100.
+}
+type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdRealPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in watts. Must be between 0 and 3750.
+}
 type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdTemperature struct {
 	Celsius    *float64 `json:"celsius,omitempty"`    // Alerting threshold in degrees Celsius.
 	Fahrenheit *float64 `json:"fahrenheit,omitempty"` // Alerting threshold in degrees Fahrenheit.
@@ -148,6 +185,12 @@ type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdTemperat
 type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdTvoc struct {
 	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as TVOC micrograms per cubic meter.
 	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative TVOC level.
+}
+type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdUpstreamPower struct {
+	OutageDetected *bool `json:"outageDetected,omitempty"` // Alerting threshold for an upstream power event. Must be set to true.
+}
+type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdVoltage struct {
+	Level *float64 `json:"level,omitempty"` // Alerting threshold in volts. Must be between 0 and 250.
 }
 type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdWater struct {
 	Present *bool `json:"present,omitempty"` // Alerting threshold for a water detection event. Must be set to true.
@@ -165,28 +208,44 @@ type ResponseSensorCreateNetworkSensorAlertsProfile struct {
 	Conditions *[]ResponseSensorCreateNetworkSensorAlertsProfileConditions `json:"conditions,omitempty"` // List of conditions that will cause the profile to send an alert.
 	Name       string                                                      `json:"name,omitempty"`       // Name of the sensor alert profile.
 	ProfileID  string                                                      `json:"profileId,omitempty"`  // ID of the sensor alert profile.
-	Recipients *ResponseSensorCreateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"` // List of recipients that will recieve the alert.
+	Recipients *ResponseSensorCreateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"` // List of recipients that will receive the alert.
 	Schedule   *ResponseSensorCreateNetworkSensorAlertsProfileSchedule     `json:"schedule,omitempty"`   // The sensor schedule to use with the alert profile.
 	Serials    []string                                                    `json:"serials,omitempty"`    // List of device serials assigned to this sensor alert profile.
 }
 type ResponseSensorCreateNetworkSensorAlertsProfileConditions struct {
-	Direction string                                                             `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature and humidity thresholds.
-	Duration  *int                                                               `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, and 1 hour. Default is 0.
-	Metric    string                                                             `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are door, humidity, indoorAirQuality, noise, pm25, temperature, tvoc, and water.
+	Direction string                                                             `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
+	Duration  *int                                                               `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, 1 hour, 2 hours, 4 hours, and 8 hours. Default is 0.
+	Metric    string                                                             `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are apparentPower, co2, current, door, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, temperature, tvoc, upstreamPower, voltage, and water.
 	Threshold *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThreshold `json:"threshold,omitempty"` // Threshold for sensor readings that will cause an alert to be sent. This object should contain a single property key matching the condition's 'metric' value.
 }
 type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThreshold struct {
+	ApparentPower    *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdApparentPower    `json:"apparentPower,omitempty"`    // Apparent power threshold. 'draw' must be provided.
+	Current          *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdCurrent          `json:"current,omitempty"`          // Electrical current threshold. 'level' must be provided.
 	Door             *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdDoor             `json:"door,omitempty"`             // Door open threshold. 'open' must be provided and set to true.
+	Frequency        *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdFrequency        `json:"frequency,omitempty"`        // Electrical frequency threshold. 'level' must be provided.
 	Humidity         *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdHumidity         `json:"humidity,omitempty"`         // Humidity threshold. One of 'relativePercentage' or 'quality' must be provided.
 	IndoorAirQuality *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdIndoorAirQuality `json:"indoorAirQuality,omitempty"` // Indoor air quality score threshold. One of 'score' or 'quality' must be provided.
 	Noise            *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdNoise            `json:"noise,omitempty"`            // Noise threshold. 'ambient' must be provided.
 	Pm25             *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdPm25             `json:"pm25,omitempty"`             // PM2.5 concentration threshold. One of 'concentration' or 'quality' must be provided.
+	PowerFactor      *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdPowerFactor      `json:"powerFactor,omitempty"`      // Power factor threshold. 'percentage' must be provided.
+	RealPower        *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdRealPower        `json:"realPower,omitempty"`        // Real power threshold. 'draw' must be provided.
 	Temperature      *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdTemperature      `json:"temperature,omitempty"`      // Temperature threshold. One of 'celsius', 'fahrenheit', or 'quality' must be provided.
 	Tvoc             *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdTvoc             `json:"tvoc,omitempty"`             // TVOC concentration threshold. One of 'concentration' or 'quality' must be provided.
+	UpstreamPower    *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdUpstreamPower    `json:"upstreamPower,omitempty"`    // Upstream power threshold. 'outageDetected' must be provided and set to true.
+	Voltage          *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdVoltage          `json:"voltage,omitempty"`          // Voltage threshold. 'level' must be provided.
 	Water            *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdWater            `json:"water,omitempty"`            // Water detection threshold. 'present' must be provided and set to true.
+}
+type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdApparentPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in volt-amps. Must be between 0 and 3750.
+}
+type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdCurrent struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in amps. Must be between 0 and 15.
 }
 type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdDoor struct {
 	Open *bool `json:"open,omitempty"` // Alerting threshold for a door open event. Must be set to true.
+}
+type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdFrequency struct {
+	Level *float64 `json:"level,omitempty"` // Alerting threshold in hertz. Must be between 0 and 60.
 }
 type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdHumidity struct {
 	Quality            string `json:"quality,omitempty"`            // Alerting threshold as a qualitative humidity level.
@@ -207,6 +266,12 @@ type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdPm25 struc
 	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as PM2.5 parts per million.
 	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative PM2.5 level.
 }
+type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdPowerFactor struct {
+	Percentage *int `json:"percentage,omitempty"` // Alerting threshold as the ratio of active power to apparent power. Must be between 0 and 100.
+}
+type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdRealPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in watts. Must be between 0 and 3750.
+}
 type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdTemperature struct {
 	Celsius    *float64 `json:"celsius,omitempty"`    // Alerting threshold in degrees Celsius.
 	Fahrenheit *float64 `json:"fahrenheit,omitempty"` // Alerting threshold in degrees Fahrenheit.
@@ -215,6 +280,12 @@ type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdTemperatur
 type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdTvoc struct {
 	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as TVOC micrograms per cubic meter.
 	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative TVOC level.
+}
+type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdUpstreamPower struct {
+	OutageDetected *bool `json:"outageDetected,omitempty"` // Alerting threshold for an upstream power event. Must be set to true.
+}
+type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdVoltage struct {
+	Level *float64 `json:"level,omitempty"` // Alerting threshold in volts. Must be between 0 and 250.
 }
 type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdWater struct {
 	Present *bool `json:"present,omitempty"` // Alerting threshold for a water detection event. Must be set to true.
@@ -232,28 +303,44 @@ type ResponseSensorGetNetworkSensorAlertsProfile struct {
 	Conditions *[]ResponseSensorGetNetworkSensorAlertsProfileConditions `json:"conditions,omitempty"` // List of conditions that will cause the profile to send an alert.
 	Name       string                                                   `json:"name,omitempty"`       // Name of the sensor alert profile.
 	ProfileID  string                                                   `json:"profileId,omitempty"`  // ID of the sensor alert profile.
-	Recipients *ResponseSensorGetNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"` // List of recipients that will recieve the alert.
+	Recipients *ResponseSensorGetNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"` // List of recipients that will receive the alert.
 	Schedule   *ResponseSensorGetNetworkSensorAlertsProfileSchedule     `json:"schedule,omitempty"`   // The sensor schedule to use with the alert profile.
 	Serials    []string                                                 `json:"serials,omitempty"`    // List of device serials assigned to this sensor alert profile.
 }
 type ResponseSensorGetNetworkSensorAlertsProfileConditions struct {
-	Direction string                                                          `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature and humidity thresholds.
-	Duration  *int                                                            `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, and 1 hour. Default is 0.
-	Metric    string                                                          `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are door, humidity, indoorAirQuality, noise, pm25, temperature, tvoc, and water.
+	Direction string                                                          `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
+	Duration  *int                                                            `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, 1 hour, 2 hours, 4 hours, and 8 hours. Default is 0.
+	Metric    string                                                          `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are apparentPower, co2, current, door, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, temperature, tvoc, upstreamPower, voltage, and water.
 	Threshold *ResponseSensorGetNetworkSensorAlertsProfileConditionsThreshold `json:"threshold,omitempty"` // Threshold for sensor readings that will cause an alert to be sent. This object should contain a single property key matching the condition's 'metric' value.
 }
 type ResponseSensorGetNetworkSensorAlertsProfileConditionsThreshold struct {
+	ApparentPower    *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdApparentPower    `json:"apparentPower,omitempty"`    // Apparent power threshold. 'draw' must be provided.
+	Current          *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdCurrent          `json:"current,omitempty"`          // Electrical current threshold. 'level' must be provided.
 	Door             *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdDoor             `json:"door,omitempty"`             // Door open threshold. 'open' must be provided and set to true.
+	Frequency        *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdFrequency        `json:"frequency,omitempty"`        // Electrical frequency threshold. 'level' must be provided.
 	Humidity         *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdHumidity         `json:"humidity,omitempty"`         // Humidity threshold. One of 'relativePercentage' or 'quality' must be provided.
 	IndoorAirQuality *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdIndoorAirQuality `json:"indoorAirQuality,omitempty"` // Indoor air quality score threshold. One of 'score' or 'quality' must be provided.
 	Noise            *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdNoise            `json:"noise,omitempty"`            // Noise threshold. 'ambient' must be provided.
 	Pm25             *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdPm25             `json:"pm25,omitempty"`             // PM2.5 concentration threshold. One of 'concentration' or 'quality' must be provided.
+	PowerFactor      *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdPowerFactor      `json:"powerFactor,omitempty"`      // Power factor threshold. 'percentage' must be provided.
+	RealPower        *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdRealPower        `json:"realPower,omitempty"`        // Real power threshold. 'draw' must be provided.
 	Temperature      *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdTemperature      `json:"temperature,omitempty"`      // Temperature threshold. One of 'celsius', 'fahrenheit', or 'quality' must be provided.
 	Tvoc             *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdTvoc             `json:"tvoc,omitempty"`             // TVOC concentration threshold. One of 'concentration' or 'quality' must be provided.
+	UpstreamPower    *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdUpstreamPower    `json:"upstreamPower,omitempty"`    // Upstream power threshold. 'outageDetected' must be provided and set to true.
+	Voltage          *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdVoltage          `json:"voltage,omitempty"`          // Voltage threshold. 'level' must be provided.
 	Water            *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdWater            `json:"water,omitempty"`            // Water detection threshold. 'present' must be provided and set to true.
+}
+type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdApparentPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in volt-amps. Must be between 0 and 3750.
+}
+type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdCurrent struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in amps. Must be between 0 and 15.
 }
 type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdDoor struct {
 	Open *bool `json:"open,omitempty"` // Alerting threshold for a door open event. Must be set to true.
+}
+type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdFrequency struct {
+	Level *float64 `json:"level,omitempty"` // Alerting threshold in hertz. Must be between 0 and 60.
 }
 type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdHumidity struct {
 	Quality            string `json:"quality,omitempty"`            // Alerting threshold as a qualitative humidity level.
@@ -274,6 +361,12 @@ type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdPm25 struct {
 	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as PM2.5 parts per million.
 	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative PM2.5 level.
 }
+type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdPowerFactor struct {
+	Percentage *int `json:"percentage,omitempty"` // Alerting threshold as the ratio of active power to apparent power. Must be between 0 and 100.
+}
+type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdRealPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in watts. Must be between 0 and 3750.
+}
 type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdTemperature struct {
 	Celsius    *float64 `json:"celsius,omitempty"`    // Alerting threshold in degrees Celsius.
 	Fahrenheit *float64 `json:"fahrenheit,omitempty"` // Alerting threshold in degrees Fahrenheit.
@@ -282,6 +375,12 @@ type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdTemperature s
 type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdTvoc struct {
 	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as TVOC micrograms per cubic meter.
 	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative TVOC level.
+}
+type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdUpstreamPower struct {
+	OutageDetected *bool `json:"outageDetected,omitempty"` // Alerting threshold for an upstream power event. Must be set to true.
+}
+type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdVoltage struct {
+	Level *float64 `json:"level,omitempty"` // Alerting threshold in volts. Must be between 0 and 250.
 }
 type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdWater struct {
 	Present *bool `json:"present,omitempty"` // Alerting threshold for a water detection event. Must be set to true.
@@ -299,28 +398,44 @@ type ResponseSensorUpdateNetworkSensorAlertsProfile struct {
 	Conditions *[]ResponseSensorUpdateNetworkSensorAlertsProfileConditions `json:"conditions,omitempty"` // List of conditions that will cause the profile to send an alert.
 	Name       string                                                      `json:"name,omitempty"`       // Name of the sensor alert profile.
 	ProfileID  string                                                      `json:"profileId,omitempty"`  // ID of the sensor alert profile.
-	Recipients *ResponseSensorUpdateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"` // List of recipients that will recieve the alert.
+	Recipients *ResponseSensorUpdateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"` // List of recipients that will receive the alert.
 	Schedule   *ResponseSensorUpdateNetworkSensorAlertsProfileSchedule     `json:"schedule,omitempty"`   // The sensor schedule to use with the alert profile.
 	Serials    []string                                                    `json:"serials,omitempty"`    // List of device serials assigned to this sensor alert profile.
 }
 type ResponseSensorUpdateNetworkSensorAlertsProfileConditions struct {
-	Direction string                                                             `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature and humidity thresholds.
-	Duration  *int                                                               `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, and 1 hour. Default is 0.
-	Metric    string                                                             `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are door, humidity, indoorAirQuality, noise, pm25, temperature, tvoc, and water.
+	Direction string                                                             `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
+	Duration  *int                                                               `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, 1 hour, 2 hours, 4 hours, and 8 hours. Default is 0.
+	Metric    string                                                             `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are apparentPower, co2, current, door, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, temperature, tvoc, upstreamPower, voltage, and water.
 	Threshold *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThreshold `json:"threshold,omitempty"` // Threshold for sensor readings that will cause an alert to be sent. This object should contain a single property key matching the condition's 'metric' value.
 }
 type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThreshold struct {
+	ApparentPower    *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdApparentPower    `json:"apparentPower,omitempty"`    // Apparent power threshold. 'draw' must be provided.
+	Current          *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdCurrent          `json:"current,omitempty"`          // Electrical current threshold. 'level' must be provided.
 	Door             *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdDoor             `json:"door,omitempty"`             // Door open threshold. 'open' must be provided and set to true.
+	Frequency        *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdFrequency        `json:"frequency,omitempty"`        // Electrical frequency threshold. 'level' must be provided.
 	Humidity         *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdHumidity         `json:"humidity,omitempty"`         // Humidity threshold. One of 'relativePercentage' or 'quality' must be provided.
 	IndoorAirQuality *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdIndoorAirQuality `json:"indoorAirQuality,omitempty"` // Indoor air quality score threshold. One of 'score' or 'quality' must be provided.
 	Noise            *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdNoise            `json:"noise,omitempty"`            // Noise threshold. 'ambient' must be provided.
 	Pm25             *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdPm25             `json:"pm25,omitempty"`             // PM2.5 concentration threshold. One of 'concentration' or 'quality' must be provided.
+	PowerFactor      *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdPowerFactor      `json:"powerFactor,omitempty"`      // Power factor threshold. 'percentage' must be provided.
+	RealPower        *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdRealPower        `json:"realPower,omitempty"`        // Real power threshold. 'draw' must be provided.
 	Temperature      *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdTemperature      `json:"temperature,omitempty"`      // Temperature threshold. One of 'celsius', 'fahrenheit', or 'quality' must be provided.
 	Tvoc             *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdTvoc             `json:"tvoc,omitempty"`             // TVOC concentration threshold. One of 'concentration' or 'quality' must be provided.
+	UpstreamPower    *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdUpstreamPower    `json:"upstreamPower,omitempty"`    // Upstream power threshold. 'outageDetected' must be provided and set to true.
+	Voltage          *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdVoltage          `json:"voltage,omitempty"`          // Voltage threshold. 'level' must be provided.
 	Water            *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdWater            `json:"water,omitempty"`            // Water detection threshold. 'present' must be provided and set to true.
+}
+type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdApparentPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in volt-amps. Must be between 0 and 3750.
+}
+type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdCurrent struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in amps. Must be between 0 and 15.
 }
 type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdDoor struct {
 	Open *bool `json:"open,omitempty"` // Alerting threshold for a door open event. Must be set to true.
+}
+type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdFrequency struct {
+	Level *float64 `json:"level,omitempty"` // Alerting threshold in hertz. Must be between 0 and 60.
 }
 type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdHumidity struct {
 	Quality            string `json:"quality,omitempty"`            // Alerting threshold as a qualitative humidity level.
@@ -341,6 +456,12 @@ type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdPm25 struc
 	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as PM2.5 parts per million.
 	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative PM2.5 level.
 }
+type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdPowerFactor struct {
+	Percentage *int `json:"percentage,omitempty"` // Alerting threshold as the ratio of active power to apparent power. Must be between 0 and 100.
+}
+type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdRealPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in watts. Must be between 0 and 3750.
+}
 type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdTemperature struct {
 	Celsius    *float64 `json:"celsius,omitempty"`    // Alerting threshold in degrees Celsius.
 	Fahrenheit *float64 `json:"fahrenheit,omitempty"` // Alerting threshold in degrees Fahrenheit.
@@ -349,6 +470,12 @@ type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdTemperatur
 type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdTvoc struct {
 	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as TVOC micrograms per cubic meter.
 	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative TVOC level.
+}
+type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdUpstreamPower struct {
+	OutageDetected *bool `json:"outageDetected,omitempty"` // Alerting threshold for an upstream power event. Must be set to true.
+}
+type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdVoltage struct {
+	Level *float64 `json:"level,omitempty"` // Alerting threshold in volts. Must be between 0 and 250.
 }
 type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdWater struct {
 	Present *bool `json:"present,omitempty"` // Alerting threshold for a water detection event. Must be set to true.
@@ -397,20 +524,32 @@ type ResponseItemSensorGetNetworkSensorRelationshipsRelationshipsLivestreamRelat
 }
 type ResponseSensorGetOrganizationSensorReadingsHistory []ResponseItemSensorGetOrganizationSensorReadingsHistory // Array of ResponseSensorGetOrganizationSensorReadingsHistory
 type ResponseItemSensorGetOrganizationSensorReadingsHistory struct {
-	Battery          *ResponseItemSensorGetOrganizationSensorReadingsHistoryBattery          `json:"battery,omitempty"`          // Reading for the 'battery' metric. This will only be present if the 'metric' property equals 'battery'.
-	Button           *ResponseItemSensorGetOrganizationSensorReadingsHistoryButton           `json:"button,omitempty"`           // Reading for the 'button' metric. This will only be present if the 'metric' property equals 'button'.
-	Door             *ResponseItemSensorGetOrganizationSensorReadingsHistoryDoor             `json:"door,omitempty"`             // Reading for the 'door' metric. This will only be present if the 'metric' property equals 'door'.
-	Humidity         *ResponseItemSensorGetOrganizationSensorReadingsHistoryHumidity         `json:"humidity,omitempty"`         // Reading for the 'humidity' metric. This will only be present if the 'metric' property equals 'humidity'.
-	IndoorAirQuality *ResponseItemSensorGetOrganizationSensorReadingsHistoryIndoorAirQuality `json:"indoorAirQuality,omitempty"` // Reading for the 'indoorAirQuality' metric. This will only be present if the 'metric' property equals 'indoorAirQuality'.
-	Metric           string                                                                  `json:"metric,omitempty"`           // Type of sensor reading.
-	Network          *ResponseItemSensorGetOrganizationSensorReadingsHistoryNetwork          `json:"network,omitempty"`          // Network to which the sensor belongs.
-	Noise            *ResponseItemSensorGetOrganizationSensorReadingsHistoryNoise            `json:"noise,omitempty"`            // Reading for the 'noise' metric. This will only be present if the 'metric' property equals 'noise'.
-	Pm25             *ResponseItemSensorGetOrganizationSensorReadingsHistoryPm25             `json:"pm25,omitempty"`             // Reading for the 'pm25' metric. This will only be present if the 'metric' property equals 'pm25'.
-	Serial           string                                                                  `json:"serial,omitempty"`           // Serial number of the sensor that took the reading.
-	Temperature      *ResponseItemSensorGetOrganizationSensorReadingsHistoryTemperature      `json:"temperature,omitempty"`      // Reading for the 'temperature' metric. This will only be present if the 'metric' property equals 'temperature'.
-	Ts               string                                                                  `json:"ts,omitempty"`               // Time at which the reading occurred, in ISO8601 format.
-	Tvoc             *ResponseItemSensorGetOrganizationSensorReadingsHistoryTvoc             `json:"tvoc,omitempty"`             // Reading for the 'tvoc' metric. This will only be present if the 'metric' property equals 'tvoc'.
-	Water            *ResponseItemSensorGetOrganizationSensorReadingsHistoryWater            `json:"water,omitempty"`            // Reading for the 'water' metric. This will only be present if the 'metric' property equals 'water'.
+	ApparentPower       *ResponseItemSensorGetOrganizationSensorReadingsHistoryApparentPower       `json:"apparentPower,omitempty"`       // Reading for the 'apparentPower' metric. This will only be present if the 'metric' property equals 'apparentPower'.
+	Battery             *ResponseItemSensorGetOrganizationSensorReadingsHistoryBattery             `json:"battery,omitempty"`             // Reading for the 'battery' metric. This will only be present if the 'metric' property equals 'battery'.
+	Button              *ResponseItemSensorGetOrganizationSensorReadingsHistoryButton              `json:"button,omitempty"`              // Reading for the 'button' metric. This will only be present if the 'metric' property equals 'button'.
+	Co2                 *ResponseItemSensorGetOrganizationSensorReadingsHistoryCo2                 `json:"co2,omitempty"`                 // Reading for the 'co2' metric. This will only be present if the 'metric' property equals 'co2'.
+	Current             *ResponseItemSensorGetOrganizationSensorReadingsHistoryCurrent             `json:"current,omitempty"`             // Reading for the 'current' metric. This will only be present if the 'metric' property equals 'current'.
+	Door                *ResponseItemSensorGetOrganizationSensorReadingsHistoryDoor                `json:"door,omitempty"`                // Reading for the 'door' metric. This will only be present if the 'metric' property equals 'door'.
+	DownstreamPower     *ResponseItemSensorGetOrganizationSensorReadingsHistoryDownstreamPower     `json:"downstreamPower,omitempty"`     // Reading for the 'downstreamPower' metric. This will only be present if the 'metric' property equals 'downstreamPower'.
+	Frequency           *ResponseItemSensorGetOrganizationSensorReadingsHistoryFrequency           `json:"frequency,omitempty"`           // Reading for the 'frequency' metric. This will only be present if the 'metric' property equals 'frequency'.
+	Humidity            *ResponseItemSensorGetOrganizationSensorReadingsHistoryHumidity            `json:"humidity,omitempty"`            // Reading for the 'humidity' metric. This will only be present if the 'metric' property equals 'humidity'.
+	IndoorAirQuality    *ResponseItemSensorGetOrganizationSensorReadingsHistoryIndoorAirQuality    `json:"indoorAirQuality,omitempty"`    // Reading for the 'indoorAirQuality' metric. This will only be present if the 'metric' property equals 'indoorAirQuality'.
+	Metric              string                                                                     `json:"metric,omitempty"`              // Type of sensor reading.
+	Network             *ResponseItemSensorGetOrganizationSensorReadingsHistoryNetwork             `json:"network,omitempty"`             // Network to which the sensor belongs.
+	Noise               *ResponseItemSensorGetOrganizationSensorReadingsHistoryNoise               `json:"noise,omitempty"`               // Reading for the 'noise' metric. This will only be present if the 'metric' property equals 'noise'.
+	Pm25                *ResponseItemSensorGetOrganizationSensorReadingsHistoryPm25                `json:"pm25,omitempty"`                // Reading for the 'pm25' metric. This will only be present if the 'metric' property equals 'pm25'.
+	PowerFactor         *ResponseItemSensorGetOrganizationSensorReadingsHistoryPowerFactor         `json:"powerFactor,omitempty"`         // Reading for the 'powerFactor' metric. This will only be present if the 'metric' property equals 'powerFactor'.
+	RealPower           *ResponseItemSensorGetOrganizationSensorReadingsHistoryRealPower           `json:"realPower,omitempty"`           // Reading for the 'realPower' metric. This will only be present if the 'metric' property equals 'realPower'.
+	RemoteLockoutSwitch *ResponseItemSensorGetOrganizationSensorReadingsHistoryRemoteLockoutSwitch `json:"remoteLockoutSwitch,omitempty"` // Reading for the 'remoteLockoutSwitch' metric. This will only be present if the 'metric' property equals 'remoteLockoutSwitch'.
+	Serial              string                                                                     `json:"serial,omitempty"`              // Serial number of the sensor that took the reading.
+	Temperature         *ResponseItemSensorGetOrganizationSensorReadingsHistoryTemperature         `json:"temperature,omitempty"`         // Reading for the 'temperature' metric. This will only be present if the 'metric' property equals 'temperature'.
+	Ts                  string                                                                     `json:"ts,omitempty"`                  // Time at which the reading occurred, in ISO8601 format.
+	Tvoc                *ResponseItemSensorGetOrganizationSensorReadingsHistoryTvoc                `json:"tvoc,omitempty"`                // Reading for the 'tvoc' metric. This will only be present if the 'metric' property equals 'tvoc'.
+	Voltage             *ResponseItemSensorGetOrganizationSensorReadingsHistoryVoltage             `json:"voltage,omitempty"`             // Reading for the 'voltage' metric. This will only be present if the 'metric' property equals 'voltage'.
+	Water               *ResponseItemSensorGetOrganizationSensorReadingsHistoryWater               `json:"water,omitempty"`               // Reading for the 'water' metric. This will only be present if the 'metric' property equals 'water'.
+}
+type ResponseItemSensorGetOrganizationSensorReadingsHistoryApparentPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Apparent power reading in volt-amperes.
 }
 type ResponseItemSensorGetOrganizationSensorReadingsHistoryBattery struct {
 	Percentage *int `json:"percentage,omitempty"` // Remaining battery life.
@@ -418,8 +557,20 @@ type ResponseItemSensorGetOrganizationSensorReadingsHistoryBattery struct {
 type ResponseItemSensorGetOrganizationSensorReadingsHistoryButton struct {
 	PressType string `json:"pressType,omitempty"` // Type of button press that occurred.
 }
+type ResponseItemSensorGetOrganizationSensorReadingsHistoryCo2 struct {
+	Concentration *int `json:"concentration,omitempty"` // CO2 reading in parts per million.
+}
+type ResponseItemSensorGetOrganizationSensorReadingsHistoryCurrent struct {
+	Draw *float64 `json:"draw,omitempty"` // Electrical current reading in amperes.
+}
 type ResponseItemSensorGetOrganizationSensorReadingsHistoryDoor struct {
 	Open *bool `json:"open,omitempty"` // True if the door is open.
+}
+type ResponseItemSensorGetOrganizationSensorReadingsHistoryDownstreamPower struct {
+	Enabled *bool `json:"enabled,omitempty"` // True if power is turned on to the device that is connected downstream of the MT40 power monitor.
+}
+type ResponseItemSensorGetOrganizationSensorReadingsHistoryFrequency struct {
+	Level *float64 `json:"level,omitempty"` // Electrical current frequency reading in hertz.
 }
 type ResponseItemSensorGetOrganizationSensorReadingsHistoryHumidity struct {
 	RelativePercentage *int `json:"relativePercentage,omitempty"` // Humidity reading in %RH.
@@ -440,12 +591,24 @@ type ResponseItemSensorGetOrganizationSensorReadingsHistoryNoiseAmbient struct {
 type ResponseItemSensorGetOrganizationSensorReadingsHistoryPm25 struct {
 	Concentration *int `json:"concentration,omitempty"` // PM2.5 reading in micrograms per cubic meter.
 }
+type ResponseItemSensorGetOrganizationSensorReadingsHistoryPowerFactor struct {
+	Percentage *int `json:"percentage,omitempty"` // Power factor reading as a percentage.
+}
+type ResponseItemSensorGetOrganizationSensorReadingsHistoryRealPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Real power reading in watts.
+}
+type ResponseItemSensorGetOrganizationSensorReadingsHistoryRemoteLockoutSwitch struct {
+	Locked *bool `json:"locked,omitempty"` // True if power controls are disabled via the MT40's physical remote lockout switch.
+}
 type ResponseItemSensorGetOrganizationSensorReadingsHistoryTemperature struct {
 	Celsius    *float64 `json:"celsius,omitempty"`    // Temperature reading in degrees Celsius.
 	Fahrenheit *float64 `json:"fahrenheit,omitempty"` // Temperature reading in degrees Fahrenheit.
 }
 type ResponseItemSensorGetOrganizationSensorReadingsHistoryTvoc struct {
 	Concentration *int `json:"concentration,omitempty"` // TVOC reading in micrograms per cubic meter.
+}
+type ResponseItemSensorGetOrganizationSensorReadingsHistoryVoltage struct {
+	Level *float64 `json:"level,omitempty"` // Voltage reading in volts.
 }
 type ResponseItemSensorGetOrganizationSensorReadingsHistoryWater struct {
 	Present *bool `json:"present,omitempty"` // True if water is detected.
@@ -461,18 +624,30 @@ type ResponseItemSensorGetOrganizationSensorReadingsLatestNetwork struct {
 	Name string `json:"name,omitempty"` // Name of the network.
 }
 type ResponseItemSensorGetOrganizationSensorReadingsLatestReadings struct {
-	Battery          *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsBattery          `json:"battery,omitempty"`          // Reading for the 'battery' metric. This will only be present if the 'metric' property equals 'battery'.
-	Button           *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsButton           `json:"button,omitempty"`           // Reading for the 'button' metric. This will only be present if the 'metric' property equals 'button'.
-	Door             *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsDoor             `json:"door,omitempty"`             // Reading for the 'door' metric. This will only be present if the 'metric' property equals 'door'.
-	Humidity         *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsHumidity         `json:"humidity,omitempty"`         // Reading for the 'humidity' metric. This will only be present if the 'metric' property equals 'humidity'.
-	IndoorAirQuality *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsIndoorAirQuality `json:"indoorAirQuality,omitempty"` // Reading for the 'indoorAirQuality' metric. This will only be present if the 'metric' property equals 'indoorAirQuality'.
-	Metric           string                                                                         `json:"metric,omitempty"`           // Type of sensor reading.
-	Noise            *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsNoise            `json:"noise,omitempty"`            // Reading for the 'noise' metric. This will only be present if the 'metric' property equals 'noise'.
-	Pm25             *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsPm25             `json:"pm25,omitempty"`             // Reading for the 'pm25' metric. This will only be present if the 'metric' property equals 'pm25'.
-	Temperature      *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsTemperature      `json:"temperature,omitempty"`      // Reading for the 'temperature' metric. This will only be present if the 'metric' property equals 'temperature'.
-	Ts               string                                                                         `json:"ts,omitempty"`               // Time at which the reading occurred, in ISO8601 format.
-	Tvoc             *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsTvoc             `json:"tvoc,omitempty"`             // Reading for the 'tvoc' metric. This will only be present if the 'metric' property equals 'tvoc'.
-	Water            *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsWater            `json:"water,omitempty"`            // Reading for the 'water' metric. This will only be present if the 'metric' property equals 'water'.
+	ApparentPower       *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsApparentPower       `json:"apparentPower,omitempty"`       // Reading for the 'apparentPower' metric. This will only be present if the 'metric' property equals 'apparentPower'.
+	Battery             *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsBattery             `json:"battery,omitempty"`             // Reading for the 'battery' metric. This will only be present if the 'metric' property equals 'battery'.
+	Button              *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsButton              `json:"button,omitempty"`              // Reading for the 'button' metric. This will only be present if the 'metric' property equals 'button'.
+	Co2                 *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsCo2                 `json:"co2,omitempty"`                 // Reading for the 'co2' metric. This will only be present if the 'metric' property equals 'co2'.
+	Current             *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsCurrent             `json:"current,omitempty"`             // Reading for the 'current' metric. This will only be present if the 'metric' property equals 'current'.
+	Door                *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsDoor                `json:"door,omitempty"`                // Reading for the 'door' metric. This will only be present if the 'metric' property equals 'door'.
+	DownstreamPower     *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsDownstreamPower     `json:"downstreamPower,omitempty"`     // Reading for the 'downstreamPower' metric. This will only be present if the 'metric' property equals 'downstreamPower'.
+	Frequency           *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsFrequency           `json:"frequency,omitempty"`           // Reading for the 'frequency' metric. This will only be present if the 'metric' property equals 'frequency'.
+	Humidity            *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsHumidity            `json:"humidity,omitempty"`            // Reading for the 'humidity' metric. This will only be present if the 'metric' property equals 'humidity'.
+	IndoorAirQuality    *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsIndoorAirQuality    `json:"indoorAirQuality,omitempty"`    // Reading for the 'indoorAirQuality' metric. This will only be present if the 'metric' property equals 'indoorAirQuality'.
+	Metric              string                                                                            `json:"metric,omitempty"`              // Type of sensor reading.
+	Noise               *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsNoise               `json:"noise,omitempty"`               // Reading for the 'noise' metric. This will only be present if the 'metric' property equals 'noise'.
+	Pm25                *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsPm25                `json:"pm25,omitempty"`                // Reading for the 'pm25' metric. This will only be present if the 'metric' property equals 'pm25'.
+	PowerFactor         *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsPowerFactor         `json:"powerFactor,omitempty"`         // Reading for the 'powerFactor' metric. This will only be present if the 'metric' property equals 'powerFactor'.
+	RealPower           *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsRealPower           `json:"realPower,omitempty"`           // Reading for the 'realPower' metric. This will only be present if the 'metric' property equals 'realPower'.
+	RemoteLockoutSwitch *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsRemoteLockoutSwitch `json:"remoteLockoutSwitch,omitempty"` // Reading for the 'remoteLockoutSwitch' metric. This will only be present if the 'metric' property equals 'remoteLockoutSwitch'.
+	Temperature         *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsTemperature         `json:"temperature,omitempty"`         // Reading for the 'temperature' metric. This will only be present if the 'metric' property equals 'temperature'.
+	Ts                  string                                                                            `json:"ts,omitempty"`                  // Time at which the reading occurred, in ISO8601 format.
+	Tvoc                *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsTvoc                `json:"tvoc,omitempty"`                // Reading for the 'tvoc' metric. This will only be present if the 'metric' property equals 'tvoc'.
+	Voltage             *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsVoltage             `json:"voltage,omitempty"`             // Reading for the 'voltage' metric. This will only be present if the 'metric' property equals 'voltage'.
+	Water               *ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsWater               `json:"water,omitempty"`               // Reading for the 'water' metric. This will only be present if the 'metric' property equals 'water'.
+}
+type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsApparentPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Apparent power reading in volt-amperes.
 }
 type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsBattery struct {
 	Percentage *int `json:"percentage,omitempty"` // Remaining battery life.
@@ -480,8 +655,20 @@ type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsBattery struct
 type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsButton struct {
 	PressType string `json:"pressType,omitempty"` // Type of button press that occurred.
 }
+type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsCo2 struct {
+	Concentration *int `json:"concentration,omitempty"` // CO2 reading in parts per million.
+}
+type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsCurrent struct {
+	Draw *float64 `json:"draw,omitempty"` // Electrical current reading in amperes.
+}
 type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsDoor struct {
 	Open *bool `json:"open,omitempty"` // True if the door is open.
+}
+type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsDownstreamPower struct {
+	Enabled *bool `json:"enabled,omitempty"` // True if power is turned on to the device that is connected downstream of the MT40 power monitor.
+}
+type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsFrequency struct {
+	Level *float64 `json:"level,omitempty"` // Electrical current frequency reading in hertz.
 }
 type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsHumidity struct {
 	RelativePercentage *int `json:"relativePercentage,omitempty"` // Humidity reading in %RH.
@@ -498,12 +685,24 @@ type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsNoiseAmbient s
 type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsPm25 struct {
 	Concentration *int `json:"concentration,omitempty"` // PM2.5 reading in micrograms per cubic meter.
 }
+type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsPowerFactor struct {
+	Percentage *int `json:"percentage,omitempty"` // Power factor reading as a percentage.
+}
+type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsRealPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Real power reading in watts.
+}
+type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsRemoteLockoutSwitch struct {
+	Locked *bool `json:"locked,omitempty"` // True if power controls are disabled via the MT40's physical remote lockout switch.
+}
 type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsTemperature struct {
 	Celsius    *float64 `json:"celsius,omitempty"`    // Temperature reading in degrees Celsius.
 	Fahrenheit *float64 `json:"fahrenheit,omitempty"` // Temperature reading in degrees Fahrenheit.
 }
 type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsTvoc struct {
 	Concentration *int `json:"concentration,omitempty"` // TVOC reading in micrograms per cubic meter.
+}
+type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsVoltage struct {
+	Level *float64 `json:"level,omitempty"` // Voltage reading in volts.
 }
 type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsWater struct {
 	Present *bool `json:"present,omitempty"` // True if water is detected.
@@ -520,28 +719,44 @@ type RequestSensorUpdateDeviceSensorRelationshipsLivestreamRelatedDevices struct
 type RequestSensorCreateNetworkSensorAlertsProfile struct {
 	Conditions *[]RequestSensorCreateNetworkSensorAlertsProfileConditions `json:"conditions,omitempty"` // List of conditions that will cause the profile to send an alert.
 	Name       string                                                     `json:"name,omitempty"`       // Name of the sensor alert profile.
-	Recipients *RequestSensorCreateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"` // List of recipients that will recieve the alert.
+	Recipients *RequestSensorCreateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"` // List of recipients that will receive the alert.
 	Schedule   *RequestSensorCreateNetworkSensorAlertsProfileSchedule     `json:"schedule,omitempty"`   // The sensor schedule to use with the alert profile.
 	Serials    []string                                                   `json:"serials,omitempty"`    // List of device serials assigned to this sensor alert profile.
 }
 type RequestSensorCreateNetworkSensorAlertsProfileConditions struct {
-	Direction string                                                            `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature and humidity thresholds.
-	Duration  *int                                                              `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, and 1 hour. Default is 0.
-	Metric    string                                                            `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are door, humidity, indoorAirQuality, noise, pm25, temperature, tvoc, and water.
+	Direction string                                                            `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
+	Duration  *int                                                              `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, 1 hour, 2 hours, 4 hours, and 8 hours. Default is 0.
+	Metric    string                                                            `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are apparentPower, co2, current, door, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, temperature, tvoc, upstreamPower, voltage, and water.
 	Threshold *RequestSensorCreateNetworkSensorAlertsProfileConditionsThreshold `json:"threshold,omitempty"` // Threshold for sensor readings that will cause an alert to be sent. This object should contain a single property key matching the condition's 'metric' value.
 }
 type RequestSensorCreateNetworkSensorAlertsProfileConditionsThreshold struct {
+	ApparentPower    *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdApparentPower    `json:"apparentPower,omitempty"`    // Apparent power threshold. 'draw' must be provided.
+	Current          *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdCurrent          `json:"current,omitempty"`          // Electrical current threshold. 'level' must be provided.
 	Door             *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdDoor             `json:"door,omitempty"`             // Door open threshold. 'open' must be provided and set to true.
+	Frequency        *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdFrequency        `json:"frequency,omitempty"`        // Electrical frequency threshold. 'level' must be provided.
 	Humidity         *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdHumidity         `json:"humidity,omitempty"`         // Humidity threshold. One of 'relativePercentage' or 'quality' must be provided.
 	IndoorAirQuality *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdIndoorAirQuality `json:"indoorAirQuality,omitempty"` // Indoor air quality score threshold. One of 'score' or 'quality' must be provided.
 	Noise            *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdNoise            `json:"noise,omitempty"`            // Noise threshold. 'ambient' must be provided.
 	Pm25             *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdPm25             `json:"pm25,omitempty"`             // PM2.5 concentration threshold. One of 'concentration' or 'quality' must be provided.
+	PowerFactor      *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdPowerFactor      `json:"powerFactor,omitempty"`      // Power factor threshold. 'percentage' must be provided.
+	RealPower        *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdRealPower        `json:"realPower,omitempty"`        // Real power threshold. 'draw' must be provided.
 	Temperature      *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdTemperature      `json:"temperature,omitempty"`      // Temperature threshold. One of 'celsius', 'fahrenheit', or 'quality' must be provided.
 	Tvoc             *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdTvoc             `json:"tvoc,omitempty"`             // TVOC concentration threshold. One of 'concentration' or 'quality' must be provided.
+	UpstreamPower    *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdUpstreamPower    `json:"upstreamPower,omitempty"`    // Upstream power threshold. 'outageDetected' must be provided and set to true.
+	Voltage          *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdVoltage          `json:"voltage,omitempty"`          // Voltage threshold. 'level' must be provided.
 	Water            *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdWater            `json:"water,omitempty"`            // Water detection threshold. 'present' must be provided and set to true.
+}
+type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdApparentPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in volt-amps. Must be between 0 and 3750.
+}
+type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdCurrent struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in amps. Must be between 0 and 15.
 }
 type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdDoor struct {
 	Open *bool `json:"open,omitempty"` // Alerting threshold for a door open event. Must be set to true.
+}
+type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdFrequency struct {
+	Level *float64 `json:"level,omitempty"` // Alerting threshold in hertz. Must be between 0 and 60.
 }
 type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdHumidity struct {
 	Quality            string `json:"quality,omitempty"`            // Alerting threshold as a qualitative humidity level.
@@ -562,6 +777,12 @@ type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdPm25 struct
 	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as PM2.5 parts per million.
 	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative PM2.5 level.
 }
+type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdPowerFactor struct {
+	Percentage *int `json:"percentage,omitempty"` // Alerting threshold as the ratio of active power to apparent power. Must be between 0 and 100.
+}
+type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdRealPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in watts. Must be between 0 and 3750.
+}
 type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdTemperature struct {
 	Celsius    *float64 `json:"celsius,omitempty"`    // Alerting threshold in degrees Celsius.
 	Fahrenheit *float64 `json:"fahrenheit,omitempty"` // Alerting threshold in degrees Fahrenheit.
@@ -570,6 +791,12 @@ type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdTemperature
 type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdTvoc struct {
 	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as TVOC micrograms per cubic meter.
 	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative TVOC level.
+}
+type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdUpstreamPower struct {
+	OutageDetected *bool `json:"outageDetected,omitempty"` // Alerting threshold for an upstream power event. Must be set to true.
+}
+type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdVoltage struct {
+	Level *float64 `json:"level,omitempty"` // Alerting threshold in volts. Must be between 0 and 250.
 }
 type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdWater struct {
 	Present *bool `json:"present,omitempty"` // Alerting threshold for a water detection event. Must be set to true.
@@ -585,28 +812,44 @@ type RequestSensorCreateNetworkSensorAlertsProfileSchedule struct {
 type RequestSensorUpdateNetworkSensorAlertsProfile struct {
 	Conditions *[]RequestSensorUpdateNetworkSensorAlertsProfileConditions `json:"conditions,omitempty"` // List of conditions that will cause the profile to send an alert.
 	Name       string                                                     `json:"name,omitempty"`       // Name of the sensor alert profile.
-	Recipients *RequestSensorUpdateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"` // List of recipients that will recieve the alert.
+	Recipients *RequestSensorUpdateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"` // List of recipients that will receive the alert.
 	Schedule   *RequestSensorUpdateNetworkSensorAlertsProfileSchedule     `json:"schedule,omitempty"`   // The sensor schedule to use with the alert profile.
 	Serials    []string                                                   `json:"serials,omitempty"`    // List of device serials assigned to this sensor alert profile.
 }
 type RequestSensorUpdateNetworkSensorAlertsProfileConditions struct {
-	Direction string                                                            `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature and humidity thresholds.
-	Duration  *int                                                              `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, and 1 hour. Default is 0.
-	Metric    string                                                            `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are door, humidity, indoorAirQuality, noise, pm25, temperature, tvoc, and water.
+	Direction string                                                            `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
+	Duration  *int                                                              `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, 1 hour, 2 hours, 4 hours, and 8 hours. Default is 0.
+	Metric    string                                                            `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are apparentPower, co2, current, door, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, temperature, tvoc, upstreamPower, voltage, and water.
 	Threshold *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThreshold `json:"threshold,omitempty"` // Threshold for sensor readings that will cause an alert to be sent. This object should contain a single property key matching the condition's 'metric' value.
 }
 type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThreshold struct {
+	ApparentPower    *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdApparentPower    `json:"apparentPower,omitempty"`    // Apparent power threshold. 'draw' must be provided.
+	Current          *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdCurrent          `json:"current,omitempty"`          // Electrical current threshold. 'level' must be provided.
 	Door             *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdDoor             `json:"door,omitempty"`             // Door open threshold. 'open' must be provided and set to true.
+	Frequency        *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdFrequency        `json:"frequency,omitempty"`        // Electrical frequency threshold. 'level' must be provided.
 	Humidity         *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdHumidity         `json:"humidity,omitempty"`         // Humidity threshold. One of 'relativePercentage' or 'quality' must be provided.
 	IndoorAirQuality *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdIndoorAirQuality `json:"indoorAirQuality,omitempty"` // Indoor air quality score threshold. One of 'score' or 'quality' must be provided.
 	Noise            *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdNoise            `json:"noise,omitempty"`            // Noise threshold. 'ambient' must be provided.
 	Pm25             *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdPm25             `json:"pm25,omitempty"`             // PM2.5 concentration threshold. One of 'concentration' or 'quality' must be provided.
+	PowerFactor      *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdPowerFactor      `json:"powerFactor,omitempty"`      // Power factor threshold. 'percentage' must be provided.
+	RealPower        *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdRealPower        `json:"realPower,omitempty"`        // Real power threshold. 'draw' must be provided.
 	Temperature      *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdTemperature      `json:"temperature,omitempty"`      // Temperature threshold. One of 'celsius', 'fahrenheit', or 'quality' must be provided.
 	Tvoc             *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdTvoc             `json:"tvoc,omitempty"`             // TVOC concentration threshold. One of 'concentration' or 'quality' must be provided.
+	UpstreamPower    *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdUpstreamPower    `json:"upstreamPower,omitempty"`    // Upstream power threshold. 'outageDetected' must be provided and set to true.
+	Voltage          *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdVoltage          `json:"voltage,omitempty"`          // Voltage threshold. 'level' must be provided.
 	Water            *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdWater            `json:"water,omitempty"`            // Water detection threshold. 'present' must be provided and set to true.
+}
+type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdApparentPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in volt-amps. Must be between 0 and 3750.
+}
+type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdCurrent struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in amps. Must be between 0 and 15.
 }
 type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdDoor struct {
 	Open *bool `json:"open,omitempty"` // Alerting threshold for a door open event. Must be set to true.
+}
+type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdFrequency struct {
+	Level *float64 `json:"level,omitempty"` // Alerting threshold in hertz. Must be between 0 and 60.
 }
 type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdHumidity struct {
 	Quality            string `json:"quality,omitempty"`            // Alerting threshold as a qualitative humidity level.
@@ -627,6 +870,12 @@ type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdPm25 struct
 	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as PM2.5 parts per million.
 	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative PM2.5 level.
 }
+type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdPowerFactor struct {
+	Percentage *int `json:"percentage,omitempty"` // Alerting threshold as the ratio of active power to apparent power. Must be between 0 and 100.
+}
+type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdRealPower struct {
+	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in watts. Must be between 0 and 3750.
+}
 type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdTemperature struct {
 	Celsius    *float64 `json:"celsius,omitempty"`    // Alerting threshold in degrees Celsius.
 	Fahrenheit *float64 `json:"fahrenheit,omitempty"` // Alerting threshold in degrees Fahrenheit.
@@ -635,6 +884,12 @@ type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdTemperature
 type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdTvoc struct {
 	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as TVOC micrograms per cubic meter.
 	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative TVOC level.
+}
+type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdUpstreamPower struct {
+	OutageDetected *bool `json:"outageDetected,omitempty"` // Alerting threshold for an upstream power event. Must be set to true.
+}
+type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdVoltage struct {
+	Level *float64 `json:"level,omitempty"` // Alerting threshold in volts. Must be between 0 and 250.
 }
 type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdWater struct {
 	Present *bool `json:"present,omitempty"` // Alerting threshold for a water detection event. Must be set to true.
