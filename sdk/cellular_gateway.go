@@ -20,23 +20,39 @@ type GetOrganizationCellularGatewayUplinkStatusesQueryParams struct {
 }
 
 type ResponseCellularGatewayGetDeviceCellularGatewayLan struct {
-	DeviceLanIP        string                                                                  `json:"deviceLanIp,omitempty"`        //
-	DeviceName         string                                                                  `json:"deviceName,omitempty"`         //
-	DeviceSubnet       string                                                                  `json:"deviceSubnet,omitempty"`       //
-	FixedIPAssignments *[]ResponseCellularGatewayGetDeviceCellularGatewayLanFixedIPAssignments `json:"fixedIpAssignments,omitempty"` //
-	ReservedIPRanges   *[]ResponseCellularGatewayGetDeviceCellularGatewayLanReservedIPRanges   `json:"reservedIpRanges,omitempty"`   //
+	DeviceLanIP        string                                                                  `json:"deviceLanIp,omitempty"`        // Lan IP of the MG
+	DeviceName         string                                                                  `json:"deviceName,omitempty"`         // Name of the MG.
+	DeviceSubnet       string                                                                  `json:"deviceSubnet,omitempty"`       // Subnet configuration of the MG.
+	FixedIPAssignments *[]ResponseCellularGatewayGetDeviceCellularGatewayLanFixedIPAssignments `json:"fixedIpAssignments,omitempty"` // list of all fixed IP assignments for a single MG
+	ReservedIPRanges   *[]ResponseCellularGatewayGetDeviceCellularGatewayLanReservedIPRanges   `json:"reservedIpRanges,omitempty"`   // list of all reserved IP ranges for a single MG
 }
 type ResponseCellularGatewayGetDeviceCellularGatewayLanFixedIPAssignments struct {
-	IP   string `json:"ip,omitempty"`   //
-	Mac  string `json:"mac,omitempty"`  //
-	Name string `json:"name,omitempty"` //
+	IP   string `json:"ip,omitempty"`   // The IP address you want to assign to a specific server or device
+	Mac  string `json:"mac,omitempty"`  // The MAC address of the server or device that hosts the internal resource that you wish to receive the specified IP address
+	Name string `json:"name,omitempty"` // A descriptive name of the assignment
 }
 type ResponseCellularGatewayGetDeviceCellularGatewayLanReservedIPRanges struct {
-	Comment string `json:"comment,omitempty"` //
-	End     string `json:"end,omitempty"`     //
-	Start   string `json:"start,omitempty"`   //
+	Comment string `json:"comment,omitempty"` // Comment explaining the reserved IP range
+	End     string `json:"end,omitempty"`     // Ending IP included in the reserved range of IPs
+	Start   string `json:"start,omitempty"`   // Starting IP included in the reserved range of IPs
 }
-type ResponseCellularGatewayUpdateDeviceCellularGatewayLan interface{}
+type ResponseCellularGatewayUpdateDeviceCellularGatewayLan struct {
+	DeviceLanIP        string                                                                     `json:"deviceLanIp,omitempty"`        // Lan IP of the MG
+	DeviceName         string                                                                     `json:"deviceName,omitempty"`         // Name of the MG.
+	DeviceSubnet       string                                                                     `json:"deviceSubnet,omitempty"`       // Subnet configuration of the MG.
+	FixedIPAssignments *[]ResponseCellularGatewayUpdateDeviceCellularGatewayLanFixedIPAssignments `json:"fixedIpAssignments,omitempty"` // list of all fixed IP assignments for a single MG
+	ReservedIPRanges   *[]ResponseCellularGatewayUpdateDeviceCellularGatewayLanReservedIPRanges   `json:"reservedIpRanges,omitempty"`   // list of all reserved IP ranges for a single MG
+}
+type ResponseCellularGatewayUpdateDeviceCellularGatewayLanFixedIPAssignments struct {
+	IP   string `json:"ip,omitempty"`   // The IP address you want to assign to a specific server or device
+	Mac  string `json:"mac,omitempty"`  // The MAC address of the server or device that hosts the internal resource that you wish to receive the specified IP address
+	Name string `json:"name,omitempty"` // A descriptive name of the assignment
+}
+type ResponseCellularGatewayUpdateDeviceCellularGatewayLanReservedIPRanges struct {
+	Comment string `json:"comment,omitempty"` // Comment explaining the reserved IP range
+	End     string `json:"end,omitempty"`     // Ending IP included in the reserved range of IPs
+	Start   string `json:"start,omitempty"`   // Starting IP included in the reserved range of IPs
+}
 type ResponseCellularGatewayGetDeviceCellularGatewayPortForwardingRules struct {
 	Rules *[]ResponseCellularGatewayGetDeviceCellularGatewayPortForwardingRulesRules `json:"rules,omitempty"` //
 }
@@ -83,13 +99,19 @@ type ResponseCellularGatewayGetNetworkCellularGatewaySubnetPoolSubnets struct {
 }
 type ResponseCellularGatewayUpdateNetworkCellularGatewaySubnetPool interface{}
 type ResponseCellularGatewayGetNetworkCellularGatewayUplink struct {
-	BandwidthLimits *ResponseCellularGatewayGetNetworkCellularGatewayUplinkBandwidthLimits `json:"bandwidthLimits,omitempty"` //
+	BandwidthLimits *ResponseCellularGatewayGetNetworkCellularGatewayUplinkBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth settings for the 'cellular' uplink
 }
 type ResponseCellularGatewayGetNetworkCellularGatewayUplinkBandwidthLimits struct {
-	LimitDown *int `json:"limitDown,omitempty"` //
-	LimitUp   *int `json:"limitUp,omitempty"`   //
+	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps). 'null' indicates no limit.
+	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps). 'null' indicates no limit.
 }
-type ResponseCellularGatewayUpdateNetworkCellularGatewayUplink interface{}
+type ResponseCellularGatewayUpdateNetworkCellularGatewayUplink struct {
+	BandwidthLimits *ResponseCellularGatewayUpdateNetworkCellularGatewayUplinkBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth settings for the 'cellular' uplink
+}
+type ResponseCellularGatewayUpdateNetworkCellularGatewayUplinkBandwidthLimits struct {
+	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps). 'null' indicates no limit.
+	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps). 'null' indicates no limit.
+}
 type ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses []ResponseItemCellularGatewayGetOrganizationCellularGatewayUplinkStatuses // Array of ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses
 type ResponseItemCellularGatewayGetOrganizationCellularGatewayUplinkStatuses struct {
 	LastReportedAt string                                                                            `json:"lastReportedAt,omitempty"` // Last reported time for the device
@@ -136,7 +158,7 @@ type RequestCellularGatewayUpdateDeviceCellularGatewayPortForwardingRules struct
 	Rules *[]RequestCellularGatewayUpdateDeviceCellularGatewayPortForwardingRulesRules `json:"rules,omitempty"` // An array of port forwarding params
 }
 type RequestCellularGatewayUpdateDeviceCellularGatewayPortForwardingRulesRules struct {
-	Access     string   `json:"access,omitempty"`     // *any* or *restricted*. Specify the right to make inbound connections on the specified ports or port ranges. If *restricted*, a list of allowed IPs is mandatory.
+	Access     string   `json:"access,omitempty"`     // `any` or `restricted`. Specify the right to make inbound connections on the specified ports or port ranges. If `restricted`, a list of allowed IPs is mandatory.
 	AllowedIPs []string `json:"allowedIps,omitempty"` // An array of ranges of WAN IP addresses that are allowed to make inbound connections on the specified ports or port ranges.
 	LanIP      string   `json:"lanIp,omitempty"`      // The IP address of the server or device that hosts the internal resource that you wish to make available on the WAN
 	LocalPort  string   `json:"localPort,omitempty"`  // A port or port ranges that will receive the forwarded traffic from the WAN
@@ -408,7 +430,7 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayUplinkStatuses(or
 
 @param serial serial path parameter.
 */
-func (s *CellularGatewayService) UpdateDeviceCellularGatewayLan(serial string, requestCellularGatewayUpdateDeviceCellularGatewayLan *RequestCellularGatewayUpdateDeviceCellularGatewayLan) (*resty.Response, error) {
+func (s *CellularGatewayService) UpdateDeviceCellularGatewayLan(serial string, requestCellularGatewayUpdateDeviceCellularGatewayLan *RequestCellularGatewayUpdateDeviceCellularGatewayLan) (*ResponseCellularGatewayUpdateDeviceCellularGatewayLan, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/cellularGateway/lan"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
@@ -417,19 +439,21 @@ func (s *CellularGatewayService) UpdateDeviceCellularGatewayLan(serial string, r
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestCellularGatewayUpdateDeviceCellularGatewayLan).
+		SetResult(&ResponseCellularGatewayUpdateDeviceCellularGatewayLan{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateDeviceCellularGatewayLan")
+		return nil, response, fmt.Errorf("error with operation UpdateDeviceCellularGatewayLan")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseCellularGatewayUpdateDeviceCellularGatewayLan)
+	return result, response, err
 
 }
 
@@ -560,7 +584,7 @@ func (s *CellularGatewayService) UpdateNetworkCellularGatewaySubnetPool(networkI
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *CellularGatewayService) UpdateNetworkCellularGatewayUplink(networkID string, requestCellularGatewayUpdateNetworkCellularGatewayUplink *RequestCellularGatewayUpdateNetworkCellularGatewayUplink) (*resty.Response, error) {
+func (s *CellularGatewayService) UpdateNetworkCellularGatewayUplink(networkID string, requestCellularGatewayUpdateNetworkCellularGatewayUplink *RequestCellularGatewayUpdateNetworkCellularGatewayUplink) (*ResponseCellularGatewayUpdateNetworkCellularGatewayUplink, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/uplink"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -569,18 +593,20 @@ func (s *CellularGatewayService) UpdateNetworkCellularGatewayUplink(networkID st
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestCellularGatewayUpdateNetworkCellularGatewayUplink).
+		SetResult(&ResponseCellularGatewayUpdateNetworkCellularGatewayUplink{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkCellularGatewayUplink")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkCellularGatewayUplink")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseCellularGatewayUpdateNetworkCellularGatewayUplink)
+	return result, response, err
 
 }

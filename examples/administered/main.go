@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	meraki "github.com/meraki/dashboard-api-go/v2/sdk"
+	meraki "github.com/meraki/dashboard-api-go/v3/sdk"
 )
 
 // Client is DNA Center API client
@@ -14,7 +14,7 @@ func main() {
 	fmt.Println("Authenticating")
 	client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
 		"12f2eb53588c75e28d89e108a05ea0c2487b08cf",
-		"true")
+		"true", "AplicationName VendorName")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -30,14 +30,5 @@ func main() {
 		return
 	}
 
-	nResponse2, _, err := client.Administered.GetAdministeredIDentitiesMe()
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	if nResponse2 != nil {
-		fmt.Println(nResponse)
-		return
-	}
 	fmt.Println("There's no data on response")
 }

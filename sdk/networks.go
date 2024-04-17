@@ -30,7 +30,7 @@ type GetNetworkBluetoothClientQueryParams struct {
 type GetNetworkClientsQueryParams struct {
 	T0                      string   `url:"t0,omitempty"`                        //The beginning of the timespan for the data. The maximum lookback period is 31 days from today.
 	Timespan                float64  `url:"timespan,omitempty"`                  //The timespan for which the information will be fetched. If specifying timespan, do not specify parameter t0. The value must be in seconds and be less than or equal to 31 days. The default is 1 day.
-	PerPage                 int      `url:"perPage,omitempty"`                   //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 10.
+	PerPage                 int      `url:"perPage,omitempty"`                   //The number of entries per page returned. Acceptable range is 3 - 5000. Default is 10.
 	StartingAfter           string   `url:"startingAfter,omitempty"`             //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	EndingBefore            string   `url:"endingBefore,omitempty"`              //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	Statuses                []string `url:"statuses[],omitempty"`                //Filters clients based on status. Can be one of 'Online' or 'Offline'.
@@ -42,6 +42,7 @@ type GetNetworkClientsQueryParams struct {
 	PskGroup                string   `url:"pskGroup,omitempty"`                  //Filters clients based on partial or full match for the iPSK name field.
 	Description             string   `url:"description,omitempty"`               //Filters clients based on a partial or full match for the description field.
 	VLAN                    string   `url:"vlan,omitempty"`                      //Filters clients based on the full match for the VLAN field.
+	NamedVLAN               string   `url:"namedVlan,omitempty"`                 //Filters clients based on the partial or full match for the named VLAN field.
 	RecentDeviceConnections []string `url:"recentDeviceConnections[],omitempty"` //Filters clients based on recent connection type. Can be one of 'Wired' or 'Wireless'.
 }
 type GetNetworkClientsApplicationUsageQueryParams struct {
@@ -99,6 +100,9 @@ type GetNetworkEventsQueryParams struct {
 	StartingAfter      string   `url:"startingAfter,omitempty"`        //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	EndingBefore       string   `url:"endingBefore,omitempty"`         //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 }
+type DeleteNetworkMerakiAuthUserQueryParams struct {
+	Delete bool `url:"delete,omitempty"` //If the ID supplied is for a splash guest or client VPN user, and that user is not authorized for any other networks in the organization, then also delete the user. 802.1X RADIUS users are always deleted regardless of this optional attribute.
+}
 type GetNetworkNetworkHealthChannelUtilizationQueryParams struct {
 	T0            string  `url:"t0,omitempty"`            //The beginning of the timespan for the data. The maximum lookback period is 31 days from today.
 	T1            string  `url:"t1,omitempty"`            //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
@@ -149,7 +153,14 @@ type GetNetworkTrafficQueryParams struct {
 	Timespan   float64 `url:"timespan,omitempty"`   //The timespan for which the information will be fetched. If specifying timespan, do not specify parameter t0. The value must be in seconds and be less than or equal to 30 days.
 	DeviceType string  `url:"deviceType,omitempty"` //Filter the data by device type: 'combined', 'wireless', 'switch' or 'appliance'. Defaults to 'combined'. When using 'combined', for each rule the data will come from the device type with the most usage.
 }
-
+type GetNetworkVLANProfilesAssignmentsByDeviceQueryParams struct {
+	PerPage       int      `url:"perPage,omitempty"`        //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
+	StartingAfter string   `url:"startingAfter,omitempty"`  //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`   //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	Serials       []string `url:"serials[],omitempty"`      //Optional parameter to filter devices by serials. All devices returned belong to serial numbers that are an exact match.
+	ProductTypes  []string `url:"productTypes[],omitempty"` //Optional parameter to filter devices by product types.
+	StackIDs      []string `url:"stackIds[],omitempty"`     //Optional parameter to filter devices by Switch Stack ids.
+}
 type ResponseNetworksGetNetwork struct {
 	EnrollmentString        string   `json:"enrollmentString,omitempty"`        // Enrollment string for the network
 	ID                      string   `json:"id,omitempty"`                      // Network ID
@@ -231,7 +242,19 @@ type ResponseNetworksGetNetworkAlertsSettingsDefaultDestinations struct {
 	SNMP          *bool    `json:"snmp,omitempty"`          //
 }
 type ResponseNetworksUpdateNetworkAlertsSettings interface{}
-type ResponseNetworksBindNetwork interface{}
+type ResponseNetworksBindNetwork struct {
+	ConfigTemplateID        string   `json:"configTemplateId,omitempty"`        // ID of the config template the network is being bound to
+	EnrollmentString        string   `json:"enrollmentString,omitempty"`        // Enrollment string for the network
+	ID                      string   `json:"id,omitempty"`                      // Network ID
+	IsBoundToConfigTemplate *bool    `json:"isBoundToConfigTemplate,omitempty"` // If the network is bound to a config template
+	Name                    string   `json:"name,omitempty"`                    // Network name
+	Notes                   string   `json:"notes,omitempty"`                   // Notes for the network
+	OrganizationID          string   `json:"organizationId,omitempty"`          // Organization ID
+	ProductTypes            []string `json:"productTypes,omitempty"`            // List of the product types that the network supports
+	Tags                    []string `json:"tags,omitempty"`                    // Network tags
+	TimeZone                string   `json:"timeZone,omitempty"`                // Timezone of the network
+	URL                     string   `json:"url,omitempty"`                     // URL to the network Dashboard UI
+}
 type ResponseNetworksGetNetworkBluetoothClients []ResponseItemNetworksGetNetworkBluetoothClients // Array of ResponseNetworksGetNetworkBluetoothClients
 type ResponseItemNetworksGetNetworkBluetoothClients struct {
 	DeviceName      string   `json:"deviceName,omitempty"`      //
@@ -307,22 +330,34 @@ type ResponseItemNetworksGetNetworkClientsApplicationUsageApplicationUsage struc
 }
 type ResponseNetworksGetNetworkClientsBandwidthUsageHistory []ResponseItemNetworksGetNetworkClientsBandwidthUsageHistory // Array of ResponseNetworksGetNetworkClientsBandwidthUsageHistory
 type ResponseItemNetworksGetNetworkClientsBandwidthUsageHistory struct {
-	Total *int   `json:"total,omitempty"` //
-	Ts    string `json:"ts,omitempty"`    //
+	Downstream *float64 `json:"downstream,omitempty"` // The downstream traffic over a time range for clients on a network
+	Total      *float64 `json:"total,omitempty"`      // The total traffic over a time range for clients on a network
+	Ts         string   `json:"ts,omitempty"`         // The timestamp
+	Upstream   *float64 `json:"upstream,omitempty"`   // The upstream traffic over a time range for clients on a network
 }
 type ResponseNetworksGetNetworkClientsOverview struct {
-	Counts *ResponseNetworksGetNetworkClientsOverviewCounts `json:"counts,omitempty"` //
-	Usages *ResponseNetworksGetNetworkClientsOverviewUsages `json:"usages,omitempty"` //
+	Counts *ResponseNetworksGetNetworkClientsOverviewCounts `json:"counts,omitempty"` // The number of clients on a network over a given time range
+	Usages *ResponseNetworksGetNetworkClientsOverviewUsages `json:"usages,omitempty"` // The average usage of the clients on a network over a given time range
 }
 type ResponseNetworksGetNetworkClientsOverviewCounts struct {
-	Total          *int `json:"total,omitempty"`          //
-	WithHeavyUsage *int `json:"withHeavyUsage,omitempty"` //
+	Total          *int `json:"total,omitempty"`          // The total number of clients on a network
+	WithHeavyUsage *int `json:"withHeavyUsage,omitempty"` // The total number of clients with heavy usage on a network
 }
 type ResponseNetworksGetNetworkClientsOverviewUsages struct {
-	Average               *int `json:"average,omitempty"`               //
-	WithHeavyUsageAverage *int `json:"withHeavyUsageAverage,omitempty"` //
+	Average               *int `json:"average,omitempty"`               // The average usage of all clients on a network
+	WithHeavyUsageAverage *int `json:"withHeavyUsageAverage,omitempty"` // The average usage of all clients with heavy usage on a network
 }
-type ResponseNetworksProvisionNetworkClients interface{}
+type ResponseNetworksProvisionNetworkClients struct {
+	Clients       *[]ResponseNetworksProvisionNetworkClientsClients `json:"clients,omitempty"`       // The list of clients to provision
+	DevicePolicy  string                                            `json:"devicePolicy,omitempty"`  // The name of the client's policy
+	GroupPolicyID string                                            `json:"groupPolicyId,omitempty"` // The group policy identifier of the client
+}
+type ResponseNetworksProvisionNetworkClientsClients struct {
+	ClientID string `json:"clientId,omitempty"` // The identifier of the client
+	Mac      string `json:"mac,omitempty"`      // The MAC address of the client
+	Message  string `json:"message,omitempty"`  // The client's display message if its group policy is 'Blocked'
+	Name     string `json:"name,omitempty"`     // The name of the client
+}
 type ResponseNetworksGetNetworkClientsUsageHistories []ResponseItemNetworksGetNetworkClientsUsageHistories // Array of ResponseNetworksGetNetworkClientsUsageHistories
 type ResponseItemNetworksGetNetworkClientsUsageHistories struct {
 	ClientID     string                                                             `json:"clientId,omitempty"`     //
@@ -363,11 +398,15 @@ type ResponseNetworksGetNetworkClientClientVpnConnections struct {
 	RemoteIP       string `json:"remoteIp,omitempty"`       // The IP address of the VPN the client last connected to
 }
 type ResponseNetworksGetNetworkClientPolicy struct {
-	DevicePolicy  string `json:"devicePolicy,omitempty"`  //
-	GroupPolicyID string `json:"groupPolicyId,omitempty"` //
-	Mac           string `json:"mac,omitempty"`           //
+	DevicePolicy  string `json:"devicePolicy,omitempty"`  // The name of the client's policy
+	GroupPolicyID string `json:"groupPolicyId,omitempty"` // The group policy identifier of the client
+	Mac           string `json:"mac,omitempty"`           // The MAC address of the client
 }
-type ResponseNetworksUpdateNetworkClientPolicy interface{}
+type ResponseNetworksUpdateNetworkClientPolicy struct {
+	DevicePolicy  string `json:"devicePolicy,omitempty"`  // The name of the client's policy
+	GroupPolicyID string `json:"groupPolicyId,omitempty"` // The group policy identifier of the client
+	Mac           string `json:"mac,omitempty"`           // The MAC address of the client
+}
 type ResponseNetworksGetNetworkClientSplashAuthorizationStatus struct {
 	SSIDs *ResponseNetworksGetNetworkClientSplashAuthorizationStatusSSIDs `json:"ssids,omitempty"` //
 }
@@ -386,45 +425,68 @@ type ResponseNetworksGetNetworkClientSplashAuthorizationStatusSSIDs2 struct {
 type ResponseNetworksUpdateNetworkClientSplashAuthorizationStatus interface{}
 type ResponseNetworksGetNetworkClientTrafficHistory []ResponseItemNetworksGetNetworkClientTrafficHistory // Array of ResponseNetworksGetNetworkClientTrafficHistory
 type ResponseItemNetworksGetNetworkClientTrafficHistory struct {
-	ActiveSeconds *int   `json:"activeSeconds,omitempty"` //
-	Application   string `json:"application,omitempty"`   //
-	Destination   string `json:"destination,omitempty"`   //
-	NumFlows      *int   `json:"numFlows,omitempty"`      //
-	Port          *int   `json:"port,omitempty"`          //
-	Protocol      string `json:"protocol,omitempty"`      //
-	Recv          *int   `json:"recv,omitempty"`          //
-	Sent          *int   `json:"sent,omitempty"`          //
-	Ts            string `json:"ts,omitempty"`            //
+	ActiveSeconds *int     `json:"activeSeconds,omitempty"` // The amount of seconds the client was active
+	Application   string   `json:"application,omitempty"`   // The name of the application the client is connected to
+	Destination   string   `json:"destination,omitempty"`   // The IP or web address the client is connected to
+	NumFlows      *int     `json:"numFlows,omitempty"`      // The number of flows the client has
+	Port          *int     `json:"port,omitempty"`          // The port the client is connected to
+	Protocol      string   `json:"protocol,omitempty"`      // The client protocol
+	Recv          *float64 `json:"recv,omitempty"`          // Usage received by the client
+	Sent          *float64 `json:"sent,omitempty"`          // Usage sent by the client
+	Ts            string   `json:"ts,omitempty"`            // The timestamp of when the client was connected to an application
 }
 type ResponseNetworksGetNetworkClientUsageHistory []ResponseItemNetworksGetNetworkClientUsageHistory // Array of ResponseNetworksGetNetworkClientUsageHistory
 type ResponseItemNetworksGetNetworkClientUsageHistory struct {
-	Received *int   `json:"received,omitempty"` //
-	Sent     *int   `json:"sent,omitempty"`     //
-	Ts       string `json:"ts,omitempty"`       //
+	Received *float64 `json:"received,omitempty"` // Usage received by the client on a given day
+	Sent     *float64 `json:"sent,omitempty"`     // Usage sent by the client on a given day
+	Ts       string   `json:"ts,omitempty"`       // The day's timestamp
 }
 type ResponseNetworksGetNetworkDevices []ResponseItemNetworksGetNetworkDevices // Array of ResponseNetworksGetNetworkDevices
 type ResponseItemNetworksGetNetworkDevices struct {
-	Address        string                                               `json:"address,omitempty"`        //
-	BeaconIDParams *ResponseItemNetworksGetNetworkDevicesBeaconIDParams `json:"beaconIdParams,omitempty"` //
-	Firmware       string                                               `json:"firmware,omitempty"`       //
-	FloorPlanID    string                                               `json:"floorPlanId,omitempty"`    //
-	LanIP          string                                               `json:"lanIp,omitempty"`          //
-	Lat            *float64                                             `json:"lat,omitempty"`            //
-	Lng            *float64                                             `json:"lng,omitempty"`            //
-	Mac            string                                               `json:"mac,omitempty"`            //
-	Model          string                                               `json:"model,omitempty"`          //
-	Name           string                                               `json:"name,omitempty"`           //
-	NetworkID      string                                               `json:"networkId,omitempty"`      //
-	Notes          string                                               `json:"notes,omitempty"`          //
-	Serial         string                                               `json:"serial,omitempty"`         //
-	Tags           string                                               `json:"tags,omitempty"`           //
+	Address     string                                          `json:"address,omitempty"`     // Physical address of the device
+	Details     *[]ResponseItemNetworksGetNetworkDevicesDetails `json:"details,omitempty"`     // Additional device information
+	Firmware    string                                          `json:"firmware,omitempty"`    // Firmware version of the device
+	Imei        string                                          `json:"imei,omitempty"`        // IMEI of the device, if applicable
+	LanIP       string                                          `json:"lanIp,omitempty"`       // LAN IP address of the device
+	Lat         *float64                                        `json:"lat,omitempty"`         // Latitude of the device
+	Lng         *float64                                        `json:"lng,omitempty"`         // Longitude of the device
+	Mac         string                                          `json:"mac,omitempty"`         // MAC address of the device
+	Model       string                                          `json:"model,omitempty"`       // Model of the device
+	Name        string                                          `json:"name,omitempty"`        // Name of the device
+	NetworkID   string                                          `json:"networkId,omitempty"`   // ID of the network the device belongs to
+	Notes       string                                          `json:"notes,omitempty"`       // Notes for the device, limited to 255 characters
+	ProductType string                                          `json:"productType,omitempty"` // Product type of the device
+	Serial      string                                          `json:"serial,omitempty"`      // Serial number of the device
+	Tags        []string                                        `json:"tags,omitempty"`        // List of tags assigned to the device
 }
-type ResponseItemNetworksGetNetworkDevicesBeaconIDParams struct {
-	Major *int   `json:"major,omitempty"` //
-	Minor *int   `json:"minor,omitempty"` //
-	UUID  string `json:"uuid,omitempty"`  //
+type ResponseItemNetworksGetNetworkDevicesDetails struct {
+	Name  string `json:"name,omitempty"`  // Additional property name
+	Value string `json:"value,omitempty"` // Additional property value
 }
-type ResponseNetworksVmxNetworkDevicesClaim interface{}
+type ResponseNetworksClaimNetworkDevices struct {
+	Serials []string `json:"serials,omitempty"` // The serials of the devices
+}
+type ResponseNetworksVmxNetworkDevicesClaim struct {
+	Address     string                                           `json:"address,omitempty"`     // Physical address of the device
+	Details     *[]ResponseNetworksVmxNetworkDevicesClaimDetails `json:"details,omitempty"`     // Additional device information
+	Firmware    string                                           `json:"firmware,omitempty"`    // Firmware version of the device
+	Imei        string                                           `json:"imei,omitempty"`        // IMEI of the device, if applicable
+	LanIP       string                                           `json:"lanIp,omitempty"`       // LAN IP address of the device
+	Lat         *float64                                         `json:"lat,omitempty"`         // Latitude of the device
+	Lng         *float64                                         `json:"lng,omitempty"`         // Longitude of the device
+	Mac         string                                           `json:"mac,omitempty"`         // MAC address of the device
+	Model       string                                           `json:"model,omitempty"`       // Model of the device
+	Name        string                                           `json:"name,omitempty"`        // Name of the device
+	NetworkID   string                                           `json:"networkId,omitempty"`   // ID of the network the device belongs to
+	Notes       string                                           `json:"notes,omitempty"`       // Notes for the device, limited to 255 characters
+	ProductType string                                           `json:"productType,omitempty"` // Product type of the device
+	Serial      string                                           `json:"serial,omitempty"`      // Serial number of the device
+	Tags        []string                                         `json:"tags,omitempty"`        // List of tags assigned to the device
+}
+type ResponseNetworksVmxNetworkDevicesClaimDetails struct {
+	Name  string `json:"name,omitempty"`  // Additional property name
+	Value string `json:"value,omitempty"` // Additional property value
+}
 type ResponseNetworksGetNetworkEvents struct {
 	Events      *[]ResponseNetworksGetNetworkEventsEvents `json:"events,omitempty"`      // An array of events that took place in the network.
 	Message     string                                    `json:"message,omitempty"`     // A message regarding the events sent. Usually 'null' unless there are no events
@@ -1335,7 +1397,25 @@ type ResponseItemNetworksGetNetworkFirmwareUpgradesStagedGroupsAssignedDevicesSw
 	ID   string `json:"id,omitempty"`   // ID of the Switch Stack
 	Name string `json:"name,omitempty"` // Name of the Switch Stack
 }
-type ResponseNetworksCreateNetworkFirmwareUpgradesStagedGroup interface{}
+type ResponseNetworksCreateNetworkFirmwareUpgradesStagedGroup struct {
+	AssignedDevices *ResponseNetworksCreateNetworkFirmwareUpgradesStagedGroupAssignedDevices `json:"assignedDevices,omitempty"` // The devices and Switch Stacks assigned to the Group
+	Description     string                                                                   `json:"description,omitempty"`     // Description of the Staged Upgrade Group
+	GroupID         string                                                                   `json:"groupId,omitempty"`         // Id of staged upgrade group
+	IsDefault       *bool                                                                    `json:"isDefault,omitempty"`       // Boolean indicating the default Group. Any device that does not have a group explicitly assigned will upgrade with this group
+	Name            string                                                                   `json:"name,omitempty"`            // Name of the Staged Upgrade Group
+}
+type ResponseNetworksCreateNetworkFirmwareUpgradesStagedGroupAssignedDevices struct {
+	Devices      *[]ResponseNetworksCreateNetworkFirmwareUpgradesStagedGroupAssignedDevicesDevices      `json:"devices,omitempty"`      // Data Array of Devices containing the name and serial
+	SwitchStacks *[]ResponseNetworksCreateNetworkFirmwareUpgradesStagedGroupAssignedDevicesSwitchStacks `json:"switchStacks,omitempty"` // Data Array of Switch Stacks containing the name and id
+}
+type ResponseNetworksCreateNetworkFirmwareUpgradesStagedGroupAssignedDevicesDevices struct {
+	Name   string `json:"name,omitempty"`   // Name of the device
+	Serial string `json:"serial,omitempty"` // Serial of the device
+}
+type ResponseNetworksCreateNetworkFirmwareUpgradesStagedGroupAssignedDevicesSwitchStacks struct {
+	ID   string `json:"id,omitempty"`   // ID of the Switch Stack
+	Name string `json:"name,omitempty"` // Name of the Switch Stack
+}
 type ResponseNetworksGetNetworkFirmwareUpgradesStagedGroup struct {
 	AssignedDevices *ResponseNetworksGetNetworkFirmwareUpgradesStagedGroupAssignedDevices `json:"assignedDevices,omitempty"` // The devices and Switch Stacks assigned to the Group
 	Description     string                                                                `json:"description,omitempty"`     // Description of the Staged Upgrade Group
@@ -1355,7 +1435,25 @@ type ResponseNetworksGetNetworkFirmwareUpgradesStagedGroupAssignedDevicesSwitchS
 	ID   string `json:"id,omitempty"`   // ID of the Switch Stack
 	Name string `json:"name,omitempty"` // Name of the Switch Stack
 }
-type ResponseNetworksUpdateNetworkFirmwareUpgradesStagedGroup interface{}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesStagedGroup struct {
+	AssignedDevices *ResponseNetworksUpdateNetworkFirmwareUpgradesStagedGroupAssignedDevices `json:"assignedDevices,omitempty"` // The devices and Switch Stacks assigned to the Group
+	Description     string                                                                   `json:"description,omitempty"`     // Description of the Staged Upgrade Group
+	GroupID         string                                                                   `json:"groupId,omitempty"`         // Id of staged upgrade group
+	IsDefault       *bool                                                                    `json:"isDefault,omitempty"`       // Boolean indicating the default Group. Any device that does not have a group explicitly assigned will upgrade with this group
+	Name            string                                                                   `json:"name,omitempty"`            // Name of the Staged Upgrade Group
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesStagedGroupAssignedDevices struct {
+	Devices      *[]ResponseNetworksUpdateNetworkFirmwareUpgradesStagedGroupAssignedDevicesDevices      `json:"devices,omitempty"`      // Data Array of Devices containing the name and serial
+	SwitchStacks *[]ResponseNetworksUpdateNetworkFirmwareUpgradesStagedGroupAssignedDevicesSwitchStacks `json:"switchStacks,omitempty"` // Data Array of Switch Stacks containing the name and id
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesStagedGroupAssignedDevicesDevices struct {
+	Name   string `json:"name,omitempty"`   // Name of the device
+	Serial string `json:"serial,omitempty"` // Serial of the device
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesStagedGroupAssignedDevicesSwitchStacks struct {
+	ID   string `json:"id,omitempty"`   // ID of the Switch Stack
+	Name string `json:"name,omitempty"` // Name of the Switch Stack
+}
 type ResponseNetworksGetNetworkFirmwareUpgradesStagedStages []ResponseItemNetworksGetNetworkFirmwareUpgradesStagedStages // Array of ResponseNetworksGetNetworkFirmwareUpgradesStagedStages
 type ResponseItemNetworksGetNetworkFirmwareUpgradesStagedStages struct {
 	Group *ResponseItemNetworksGetNetworkFirmwareUpgradesStagedStagesGroup `json:"group,omitempty"` // The Staged Upgrade Group
@@ -1376,384 +1474,812 @@ type ResponseItemNetworksUpdateNetworkFirmwareUpgradesStagedStagesGroup struct {
 }
 type ResponseNetworksGetNetworkFloorPlans []ResponseItemNetworksGetNetworkFloorPlans // Array of ResponseNetworksGetNetworkFloorPlans
 type ResponseItemNetworksGetNetworkFloorPlans struct {
-	BottomLeftCorner  *ResponseItemNetworksGetNetworkFloorPlansBottomLeftCorner  `json:"bottomLeftCorner,omitempty"`  //
-	BottomRightCorner *ResponseItemNetworksGetNetworkFloorPlansBottomRightCorner `json:"bottomRightCorner,omitempty"` //
-	Center            *ResponseItemNetworksGetNetworkFloorPlansCenter            `json:"center,omitempty"`            //
-	Devices           *[]ResponseItemNetworksGetNetworkFloorPlansDevices         `json:"devices,omitempty"`           //
-	FloorPlanID       string                                                     `json:"floorPlanId,omitempty"`       //
-	Height            *float64                                                   `json:"height,omitempty"`            //
-	ImageExtension    string                                                     `json:"imageExtension,omitempty"`    //
-	ImageMd5          string                                                     `json:"imageMd5,omitempty"`          //
-	ImageURL          string                                                     `json:"imageUrl,omitempty"`          //
-	ImageURLExpiresAt string                                                     `json:"imageUrlExpiresAt,omitempty"` //
-	Name              string                                                     `json:"name,omitempty"`              //
-	TopLeftCorner     *ResponseItemNetworksGetNetworkFloorPlansTopLeftCorner     `json:"topLeftCorner,omitempty"`     //
-	TopRightCorner    *ResponseItemNetworksGetNetworkFloorPlansTopRightCorner    `json:"topRightCorner,omitempty"`    //
-	Width             *int                                                       `json:"width,omitempty"`             //
+	BottomLeftCorner  *ResponseItemNetworksGetNetworkFloorPlansBottomLeftCorner  `json:"bottomLeftCorner,omitempty"`  // The longitude and latitude of the bottom left corner of your floor plan.
+	BottomRightCorner *ResponseItemNetworksGetNetworkFloorPlansBottomRightCorner `json:"bottomRightCorner,omitempty"` // The longitude and latitude of the bottom right corner of your floor plan.
+	Center            *ResponseItemNetworksGetNetworkFloorPlansCenter            `json:"center,omitempty"`            // The longitude and latitude of the center of your floor plan. The 'center' or two adjacent corners (e.g. 'topLeftCorner' and 'bottomLeftCorner') must be specified. If 'center' is specified, the floor plan is placed over that point with no rotation. If two adjacent corners are specified, the floor plan is rotated to line up with the two specified points. The aspect ratio of the floor plan's image is preserved regardless of which corners/center are specified. (This means if that more than two corners are specified, only two corners may be used to preserve the floor plan's aspect ratio.). No two points can have the same latitude, longitude pair.
+	Devices           *[]ResponseItemNetworksGetNetworkFloorPlansDevices         `json:"devices,omitempty"`           // List of devices for the floorplan
+	FloorPlanID       string                                                     `json:"floorPlanId,omitempty"`       // Floor plan ID
+	Height            *float64                                                   `json:"height,omitempty"`            // The height of your floor plan.
+	ImageExtension    string                                                     `json:"imageExtension,omitempty"`    // The format type of the image.
+	ImageMd5          string                                                     `json:"imageMd5,omitempty"`          // The file contents (a base 64 encoded string) of your new image. Supported formats are PNG, GIF, and JPG. Note that all images are saved as PNG files, regardless of the format they are uploaded in. If you upload a new image, and you do NOT specify any new geolocation fields ('center, 'topLeftCorner', etc), the floor plan will be recentered with no rotation in order to maintain the aspect ratio of your new image.
+	ImageURL          string                                                     `json:"imageUrl,omitempty"`          // The url link for the floor plan image.
+	ImageURLExpiresAt string                                                     `json:"imageUrlExpiresAt,omitempty"` // The time the image url link will expire.
+	Name              string                                                     `json:"name,omitempty"`              // The name of your floor plan.
+	TopLeftCorner     *ResponseItemNetworksGetNetworkFloorPlansTopLeftCorner     `json:"topLeftCorner,omitempty"`     // The longitude and latitude of the top left corner of your floor plan.
+	TopRightCorner    *ResponseItemNetworksGetNetworkFloorPlansTopRightCorner    `json:"topRightCorner,omitempty"`    // The longitude and latitude of the top right corner of your floor plan.
+	Width             *float64                                                   `json:"width,omitempty"`             // The width of your floor plan.
 }
 type ResponseItemNetworksGetNetworkFloorPlansBottomLeftCorner struct {
-	Lat *float64 `json:"lat,omitempty"` //
-	Lng *float64 `json:"lng,omitempty"` //
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
 }
 type ResponseItemNetworksGetNetworkFloorPlansBottomRightCorner struct {
-	Lat *float64 `json:"lat,omitempty"` //
-	Lng *float64 `json:"lng,omitempty"` //
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
 }
 type ResponseItemNetworksGetNetworkFloorPlansCenter struct {
-	Lat *float64 `json:"lat,omitempty"` //
-	Lng *float64 `json:"lng,omitempty"` //
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
 }
 type ResponseItemNetworksGetNetworkFloorPlansDevices struct {
-	Address        string                                                         `json:"address,omitempty"`        //
-	BeaconIDParams *ResponseItemNetworksGetNetworkFloorPlansDevicesBeaconIDParams `json:"beaconIdParams,omitempty"` //
-	Firmware       string                                                         `json:"firmware,omitempty"`       //
-	FloorPlanID    string                                                         `json:"floorPlanId,omitempty"`    //
-	LanIP          string                                                         `json:"lanIp,omitempty"`          //
-	Lat            *float64                                                       `json:"lat,omitempty"`            //
-	Lng            *float64                                                       `json:"lng,omitempty"`            //
-	Mac            string                                                         `json:"mac,omitempty"`            //
-	Model          string                                                         `json:"model,omitempty"`          //
-	Name           string                                                         `json:"name,omitempty"`           //
-	NetworkID      string                                                         `json:"networkId,omitempty"`      //
-	Notes          string                                                         `json:"notes,omitempty"`          //
-	Serial         string                                                         `json:"serial,omitempty"`         //
-	Tags           []string                                                       `json:"tags,omitempty"`           //
+	Address     string                                                    `json:"address,omitempty"`     // Physical address of the device
+	Details     *[]ResponseItemNetworksGetNetworkFloorPlansDevicesDetails `json:"details,omitempty"`     // Additional device information
+	Firmware    string                                                    `json:"firmware,omitempty"`    // Firmware version of the device
+	Imei        string                                                    `json:"imei,omitempty"`        // IMEI of the device, if applicable
+	LanIP       string                                                    `json:"lanIp,omitempty"`       // LAN IP address of the device
+	Lat         *float64                                                  `json:"lat,omitempty"`         // Latitude of the device
+	Lng         *float64                                                  `json:"lng,omitempty"`         // Longitude of the device
+	Mac         string                                                    `json:"mac,omitempty"`         // MAC address of the device
+	Model       string                                                    `json:"model,omitempty"`       // Model of the device
+	Name        string                                                    `json:"name,omitempty"`        // Name of the device
+	NetworkID   string                                                    `json:"networkId,omitempty"`   // ID of the network the device belongs to
+	Notes       string                                                    `json:"notes,omitempty"`       // Notes for the device, limited to 255 characters
+	ProductType string                                                    `json:"productType,omitempty"` // Product type of the device
+	Serial      string                                                    `json:"serial,omitempty"`      // Serial number of the device
+	Tags        []string                                                  `json:"tags,omitempty"`        // List of tags assigned to the device
 }
-type ResponseItemNetworksGetNetworkFloorPlansDevicesBeaconIDParams struct {
-	Major *int   `json:"major,omitempty"` //
-	Minor *int   `json:"minor,omitempty"` //
-	UUID  string `json:"uuid,omitempty"`  //
+type ResponseItemNetworksGetNetworkFloorPlansDevicesDetails struct {
+	Name  string `json:"name,omitempty"`  // Additional property name
+	Value string `json:"value,omitempty"` // Additional property value
 }
 type ResponseItemNetworksGetNetworkFloorPlansTopLeftCorner struct {
-	Lat *float64 `json:"lat,omitempty"` //
-	Lng *float64 `json:"lng,omitempty"` //
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
 }
 type ResponseItemNetworksGetNetworkFloorPlansTopRightCorner struct {
-	Lat *float64 `json:"lat,omitempty"` //
-	Lng *float64 `json:"lng,omitempty"` //
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
 }
-type ResponseNetworksCreateNetworkFloorPlan interface{}
+type ResponseNetworksCreateNetworkFloorPlan struct {
+	BottomLeftCorner  *ResponseNetworksCreateNetworkFloorPlanBottomLeftCorner  `json:"bottomLeftCorner,omitempty"`  // The longitude and latitude of the bottom left corner of your floor plan.
+	BottomRightCorner *ResponseNetworksCreateNetworkFloorPlanBottomRightCorner `json:"bottomRightCorner,omitempty"` // The longitude and latitude of the bottom right corner of your floor plan.
+	Center            *ResponseNetworksCreateNetworkFloorPlanCenter            `json:"center,omitempty"`            // The longitude and latitude of the center of your floor plan. The 'center' or two adjacent corners (e.g. 'topLeftCorner' and 'bottomLeftCorner') must be specified. If 'center' is specified, the floor plan is placed over that point with no rotation. If two adjacent corners are specified, the floor plan is rotated to line up with the two specified points. The aspect ratio of the floor plan's image is preserved regardless of which corners/center are specified. (This means if that more than two corners are specified, only two corners may be used to preserve the floor plan's aspect ratio.). No two points can have the same latitude, longitude pair.
+	Devices           *[]ResponseNetworksCreateNetworkFloorPlanDevices         `json:"devices,omitempty"`           // List of devices for the floorplan
+	FloorPlanID       string                                                   `json:"floorPlanId,omitempty"`       // Floor plan ID
+	Height            *float64                                                 `json:"height,omitempty"`            // The height of your floor plan.
+	ImageExtension    string                                                   `json:"imageExtension,omitempty"`    // The format type of the image.
+	ImageMd5          string                                                   `json:"imageMd5,omitempty"`          // The file contents (a base 64 encoded string) of your new image. Supported formats are PNG, GIF, and JPG. Note that all images are saved as PNG files, regardless of the format they are uploaded in. If you upload a new image, and you do NOT specify any new geolocation fields ('center, 'topLeftCorner', etc), the floor plan will be recentered with no rotation in order to maintain the aspect ratio of your new image.
+	ImageURL          string                                                   `json:"imageUrl,omitempty"`          // The url link for the floor plan image.
+	ImageURLExpiresAt string                                                   `json:"imageUrlExpiresAt,omitempty"` // The time the image url link will expire.
+	Name              string                                                   `json:"name,omitempty"`              // The name of your floor plan.
+	TopLeftCorner     *ResponseNetworksCreateNetworkFloorPlanTopLeftCorner     `json:"topLeftCorner,omitempty"`     // The longitude and latitude of the top left corner of your floor plan.
+	TopRightCorner    *ResponseNetworksCreateNetworkFloorPlanTopRightCorner    `json:"topRightCorner,omitempty"`    // The longitude and latitude of the top right corner of your floor plan.
+	Width             *float64                                                 `json:"width,omitempty"`             // The width of your floor plan.
+}
+type ResponseNetworksCreateNetworkFloorPlanBottomLeftCorner struct {
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
+}
+type ResponseNetworksCreateNetworkFloorPlanBottomRightCorner struct {
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
+}
+type ResponseNetworksCreateNetworkFloorPlanCenter struct {
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
+}
+type ResponseNetworksCreateNetworkFloorPlanDevices struct {
+	Address     string                                                  `json:"address,omitempty"`     // Physical address of the device
+	Details     *[]ResponseNetworksCreateNetworkFloorPlanDevicesDetails `json:"details,omitempty"`     // Additional device information
+	Firmware    string                                                  `json:"firmware,omitempty"`    // Firmware version of the device
+	Imei        string                                                  `json:"imei,omitempty"`        // IMEI of the device, if applicable
+	LanIP       string                                                  `json:"lanIp,omitempty"`       // LAN IP address of the device
+	Lat         *float64                                                `json:"lat,omitempty"`         // Latitude of the device
+	Lng         *float64                                                `json:"lng,omitempty"`         // Longitude of the device
+	Mac         string                                                  `json:"mac,omitempty"`         // MAC address of the device
+	Model       string                                                  `json:"model,omitempty"`       // Model of the device
+	Name        string                                                  `json:"name,omitempty"`        // Name of the device
+	NetworkID   string                                                  `json:"networkId,omitempty"`   // ID of the network the device belongs to
+	Notes       string                                                  `json:"notes,omitempty"`       // Notes for the device, limited to 255 characters
+	ProductType string                                                  `json:"productType,omitempty"` // Product type of the device
+	Serial      string                                                  `json:"serial,omitempty"`      // Serial number of the device
+	Tags        []string                                                `json:"tags,omitempty"`        // List of tags assigned to the device
+}
+type ResponseNetworksCreateNetworkFloorPlanDevicesDetails struct {
+	Name  string `json:"name,omitempty"`  // Additional property name
+	Value string `json:"value,omitempty"` // Additional property value
+}
+type ResponseNetworksCreateNetworkFloorPlanTopLeftCorner struct {
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
+}
+type ResponseNetworksCreateNetworkFloorPlanTopRightCorner struct {
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
+}
+type ResponseNetworksDeleteNetworkFloorPlan struct {
+	BottomLeftCorner  *ResponseNetworksDeleteNetworkFloorPlanBottomLeftCorner  `json:"bottomLeftCorner,omitempty"`  // The longitude and latitude of the bottom left corner of your floor plan.
+	BottomRightCorner *ResponseNetworksDeleteNetworkFloorPlanBottomRightCorner `json:"bottomRightCorner,omitempty"` // The longitude and latitude of the bottom right corner of your floor plan.
+	Center            *ResponseNetworksDeleteNetworkFloorPlanCenter            `json:"center,omitempty"`            // The longitude and latitude of the center of your floor plan. The 'center' or two adjacent corners (e.g. 'topLeftCorner' and 'bottomLeftCorner') must be specified. If 'center' is specified, the floor plan is placed over that point with no rotation. If two adjacent corners are specified, the floor plan is rotated to line up with the two specified points. The aspect ratio of the floor plan's image is preserved regardless of which corners/center are specified. (This means if that more than two corners are specified, only two corners may be used to preserve the floor plan's aspect ratio.). No two points can have the same latitude, longitude pair.
+	Devices           *[]ResponseNetworksDeleteNetworkFloorPlanDevices         `json:"devices,omitempty"`           // List of devices for the floorplan
+	FloorPlanID       string                                                   `json:"floorPlanId,omitempty"`       // Floor plan ID
+	Height            *float64                                                 `json:"height,omitempty"`            // The height of your floor plan.
+	ImageExtension    string                                                   `json:"imageExtension,omitempty"`    // The format type of the image.
+	ImageMd5          string                                                   `json:"imageMd5,omitempty"`          // The file contents (a base 64 encoded string) of your new image. Supported formats are PNG, GIF, and JPG. Note that all images are saved as PNG files, regardless of the format they are uploaded in. If you upload a new image, and you do NOT specify any new geolocation fields ('center, 'topLeftCorner', etc), the floor plan will be recentered with no rotation in order to maintain the aspect ratio of your new image.
+	ImageURL          string                                                   `json:"imageUrl,omitempty"`          // The url link for the floor plan image.
+	ImageURLExpiresAt string                                                   `json:"imageUrlExpiresAt,omitempty"` // The time the image url link will expire.
+	Name              string                                                   `json:"name,omitempty"`              // The name of your floor plan.
+	TopLeftCorner     *ResponseNetworksDeleteNetworkFloorPlanTopLeftCorner     `json:"topLeftCorner,omitempty"`     // The longitude and latitude of the top left corner of your floor plan.
+	TopRightCorner    *ResponseNetworksDeleteNetworkFloorPlanTopRightCorner    `json:"topRightCorner,omitempty"`    // The longitude and latitude of the top right corner of your floor plan.
+	Width             *float64                                                 `json:"width,omitempty"`             // The width of your floor plan.
+}
+type ResponseNetworksDeleteNetworkFloorPlanBottomLeftCorner struct {
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
+}
+type ResponseNetworksDeleteNetworkFloorPlanBottomRightCorner struct {
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
+}
+type ResponseNetworksDeleteNetworkFloorPlanCenter struct {
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
+}
+type ResponseNetworksDeleteNetworkFloorPlanDevices struct {
+	Address     string                                                  `json:"address,omitempty"`     // Physical address of the device
+	Details     *[]ResponseNetworksDeleteNetworkFloorPlanDevicesDetails `json:"details,omitempty"`     // Additional device information
+	Firmware    string                                                  `json:"firmware,omitempty"`    // Firmware version of the device
+	Imei        string                                                  `json:"imei,omitempty"`        // IMEI of the device, if applicable
+	LanIP       string                                                  `json:"lanIp,omitempty"`       // LAN IP address of the device
+	Lat         *float64                                                `json:"lat,omitempty"`         // Latitude of the device
+	Lng         *float64                                                `json:"lng,omitempty"`         // Longitude of the device
+	Mac         string                                                  `json:"mac,omitempty"`         // MAC address of the device
+	Model       string                                                  `json:"model,omitempty"`       // Model of the device
+	Name        string                                                  `json:"name,omitempty"`        // Name of the device
+	NetworkID   string                                                  `json:"networkId,omitempty"`   // ID of the network the device belongs to
+	Notes       string                                                  `json:"notes,omitempty"`       // Notes for the device, limited to 255 characters
+	ProductType string                                                  `json:"productType,omitempty"` // Product type of the device
+	Serial      string                                                  `json:"serial,omitempty"`      // Serial number of the device
+	Tags        []string                                                `json:"tags,omitempty"`        // List of tags assigned to the device
+}
+type ResponseNetworksDeleteNetworkFloorPlanDevicesDetails struct {
+	Name  string `json:"name,omitempty"`  // Additional property name
+	Value string `json:"value,omitempty"` // Additional property value
+}
+type ResponseNetworksDeleteNetworkFloorPlanTopLeftCorner struct {
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
+}
+type ResponseNetworksDeleteNetworkFloorPlanTopRightCorner struct {
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
+}
 type ResponseNetworksGetNetworkFloorPlan struct {
-	BottomLeftCorner  *ResponseNetworksGetNetworkFloorPlanBottomLeftCorner  `json:"bottomLeftCorner,omitempty"`  //
-	BottomRightCorner *ResponseNetworksGetNetworkFloorPlanBottomRightCorner `json:"bottomRightCorner,omitempty"` //
-	Center            *ResponseNetworksGetNetworkFloorPlanCenter            `json:"center,omitempty"`            //
-	Devices           *[]ResponseNetworksGetNetworkFloorPlanDevices         `json:"devices,omitempty"`           //
-	FloorPlanID       string                                                `json:"floorPlanId,omitempty"`       //
-	Height            *float64                                              `json:"height,omitempty"`            //
-	ImageExtension    string                                                `json:"imageExtension,omitempty"`    //
-	ImageMd5          string                                                `json:"imageMd5,omitempty"`          //
-	ImageURL          string                                                `json:"imageUrl,omitempty"`          //
-	ImageURLExpiresAt string                                                `json:"imageUrlExpiresAt,omitempty"` //
-	Name              string                                                `json:"name,omitempty"`              //
-	TopLeftCorner     *ResponseNetworksGetNetworkFloorPlanTopLeftCorner     `json:"topLeftCorner,omitempty"`     //
-	TopRightCorner    *ResponseNetworksGetNetworkFloorPlanTopRightCorner    `json:"topRightCorner,omitempty"`    //
-	Width             *int                                                  `json:"width,omitempty"`             //
+	BottomLeftCorner  *ResponseNetworksGetNetworkFloorPlanBottomLeftCorner  `json:"bottomLeftCorner,omitempty"`  // The longitude and latitude of the bottom left corner of your floor plan.
+	BottomRightCorner *ResponseNetworksGetNetworkFloorPlanBottomRightCorner `json:"bottomRightCorner,omitempty"` // The longitude and latitude of the bottom right corner of your floor plan.
+	Center            *ResponseNetworksGetNetworkFloorPlanCenter            `json:"center,omitempty"`            // The longitude and latitude of the center of your floor plan. The 'center' or two adjacent corners (e.g. 'topLeftCorner' and 'bottomLeftCorner') must be specified. If 'center' is specified, the floor plan is placed over that point with no rotation. If two adjacent corners are specified, the floor plan is rotated to line up with the two specified points. The aspect ratio of the floor plan's image is preserved regardless of which corners/center are specified. (This means if that more than two corners are specified, only two corners may be used to preserve the floor plan's aspect ratio.). No two points can have the same latitude, longitude pair.
+	Devices           *[]ResponseNetworksGetNetworkFloorPlanDevices         `json:"devices,omitempty"`           // List of devices for the floorplan
+	FloorPlanID       string                                                `json:"floorPlanId,omitempty"`       // Floor plan ID
+	Height            *float64                                              `json:"height,omitempty"`            // The height of your floor plan.
+	ImageExtension    string                                                `json:"imageExtension,omitempty"`    // The format type of the image.
+	ImageMd5          string                                                `json:"imageMd5,omitempty"`          // The file contents (a base 64 encoded string) of your new image. Supported formats are PNG, GIF, and JPG. Note that all images are saved as PNG files, regardless of the format they are uploaded in. If you upload a new image, and you do NOT specify any new geolocation fields ('center, 'topLeftCorner', etc), the floor plan will be recentered with no rotation in order to maintain the aspect ratio of your new image.
+	ImageURL          string                                                `json:"imageUrl,omitempty"`          // The url link for the floor plan image.
+	ImageURLExpiresAt string                                                `json:"imageUrlExpiresAt,omitempty"` // The time the image url link will expire.
+	Name              string                                                `json:"name,omitempty"`              // The name of your floor plan.
+	TopLeftCorner     *ResponseNetworksGetNetworkFloorPlanTopLeftCorner     `json:"topLeftCorner,omitempty"`     // The longitude and latitude of the top left corner of your floor plan.
+	TopRightCorner    *ResponseNetworksGetNetworkFloorPlanTopRightCorner    `json:"topRightCorner,omitempty"`    // The longitude and latitude of the top right corner of your floor plan.
+	Width             *float64                                              `json:"width,omitempty"`             // The width of your floor plan.
 }
 type ResponseNetworksGetNetworkFloorPlanBottomLeftCorner struct {
-	Lat *float64 `json:"lat,omitempty"` //
-	Lng *float64 `json:"lng,omitempty"` //
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
 }
 type ResponseNetworksGetNetworkFloorPlanBottomRightCorner struct {
-	Lat *float64 `json:"lat,omitempty"` //
-	Lng *float64 `json:"lng,omitempty"` //
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
 }
 type ResponseNetworksGetNetworkFloorPlanCenter struct {
-	Lat *float64 `json:"lat,omitempty"` //
-	Lng *float64 `json:"lng,omitempty"` //
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
 }
 type ResponseNetworksGetNetworkFloorPlanDevices struct {
-	Address        string                                                    `json:"address,omitempty"`        //
-	BeaconIDParams *ResponseNetworksGetNetworkFloorPlanDevicesBeaconIDParams `json:"beaconIdParams,omitempty"` //
-	Firmware       string                                                    `json:"firmware,omitempty"`       //
-	FloorPlanID    string                                                    `json:"floorPlanId,omitempty"`    //
-	LanIP          string                                                    `json:"lanIp,omitempty"`          //
-	Lat            *float64                                                  `json:"lat,omitempty"`            //
-	Lng            *float64                                                  `json:"lng,omitempty"`            //
-	Mac            string                                                    `json:"mac,omitempty"`            //
-	Model          string                                                    `json:"model,omitempty"`          //
-	Name           string                                                    `json:"name,omitempty"`           //
-	NetworkID      string                                                    `json:"networkId,omitempty"`      //
-	Notes          string                                                    `json:"notes,omitempty"`          //
-	Serial         string                                                    `json:"serial,omitempty"`         //
-	Tags           []string                                                  `json:"tags,omitempty"`           //
+	Address     string                                               `json:"address,omitempty"`     // Physical address of the device
+	Details     *[]ResponseNetworksGetNetworkFloorPlanDevicesDetails `json:"details,omitempty"`     // Additional device information
+	Firmware    string                                               `json:"firmware,omitempty"`    // Firmware version of the device
+	Imei        string                                               `json:"imei,omitempty"`        // IMEI of the device, if applicable
+	LanIP       string                                               `json:"lanIp,omitempty"`       // LAN IP address of the device
+	Lat         *float64                                             `json:"lat,omitempty"`         // Latitude of the device
+	Lng         *float64                                             `json:"lng,omitempty"`         // Longitude of the device
+	Mac         string                                               `json:"mac,omitempty"`         // MAC address of the device
+	Model       string                                               `json:"model,omitempty"`       // Model of the device
+	Name        string                                               `json:"name,omitempty"`        // Name of the device
+	NetworkID   string                                               `json:"networkId,omitempty"`   // ID of the network the device belongs to
+	Notes       string                                               `json:"notes,omitempty"`       // Notes for the device, limited to 255 characters
+	ProductType string                                               `json:"productType,omitempty"` // Product type of the device
+	Serial      string                                               `json:"serial,omitempty"`      // Serial number of the device
+	Tags        []string                                             `json:"tags,omitempty"`        // List of tags assigned to the device
 }
-type ResponseNetworksGetNetworkFloorPlanDevicesBeaconIDParams struct {
-	Major *int   `json:"major,omitempty"` //
-	Minor *int   `json:"minor,omitempty"` //
-	UUID  string `json:"uuid,omitempty"`  //
+type ResponseNetworksGetNetworkFloorPlanDevicesDetails struct {
+	Name  string `json:"name,omitempty"`  // Additional property name
+	Value string `json:"value,omitempty"` // Additional property value
 }
 type ResponseNetworksGetNetworkFloorPlanTopLeftCorner struct {
-	Lat *float64 `json:"lat,omitempty"` //
-	Lng *float64 `json:"lng,omitempty"` //
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
 }
 type ResponseNetworksGetNetworkFloorPlanTopRightCorner struct {
-	Lat *float64 `json:"lat,omitempty"` //
-	Lng *float64 `json:"lng,omitempty"` //
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
 }
-type ResponseNetworksUpdateNetworkFloorPlan interface{}
+type ResponseNetworksUpdateNetworkFloorPlan struct {
+	BottomLeftCorner  *ResponseNetworksUpdateNetworkFloorPlanBottomLeftCorner  `json:"bottomLeftCorner,omitempty"`  // The longitude and latitude of the bottom left corner of your floor plan.
+	BottomRightCorner *ResponseNetworksUpdateNetworkFloorPlanBottomRightCorner `json:"bottomRightCorner,omitempty"` // The longitude and latitude of the bottom right corner of your floor plan.
+	Center            *ResponseNetworksUpdateNetworkFloorPlanCenter            `json:"center,omitempty"`            // The longitude and latitude of the center of your floor plan. The 'center' or two adjacent corners (e.g. 'topLeftCorner' and 'bottomLeftCorner') must be specified. If 'center' is specified, the floor plan is placed over that point with no rotation. If two adjacent corners are specified, the floor plan is rotated to line up with the two specified points. The aspect ratio of the floor plan's image is preserved regardless of which corners/center are specified. (This means if that more than two corners are specified, only two corners may be used to preserve the floor plan's aspect ratio.). No two points can have the same latitude, longitude pair.
+	Devices           *[]ResponseNetworksUpdateNetworkFloorPlanDevices         `json:"devices,omitempty"`           // List of devices for the floorplan
+	FloorPlanID       string                                                   `json:"floorPlanId,omitempty"`       // Floor plan ID
+	Height            *float64                                                 `json:"height,omitempty"`            // The height of your floor plan.
+	ImageExtension    string                                                   `json:"imageExtension,omitempty"`    // The format type of the image.
+	ImageMd5          string                                                   `json:"imageMd5,omitempty"`          // The file contents (a base 64 encoded string) of your new image. Supported formats are PNG, GIF, and JPG. Note that all images are saved as PNG files, regardless of the format they are uploaded in. If you upload a new image, and you do NOT specify any new geolocation fields ('center, 'topLeftCorner', etc), the floor plan will be recentered with no rotation in order to maintain the aspect ratio of your new image.
+	ImageURL          string                                                   `json:"imageUrl,omitempty"`          // The url link for the floor plan image.
+	ImageURLExpiresAt string                                                   `json:"imageUrlExpiresAt,omitempty"` // The time the image url link will expire.
+	Name              string                                                   `json:"name,omitempty"`              // The name of your floor plan.
+	TopLeftCorner     *ResponseNetworksUpdateNetworkFloorPlanTopLeftCorner     `json:"topLeftCorner,omitempty"`     // The longitude and latitude of the top left corner of your floor plan.
+	TopRightCorner    *ResponseNetworksUpdateNetworkFloorPlanTopRightCorner    `json:"topRightCorner,omitempty"`    // The longitude and latitude of the top right corner of your floor plan.
+	Width             *float64                                                 `json:"width,omitempty"`             // The width of your floor plan.
+}
+type ResponseNetworksUpdateNetworkFloorPlanBottomLeftCorner struct {
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
+}
+type ResponseNetworksUpdateNetworkFloorPlanBottomRightCorner struct {
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
+}
+type ResponseNetworksUpdateNetworkFloorPlanCenter struct {
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
+}
+type ResponseNetworksUpdateNetworkFloorPlanDevices struct {
+	Address     string                                                  `json:"address,omitempty"`     // Physical address of the device
+	Details     *[]ResponseNetworksUpdateNetworkFloorPlanDevicesDetails `json:"details,omitempty"`     // Additional device information
+	Firmware    string                                                  `json:"firmware,omitempty"`    // Firmware version of the device
+	Imei        string                                                  `json:"imei,omitempty"`        // IMEI of the device, if applicable
+	LanIP       string                                                  `json:"lanIp,omitempty"`       // LAN IP address of the device
+	Lat         *float64                                                `json:"lat,omitempty"`         // Latitude of the device
+	Lng         *float64                                                `json:"lng,omitempty"`         // Longitude of the device
+	Mac         string                                                  `json:"mac,omitempty"`         // MAC address of the device
+	Model       string                                                  `json:"model,omitempty"`       // Model of the device
+	Name        string                                                  `json:"name,omitempty"`        // Name of the device
+	NetworkID   string                                                  `json:"networkId,omitempty"`   // ID of the network the device belongs to
+	Notes       string                                                  `json:"notes,omitempty"`       // Notes for the device, limited to 255 characters
+	ProductType string                                                  `json:"productType,omitempty"` // Product type of the device
+	Serial      string                                                  `json:"serial,omitempty"`      // Serial number of the device
+	Tags        []string                                                `json:"tags,omitempty"`        // List of tags assigned to the device
+}
+type ResponseNetworksUpdateNetworkFloorPlanDevicesDetails struct {
+	Name  string `json:"name,omitempty"`  // Additional property name
+	Value string `json:"value,omitempty"` // Additional property value
+}
+type ResponseNetworksUpdateNetworkFloorPlanTopLeftCorner struct {
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
+}
+type ResponseNetworksUpdateNetworkFloorPlanTopRightCorner struct {
+	Lat *float64 `json:"lat,omitempty"` // Latitude
+	Lng *float64 `json:"lng,omitempty"` // Longitude
+}
 type ResponseNetworksGetNetworkGroupPolicies []ResponseItemNetworksGetNetworkGroupPolicies // Array of ResponseNetworksGetNetworkGroupPolicies
 type ResponseItemNetworksGetNetworkGroupPolicies struct {
-	Bandwidth                 *ResponseItemNetworksGetNetworkGroupPoliciesBandwidth                 `json:"bandwidth,omitempty"`                 //
-	BonjourForwarding         *ResponseItemNetworksGetNetworkGroupPoliciesBonjourForwarding         `json:"bonjourForwarding,omitempty"`         //
-	ContentFiltering          *ResponseItemNetworksGetNetworkGroupPoliciesContentFiltering          `json:"contentFiltering,omitempty"`          //
-	FirewallAndTrafficShaping *ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShaping `json:"firewallAndTrafficShaping,omitempty"` //
-	GroupPolicyID             string                                                                `json:"groupPolicyId,omitempty"`             //
-	Name                      string                                                                `json:"name,omitempty"`                      //
-	Scheduling                *ResponseItemNetworksGetNetworkGroupPoliciesScheduling                `json:"scheduling,omitempty"`                //
-	SplashAuthSettings        string                                                                `json:"splashAuthSettings,omitempty"`        //
-	VLANTagging               *ResponseItemNetworksGetNetworkGroupPoliciesVLANTagging               `json:"vlanTagging,omitempty"`               //
+	Bandwidth                 *ResponseItemNetworksGetNetworkGroupPoliciesBandwidth                 `json:"bandwidth,omitempty"`                 //     The bandwidth settings for clients bound to your group policy.
+	BonjourForwarding         *ResponseItemNetworksGetNetworkGroupPoliciesBonjourForwarding         `json:"bonjourForwarding,omitempty"`         // The Bonjour settings for your group policy. Only valid if your network has a wireless configuration.
+	ContentFiltering          *ResponseItemNetworksGetNetworkGroupPoliciesContentFiltering          `json:"contentFiltering,omitempty"`          // The content filtering settings for your group policy
+	FirewallAndTrafficShaping *ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShaping `json:"firewallAndTrafficShaping,omitempty"` //     The firewall and traffic shaping rules and settings for your policy.
+	GroupPolicyID             string                                                                `json:"groupPolicyId,omitempty"`             // The ID of the group policy
+	Scheduling                *ResponseItemNetworksGetNetworkGroupPoliciesScheduling                `json:"scheduling,omitempty"`                //     The schedule for the group policy. Schedules are applied to days of the week.
+	SplashAuthSettings        string                                                                `json:"splashAuthSettings,omitempty"`        // Whether clients bound to your policy will bypass splash authorization or behave according to the network's rules. Can be one of 'network default' or 'bypass'. Only available if your network has a wireless configuration.
+	VLANTagging               *ResponseItemNetworksGetNetworkGroupPoliciesVLANTagging               `json:"vlanTagging,omitempty"`               // The VLAN tagging settings for your group policy. Only available if your network has a wireless configuration.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesBandwidth struct {
-	BandwidthLimits *ResponseItemNetworksGetNetworkGroupPoliciesBandwidthBandwidthLimits `json:"bandwidthLimits,omitempty"` //
-	Settings        string                                                               `json:"settings,omitempty"`        //
+	BandwidthLimits *ResponseItemNetworksGetNetworkGroupPoliciesBandwidthBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth limits object, specifying upload and download speed for clients bound to the group policy. These are only enforced if 'settings' is set to 'custom'.
+	Settings        string                                                               `json:"settings,omitempty"`        // How bandwidth limits are enforced. Can be 'network default', 'ignore' or 'custom'.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesBandwidthBandwidthLimits struct {
-	LimitDown *int `json:"limitDown,omitempty"` //
-	LimitUp   *int `json:"limitUp,omitempty"`   //
+	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps). null indicates no limit
+	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps). null indicates no limit
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesBonjourForwarding struct {
-	Rules    *[]ResponseItemNetworksGetNetworkGroupPoliciesBonjourForwardingRules `json:"rules,omitempty"`    //
-	Settings string                                                               `json:"settings,omitempty"` //
+	Rules    *[]ResponseItemNetworksGetNetworkGroupPoliciesBonjourForwardingRules `json:"rules,omitempty"`    // A list of the Bonjour forwarding rules for your group policy. If 'settings' is set to 'custom', at least one rule must be specified.
+	Settings string                                                               `json:"settings,omitempty"` // How Bonjour rules are applied. Can be 'network default', 'ignore' or 'custom'.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesBonjourForwardingRules struct {
-	Description string   `json:"description,omitempty"` //
-	Services    []string `json:"services,omitempty"`    //
-	VLANID      string   `json:"vlanId,omitempty"`      //
+	Description string   `json:"description,omitempty"` // A description for your Bonjour forwarding rule. Optional.
+	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AirPlay', 'AFP', 'BitTorrent', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners' and 'SSH'
+	VLANID      string   `json:"vlanId,omitempty"`      // The ID of the service VLAN. Required.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesContentFiltering struct {
-	AllowedURLPatterns   *ResponseItemNetworksGetNetworkGroupPoliciesContentFilteringAllowedURLPatterns   `json:"allowedUrlPatterns,omitempty"`   //
-	BlockedURLCategories *ResponseItemNetworksGetNetworkGroupPoliciesContentFilteringBlockedURLCategories `json:"blockedUrlCategories,omitempty"` //
-	BlockedURLPatterns   *ResponseItemNetworksGetNetworkGroupPoliciesContentFilteringBlockedURLPatterns   `json:"blockedUrlPatterns,omitempty"`   //
+	AllowedURLPatterns   *ResponseItemNetworksGetNetworkGroupPoliciesContentFilteringAllowedURLPatterns   `json:"allowedUrlPatterns,omitempty"`   // Settings for allowed URL patterns
+	BlockedURLCategories *ResponseItemNetworksGetNetworkGroupPoliciesContentFilteringBlockedURLCategories `json:"blockedUrlCategories,omitempty"` // Settings for blocked URL categories
+	BlockedURLPatterns   *ResponseItemNetworksGetNetworkGroupPoliciesContentFilteringBlockedURLPatterns   `json:"blockedUrlPatterns,omitempty"`   // Settings for blocked URL patterns
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesContentFilteringAllowedURLPatterns struct {
-	Patterns []string `json:"patterns,omitempty"` //
-	Settings string   `json:"settings,omitempty"` //
+	Patterns []string `json:"patterns,omitempty"` // A list of URL patterns that are allowed
+	Settings string   `json:"settings,omitempty"` // How URL patterns are applied. Can be 'network default', 'append' or 'override'.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesContentFilteringBlockedURLCategories struct {
-	Categories []string `json:"categories,omitempty"` //
-	Settings   string   `json:"settings,omitempty"`   //
+	Categories []string `json:"categories,omitempty"` // A list of URL categories to block
+	Settings   string   `json:"settings,omitempty"`   // How URL categories are applied. Can be 'network default', 'append' or 'override'.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesContentFilteringBlockedURLPatterns struct {
-	Patterns []string `json:"patterns,omitempty"` //
-	Settings string   `json:"settings,omitempty"` //
+	Patterns []string `json:"patterns,omitempty"` // A list of URL patterns that are blocked
+	Settings string   `json:"settings,omitempty"` // How URL patterns are applied. Can be 'network default', 'append' or 'override'.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShaping struct {
-	L3FirewallRules     *[]ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingL3FirewallRules     `json:"l3FirewallRules,omitempty"`     //
-	L7FirewallRules     *[]ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingL7FirewallRules     `json:"l7FirewallRules,omitempty"`     //
-	Settings            string                                                                                     `json:"settings,omitempty"`            //
-	TrafficShapingRules *[]ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingTrafficShapingRules `json:"trafficShapingRules,omitempty"` //
+	L3FirewallRules     *[]ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingL3FirewallRules     `json:"l3FirewallRules,omitempty"`     // An ordered array of the L3 firewall rules
+	L7FirewallRules     *[]ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingL7FirewallRules     `json:"l7FirewallRules,omitempty"`     // An ordered array of L7 firewall rules
+	Settings            string                                                                                     `json:"settings,omitempty"`            // How firewall and traffic shaping rules are enforced. Can be 'network default', 'ignore' or 'custom'.
+	TrafficShapingRules *[]ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingTrafficShapingRules `json:"trafficShapingRules,omitempty"` //     An array of traffic shaping rules. Rules are applied in the order that     they are specified in. An empty list (or null) means no rules. Note that     you are allowed a maximum of 8 rules.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingL3FirewallRules struct {
-	Comment  string `json:"comment,omitempty"`  //
-	DestCidr string `json:"destCidr,omitempty"` //
-	DestPort string `json:"destPort,omitempty"` //
-	Policy   string `json:"policy,omitempty"`   //
-	Protocol string `json:"protocol,omitempty"` //
+	Comment  string `json:"comment,omitempty"`  // Description of the rule (optional)
+	DestCidr string `json:"destCidr,omitempty"` // Destination IP address (in IP or CIDR notation), a fully-qualified domain name (FQDN, if your network supports it) or 'any'.
+	DestPort string `json:"destPort,omitempty"` // Destination port (integer in the range 1-65535), a port range (e.g. 8080-9090), or 'any'
+	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
+	Protocol string `json:"protocol,omitempty"` // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingL7FirewallRules struct {
-	Policy string `json:"policy,omitempty"` //
-	Type   string `json:"type,omitempty"`   //
-	Value  string `json:"value,omitempty"`  //
+	Policy string `json:"policy,omitempty"` // The policy applied to matching traffic. Must be 'deny'.
+	Type   string `json:"type,omitempty"`   // Type of the L7 Rule. Must be 'application', 'applicationCategory', 'host', 'port' or 'ipRange'
+	Value  string `json:"value,omitempty"`  // The 'value' of what you want to block. If 'type' is 'host', 'port' or 'ipRange', 'value' must be a string matching either a hostname (e.g. somewhere.com), a port (e.g. 8080), or an IP range (e.g. 192.1.0.0/16). If 'type' is 'application' or 'applicationCategory', then 'value' must be an object with an ID for the application.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingTrafficShapingRules struct {
-	Definitions              *[]ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingTrafficShapingRulesDefinitions            `json:"definitions,omitempty"`              //
-	DscpTagValue             *int                                                                                                             `json:"dscpTagValue,omitempty"`             //
-	PcpTagValue              *int                                                                                                             `json:"pcpTagValue,omitempty"`              //
-	PerClientBandwidthLimits *ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimits `json:"perClientBandwidthLimits,omitempty"` //
+	Definitions              *[]ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingTrafficShapingRulesDefinitions            `json:"definitions,omitempty"`              //     A list of objects describing the definitions of your traffic shaping rule. At least one definition is required.
+	DscpTagValue             *int                                                                                                             `json:"dscpTagValue,omitempty"`             //     The DSCP tag applied by your rule. null means 'Do not change DSCP tag'.     For a list of possible tag values, use the trafficShaping/dscpTaggingOptions endpoint.
+	PcpTagValue              *int                                                                                                             `json:"pcpTagValue,omitempty"`              //     The PCP tag applied by your rule. Can be 0 (lowest priority) through 7 (highest priority).     null means 'Do not set PCP tag'.
+	PerClientBandwidthLimits *ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimits `json:"perClientBandwidthLimits,omitempty"` //     An object describing the bandwidth settings for your rule.
+	Priority                 string                                                                                                           `json:"priority,omitempty"`                 //     A string, indicating the priority level for packets bound to your rule.     Can be 'low', 'normal' or 'high'.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingTrafficShapingRulesDefinitions struct {
-	Type  string `json:"type,omitempty"`  //
-	Value string `json:"value,omitempty"` //
+	Type  string `json:"type,omitempty"`  // The type of definition. Can be one of 'application', 'applicationCategory', 'host', 'port', 'ipRange' or 'localNet'.
+	Value string `json:"value,omitempty"` //     If "type" is 'host', 'port', 'ipRange' or 'localNet', then "value" must be a string, matching either     a hostname (e.g. "somesite.com"), a port (e.g. 8080), or an IP range ("192.1.0.0",     "192.1.0.0/16", or "10.1.0.0/16:80"). 'localNet' also supports CIDR notation, excluding     custom ports.      If "type" is 'application' or 'applicationCategory', then "value" must be an object     with the structure { "id": "meraki:layer7/..." }, where "id" is the application category or     application ID (for a list of IDs for your network, use the trafficShaping/applicationCategories     endpoint).
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimits struct {
-	BandwidthLimits *ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimitsBandwidthLimits `json:"bandwidthLimits,omitempty"` //
-	Settings        string                                                                                                                          `json:"settings,omitempty"`        //
+	BandwidthLimits *ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimitsBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth limits object, specifying the upload ('limitUp') and download ('limitDown') speed in Kbps. These are only enforced if 'settings' is set to 'custom'.
+	Settings        string                                                                                                                          `json:"settings,omitempty"`        // How bandwidth limits are applied by your rule. Can be one of 'network default', 'ignore' or 'custom'.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimitsBandwidthLimits struct {
-	LimitDown *int `json:"limitDown,omitempty"` //
-	LimitUp   *int `json:"limitUp,omitempty"`   //
+	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps).
+	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps).
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesScheduling struct {
-	Enabled   *bool                                                           `json:"enabled,omitempty"`   //
-	Friday    *ResponseItemNetworksGetNetworkGroupPoliciesSchedulingFriday    `json:"friday,omitempty"`    //
-	Monday    *ResponseItemNetworksGetNetworkGroupPoliciesSchedulingMonday    `json:"monday,omitempty"`    //
-	Saturday  *ResponseItemNetworksGetNetworkGroupPoliciesSchedulingSaturday  `json:"saturday,omitempty"`  //
-	Sunday    *ResponseItemNetworksGetNetworkGroupPoliciesSchedulingSunday    `json:"sunday,omitempty"`    //
-	Thursday  *ResponseItemNetworksGetNetworkGroupPoliciesSchedulingThursday  `json:"thursday,omitempty"`  //
-	Tuesday   *ResponseItemNetworksGetNetworkGroupPoliciesSchedulingTuesday   `json:"tuesday,omitempty"`   //
-	Wednesday *ResponseItemNetworksGetNetworkGroupPoliciesSchedulingWednesday `json:"wednesday,omitempty"` //
+	Enabled   *bool                                                           `json:"enabled,omitempty"`   // Whether scheduling is enabled (true) or disabled (false). Defaults to false. If true, the schedule objects for each day of the week (monday - sunday) are parsed.
+	Friday    *ResponseItemNetworksGetNetworkGroupPoliciesSchedulingFriday    `json:"friday,omitempty"`    // The schedule object for Friday.
+	Monday    *ResponseItemNetworksGetNetworkGroupPoliciesSchedulingMonday    `json:"monday,omitempty"`    // The schedule object for Monday.
+	Saturday  *ResponseItemNetworksGetNetworkGroupPoliciesSchedulingSaturday  `json:"saturday,omitempty"`  // The schedule object for Saturday.
+	Sunday    *ResponseItemNetworksGetNetworkGroupPoliciesSchedulingSunday    `json:"sunday,omitempty"`    // The schedule object for Sunday.
+	Thursday  *ResponseItemNetworksGetNetworkGroupPoliciesSchedulingThursday  `json:"thursday,omitempty"`  // The schedule object for Thursday.
+	Tuesday   *ResponseItemNetworksGetNetworkGroupPoliciesSchedulingTuesday   `json:"tuesday,omitempty"`   // The schedule object for Tuesday.
+	Wednesday *ResponseItemNetworksGetNetworkGroupPoliciesSchedulingWednesday `json:"wednesday,omitempty"` // The schedule object for Wednesday.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesSchedulingFriday struct {
-	Active *bool  `json:"active,omitempty"` //
-	From   string `json:"from,omitempty"`   //
-	To     string `json:"to,omitempty"`     //
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesSchedulingMonday struct {
-	Active *bool  `json:"active,omitempty"` //
-	From   string `json:"from,omitempty"`   //
-	To     string `json:"to,omitempty"`     //
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesSchedulingSaturday struct {
-	Active *bool  `json:"active,omitempty"` //
-	From   string `json:"from,omitempty"`   //
-	To     string `json:"to,omitempty"`     //
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesSchedulingSunday struct {
-	Active *bool  `json:"active,omitempty"` //
-	From   string `json:"from,omitempty"`   //
-	To     string `json:"to,omitempty"`     //
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesSchedulingThursday struct {
-	Active *bool  `json:"active,omitempty"` //
-	From   string `json:"from,omitempty"`   //
-	To     string `json:"to,omitempty"`     //
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesSchedulingTuesday struct {
-	Active *bool  `json:"active,omitempty"` //
-	From   string `json:"from,omitempty"`   //
-	To     string `json:"to,omitempty"`     //
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesSchedulingWednesday struct {
-	Active *bool  `json:"active,omitempty"` //
-	From   string `json:"from,omitempty"`   //
-	To     string `json:"to,omitempty"`     //
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesVLANTagging struct {
-	Settings string `json:"settings,omitempty"` //
-	VLANID   string `json:"vlanId,omitempty"`   //
+	Settings string `json:"settings,omitempty"` // How VLAN tagging is applied. Can be 'network default', 'ignore' or 'custom'.
+	VLANID   string `json:"vlanId,omitempty"`   // The ID of the vlan you want to tag. This only applies if 'settings' is set to 'custom'.
 }
-type ResponseNetworksCreateNetworkGroupPolicy interface{}
+type ResponseNetworksCreateNetworkGroupPolicy struct {
+	Bandwidth                 *ResponseNetworksCreateNetworkGroupPolicyBandwidth                 `json:"bandwidth,omitempty"`                 //     The bandwidth settings for clients bound to your group policy.
+	BonjourForwarding         *ResponseNetworksCreateNetworkGroupPolicyBonjourForwarding         `json:"bonjourForwarding,omitempty"`         // The Bonjour settings for your group policy. Only valid if your network has a wireless configuration.
+	ContentFiltering          *ResponseNetworksCreateNetworkGroupPolicyContentFiltering          `json:"contentFiltering,omitempty"`          // The content filtering settings for your group policy
+	FirewallAndTrafficShaping *ResponseNetworksCreateNetworkGroupPolicyFirewallAndTrafficShaping `json:"firewallAndTrafficShaping,omitempty"` //     The firewall and traffic shaping rules and settings for your policy.
+	GroupPolicyID             string                                                             `json:"groupPolicyId,omitempty"`             // The ID of the group policy
+	Scheduling                *ResponseNetworksCreateNetworkGroupPolicyScheduling                `json:"scheduling,omitempty"`                //     The schedule for the group policy. Schedules are applied to days of the week.
+	SplashAuthSettings        string                                                             `json:"splashAuthSettings,omitempty"`        // Whether clients bound to your policy will bypass splash authorization or behave according to the network's rules. Can be one of 'network default' or 'bypass'. Only available if your network has a wireless configuration.
+	VLANTagging               *ResponseNetworksCreateNetworkGroupPolicyVLANTagging               `json:"vlanTagging,omitempty"`               // The VLAN tagging settings for your group policy. Only available if your network has a wireless configuration.
+}
+type ResponseNetworksCreateNetworkGroupPolicyBandwidth struct {
+	BandwidthLimits *ResponseNetworksCreateNetworkGroupPolicyBandwidthBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth limits object, specifying upload and download speed for clients bound to the group policy. These are only enforced if 'settings' is set to 'custom'.
+	Settings        string                                                            `json:"settings,omitempty"`        // How bandwidth limits are enforced. Can be 'network default', 'ignore' or 'custom'.
+}
+type ResponseNetworksCreateNetworkGroupPolicyBandwidthBandwidthLimits struct {
+	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps). null indicates no limit
+	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps). null indicates no limit
+}
+type ResponseNetworksCreateNetworkGroupPolicyBonjourForwarding struct {
+	Rules    *[]ResponseNetworksCreateNetworkGroupPolicyBonjourForwardingRules `json:"rules,omitempty"`    // A list of the Bonjour forwarding rules for your group policy. If 'settings' is set to 'custom', at least one rule must be specified.
+	Settings string                                                            `json:"settings,omitempty"` // How Bonjour rules are applied. Can be 'network default', 'ignore' or 'custom'.
+}
+type ResponseNetworksCreateNetworkGroupPolicyBonjourForwardingRules struct {
+	Description string   `json:"description,omitempty"` // A description for your Bonjour forwarding rule. Optional.
+	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AirPlay', 'AFP', 'BitTorrent', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners' and 'SSH'
+	VLANID      string   `json:"vlanId,omitempty"`      // The ID of the service VLAN. Required.
+}
+type ResponseNetworksCreateNetworkGroupPolicyContentFiltering struct {
+	AllowedURLPatterns   *ResponseNetworksCreateNetworkGroupPolicyContentFilteringAllowedURLPatterns   `json:"allowedUrlPatterns,omitempty"`   // Settings for allowed URL patterns
+	BlockedURLCategories *ResponseNetworksCreateNetworkGroupPolicyContentFilteringBlockedURLCategories `json:"blockedUrlCategories,omitempty"` // Settings for blocked URL categories
+	BlockedURLPatterns   *ResponseNetworksCreateNetworkGroupPolicyContentFilteringBlockedURLPatterns   `json:"blockedUrlPatterns,omitempty"`   // Settings for blocked URL patterns
+}
+type ResponseNetworksCreateNetworkGroupPolicyContentFilteringAllowedURLPatterns struct {
+	Patterns []string `json:"patterns,omitempty"` // A list of URL patterns that are allowed
+	Settings string   `json:"settings,omitempty"` // How URL patterns are applied. Can be 'network default', 'append' or 'override'.
+}
+type ResponseNetworksCreateNetworkGroupPolicyContentFilteringBlockedURLCategories struct {
+	Categories []string `json:"categories,omitempty"` // A list of URL categories to block
+	Settings   string   `json:"settings,omitempty"`   // How URL categories are applied. Can be 'network default', 'append' or 'override'.
+}
+type ResponseNetworksCreateNetworkGroupPolicyContentFilteringBlockedURLPatterns struct {
+	Patterns []string `json:"patterns,omitempty"` // A list of URL patterns that are blocked
+	Settings string   `json:"settings,omitempty"` // How URL patterns are applied. Can be 'network default', 'append' or 'override'.
+}
+type ResponseNetworksCreateNetworkGroupPolicyFirewallAndTrafficShaping struct {
+	L3FirewallRules     *[]ResponseNetworksCreateNetworkGroupPolicyFirewallAndTrafficShapingL3FirewallRules     `json:"l3FirewallRules,omitempty"`     // An ordered array of the L3 firewall rules
+	L7FirewallRules     *[]ResponseNetworksCreateNetworkGroupPolicyFirewallAndTrafficShapingL7FirewallRules     `json:"l7FirewallRules,omitempty"`     // An ordered array of L7 firewall rules
+	Settings            string                                                                                  `json:"settings,omitempty"`            // How firewall and traffic shaping rules are enforced. Can be 'network default', 'ignore' or 'custom'.
+	TrafficShapingRules *[]ResponseNetworksCreateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRules `json:"trafficShapingRules,omitempty"` //     An array of traffic shaping rules. Rules are applied in the order that     they are specified in. An empty list (or null) means no rules. Note that     you are allowed a maximum of 8 rules.
+}
+type ResponseNetworksCreateNetworkGroupPolicyFirewallAndTrafficShapingL3FirewallRules struct {
+	Comment  string `json:"comment,omitempty"`  // Description of the rule (optional)
+	DestCidr string `json:"destCidr,omitempty"` // Destination IP address (in IP or CIDR notation), a fully-qualified domain name (FQDN, if your network supports it) or 'any'.
+	DestPort string `json:"destPort,omitempty"` // Destination port (integer in the range 1-65535), a port range (e.g. 8080-9090), or 'any'
+	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
+	Protocol string `json:"protocol,omitempty"` // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
+}
+type ResponseNetworksCreateNetworkGroupPolicyFirewallAndTrafficShapingL7FirewallRules struct {
+	Policy string `json:"policy,omitempty"` // The policy applied to matching traffic. Must be 'deny'.
+	Type   string `json:"type,omitempty"`   // Type of the L7 Rule. Must be 'application', 'applicationCategory', 'host', 'port' or 'ipRange'
+	Value  string `json:"value,omitempty"`  // The 'value' of what you want to block. If 'type' is 'host', 'port' or 'ipRange', 'value' must be a string matching either a hostname (e.g. somewhere.com), a port (e.g. 8080), or an IP range (e.g. 192.1.0.0/16). If 'type' is 'application' or 'applicationCategory', then 'value' must be an object with an ID for the application.
+}
+type ResponseNetworksCreateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRules struct {
+	Definitions              *[]ResponseNetworksCreateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesDefinitions            `json:"definitions,omitempty"`              //     A list of objects describing the definitions of your traffic shaping rule. At least one definition is required.
+	DscpTagValue             *int                                                                                                          `json:"dscpTagValue,omitempty"`             //     The DSCP tag applied by your rule. null means 'Do not change DSCP tag'.     For a list of possible tag values, use the trafficShaping/dscpTaggingOptions endpoint.
+	PcpTagValue              *int                                                                                                          `json:"pcpTagValue,omitempty"`              //     The PCP tag applied by your rule. Can be 0 (lowest priority) through 7 (highest priority).     null means 'Do not set PCP tag'.
+	PerClientBandwidthLimits *ResponseNetworksCreateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimits `json:"perClientBandwidthLimits,omitempty"` //     An object describing the bandwidth settings for your rule.
+	Priority                 string                                                                                                        `json:"priority,omitempty"`                 //     A string, indicating the priority level for packets bound to your rule.     Can be 'low', 'normal' or 'high'.
+}
+type ResponseNetworksCreateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesDefinitions struct {
+	Type  string `json:"type,omitempty"`  // The type of definition. Can be one of 'application', 'applicationCategory', 'host', 'port', 'ipRange' or 'localNet'.
+	Value string `json:"value,omitempty"` //     If "type" is 'host', 'port', 'ipRange' or 'localNet', then "value" must be a string, matching either     a hostname (e.g. "somesite.com"), a port (e.g. 8080), or an IP range ("192.1.0.0",     "192.1.0.0/16", or "10.1.0.0/16:80"). 'localNet' also supports CIDR notation, excluding     custom ports.      If "type" is 'application' or 'applicationCategory', then "value" must be an object     with the structure { "id": "meraki:layer7/..." }, where "id" is the application category or     application ID (for a list of IDs for your network, use the trafficShaping/applicationCategories     endpoint).
+}
+type ResponseNetworksCreateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimits struct {
+	BandwidthLimits *ResponseNetworksCreateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimitsBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth limits object, specifying the upload ('limitUp') and download ('limitDown') speed in Kbps. These are only enforced if 'settings' is set to 'custom'.
+	Settings        string                                                                                                                       `json:"settings,omitempty"`        // How bandwidth limits are applied by your rule. Can be one of 'network default', 'ignore' or 'custom'.
+}
+type ResponseNetworksCreateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimitsBandwidthLimits struct {
+	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps).
+	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps).
+}
+type ResponseNetworksCreateNetworkGroupPolicyScheduling struct {
+	Enabled   *bool                                                        `json:"enabled,omitempty"`   // Whether scheduling is enabled (true) or disabled (false). Defaults to false. If true, the schedule objects for each day of the week (monday - sunday) are parsed.
+	Friday    *ResponseNetworksCreateNetworkGroupPolicySchedulingFriday    `json:"friday,omitempty"`    // The schedule object for Friday.
+	Monday    *ResponseNetworksCreateNetworkGroupPolicySchedulingMonday    `json:"monday,omitempty"`    // The schedule object for Monday.
+	Saturday  *ResponseNetworksCreateNetworkGroupPolicySchedulingSaturday  `json:"saturday,omitempty"`  // The schedule object for Saturday.
+	Sunday    *ResponseNetworksCreateNetworkGroupPolicySchedulingSunday    `json:"sunday,omitempty"`    // The schedule object for Sunday.
+	Thursday  *ResponseNetworksCreateNetworkGroupPolicySchedulingThursday  `json:"thursday,omitempty"`  // The schedule object for Thursday.
+	Tuesday   *ResponseNetworksCreateNetworkGroupPolicySchedulingTuesday   `json:"tuesday,omitempty"`   // The schedule object for Tuesday.
+	Wednesday *ResponseNetworksCreateNetworkGroupPolicySchedulingWednesday `json:"wednesday,omitempty"` // The schedule object for Wednesday.
+}
+type ResponseNetworksCreateNetworkGroupPolicySchedulingFriday struct {
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
+}
+type ResponseNetworksCreateNetworkGroupPolicySchedulingMonday struct {
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
+}
+type ResponseNetworksCreateNetworkGroupPolicySchedulingSaturday struct {
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
+}
+type ResponseNetworksCreateNetworkGroupPolicySchedulingSunday struct {
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
+}
+type ResponseNetworksCreateNetworkGroupPolicySchedulingThursday struct {
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
+}
+type ResponseNetworksCreateNetworkGroupPolicySchedulingTuesday struct {
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
+}
+type ResponseNetworksCreateNetworkGroupPolicySchedulingWednesday struct {
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
+}
+type ResponseNetworksCreateNetworkGroupPolicyVLANTagging struct {
+	Settings string `json:"settings,omitempty"` // How VLAN tagging is applied. Can be 'network default', 'ignore' or 'custom'.
+	VLANID   string `json:"vlanId,omitempty"`   // The ID of the vlan you want to tag. This only applies if 'settings' is set to 'custom'.
+}
 type ResponseNetworksGetNetworkGroupPolicy struct {
-	Bandwidth                 *ResponseNetworksGetNetworkGroupPolicyBandwidth                 `json:"bandwidth,omitempty"`                 //
-	BonjourForwarding         *ResponseNetworksGetNetworkGroupPolicyBonjourForwarding         `json:"bonjourForwarding,omitempty"`         //
-	ContentFiltering          *ResponseNetworksGetNetworkGroupPolicyContentFiltering          `json:"contentFiltering,omitempty"`          //
-	FirewallAndTrafficShaping *ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShaping `json:"firewallAndTrafficShaping,omitempty"` //
-	GroupPolicyID             string                                                          `json:"groupPolicyId,omitempty"`             //
-	Name                      string                                                          `json:"name,omitempty"`                      //
-	Scheduling                *ResponseNetworksGetNetworkGroupPolicyScheduling                `json:"scheduling,omitempty"`                //
-	SplashAuthSettings        string                                                          `json:"splashAuthSettings,omitempty"`        //
-	VLANTagging               *ResponseNetworksGetNetworkGroupPolicyVLANTagging               `json:"vlanTagging,omitempty"`               //
+	Bandwidth                 *ResponseNetworksGetNetworkGroupPolicyBandwidth                 `json:"bandwidth,omitempty"`                 //     The bandwidth settings for clients bound to your group policy.
+	BonjourForwarding         *ResponseNetworksGetNetworkGroupPolicyBonjourForwarding         `json:"bonjourForwarding,omitempty"`         // The Bonjour settings for your group policy. Only valid if your network has a wireless configuration.
+	ContentFiltering          *ResponseNetworksGetNetworkGroupPolicyContentFiltering          `json:"contentFiltering,omitempty"`          // The content filtering settings for your group policy
+	FirewallAndTrafficShaping *ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShaping `json:"firewallAndTrafficShaping,omitempty"` //     The firewall and traffic shaping rules and settings for your policy.
+	GroupPolicyID             string                                                          `json:"groupPolicyId,omitempty"`             // The ID of the group policy
+	Name                      string                                                          `json:"name,omitempty"`                      // The ID of the group policy
+	Scheduling                *ResponseNetworksGetNetworkGroupPolicyScheduling                `json:"scheduling,omitempty"`                //     The schedule for the group policy. Schedules are applied to days of the week.
+	SplashAuthSettings        string                                                          `json:"splashAuthSettings,omitempty"`        // Whether clients bound to your policy will bypass splash authorization or behave according to the network's rules. Can be one of 'network default' or 'bypass'. Only available if your network has a wireless configuration.
+	VLANTagging               *ResponseNetworksGetNetworkGroupPolicyVLANTagging               `json:"vlanTagging,omitempty"`               // The VLAN tagging settings for your group policy. Only available if your network has a wireless configuration.
 }
 type ResponseNetworksGetNetworkGroupPolicyBandwidth struct {
-	BandwidthLimits *ResponseNetworksGetNetworkGroupPolicyBandwidthBandwidthLimits `json:"bandwidthLimits,omitempty"` //
-	Settings        string                                                         `json:"settings,omitempty"`        //
+	BandwidthLimits *ResponseNetworksGetNetworkGroupPolicyBandwidthBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth limits object, specifying upload and download speed for clients bound to the group policy. These are only enforced if 'settings' is set to 'custom'.
+	Settings        string                                                         `json:"settings,omitempty"`        // How bandwidth limits are enforced. Can be 'network default', 'ignore' or 'custom'.
 }
 type ResponseNetworksGetNetworkGroupPolicyBandwidthBandwidthLimits struct {
-	LimitDown *int `json:"limitDown,omitempty"` //
-	LimitUp   *int `json:"limitUp,omitempty"`   //
+	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps). null indicates no limit
+	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps). null indicates no limit
 }
 type ResponseNetworksGetNetworkGroupPolicyBonjourForwarding struct {
-	Rules    *[]ResponseNetworksGetNetworkGroupPolicyBonjourForwardingRules `json:"rules,omitempty"`    //
-	Settings string                                                         `json:"settings,omitempty"` //
+	Rules    *[]ResponseNetworksGetNetworkGroupPolicyBonjourForwardingRules `json:"rules,omitempty"`    // A list of the Bonjour forwarding rules for your group policy. If 'settings' is set to 'custom', at least one rule must be specified.
+	Settings string                                                         `json:"settings,omitempty"` // How Bonjour rules are applied. Can be 'network default', 'ignore' or 'custom'.
 }
 type ResponseNetworksGetNetworkGroupPolicyBonjourForwardingRules struct {
-	Description string   `json:"description,omitempty"` //
-	Services    []string `json:"services,omitempty"`    //
-	VLANID      string   `json:"vlanId,omitempty"`      //
+	Description string   `json:"description,omitempty"` // A description for your Bonjour forwarding rule. Optional.
+	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AirPlay', 'AFP', 'BitTorrent', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners' and 'SSH'
+	VLANID      string   `json:"vlanId,omitempty"`      // The ID of the service VLAN. Required.
 }
 type ResponseNetworksGetNetworkGroupPolicyContentFiltering struct {
-	AllowedURLPatterns   *ResponseNetworksGetNetworkGroupPolicyContentFilteringAllowedURLPatterns   `json:"allowedUrlPatterns,omitempty"`   //
-	BlockedURLCategories *ResponseNetworksGetNetworkGroupPolicyContentFilteringBlockedURLCategories `json:"blockedUrlCategories,omitempty"` //
-	BlockedURLPatterns   *ResponseNetworksGetNetworkGroupPolicyContentFilteringBlockedURLPatterns   `json:"blockedUrlPatterns,omitempty"`   //
+	AllowedURLPatterns   *ResponseNetworksGetNetworkGroupPolicyContentFilteringAllowedURLPatterns   `json:"allowedUrlPatterns,omitempty"`   // Settings for allowed URL patterns
+	BlockedURLCategories *ResponseNetworksGetNetworkGroupPolicyContentFilteringBlockedURLCategories `json:"blockedUrlCategories,omitempty"` // Settings for blocked URL categories
+	BlockedURLPatterns   *ResponseNetworksGetNetworkGroupPolicyContentFilteringBlockedURLPatterns   `json:"blockedUrlPatterns,omitempty"`   // Settings for blocked URL patterns
 }
 type ResponseNetworksGetNetworkGroupPolicyContentFilteringAllowedURLPatterns struct {
-	Patterns []string `json:"patterns,omitempty"` //
-	Settings string   `json:"settings,omitempty"` //
+	Patterns []string `json:"patterns,omitempty"` // A list of URL patterns that are allowed
+	Settings string   `json:"settings,omitempty"` // How URL patterns are applied. Can be 'network default', 'append' or 'override'.
 }
 type ResponseNetworksGetNetworkGroupPolicyContentFilteringBlockedURLCategories struct {
-	Categories []string `json:"categories,omitempty"` //
-	Settings   string   `json:"settings,omitempty"`   //
+	Categories []string `json:"categories,omitempty"` // A list of URL categories to block
+	Settings   string   `json:"settings,omitempty"`   // How URL categories are applied. Can be 'network default', 'append' or 'override'.
 }
 type ResponseNetworksGetNetworkGroupPolicyContentFilteringBlockedURLPatterns struct {
-	Patterns []string `json:"patterns,omitempty"` //
-	Settings string   `json:"settings,omitempty"` //
+	Patterns []string `json:"patterns,omitempty"` // A list of URL patterns that are blocked
+	Settings string   `json:"settings,omitempty"` // How URL patterns are applied. Can be 'network default', 'append' or 'override'.
 }
 type ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShaping struct {
-	L3FirewallRules     *[]ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingL3FirewallRules     `json:"l3FirewallRules,omitempty"`     //
-	L7FirewallRules     *[]ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingL7FirewallRules     `json:"l7FirewallRules,omitempty"`     //
-	Settings            string                                                                               `json:"settings,omitempty"`            //
-	TrafficShapingRules *[]ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRules `json:"trafficShapingRules,omitempty"` //
+	L3FirewallRules     *[]ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingL3FirewallRules     `json:"l3FirewallRules,omitempty"`     // An ordered array of the L3 firewall rules
+	L7FirewallRules     *[]ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingL7FirewallRules     `json:"l7FirewallRules,omitempty"`     // An ordered array of L7 firewall rules
+	Settings            string                                                                               `json:"settings,omitempty"`            // How firewall and traffic shaping rules are enforced. Can be 'network default', 'ignore' or 'custom'.
+	TrafficShapingRules *[]ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRules `json:"trafficShapingRules,omitempty"` //     An array of traffic shaping rules. Rules are applied in the order that     they are specified in. An empty list (or null) means no rules. Note that     you are allowed a maximum of 8 rules.
 }
 type ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingL3FirewallRules struct {
-	Comment  string `json:"comment,omitempty"`  //
-	DestCidr string `json:"destCidr,omitempty"` //
-	DestPort string `json:"destPort,omitempty"` //
-	Policy   string `json:"policy,omitempty"`   //
-	Protocol string `json:"protocol,omitempty"` //
+	Comment  string `json:"comment,omitempty"`  // Description of the rule (optional)
+	DestCidr string `json:"destCidr,omitempty"` // Destination IP address (in IP or CIDR notation), a fully-qualified domain name (FQDN, if your network supports it) or 'any'.
+	DestPort string `json:"destPort,omitempty"` // Destination port (integer in the range 1-65535), a port range (e.g. 8080-9090), or 'any'
+	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
+	Protocol string `json:"protocol,omitempty"` // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
 }
 type ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingL7FirewallRules struct {
-	Policy string `json:"policy,omitempty"` //
-	Type   string `json:"type,omitempty"`   //
-	Value  string `json:"value,omitempty"`  //
+	Policy string `json:"policy,omitempty"` // The policy applied to matching traffic. Must be 'deny'.
+	Type   string `json:"type,omitempty"`   // Type of the L7 Rule. Must be 'application', 'applicationCategory', 'host', 'port' or 'ipRange'
+	Value  string `json:"value,omitempty"`  // The 'value' of what you want to block. If 'type' is 'host', 'port' or 'ipRange', 'value' must be a string matching either a hostname (e.g. somewhere.com), a port (e.g. 8080), or an IP range (e.g. 192.1.0.0/16). If 'type' is 'application' or 'applicationCategory', then 'value' must be an object with an ID for the application.
 }
 type ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRules struct {
-	Definitions              *[]ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesDefinitions            `json:"definitions,omitempty"`              //
-	DscpTagValue             *int                                                                                                       `json:"dscpTagValue,omitempty"`             //
-	PcpTagValue              *int                                                                                                       `json:"pcpTagValue,omitempty"`              //
-	PerClientBandwidthLimits *ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimits `json:"perClientBandwidthLimits,omitempty"` //
+	Definitions              *[]ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesDefinitions            `json:"definitions,omitempty"`              //     A list of objects describing the definitions of your traffic shaping rule. At least one definition is required.
+	DscpTagValue             *int                                                                                                       `json:"dscpTagValue,omitempty"`             //     The DSCP tag applied by your rule. null means 'Do not change DSCP tag'.     For a list of possible tag values, use the trafficShaping/dscpTaggingOptions endpoint.
+	PcpTagValue              *int                                                                                                       `json:"pcpTagValue,omitempty"`              //     The PCP tag applied by your rule. Can be 0 (lowest priority) through 7 (highest priority).     null means 'Do not set PCP tag'.
+	PerClientBandwidthLimits *ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimits `json:"perClientBandwidthLimits,omitempty"` //     An object describing the bandwidth settings for your rule.
+	Priority                 string                                                                                                     `json:"priority,omitempty"`                 //     A string, indicating the priority level for packets bound to your rule.     Can be 'low', 'normal' or 'high'.
 }
 type ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesDefinitions struct {
-	Type  string `json:"type,omitempty"`  //
-	Value string `json:"value,omitempty"` //
+	Type  string `json:"type,omitempty"`  // The type of definition. Can be one of 'application', 'applicationCategory', 'host', 'port', 'ipRange' or 'localNet'.
+	Value string `json:"value,omitempty"` //     If "type" is 'host', 'port', 'ipRange' or 'localNet', then "value" must be a string, matching either     a hostname (e.g. "somesite.com"), a port (e.g. 8080), or an IP range ("192.1.0.0",     "192.1.0.0/16", or "10.1.0.0/16:80"). 'localNet' also supports CIDR notation, excluding     custom ports.      If "type" is 'application' or 'applicationCategory', then "value" must be an object     with the structure { "id": "meraki:layer7/..." }, where "id" is the application category or     application ID (for a list of IDs for your network, use the trafficShaping/applicationCategories     endpoint).
 }
 type ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimits struct {
-	BandwidthLimits *ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimitsBandwidthLimits `json:"bandwidthLimits,omitempty"` //
-	Settings        string                                                                                                                    `json:"settings,omitempty"`        //
+	BandwidthLimits *ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimitsBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth limits object, specifying the upload ('limitUp') and download ('limitDown') speed in Kbps. These are only enforced if 'settings' is set to 'custom'.
+	Settings        string                                                                                                                    `json:"settings,omitempty"`        // How bandwidth limits are applied by your rule. Can be one of 'network default', 'ignore' or 'custom'.
 }
 type ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimitsBandwidthLimits struct {
-	LimitDown *int `json:"limitDown,omitempty"` //
-	LimitUp   *int `json:"limitUp,omitempty"`   //
+	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps).
+	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps).
 }
 type ResponseNetworksGetNetworkGroupPolicyScheduling struct {
-	Enabled   *bool                                                     `json:"enabled,omitempty"`   //
-	Friday    *ResponseNetworksGetNetworkGroupPolicySchedulingFriday    `json:"friday,omitempty"`    //
-	Monday    *ResponseNetworksGetNetworkGroupPolicySchedulingMonday    `json:"monday,omitempty"`    //
-	Saturday  *ResponseNetworksGetNetworkGroupPolicySchedulingSaturday  `json:"saturday,omitempty"`  //
-	Sunday    *ResponseNetworksGetNetworkGroupPolicySchedulingSunday    `json:"sunday,omitempty"`    //
-	Thursday  *ResponseNetworksGetNetworkGroupPolicySchedulingThursday  `json:"thursday,omitempty"`  //
-	Tuesday   *ResponseNetworksGetNetworkGroupPolicySchedulingTuesday   `json:"tuesday,omitempty"`   //
-	Wednesday *ResponseNetworksGetNetworkGroupPolicySchedulingWednesday `json:"wednesday,omitempty"` //
+	Enabled   *bool                                                     `json:"enabled,omitempty"`   // Whether scheduling is enabled (true) or disabled (false). Defaults to false. If true, the schedule objects for each day of the week (monday - sunday) are parsed.
+	Friday    *ResponseNetworksGetNetworkGroupPolicySchedulingFriday    `json:"friday,omitempty"`    // The schedule object for Friday.
+	Monday    *ResponseNetworksGetNetworkGroupPolicySchedulingMonday    `json:"monday,omitempty"`    // The schedule object for Monday.
+	Saturday  *ResponseNetworksGetNetworkGroupPolicySchedulingSaturday  `json:"saturday,omitempty"`  // The schedule object for Saturday.
+	Sunday    *ResponseNetworksGetNetworkGroupPolicySchedulingSunday    `json:"sunday,omitempty"`    // The schedule object for Sunday.
+	Thursday  *ResponseNetworksGetNetworkGroupPolicySchedulingThursday  `json:"thursday,omitempty"`  // The schedule object for Thursday.
+	Tuesday   *ResponseNetworksGetNetworkGroupPolicySchedulingTuesday   `json:"tuesday,omitempty"`   // The schedule object for Tuesday.
+	Wednesday *ResponseNetworksGetNetworkGroupPolicySchedulingWednesday `json:"wednesday,omitempty"` // The schedule object for Wednesday.
 }
 type ResponseNetworksGetNetworkGroupPolicySchedulingFriday struct {
-	Active *bool  `json:"active,omitempty"` //
-	From   string `json:"from,omitempty"`   //
-	To     string `json:"to,omitempty"`     //
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
 }
 type ResponseNetworksGetNetworkGroupPolicySchedulingMonday struct {
-	Active *bool  `json:"active,omitempty"` //
-	From   string `json:"from,omitempty"`   //
-	To     string `json:"to,omitempty"`     //
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
 }
 type ResponseNetworksGetNetworkGroupPolicySchedulingSaturday struct {
-	Active *bool  `json:"active,omitempty"` //
-	From   string `json:"from,omitempty"`   //
-	To     string `json:"to,omitempty"`     //
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
 }
 type ResponseNetworksGetNetworkGroupPolicySchedulingSunday struct {
-	Active *bool  `json:"active,omitempty"` //
-	From   string `json:"from,omitempty"`   //
-	To     string `json:"to,omitempty"`     //
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
 }
 type ResponseNetworksGetNetworkGroupPolicySchedulingThursday struct {
-	Active *bool  `json:"active,omitempty"` //
-	From   string `json:"from,omitempty"`   //
-	To     string `json:"to,omitempty"`     //
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
 }
 type ResponseNetworksGetNetworkGroupPolicySchedulingTuesday struct {
-	Active *bool  `json:"active,omitempty"` //
-	From   string `json:"from,omitempty"`   //
-	To     string `json:"to,omitempty"`     //
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
 }
 type ResponseNetworksGetNetworkGroupPolicySchedulingWednesday struct {
-	Active *bool  `json:"active,omitempty"` //
-	From   string `json:"from,omitempty"`   //
-	To     string `json:"to,omitempty"`     //
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
 }
 type ResponseNetworksGetNetworkGroupPolicyVLANTagging struct {
-	Settings string `json:"settings,omitempty"` //
-	VLANID   string `json:"vlanId,omitempty"`   //
+	Settings string `json:"settings,omitempty"` // How VLAN tagging is applied. Can be 'network default', 'ignore' or 'custom'.
+	VLANID   string `json:"vlanId,omitempty"`   // The ID of the vlan you want to tag. This only applies if 'settings' is set to 'custom'.
 }
-type ResponseNetworksUpdateNetworkGroupPolicy interface{}
+type ResponseNetworksUpdateNetworkGroupPolicy struct {
+	Bandwidth                 *ResponseNetworksUpdateNetworkGroupPolicyBandwidth                 `json:"bandwidth,omitempty"`                 //     The bandwidth settings for clients bound to your group policy.
+	BonjourForwarding         *ResponseNetworksUpdateNetworkGroupPolicyBonjourForwarding         `json:"bonjourForwarding,omitempty"`         // The Bonjour settings for your group policy. Only valid if your network has a wireless configuration.
+	ContentFiltering          *ResponseNetworksUpdateNetworkGroupPolicyContentFiltering          `json:"contentFiltering,omitempty"`          // The content filtering settings for your group policy
+	FirewallAndTrafficShaping *ResponseNetworksUpdateNetworkGroupPolicyFirewallAndTrafficShaping `json:"firewallAndTrafficShaping,omitempty"` //     The firewall and traffic shaping rules and settings for your policy.
+	GroupPolicyID             string                                                             `json:"groupPolicyId,omitempty"`             // The ID of the group policy
+	Scheduling                *ResponseNetworksUpdateNetworkGroupPolicyScheduling                `json:"scheduling,omitempty"`                //     The schedule for the group policy. Schedules are applied to days of the week.
+	SplashAuthSettings        string                                                             `json:"splashAuthSettings,omitempty"`        // Whether clients bound to your policy will bypass splash authorization or behave according to the network's rules. Can be one of 'network default' or 'bypass'. Only available if your network has a wireless configuration.
+	VLANTagging               *ResponseNetworksUpdateNetworkGroupPolicyVLANTagging               `json:"vlanTagging,omitempty"`               // The VLAN tagging settings for your group policy. Only available if your network has a wireless configuration.
+}
+type ResponseNetworksUpdateNetworkGroupPolicyBandwidth struct {
+	BandwidthLimits *ResponseNetworksUpdateNetworkGroupPolicyBandwidthBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth limits object, specifying upload and download speed for clients bound to the group policy. These are only enforced if 'settings' is set to 'custom'.
+	Settings        string                                                            `json:"settings,omitempty"`        // How bandwidth limits are enforced. Can be 'network default', 'ignore' or 'custom'.
+}
+type ResponseNetworksUpdateNetworkGroupPolicyBandwidthBandwidthLimits struct {
+	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps). null indicates no limit
+	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps). null indicates no limit
+}
+type ResponseNetworksUpdateNetworkGroupPolicyBonjourForwarding struct {
+	Rules    *[]ResponseNetworksUpdateNetworkGroupPolicyBonjourForwardingRules `json:"rules,omitempty"`    // A list of the Bonjour forwarding rules for your group policy. If 'settings' is set to 'custom', at least one rule must be specified.
+	Settings string                                                            `json:"settings,omitempty"` // How Bonjour rules are applied. Can be 'network default', 'ignore' or 'custom'.
+}
+type ResponseNetworksUpdateNetworkGroupPolicyBonjourForwardingRules struct {
+	Description string   `json:"description,omitempty"` // A description for your Bonjour forwarding rule. Optional.
+	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AirPlay', 'AFP', 'BitTorrent', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners' and 'SSH'
+	VLANID      string   `json:"vlanId,omitempty"`      // The ID of the service VLAN. Required.
+}
+type ResponseNetworksUpdateNetworkGroupPolicyContentFiltering struct {
+	AllowedURLPatterns   *ResponseNetworksUpdateNetworkGroupPolicyContentFilteringAllowedURLPatterns   `json:"allowedUrlPatterns,omitempty"`   // Settings for allowed URL patterns
+	BlockedURLCategories *ResponseNetworksUpdateNetworkGroupPolicyContentFilteringBlockedURLCategories `json:"blockedUrlCategories,omitempty"` // Settings for blocked URL categories
+	BlockedURLPatterns   *ResponseNetworksUpdateNetworkGroupPolicyContentFilteringBlockedURLPatterns   `json:"blockedUrlPatterns,omitempty"`   // Settings for blocked URL patterns
+}
+type ResponseNetworksUpdateNetworkGroupPolicyContentFilteringAllowedURLPatterns struct {
+	Patterns []string `json:"patterns,omitempty"` // A list of URL patterns that are allowed
+	Settings string   `json:"settings,omitempty"` // How URL patterns are applied. Can be 'network default', 'append' or 'override'.
+}
+type ResponseNetworksUpdateNetworkGroupPolicyContentFilteringBlockedURLCategories struct {
+	Categories []string `json:"categories,omitempty"` // A list of URL categories to block
+	Settings   string   `json:"settings,omitempty"`   // How URL categories are applied. Can be 'network default', 'append' or 'override'.
+}
+type ResponseNetworksUpdateNetworkGroupPolicyContentFilteringBlockedURLPatterns struct {
+	Patterns []string `json:"patterns,omitempty"` // A list of URL patterns that are blocked
+	Settings string   `json:"settings,omitempty"` // How URL patterns are applied. Can be 'network default', 'append' or 'override'.
+}
+type ResponseNetworksUpdateNetworkGroupPolicyFirewallAndTrafficShaping struct {
+	L3FirewallRules     *[]ResponseNetworksUpdateNetworkGroupPolicyFirewallAndTrafficShapingL3FirewallRules     `json:"l3FirewallRules,omitempty"`     // An ordered array of the L3 firewall rules
+	L7FirewallRules     *[]ResponseNetworksUpdateNetworkGroupPolicyFirewallAndTrafficShapingL7FirewallRules     `json:"l7FirewallRules,omitempty"`     // An ordered array of L7 firewall rules
+	Settings            string                                                                                  `json:"settings,omitempty"`            // How firewall and traffic shaping rules are enforced. Can be 'network default', 'ignore' or 'custom'.
+	TrafficShapingRules *[]ResponseNetworksUpdateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRules `json:"trafficShapingRules,omitempty"` //     An array of traffic shaping rules. Rules are applied in the order that     they are specified in. An empty list (or null) means no rules. Note that     you are allowed a maximum of 8 rules.
+}
+type ResponseNetworksUpdateNetworkGroupPolicyFirewallAndTrafficShapingL3FirewallRules struct {
+	Comment  string `json:"comment,omitempty"`  // Description of the rule (optional)
+	DestCidr string `json:"destCidr,omitempty"` // Destination IP address (in IP or CIDR notation), a fully-qualified domain name (FQDN, if your network supports it) or 'any'.
+	DestPort string `json:"destPort,omitempty"` // Destination port (integer in the range 1-65535), a port range (e.g. 8080-9090), or 'any'
+	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
+	Protocol string `json:"protocol,omitempty"` // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
+}
+type ResponseNetworksUpdateNetworkGroupPolicyFirewallAndTrafficShapingL7FirewallRules struct {
+	Policy string `json:"policy,omitempty"` // The policy applied to matching traffic. Must be 'deny'.
+	Type   string `json:"type,omitempty"`   // Type of the L7 Rule. Must be 'application', 'applicationCategory', 'host', 'port' or 'ipRange'
+	Value  string `json:"value,omitempty"`  // The 'value' of what you want to block. If 'type' is 'host', 'port' or 'ipRange', 'value' must be a string matching either a hostname (e.g. somewhere.com), a port (e.g. 8080), or an IP range (e.g. 192.1.0.0/16). If 'type' is 'application' or 'applicationCategory', then 'value' must be an object with an ID for the application.
+}
+type ResponseNetworksUpdateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRules struct {
+	Definitions              *[]ResponseNetworksUpdateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesDefinitions            `json:"definitions,omitempty"`              //     A list of objects describing the definitions of your traffic shaping rule. At least one definition is required.
+	DscpTagValue             *int                                                                                                          `json:"dscpTagValue,omitempty"`             //     The DSCP tag applied by your rule. null means 'Do not change DSCP tag'.     For a list of possible tag values, use the trafficShaping/dscpTaggingOptions endpoint.
+	PcpTagValue              *int                                                                                                          `json:"pcpTagValue,omitempty"`              //     The PCP tag applied by your rule. Can be 0 (lowest priority) through 7 (highest priority).     null means 'Do not set PCP tag'.
+	PerClientBandwidthLimits *ResponseNetworksUpdateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimits `json:"perClientBandwidthLimits,omitempty"` //     An object describing the bandwidth settings for your rule.
+	Priority                 string                                                                                                        `json:"priority,omitempty"`                 //     A string, indicating the priority level for packets bound to your rule.     Can be 'low', 'normal' or 'high'.
+}
+type ResponseNetworksUpdateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesDefinitions struct {
+	Type  string `json:"type,omitempty"`  // The type of definition. Can be one of 'application', 'applicationCategory', 'host', 'port', 'ipRange' or 'localNet'.
+	Value string `json:"value,omitempty"` //     If "type" is 'host', 'port', 'ipRange' or 'localNet', then "value" must be a string, matching either     a hostname (e.g. "somesite.com"), a port (e.g. 8080), or an IP range ("192.1.0.0",     "192.1.0.0/16", or "10.1.0.0/16:80"). 'localNet' also supports CIDR notation, excluding     custom ports.      If "type" is 'application' or 'applicationCategory', then "value" must be an object     with the structure { "id": "meraki:layer7/..." }, where "id" is the application category or     application ID (for a list of IDs for your network, use the trafficShaping/applicationCategories     endpoint).
+}
+type ResponseNetworksUpdateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimits struct {
+	BandwidthLimits *ResponseNetworksUpdateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimitsBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth limits object, specifying the upload ('limitUp') and download ('limitDown') speed in Kbps. These are only enforced if 'settings' is set to 'custom'.
+	Settings        string                                                                                                                       `json:"settings,omitempty"`        // How bandwidth limits are applied by your rule. Can be one of 'network default', 'ignore' or 'custom'.
+}
+type ResponseNetworksUpdateNetworkGroupPolicyFirewallAndTrafficShapingTrafficShapingRulesPerClientBandwidthLimitsBandwidthLimits struct {
+	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps).
+	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps).
+}
+type ResponseNetworksUpdateNetworkGroupPolicyScheduling struct {
+	Enabled   *bool                                                        `json:"enabled,omitempty"`   // Whether scheduling is enabled (true) or disabled (false). Defaults to false. If true, the schedule objects for each day of the week (monday - sunday) are parsed.
+	Friday    *ResponseNetworksUpdateNetworkGroupPolicySchedulingFriday    `json:"friday,omitempty"`    // The schedule object for Friday.
+	Monday    *ResponseNetworksUpdateNetworkGroupPolicySchedulingMonday    `json:"monday,omitempty"`    // The schedule object for Monday.
+	Saturday  *ResponseNetworksUpdateNetworkGroupPolicySchedulingSaturday  `json:"saturday,omitempty"`  // The schedule object for Saturday.
+	Sunday    *ResponseNetworksUpdateNetworkGroupPolicySchedulingSunday    `json:"sunday,omitempty"`    // The schedule object for Sunday.
+	Thursday  *ResponseNetworksUpdateNetworkGroupPolicySchedulingThursday  `json:"thursday,omitempty"`  // The schedule object for Thursday.
+	Tuesday   *ResponseNetworksUpdateNetworkGroupPolicySchedulingTuesday   `json:"tuesday,omitempty"`   // The schedule object for Tuesday.
+	Wednesday *ResponseNetworksUpdateNetworkGroupPolicySchedulingWednesday `json:"wednesday,omitempty"` // The schedule object for Wednesday.
+}
+type ResponseNetworksUpdateNetworkGroupPolicySchedulingFriday struct {
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
+}
+type ResponseNetworksUpdateNetworkGroupPolicySchedulingMonday struct {
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
+}
+type ResponseNetworksUpdateNetworkGroupPolicySchedulingSaturday struct {
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
+}
+type ResponseNetworksUpdateNetworkGroupPolicySchedulingSunday struct {
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
+}
+type ResponseNetworksUpdateNetworkGroupPolicySchedulingThursday struct {
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
+}
+type ResponseNetworksUpdateNetworkGroupPolicySchedulingTuesday struct {
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
+}
+type ResponseNetworksUpdateNetworkGroupPolicySchedulingWednesday struct {
+	Active *bool  `json:"active,omitempty"` // Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
+	From   string `json:"from,omitempty"`   // The time, from '00:00' to '24:00'. Must be less than the time specified in 'to'. Defaults to '00:00'. Only 30 minute increments are allowed.
+	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
+}
+type ResponseNetworksUpdateNetworkGroupPolicyVLANTagging struct {
+	Settings string `json:"settings,omitempty"` // How VLAN tagging is applied. Can be 'network default', 'ignore' or 'custom'.
+	VLANID   string `json:"vlanId,omitempty"`   // The ID of the vlan you want to tag. This only applies if 'settings' is set to 'custom'.
+}
 type ResponseNetworksGetNetworkHealthAlerts []ResponseItemNetworksGetNetworkHealthAlerts // Array of ResponseNetworksGetNetworkHealthAlerts
 type ResponseItemNetworksGetNetworkHealthAlerts struct {
 	Category string                                           `json:"category,omitempty"` // Category of the alert
@@ -1861,74 +2387,116 @@ type ResponseNetworksUpdateNetworkMerakiAuthUserAuthorizations struct {
 }
 type ResponseNetworksGetNetworkMqttBrokers []ResponseItemNetworksGetNetworkMqttBrokers // Array of ResponseNetworksGetNetworkMqttBrokers
 type ResponseItemNetworksGetNetworkMqttBrokers struct {
-	Authentication *ResponseItemNetworksGetNetworkMqttBrokersAuthentication `json:"authentication,omitempty"` //
-	Host           string                                                   `json:"host,omitempty"`           //
-	ID             string                                                   `json:"id,omitempty"`             //
-	Name           string                                                   `json:"name,omitempty"`           //
-	Port           *int                                                     `json:"port,omitempty"`           //
-	Security       *ResponseItemNetworksGetNetworkMqttBrokersSecurity       `json:"security,omitempty"`       //
+	Authentication *ResponseItemNetworksGetNetworkMqttBrokersAuthentication `json:"authentication,omitempty"` // Authentication settings of the MQTT broker
+	Host           string                                                   `json:"host,omitempty"`           // Host name/IP address where the MQTT broker runs.
+	ID             string                                                   `json:"id,omitempty"`             // ID of the MQTT Broker.
+	Name           string                                                   `json:"name,omitempty"`           // Name of the MQTT Broker.
+	Port           *int                                                     `json:"port,omitempty"`           // Host port though which the MQTT broker can be reached.
+	Security       *ResponseItemNetworksGetNetworkMqttBrokersSecurity       `json:"security,omitempty"`       // Security settings of the MQTT broker.
 }
 type ResponseItemNetworksGetNetworkMqttBrokersAuthentication struct {
-	Username string `json:"username,omitempty"` //
+	Username string `json:"username,omitempty"` // Username for the MQTT broker.
 }
 type ResponseItemNetworksGetNetworkMqttBrokersSecurity struct {
-	Mode string                                                `json:"mode,omitempty"` //
-	Tls  *ResponseItemNetworksGetNetworkMqttBrokersSecurityTls `json:"tls,omitempty"`  //
+	Mode string                                                `json:"mode,omitempty"` // Security protocol of the MQTT broker.
+	Tls  *ResponseItemNetworksGetNetworkMqttBrokersSecurityTls `json:"tls,omitempty"`  // TLS settings of the MQTT broker.
 }
 type ResponseItemNetworksGetNetworkMqttBrokersSecurityTls struct {
-	HasCaCertificate *bool `json:"hasCaCertificate,omitempty"` //
-	VerifyHostnames  *bool `json:"verifyHostnames,omitempty"`  //
+	HasCaCertificate *bool `json:"hasCaCertificate,omitempty"` // Indicates whether the CA certificate is set
+	VerifyHostnames  *bool `json:"verifyHostnames,omitempty"`  // Whether the TLS hostname verification is enabled for the MQTT broker.
 }
-type ResponseNetworksCreateNetworkMqttBroker interface{}
+type ResponseNetworksCreateNetworkMqttBroker struct {
+	Authentication *ResponseNetworksCreateNetworkMqttBrokerAuthentication `json:"authentication,omitempty"` // Authentication settings of the MQTT broker
+	Host           string                                                 `json:"host,omitempty"`           // Host name/IP address where the MQTT broker runs.
+	ID             string                                                 `json:"id,omitempty"`             // ID of the MQTT Broker.
+	Name           string                                                 `json:"name,omitempty"`           // Name of the MQTT Broker.
+	Port           *int                                                   `json:"port,omitempty"`           // Host port though which the MQTT broker can be reached.
+	Security       *ResponseNetworksCreateNetworkMqttBrokerSecurity       `json:"security,omitempty"`       // Security settings of the MQTT broker.
+}
+type ResponseNetworksCreateNetworkMqttBrokerAuthentication struct {
+	Username string `json:"username,omitempty"` // Username for the MQTT broker.
+}
+type ResponseNetworksCreateNetworkMqttBrokerSecurity struct {
+	Mode string                                              `json:"mode,omitempty"` // Security protocol of the MQTT broker.
+	Tls  *ResponseNetworksCreateNetworkMqttBrokerSecurityTls `json:"tls,omitempty"`  // TLS settings of the MQTT broker.
+}
+type ResponseNetworksCreateNetworkMqttBrokerSecurityTls struct {
+	HasCaCertificate *bool `json:"hasCaCertificate,omitempty"` // Indicates whether the CA certificate is set
+	VerifyHostnames  *bool `json:"verifyHostnames,omitempty"`  // Whether the TLS hostname verification is enabled for the MQTT broker.
+}
 type ResponseNetworksGetNetworkMqttBroker struct {
-	Authentication *ResponseNetworksGetNetworkMqttBrokerAuthentication `json:"authentication,omitempty"` //
-	Host           string                                              `json:"host,omitempty"`           //
-	ID             string                                              `json:"id,omitempty"`             //
-	Name           string                                              `json:"name,omitempty"`           //
-	Port           *int                                                `json:"port,omitempty"`           //
-	Security       *ResponseNetworksGetNetworkMqttBrokerSecurity       `json:"security,omitempty"`       //
+	Authentication *ResponseNetworksGetNetworkMqttBrokerAuthentication `json:"authentication,omitempty"` // Authentication settings of the MQTT broker
+	Host           string                                              `json:"host,omitempty"`           // Host name/IP address where the MQTT broker runs.
+	ID             string                                              `json:"id,omitempty"`             // ID of the MQTT Broker.
+	Name           string                                              `json:"name,omitempty"`           // Name of the MQTT Broker.
+	Port           *int                                                `json:"port,omitempty"`           // Host port though which the MQTT broker can be reached.
+	Security       *ResponseNetworksGetNetworkMqttBrokerSecurity       `json:"security,omitempty"`       // Security settings of the MQTT broker.
 }
 type ResponseNetworksGetNetworkMqttBrokerAuthentication struct {
-	Username string `json:"username,omitempty"` //
+	Username string `json:"username,omitempty"` // Username for the MQTT broker.
 }
 type ResponseNetworksGetNetworkMqttBrokerSecurity struct {
-	Mode string                                           `json:"mode,omitempty"` //
-	Tls  *ResponseNetworksGetNetworkMqttBrokerSecurityTls `json:"tls,omitempty"`  //
+	Mode string                                           `json:"mode,omitempty"` // Security protocol of the MQTT broker.
+	Tls  *ResponseNetworksGetNetworkMqttBrokerSecurityTls `json:"tls,omitempty"`  // TLS settings of the MQTT broker.
 }
 type ResponseNetworksGetNetworkMqttBrokerSecurityTls struct {
-	HasCaCertificate *bool `json:"hasCaCertificate,omitempty"` //
-	VerifyHostnames  *bool `json:"verifyHostnames,omitempty"`  //
+	HasCaCertificate *bool `json:"hasCaCertificate,omitempty"` // Indicates whether the CA certificate is set
+	VerifyHostnames  *bool `json:"verifyHostnames,omitempty"`  // Whether the TLS hostname verification is enabled for the MQTT broker.
 }
-type ResponseNetworksUpdateNetworkMqttBroker interface{}
+type ResponseNetworksUpdateNetworkMqttBroker struct {
+	Authentication *ResponseNetworksUpdateNetworkMqttBrokerAuthentication `json:"authentication,omitempty"` // Authentication settings of the MQTT broker
+	Host           string                                                 `json:"host,omitempty"`           // Host name/IP address where the MQTT broker runs.
+	ID             string                                                 `json:"id,omitempty"`             // ID of the MQTT Broker.
+	Name           string                                                 `json:"name,omitempty"`           // Name of the MQTT Broker.
+	Port           *int                                                   `json:"port,omitempty"`           // Host port though which the MQTT broker can be reached.
+	Security       *ResponseNetworksUpdateNetworkMqttBrokerSecurity       `json:"security,omitempty"`       // Security settings of the MQTT broker.
+}
+type ResponseNetworksUpdateNetworkMqttBrokerAuthentication struct {
+	Username string `json:"username,omitempty"` // Username for the MQTT broker.
+}
+type ResponseNetworksUpdateNetworkMqttBrokerSecurity struct {
+	Mode string                                              `json:"mode,omitempty"` // Security protocol of the MQTT broker.
+	Tls  *ResponseNetworksUpdateNetworkMqttBrokerSecurityTls `json:"tls,omitempty"`  // TLS settings of the MQTT broker.
+}
+type ResponseNetworksUpdateNetworkMqttBrokerSecurityTls struct {
+	HasCaCertificate *bool `json:"hasCaCertificate,omitempty"` // Indicates whether the CA certificate is set
+	VerifyHostnames  *bool `json:"verifyHostnames,omitempty"`  // Whether the TLS hostname verification is enabled for the MQTT broker.
+}
 type ResponseNetworksGetNetworkNetflow struct {
-	CollectorIP      string `json:"collectorIp,omitempty"`      //
-	CollectorPort    *int   `json:"collectorPort,omitempty"`    //
-	EtaDstPort       *int   `json:"etaDstPort,omitempty"`       //
-	EtaEnabled       *bool  `json:"etaEnabled,omitempty"`       //
-	ReportingEnabled *bool  `json:"reportingEnabled,omitempty"` //
+	CollectorIP      string `json:"collectorIp,omitempty"`      // The IPv4 address of the NetFlow collector.
+	CollectorPort    *int   `json:"collectorPort,omitempty"`    // The port that the NetFlow collector will be listening on.
+	EtaDstPort       *int   `json:"etaDstPort,omitempty"`       // The port that the Encrypted Traffic Analytics collector will be listening on.
+	EtaEnabled       *bool  `json:"etaEnabled,omitempty"`       // Boolean indicating whether Encrypted Traffic Analytics is enabled (true) or disabled (false).
+	ReportingEnabled *bool  `json:"reportingEnabled,omitempty"` // Boolean indicating whether NetFlow traffic reporting is enabled (true) or disabled (false).
 }
-type ResponseNetworksUpdateNetworkNetflow interface{}
+type ResponseNetworksUpdateNetworkNetflow struct {
+	CollectorIP      string `json:"collectorIp,omitempty"`      // The IPv4 address of the NetFlow collector.
+	CollectorPort    *int   `json:"collectorPort,omitempty"`    // The port that the NetFlow collector will be listening on.
+	EtaDstPort       *int   `json:"etaDstPort,omitempty"`       // The port that the Encrypted Traffic Analytics collector will be listening on.
+	EtaEnabled       *bool  `json:"etaEnabled,omitempty"`       // Boolean indicating whether Encrypted Traffic Analytics is enabled (true) or disabled (false).
+	ReportingEnabled *bool  `json:"reportingEnabled,omitempty"` // Boolean indicating whether NetFlow traffic reporting is enabled (true) or disabled (false).
+}
 type ResponseNetworksGetNetworkNetworkHealthChannelUtilization []ResponseItemNetworksGetNetworkNetworkHealthChannelUtilization // Array of ResponseNetworksGetNetworkNetworkHealthChannelUtilization
 type ResponseItemNetworksGetNetworkNetworkHealthChannelUtilization struct {
-	Model  string                                                                `json:"model,omitempty"`  //
-	Serial string                                                                `json:"serial,omitempty"` //
-	Tags   string                                                                `json:"tags,omitempty"`   //
-	Wifi0  *[]ResponseItemNetworksGetNetworkNetworkHealthChannelUtilizationWifi0 `json:"wifi0,omitempty"`  //
-	Wifi1  *[]ResponseItemNetworksGetNetworkNetworkHealthChannelUtilizationWifi1 `json:"wifi1,omitempty"`  //
+	Model  string                                                                `json:"model,omitempty"`  // Device model.
+	Serial string                                                                `json:"serial,omitempty"` // Device serial
+	Tags   string                                                                `json:"tags,omitempty"`   // Device tags.
+	Wifi0  *[]ResponseItemNetworksGetNetworkNetworkHealthChannelUtilizationWifi0 `json:"wifi0,omitempty"`  // Channel utilization for first wifi radio of device.
+	Wifi1  *[]ResponseItemNetworksGetNetworkNetworkHealthChannelUtilizationWifi1 `json:"wifi1,omitempty"`  // Channel utilization for second wifi radio of device.
 }
 type ResponseItemNetworksGetNetworkNetworkHealthChannelUtilizationWifi0 struct {
-	EndTime             string   `json:"endTime,omitempty"`             //
-	StartTime           string   `json:"startTime,omitempty"`           //
-	Utilization80211    *int     `json:"utilization80211,omitempty"`    //
-	UtilizationNon80211 *float64 `json:"utilizationNon80211,omitempty"` //
-	UtilizationTotal    *float64 `json:"utilizationTotal,omitempty"`    //
+	EndTime             string   `json:"endTime,omitempty"`             // The end time of the channel utilization interval.
+	StartTime           string   `json:"startTime,omitempty"`           // The start time of the channel utilization interval.
+	Utilization80211    *float64 `json:"utilization80211,omitempty"`    // Percentage of wifi channel utiliation for the given radio.
+	UtilizationNon80211 *float64 `json:"utilizationNon80211,omitempty"` // Percentage of non-wifi channel utiliation for the given radio.
+	UtilizationTotal    *float64 `json:"utilizationTotal,omitempty"`    // Percentage of total channel utiliation for the given radio.
 }
 type ResponseItemNetworksGetNetworkNetworkHealthChannelUtilizationWifi1 struct {
-	EndTime             string   `json:"endTime,omitempty"`             //
-	StartTime           string   `json:"startTime,omitempty"`           //
-	Utilization80211    *int     `json:"utilization80211,omitempty"`    //
-	UtilizationNon80211 *float64 `json:"utilizationNon80211,omitempty"` //
-	UtilizationTotal    *float64 `json:"utilizationTotal,omitempty"`    //
+	EndTime             string   `json:"endTime,omitempty"`             // The end time of the channel utilization interval.
+	StartTime           string   `json:"startTime,omitempty"`           // The start time of the channel utilization interval.
+	Utilization80211    *float64 `json:"utilization80211,omitempty"`    // Percentage of wifi channel utiliation for the given radio.
+	UtilizationNon80211 *float64 `json:"utilizationNon80211,omitempty"` // Percentage of non-wifi channel utiliation for the given radio.
+	UtilizationTotal    *float64 `json:"utilizationTotal,omitempty"`    // Percentage of total channel utiliation for the given radio.
 }
 type ResponseNetworksGetNetworkPiiPiiKeys struct {
 	N1234 *ResponseNetworksGetNetworkPiiPiiKeysN1234 `json:"N_1234,omitempty"` //
@@ -1943,27 +2511,37 @@ type ResponseNetworksGetNetworkPiiPiiKeysN1234 struct {
 }
 type ResponseNetworksGetNetworkPiiRequests []ResponseItemNetworksGetNetworkPiiRequests // Array of ResponseNetworksGetNetworkPiiRequests
 type ResponseItemNetworksGetNetworkPiiRequests struct {
-	CompletedAt      *int   `json:"completedAt,omitempty"`      //
-	CreatedAt        *int   `json:"createdAt,omitempty"`        //
-	Datasets         string `json:"datasets,omitempty"`         //
-	ID               string `json:"id,omitempty"`               //
-	Mac              string `json:"mac,omitempty"`              //
-	NetworkID        string `json:"networkId,omitempty"`        //
-	OrganizationWide *bool  `json:"organizationWide,omitempty"` //
-	Status           string `json:"status,omitempty"`           //
-	Type             string `json:"type,omitempty"`             //
+	CompletedAt      *int   `json:"completedAt,omitempty"`      // The request's completion time
+	CreatedAt        *int   `json:"createdAt,omitempty"`        // The request's creation time
+	Datasets         string `json:"datasets,omitempty"`         // The stringified array of datasets related to the provided key that should be deleted.
+	ID               string `json:"id,omitempty"`               // The network or organization identifier
+	Mac              string `json:"mac,omitempty"`              // The MAC address of the PII request
+	NetworkID        string `json:"networkId,omitempty"`        // The network identifier
+	OrganizationWide *bool  `json:"organizationWide,omitempty"` // If the data returned is organization-wide. False indicates the data is network-wide.
+	Status           string `json:"status,omitempty"`           // The status of the PII request
+	Type             string `json:"type,omitempty"`             // The type of PII request
 }
-type ResponseNetworksCreateNetworkPiiRequest interface{}
+type ResponseNetworksCreateNetworkPiiRequest struct {
+	CompletedAt      *int   `json:"completedAt,omitempty"`      // The request's completion time
+	CreatedAt        *int   `json:"createdAt,omitempty"`        // The request's creation time
+	Datasets         string `json:"datasets,omitempty"`         // The stringified array of datasets related to the provided key that should be deleted.
+	ID               string `json:"id,omitempty"`               // The network or organization identifier
+	Mac              string `json:"mac,omitempty"`              // The MAC address of the PII request
+	NetworkID        string `json:"networkId,omitempty"`        // The network identifier
+	OrganizationWide *bool  `json:"organizationWide,omitempty"` // If the data returned is organization-wide. False indicates the data is network-wide.
+	Status           string `json:"status,omitempty"`           // The status of the PII request
+	Type             string `json:"type,omitempty"`             // The type of PII request
+}
 type ResponseNetworksGetNetworkPiiRequest struct {
-	CompletedAt      *int   `json:"completedAt,omitempty"`      //
-	CreatedAt        *int   `json:"createdAt,omitempty"`        //
-	Datasets         string `json:"datasets,omitempty"`         //
-	ID               string `json:"id,omitempty"`               //
-	Mac              string `json:"mac,omitempty"`              //
-	NetworkID        string `json:"networkId,omitempty"`        //
-	OrganizationWide *bool  `json:"organizationWide,omitempty"` //
-	Status           string `json:"status,omitempty"`           //
-	Type             string `json:"type,omitempty"`             //
+	CompletedAt      *int   `json:"completedAt,omitempty"`      // The request's completion time
+	CreatedAt        *int   `json:"createdAt,omitempty"`        // The request's creation time
+	Datasets         string `json:"datasets,omitempty"`         // The stringified array of datasets related to the provided key that should be deleted.
+	ID               string `json:"id,omitempty"`               // The network or organization identifier
+	Mac              string `json:"mac,omitempty"`              // The MAC address of the PII request
+	NetworkID        string `json:"networkId,omitempty"`        // The network identifier
+	OrganizationWide *bool  `json:"organizationWide,omitempty"` // If the data returned is organization-wide. False indicates the data is network-wide.
+	Status           string `json:"status,omitempty"`           // The status of the PII request
+	Type             string `json:"type,omitempty"`             // The type of PII request
 }
 type ResponseNetworksGetNetworkPiiSmDevicesForKey struct {
 	N1234 []string `json:"N_1234,omitempty"` //
@@ -1987,17 +2565,12 @@ type ResponseItemNetworksGetNetworkPoliciesByClientAssignedSSID struct {
 	SSIDNumber *int `json:"ssidNumber,omitempty"` // number of ssid
 }
 type ResponseNetworksGetNetworkSettings struct {
-	ClientPrivacy           *ResponseNetworksGetNetworkSettingsClientPrivacy   `json:"clientPrivacy,omitempty"`           // Privacy settings
 	Fips                    *ResponseNetworksGetNetworkSettingsFips            `json:"fips,omitempty"`                    // A hash of FIPS options applied to the Network
 	LocalStatusPage         *ResponseNetworksGetNetworkSettingsLocalStatusPage `json:"localStatusPage,omitempty"`         // A hash of Local Status page(s)' authentication options applied to the Network.
 	LocalStatusPageEnabled  *bool                                              `json:"localStatusPageEnabled,omitempty"`  // Enables / disables the local device status pages (<a target='_blank' href='http://my.meraki.com/'>my.meraki.com, </a><a target='_blank' href='http://ap.meraki.com/'>ap.meraki.com, </a><a target='_blank' href='http://switch.meraki.com/'>switch.meraki.com, </a><a target='_blank' href='http://wired.meraki.com/'>wired.meraki.com</a>). Optional (defaults to false)
 	NamedVLANs              *ResponseNetworksGetNetworkSettingsNamedVLANs      `json:"namedVlans,omitempty"`              // A hash of Named VLANs options applied to the Network.
 	RemoteStatusPageEnabled *bool                                              `json:"remoteStatusPageEnabled,omitempty"` // Enables / disables access to the device status page (<a target='_blank'>http://[device's LAN IP])</a>. Optional. Can only be set if localStatusPageEnabled is set to true
 	SecurePort              *ResponseNetworksGetNetworkSettingsSecurePort      `json:"securePort,omitempty"`              // A hash of SecureConnect options applied to the Network.
-}
-type ResponseNetworksGetNetworkSettingsClientPrivacy struct {
-	ExpireDataBefore    string `json:"expireDataBefore,omitempty"`    // The date to expire the data before
-	ExpireDataOlderThan *int   `json:"expireDataOlderThan,omitempty"` // The number of days, weeks, or months in Epoch time to expire the data before
 }
 type ResponseNetworksGetNetworkSettingsFips struct {
 	Enabled *bool `json:"enabled,omitempty"` // Enables / disables FIPS on the network.
@@ -2016,17 +2589,12 @@ type ResponseNetworksGetNetworkSettingsSecurePort struct {
 	Enabled *bool `json:"enabled,omitempty"` // Enables / disables SecureConnect on the network. Optional.
 }
 type ResponseNetworksUpdateNetworkSettings struct {
-	ClientPrivacy           *ResponseNetworksUpdateNetworkSettingsClientPrivacy   `json:"clientPrivacy,omitempty"`           // Privacy settings
 	Fips                    *ResponseNetworksUpdateNetworkSettingsFips            `json:"fips,omitempty"`                    // A hash of FIPS options applied to the Network
 	LocalStatusPage         *ResponseNetworksUpdateNetworkSettingsLocalStatusPage `json:"localStatusPage,omitempty"`         // A hash of Local Status page(s)' authentication options applied to the Network.
 	LocalStatusPageEnabled  *bool                                                 `json:"localStatusPageEnabled,omitempty"`  // Enables / disables the local device status pages (<a target='_blank' href='http://my.meraki.com/'>my.meraki.com, </a><a target='_blank' href='http://ap.meraki.com/'>ap.meraki.com, </a><a target='_blank' href='http://switch.meraki.com/'>switch.meraki.com, </a><a target='_blank' href='http://wired.meraki.com/'>wired.meraki.com</a>). Optional (defaults to false)
 	NamedVLANs              *ResponseNetworksUpdateNetworkSettingsNamedVLANs      `json:"namedVlans,omitempty"`              // A hash of Named VLANs options applied to the Network.
 	RemoteStatusPageEnabled *bool                                                 `json:"remoteStatusPageEnabled,omitempty"` // Enables / disables access to the device status page (<a target='_blank'>http://[device's LAN IP])</a>. Optional. Can only be set if localStatusPageEnabled is set to true
 	SecurePort              *ResponseNetworksUpdateNetworkSettingsSecurePort      `json:"securePort,omitempty"`              // A hash of SecureConnect options applied to the Network.
-}
-type ResponseNetworksUpdateNetworkSettingsClientPrivacy struct {
-	ExpireDataBefore    string `json:"expireDataBefore,omitempty"`    // The date to expire the data before
-	ExpireDataOlderThan *int   `json:"expireDataOlderThan,omitempty"` // The number of days, weeks, or months in Epoch time to expire the data before
 }
 type ResponseNetworksUpdateNetworkSettingsFips struct {
 	Enabled *bool `json:"enabled,omitempty"` // Enables / disables FIPS on the network.
@@ -2045,24 +2613,33 @@ type ResponseNetworksUpdateNetworkSettingsSecurePort struct {
 	Enabled *bool `json:"enabled,omitempty"` // Enables / disables SecureConnect on the network. Optional.
 }
 type ResponseNetworksGetNetworkSNMP struct {
-	Access string                                 `json:"access,omitempty"` //
-	Users  *[]ResponseNetworksGetNetworkSNMPUsers `json:"users,omitempty"`  //
+	Access          string                                 `json:"access,omitempty"`          // The type of SNMP access. Can be one of 'none' (disabled), 'community' (V1/V2c), or 'users' (V3).
+	CommunityString string                                 `json:"communityString,omitempty"` // SNMP community string if access is 'community'.
+	Users           *[]ResponseNetworksGetNetworkSNMPUsers `json:"users,omitempty"`           // SNMP settings if access is 'users'.
 }
 type ResponseNetworksGetNetworkSNMPUsers struct {
-	Passphrase string `json:"passphrase,omitempty"` //
-	Username   string `json:"username,omitempty"`   //
+	Passphrase string `json:"passphrase,omitempty"` // The passphrase for the SNMP user.
+	Username   string `json:"username,omitempty"`   // The username for the SNMP user.
 }
-type ResponseNetworksUpdateNetworkSNMP interface{}
+type ResponseNetworksUpdateNetworkSNMP struct {
+	Access          string                                    `json:"access,omitempty"`          // The type of SNMP access. Can be one of 'none' (disabled), 'community' (V1/V2c), or 'users' (V3).
+	CommunityString string                                    `json:"communityString,omitempty"` // SNMP community string if access is 'community'.
+	Users           *[]ResponseNetworksUpdateNetworkSNMPUsers `json:"users,omitempty"`           // SNMP settings if access is 'users'.
+}
+type ResponseNetworksUpdateNetworkSNMPUsers struct {
+	Passphrase string `json:"passphrase,omitempty"` // The passphrase for the SNMP user.
+	Username   string `json:"username,omitempty"`   // The username for the SNMP user.
+}
 type ResponseNetworksGetNetworkSplashLoginAttempts []ResponseItemNetworksGetNetworkSplashLoginAttempts // Array of ResponseNetworksGetNetworkSplashLoginAttempts
 type ResponseItemNetworksGetNetworkSplashLoginAttempts struct {
-	Authorization    string `json:"authorization,omitempty"`    //
-	ClientID         string `json:"clientId,omitempty"`         //
-	ClientMac        string `json:"clientMac,omitempty"`        //
-	GatewayDeviceMac string `json:"gatewayDeviceMac,omitempty"` //
-	Login            string `json:"login,omitempty"`            //
-	LoginAt          string `json:"loginAt,omitempty"`          //
-	Name             string `json:"name,omitempty"`             //
-	SSID             string `json:"ssid,omitempty"`             //
+	Authorization    string `json:"authorization,omitempty"`    // Authorization status
+	ClientID         string `json:"clientId,omitempty"`         // Client ID
+	ClientMac        string `json:"clientMac,omitempty"`        // Client mac address
+	GatewayDeviceMac string `json:"gatewayDeviceMac,omitempty"` // Gateway device mac address
+	Login            string `json:"login,omitempty"`            // User login identifier
+	LoginAt          string `json:"loginAt,omitempty"`          // Login timestamp
+	Name             string `json:"name,omitempty"`             // User name
+	SSID             string `json:"ssid,omitempty"`             // SSID name
 }
 type ResponseNetworksSplitNetwork struct {
 	ResultingNetworks *[]ResponseNetworksSplitNetworkResultingNetworks `json:"resultingNetworks,omitempty"` // Networks after the split
@@ -2084,7 +2661,7 @@ type ResponseNetworksGetNetworkSyslogServers struct {
 }
 type ResponseNetworksGetNetworkSyslogServersServers struct {
 	Host  string   `json:"host,omitempty"`  // The IP address of the syslog server
-	Port  string   `json:"port,omitempty"`  // The port of the syslog server
+	Port  *int     `json:"port,omitempty"`  // The port of the syslog server
 	Roles []string `json:"roles,omitempty"` // A list of roles for the syslog server. Options (case-insensitive): 'Wireless event log', 'Appliance event log', 'Switch event log', 'Air Marshal events', 'Flows', 'URLs', 'IDS alerts', 'Security events'
 }
 type ResponseNetworksUpdateNetworkSyslogServers struct {
@@ -2092,7 +2669,7 @@ type ResponseNetworksUpdateNetworkSyslogServers struct {
 }
 type ResponseNetworksUpdateNetworkSyslogServersServers struct {
 	Host  string   `json:"host,omitempty"`  // The IP address of the syslog server
-	Port  string   `json:"port,omitempty"`  // The port of the syslog server
+	Port  *int     `json:"port,omitempty"`  // The port of the syslog server
 	Roles []string `json:"roles,omitempty"` // A list of roles for the syslog server. Options (case-insensitive): 'Wireless event log', 'Appliance event log', 'Switch event log', 'Air Marshal events', 'Flows', 'URLs', 'IDS alerts', 'Security events'
 }
 type ResponseNetworksGetNetworkTopologyLinkLayer struct {
@@ -2149,25 +2726,34 @@ type ResponseNetworksGetNetworkTopologyLinkLayerNodesDiscoveredLldp struct {
 }
 type ResponseNetworksGetNetworkTraffic []ResponseItemNetworksGetNetworkTraffic // Array of ResponseNetworksGetNetworkTraffic
 type ResponseItemNetworksGetNetworkTraffic struct {
-	ActiveTime  *int   `json:"activeTime,omitempty"`  //
-	Application string `json:"application,omitempty"` //
-	Flows       *int   `json:"flows,omitempty"`       //
-	NumClients  *int   `json:"numClients,omitempty"`  //
-	Port        *int   `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
-	Recv        *int   `json:"recv,omitempty"`        //
-	Sent        *int   `json:"sent,omitempty"`        //
+	ActiveTime  *int     `json:"activeTime,omitempty"`  //
+	Application string   `json:"application,omitempty"` //
+	Destination string   `json:"destination,omitempty"` //
+	Flows       *int     `json:"flows,omitempty"`       //
+	NumClients  *int     `json:"numClients,omitempty"`  //
+	Port        *int     `json:"port,omitempty"`        //
+	Protocol    string   `json:"protocol,omitempty"`    //
+	Recv        *float64 `json:"recv,omitempty"`        //
+	Sent        *float64 `json:"sent,omitempty"`        //
 }
 type ResponseNetworksGetNetworkTrafficAnalysis struct {
-	CustomPieChartItems *[]ResponseNetworksGetNetworkTrafficAnalysisCustomPieChartItems `json:"customPieChartItems,omitempty"` //
-	Mode                string                                                          `json:"mode,omitempty"`                //
+	CustomPieChartItems *[]ResponseNetworksGetNetworkTrafficAnalysisCustomPieChartItems `json:"customPieChartItems,omitempty"` // The list of items that make up the custom pie chart for traffic reporting.
+	Mode                string                                                          `json:"mode,omitempty"`                //     The traffic analysis mode for the network. Can be one of 'disabled' (do not collect traffic types),     'basic' (collect generic traffic categories), or 'detailed' (collect destination hostnames).
 }
 type ResponseNetworksGetNetworkTrafficAnalysisCustomPieChartItems struct {
-	Name  string `json:"name,omitempty"`  //
-	Type  string `json:"type,omitempty"`  //
-	Value string `json:"value,omitempty"` //
+	Name  string `json:"name,omitempty"`  // The name of the custom pie chart item.
+	Type  string `json:"type,omitempty"`  //     The signature type for the custom pie chart item. Can be one of 'host', 'port' or 'ipRange'.
+	Value string `json:"value,omitempty"` //     The value of the custom pie chart item. Valid syntax depends on the signature type of the chart item     (see sample request/response for more details).
 }
-type ResponseNetworksUpdateNetworkTrafficAnalysis interface{}
+type ResponseNetworksUpdateNetworkTrafficAnalysis struct {
+	CustomPieChartItems *[]ResponseNetworksUpdateNetworkTrafficAnalysisCustomPieChartItems `json:"customPieChartItems,omitempty"` // The list of items that make up the custom pie chart for traffic reporting.
+	Mode                string                                                             `json:"mode,omitempty"`                //     The traffic analysis mode for the network. Can be one of 'disabled' (do not collect traffic types),     'basic' (collect generic traffic categories), or 'detailed' (collect destination hostnames).
+}
+type ResponseNetworksUpdateNetworkTrafficAnalysisCustomPieChartItems struct {
+	Name  string `json:"name,omitempty"`  // The name of the custom pie chart item.
+	Type  string `json:"type,omitempty"`  //     The signature type for the custom pie chart item. Can be one of 'host', 'port' or 'ipRange'.
+	Value string `json:"value,omitempty"` //     The value of the custom pie chart item. Valid syntax depends on the signature type of the chart item     (see sample request/response for more details).
+}
 type ResponseNetworksGetNetworkTrafficShapingApplicationCategories struct {
 	ApplicationCategories *[]ResponseNetworksGetNetworkTrafficShapingApplicationCategoriesApplicationCategories `json:"applicationCategories,omitempty"` //
 }
@@ -2196,6 +2782,113 @@ type ResponseNetworksUnbindNetwork struct {
 	Tags                    []string `json:"tags,omitempty"`                    // Network tags
 	TimeZone                string   `json:"timeZone,omitempty"`                // Timezone of the network
 	URL                     string   `json:"url,omitempty"`                     // URL to the network Dashboard UI
+}
+type ResponseNetworksGetNetworkVLANProfiles []ResponseItemNetworksGetNetworkVLANProfiles // Array of ResponseNetworksGetNetworkVlanProfiles
+type ResponseItemNetworksGetNetworkVLANProfiles struct {
+	Iname      string                                                  `json:"iname,omitempty"`      // IName of the VLAN profile
+	IsDefault  *bool                                                   `json:"isDefault,omitempty"`  // Boolean indicating the default VLAN Profile for any device that does not have a profile explicitly assigned
+	Name       string                                                  `json:"name,omitempty"`       // Name of the profile, string length must be from 1 to 255 characters
+	VLANGroups *[]ResponseItemNetworksGetNetworkVLANProfilesVLANGroups `json:"vlanGroups,omitempty"` // An array of named VLANs
+	VLANNames  *[]ResponseItemNetworksGetNetworkVLANProfilesVLANNames  `json:"vlanNames,omitempty"`  // An array of named VLANs
+}
+type ResponseItemNetworksGetNetworkVLANProfilesVLANGroups struct {
+	Name    string `json:"name,omitempty"`    // Name of the VLAN, string length must be from 1 to 32 characters
+	VLANIDs string `json:"vlanIds,omitempty"` // Comma-separated VLAN IDs or ID ranges
+}
+type ResponseItemNetworksGetNetworkVLANProfilesVLANNames struct {
+	AdaptivePolicyGroup *ResponseItemNetworksGetNetworkVLANProfilesVLANNamesAdaptivePolicyGroup `json:"adaptivePolicyGroup,omitempty"` // Adaptive Policy Group assigned to Vlan ID
+	Name                string                                                                  `json:"name,omitempty"`                // Name of the VLAN, string length must be from 1 to 32 characters
+	VLANID              string                                                                  `json:"vlanId,omitempty"`              // VLAN ID
+}
+type ResponseItemNetworksGetNetworkVLANProfilesVLANNamesAdaptivePolicyGroup struct {
+	ID   string `json:"id,omitempty"`   // Adaptive Policy Group ID
+	Name string `json:"name,omitempty"` // Adaptive Policy Group name
+}
+type ResponseNetworksCreateNetworkVLANProfile struct {
+	Iname      string                                                `json:"iname,omitempty"`      // IName of the VLAN profile
+	IsDefault  *bool                                                 `json:"isDefault,omitempty"`  // Boolean indicating the default VLAN Profile for any device that does not have a profile explicitly assigned
+	Name       string                                                `json:"name,omitempty"`       // Name of the profile, string length must be from 1 to 255 characters
+	VLANGroups *[]ResponseNetworksCreateNetworkVLANProfileVLANGroups `json:"vlanGroups,omitempty"` // An array of named VLANs
+	VLANNames  *[]ResponseNetworksCreateNetworkVLANProfileVLANNames  `json:"vlanNames,omitempty"`  // An array of named VLANs
+}
+type ResponseNetworksCreateNetworkVLANProfileVLANGroups struct {
+	Name    string `json:"name,omitempty"`    // Name of the VLAN, string length must be from 1 to 32 characters
+	VLANIDs string `json:"vlanIds,omitempty"` // Comma-separated VLAN IDs or ID ranges
+}
+type ResponseNetworksCreateNetworkVLANProfileVLANNames struct {
+	AdaptivePolicyGroup *ResponseNetworksCreateNetworkVLANProfileVLANNamesAdaptivePolicyGroup `json:"adaptivePolicyGroup,omitempty"` // Adaptive Policy Group assigned to Vlan ID
+	Name                string                                                                `json:"name,omitempty"`                // Name of the VLAN, string length must be from 1 to 32 characters
+	VLANID              string                                                                `json:"vlanId,omitempty"`              // VLAN ID
+}
+type ResponseNetworksCreateNetworkVLANProfileVLANNamesAdaptivePolicyGroup struct {
+	ID   string `json:"id,omitempty"`   // Adaptive Policy Group ID
+	Name string `json:"name,omitempty"` // Adaptive Policy Group name
+}
+type ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice []ResponseItemNetworksGetNetworkVLANProfilesAssignmentsByDevice // Array of ResponseNetworksGetNetworkVlanProfilesAssignmentsByDevice
+type ResponseItemNetworksGetNetworkVLANProfilesAssignmentsByDevice struct {
+	Mac         string                                                                    `json:"mac,omitempty"`         // MAC address of the device
+	Name        string                                                                    `json:"name,omitempty"`        // Name of the Device
+	ProductType string                                                                    `json:"productType,omitempty"` // The product type
+	Serial      string                                                                    `json:"serial,omitempty"`      // Serial of the Device
+	Stack       *ResponseItemNetworksGetNetworkVLANProfilesAssignmentsByDeviceStack       `json:"stack,omitempty"`       // The Switch Stack the device belongs to
+	VLANProfile *ResponseItemNetworksGetNetworkVLANProfilesAssignmentsByDeviceVLANProfile `json:"vlanProfile,omitempty"` // The VLAN Profile
+}
+type ResponseItemNetworksGetNetworkVLANProfilesAssignmentsByDeviceStack struct {
+	ID string `json:"id,omitempty"` // ID of the Switch Stack
+}
+type ResponseItemNetworksGetNetworkVLANProfilesAssignmentsByDeviceVLANProfile struct {
+	Iname     string `json:"iname,omitempty"`     // IName of the VLAN Profile
+	IsDefault *bool  `json:"isDefault,omitempty"` // Is this VLAN profile the default for the network?
+	Name      string `json:"name,omitempty"`      // Name of the VLAN Profile
+}
+type ResponseNetworksReassignNetworkVLANProfilesAssignments struct {
+	Serials     []string                                                           `json:"serials,omitempty"`     // Array of Device Serials
+	StackIDs    []string                                                           `json:"stackIds,omitempty"`    // Array of Switch Stack IDs
+	VLANProfile *ResponseNetworksReassignNetworkVLANProfilesAssignmentsVLANProfile `json:"vlanProfile,omitempty"` // The VLAN Profile
+}
+type ResponseNetworksReassignNetworkVLANProfilesAssignmentsVLANProfile struct {
+	Iname string `json:"iname,omitempty"` // IName of the VLAN Profile
+	Name  string `json:"name,omitempty"`  // Name of the VLAN Profile
+}
+type ResponseNetworksGetNetworkVLANProfile struct {
+	Iname      string                                             `json:"iname,omitempty"`      // IName of the VLAN profile
+	IsDefault  *bool                                              `json:"isDefault,omitempty"`  // Boolean indicating the default VLAN Profile for any device that does not have a profile explicitly assigned
+	Name       string                                             `json:"name,omitempty"`       // Name of the profile, string length must be from 1 to 255 characters
+	VLANGroups *[]ResponseNetworksGetNetworkVLANProfileVLANGroups `json:"vlanGroups,omitempty"` // An array of named VLANs
+	VLANNames  *[]ResponseNetworksGetNetworkVLANProfileVLANNames  `json:"vlanNames,omitempty"`  // An array of named VLANs
+}
+type ResponseNetworksGetNetworkVLANProfileVLANGroups struct {
+	Name    string `json:"name,omitempty"`    // Name of the VLAN, string length must be from 1 to 32 characters
+	VLANIDs string `json:"vlanIds,omitempty"` // Comma-separated VLAN IDs or ID ranges
+}
+type ResponseNetworksGetNetworkVLANProfileVLANNames struct {
+	AdaptivePolicyGroup *ResponseNetworksGetNetworkVLANProfileVLANNamesAdaptivePolicyGroup `json:"adaptivePolicyGroup,omitempty"` // Adaptive Policy Group assigned to Vlan ID
+	Name                string                                                             `json:"name,omitempty"`                // Name of the VLAN, string length must be from 1 to 32 characters
+	VLANID              string                                                             `json:"vlanId,omitempty"`              // VLAN ID
+}
+type ResponseNetworksGetNetworkVLANProfileVLANNamesAdaptivePolicyGroup struct {
+	ID   string `json:"id,omitempty"`   // Adaptive Policy Group ID
+	Name string `json:"name,omitempty"` // Adaptive Policy Group name
+}
+type ResponseNetworksUpdateNetworkVLANProfile struct {
+	Iname      string                                                `json:"iname,omitempty"`      // IName of the VLAN profile
+	IsDefault  *bool                                                 `json:"isDefault,omitempty"`  // Boolean indicating the default VLAN Profile for any device that does not have a profile explicitly assigned
+	Name       string                                                `json:"name,omitempty"`       // Name of the profile, string length must be from 1 to 255 characters
+	VLANGroups *[]ResponseNetworksUpdateNetworkVLANProfileVLANGroups `json:"vlanGroups,omitempty"` // An array of named VLANs
+	VLANNames  *[]ResponseNetworksUpdateNetworkVLANProfileVLANNames  `json:"vlanNames,omitempty"`  // An array of named VLANs
+}
+type ResponseNetworksUpdateNetworkVLANProfileVLANGroups struct {
+	Name    string `json:"name,omitempty"`    // Name of the VLAN, string length must be from 1 to 32 characters
+	VLANIDs string `json:"vlanIds,omitempty"` // Comma-separated VLAN IDs or ID ranges
+}
+type ResponseNetworksUpdateNetworkVLANProfileVLANNames struct {
+	AdaptivePolicyGroup *ResponseNetworksUpdateNetworkVLANProfileVLANNamesAdaptivePolicyGroup `json:"adaptivePolicyGroup,omitempty"` // Adaptive Policy Group assigned to Vlan ID
+	Name                string                                                                `json:"name,omitempty"`                // Name of the VLAN, string length must be from 1 to 32 characters
+	VLANID              string                                                                `json:"vlanId,omitempty"`              // VLAN ID
+}
+type ResponseNetworksUpdateNetworkVLANProfileVLANNamesAdaptivePolicyGroup struct {
+	ID   string `json:"id,omitempty"`   // Adaptive Policy Group ID
+	Name string `json:"name,omitempty"` // Adaptive Policy Group name
 }
 type ResponseNetworksGetNetworkWebhooksHTTPServers []ResponseItemNetworksGetNetworkWebhooksHTTPServers // Array of ResponseNetworksGetNetworkWebhooksHttpServers
 type ResponseItemNetworksGetNetworkWebhooksHTTPServers struct {
@@ -2350,6 +3043,7 @@ type RequestNetworksUpdateNetwork struct {
 type RequestNetworksUpdateNetworkAlertsSettings struct {
 	Alerts              *[]RequestNetworksUpdateNetworkAlertsSettingsAlerts            `json:"alerts,omitempty"`              // Alert-specific configuration for each type. Only alerts that pertain to the network can be updated.
 	DefaultDestinations *RequestNetworksUpdateNetworkAlertsSettingsDefaultDestinations `json:"defaultDestinations,omitempty"` // The network-wide destinations for all alerts on the network.
+	Muting              *RequestNetworksUpdateNetworkAlertsSettingsMuting              `json:"muting,omitempty"`              // Mute alerts under certain conditions
 }
 type RequestNetworksUpdateNetworkAlertsSettingsAlerts struct {
 	AlertDestinations *RequestNetworksUpdateNetworkAlertsSettingsAlertsAlertDestinations `json:"alertDestinations,omitempty"` // A hash of destinations for this specific alert
@@ -2370,9 +3064,15 @@ type RequestNetworksUpdateNetworkAlertsSettingsAlertsFilters struct {
 }
 type RequestNetworksUpdateNetworkAlertsSettingsDefaultDestinations struct {
 	AllAdmins     *bool    `json:"allAdmins,omitempty"`     // If true, then all network admins will receive emails.
-	Emails        []string `json:"emails,omitempty"`        // A list of emails that will recieve the alert(s).
+	Emails        []string `json:"emails,omitempty"`        // A list of emails that will receive the alert(s).
 	HTTPServerIDs []string `json:"httpServerIds,omitempty"` // A list of HTTP server IDs to send a Webhook to
 	SNMP          *bool    `json:"snmp,omitempty"`          // If true, then an SNMP trap will be sent if there is an SNMP trap server configured for this network.
+}
+type RequestNetworksUpdateNetworkAlertsSettingsMuting struct {
+	ByPortSchedules *RequestNetworksUpdateNetworkAlertsSettingsMutingByPortSchedules `json:"byPortSchedules,omitempty"` // Mute wireless unreachable alerts based on switch port schedules
+}
+type RequestNetworksUpdateNetworkAlertsSettingsMutingByPortSchedules struct {
+	Enabled *bool `json:"enabled,omitempty"` // If true, then wireless unreachable alerts will be muted when caused by a port schedule
 }
 type RequestNetworksBindNetwork struct {
 	AutoBind         *bool  `json:"autoBind,omitempty"`         // Optional boolean indicating whether the network's switches should automatically bind to profiles of the same model. Defaults to false if left unspecified. This option only affects switch networks and switch templates. Auto-bind is not valid unless the switch template has at least one profile and has at most one profile per switch model.
@@ -2471,7 +3171,7 @@ type RequestNetworksProvisionNetworkClientsPoliciesBySSID9 struct {
 }
 type RequestNetworksUpdateNetworkClientPolicy struct {
 	DevicePolicy  string `json:"devicePolicy,omitempty"`  // The policy to assign. Can be 'Whitelisted', 'Blocked', 'Normal' or 'Group policy'. Required.
-	GroupPolicyID string `json:"groupPolicyId,omitempty"` // [optional] If 'devicePolicy' is set to 'Group policy' this param is used to specify the group policy ID.
+	GroupPolicyID string `json:"groupPolicyId,omitempty"` // [Optional] If 'devicePolicy' is set to 'Group policy' this param is used to specify the group policy ID.
 }
 type RequestNetworksUpdateNetworkClientSplashAuthorizationStatus struct {
 	SSIDs *RequestNetworksUpdateNetworkClientSplashAuthorizationStatusSSIDs `json:"ssids,omitempty"` // The target SSIDs. Each SSID must be enabled and must have Click-through splash enabled. For each SSID where isAuthorized is true, the expiration time will automatically be set according to the SSID's splash frequency. Not all networks support configuring all SSIDs
@@ -2542,7 +3242,7 @@ type RequestNetworksClaimNetworkDevices struct {
 	Serials []string `json:"serials"` // A list of serials of devices to claim
 }
 type RequestNetworksVmxNetworkDevicesClaim struct {
-	Size string `json:"size,omitempty"` // The size of the vMX you claim. It can be one of: small, medium, large, 100
+	Size string `json:"size,omitempty"` // The size of the vMX you claim. It can be one of: small, medium, large, xlarge, 100
 }
 type RequestNetworksRemoveNetworkDevices struct {
 	Serial string `json:"serial,omitempty"` // The serial of a device
@@ -2558,6 +3258,7 @@ type RequestNetworksUpdateNetworkFirmwareUpgradesProducts struct {
 	CellularGateway *RequestNetworksUpdateNetworkFirmwareUpgradesProductsCellularGateway `json:"cellularGateway,omitempty"` // The network device to be updated
 	Sensor          *RequestNetworksUpdateNetworkFirmwareUpgradesProductsSensor          `json:"sensor,omitempty"`          // The network device to be updated
 	Switch          *RequestNetworksUpdateNetworkFirmwareUpgradesProductsSwitch          `json:"switch,omitempty"`          // The network device to be updated
+	SwitchCatalyst  *RequestNetworksUpdateNetworkFirmwareUpgradesProductsSwitchCatalyst  `json:"switchCatalyst,omitempty"`  // The network device to be updated
 	Wireless        *RequestNetworksUpdateNetworkFirmwareUpgradesProductsWireless        `json:"wireless,omitempty"`        // The network device to be updated
 }
 type RequestNetworksUpdateNetworkFirmwareUpgradesProductsAppliance struct {
@@ -2615,6 +3316,17 @@ type RequestNetworksUpdateNetworkFirmwareUpgradesProductsSwitchNextUpgrade struc
 type RequestNetworksUpdateNetworkFirmwareUpgradesProductsSwitchNextUpgradeToVersion struct {
 	ID string `json:"id,omitempty"` // The version ID
 }
+type RequestNetworksUpdateNetworkFirmwareUpgradesProductsSwitchCatalyst struct {
+	NextUpgrade                  *RequestNetworksUpdateNetworkFirmwareUpgradesProductsSwitchCatalystNextUpgrade `json:"nextUpgrade,omitempty"`                  // The pending firmware upgrade if it exists
+	ParticipateInNextBetaRelease *bool                                                                          `json:"participateInNextBetaRelease,omitempty"` // Whether or not the network wants beta firmware
+}
+type RequestNetworksUpdateNetworkFirmwareUpgradesProductsSwitchCatalystNextUpgrade struct {
+	Time      string                                                                                  `json:"time,omitempty"`      // The time of the last successful upgrade
+	ToVersion *RequestNetworksUpdateNetworkFirmwareUpgradesProductsSwitchCatalystNextUpgradeToVersion `json:"toVersion,omitempty"` // The version to be updated to
+}
+type RequestNetworksUpdateNetworkFirmwareUpgradesProductsSwitchCatalystNextUpgradeToVersion struct {
+	ID string `json:"id,omitempty"` // The version ID
+}
 type RequestNetworksUpdateNetworkFirmwareUpgradesProductsWireless struct {
 	NextUpgrade                  *RequestNetworksUpdateNetworkFirmwareUpgradesProductsWirelessNextUpgrade `json:"nextUpgrade,omitempty"`                  // The pending firmware upgrade if it exists
 	ParticipateInNextBetaRelease *bool                                                                    `json:"participateInNextBetaRelease,omitempty"` // Whether or not the network wants beta firmware
@@ -2648,7 +3360,8 @@ type RequestNetworksCreateNetworkFirmwareUpgradesStagedEvent struct {
 	Stages   *[]RequestNetworksCreateNetworkFirmwareUpgradesStagedEventStages `json:"stages,omitempty"`   // All firmware upgrade stages in the network with their start time.
 }
 type RequestNetworksCreateNetworkFirmwareUpgradesStagedEventProducts struct {
-	Switch *RequestNetworksCreateNetworkFirmwareUpgradesStagedEventProductsSwitch `json:"switch,omitempty"` // Version information for the switch network being upgraded
+	Switch         *RequestNetworksCreateNetworkFirmwareUpgradesStagedEventProductsSwitch         `json:"switch,omitempty"`         // Version information for the switch network being upgraded
+	SwitchCatalyst *RequestNetworksCreateNetworkFirmwareUpgradesStagedEventProductsSwitchCatalyst `json:"switchCatalyst,omitempty"` // Version information for the switch network being upgraded
 }
 type RequestNetworksCreateNetworkFirmwareUpgradesStagedEventProductsSwitch struct {
 	NextUpgrade *RequestNetworksCreateNetworkFirmwareUpgradesStagedEventProductsSwitchNextUpgrade `json:"nextUpgrade,omitempty"` // The next upgrade version for the switch network
@@ -2657,6 +3370,15 @@ type RequestNetworksCreateNetworkFirmwareUpgradesStagedEventProductsSwitchNextUp
 	ToVersion *RequestNetworksCreateNetworkFirmwareUpgradesStagedEventProductsSwitchNextUpgradeToVersion `json:"toVersion,omitempty"` // The version to be updated to for switch devices
 }
 type RequestNetworksCreateNetworkFirmwareUpgradesStagedEventProductsSwitchNextUpgradeToVersion struct {
+	ID string `json:"id,omitempty"` // The version ID
+}
+type RequestNetworksCreateNetworkFirmwareUpgradesStagedEventProductsSwitchCatalyst struct {
+	NextUpgrade *RequestNetworksCreateNetworkFirmwareUpgradesStagedEventProductsSwitchCatalystNextUpgrade `json:"nextUpgrade,omitempty"` // The next upgrade version for the switch network
+}
+type RequestNetworksCreateNetworkFirmwareUpgradesStagedEventProductsSwitchCatalystNextUpgrade struct {
+	ToVersion *RequestNetworksCreateNetworkFirmwareUpgradesStagedEventProductsSwitchCatalystNextUpgradeToVersion `json:"toVersion,omitempty"` // The version to be updated to for switch Catalyst devices
+}
+type RequestNetworksCreateNetworkFirmwareUpgradesStagedEventProductsSwitchCatalystNextUpgradeToVersion struct {
 	ID string `json:"id,omitempty"` // The version ID
 }
 type RequestNetworksCreateNetworkFirmwareUpgradesStagedEventStages struct {
@@ -3064,7 +3786,7 @@ type RequestNetworksUpdateNetworkGroupPolicyVLANTagging struct {
 	VLANID   string `json:"vlanId,omitempty"`   // The ID of the vlan you want to tag. This only applies if 'settings' is set to 'custom'.
 }
 type RequestNetworksCreateNetworkMerakiAuthUser struct {
-	AccountType         string                                                      `json:"accountType,omitempty"`         // Authorization type for user. Can be 'Guest' or '802.1X' for wireless networks, or 'Client VPN' for wired networks. Defaults to '802.1X'.
+	AccountType         string                                                      `json:"accountType,omitempty"`         // Authorization type for user. Can be 'Guest' or '802.1X' for wireless networks, or 'Client VPN' for MX networks. Defaults to '802.1X'.
 	Authorizations      *[]RequestNetworksCreateNetworkMerakiAuthUserAuthorizations `json:"authorizations,omitempty"`      // Authorization zones and expiration dates for the user.
 	Email               string                                                      `json:"email,omitempty"`               // Email address of the user
 	EmailPasswordToUser *bool                                                       `json:"emailPasswordToUser,omitempty"` // Whether or not Meraki should email the password to user. Default is false.
@@ -3093,12 +3815,15 @@ type RequestNetworksCreateNetworkMqttBroker struct {
 	Port           *int                                                  `json:"port,omitempty"`           // Host port though which the MQTT broker can be reached.
 	Security       *RequestNetworksCreateNetworkMqttBrokerSecurity       `json:"security,omitempty"`       // Security settings of the MQTT broker.
 }
-type RequestNetworksCreateNetworkMqttBrokerAuthentication interface{}
-type RequestNetworksCreateNetworkMqttBrokerSecurity struct {
-	Mode     string                                                  `json:"mode,omitempty"`     // Security protocol of the MQTT broker.
-	Security *RequestNetworksCreateNetworkMqttBrokerSecuritySecurity `json:"security,omitempty"` // TLS settings of the MQTT broker.
+type RequestNetworksCreateNetworkMqttBrokerAuthentication struct {
+	Password string `json:"password,omitempty"` // Password for the MQTT broker.
+	Username string `json:"username,omitempty"` // Username for the MQTT broker.
 }
-type RequestNetworksCreateNetworkMqttBrokerSecuritySecurity struct {
+type RequestNetworksCreateNetworkMqttBrokerSecurity struct {
+	Mode string                                             `json:"mode,omitempty"` // Security protocol of the MQTT broker.
+	Tls  *RequestNetworksCreateNetworkMqttBrokerSecurityTls `json:"tls,omitempty"`  // TLS settings of the MQTT broker.
+}
+type RequestNetworksCreateNetworkMqttBrokerSecurityTls struct {
 	CaCertificate   string `json:"caCertificate,omitempty"`   // CA Certificate of the MQTT broker.
 	VerifyHostnames *bool  `json:"verifyHostnames,omitempty"` // Whether the TLS hostname verification is enabled for the MQTT broker.
 }
@@ -3109,12 +3834,15 @@ type RequestNetworksUpdateNetworkMqttBroker struct {
 	Port           *int                                                  `json:"port,omitempty"`           // Host port though which the MQTT broker can be reached.
 	Security       *RequestNetworksUpdateNetworkMqttBrokerSecurity       `json:"security,omitempty"`       // Security settings of the MQTT broker.
 }
-type RequestNetworksUpdateNetworkMqttBrokerAuthentication interface{}
-type RequestNetworksUpdateNetworkMqttBrokerSecurity struct {
-	Mode     string                                                  `json:"mode,omitempty"`     // Security protocol of the MQTT broker.
-	Security *RequestNetworksUpdateNetworkMqttBrokerSecuritySecurity `json:"security,omitempty"` // TLS settings of the MQTT broker.
+type RequestNetworksUpdateNetworkMqttBrokerAuthentication struct {
+	Password string `json:"password,omitempty"` // Password for the MQTT broker.
+	Username string `json:"username,omitempty"` // Username for the MQTT broker.
 }
-type RequestNetworksUpdateNetworkMqttBrokerSecuritySecurity struct {
+type RequestNetworksUpdateNetworkMqttBrokerSecurity struct {
+	Mode string                                             `json:"mode,omitempty"` // Security protocol of the MQTT broker.
+	Tls  *RequestNetworksUpdateNetworkMqttBrokerSecurityTls `json:"tls,omitempty"`  // TLS settings of the MQTT broker.
+}
+type RequestNetworksUpdateNetworkMqttBrokerSecurityTls struct {
 	CaCertificate   string `json:"caCertificate,omitempty"`   // CA Certificate of the MQTT broker.
 	VerifyHostnames *bool  `json:"verifyHostnames,omitempty"` // Whether the TLS hostname verification is enabled for the MQTT broker.
 }
@@ -3137,6 +3865,7 @@ type RequestNetworksCreateNetworkPiiRequest struct {
 type RequestNetworksUpdateNetworkSettings struct {
 	LocalStatusPage         *RequestNetworksUpdateNetworkSettingsLocalStatusPage `json:"localStatusPage,omitempty"`         // A hash of Local Status page(s)' authentication options applied to the Network.
 	LocalStatusPageEnabled  *bool                                                `json:"localStatusPageEnabled,omitempty"`  // Enables / disables the local device status pages (<a target='_blank' href='http://my.meraki.com/'>my.meraki.com, </a><a target='_blank' href='http://ap.meraki.com/'>ap.meraki.com, </a><a target='_blank' href='http://switch.meraki.com/'>switch.meraki.com, </a><a target='_blank' href='http://wired.meraki.com/'>wired.meraki.com</a>). Optional (defaults to false)
+	NamedVLANs              *RequestNetworksUpdateNetworkSettingsNamedVLANs      `json:"namedVlans,omitempty"`              // A hash of Named VLANs options applied to the Network.
 	RemoteStatusPageEnabled *bool                                                `json:"remoteStatusPageEnabled,omitempty"` // Enables / disables access to the device status page (<a target='_blank'>http://[device's LAN IP])</a>. Optional. Can only be set if localStatusPageEnabled is set to true
 	SecurePort              *RequestNetworksUpdateNetworkSettingsSecurePort      `json:"securePort,omitempty"`              // A hash of SecureConnect options applied to the Network.
 }
@@ -3146,6 +3875,9 @@ type RequestNetworksUpdateNetworkSettingsLocalStatusPage struct {
 type RequestNetworksUpdateNetworkSettingsLocalStatusPageAuthentication struct {
 	Enabled  *bool  `json:"enabled,omitempty"`  // Enables / disables the authentication on Local Status page(s).
 	Password string `json:"password,omitempty"` // The password used for Local Status Page(s). Set this to null to clear the password.
+}
+type RequestNetworksUpdateNetworkSettingsNamedVLANs struct {
+	Enabled *bool `json:"enabled,omitempty"` // Enables / disables Named VLANs on the Network.
 }
 type RequestNetworksUpdateNetworkSettingsSecurePort struct {
 	Enabled *bool `json:"enabled,omitempty"` // Enables / disables SecureConnect on the network. Optional.
@@ -3164,7 +3896,7 @@ type RequestNetworksUpdateNetworkSyslogServers struct {
 }
 type RequestNetworksUpdateNetworkSyslogServersServers struct {
 	Host  string   `json:"host,omitempty"`  // The IP address of the syslog server
-	Port  string   `json:"port,omitempty"`  // The port of the syslog server
+	Port  *int     `json:"port,omitempty"`  // The port of the syslog server
 	Roles []string `json:"roles,omitempty"` // A list of roles for the syslog server. Options (case-insensitive): 'Wireless event log', 'Appliance event log', 'Switch event log', 'Air Marshal events', 'Flows', 'URLs', 'IDS alerts', 'Security events'
 }
 type RequestNetworksUpdateNetworkTrafficAnalysis struct {
@@ -3178,6 +3910,49 @@ type RequestNetworksUpdateNetworkTrafficAnalysisCustomPieChartItems struct {
 }
 type RequestNetworksUnbindNetwork struct {
 	RetainConfigs *bool `json:"retainConfigs,omitempty"` // Optional boolean to retain all the current configs given by the template.
+}
+type RequestNetworksCreateNetworkVLANProfile struct {
+	Iname      string                                               `json:"iname,omitempty"`      // IName of the profile
+	Name       string                                               `json:"name,omitempty"`       // Name of the profile, string length must be from 1 to 255 characters
+	VLANGroups *[]RequestNetworksCreateNetworkVLANProfileVLANGroups `json:"vlanGroups,omitempty"` // An array of VLAN groups
+	VLANNames  *[]RequestNetworksCreateNetworkVLANProfileVLANNames  `json:"vlanNames,omitempty"`  // An array of named VLANs
+}
+type RequestNetworksCreateNetworkVLANProfileVLANGroups struct {
+	Name    string `json:"name,omitempty"`    // Name of the VLAN, string length must be from 1 to 32 characters
+	VLANIDs string `json:"vlanIds,omitempty"` // Comma-separated VLAN IDs or ID ranges
+}
+type RequestNetworksCreateNetworkVLANProfileVLANNames struct {
+	AdaptivePolicyGroup *RequestNetworksCreateNetworkVLANProfileVLANNamesAdaptivePolicyGroup `json:"adaptivePolicyGroup,omitempty"` // Adaptive Policy Group assigned to Vlan ID
+	Name                string                                                               `json:"name,omitempty"`                // Name of the VLAN, string length must be from 1 to 32 characters
+	VLANID              string                                                               `json:"vlanId,omitempty"`              // VLAN ID
+}
+type RequestNetworksCreateNetworkVLANProfileVLANNamesAdaptivePolicyGroup struct {
+	ID string `json:"id,omitempty"` // Adaptive Policy Group ID
+}
+type RequestNetworksReassignNetworkVLANProfilesAssignments struct {
+	Serials     []string                                                          `json:"serials,omitempty"`     // Array of Device Serials
+	StackIDs    []string                                                          `json:"stackIds,omitempty"`    // Array of Switch Stack IDs
+	VLANProfile *RequestNetworksReassignNetworkVLANProfilesAssignmentsVLANProfile `json:"vlanProfile,omitempty"` // The VLAN Profile
+}
+type RequestNetworksReassignNetworkVLANProfilesAssignmentsVLANProfile struct {
+	Iname string `json:"iname,omitempty"` // IName of the VLAN Profile
+}
+type RequestNetworksUpdateNetworkVLANProfile struct {
+	Name       string                                               `json:"name,omitempty"`       // Name of the profile, string length must be from 1 to 255 characters
+	VLANGroups *[]RequestNetworksUpdateNetworkVLANProfileVLANGroups `json:"vlanGroups,omitempty"` // An array of VLAN groups
+	VLANNames  *[]RequestNetworksUpdateNetworkVLANProfileVLANNames  `json:"vlanNames,omitempty"`  // An array of named VLANs
+}
+type RequestNetworksUpdateNetworkVLANProfileVLANGroups struct {
+	Name    string `json:"name,omitempty"`    // Name of the VLAN, string length must be from 1 to 32 characters
+	VLANIDs string `json:"vlanIds,omitempty"` // Comma-separated VLAN IDs or ID ranges
+}
+type RequestNetworksUpdateNetworkVLANProfileVLANNames struct {
+	AdaptivePolicyGroup *RequestNetworksUpdateNetworkVLANProfileVLANNamesAdaptivePolicyGroup `json:"adaptivePolicyGroup,omitempty"` // Adaptive Policy Group assigned to Vlan ID
+	Name                string                                                               `json:"name,omitempty"`                // Name of the VLAN, string length must be from 1 to 32 characters
+	VLANID              string                                                               `json:"vlanId,omitempty"`              // VLAN ID
+}
+type RequestNetworksUpdateNetworkVLANProfileVLANNamesAdaptivePolicyGroup struct {
+	ID string `json:"id,omitempty"` // Adaptive Policy Group ID
 }
 type RequestNetworksCreateNetworkWebhooksHTTPServer struct {
 	Name            string                                                         `json:"name,omitempty"`            // A name for easy reference to the HTTP server
@@ -3198,8 +3973,8 @@ type RequestNetworksUpdateNetworkWebhooksHTTPServerPayloadTemplate struct {
 	PayloadTemplateID string `json:"payloadTemplateId,omitempty"` // The ID of the payload template. Defaults to 'wpt_00001' for the Meraki template. For Meraki-included templates: for the Webex (included) template use 'wpt_00002'; for the Slack (included) template use 'wpt_00003'; for the Microsoft Teams (included) template use 'wpt_00004'; for the ServiceNow (included) template use 'wpt_00006'
 }
 type RequestNetworksCreateNetworkWebhooksPayloadTemplate struct {
-	Body        string                                                        `json:"body,omitempty"`        // The liquid template used for the body of the webhook message. Either *body* or *bodyFile* must be specified.
-	BodyFile    string                                                        `json:"bodyFile,omitempty"`    // A file containing liquid template used for the body of the webhook message. Either *body* or *bodyFile* must be specified.
+	Body        string                                                        `json:"body,omitempty"`        // The liquid template used for the body of the webhook message. Either `body` or `bodyFile` must be specified.
+	BodyFile    string                                                        `json:"bodyFile,omitempty"`    // A file containing liquid template used for the body of the webhook message. Either `body` or `bodyFile` must be specified.
 	Headers     *[]RequestNetworksCreateNetworkWebhooksPayloadTemplateHeaders `json:"headers,omitempty"`     // The liquid template used with the webhook headers.
 	HeadersFile string                                                        `json:"headersFile,omitempty"` // A file containing the liquid template used with the webhook headers.
 	Name        string                                                        `json:"name,omitempty"`        // The name of the new template
@@ -3409,14 +4184,14 @@ func (s *NetworksService) GetNetworkBluetoothClient(networkID string, bluetoothC
 }
 
 //GetNetworkClients List the clients that have used this network in the timespan
-/* List the clients that have used this network in the timespan
+/* List the clients that have used this network in the timespan. The data is updated at most once every five minutes.
 
 @param networkID networkId path parameter. Network ID
 @param getNetworkClientsQueryParams Filtering parameter
 
 
 */
-func (s *NetworksService) GetNetworkClients(networkID string, getNetworkClientsQueryParams *GetNetworkClientsQueryParams) (*[]ResponseNetworksGetNetworkClients, *resty.Response, error) {
+func (s *NetworksService) GetNetworkClients(networkID string, getNetworkClientsQueryParams *GetNetworkClientsQueryParams) (*ResponseNetworksGetNetworkClients, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -3426,7 +4201,7 @@ func (s *NetworksService) GetNetworkClients(networkID string, getNetworkClientsQ
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&[]ResponseNetworksGetNetworkClients{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkClients{}).
 		SetError(&Error).
 		Get(path)
 
@@ -3439,7 +4214,7 @@ func (s *NetworksService) GetNetworkClients(networkID string, getNetworkClientsQ
 		return nil, response, fmt.Errorf("error with operation GetNetworkClients")
 	}
 
-	result := response.Result().(*[]ResponseNetworksGetNetworkClients)
+	result := response.Result().(*ResponseNetworksGetNetworkClients)
 	return result, response, err
 
 }
@@ -4204,8 +4979,8 @@ func (s *NetworksService) GetNetworkHealthAlerts(networkID string) (*ResponseNet
 
 }
 
-//GetNetworkMerakiAuthUsers List the users configured under Meraki Authentication for a network (splash guest or RADIUS users for a wireless network, or client VPN users for a wired network)
-/* List the users configured under Meraki Authentication for a network (splash guest or RADIUS users for a wireless network, or client VPN users for a wired network)
+//GetNetworkMerakiAuthUsers List the users configured under Meraki Authentication for a network (splash guest or RADIUS users for a wireless network, or client VPN users for a MX network)
+/* List the users configured under Meraki Authentication for a network (splash guest or RADIUS users for a wireless network, or client VPN users for a MX network)
 
 @param networkID networkId path parameter. Network ID
 
@@ -4414,9 +5189,9 @@ func (s *NetworksService) GetNetworkNetworkHealthChannelUtilization(networkID st
 
 ## ALTERNATE PATH
 
-***
+```
 /organizations/{organizationId}/pii/piiKeys
-***
+```
 
 @param networkID networkId path parameter. Network ID
 @param getNetworkPiiPiiKeysQueryParams Filtering parameter
@@ -4456,9 +5231,9 @@ func (s *NetworksService) GetNetworkPiiPiiKeys(networkID string, getNetworkPiiPi
 
 ## ALTERNATE PATH
 
-***
+```
 /organizations/{organizationId}/pii/requests
-***
+```
 
 @param networkID networkId path parameter. Network ID
 
@@ -4495,9 +5270,9 @@ func (s *NetworksService) GetNetworkPiiRequests(networkID string) (*ResponseNetw
 
 ## ALTERNATE PATH
 
-***
+```
 /organizations/{organizationId}/pii/requests/{requestId}
-***
+```
 
 @param networkID networkId path parameter. Network ID
 @param requestID requestId path parameter. Request ID
@@ -4536,9 +5311,9 @@ func (s *NetworksService) GetNetworkPiiRequest(networkID string, requestID strin
 
 ## ALTERNATE PATH
 
-***
+```
 /organizations/{organizationId}/pii/smDevicesForKey
-***
+```
 
 @param networkID networkId path parameter. Network ID
 @param getNetworkPiiSmDevicesForKeyQueryParams Filtering parameter
@@ -4578,9 +5353,9 @@ func (s *NetworksService) GetNetworkPiiSmDevicesForKey(networkID string, getNetw
 
 ## ALTERNATE PATH
 
-***
+```
 /organizations/{organizationId}/pii/smOwnersForKey
-***
+```
 
 @param networkID networkId path parameter. Network ID
 @param getNetworkPiiSmOwnersForKeyQueryParams Filtering parameter
@@ -4786,8 +5561,8 @@ func (s *NetworksService) GetNetworkSyslogServers(networkID string) (*ResponseNe
 
 }
 
-//GetNetworkTopologyLinkLayer List the LLDP and CDP information for all discovered devices and connections in a network.
-/* List the LLDP and CDP information for all discovered devices and connections in a network.
+//GetNetworkTopologyLinkLayer List the LLDP and CDP information for all discovered devices and connections in a network
+/* List the LLDP and CDP information for all discovered devices and connections in a network. At least one MX or MS device must be in the network in order to build the topology.
 
 @param networkID networkId path parameter. Network ID
 
@@ -4888,8 +5663,8 @@ func (s *NetworksService) GetNetworkTrafficAnalysis(networkID string) (*Response
 
 }
 
-//GetNetworkTrafficShapingApplicationCategories Returns the application categories for traffic shaping rules.
-/* Returns the application categories for traffic shaping rules.
+//GetNetworkTrafficShapingApplicationCategories Returns the application categories for traffic shaping rules
+/* Returns the application categories for traffic shaping rules. Only applicable on networks with a security applicance.
 
 @param networkID networkId path parameter. Network ID
 
@@ -4950,6 +5725,110 @@ func (s *NetworksService) GetNetworkTrafficShapingDscpTaggingOptions(networkID s
 	}
 
 	result := response.Result().(*ResponseNetworksGetNetworkTrafficShapingDscpTaggingOptions)
+	return result, response, err
+
+}
+
+//GetNetworkVLANProfiles List VLAN profiles for a network
+/* List VLAN profiles for a network
+
+@param networkID networkId path parameter. Network ID
+
+
+*/
+func (s *NetworksService) GetNetworkVLANProfiles(networkID string) (*ResponseNetworksGetNetworkVLANProfiles, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/vlanProfiles"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseNetworksGetNetworkVLANProfiles{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetNetworkVlanProfiles")
+	}
+
+	result := response.Result().(*ResponseNetworksGetNetworkVLANProfiles)
+	return result, response, err
+
+}
+
+//GetNetworkVLANProfilesAssignmentsByDevice Get the assigned VLAN Profiles for devices in a network
+/* Get the assigned VLAN Profiles for devices in a network
+
+@param networkID networkId path parameter. Network ID
+@param getNetworkVlanProfilesAssignmentsByDeviceQueryParams Filtering parameter
+
+
+*/
+func (s *NetworksService) GetNetworkVLANProfilesAssignmentsByDevice(networkID string, getNetworkVlanProfilesAssignmentsByDeviceQueryParams *GetNetworkVLANProfilesAssignmentsByDeviceQueryParams) (*ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/vlanProfiles/assignments/byDevice"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	queryString, _ := query.Values(getNetworkVlanProfilesAssignmentsByDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetNetworkVlanProfilesAssignmentsByDevice")
+	}
+
+	result := response.Result().(*ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice)
+	return result, response, err
+
+}
+
+//GetNetworkVLANProfile Get an existing VLAN profile of a network
+/* Get an existing VLAN profile of a network
+
+@param networkID networkId path parameter. Network ID
+@param iname iname path parameter.
+
+
+*/
+func (s *NetworksService) GetNetworkVLANProfile(networkID string, iname string) (*ResponseNetworksGetNetworkVLANProfile, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/vlanProfiles/{iname}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+	path = strings.Replace(path, "{iname}", fmt.Sprintf("%v", iname), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseNetworksGetNetworkVLANProfile{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetNetworkVlanProfile")
+	}
+
+	result := response.Result().(*ResponseNetworksGetNetworkVLANProfile)
 	return result, response, err
 
 }
@@ -5125,6 +6004,41 @@ func (s *NetworksService) GetNetworkWebhooksWebhookTest(networkID string, webhoo
 
 }
 
+//GetOrganizationSummaryTopNetworksByStatus List the client and status overview information for the networks in an organization
+/* List the client and status overview information for the networks in an organization. Usage is measured in kilobytes and from the last seven days.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationSummaryTopNetworksByStatusQueryParams Filtering parameter
+
+
+*/
+func (s *NetworksService) GetOrganizationSummaryTopNetworksByStatus(organizationID string, getOrganizationSummaryTopNetworksByStatusQueryParams *GetOrganizationSummaryTopNetworksByStatusQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/summary/top/networks/byStatus"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationSummaryTopNetworksByStatusQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation GetOrganizationSummaryTopNetworksByStatus")
+	}
+
+	return response, err
+
+}
+
 //BindNetwork Bind a network to a template.
 /* Bind a network to a template.
 
@@ -5133,7 +6047,7 @@ func (s *NetworksService) GetNetworkWebhooksWebhookTest(networkID string, webhoo
 
 */
 
-func (s *NetworksService) BindNetwork(networkID string, requestNetworksBindNetwork *RequestNetworksBindNetwork) (*resty.Response, error) {
+func (s *NetworksService) BindNetwork(networkID string, requestNetworksBindNetwork *RequestNetworksBindNetwork) (*ResponseNetworksBindNetwork, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/bind"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5142,20 +6056,21 @@ func (s *NetworksService) BindNetwork(networkID string, requestNetworksBindNetwo
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksBindNetwork).
-		// SetResult(&ResponseNetworksBindNetwork{}).
+		SetResult(&ResponseNetworksBindNetwork{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation BindNetwork")
+		return nil, response, fmt.Errorf("error with operation BindNetwork")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksBindNetwork)
+	return result, response, err
 
 }
 
@@ -5167,7 +6082,7 @@ func (s *NetworksService) BindNetwork(networkID string, requestNetworksBindNetwo
 
 */
 
-func (s *NetworksService) ProvisionNetworkClients(networkID string, requestNetworksProvisionNetworkClients *RequestNetworksProvisionNetworkClients) (*resty.Response, error) {
+func (s *NetworksService) ProvisionNetworkClients(networkID string, requestNetworksProvisionNetworkClients *RequestNetworksProvisionNetworkClients) (*ResponseNetworksProvisionNetworkClients, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/provision"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5176,32 +6091,33 @@ func (s *NetworksService) ProvisionNetworkClients(networkID string, requestNetwo
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksProvisionNetworkClients).
-		// SetResult(&ResponseNetworksProvisionNetworkClients{}).
+		SetResult(&ResponseNetworksProvisionNetworkClients{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation ProvisionNetworkClients")
+		return nil, response, fmt.Errorf("error with operation ProvisionNetworkClients")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksProvisionNetworkClients)
+	return result, response, err
 
 }
 
-//ClaimNetworkDevices Claim devices into a network. (Note: for recently claimed devices, it may take a few minutes for API requsts against that device to succeed)
-/* Claim devices into a network. (Note: for recently claimed devices, it may take a few minutes for API requsts against that device to succeed)
+//ClaimNetworkDevices Claim devices into a network. (Note: for recently claimed devices, it may take a few minutes for API requests against that device to succeed)
+/* Claim devices into a network. (Note: for recently claimed devices, it may take a few minutes for API requests against that device to succeed). This operation can be used up to ten times within a single five minute window.
 
 @param networkID networkId path parameter. Network ID
 
 
 */
 
-func (s *NetworksService) ClaimNetworkDevices(networkID string, requestNetworksClaimNetworkDevices *RequestNetworksClaimNetworkDevices) (*resty.Response, error) {
+func (s *NetworksService) ClaimNetworkDevices(networkID string, requestNetworksClaimNetworkDevices *RequestNetworksClaimNetworkDevices) (*ResponseNetworksClaimNetworkDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/devices/claim"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5210,19 +6126,21 @@ func (s *NetworksService) ClaimNetworkDevices(networkID string, requestNetworksC
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksClaimNetworkDevices).
+		SetResult(&ResponseNetworksClaimNetworkDevices{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation ClaimNetworkDevices")
+		return nil, response, fmt.Errorf("error with operation ClaimNetworkDevices")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksClaimNetworkDevices)
+	return result, response, err
 
 }
 
@@ -5234,7 +6152,7 @@ func (s *NetworksService) ClaimNetworkDevices(networkID string, requestNetworksC
 
 */
 
-func (s *NetworksService) VmxNetworkDevicesClaim(networkID string, requestNetworksVmxNetworkDevicesClaim *RequestNetworksVmxNetworkDevicesClaim) (*resty.Response, error) {
+func (s *NetworksService) VmxNetworkDevicesClaim(networkID string, requestNetworksVmxNetworkDevicesClaim *RequestNetworksVmxNetworkDevicesClaim) (*ResponseNetworksVmxNetworkDevicesClaim, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/devices/claim/vmx"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5243,20 +6161,21 @@ func (s *NetworksService) VmxNetworkDevicesClaim(networkID string, requestNetwor
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksVmxNetworkDevicesClaim).
-		// SetResult(&ResponseNetworksVmxNetworkDevicesClaim{}).
+		SetResult(&ResponseNetworksVmxNetworkDevicesClaim{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation VmxNetworkDevicesClaim")
+		return nil, response, fmt.Errorf("error with operation VmxNetworkDevicesClaim")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksVmxNetworkDevicesClaim)
+	return result, response, err
 
 }
 
@@ -5440,7 +6359,7 @@ func (s *NetworksService) RollbacksNetworkFirmwareUpgradesStagedEvents(networkID
 
 */
 
-func (s *NetworksService) CreateNetworkFirmwareUpgradesStagedGroup(networkID string, requestNetworksCreateNetworkFirmwareUpgradesStagedGroup *RequestNetworksCreateNetworkFirmwareUpgradesStagedGroup) (*resty.Response, error) {
+func (s *NetworksService) CreateNetworkFirmwareUpgradesStagedGroup(networkID string, requestNetworksCreateNetworkFirmwareUpgradesStagedGroup *RequestNetworksCreateNetworkFirmwareUpgradesStagedGroup) (*ResponseNetworksCreateNetworkFirmwareUpgradesStagedGroup, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/groups"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5449,20 +6368,21 @@ func (s *NetworksService) CreateNetworkFirmwareUpgradesStagedGroup(networkID str
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksCreateNetworkFirmwareUpgradesStagedGroup).
-		// SetResult(&ResponseNetworksCreateNetworkFirmwareUpgradesStagedGroup{}).
+		SetResult(&ResponseNetworksCreateNetworkFirmwareUpgradesStagedGroup{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateNetworkFirmwareUpgradesStagedGroup")
+		return nil, response, fmt.Errorf("error with operation CreateNetworkFirmwareUpgradesStagedGroup")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksCreateNetworkFirmwareUpgradesStagedGroup)
+	return result, response, err
 
 }
 
@@ -5474,7 +6394,7 @@ func (s *NetworksService) CreateNetworkFirmwareUpgradesStagedGroup(networkID str
 
 */
 
-func (s *NetworksService) CreateNetworkFloorPlan(networkID string, requestNetworksCreateNetworkFloorPlan *RequestNetworksCreateNetworkFloorPlan) (*resty.Response, error) {
+func (s *NetworksService) CreateNetworkFloorPlan(networkID string, requestNetworksCreateNetworkFloorPlan *RequestNetworksCreateNetworkFloorPlan) (*ResponseNetworksCreateNetworkFloorPlan, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/floorPlans"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5483,20 +6403,21 @@ func (s *NetworksService) CreateNetworkFloorPlan(networkID string, requestNetwor
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksCreateNetworkFloorPlan).
-		// SetResult(&ResponseNetworksCreateNetworkFloorPlan{}).
+		SetResult(&ResponseNetworksCreateNetworkFloorPlan{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateNetworkFloorPlan")
+		return nil, response, fmt.Errorf("error with operation CreateNetworkFloorPlan")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksCreateNetworkFloorPlan)
+	return result, response, err
 
 }
 
@@ -5508,7 +6429,7 @@ func (s *NetworksService) CreateNetworkFloorPlan(networkID string, requestNetwor
 
 */
 
-func (s *NetworksService) CreateNetworkGroupPolicy(networkID string, requestNetworksCreateNetworkGroupPolicy *RequestNetworksCreateNetworkGroupPolicy) (*resty.Response, error) {
+func (s *NetworksService) CreateNetworkGroupPolicy(networkID string, requestNetworksCreateNetworkGroupPolicy *RequestNetworksCreateNetworkGroupPolicy) (*ResponseNetworksCreateNetworkGroupPolicy, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/groupPolicies"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5517,20 +6438,21 @@ func (s *NetworksService) CreateNetworkGroupPolicy(networkID string, requestNetw
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksCreateNetworkGroupPolicy).
-		// SetResult(&ResponseNetworksCreateNetworkGroupPolicy{}).
+		SetResult(&ResponseNetworksCreateNetworkGroupPolicy{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateNetworkGroupPolicy")
+		return nil, response, fmt.Errorf("error with operation CreateNetworkGroupPolicy")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksCreateNetworkGroupPolicy)
+	return result, response, err
 
 }
 
@@ -5577,7 +6499,7 @@ func (s *NetworksService) CreateNetworkMerakiAuthUser(networkID string, requestN
 
 */
 
-func (s *NetworksService) CreateNetworkMqttBroker(networkID string, requestNetworksCreateNetworkMqttBroker *RequestNetworksCreateNetworkMqttBroker) (*resty.Response, error) {
+func (s *NetworksService) CreateNetworkMqttBroker(networkID string, requestNetworksCreateNetworkMqttBroker *RequestNetworksCreateNetworkMqttBroker) (*ResponseNetworksCreateNetworkMqttBroker, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/mqttBrokers"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5586,20 +6508,21 @@ func (s *NetworksService) CreateNetworkMqttBroker(networkID string, requestNetwo
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksCreateNetworkMqttBroker).
-		// SetResult(&ResponseNetworksCreateNetworkMqttBroker{}).
+		SetResult(&ResponseNetworksCreateNetworkMqttBroker{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateNetworkMqttBroker")
+		return nil, response, fmt.Errorf("error with operation CreateNetworkMqttBroker")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksCreateNetworkMqttBroker)
+	return result, response, err
 
 }
 
@@ -5608,16 +6531,16 @@ func (s *NetworksService) CreateNetworkMqttBroker(networkID string, requestNetwo
 
 ## ALTERNATE PATH
 
-***
+```
 /organizations/{organizationId}/pii/requests
-***
+```
 
 @param networkID networkId path parameter. Network ID
 
 
 */
 
-func (s *NetworksService) CreateNetworkPiiRequest(networkID string, requestNetworksCreateNetworkPiiRequest *RequestNetworksCreateNetworkPiiRequest) (*resty.Response, error) {
+func (s *NetworksService) CreateNetworkPiiRequest(networkID string, requestNetworksCreateNetworkPiiRequest *RequestNetworksCreateNetworkPiiRequest) (*ResponseNetworksCreateNetworkPiiRequest, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/requests"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5626,20 +6549,21 @@ func (s *NetworksService) CreateNetworkPiiRequest(networkID string, requestNetwo
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksCreateNetworkPiiRequest).
-		// SetResult(&ResponseNetworksCreateNetworkPiiRequest{}).
+		SetResult(&ResponseNetworksCreateNetworkPiiRequest{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateNetworkPiiRequest")
+		return nil, response, fmt.Errorf("error with operation CreateNetworkPiiRequest")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksCreateNetworkPiiRequest)
+	return result, response, err
 
 }
 
@@ -5708,6 +6632,76 @@ func (s *NetworksService) UnbindNetwork(networkID string, requestNetworksUnbindN
 	}
 
 	result := response.Result().(*ResponseNetworksUnbindNetwork)
+	return result, response, err
+
+}
+
+//CreateNetworkVLANProfile Create a VLAN profile for a network
+/* Create a VLAN profile for a network
+
+@param networkID networkId path parameter. Network ID
+
+
+*/
+
+func (s *NetworksService) CreateNetworkVLANProfile(networkID string, requestNetworksCreateNetworkVlanProfile *RequestNetworksCreateNetworkVLANProfile) (*ResponseNetworksCreateNetworkVLANProfile, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/vlanProfiles"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworksCreateNetworkVlanProfile).
+		SetResult(&ResponseNetworksCreateNetworkVLANProfile{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateNetworkVlanProfile")
+	}
+
+	result := response.Result().(*ResponseNetworksCreateNetworkVLANProfile)
+	return result, response, err
+
+}
+
+//ReassignNetworkVLANProfilesAssignments Update the assigned VLAN Profile for devices in a network
+/* Update the assigned VLAN Profile for devices in a network
+
+@param networkID networkId path parameter. Network ID
+
+
+*/
+
+func (s *NetworksService) ReassignNetworkVLANProfilesAssignments(networkID string, requestNetworksReassignNetworkVlanProfilesAssignments *RequestNetworksReassignNetworkVLANProfilesAssignments) (*ResponseNetworksReassignNetworkVLANProfilesAssignments, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/vlanProfiles/assignments/reassign"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworksReassignNetworkVlanProfilesAssignments).
+		SetResult(&ResponseNetworksReassignNetworkVLANProfilesAssignments{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation ReassignNetworkVlanProfilesAssignments")
+	}
+
+	result := response.Result().(*ResponseNetworksReassignNetworkVLANProfilesAssignments)
 	return result, response, err
 
 }
@@ -5824,7 +6818,8 @@ func (s *NetworksService) CreateNetworkWebhooksWebhookTest(networkID string, req
 
 
 */
-func (s *NetworksService) CombineOrganizationNetworks(organizationID string, requestNetworksCombineOrganizationNetworks *RequestNetworksCombineOrganizationNetworks) (*ResponseNetworksCombineOrganizationNetworks, *resty.Response, error) {
+
+func (s *NetworksService) CombineOrganizationNetworks(organizationID string) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/networks/combine"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -5832,22 +6827,19 @@ func (s *NetworksService) CombineOrganizationNetworks(organizationID string, req
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksCombineOrganizationNetworks).
-		SetResult(&ResponseNetworksCombineOrganizationNetworks{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CombineOrganizationNetworks")
+		return response, fmt.Errorf("error with operation CombineOrganizationNetworks")
 	}
 
-	result := response.Result().(*ResponseNetworksCombineOrganizationNetworks)
-	return result, response, err
+	return response, err
 
 }
 
@@ -5919,7 +6911,7 @@ func (s *NetworksService) UpdateNetworkAlertsSettings(networkID string, requestN
 @param networkID networkId path parameter. Network ID
 @param clientID clientId path parameter. Client ID
 */
-func (s *NetworksService) UpdateNetworkClientPolicy(networkID string, clientID string, requestNetworksUpdateNetworkClientPolicy *RequestNetworksUpdateNetworkClientPolicy) (*resty.Response, error) {
+func (s *NetworksService) UpdateNetworkClientPolicy(networkID string, clientID string, requestNetworksUpdateNetworkClientPolicy *RequestNetworksUpdateNetworkClientPolicy) (*ResponseNetworksUpdateNetworkClientPolicy, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/policy"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5929,19 +6921,21 @@ func (s *NetworksService) UpdateNetworkClientPolicy(networkID string, clientID s
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksUpdateNetworkClientPolicy).
+		SetResult(&ResponseNetworksUpdateNetworkClientPolicy{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkClientPolicy")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkClientPolicy")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksUpdateNetworkClientPolicy)
+	return result, response, err
 
 }
 
@@ -6047,7 +7041,7 @@ func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedEvents(networkID st
 @param networkID networkId path parameter. Network ID
 @param groupID groupId path parameter. Group ID
 */
-func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedGroup(networkID string, groupID string, requestNetworksUpdateNetworkFirmwareUpgradesStagedGroup *RequestNetworksUpdateNetworkFirmwareUpgradesStagedGroup) (*resty.Response, error) {
+func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedGroup(networkID string, groupID string, requestNetworksUpdateNetworkFirmwareUpgradesStagedGroup *RequestNetworksUpdateNetworkFirmwareUpgradesStagedGroup) (*ResponseNetworksUpdateNetworkFirmwareUpgradesStagedGroup, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/groups/{groupId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -6057,19 +7051,21 @@ func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedGroup(networkID str
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksUpdateNetworkFirmwareUpgradesStagedGroup).
+		SetResult(&ResponseNetworksUpdateNetworkFirmwareUpgradesStagedGroup{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkFirmwareUpgradesStagedGroup")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkFirmwareUpgradesStagedGroup")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksUpdateNetworkFirmwareUpgradesStagedGroup)
+	return result, response, err
 
 }
 
@@ -6111,7 +7107,7 @@ func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedStages(networkID st
 @param networkID networkId path parameter. Network ID
 @param floorPlanID floorPlanId path parameter. Floor plan ID
 */
-func (s *NetworksService) UpdateNetworkFloorPlan(networkID string, floorPlanID string, requestNetworksUpdateNetworkFloorPlan *RequestNetworksUpdateNetworkFloorPlan) (*resty.Response, error) {
+func (s *NetworksService) UpdateNetworkFloorPlan(networkID string, floorPlanID string, requestNetworksUpdateNetworkFloorPlan *RequestNetworksUpdateNetworkFloorPlan) (*ResponseNetworksUpdateNetworkFloorPlan, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/floorPlans/{floorPlanId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -6121,19 +7117,21 @@ func (s *NetworksService) UpdateNetworkFloorPlan(networkID string, floorPlanID s
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksUpdateNetworkFloorPlan).
+		SetResult(&ResponseNetworksUpdateNetworkFloorPlan{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkFloorPlan")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkFloorPlan")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksUpdateNetworkFloorPlan)
+	return result, response, err
 
 }
 
@@ -6143,7 +7141,7 @@ func (s *NetworksService) UpdateNetworkFloorPlan(networkID string, floorPlanID s
 @param networkID networkId path parameter. Network ID
 @param groupPolicyID groupPolicyId path parameter. Group policy ID
 */
-func (s *NetworksService) UpdateNetworkGroupPolicy(networkID string, groupPolicyID string, requestNetworksUpdateNetworkGroupPolicy *RequestNetworksUpdateNetworkGroupPolicy) (*resty.Response, error) {
+func (s *NetworksService) UpdateNetworkGroupPolicy(networkID string, groupPolicyID string, requestNetworksUpdateNetworkGroupPolicy *RequestNetworksUpdateNetworkGroupPolicy) (*ResponseNetworksUpdateNetworkGroupPolicy, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/groupPolicies/{groupPolicyId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -6153,19 +7151,21 @@ func (s *NetworksService) UpdateNetworkGroupPolicy(networkID string, groupPolicy
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksUpdateNetworkGroupPolicy).
+		SetResult(&ResponseNetworksUpdateNetworkGroupPolicy{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkGroupPolicy")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkGroupPolicy")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksUpdateNetworkGroupPolicy)
+	return result, response, err
 
 }
 
@@ -6209,7 +7209,7 @@ func (s *NetworksService) UpdateNetworkMerakiAuthUser(networkID string, merakiAu
 @param networkID networkId path parameter. Network ID
 @param mqttBrokerID mqttBrokerId path parameter. Mqtt broker ID
 */
-func (s *NetworksService) UpdateNetworkMqttBroker(networkID string, mqttBrokerID string, requestNetworksUpdateNetworkMqttBroker *RequestNetworksUpdateNetworkMqttBroker) (*resty.Response, error) {
+func (s *NetworksService) UpdateNetworkMqttBroker(networkID string, mqttBrokerID string, requestNetworksUpdateNetworkMqttBroker *RequestNetworksUpdateNetworkMqttBroker) (*ResponseNetworksUpdateNetworkMqttBroker, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/mqttBrokers/{mqttBrokerId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -6219,19 +7219,21 @@ func (s *NetworksService) UpdateNetworkMqttBroker(networkID string, mqttBrokerID
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksUpdateNetworkMqttBroker).
+		SetResult(&ResponseNetworksUpdateNetworkMqttBroker{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkMqttBroker")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkMqttBroker")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksUpdateNetworkMqttBroker)
+	return result, response, err
 
 }
 
@@ -6240,7 +7242,7 @@ func (s *NetworksService) UpdateNetworkMqttBroker(networkID string, mqttBrokerID
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *NetworksService) UpdateNetworkNetflow(networkID string, requestNetworksUpdateNetworkNetflow *RequestNetworksUpdateNetworkNetflow) (*resty.Response, error) {
+func (s *NetworksService) UpdateNetworkNetflow(networkID string, requestNetworksUpdateNetworkNetflow *RequestNetworksUpdateNetworkNetflow) (*ResponseNetworksUpdateNetworkNetflow, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/netflow"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -6249,19 +7251,21 @@ func (s *NetworksService) UpdateNetworkNetflow(networkID string, requestNetworks
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksUpdateNetworkNetflow).
+		SetResult(&ResponseNetworksUpdateNetworkNetflow{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkNetflow")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkNetflow")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksUpdateNetworkNetflow)
+	return result, response, err
 
 }
 
@@ -6302,7 +7306,7 @@ func (s *NetworksService) UpdateNetworkSettings(networkID string, requestNetwork
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *NetworksService) UpdateNetworkSNMP(networkID string, requestNetworksUpdateNetworkSnmp *RequestNetworksUpdateNetworkSNMP) (*resty.Response, error) {
+func (s *NetworksService) UpdateNetworkSNMP(networkID string, requestNetworksUpdateNetworkSnmp *RequestNetworksUpdateNetworkSNMP) (*ResponseNetworksUpdateNetworkSNMP, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/snmp"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -6311,19 +7315,21 @@ func (s *NetworksService) UpdateNetworkSNMP(networkID string, requestNetworksUpd
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksUpdateNetworkSnmp).
+		SetResult(&ResponseNetworksUpdateNetworkSNMP{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkSnmp")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkSnmp")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksUpdateNetworkSNMP)
+	return result, response, err
 
 }
 
@@ -6364,7 +7370,7 @@ func (s *NetworksService) UpdateNetworkSyslogServers(networkID string, requestNe
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *NetworksService) UpdateNetworkTrafficAnalysis(networkID string, requestNetworksUpdateNetworkTrafficAnalysis *RequestNetworksUpdateNetworkTrafficAnalysis) (*resty.Response, error) {
+func (s *NetworksService) UpdateNetworkTrafficAnalysis(networkID string, requestNetworksUpdateNetworkTrafficAnalysis *RequestNetworksUpdateNetworkTrafficAnalysis) (*ResponseNetworksUpdateNetworkTrafficAnalysis, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/trafficAnalysis"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -6373,19 +7379,55 @@ func (s *NetworksService) UpdateNetworkTrafficAnalysis(networkID string, request
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksUpdateNetworkTrafficAnalysis).
+		SetResult(&ResponseNetworksUpdateNetworkTrafficAnalysis{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkTrafficAnalysis")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkTrafficAnalysis")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksUpdateNetworkTrafficAnalysis)
+	return result, response, err
+
+}
+
+//UpdateNetworkVLANProfile Update an existing VLAN profile of a network
+/* Update an existing VLAN profile of a network
+
+@param networkID networkId path parameter. Network ID
+@param iname iname path parameter.
+*/
+func (s *NetworksService) UpdateNetworkVLANProfile(networkID string, iname string, requestNetworksUpdateNetworkVlanProfile *RequestNetworksUpdateNetworkVLANProfile) (*ResponseNetworksUpdateNetworkVLANProfile, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/vlanProfiles/{iname}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+	path = strings.Replace(path, "{iname}", fmt.Sprintf("%v", iname), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworksUpdateNetworkVlanProfile).
+		SetResult(&ResponseNetworksUpdateNetworkVLANProfile{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkVlanProfile")
+	}
+
+	result := response.Result().(*ResponseNetworksUpdateNetworkVLANProfile)
+	return result, response, err
 
 }
 
@@ -6531,7 +7573,7 @@ func (s *NetworksService) DeleteNetworkFirmwareUpgradesStagedGroup(networkID str
 
 
 */
-func (s *NetworksService) DeleteNetworkFloorPlan(networkID string, floorPlanID string) (*resty.Response, error) {
+func (s *NetworksService) DeleteNetworkFloorPlan(networkID string, floorPlanID string) (*ResponseNetworksDeleteNetworkFloorPlan, *resty.Response, error) {
 	//networkID string,floorPlanID string
 	path := "/api/v1/networks/{networkId}/floorPlans/{floorPlanId}"
 	s.rateLimiterBucket.Wait(1)
@@ -6541,19 +7583,21 @@ func (s *NetworksService) DeleteNetworkFloorPlan(networkID string, floorPlanID s
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
+		SetResult(&ResponseNetworksDeleteNetworkFloorPlan{}).
 		SetError(&Error).
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkFloorPlan")
+		return nil, response, fmt.Errorf("error with operation DeleteNetworkFloorPlan")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksDeleteNetworkFloorPlan)
+	return result, response, err
 
 }
 
@@ -6591,24 +7635,28 @@ func (s *NetworksService) DeleteNetworkGroupPolicy(networkID string, groupPolicy
 
 }
 
-//DeleteNetworkMerakiAuthUser Deauthorize a user
-/* Deauthorize a user. To reauthorize a user after deauthorizing them, POST to this endpoint. (Currently, 802.1X RADIUS, splash guest, and client VPN users can be deauthorized.)
+//DeleteNetworkMerakiAuthUser Delete an 802.1X RADIUS user, or deauthorize and optionally delete a splash guest or client VPN user.
+/* Delete an 802.1X RADIUS user, or deauthorize and optionally delete a splash guest or client VPN user.
 
 @param networkID networkId path parameter. Network ID
 @param merakiAuthUserID merakiAuthUserId path parameter. Meraki auth user ID
+@param deleteNetworkMerakiAuthUserQueryParams Filtering parameter
 
 
 */
-func (s *NetworksService) DeleteNetworkMerakiAuthUser(networkID string, merakiAuthUserID string) (*resty.Response, error) {
-	//networkID string,merakiAuthUserID string
+func (s *NetworksService) DeleteNetworkMerakiAuthUser(networkID string, merakiAuthUserID string, deleteNetworkMerakiAuthUserQueryParams *DeleteNetworkMerakiAuthUserQueryParams) (*resty.Response, error) {
+	//networkID string,merakiAuthUserID string,deleteNetworkMerakiAuthUserQueryParams *DeleteNetworkMerakiAuthUserQueryParams
 	path := "/api/v1/networks/{networkId}/merakiAuthUsers/{merakiAuthUserId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{merakiAuthUserId}", fmt.Sprintf("%v", merakiAuthUserID), -1)
 
+	queryString, _ := query.Values(deleteNetworkMerakiAuthUserQueryParams)
+
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
 		SetError(&Error).
 		Delete(path)
 
@@ -6664,9 +7712,9 @@ func (s *NetworksService) DeleteNetworkMqttBroker(networkID string, mqttBrokerID
 
 ## ALTERNATE PATH
 
-***
+```
 /organizations/{organizationId}/pii/requests/{requestId}
-***
+```
 
 @param networkID networkId path parameter. Network ID
 @param requestID requestId path parameter. Request ID
@@ -6693,6 +7741,40 @@ func (s *NetworksService) DeleteNetworkPiiRequest(networkID string, requestID st
 
 	if response.IsError() {
 		return response, fmt.Errorf("error with operation DeleteNetworkPiiRequest")
+	}
+
+	return response, err
+
+}
+
+//DeleteNetworkVLANProfile Delete a VLAN profile of a network
+/* Delete a VLAN profile of a network
+
+@param networkID networkId path parameter. Network ID
+@param iname iname path parameter.
+
+
+*/
+func (s *NetworksService) DeleteNetworkVLANProfile(networkID string, iname string) (*resty.Response, error) {
+	//networkID string,iname string
+	path := "/api/v1/networks/{networkId}/vlanProfiles/{iname}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+	path = strings.Replace(path, "{iname}", fmt.Sprintf("%v", iname), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation DeleteNetworkVlanProfile")
 	}
 
 	return response, err

@@ -3,7 +3,6 @@ package meraki
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -45,6 +44,12 @@ type GetOrganizationApplianceSecurityEventsQueryParams struct {
 	EndingBefore  string  `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	SortOrder     string  `url:"sortOrder,omitempty"`     //Sorted order of security events based on event detection time. Order options are 'ascending' or 'descending'. Default is ascending order.
 }
+type GetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams struct {
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 50.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Optional parameter to filter the results by network IDs
+}
 type GetOrganizationApplianceUplinkStatusesQueryParams struct {
 	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
 	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
@@ -52,6 +57,11 @@ type GetOrganizationApplianceUplinkStatusesQueryParams struct {
 	NetworkIDs    []string `url:"networkIds[],omitempty"`  //A list of network IDs. The returned devices will be filtered to only include these networks.
 	Serials       []string `url:"serials[],omitempty"`     //A list of serial numbers. The returned devices will be filtered to only include these serials.
 	Iccids        []string `url:"iccids[],omitempty"`      //A list of ICCIDs. The returned devices will be filtered to only include these ICCIDs.
+}
+type GetOrganizationApplianceUplinksUsageByNetworkQueryParams struct {
+	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data. The maximum lookback period is 365 days from today.
+	T1       string  `url:"t1,omitempty"`       //The end of the timespan for the data. t1 can be a maximum of 14 days after t0.
+	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 14 days. The default is 1 day.
 }
 type GetOrganizationApplianceVpnStatsQueryParams struct {
 	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 300. Default is 300.
@@ -122,6 +132,36 @@ type ResponseItemApplianceGetDeviceAppliancePrefixesDelegatedVLANAssignmentsOrig
 type ResponseItemApplianceGetDeviceAppliancePrefixesDelegatedVLANAssignmentsVLAN struct {
 	ID   *int   `json:"id,omitempty"`   //
 	Name string `json:"name,omitempty"` //
+}
+type ResponseApplianceGetDeviceApplianceRadioSettings struct {
+	FiveGhzSettings    *ResponseApplianceGetDeviceApplianceRadioSettingsFiveGhzSettings    `json:"fiveGhzSettings,omitempty"`    // Manual radio settings for 5 GHz
+	RfProfileID        string                                                              `json:"rfProfileId,omitempty"`        // RF Profile ID
+	Serial             string                                                              `json:"serial,omitempty"`             // The device serial
+	TwoFourGhzSettings *ResponseApplianceGetDeviceApplianceRadioSettingsTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"` // Manual radio settings for 2.4 GHz
+}
+type ResponseApplianceGetDeviceApplianceRadioSettingsFiveGhzSettings struct {
+	Channel      *int `json:"channel,omitempty"`      // Manual channel for 5 GHz
+	ChannelWidth *int `json:"channelWidth,omitempty"` // Manual channel width for 5 GHz
+	TargetPower  *int `json:"targetPower,omitempty"`  // Manual target power for 5 GHz
+}
+type ResponseApplianceGetDeviceApplianceRadioSettingsTwoFourGhzSettings struct {
+	Channel     *int `json:"channel,omitempty"`     // Manual channel for 2.4 GHz
+	TargetPower *int `json:"targetPower,omitempty"` // Manual target power for 2.4 GHz
+}
+type ResponseApplianceUpdateDeviceApplianceRadioSettings struct {
+	FiveGhzSettings    *ResponseApplianceUpdateDeviceApplianceRadioSettingsFiveGhzSettings    `json:"fiveGhzSettings,omitempty"`    // Manual radio settings for 5 GHz
+	RfProfileID        string                                                                 `json:"rfProfileId,omitempty"`        // RF Profile ID
+	Serial             string                                                                 `json:"serial,omitempty"`             // The device serial
+	TwoFourGhzSettings *ResponseApplianceUpdateDeviceApplianceRadioSettingsTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"` // Manual radio settings for 2.4 GHz
+}
+type ResponseApplianceUpdateDeviceApplianceRadioSettingsFiveGhzSettings struct {
+	Channel      *int `json:"channel,omitempty"`      // Manual channel for 5 GHz
+	ChannelWidth *int `json:"channelWidth,omitempty"` // Manual channel width for 5 GHz
+	TargetPower  *int `json:"targetPower,omitempty"`  // Manual target power for 5 GHz
+}
+type ResponseApplianceUpdateDeviceApplianceRadioSettingsTwoFourGhzSettings struct {
+	Channel     *int `json:"channel,omitempty"`     // Manual channel for 2.4 GHz
+	TargetPower *int `json:"targetPower,omitempty"` // Manual target power for 2.4 GHz
 }
 type ResponseApplianceGetDeviceApplianceUplinksSettings struct {
 	Interfaces *ResponseApplianceGetDeviceApplianceUplinksSettingsInterfaces `json:"interfaces,omitempty"` // Interface settings.
@@ -363,16 +403,20 @@ type ResponseApplianceGetNetworkApplianceFirewallCellularFirewallRulesRules stru
 type ResponseApplianceUpdateNetworkApplianceFirewallCellularFirewallRules interface{}
 type ResponseApplianceGetNetworkApplianceFirewallFirewalledServices []ResponseItemApplianceGetNetworkApplianceFirewallFirewalledServices // Array of ResponseApplianceGetNetworkApplianceFirewallFirewalledServices
 type ResponseItemApplianceGetNetworkApplianceFirewallFirewalledServices struct {
-	Access     string   `json:"access,omitempty"`     //
-	AllowedIPs []string `json:"allowedIps,omitempty"` //
-	Service    string   `json:"service,omitempty"`    //
+	Access     string   `json:"access,omitempty"`     // A string indicating the rule for which IPs are allowed to use the specified service
+	AllowedIPs []string `json:"allowedIps,omitempty"` // An array of allowed IPs that can access the service
+	Service    string   `json:"service,omitempty"`    // Appliance service name
 }
 type ResponseApplianceGetNetworkApplianceFirewallFirewalledService struct {
-	Access     string   `json:"access,omitempty"`     //
-	AllowedIPs []string `json:"allowedIps,omitempty"` //
-	Service    string   `json:"service,omitempty"`    //
+	Access     string   `json:"access,omitempty"`     // A string indicating the rule for which IPs are allowed to use the specified service
+	AllowedIPs []string `json:"allowedIps,omitempty"` // An array of allowed IPs that can access the service
+	Service    string   `json:"service,omitempty"`    // Appliance service name
 }
-type ResponseApplianceUpdateNetworkApplianceFirewallFirewalledService interface{}
+type ResponseApplianceUpdateNetworkApplianceFirewallFirewalledService struct {
+	Access     string   `json:"access,omitempty"`     // A string indicating the rule for which IPs are allowed to use the specified service
+	AllowedIPs []string `json:"allowedIps,omitempty"` // An array of allowed IPs that can access the service
+	Service    string   `json:"service,omitempty"`    // Appliance service name
+}
 type ResponseApplianceGetNetworkApplianceFirewallInboundCellularFirewallRules []ResponseItemApplianceGetNetworkApplianceFirewallInboundCellularFirewallRules // Array of ResponseApplianceGetNetworkApplianceFirewallInboundCellularFirewallRules
 type ResponseItemApplianceGetNetworkApplianceFirewallInboundCellularFirewallRules struct {
 	Comment       string `json:"comment,omitempty"`       //
@@ -387,20 +431,33 @@ type ResponseItemApplianceGetNetworkApplianceFirewallInboundCellularFirewallRule
 type ResponseApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules []ResponseItemApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules // Array of ResponseApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules
 type ResponseItemApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules interface{}
 type ResponseApplianceGetNetworkApplianceFirewallInboundFirewallRules struct {
-	Rules             *[]ResponseApplianceGetNetworkApplianceFirewallInboundFirewallRulesRules `json:"rules,omitempty"`             //
-	SyslogDefaultRule *bool                                                                    `json:"syslogDefaultRule,omitempty"` //
+	Rules             *[]ResponseApplianceGetNetworkApplianceFirewallInboundFirewallRulesRules `json:"rules,omitempty"`             // An ordered array of the firewall rules (not including the default rule)
+	SyslogDefaultRule *bool                                                                    `json:"syslogDefaultRule,omitempty"` // Log the special default rule (boolean value - enable only if you've configured a syslog server) (optional)
 }
 type ResponseApplianceGetNetworkApplianceFirewallInboundFirewallRulesRules struct {
-	Comment       string `json:"comment,omitempty"`       //
-	DestCidr      string `json:"destCidr,omitempty"`      //
-	DestPort      string `json:"destPort,omitempty"`      //
-	Policy        string `json:"policy,omitempty"`        //
-	Protocol      string `json:"protocol,omitempty"`      //
-	SrcCidr       string `json:"srcCidr,omitempty"`       //
-	SrcPort       string `json:"srcPort,omitempty"`       //
-	SyslogEnabled *bool  `json:"syslogEnabled,omitempty"` //
+	Comment       string `json:"comment,omitempty"`       // Description of the rule (optional)
+	DestCidr      string `json:"destCidr,omitempty"`      // Comma-separated list of destination IP address(es) (in IP or CIDR notation), fully-qualified domain names (FQDN) or 'any'
+	DestPort      string `json:"destPort,omitempty"`      // Comma-separated list of destination port(s) (integer in the range 1-65535), or 'any'
+	Policy        string `json:"policy,omitempty"`        // 'allow' or 'deny' traffic specified by this rule
+	Protocol      string `json:"protocol,omitempty"`      // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
+	SrcCidr       string `json:"srcCidr,omitempty"`       // Comma-separated list of source IP address(es) (in IP or CIDR notation), or 'any' (note: FQDN not supported for source addresses)
+	SrcPort       string `json:"srcPort,omitempty"`       // Comma-separated list of source port(s) (integer in the range 1-65535), or 'any'
+	SyslogEnabled *bool  `json:"syslogEnabled,omitempty"` // Log this rule to syslog (true or false, boolean value) - only applicable if a syslog has been configured (optional)
 }
-type ResponseApplianceUpdateNetworkApplianceFirewallInboundFirewallRules interface{}
+type ResponseApplianceUpdateNetworkApplianceFirewallInboundFirewallRules struct {
+	Rules             *[]ResponseApplianceUpdateNetworkApplianceFirewallInboundFirewallRulesRules `json:"rules,omitempty"`             // An ordered array of the firewall rules (not including the default rule)
+	SyslogDefaultRule *bool                                                                       `json:"syslogDefaultRule,omitempty"` // Log the special default rule (boolean value - enable only if you've configured a syslog server) (optional)
+}
+type ResponseApplianceUpdateNetworkApplianceFirewallInboundFirewallRulesRules struct {
+	Comment       string `json:"comment,omitempty"`       // Description of the rule (optional)
+	DestCidr      string `json:"destCidr,omitempty"`      // Comma-separated list of destination IP address(es) (in IP or CIDR notation), fully-qualified domain names (FQDN) or 'any'
+	DestPort      string `json:"destPort,omitempty"`      // Comma-separated list of destination port(s) (integer in the range 1-65535), or 'any'
+	Policy        string `json:"policy,omitempty"`        // 'allow' or 'deny' traffic specified by this rule
+	Protocol      string `json:"protocol,omitempty"`      // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
+	SrcCidr       string `json:"srcCidr,omitempty"`       // Comma-separated list of source IP address(es) (in IP or CIDR notation), or 'any' (note: FQDN not supported for source addresses)
+	SrcPort       string `json:"srcPort,omitempty"`       // Comma-separated list of source port(s) (integer in the range 1-65535), or 'any'
+	SyslogEnabled *bool  `json:"syslogEnabled,omitempty"` // Log this rule to syslog (true or false, boolean value) - only applicable if a syslog has been configured (optional)
+}
 type ResponseApplianceGetNetworkApplianceFirewallL3FirewallRules struct {
 	Rules *[]ResponseApplianceGetNetworkApplianceFirewallL3FirewallRulesRules `json:"rules,omitempty"` //
 }
@@ -462,16 +519,16 @@ func (r *ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRules) Unmar
 
 type ResponseApplianceUpdateNetworkApplianceFirewallL7FirewallRules interface{}
 type ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategories struct {
-	ApplicationCategories *[]ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesApplicationCategories `json:"applicationCategories,omitempty"` //
+	ApplicationCategories *[]ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesApplicationCategories `json:"applicationCategories,omitempty"` //  The L7 firewall application categories and their associated applications for an MX network
 }
 type ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesApplicationCategories struct {
-	Applications *[]ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesApplicationCategoriesApplications `json:"applications,omitempty"` //
-	ID           string                                                                                                               `json:"id,omitempty"`           //
-	Name         string                                                                                                               `json:"name,omitempty"`         //
+	Applications *[]ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesApplicationCategoriesApplications `json:"applications,omitempty"` // Details of the associated applications
+	ID           string                                                                                                               `json:"id,omitempty"`           // The id of the category
+	Name         string                                                                                                               `json:"name,omitempty"`         // The name of the category
 }
 type ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesApplicationCategoriesApplications struct {
-	ID   string `json:"id,omitempty"`   //
-	Name string `json:"name,omitempty"` //
+	ID   string `json:"id,omitempty"`   // The id of the application
+	Name string `json:"name,omitempty"` // The name of the application
 }
 type ResponseApplianceGetNetworkApplianceFirewallOneToManyNatRules struct {
 	Rules *[]ResponseApplianceGetNetworkApplianceFirewallOneToManyNatRulesRules `json:"rules,omitempty"` //
@@ -584,6 +641,161 @@ type ResponseApplianceGetNetworkAppliancePrefixesDelegatedStaticOrigin struct {
 	Type       string   `json:"type,omitempty"`       // Origin type
 }
 type ResponseApplianceUpdateNetworkAppliancePrefixesDelegatedStatic interface{}
+type ResponseApplianceGetNetworkApplianceRfProfiles struct {
+	Assigned *[]ResponseApplianceGetNetworkApplianceRfProfilesAssigned `json:"assigned,omitempty"` // RF Profiles
+}
+type ResponseApplianceGetNetworkApplianceRfProfilesAssigned struct {
+	FiveGhzSettings    *ResponseApplianceGetNetworkApplianceRfProfilesAssignedFiveGhzSettings    `json:"fiveGhzSettings,omitempty"`    // Settings related to 5Ghz band.
+	ID                 string                                                                    `json:"id,omitempty"`                 // ID of the RF Profile.
+	Name               string                                                                    `json:"name,omitempty"`               // The name of the profile.
+	NetworkID          string                                                                    `json:"networkId,omitempty"`          // ID of network this RF Profile belongs in.
+	PerSSIDSettings    *ResponseApplianceGetNetworkApplianceRfProfilesAssignedPerSSIDSettings    `json:"perSsidSettings,omitempty"`    // Per-SSID radio settings by number.
+	TwoFourGhzSettings *ResponseApplianceGetNetworkApplianceRfProfilesAssignedTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"` // Settings related to 2.4Ghz band.
+}
+type ResponseApplianceGetNetworkApplianceRfProfilesAssignedFiveGhzSettings struct {
+	AxEnabled  *bool `json:"axEnabled,omitempty"`  // Whether ax radio on 5Ghz band is on or off.
+	MinBitrate *int  `json:"minBitrate,omitempty"` // Min bitrate (Mbps) of 2.4Ghz band.
+}
+type ResponseApplianceGetNetworkApplianceRfProfilesAssignedPerSSIDSettings struct {
+	Status1 *ResponseApplianceGetNetworkApplianceRfProfilesAssignedPerSSIDSettings1 `json:"1,omitempty"` // Settings for SSID 1.
+	Status2 *ResponseApplianceGetNetworkApplianceRfProfilesAssignedPerSSIDSettings2 `json:"2,omitempty"` // Settings for SSID 2.
+	Status3 *ResponseApplianceGetNetworkApplianceRfProfilesAssignedPerSSIDSettings3 `json:"3,omitempty"` // Settings for SSID 3.
+	Status4 *ResponseApplianceGetNetworkApplianceRfProfilesAssignedPerSSIDSettings4 `json:"4,omitempty"` // Settings for SSID 4.
+}
+type ResponseApplianceGetNetworkApplianceRfProfilesAssignedPerSSIDSettings1 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceGetNetworkApplianceRfProfilesAssignedPerSSIDSettings2 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceGetNetworkApplianceRfProfilesAssignedPerSSIDSettings3 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceGetNetworkApplianceRfProfilesAssignedPerSSIDSettings4 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceGetNetworkApplianceRfProfilesAssignedTwoFourGhzSettings struct {
+	AxEnabled  *bool    `json:"axEnabled,omitempty"`  // Whether ax radio on 2.4Ghz band is on or off.
+	MinBitrate *float64 `json:"minBitrate,omitempty"` // Min bitrate (Mbps) of 2.4Ghz band.
+}
+type ResponseApplianceCreateNetworkApplianceRfProfile struct {
+	FiveGhzSettings    *ResponseApplianceCreateNetworkApplianceRfProfileFiveGhzSettings    `json:"fiveGhzSettings,omitempty"`    // Settings related to 5Ghz band.
+	ID                 string                                                              `json:"id,omitempty"`                 // ID of the RF Profile.
+	Name               string                                                              `json:"name,omitempty"`               // The name of the profile.
+	NetworkID          string                                                              `json:"networkId,omitempty"`          // ID of network this RF Profile belongs in.
+	PerSSIDSettings    *ResponseApplianceCreateNetworkApplianceRfProfilePerSSIDSettings    `json:"perSsidSettings,omitempty"`    // Per-SSID radio settings by number.
+	TwoFourGhzSettings *ResponseApplianceCreateNetworkApplianceRfProfileTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"` // Settings related to 2.4Ghz band.
+}
+type ResponseApplianceCreateNetworkApplianceRfProfileFiveGhzSettings struct {
+	AxEnabled  *bool `json:"axEnabled,omitempty"`  // Whether ax radio on 5Ghz band is on or off.
+	MinBitrate *int  `json:"minBitrate,omitempty"` // Min bitrate (Mbps) of 2.4Ghz band.
+}
+type ResponseApplianceCreateNetworkApplianceRfProfilePerSSIDSettings struct {
+	Status1 *ResponseApplianceCreateNetworkApplianceRfProfilePerSSIDSettings1 `json:"1,omitempty"` // Settings for SSID 1.
+	Status2 *ResponseApplianceCreateNetworkApplianceRfProfilePerSSIDSettings2 `json:"2,omitempty"` // Settings for SSID 2.
+	Status3 *ResponseApplianceCreateNetworkApplianceRfProfilePerSSIDSettings3 `json:"3,omitempty"` // Settings for SSID 3.
+	Status4 *ResponseApplianceCreateNetworkApplianceRfProfilePerSSIDSettings4 `json:"4,omitempty"` // Settings for SSID 4.
+}
+type ResponseApplianceCreateNetworkApplianceRfProfilePerSSIDSettings1 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceCreateNetworkApplianceRfProfilePerSSIDSettings2 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceCreateNetworkApplianceRfProfilePerSSIDSettings3 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceCreateNetworkApplianceRfProfilePerSSIDSettings4 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceCreateNetworkApplianceRfProfileTwoFourGhzSettings struct {
+	AxEnabled  *bool    `json:"axEnabled,omitempty"`  // Whether ax radio on 2.4Ghz band is on or off.
+	MinBitrate *float64 `json:"minBitrate,omitempty"` // Min bitrate (Mbps) of 2.4Ghz band.
+}
+type ResponseApplianceGetNetworkApplianceRfProfile struct {
+	FiveGhzSettings    *ResponseApplianceGetNetworkApplianceRfProfileFiveGhzSettings    `json:"fiveGhzSettings,omitempty"`    // Settings related to 5Ghz band.
+	ID                 string                                                           `json:"id,omitempty"`                 // ID of the RF Profile.
+	Name               string                                                           `json:"name,omitempty"`               // The name of the profile.
+	NetworkID          string                                                           `json:"networkId,omitempty"`          // ID of network this RF Profile belongs in.
+	PerSSIDSettings    *ResponseApplianceGetNetworkApplianceRfProfilePerSSIDSettings    `json:"perSsidSettings,omitempty"`    // Per-SSID radio settings by number.
+	TwoFourGhzSettings *ResponseApplianceGetNetworkApplianceRfProfileTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"` // Settings related to 2.4Ghz band.
+}
+type ResponseApplianceGetNetworkApplianceRfProfileFiveGhzSettings struct {
+	AxEnabled  *bool `json:"axEnabled,omitempty"`  // Whether ax radio on 5Ghz band is on or off.
+	MinBitrate *int  `json:"minBitrate,omitempty"` // Min bitrate (Mbps) of 2.4Ghz band.
+}
+type ResponseApplianceGetNetworkApplianceRfProfilePerSSIDSettings struct {
+	Status1 *ResponseApplianceGetNetworkApplianceRfProfilePerSSIDSettings1 `json:"1,omitempty"` // Settings for SSID 1.
+	Status2 *ResponseApplianceGetNetworkApplianceRfProfilePerSSIDSettings2 `json:"2,omitempty"` // Settings for SSID 2.
+	Status3 *ResponseApplianceGetNetworkApplianceRfProfilePerSSIDSettings3 `json:"3,omitempty"` // Settings for SSID 3.
+	Status4 *ResponseApplianceGetNetworkApplianceRfProfilePerSSIDSettings4 `json:"4,omitempty"` // Settings for SSID 4.
+}
+type ResponseApplianceGetNetworkApplianceRfProfilePerSSIDSettings1 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceGetNetworkApplianceRfProfilePerSSIDSettings2 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceGetNetworkApplianceRfProfilePerSSIDSettings3 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceGetNetworkApplianceRfProfilePerSSIDSettings4 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceGetNetworkApplianceRfProfileTwoFourGhzSettings struct {
+	AxEnabled  *bool    `json:"axEnabled,omitempty"`  // Whether ax radio on 2.4Ghz band is on or off.
+	MinBitrate *float64 `json:"minBitrate,omitempty"` // Min bitrate (Mbps) of 2.4Ghz band.
+}
+type ResponseApplianceUpdateNetworkApplianceRfProfile struct {
+	FiveGhzSettings    *ResponseApplianceUpdateNetworkApplianceRfProfileFiveGhzSettings    `json:"fiveGhzSettings,omitempty"`    // Settings related to 5Ghz band.
+	ID                 string                                                              `json:"id,omitempty"`                 // ID of the RF Profile.
+	Name               string                                                              `json:"name,omitempty"`               // The name of the profile.
+	NetworkID          string                                                              `json:"networkId,omitempty"`          // ID of network this RF Profile belongs in.
+	PerSSIDSettings    *ResponseApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings    `json:"perSsidSettings,omitempty"`    // Per-SSID radio settings by number.
+	TwoFourGhzSettings *ResponseApplianceUpdateNetworkApplianceRfProfileTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"` // Settings related to 2.4Ghz band.
+}
+type ResponseApplianceUpdateNetworkApplianceRfProfileFiveGhzSettings struct {
+	AxEnabled  *bool `json:"axEnabled,omitempty"`  // Whether ax radio on 5Ghz band is on or off.
+	MinBitrate *int  `json:"minBitrate,omitempty"` // Min bitrate (Mbps) of 2.4Ghz band.
+}
+type ResponseApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings struct {
+	Status1 *ResponseApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings1 `json:"1,omitempty"` // Settings for SSID 1.
+	Status2 *ResponseApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings2 `json:"2,omitempty"` // Settings for SSID 2.
+	Status3 *ResponseApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings3 `json:"3,omitempty"` // Settings for SSID 3.
+	Status4 *ResponseApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings4 `json:"4,omitempty"` // Settings for SSID 4.
+}
+type ResponseApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings1 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings2 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings3 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings4 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Band mode of this SSID
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Whether this SSID steers clients to the most open band between 2.4 GHz and 5 GHz.
+}
+type ResponseApplianceUpdateNetworkApplianceRfProfileTwoFourGhzSettings struct {
+	AxEnabled  *bool    `json:"axEnabled,omitempty"`  // Whether ax radio on 2.4Ghz band is on or off.
+	MinBitrate *float64 `json:"minBitrate,omitempty"` // Min bitrate (Mbps) of 2.4Ghz band.
+}
 type ResponseApplianceGetNetworkApplianceSecurityEvents []ResponseItemApplianceGetNetworkApplianceSecurityEvents // Array of ResponseApplianceGetNetworkApplianceSecurityEvents
 type ResponseItemApplianceGetNetworkApplianceSecurityEvents struct {
 	Action          string `json:"action,omitempty"`          //
@@ -604,30 +816,51 @@ type ResponseItemApplianceGetNetworkApplianceSecurityEvents struct {
 	URI             string `json:"uri,omitempty"`             //
 }
 type ResponseApplianceGetNetworkApplianceSecurityIntrusion struct {
-	IDsRulesets       string                                                                  `json:"idsRulesets,omitempty"`       //
-	Mode              string                                                                  `json:"mode,omitempty"`              //
-	ProtectedNetworks *ResponseApplianceGetNetworkApplianceSecurityIntrusionProtectedNetworks `json:"protectedNetworks,omitempty"` //
+	IDsRulesets       string                                                                  `json:"idsRulesets,omitempty"`       // Intrusion detection ruleset
+	Mode              string                                                                  `json:"mode,omitempty"`              // Intrusion detection mode
+	ProtectedNetworks *ResponseApplianceGetNetworkApplianceSecurityIntrusionProtectedNetworks `json:"protectedNetworks,omitempty"` // Networks included in and excluded from the detection engine
 }
 type ResponseApplianceGetNetworkApplianceSecurityIntrusionProtectedNetworks struct {
-	ExcludedCidr []string `json:"excludedCidr,omitempty"` //
-	IncludedCidr []string `json:"includedCidr,omitempty"` //
-	UseDefault   *bool    `json:"useDefault,omitempty"`   //
+	ExcludedCidr []string `json:"excludedCidr,omitempty"` // List of IP addresses or subnets being excluded from protection
+	IncludedCidr []string `json:"includedCidr,omitempty"` // List of IP addresses or subnets being protected
+	UseDefault   *bool    `json:"useDefault,omitempty"`   // Whether special IPv4 addresses should be used (see: https://tools.ietf.org/html/rfc5735)
 }
-type ResponseApplianceUpdateNetworkApplianceSecurityIntrusion interface{}
+type ResponseApplianceUpdateNetworkApplianceSecurityIntrusion struct {
+	IDsRulesets       string                                                                     `json:"idsRulesets,omitempty"`       // Intrusion detection ruleset
+	Mode              string                                                                     `json:"mode,omitempty"`              // Intrusion detection mode
+	ProtectedNetworks *ResponseApplianceUpdateNetworkApplianceSecurityIntrusionProtectedNetworks `json:"protectedNetworks,omitempty"` // Networks included in and excluded from the detection engine
+}
+type ResponseApplianceUpdateNetworkApplianceSecurityIntrusionProtectedNetworks struct {
+	ExcludedCidr []string `json:"excludedCidr,omitempty"` // List of IP addresses or subnets being excluded from protection
+	IncludedCidr []string `json:"includedCidr,omitempty"` // List of IP addresses or subnets being protected
+	UseDefault   *bool    `json:"useDefault,omitempty"`   // Whether special IPv4 addresses should be used (see: https://tools.ietf.org/html/rfc5735)
+}
 type ResponseApplianceGetNetworkApplianceSecurityMalware struct {
-	AllowedFiles *[]ResponseApplianceGetNetworkApplianceSecurityMalwareAllowedFiles `json:"allowedFiles,omitempty"` //
-	AllowedURLs  *[]ResponseApplianceGetNetworkApplianceSecurityMalwareAllowedURLs  `json:"allowedUrls,omitempty"`  //
-	Mode         string                                                             `json:"mode,omitempty"`         //
+	AllowedFiles *[]ResponseApplianceGetNetworkApplianceSecurityMalwareAllowedFiles `json:"allowedFiles,omitempty"` // Sha256 digests of files permitted by the malware detection engine
+	AllowedURLs  *[]ResponseApplianceGetNetworkApplianceSecurityMalwareAllowedURLs  `json:"allowedUrls,omitempty"`  // URLs permitted by the malware detection engine
+	Mode         string                                                             `json:"mode,omitempty"`         // Current status of malware prevention
 }
 type ResponseApplianceGetNetworkApplianceSecurityMalwareAllowedFiles struct {
-	Comment string `json:"comment,omitempty"` //
-	Sha256  string `json:"sha256,omitempty"`  //
+	Comment string `json:"comment,omitempty"` // Comment about the allowed file
+	Sha256  string `json:"sha256,omitempty"`  // The sha256 digest of allowed file
 }
 type ResponseApplianceGetNetworkApplianceSecurityMalwareAllowedURLs struct {
-	Comment string `json:"comment,omitempty"` //
-	URL     string `json:"url,omitempty"`     //
+	Comment string `json:"comment,omitempty"` // Comment about the allowed URL
+	URL     string `json:"url,omitempty"`     // The allowed URL
 }
-type ResponseApplianceUpdateNetworkApplianceSecurityMalware interface{}
+type ResponseApplianceUpdateNetworkApplianceSecurityMalware struct {
+	AllowedFiles *[]ResponseApplianceUpdateNetworkApplianceSecurityMalwareAllowedFiles `json:"allowedFiles,omitempty"` // Sha256 digests of files permitted by the malware detection engine
+	AllowedURLs  *[]ResponseApplianceUpdateNetworkApplianceSecurityMalwareAllowedURLs  `json:"allowedUrls,omitempty"`  // URLs permitted by the malware detection engine
+	Mode         string                                                                `json:"mode,omitempty"`         // Current status of malware prevention
+}
+type ResponseApplianceUpdateNetworkApplianceSecurityMalwareAllowedFiles struct {
+	Comment string `json:"comment,omitempty"` // Comment about the allowed file
+	Sha256  string `json:"sha256,omitempty"`  // The sha256 digest of allowed file
+}
+type ResponseApplianceUpdateNetworkApplianceSecurityMalwareAllowedURLs struct {
+	Comment string `json:"comment,omitempty"` // Comment about the allowed URL
+	URL     string `json:"url,omitempty"`     // The allowed URL
+}
 type ResponseApplianceGetNetworkApplianceSettings struct {
 	ClientTrackingMethod string                                                  `json:"clientTrackingMethod,omitempty"` // Client tracking method of a network
 	DeploymentMode       string                                                  `json:"deploymentMode,omitempty"`       // Deployment mode of a network
@@ -745,6 +978,7 @@ type ResponseItemApplianceGetNetworkApplianceStaticRoutes struct {
 	Enabled            *bool                                                                   `json:"enabled,omitempty"`            //
 	FixedIPAssignments *ResponseItemApplianceGetNetworkApplianceStaticRoutesFixedIPAssignments `json:"fixedIpAssignments,omitempty"` //
 	GatewayIP          string                                                                  `json:"gatewayIp,omitempty"`          //
+	GatewayVLANID      *int                                                                    `json:"gatewayVlanId,omitempty"`      //
 	ID                 string                                                                  `json:"id,omitempty"`                 //
 	IPVersion          *int                                                                    `json:"ipVersion,omitempty"`          //
 	Name               string                                                                  `json:"name,omitempty"`               //
@@ -769,6 +1003,7 @@ type ResponseApplianceGetNetworkApplianceStaticRoute struct {
 	Enabled            *bool                                                              `json:"enabled,omitempty"`            //
 	FixedIPAssignments *ResponseApplianceGetNetworkApplianceStaticRouteFixedIPAssignments `json:"fixedIpAssignments,omitempty"` //
 	GatewayIP          string                                                             `json:"gatewayIp,omitempty"`          //
+	GatewayVLANID      *int                                                               `json:"gatewayVlanId,omitempty"`      //
 	ID                 string                                                             `json:"id,omitempty"`                 //
 	IPVersion          *int                                                               `json:"ipVersion,omitempty"`          //
 	Name               string                                                             `json:"name,omitempty"`               //
@@ -799,21 +1034,33 @@ type ResponseApplianceGetNetworkApplianceTrafficShapingGlobalBandwidthLimits str
 type ResponseApplianceUpdateNetworkApplianceTrafficShaping interface{}
 type ResponseApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClasses []ResponseItemApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClasses // Array of ResponseApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClasses
 type ResponseItemApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClasses struct {
-	CustomPerformanceClassID string `json:"customPerformanceClassId,omitempty"` //
-	MaxJitter                *int   `json:"maxJitter,omitempty"`                //
-	MaxLatency               *int   `json:"maxLatency,omitempty"`               //
-	MaxLossPercentage        *int   `json:"maxLossPercentage,omitempty"`        //
-	Name                     string `json:"name,omitempty"`                     //
+	CustomPerformanceClassID string `json:"customPerformanceClassId,omitempty"` // ID of the custom performance class
+	MaxJitter                *int   `json:"maxJitter,omitempty"`                // Maximum jitter in milliseconds
+	MaxLatency               *int   `json:"maxLatency,omitempty"`               // Maximum latency in milliseconds
+	MaxLossPercentage        *int   `json:"maxLossPercentage,omitempty"`        // Maximum percentage of packet loss
+	Name                     string `json:"name,omitempty"`                     // Name of the custom performance class
 }
-type ResponseApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass interface{}
+type ResponseApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass struct {
+	CustomPerformanceClassID string `json:"customPerformanceClassId,omitempty"` // ID of the custom performance class
+	MaxJitter                *int   `json:"maxJitter,omitempty"`                // Maximum jitter in milliseconds
+	MaxLatency               *int   `json:"maxLatency,omitempty"`               // Maximum latency in milliseconds
+	MaxLossPercentage        *int   `json:"maxLossPercentage,omitempty"`        // Maximum percentage of packet loss
+	Name                     string `json:"name,omitempty"`                     // Name of the custom performance class
+}
 type ResponseApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClass struct {
-	CustomPerformanceClassID string `json:"customPerformanceClassId,omitempty"` //
-	MaxJitter                *int   `json:"maxJitter,omitempty"`                //
-	MaxLatency               *int   `json:"maxLatency,omitempty"`               //
-	MaxLossPercentage        *int   `json:"maxLossPercentage,omitempty"`        //
-	Name                     string `json:"name,omitempty"`                     //
+	CustomPerformanceClassID string `json:"customPerformanceClassId,omitempty"` // ID of the custom performance class
+	MaxJitter                *int   `json:"maxJitter,omitempty"`                // Maximum jitter in milliseconds
+	MaxLatency               *int   `json:"maxLatency,omitempty"`               // Maximum latency in milliseconds
+	MaxLossPercentage        *int   `json:"maxLossPercentage,omitempty"`        // Maximum percentage of packet loss
+	Name                     string `json:"name,omitempty"`                     // Name of the custom performance class
 }
-type ResponseApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass interface{}
+type ResponseApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass struct {
+	CustomPerformanceClassID string `json:"customPerformanceClassId,omitempty"` // ID of the custom performance class
+	MaxJitter                *int   `json:"maxJitter,omitempty"`                // Maximum jitter in milliseconds
+	MaxLatency               *int   `json:"maxLatency,omitempty"`               // Maximum latency in milliseconds
+	MaxLossPercentage        *int   `json:"maxLossPercentage,omitempty"`        // Maximum percentage of packet loss
+	Name                     string `json:"name,omitempty"`                     // Name of the custom performance class
+}
 type ResponseApplianceGetNetworkApplianceTrafficShapingRules struct {
 	DefaultRulesEnabled *bool                                                           `json:"defaultRulesEnabled,omitempty"` //
 	Rules               *[]ResponseApplianceGetNetworkApplianceTrafficShapingRulesRules `json:"rules,omitempty"`               //
@@ -1004,6 +1251,21 @@ type ResponseApplianceUpdateNetworkApplianceTrafficShapingUplinkSelectionWanTraf
 	Port string `json:"port,omitempty"` // E.g.: "any", "0" (also means "any"), "8080", "1-1024"
 	VLAN *int   `json:"vlan,omitempty"` // VLAN ID of the configured VLAN in the Meraki network. Cannot be used in combination with the "cidr" property and is currently only available under a template network.
 }
+type ResponseApplianceUpdateNetworkApplianceTrafficShapingVpnExclusions struct {
+	Custom            *[]ResponseApplianceUpdateNetworkApplianceTrafficShapingVpnExclusionsCustom            `json:"custom,omitempty"`            // Custom VPN exclusion rules.
+	MajorApplications *[]ResponseApplianceUpdateNetworkApplianceTrafficShapingVpnExclusionsMajorApplications `json:"majorApplications,omitempty"` // Major Application based VPN exclusion rules.
+	NetworkID         string                                                                                 `json:"networkId,omitempty"`         // ID of the network whose VPN exclusion rules are returned.
+	NetworkName       string                                                                                 `json:"networkName,omitempty"`       // Name of the network whose VPN exclusion rules are returned.
+}
+type ResponseApplianceUpdateNetworkApplianceTrafficShapingVpnExclusionsCustom struct {
+	Destination string `json:"destination,omitempty"` // Destination address; hostname required for DNS, IPv4 otherwise.
+	Port        string `json:"port,omitempty"`        // Destination port.
+	Protocol    string `json:"protocol,omitempty"`    // Protocol.
+}
+type ResponseApplianceUpdateNetworkApplianceTrafficShapingVpnExclusionsMajorApplications struct {
+	ID   string `json:"id,omitempty"`   // Application's Meraki ID.
+	Name string `json:"name,omitempty"` // Application's name.
+}
 type ResponseApplianceGetNetworkApplianceUplinksUsageHistory []ResponseItemApplianceGetNetworkApplianceUplinksUsageHistory // Array of ResponseApplianceGetNetworkApplianceUplinksUsageHistory
 type ResponseItemApplianceGetNetworkApplianceUplinksUsageHistory struct {
 	ByInterface *[]ResponseItemApplianceGetNetworkApplianceUplinksUsageHistoryByInterface `json:"byInterface,omitempty"` //
@@ -1099,9 +1361,11 @@ type ResponseApplianceCreateNetworkApplianceVLANMandatoryDhcp struct {
 	Enabled *bool `json:"enabled,omitempty"` // Enable Mandatory DHCP on VLAN.
 }
 type ResponseApplianceGetNetworkApplianceVLANsSettings struct {
-	VLANsEnabled *bool `json:"vlansEnabled,omitempty"` //
+	VLANsEnabled *bool `json:"vlansEnabled,omitempty"` // Boolean indicating whether VLANs are enabled (true) or disabled (false) for the network
 }
-type ResponseApplianceUpdateNetworkApplianceVLANsSettings interface{}
+type ResponseApplianceUpdateNetworkApplianceVLANsSettings struct {
+	VLANsEnabled *bool `json:"vlansEnabled,omitempty"` // Boolean indicating whether VLANs are enabled (true) or disabled (false) for the network
+}
 type ResponseApplianceGetNetworkApplianceVLAN struct {
 	ApplianceIP            string                                                      `json:"applianceIp,omitempty"`            // The local IP of the appliance on the VLAN
 	Cidr                   string                                                      `json:"cidr,omitempty"`                   // CIDR of the pool of subnets. Applicable only for template network. Each network bound to the template will automatically pick a subnet from this pool to build its own VLAN.
@@ -1292,28 +1556,71 @@ type ResponseApplianceGetOrganizationApplianceSecurityIntrusionAllowedRules stru
 	RuleID  string `json:"ruleId,omitempty"`  //
 }
 type ResponseApplianceUpdateOrganizationApplianceSecurityIntrusion interface{}
+type ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork struct {
+	Items *[]ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkItems `json:"items,omitempty"` // VPN exclusion rules by network
+}
+type ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkItems struct {
+	Custom            *[]ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkItemsCustom            `json:"custom,omitempty"`            // Custom VPN exclusion rules.
+	MajorApplications *[]ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkItemsMajorApplications `json:"majorApplications,omitempty"` // Major Application based VPN exclusion rules.
+	NetworkID         string                                                                                                 `json:"networkId,omitempty"`         // ID of the network whose VPN exclusion rules are returned.
+	NetworkName       string                                                                                                 `json:"networkName,omitempty"`       // Name of the network whose VPN exclusion rules are returned.
+}
+type ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkItemsCustom struct {
+	Destination string `json:"destination,omitempty"` // Destination address; hostname required for DNS, IPv4 otherwise.
+	Port        string `json:"port,omitempty"`        // Destination port.
+	Protocol    string `json:"protocol,omitempty"`    // Protocol.
+}
+type ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkItemsMajorApplications struct {
+	ID   string `json:"id,omitempty"`   // Application's Meraki ID.
+	Name string `json:"name,omitempty"` // Application's name.
+}
 type ResponseApplianceGetOrganizationApplianceUplinkStatuses []ResponseItemApplianceGetOrganizationApplianceUplinkStatuses // Array of ResponseApplianceGetOrganizationApplianceUplinkStatuses
 type ResponseItemApplianceGetOrganizationApplianceUplinkStatuses struct {
-	HighAvailability *ResponseItemApplianceGetOrganizationApplianceUplinkStatusesHighAvailability `json:"highAvailability,omitempty"` //
-	LastReportedAt   string                                                                       `json:"lastReportedAt,omitempty"`   //
-	Model            string                                                                       `json:"model,omitempty"`            //
-	NetworkID        string                                                                       `json:"networkId,omitempty"`        //
-	Serial           string                                                                       `json:"serial,omitempty"`           //
-	Uplinks          *[]ResponseItemApplianceGetOrganizationApplianceUplinkStatusesUplinks        `json:"uplinks,omitempty"`          //
+	HighAvailability *ResponseItemApplianceGetOrganizationApplianceUplinkStatusesHighAvailability `json:"highAvailability,omitempty"` // Device High Availability Capabilities
+	LastReportedAt   string                                                                       `json:"lastReportedAt,omitempty"`   // Last reported time for the device
+	Model            string                                                                       `json:"model,omitempty"`            // The uplink model
+	NetworkID        string                                                                       `json:"networkId,omitempty"`        // Network identifier
+	Serial           string                                                                       `json:"serial,omitempty"`           // The uplink serial
+	Uplinks          *[]ResponseItemApplianceGetOrganizationApplianceUplinkStatusesUplinks        `json:"uplinks,omitempty"`          // Uplinks
 }
 type ResponseItemApplianceGetOrganizationApplianceUplinkStatusesHighAvailability struct {
-	Enabled *bool  `json:"enabled,omitempty"` //
-	Role    string `json:"role,omitempty"`    //
+	Enabled *bool  `json:"enabled,omitempty"` // Indicates whether High Availability is enabled for the device. For devices that do not support HA, this will be 'false'
+	Role    string `json:"role,omitempty"`    // The HA role of the device on the network. For devices that do not support HA, this will be 'primary'
 }
 type ResponseItemApplianceGetOrganizationApplianceUplinkStatusesUplinks struct {
-	Gateway      string `json:"gateway,omitempty"`      //
-	Interface    string `json:"interface,omitempty"`    //
-	IP           string `json:"ip,omitempty"`           //
-	IPAssignedBy string `json:"ipAssignedBy,omitempty"` //
-	PrimaryDNS   string `json:"primaryDns,omitempty"`   //
-	PublicIP     string `json:"publicIp,omitempty"`     //
-	SecondaryDNS string `json:"secondaryDns,omitempty"` //
-	Status       string `json:"status,omitempty"`       //
+	Gateway      string `json:"gateway,omitempty"`      // Gateway IP
+	Interface    string `json:"interface,omitempty"`    // Uplink interface
+	IP           string `json:"ip,omitempty"`           // Uplink IP
+	IPAssignedBy string `json:"ipAssignedBy,omitempty"` // The way in which the IP is assigned
+	PrimaryDNS   string `json:"primaryDns,omitempty"`   // Primary DNS IP
+	PublicIP     string `json:"publicIp,omitempty"`     // Public IP
+	SecondaryDNS string `json:"secondaryDns,omitempty"` // Secondary DNS IP
+	Status       string `json:"status,omitempty"`       // Uplink status
+}
+type ResponseApplianceGetOrganizationApplianceUplinksStatusesOverview struct {
+	Counts *ResponseApplianceGetOrganizationApplianceUplinksStatusesOverviewCounts `json:"counts,omitempty"` // counts
+}
+type ResponseApplianceGetOrganizationApplianceUplinksStatusesOverviewCounts struct {
+	ByStatus *ResponseApplianceGetOrganizationApplianceUplinksStatusesOverviewCountsByStatus `json:"byStatus,omitempty"` // byStatus
+}
+type ResponseApplianceGetOrganizationApplianceUplinksStatusesOverviewCountsByStatus struct {
+	Active       *int `json:"active,omitempty"`       // number of uplinks that are active and working
+	Connecting   *int `json:"connecting,omitempty"`   // number of uplinks currently connecting
+	Failed       *int `json:"failed,omitempty"`       // number of uplinks that were working but have failed
+	NotConnected *int `json:"notConnected,omitempty"` // number of uplinks currently where nothing is plugged in
+	Ready        *int `json:"ready,omitempty"`        // number of uplinks that are working but on standby
+}
+type ResponseApplianceGetOrganizationApplianceUplinksUsageByNetwork []ResponseItemApplianceGetOrganizationApplianceUplinksUsageByNetwork // Array of ResponseApplianceGetOrganizationApplianceUplinksUsageByNetwork
+type ResponseItemApplianceGetOrganizationApplianceUplinksUsageByNetwork struct {
+	ByUplink  *[]ResponseItemApplianceGetOrganizationApplianceUplinksUsageByNetworkByUplink `json:"byUplink,omitempty"`  // Uplink usage
+	Name      string                                                                        `json:"name,omitempty"`      // Network name
+	NetworkID string                                                                        `json:"networkId,omitempty"` // Network identifier
+}
+type ResponseItemApplianceGetOrganizationApplianceUplinksUsageByNetworkByUplink struct {
+	Interface string `json:"interface,omitempty"` // Uplink name
+	Received  *int   `json:"received,omitempty"`  // Bytes received
+	Sent      *int   `json:"sent,omitempty"`      // Bytes sent
+	Serial    string `json:"serial,omitempty"`    // Uplink serial
 }
 type ResponseApplianceGetOrganizationApplianceVpnStats []ResponseItemApplianceGetOrganizationApplianceVpnStats // Array of ResponseApplianceGetOrganizationApplianceVpnStats
 type ResponseItemApplianceGetOrganizationApplianceVpnStats struct {
@@ -1354,7 +1661,7 @@ type ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersLossPerc
 type ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersMosSummaries struct {
 	AvgMos         *float64 `json:"avgMos,omitempty"`         //
 	MaxMos         *float64 `json:"maxMos,omitempty"`         //
-	MinMos         *int     `json:"minMos,omitempty"`         //
+	MinMos         *float64 `json:"minMos,omitempty"`         //
 	ReceiverUplink string   `json:"receiverUplink,omitempty"` //
 	SenderUplink   string   `json:"senderUplink,omitempty"`   //
 }
@@ -1445,30 +1752,44 @@ type ResponseApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeersPeersIPsec
 	IkePrfAlgo            []string `json:"ikePrfAlgo,omitempty"`            // [optional] This is the pseudo-random function to be used in IKE_SA. The value should be an array with one of the following algorithms: 'prfsha256', 'prfsha1', 'prfmd5', 'default'. The 'default' option can be used to default to the Authentication algorithm.
 }
 type ResponseApplianceGetOrganizationApplianceVpnVpnFirewallRules struct {
-	Rules *[]ResponseApplianceGetOrganizationApplianceVpnVpnFirewallRulesRules `json:"rules,omitempty"` //
+	Rules *[]ResponseApplianceGetOrganizationApplianceVpnVpnFirewallRulesRules `json:"rules,omitempty"` // An ordered array of the firewall rules (not including the default rule)
 }
 type ResponseApplianceGetOrganizationApplianceVpnVpnFirewallRulesRules struct {
-	Comment       string `json:"comment,omitempty"`       //
-	DestCidr      string `json:"destCidr,omitempty"`      //
-	DestPort      string `json:"destPort,omitempty"`      //
-	Policy        string `json:"policy,omitempty"`        //
-	Protocol      string `json:"protocol,omitempty"`      //
-	SrcCidr       string `json:"srcCidr,omitempty"`       //
-	SrcPort       string `json:"srcPort,omitempty"`       //
-	SyslogEnabled *bool  `json:"syslogEnabled,omitempty"` //
+	Comment       string `json:"comment,omitempty"`       // Description of the rule (optional)
+	DestCidr      string `json:"destCidr,omitempty"`      // Comma-separated list of destination IP address(es) (in IP or CIDR notation), fully-qualified domain names (FQDN) or 'any'
+	DestPort      string `json:"destPort,omitempty"`      // Comma-separated list of destination port(s) (integer in the range 1-65535), or 'any'
+	Policy        string `json:"policy,omitempty"`        // 'allow' or 'deny' traffic specified by this rule
+	Protocol      string `json:"protocol,omitempty"`      // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
+	SrcCidr       string `json:"srcCidr,omitempty"`       // Comma-separated list of source IP address(es) (in IP or CIDR notation), or 'any' (note: FQDN not supported for source addresses)
+	SrcPort       string `json:"srcPort,omitempty"`       // Comma-separated list of source port(s) (integer in the range 1-65535), or 'any'
+	SyslogEnabled *bool  `json:"syslogEnabled,omitempty"` // Log this rule to syslog (true or false, boolean value) - only applicable if a syslog has been configured (optional)
 }
 type ResponseApplianceUpdateOrganizationApplianceVpnVpnFirewallRules struct {
-	Rules *[]ResponseApplianceUpdateOrganizationApplianceVpnVpnFirewallRulesRules `json:"rules,omitempty"` // List of firewall rules
+	Rules *[]ResponseApplianceUpdateOrganizationApplianceVpnVpnFirewallRulesRules `json:"rules,omitempty"` // An ordered array of the firewall rules (not including the default rule)
 }
 type ResponseApplianceUpdateOrganizationApplianceVpnVpnFirewallRulesRules struct {
-	Comment       string `json:"comment,omitempty"`       // Description of the rule
-	DestCidr      string `json:"destCidr,omitempty"`      // List of destination IP addresses
-	DestPort      string `json:"destPort,omitempty"`      // List of destination ports
-	Policy        string `json:"policy,omitempty"`        // 'Deny' traffic specified by this rule
-	Protocol      string `json:"protocol,omitempty"`      // The type of protocol
-	SrcCidr       string `json:"srcCidr,omitempty"`       // List of source IP addresses
-	SrcPort       string `json:"srcPort,omitempty"`       // List of source ports
-	SyslogEnabled *bool  `json:"syslogEnabled,omitempty"` // Flag indicating whether the rule should be logged to syslog
+	Comment       string `json:"comment,omitempty"`       // Description of the rule (optional)
+	DestCidr      string `json:"destCidr,omitempty"`      // Comma-separated list of destination IP address(es) (in IP or CIDR notation), fully-qualified domain names (FQDN) or 'any'
+	DestPort      string `json:"destPort,omitempty"`      // Comma-separated list of destination port(s) (integer in the range 1-65535), or 'any'
+	Policy        string `json:"policy,omitempty"`        // 'allow' or 'deny' traffic specified by this rule
+	Protocol      string `json:"protocol,omitempty"`      // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
+	SrcCidr       string `json:"srcCidr,omitempty"`       // Comma-separated list of source IP address(es) (in IP or CIDR notation), or 'any' (note: FQDN not supported for source addresses)
+	SrcPort       string `json:"srcPort,omitempty"`       // Comma-separated list of source port(s) (integer in the range 1-65535), or 'any'
+	SyslogEnabled *bool  `json:"syslogEnabled,omitempty"` // Log this rule to syslog (true or false, boolean value) - only applicable if a syslog has been configured (optional)
+}
+type RequestApplianceUpdateDeviceApplianceRadioSettings struct {
+	FiveGhzSettings    *RequestApplianceUpdateDeviceApplianceRadioSettingsFiveGhzSettings    `json:"fiveGhzSettings,omitempty"`    // Manual radio settings for 5 GHz.
+	RfProfileID        string                                                                `json:"rfProfileId,omitempty"`        // The ID of an RF profile to assign to the device. If the value of this parameter is null, the appropriate basic RF profile (indoor or outdoor) will be assigned to the device. Assigning an RF profile will clear ALL manually configured overrides on the device (channel width, channel, power).
+	TwoFourGhzSettings *RequestApplianceUpdateDeviceApplianceRadioSettingsTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"` // Manual radio settings for 2.4 GHz.
+}
+type RequestApplianceUpdateDeviceApplianceRadioSettingsFiveGhzSettings struct {
+	Channel      *int `json:"channel,omitempty"`      // Sets a manual channel for 5 GHz. Can be '36', '40', '44', '48', '52', '56', '60', '64', '100', '104', '108', '112', '116', '120', '124', '128', '132', '136', '140', '144', '149', '153', '157', '161', '165', '169', '173' or '177' or null for using auto channel.
+	ChannelWidth *int `json:"channelWidth,omitempty"` // Sets a manual channel width for 5 GHz. Can be '0', '20', '40', '80' or '160' or null for using auto channel width.
+	TargetPower  *int `json:"targetPower,omitempty"`  // Set a manual target power for 5 GHz. Can be between '8' or '30' or null for using auto power range.
+}
+type RequestApplianceUpdateDeviceApplianceRadioSettingsTwoFourGhzSettings struct {
+	Channel     *int `json:"channel,omitempty"`     // Sets a manual channel for 2.4 GHz. Can be '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13' or '14' or null for using auto channel.
+	TargetPower *int `json:"targetPower,omitempty"` // Set a manual target power for 2.4 GHz. Can be between '5' or '30' or null for using auto power range.
 }
 type RequestApplianceUpdateDeviceApplianceUplinksSettings struct {
 	Interfaces *RequestApplianceUpdateDeviceApplianceUplinksSettingsInterfaces `json:"interfaces,omitempty"` // Interface settings.
@@ -1721,6 +2042,78 @@ type RequestApplianceUpdateNetworkAppliancePrefixesDelegatedStaticOrigin struct 
 	Interfaces []string `json:"interfaces,omitempty"` // Interfaces associated with the prefix
 	Type       string   `json:"type,omitempty"`       // Type of the origin
 }
+type RequestApplianceCreateNetworkApplianceRfProfile struct {
+	FiveGhzSettings    *RequestApplianceCreateNetworkApplianceRfProfileFiveGhzSettings    `json:"fiveGhzSettings,omitempty"`    // Settings related to 5Ghz band
+	Name               string                                                             `json:"name,omitempty"`               // The name of the new profile. Must be unique. This param is required on creation.
+	PerSSIDSettings    *RequestApplianceCreateNetworkApplianceRfProfilePerSSIDSettings    `json:"perSsidSettings,omitempty"`    // Per-SSID radio settings by number.
+	TwoFourGhzSettings *RequestApplianceCreateNetworkApplianceRfProfileTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"` // Settings related to 2.4Ghz band
+}
+type RequestApplianceCreateNetworkApplianceRfProfileFiveGhzSettings struct {
+	AxEnabled  *bool `json:"axEnabled,omitempty"`  // Determines whether ax radio on 5Ghz band is on or off. Can be either true or false. If false, we highly recommend disabling band steering. Defaults to true.
+	MinBitrate *int  `json:"minBitrate,omitempty"` // Sets min bitrate (Mbps) of 5Ghz band. Can be one of '6', '9', '12', '18', '24', '36', '48' or '54'. Defaults to 12.
+}
+type RequestApplianceCreateNetworkApplianceRfProfilePerSSIDSettings struct {
+	Status1 *RequestApplianceCreateNetworkApplianceRfProfilePerSSIDSettings1 `json:"1,omitempty"` // Settings for SSID 1
+	Status2 *RequestApplianceCreateNetworkApplianceRfProfilePerSSIDSettings2 `json:"2,omitempty"` // Settings for SSID 2
+	Status3 *RequestApplianceCreateNetworkApplianceRfProfilePerSSIDSettings3 `json:"3,omitempty"` // Settings for SSID 3
+	Status4 *RequestApplianceCreateNetworkApplianceRfProfilePerSSIDSettings4 `json:"4,omitempty"` // Settings for SSID 4
+}
+type RequestApplianceCreateNetworkApplianceRfProfilePerSSIDSettings1 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+}
+type RequestApplianceCreateNetworkApplianceRfProfilePerSSIDSettings2 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+}
+type RequestApplianceCreateNetworkApplianceRfProfilePerSSIDSettings3 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+}
+type RequestApplianceCreateNetworkApplianceRfProfilePerSSIDSettings4 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+}
+type RequestApplianceCreateNetworkApplianceRfProfileTwoFourGhzSettings struct {
+	AxEnabled  *bool    `json:"axEnabled,omitempty"`  // Determines whether ax radio on 2.4Ghz band is on or off. Can be either true or false. If false, we highly recommend disabling band steering. Defaults to true.
+	MinBitrate *float64 `json:"minBitrate,omitempty"` // Sets min bitrate (Mbps) of 2.4Ghz band. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'. Defaults to 11.
+}
+type RequestApplianceUpdateNetworkApplianceRfProfile struct {
+	FiveGhzSettings    *RequestApplianceUpdateNetworkApplianceRfProfileFiveGhzSettings    `json:"fiveGhzSettings,omitempty"`    // Settings related to 5Ghz band
+	Name               string                                                             `json:"name,omitempty"`               // The name of the new profile. Must be unique.
+	PerSSIDSettings    *RequestApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings    `json:"perSsidSettings,omitempty"`    // Per-SSID radio settings by number.
+	TwoFourGhzSettings *RequestApplianceUpdateNetworkApplianceRfProfileTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"` // Settings related to 2.4Ghz band
+}
+type RequestApplianceUpdateNetworkApplianceRfProfileFiveGhzSettings struct {
+	AxEnabled  *bool `json:"axEnabled,omitempty"`  // Determines whether ax radio on 5Ghz band is on or off. Can be either true or false. If false, we highly recommend disabling band steering.
+	MinBitrate *int  `json:"minBitrate,omitempty"` // Sets min bitrate (Mbps) of 5Ghz band. Can be one of '6', '9', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings struct {
+	Status1 *RequestApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings1 `json:"1,omitempty"` // Settings for SSID 1
+	Status2 *RequestApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings2 `json:"2,omitempty"` // Settings for SSID 2
+	Status3 *RequestApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings3 `json:"3,omitempty"` // Settings for SSID 3
+	Status4 *RequestApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings4 `json:"4,omitempty"` // Settings for SSID 4
+}
+type RequestApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings1 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+}
+type RequestApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings2 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+}
+type RequestApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings3 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+}
+type RequestApplianceUpdateNetworkApplianceRfProfilePerSSIDSettings4 struct {
+	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+}
+type RequestApplianceUpdateNetworkApplianceRfProfileTwoFourGhzSettings struct {
+	AxEnabled  *bool    `json:"axEnabled,omitempty"`  // Determines whether ax radio on 2.4Ghz band is on or off. Can be either true or false. If false, we highly recommend disabling band steering.
+	MinBitrate *float64 `json:"minBitrate,omitempty"` // Sets min bitrate (Mbps) of 2.4Ghz band. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
 type RequestApplianceUpdateNetworkApplianceSecurityIntrusion struct {
 	IDsRulesets       string                                                                    `json:"idsRulesets,omitempty"`       // Set the detection ruleset 'connectivity'/'balanced'/'security' (optional - omitting will leave current config unchanged). Default value is 'balanced' if none currently saved
 	Mode              string                                                                    `json:"mode,omitempty"`              // Set mode to 'disabled'/'detection'/'prevention' (optional - omitting will leave current config unchanged)
@@ -1780,6 +2173,7 @@ type RequestApplianceUpdateNetworkApplianceSSID struct {
 	AuthMode                     string                                                                  `json:"authMode,omitempty"`                     // The association control method for the SSID ('open', 'psk', '8021x-meraki' or '8021x-radius').
 	DefaultVLANID                *int                                                                    `json:"defaultVlanId,omitempty"`                // The VLAN ID of the VLAN associated to this SSID. This parameter is only valid if the network is in routed mode.
 	DhcpEnforcedDeauthentication *RequestApplianceUpdateNetworkApplianceSSIDDhcpEnforcedDeauthentication `json:"dhcpEnforcedDeauthentication,omitempty"` // DHCP Enforced Deauthentication enables the disassociation of wireless clients in addition to Mandatory DHCP. This param is only valid on firmware versions >= MX 17.0 where the associated LAN has Mandatory DHCP Enabled
+	Dot11W                       *RequestApplianceUpdateNetworkApplianceSSIDDot11W                       `json:"dot11w,omitempty"`                       // The current setting for Protected Management Frames (802.11w).
 	Enabled                      *bool                                                                   `json:"enabled,omitempty"`                      // Whether or not the SSID is enabled.
 	EncryptionMode               string                                                                  `json:"encryptionMode,omitempty"`               // The psk encryption mode for the SSID ('wep' or 'wpa'). This param is only valid if the authMode is 'psk'.
 	Name                         string                                                                  `json:"name,omitempty"`                         // The name of the SSID.
@@ -1790,6 +2184,10 @@ type RequestApplianceUpdateNetworkApplianceSSID struct {
 }
 type RequestApplianceUpdateNetworkApplianceSSIDDhcpEnforcedDeauthentication struct {
 	Enabled *bool `json:"enabled,omitempty"` // Enable DCHP Enforced Deauthentication on the SSID.
+}
+type RequestApplianceUpdateNetworkApplianceSSIDDot11W struct {
+	Enabled  *bool `json:"enabled,omitempty"`  // Whether 802.11w is enabled or not.
+	Required *bool `json:"required,omitempty"` // (Optional) Whether 802.11w is required or not.
 }
 type RequestApplianceUpdateNetworkApplianceSSIDRadiusServers struct {
 	Host   string `json:"host,omitempty"`   // The IP address of your RADIUS server.
@@ -1951,6 +2349,19 @@ type RequestApplianceUpdateNetworkApplianceTrafficShapingUplinkSelectionWanTraff
 	Port string `json:"port,omitempty"` // E.g.: "any", "0" (also means "any"), "8080", "1-1024"
 	VLAN *int   `json:"vlan,omitempty"` // VLAN ID of the configured VLAN in the Meraki network. Currently only available under a template network.
 }
+type RequestApplianceUpdateNetworkApplianceTrafficShapingVpnExclusions struct {
+	Custom            *[]RequestApplianceUpdateNetworkApplianceTrafficShapingVpnExclusionsCustom            `json:"custom,omitempty"`            // Custom VPN exclusion rules. Pass an empty array to clear existing rules.
+	MajorApplications *[]RequestApplianceUpdateNetworkApplianceTrafficShapingVpnExclusionsMajorApplications `json:"majorApplications,omitempty"` // Major Application based VPN exclusion rules. Pass an empty array to clear existing rules.
+}
+type RequestApplianceUpdateNetworkApplianceTrafficShapingVpnExclusionsCustom struct {
+	Destination string `json:"destination,omitempty"` // Destination address; hostname required for DNS, IPv4 otherwise.
+	Port        string `json:"port,omitempty"`        // Destination port.
+	Protocol    string `json:"protocol,omitempty"`    // Protocol.
+}
+type RequestApplianceUpdateNetworkApplianceTrafficShapingVpnExclusionsMajorApplications struct {
+	ID   string `json:"id,omitempty"`   // Application's Meraki ID.
+	Name string `json:"name,omitempty"` // Application's name.
+}
 type RequestApplianceCreateNetworkApplianceVLAN struct {
 	ApplianceIP      string                                                   `json:"applianceIp,omitempty"`      // The local IP of the appliance on the VLAN
 	Cidr             string                                                   `json:"cidr,omitempty"`             // CIDR of the pool of subnets. Applicable only for template network. Each network bound to the template will automatically pick a subnet from this pool to build its own VLAN.
@@ -2036,20 +2447,20 @@ type RequestApplianceUpdateNetworkApplianceVLANReservedIPRanges struct {
 type RequestApplianceUpdateNetworkApplianceVpnBgp struct {
 	AsNumber      *int                                                     `json:"asNumber,omitempty"`      // An Autonomous System Number (ASN) is required if you are to run BGP and peer with another BGP Speaker outside of the Auto VPN domain. This ASN will be applied to the entire Auto VPN domain. The entire 4-byte ASN range is supported. So, the ASN must be an integer between 1 and 4294967295. When absent, this field is not updated. If no value exists then it defaults to 64512.
 	Enabled       *bool                                                    `json:"enabled,omitempty"`       // Boolean value to enable or disable the BGP configuration. When BGP is enabled, the asNumber (ASN) will be autopopulated with the preconfigured ASN at other Hubs or a default value if there is no ASN configured.
-	IbgpHoldTimer *int                                                     `json:"ibgpHoldTimer,omitempty"` // The IBGP holdtimer in seconds. The IBGP holdtimer must be an integer between 12 and 240. When absent, this field is not updated. If no value exists then it defaults to 240.
+	IbgpHoldTimer *int                                                     `json:"ibgpHoldTimer,omitempty"` // The iBGP holdtimer in seconds. The iBGP holdtimer must be an integer between 12 and 240. When absent, this field is not updated. If no value exists then it defaults to 240.
 	Neighbors     *[]RequestApplianceUpdateNetworkApplianceVpnBgpNeighbors `json:"neighbors,omitempty"`     // List of BGP neighbors. This list replaces the existing set of neighbors. When absent, this field is not updated.
 }
 type RequestApplianceUpdateNetworkApplianceVpnBgpNeighbors struct {
 	AllowTransit    *bool                                                                `json:"allowTransit,omitempty"`    // When this feature is on, the Meraki device will advertise routes learned from other Autonomous Systems, thereby allowing traffic between Autonomous Systems to transit this AS. When absent, it defaults to false.
 	Authentication  *RequestApplianceUpdateNetworkApplianceVpnBgpNeighborsAuthentication `json:"authentication,omitempty"`  // Authentication settings between BGP peers.
-	EbgpHoldTimer   *int                                                                 `json:"ebgpHoldTimer,omitempty"`   // The EBGP hold timer in seconds for each neighbor. The EBGP hold timer must be an integer between 12 and 240.
-	EbgpMultihop    *int                                                                 `json:"ebgpMultihop,omitempty"`    // Configure this if the neighbor is not adjacent. The EBGP multi-hop must be an integer between 1 and 255.
+	EbgpHoldTimer   *int                                                                 `json:"ebgpHoldTimer,omitempty"`   // The eBGP hold timer in seconds for each neighbor. The eBGP hold timer must be an integer between 12 and 240.
+	EbgpMultihop    *int                                                                 `json:"ebgpMultihop,omitempty"`    // Configure this if the neighbor is not adjacent. The eBGP multi-hop must be an integer between 1 and 255.
 	IP              string                                                               `json:"ip,omitempty"`              // The IPv4 address of the neighbor
-	IPv6            *RequestApplianceUpdateNetworkApplianceVpnBgpNeighborsIPv6           `json:"ipv6,omitempty"`            // Information regarding IPv6 address of the neighbor, Required if *ip* is not present.
+	IPv6            *RequestApplianceUpdateNetworkApplianceVpnBgpNeighborsIPv6           `json:"ipv6,omitempty"`            // Information regarding IPv6 address of the neighbor, Required if `ip` is not present.
 	NextHopIP       string                                                               `json:"nextHopIp,omitempty"`       // The IPv4 address of the remote BGP peer that will establish a TCP session with the local MX.
 	ReceiveLimit    *int                                                                 `json:"receiveLimit,omitempty"`    // The receive limit is the maximum number of routes that can be received from any BGP peer. The receive limit must be an integer between 0 and 4294967295. When absent, it defaults to 0.
 	RemoteAsNumber  *int                                                                 `json:"remoteAsNumber,omitempty"`  // Remote ASN of the neighbor. The remote ASN must be an integer between 1 and 4294967295.
-	SourceInterface string                                                               `json:"sourceInterface,omitempty"` // The output interface for peering with the remote BGP peer. Valid values are: 'wired0', 'wired1' or 'vlan{VLAN ID}'(e.g. 'vlan123').
+	SourceInterface string                                                               `json:"sourceInterface,omitempty"` // The output interface for peering with the remote BGP peer. Valid values are: 'wan1', 'wan2' or 'vlan{VLAN ID}'(e.g. 'vlan123').
 	TtlSecurity     *RequestApplianceUpdateNetworkApplianceVpnBgpNeighborsTtlSecurity    `json:"ttlSecurity,omitempty"`     // Settings for BGP TTL security to protect BGP peering sessions from forged IP attacks.
 }
 type RequestApplianceUpdateNetworkApplianceVpnBgpNeighborsAuthentication struct {
@@ -2257,6 +2668,39 @@ func (s *ApplianceService) GetDeviceAppliancePrefixesDelegatedVLANAssignments(se
 	}
 
 	result := response.Result().(*ResponseApplianceGetDeviceAppliancePrefixesDelegatedVLANAssignments)
+	return result, response, err
+
+}
+
+//GetDeviceApplianceRadioSettings Return the radio settings of an appliance
+/* Return the radio settings of an appliance
+
+@param serial serial path parameter.
+
+
+*/
+func (s *ApplianceService) GetDeviceApplianceRadioSettings(serial string) (*ResponseApplianceGetDeviceApplianceRadioSettings, *resty.Response, error) {
+	path := "/api/v1/devices/{serial}/appliance/radio/settings"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseApplianceGetDeviceApplianceRadioSettings{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetDeviceApplianceRadioSettings")
+	}
+
+	result := response.Result().(*ResponseApplianceGetDeviceApplianceRadioSettings)
 	return result, response, err
 
 }
@@ -2965,6 +3409,74 @@ func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatic(networkID 
 
 }
 
+//GetNetworkApplianceRfProfiles List the RF profiles for this network
+/* List the RF profiles for this network
+
+@param networkID networkId path parameter. Network ID
+
+
+*/
+func (s *ApplianceService) GetNetworkApplianceRfProfiles(networkID string) (*ResponseApplianceGetNetworkApplianceRfProfiles, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/appliance/rfProfiles"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseApplianceGetNetworkApplianceRfProfiles{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceRfProfiles")
+	}
+
+	result := response.Result().(*ResponseApplianceGetNetworkApplianceRfProfiles)
+	return result, response, err
+
+}
+
+//GetNetworkApplianceRfProfile Return a RF profile
+/* Return a RF profile
+
+@param networkID networkId path parameter. Network ID
+@param rfProfileID rfProfileId path parameter. Rf profile ID
+
+
+*/
+func (s *ApplianceService) GetNetworkApplianceRfProfile(networkID string, rfProfileID string) (*ResponseApplianceGetNetworkApplianceRfProfile, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/appliance/rfProfiles/{rfProfileId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+	path = strings.Replace(path, "{rfProfileId}", fmt.Sprintf("%v", rfProfileID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseApplianceGetNetworkApplianceRfProfile{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceRfProfile")
+	}
+
+	result := response.Result().(*ResponseApplianceGetNetworkApplianceRfProfile)
+	return result, response, err
+
+}
+
 //GetNetworkApplianceSecurityEvents List the security events for a network
 /* List the security events for a network
 
@@ -3524,8 +4036,6 @@ func (s *ApplianceService) GetNetworkApplianceVLANs(networkID string) (*Response
 		SetError(&Error).
 		Get(path)
 
-	// log.Printf("[DEBUG] Response: %v", response)
-	log.Printf("[DEBUG] Error: %v", err)
 	if err != nil {
 		return nil, nil, err
 
@@ -3535,9 +4045,7 @@ func (s *ApplianceService) GetNetworkApplianceVLANs(networkID string) (*Response
 		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceVlans")
 	}
 
-	log.Printf("[DEBUG] Selected method: GetDeviceCameraAnalyticsLive")
 	result := response.Result().(*ResponseApplianceGetNetworkApplianceVLANs)
-	log.Println("Result: ", result)
 	return result, response, err
 
 }
@@ -3778,6 +4286,42 @@ func (s *ApplianceService) GetOrganizationApplianceSecurityIntrusion(organizatio
 
 }
 
+//GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork Display VPN exclusion rules for MX networks.
+/* Display VPN exclusion rules for MX networks.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams Filtering parameter
+
+
+*/
+func (s *ApplianceService) GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork(organizationID string, getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams *GetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams) (*ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/trafficShaping/vpnExclusions/byNetwork"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork")
+	}
+
+	result := response.Result().(*ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork)
+	return result, response, err
+
+}
+
 //GetOrganizationApplianceUplinkStatuses List the uplink status of every Meraki MX and Z series appliances in the organization
 /* List the uplink status of every Meraki MX and Z series appliances in the organization
 
@@ -3810,6 +4354,75 @@ func (s *ApplianceService) GetOrganizationApplianceUplinkStatuses(organizationID
 	}
 
 	result := response.Result().(*ResponseApplianceGetOrganizationApplianceUplinkStatuses)
+	return result, response, err
+
+}
+
+//GetOrganizationApplianceUplinksStatusesOverview Returns an overview of uplink statuses
+/* Returns an overview of uplink statuses
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+func (s *ApplianceService) GetOrganizationApplianceUplinksStatusesOverview(organizationID string) (*ResponseApplianceGetOrganizationApplianceUplinksStatusesOverview, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/uplinks/statuses/overview"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseApplianceGetOrganizationApplianceUplinksStatusesOverview{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceUplinksStatusesOverview")
+	}
+
+	result := response.Result().(*ResponseApplianceGetOrganizationApplianceUplinksStatusesOverview)
+	return result, response, err
+
+}
+
+//GetOrganizationApplianceUplinksUsageByNetwork Get the sent and received bytes for each uplink of all MX and Z networks within an organization
+/* Get the sent and received bytes for each uplink of all MX and Z networks within an organization. If more than one device was active during the specified timespan, then the sent and received bytes will be aggregated by interface.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationApplianceUplinksUsageByNetworkQueryParams Filtering parameter
+
+
+*/
+func (s *ApplianceService) GetOrganizationApplianceUplinksUsageByNetwork(organizationID string, getOrganizationApplianceUplinksUsageByNetworkQueryParams *GetOrganizationApplianceUplinksUsageByNetworkQueryParams) (*ResponseApplianceGetOrganizationApplianceUplinksUsageByNetwork, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/uplinks/usage/byNetwork"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationApplianceUplinksUsageByNetworkQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceUplinksUsageByNetwork{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceUplinksUsageByNetwork")
+	}
+
+	result := response.Result().(*ResponseApplianceGetOrganizationApplianceUplinksUsageByNetwork)
 	return result, response, err
 
 }
@@ -4020,6 +4633,41 @@ func (s *ApplianceService) CreateNetworkAppliancePrefixesDelegatedStatic(network
 
 }
 
+//CreateNetworkApplianceRfProfile Creates new RF profile for this network
+/* Creates new RF profile for this network
+
+@param networkID networkId path parameter. Network ID
+
+
+*/
+
+func (s *ApplianceService) CreateNetworkApplianceRfProfile(networkID string, requestApplianceCreateNetworkApplianceRfProfile *RequestApplianceCreateNetworkApplianceRfProfile) (*ResponseApplianceCreateNetworkApplianceRfProfile, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/appliance/rfProfiles"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceCreateNetworkApplianceRfProfile).
+		SetResult(&ResponseApplianceCreateNetworkApplianceRfProfile{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateNetworkApplianceRfProfile")
+	}
+
+	result := response.Result().(*ResponseApplianceCreateNetworkApplianceRfProfile)
+	return result, response, err
+
+}
+
 //CreateNetworkApplianceStaticRoute Add a static route for an MX or teleworker network
 /* Add a static route for an MX or teleworker network
 
@@ -4154,6 +4802,38 @@ func (s *ApplianceService) SwapNetworkApplianceWarmSpare(networkID string) (*res
 	}
 
 	return response, err
+
+}
+
+//UpdateDeviceApplianceRadioSettings Update the radio settings of an appliance
+/* Update the radio settings of an appliance
+
+@param serial serial path parameter.
+*/
+func (s *ApplianceService) UpdateDeviceApplianceRadioSettings(serial string, requestApplianceUpdateDeviceApplianceRadioSettings *RequestApplianceUpdateDeviceApplianceRadioSettings) (*ResponseApplianceUpdateDeviceApplianceRadioSettings, *resty.Response, error) {
+	path := "/api/v1/devices/{serial}/appliance/radio/settings"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceUpdateDeviceApplianceRadioSettings).
+		SetResult(&ResponseApplianceUpdateDeviceApplianceRadioSettings{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateDeviceApplianceRadioSettings")
+	}
+
+	result := response.Result().(*ResponseApplianceUpdateDeviceApplianceRadioSettings)
+	return result, response, err
 
 }
 
@@ -4348,7 +5028,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallInboundCellularFirewall
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *ApplianceService) UpdateNetworkApplianceFirewallInboundFirewallRules(networkID string, requestApplianceUpdateNetworkApplianceFirewallInboundFirewallRules *RequestApplianceUpdateNetworkApplianceFirewallInboundFirewallRules) (*resty.Response, error) {
+func (s *ApplianceService) UpdateNetworkApplianceFirewallInboundFirewallRules(networkID string, requestApplianceUpdateNetworkApplianceFirewallInboundFirewallRules *RequestApplianceUpdateNetworkApplianceFirewallInboundFirewallRules) (*ResponseApplianceUpdateNetworkApplianceFirewallInboundFirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/inboundFirewallRules"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4357,19 +5037,21 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallInboundFirewallRules(ne
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestApplianceUpdateNetworkApplianceFirewallInboundFirewallRules).
+		SetResult(&ResponseApplianceUpdateNetworkApplianceFirewallInboundFirewallRules{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallInboundFirewallRules")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallInboundFirewallRules")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceFirewallInboundFirewallRules)
+	return result, response, err
 
 }
 
@@ -4619,12 +5301,46 @@ func (s *ApplianceService) UpdateNetworkAppliancePrefixesDelegatedStatic(network
 
 }
 
+//UpdateNetworkApplianceRfProfile Updates specified RF profile for this network
+/* Updates specified RF profile for this network
+
+@param networkID networkId path parameter. Network ID
+@param rfProfileID rfProfileId path parameter. Rf profile ID
+*/
+func (s *ApplianceService) UpdateNetworkApplianceRfProfile(networkID string, rfProfileID string, requestApplianceUpdateNetworkApplianceRfProfile *RequestApplianceUpdateNetworkApplianceRfProfile) (*ResponseApplianceUpdateNetworkApplianceRfProfile, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/appliance/rfProfiles/{rfProfileId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+	path = strings.Replace(path, "{rfProfileId}", fmt.Sprintf("%v", rfProfileID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceUpdateNetworkApplianceRfProfile).
+		SetResult(&ResponseApplianceUpdateNetworkApplianceRfProfile{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceRfProfile")
+	}
+
+	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceRfProfile)
+	return result, response, err
+
+}
+
 //UpdateNetworkApplianceSecurityIntrusion Set the supported intrusion settings for an MX network
 /* Set the supported intrusion settings for an MX network
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *ApplianceService) UpdateNetworkApplianceSecurityIntrusion(networkID string, requestApplianceUpdateNetworkApplianceSecurityIntrusion *RequestApplianceUpdateNetworkApplianceSecurityIntrusion) (*resty.Response, error) {
+func (s *ApplianceService) UpdateNetworkApplianceSecurityIntrusion(networkID string, requestApplianceUpdateNetworkApplianceSecurityIntrusion *RequestApplianceUpdateNetworkApplianceSecurityIntrusion) (*ResponseApplianceUpdateNetworkApplianceSecurityIntrusion, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/security/intrusion"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4633,19 +5349,21 @@ func (s *ApplianceService) UpdateNetworkApplianceSecurityIntrusion(networkID str
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestApplianceUpdateNetworkApplianceSecurityIntrusion).
+		SetResult(&ResponseApplianceUpdateNetworkApplianceSecurityIntrusion{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceSecurityIntrusion")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceSecurityIntrusion")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceSecurityIntrusion)
+	return result, response, err
 
 }
 
@@ -4654,7 +5372,7 @@ func (s *ApplianceService) UpdateNetworkApplianceSecurityIntrusion(networkID str
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *ApplianceService) UpdateNetworkApplianceSecurityMalware(networkID string, requestApplianceUpdateNetworkApplianceSecurityMalware *RequestApplianceUpdateNetworkApplianceSecurityMalware) (*resty.Response, error) {
+func (s *ApplianceService) UpdateNetworkApplianceSecurityMalware(networkID string, requestApplianceUpdateNetworkApplianceSecurityMalware *RequestApplianceUpdateNetworkApplianceSecurityMalware) (*ResponseApplianceUpdateNetworkApplianceSecurityMalware, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/security/malware"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4663,19 +5381,21 @@ func (s *ApplianceService) UpdateNetworkApplianceSecurityMalware(networkID strin
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestApplianceUpdateNetworkApplianceSecurityMalware).
+		SetResult(&ResponseApplianceUpdateNetworkApplianceSecurityMalware{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceSecurityMalware")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceSecurityMalware")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceSecurityMalware)
+	return result, response, err
 
 }
 
@@ -4845,7 +5565,7 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShaping(networkID string
 @param networkID networkId path parameter. Network ID
 @param customPerformanceClassID customPerformanceClassId path parameter. Custom performance class ID
 */
-func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(networkID string, customPerformanceClassID string, requestApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass *RequestApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass) (*resty.Response, error) {
+func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(networkID string, customPerformanceClassID string, requestApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass *RequestApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass) (*ResponseApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses/{customPerformanceClassId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4855,19 +5575,21 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingCustomPerformance
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass).
+		SetResult(&ResponseApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceTrafficShapingCustomPerformanceClass")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceTrafficShapingCustomPerformanceClass")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass)
+	return result, response, err
 
 }
 
@@ -4963,12 +5685,44 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingUplinkSelection(n
 
 }
 
+//UpdateNetworkApplianceTrafficShapingVpnExclusions Update VPN exclusion rules for an MX network.
+/* Update VPN exclusion rules for an MX network.
+
+@param networkID networkId path parameter. Network ID
+*/
+func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingVpnExclusions(networkID string, requestApplianceUpdateNetworkApplianceTrafficShapingVpnExclusions *RequestApplianceUpdateNetworkApplianceTrafficShapingVpnExclusions) (*ResponseApplianceUpdateNetworkApplianceTrafficShapingVpnExclusions, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/vpnExclusions"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceUpdateNetworkApplianceTrafficShapingVpnExclusions).
+		SetResult(&ResponseApplianceUpdateNetworkApplianceTrafficShapingVpnExclusions{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceTrafficShapingVpnExclusions")
+	}
+
+	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceTrafficShapingVpnExclusions)
+	return result, response, err
+
+}
+
 //UpdateNetworkApplianceVLANsSettings Enable/Disable VLANs for the given network
 /* Enable/Disable VLANs for the given network
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *ApplianceService) UpdateNetworkApplianceVLANsSettings(networkID string, requestApplianceUpdateNetworkApplianceVlansSettings *RequestApplianceUpdateNetworkApplianceVLANsSettings) (*resty.Response, error) {
+func (s *ApplianceService) UpdateNetworkApplianceVLANsSettings(networkID string, requestApplianceUpdateNetworkApplianceVlansSettings *RequestApplianceUpdateNetworkApplianceVLANsSettings) (*ResponseApplianceUpdateNetworkApplianceVLANsSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vlans/settings"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4977,19 +5731,21 @@ func (s *ApplianceService) UpdateNetworkApplianceVLANsSettings(networkID string,
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestApplianceUpdateNetworkApplianceVlansSettings).
+		SetResult(&ResponseApplianceUpdateNetworkApplianceVLANsSettings{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceVlansSettings")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceVlansSettings")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceVLANsSettings)
+	return result, response, err
 
 }
 
@@ -5154,7 +5910,7 @@ func (s *ApplianceService) UpdateOrganizationApplianceSecurityIntrusion(organiza
 
 @param organizationID organizationId path parameter. Organization ID
 */
-func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(organizationID string, requestApplianceUpdateOrganizationApplianceVpnThirdPartyVPNPeers *RequestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers) (*ResponseApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers, *resty.Response, error) {
+func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(organizationID string) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -5162,22 +5918,19 @@ func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(orga
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateOrganizationApplianceVpnThirdPartyVPNPeers).
-		SetResult(&ResponseApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationApplianceVpnThirdPartyVpnpeers")
+		return response, fmt.Errorf("error with operation UpdateOrganizationApplianceVpnThirdPartyVpnpeers")
 	}
 
-	result := response.Result().(*ResponseApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers)
-	return result, response, err
+	return response, err
 
 }
 
@@ -5241,6 +5994,40 @@ func (s *ApplianceService) DeleteNetworkAppliancePrefixesDelegatedStatic(network
 
 	if response.IsError() {
 		return response, fmt.Errorf("error with operation DeleteNetworkAppliancePrefixesDelegatedStatic")
+	}
+
+	return response, err
+
+}
+
+//DeleteNetworkApplianceRfProfile Delete a RF Profile
+/* Delete a RF Profile
+
+@param networkID networkId path parameter. Network ID
+@param rfProfileID rfProfileId path parameter. Rf profile ID
+
+
+*/
+func (s *ApplianceService) DeleteNetworkApplianceRfProfile(networkID string, rfProfileID string) (*resty.Response, error) {
+	//networkID string,rfProfileID string
+	path := "/api/v1/networks/{networkId}/appliance/rfProfiles/{rfProfileId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+	path = strings.Replace(path, "{rfProfileId}", fmt.Sprintf("%v", rfProfileID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation DeleteNetworkApplianceRfProfile")
 	}
 
 	return response, err

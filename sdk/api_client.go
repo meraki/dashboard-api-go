@@ -1,9 +1,11 @@
 package meraki
 
 import (
+	"errors"
 	"fmt"
 	"net/http"
 	"os"
+	"regexp"
 	"strconv"
 	"time"
 
@@ -13,10 +15,11 @@ import (
 
 const (
 	MERAKI_BASE_URL             = "MERAKI_BASE_URL"
+	MERAKI_USER_AGENT           = "MERAKI_USER_AGENT"
 	MERAKI_DASHBOARD_API_KEY    = "MERAKI_DASHBOARD_API_KEY"
 	MERAKI_DEBUG                = "MERAKI_DEBUG"
 	MERAKI_REQUESTS_PER_SECOND  = "MERAKI_REQUESTS_PER_SECOND"
-	DEFAULT_USER_AGENT          = "go-meraki/1.33.0"
+	DEFAULT_USER_AGENT          = "go-meraki/1.44.1"
 	DEFAULT_REQUESTS_PER_SECOND = 10
 )
 
@@ -53,7 +56,8 @@ func (c *Client) SetAuthToken(accessToken string) {
 }
 
 // SetUserAgent sets the User-Agent header in the request
-func (c *Client) SetUserAgent(userAgent string) {
+func (c *Client) SetUserAgent() {
+	userAgent := fmt.Sprintf("%s %s", DEFAULT_USER_AGENT, os.Getenv("MERAKI_USER_AGENT"))
 	c.common.client.SetHeader("User-Agent", userAgent)
 }
 
@@ -97,7 +101,7 @@ func NewClient() (*Client, error) {
 		c.SetRequestsPerSecond(DEFAULT_REQUESTS_PER_SECOND)
 	}
 
-	c.SetUserAgent(DEFAULT_USER_AGENT)
+	c.SetUserAgent()
 	client.SetLogger(&CustomLogger{})
 	client.SetRetryCount(2)
 	client.SetRetryWaitTime(time.Second)
@@ -137,8 +141,8 @@ func NewClient() (*Client, error) {
 }
 
 // NewClientWithOptions creates a new API client with options passed with parameters
-func NewClientWithOptions(baseURL string, dashboardApiKey string, debug string) (*Client, error) {
-	err := SetOptions(baseURL, dashboardApiKey, debug)
+func NewClientWithOptions(baseURL string, dashboardApiKey string, debug string, userAgent string) (*Client, error) {
+	err := SetOptions(baseURL, dashboardApiKey, debug, userAgent)
 	if err != nil {
 		return nil, err
 	}
@@ -147,8 +151,8 @@ func NewClientWithOptions(baseURL string, dashboardApiKey string, debug string) 
 }
 
 // NewClientWithOptionsAndRequests creates a new API client with options passed with parameters including the requests per second
-func NewClientWithOptionsAndRequests(baseURL string, dashboardApiKey string, debug string, requestsPerSecond int) (*Client, error) {
-	err := SetOptionsWithRequests(baseURL, dashboardApiKey, debug, requestsPerSecond)
+func NewClientWithOptionsAndRequests(baseURL string, dashboardApiKey string, debug string, userAgent string, requestsPerSecond int) (*Client, error) {
+	err := SetOptionsWithRequests(baseURL, dashboardApiKey, debug, userAgent, requestsPerSecond)
 	if err != nil {
 		return nil, err
 	}
@@ -157,8 +161,18 @@ func NewClientWithOptionsAndRequests(baseURL string, dashboardApiKey string, deb
 }
 
 // SetOptions sets the required environment variables
-func SetOptions(baseURL string, dashboardApiKey string, debug string) error {
+func SetOptions(baseURL string, dashboardApiKey string, debug string, userAgent string) error {
 	var err error
+
+	if !validateUserAgent(userAgent) {
+		return errors.New("user-agent bad format, expected: `AplicationName VendorName`")
+	}
+
+	err = os.Setenv(MERAKI_USER_AGENT, userAgent)
+	if err != nil {
+		return err
+	}
+
 	err = os.Setenv(MERAKI_BASE_URL, baseURL)
 	if err != nil {
 		return err
@@ -175,8 +189,8 @@ func SetOptions(baseURL string, dashboardApiKey string, debug string) error {
 }
 
 // SetOptionsWithRequests sets the required environment variables including the requests per second
-func SetOptionsWithRequests(baseURL string, dashboardApiKey string, debug string, requestsPerSecond int) error {
-	err := SetOptions(baseURL, dashboardApiKey, debug)
+func SetOptionsWithRequests(baseURL string, dashboardApiKey string, debug string, userAgent string, requestsPerSecond int) error {
+	err := SetOptions(baseURL, dashboardApiKey, debug, userAgent)
 	if err != nil {
 		return err
 	}
@@ -286,4 +300,9 @@ func convertToString(i interface{}) string {
 	default:
 		return ""
 	}
+}
+
+func validateUserAgent(ua string) bool {
+	regex := regexp.MustCompile(`^\S+\s\S+$`)
+	return regex.MatchString(ua)
 }

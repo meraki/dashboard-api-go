@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	meraki "github.com/meraki/dashboard-api-go/v2/sdk"
+	meraki "github.com/meraki/dashboard-api-go/v3/sdk"
 )
 
 var client *meraki.Client
@@ -13,13 +13,13 @@ func main() {
 	fmt.Println("Authenticating")
 	client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
 		"12f2eb53588c75e28d89e108a05ea0c2487b08cf",
-		"true")
+		"true", "AplicationName VendorName")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	nResponse, _, err := client.Organizations.GetOrganizations()
+	nResponse, _, err := client.Organizations.GetOrganizations(nil)
 	if err != nil {
 		fmt.Println(err)
 		return

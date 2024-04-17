@@ -54,14 +54,24 @@ type ResponseItemInsightGetOrganizationInsightMonitoredMediaServers struct {
 	ID                          string `json:"id,omitempty"`                          // Monitored media server id
 	Name                        string `json:"name,omitempty"`                        // The name of the VoIP provider
 }
-type ResponseInsightCreateOrganizationInsightMonitoredMediaServer interface{}
-type ResponseInsightGetOrganizationInsightMonitoredMediaServer struct {
-	Address                     string `json:"address,omitempty"`                     //
-	BestEffortMonitoringEnabled *bool  `json:"bestEffortMonitoringEnabled,omitempty"` //
-	ID                          string `json:"id,omitempty"`                          //
-	Name                        string `json:"name,omitempty"`                        //
+type ResponseInsightCreateOrganizationInsightMonitoredMediaServer struct {
+	Address                     string `json:"address,omitempty"`                     // The IP address (IPv4 only) or hostname of the media server to monitor
+	BestEffortMonitoringEnabled *bool  `json:"bestEffortMonitoringEnabled,omitempty"` // Indicates that if the media server doesn't respond to ICMP pings, the nearest hop will be used in its stead
+	ID                          string `json:"id,omitempty"`                          // Monitored media server id
+	Name                        string `json:"name,omitempty"`                        // The name of the VoIP provider
 }
-type ResponseInsightUpdateOrganizationInsightMonitoredMediaServer interface{}
+type ResponseInsightGetOrganizationInsightMonitoredMediaServer struct {
+	Address                     string `json:"address,omitempty"`                     // The IP address (IPv4 only) or hostname of the media server to monitor
+	BestEffortMonitoringEnabled *bool  `json:"bestEffortMonitoringEnabled,omitempty"` // Indicates that if the media server doesn't respond to ICMP pings, the nearest hop will be used in its stead
+	ID                          string `json:"id,omitempty"`                          // Monitored media server id
+	Name                        string `json:"name,omitempty"`                        // The name of the VoIP provider
+}
+type ResponseInsightUpdateOrganizationInsightMonitoredMediaServer struct {
+	Address                     string `json:"address,omitempty"`                     // The IP address (IPv4 only) or hostname of the media server to monitor
+	BestEffortMonitoringEnabled *bool  `json:"bestEffortMonitoringEnabled,omitempty"` // Indicates that if the media server doesn't respond to ICMP pings, the nearest hop will be used in its stead
+	ID                          string `json:"id,omitempty"`                          // Monitored media server id
+	Name                        string `json:"name,omitempty"`                        // The name of the VoIP provider
+}
 type RequestInsightCreateOrganizationInsightMonitoredMediaServer struct {
 	Address                     string `json:"address,omitempty"`                     // The IP address (IPv4 only) or hostname of the media server to monitor
 	BestEffortMonitoringEnabled *bool  `json:"bestEffortMonitoringEnabled,omitempty"` // Indicates that if the media server doesn't respond to ICMP pings, the nearest hop will be used in its stead.
@@ -220,7 +230,7 @@ func (s *InsightService) GetOrganizationInsightMonitoredMediaServer(organization
 
 */
 
-func (s *InsightService) CreateOrganizationInsightMonitoredMediaServer(organizationID string, requestInsightCreateOrganizationInsightMonitoredMediaServer *RequestInsightCreateOrganizationInsightMonitoredMediaServer) (*resty.Response, error) {
+func (s *InsightService) CreateOrganizationInsightMonitoredMediaServer(organizationID string, requestInsightCreateOrganizationInsightMonitoredMediaServer *RequestInsightCreateOrganizationInsightMonitoredMediaServer) (*ResponseInsightCreateOrganizationInsightMonitoredMediaServer, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -229,20 +239,21 @@ func (s *InsightService) CreateOrganizationInsightMonitoredMediaServer(organizat
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestInsightCreateOrganizationInsightMonitoredMediaServer).
-		// SetResult(&ResponseInsightCreateOrganizationInsightMonitoredMediaServer{}).
+		SetResult(&ResponseInsightCreateOrganizationInsightMonitoredMediaServer{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateOrganizationInsightMonitoredMediaServer")
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationInsightMonitoredMediaServer")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseInsightCreateOrganizationInsightMonitoredMediaServer)
+	return result, response, err
 
 }
 
@@ -252,7 +263,7 @@ func (s *InsightService) CreateOrganizationInsightMonitoredMediaServer(organizat
 @param organizationID organizationId path parameter. Organization ID
 @param monitoredMediaServerID monitoredMediaServerId path parameter. Monitored media server ID
 */
-func (s *InsightService) UpdateOrganizationInsightMonitoredMediaServer(organizationID string, monitoredMediaServerID string, requestInsightUpdateOrganizationInsightMonitoredMediaServer *RequestInsightUpdateOrganizationInsightMonitoredMediaServer) (*resty.Response, error) {
+func (s *InsightService) UpdateOrganizationInsightMonitoredMediaServer(organizationID string, monitoredMediaServerID string, requestInsightUpdateOrganizationInsightMonitoredMediaServer *RequestInsightUpdateOrganizationInsightMonitoredMediaServer) (*ResponseInsightUpdateOrganizationInsightMonitoredMediaServer, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers/{monitoredMediaServerId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -262,19 +273,21 @@ func (s *InsightService) UpdateOrganizationInsightMonitoredMediaServer(organizat
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestInsightUpdateOrganizationInsightMonitoredMediaServer).
+		SetResult(&ResponseInsightUpdateOrganizationInsightMonitoredMediaServer{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateOrganizationInsightMonitoredMediaServer")
+		return nil, response, fmt.Errorf("error with operation UpdateOrganizationInsightMonitoredMediaServer")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseInsightUpdateOrganizationInsightMonitoredMediaServer)
+	return result, response, err
 
 }
 
