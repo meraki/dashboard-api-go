@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2024-04-16
+- dashboard-api-go supports now v1.44.1 of Meraki Dashboard API.
+- User-agent is now required. Format of string "ApplicationName VendorName".
+
 ## [2.0.9] - 2024-03-14
 - New main branch SDK doesn't use the intended user agent string format #21
 - Incorrect links to documentation in code #23 [Removed]
@@ -1338,4 +1342,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.0.7]: https://github.com/meraki/dashboard-api-go/compare/v2.0.6...2.0.7
 [2.0.8]: https://github.com/meraki/dashboard-api-go/compare/v2.0.7...2.0.8
 [2.0.9]: https://github.com/meraki/dashboard-api-go/compare/v2.0.8...2.0.9
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v2.0.9...main
+[3.0.0]: https://github.com/meraki/dashboard-api-go/compare/v2.0.9...3.0.0
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v3.0.0...main

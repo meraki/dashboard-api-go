@@ -10,6 +10,11 @@ import (
 
 type OrganizationsService service
 
+type GetOrganizationsQueryParams struct {
+	PerPage       int    `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 9000. Default is 9000.
+	StartingAfter string `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+}
 type GetOrganizationActionBatchesQueryParams struct {
 	Status string `url:"status,omitempty"` //Filter batches by status. Valid types are pending, completed, and failed.
 }
@@ -100,6 +105,29 @@ type GetOrganizationDevicesAvailabilitiesQueryParams struct {
 	Tags           []string `url:"tags[],omitempty"`         //An optional parameter to filter devices by tags. The filtering is case-sensitive. If tags are included, 'tagsFilterType' should also be included (see below). This filter uses multiple exact matches.
 	TagsFilterType string   `url:"tagsFilterType,omitempty"` //An optional parameter of value 'withAnyTags' or 'withAllTags' to indicate whether to return devices which contain ANY or ALL of the included tags. If no type is included, 'withAnyTags' will be selected.
 }
+type GetOrganizationDevicesAvailabilitiesChangeHistoryQueryParams struct {
+	PerPage       int      `url:"perPage,omitempty"`        //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
+	StartingAfter string   `url:"startingAfter,omitempty"`  //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`   //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	T0            string   `url:"t0,omitempty"`             //The beginning of the timespan for the data. The maximum lookback period is 31 days from today.
+	T1            string   `url:"t1,omitempty"`             //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
+	Timespan      float64  `url:"timespan,omitempty"`       //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 1 day.
+	Serials       []string `url:"serials[],omitempty"`      //Optional parameter to filter device availabilities history by device serial numbers
+	ProductTypes  []string `url:"productTypes[],omitempty"` //Optional parameter to filter device availabilities history by device product types
+	NetworkIDs    []string `url:"networkIds[],omitempty"`   //Optional parameter to filter device availabilities history by network IDs
+	Statuses      []string `url:"statuses[],omitempty"`     //Optional parameter to filter device availabilities history by device statuses
+}
+type GetOrganizationDevicesBootsHistoryQueryParams struct {
+	T0                  string   `url:"t0,omitempty"`                  //The beginning of the timespan for the data.
+	T1                  string   `url:"t1,omitempty"`                  //The end of the timespan for the data. t1 can be a maximum of 730 days after t0.
+	Timespan            float64  `url:"timespan,omitempty"`            //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 730 days.
+	Serials             []string `url:"serials[],omitempty"`           //Optional parameter to filter device by device serial numbers. This filter uses multiple exact matches.
+	MostRecentPerDevice bool     `url:"mostRecentPerDevice,omitempty"` //If true, only the most recent boot for each device is returned.
+	PerPage             int      `url:"perPage,omitempty"`             //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
+	StartingAfter       string   `url:"startingAfter,omitempty"`       //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore        string   `url:"endingBefore,omitempty"`        //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	SortOrder           string   `url:"sortOrder,omitempty"`           //Sorted order of entries. Order options are 'ascending' and 'descending'. Default is 'descending'.
+}
 type GetOrganizationDevicesPowerModulesStatusesByDeviceQueryParams struct {
 	PerPage        int      `url:"perPage,omitempty"`        //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
 	StartingAfter  string   `url:"startingAfter,omitempty"`  //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
@@ -151,22 +179,25 @@ type GetOrganizationDevicesUplinksLossAndLatencyQueryParams struct {
 	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data. The maximum lookback period is 60 days from today.
 	T1       string  `url:"t1,omitempty"`       //The end of the timespan for the data. t1 can be a maximum of 5 minutes after t0. The latest possible time that t1 can be is 2 minutes into the past.
 	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 5 minutes. The default is 5 minutes.
-	Uplink   string  `url:"uplink,omitempty"`   //Optional filter for a specific WAN uplink. Valid uplinks are wan1, wan2, cellular. Default will return all uplinks.
+	Uplink   string  `url:"uplink,omitempty"`   //Optional filter for a specific WAN uplink. Valid uplinks are wan1, wan2, wan3, cellular. Default will return all uplinks.
 	IP       string  `url:"ip,omitempty"`       //Optional filter for a specific destination IP. Default will return all destination IPs.
 }
 type GetOrganizationFirmwareUpgradesQueryParams struct {
-	Status      []string `url:"status[],omitempty"`      //The status of an upgrade
-	ProductType []string `url:"productType[],omitempty"` //The product type in a given upgrade ID
+	PerPage       int      `url:"perPage,omitempty"`        //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
+	StartingAfter string   `url:"startingAfter,omitempty"`  //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`   //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	Status        []string `url:"status[],omitempty"`       //Optional parameter to filter the upgrade by status.
+	ProductTypes  []string `url:"productTypes[],omitempty"` //Optional parameter to filter the upgrade by product type.
 }
 type GetOrganizationFirmwareUpgradesByDeviceQueryParams struct {
-	PerPage                 int      `url:"perPage,omitempty"`                   //The number of entries per page returned. Acceptable range is 3 - 50. Default is 50.
+	PerPage                 int      `url:"perPage,omitempty"`                   //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 50.
 	StartingAfter           string   `url:"startingAfter,omitempty"`             //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	EndingBefore            string   `url:"endingBefore,omitempty"`              //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	NetworkIDs              []string `url:"networkIds[],omitempty"`              //Optional parameter to filter by network
 	Serials                 []string `url:"serials[],omitempty"`                 //Optional parameter to filter by serial number.  All returned devices will have a serial number that is an exact match.
 	Macs                    []string `url:"macs[],omitempty"`                    //Optional parameter to filter by one or more MAC addresses belonging to devices. All devices returned belong to MAC addresses that are an exact match.
-	FirmwareUpgradeIDs      []string `url:"firmwareUpgradeIds[],omitempty"`      //Optional parameter to filter by firmware upgrade ids.
 	FirmwareUpgradeBatchIDs []string `url:"firmwareUpgradeBatchIds[],omitempty"` //Optional parameter to filter by firmware upgrade batch ids.
+	Upgradestatuses         []string `url:"upgradeStatuses[],omitempty"`         //Optional parameter to filter by firmware upgrade statuses.
 }
 type GetOrganizationInventoryDevicesQueryParams struct {
 	PerPage        int      `url:"perPage,omitempty"`        //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
@@ -175,7 +206,7 @@ type GetOrganizationInventoryDevicesQueryParams struct {
 	UsedState      string   `url:"usedState,omitempty"`      //Filter results by used or unused inventory. Accepted values are 'used' or 'unused'.
 	Search         string   `url:"search,omitempty"`         //Search for devices in inventory based on serial number, mac address, or model.
 	Macs           []string `url:"macs[],omitempty"`         //Search for devices in inventory based on mac addresses.
-	NetworkIDs     []string `url:"networkIds[],omitempty"`   //Search for devices in inventory based on network ids.
+	NetworkIDs     []string `url:"networkIds[],omitempty"`   //Search for devices in inventory based on network ids. Use explicit 'null' value to get available devices only.
 	Serials        []string `url:"serials[],omitempty"`      //Search for devices in inventory based on serials.
 	Models         []string `url:"models[],omitempty"`       //Search for devices in inventory based on model.
 	OrderNumbers   []string `url:"orderNumbers[],omitempty"` //Search for devices in inventory based on order numbers.
@@ -188,6 +219,7 @@ type GetOrganizationInventoryOnboardingCloudMonitoringImportsQueryParams struct 
 }
 type GetOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams struct {
 	DeviceType    string `url:"deviceType,omitempty"`    //Device Type switch or wireless controller
+	Search        string `url:"search,omitempty"`        //Optional parameter to search on network name
 	PerPage       int    `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 100000. Default is 1000.
 	StartingAfter string `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	EndingBefore  string `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
@@ -209,6 +241,9 @@ type GetOrganizationNetworksQueryParams struct {
 	StartingAfter           string   `url:"startingAfter,omitempty"`           //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	EndingBefore            string   `url:"endingBefore,omitempty"`            //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 }
+type GetOrganizationOpenapiSpecQueryParams struct {
+	Version int `url:"version,omitempty"` //OpenAPI Specification version to return. Default is 2
+}
 type GetOrganizationPolicyObjectsQueryParams struct {
 	PerPage       int    `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 10 - 5000. Default is 5000.
 	StartingAfter string `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
@@ -222,12 +257,12 @@ type GetOrganizationPolicyObjectsGroupsQueryParams struct {
 type GetOrganizationSummaryTopAppliancesByUtilizationQueryParams struct {
 	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data.
 	T1       string  `url:"t1,omitempty"`       //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
-	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 1 day.
+	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be greater than or equal to 25 minutes and be less than or equal to 31 days. The default is 1 day.
 }
 type GetOrganizationSummaryTopClientsByUsageQueryParams struct {
 	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data.
 	T1       string  `url:"t1,omitempty"`       //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
-	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 1 day.
+	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be greater than or equal to 8 hours and be less than or equal to 31 days. The default is 1 day.
 }
 type GetOrganizationSummaryTopClientsManufacturersByUsageQueryParams struct {
 	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data.
@@ -237,22 +272,27 @@ type GetOrganizationSummaryTopClientsManufacturersByUsageQueryParams struct {
 type GetOrganizationSummaryTopDevicesByUsageQueryParams struct {
 	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data.
 	T1       string  `url:"t1,omitempty"`       //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
-	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 1 day.
+	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be greater than or equal to 8 hours and be less than or equal to 31 days. The default is 1 day.
 }
 type GetOrganizationSummaryTopDevicesModelsByUsageQueryParams struct {
 	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data.
 	T1       string  `url:"t1,omitempty"`       //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
-	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 1 day.
+	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be greater than or equal to 8 hours and be less than or equal to 31 days. The default is 1 day.
+}
+type GetOrganizationSummaryTopNetworksByStatusQueryParams struct {
+	PerPage       int    `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 5000.
+	StartingAfter string `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 }
 type GetOrganizationSummaryTopSSIDsByUsageQueryParams struct {
 	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data.
 	T1       string  `url:"t1,omitempty"`       //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
-	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 1 day.
+	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be greater than or equal to 8 hours and be less than or equal to 31 days. The default is 1 day.
 }
 type GetOrganizationSummaryTopSwitchesByEnergyUsageQueryParams struct {
 	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data.
 	T1       string  `url:"t1,omitempty"`       //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
-	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 1 day.
+	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be greater than or equal to 25 minutes and be less than or equal to 31 days. The default is 1 day.
 }
 type GetOrganizationUplinksStatusesQueryParams struct {
 	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
@@ -298,7 +338,7 @@ type ResponseItemOrganizationsGetOrganizationsLicensing struct {
 	Model string `json:"model,omitempty"` // Organization licensing model. Can be 'co-term', 'per-device', or 'subscription'.
 }
 type ResponseItemOrganizationsGetOrganizationsManagement struct {
-	Details *[]ResponseItemOrganizationsGetOrganizationsManagementDetails `json:"details,omitempty"` // Details related to organization management, possibly empty
+	Details *[]ResponseItemOrganizationsGetOrganizationsManagementDetails `json:"details,omitempty"` // Details related to organization management, possibly empty. Details may be named 'MSP ID', 'IP restriction mode for API', or 'IP restriction mode for dashboard', if the organization admin has configured any.
 }
 type ResponseItemOrganizationsGetOrganizationsManagementDetails struct {
 	Name  string `json:"name,omitempty"`  // Name of management data
@@ -326,7 +366,7 @@ type ResponseOrganizationsCreateOrganizationLicensing struct {
 	Model string `json:"model,omitempty"` // Organization licensing model. Can be 'co-term', 'per-device', or 'subscription'.
 }
 type ResponseOrganizationsCreateOrganizationManagement struct {
-	Details *[]ResponseOrganizationsCreateOrganizationManagementDetails `json:"details,omitempty"` // Details related to organization management, possibly empty
+	Details *[]ResponseOrganizationsCreateOrganizationManagementDetails `json:"details,omitempty"` // Details related to organization management, possibly empty. Details may be named 'MSP ID', 'IP restriction mode for API', or 'IP restriction mode for dashboard', if the organization admin has configured any.
 }
 type ResponseOrganizationsCreateOrganizationManagementDetails struct {
 	Name  string `json:"name,omitempty"`  // Name of management data
@@ -354,7 +394,7 @@ type ResponseOrganizationsGetOrganizationLicensing struct {
 	Model string `json:"model,omitempty"` // Organization licensing model. Can be 'co-term', 'per-device', or 'subscription'.
 }
 type ResponseOrganizationsGetOrganizationManagement struct {
-	Details *[]ResponseOrganizationsGetOrganizationManagementDetails `json:"details,omitempty"` // Details related to organization management, possibly empty
+	Details *[]ResponseOrganizationsGetOrganizationManagementDetails `json:"details,omitempty"` // Details related to organization management, possibly empty. Details may be named 'MSP ID', 'IP restriction mode for API', or 'IP restriction mode for dashboard', if the organization admin has configured any.
 }
 type ResponseOrganizationsGetOrganizationManagementDetails struct {
 	Name  string `json:"name,omitempty"`  // Name of management data
@@ -382,7 +422,7 @@ type ResponseOrganizationsUpdateOrganizationLicensing struct {
 	Model string `json:"model,omitempty"` // Organization licensing model. Can be 'co-term', 'per-device', or 'subscription'.
 }
 type ResponseOrganizationsUpdateOrganizationManagement struct {
-	Details *[]ResponseOrganizationsUpdateOrganizationManagementDetails `json:"details,omitempty"` // Details related to organization management, possibly empty
+	Details *[]ResponseOrganizationsUpdateOrganizationManagementDetails `json:"details,omitempty"` // Details related to organization management, possibly empty. Details may be named 'MSP ID', 'IP restriction mode for API', or 'IP restriction mode for dashboard', if the organization admin has configured any.
 }
 type ResponseOrganizationsUpdateOrganizationManagementDetails struct {
 	Name  string `json:"name,omitempty"`  // Name of management data
@@ -390,33 +430,32 @@ type ResponseOrganizationsUpdateOrganizationManagementDetails struct {
 }
 type ResponseOrganizationsGetOrganizationActionBatches []ResponseItemOrganizationsGetOrganizationActionBatches // Array of ResponseOrganizationsGetOrganizationActionBatches
 type ResponseItemOrganizationsGetOrganizationActionBatches struct {
-	Actions        *[]ResponseItemOrganizationsGetOrganizationActionBatchesActions `json:"actions,omitempty"`        //
-	Confirmed      *bool                                                           `json:"confirmed,omitempty"`      //
-	ID             string                                                          `json:"id,omitempty"`             //
-	OrganizationID string                                                          `json:"organizationId,omitempty"` //
-	Status         *ResponseItemOrganizationsGetOrganizationActionBatchesStatus    `json:"status,omitempty"`         //
-	Synchronous    *bool                                                           `json:"synchronous,omitempty"`    //
+	Actions        *[]ResponseItemOrganizationsGetOrganizationActionBatchesActions `json:"actions,omitempty"`        // A set of changes made as part of this action (<a href='https://developer.cisco.com/meraki/api/#/rest/guides/action-batches/'>more details</a>)
+	Confirmed      *bool                                                           `json:"confirmed,omitempty"`      // Flag describing whether the action should be previewed before executing or not
+	ID             string                                                          `json:"id,omitempty"`             // ID of the action batch. Can be used to check the status of the action batch at /organizations/{organizationId}/actionBatches/{actionBatchId}
+	OrganizationID string                                                          `json:"organizationId,omitempty"` // ID of the organization this action batch belongs to
+	Status         *ResponseItemOrganizationsGetOrganizationActionBatchesStatus    `json:"status,omitempty"`         // Status of action batch
+	Synchronous    *bool                                                           `json:"synchronous,omitempty"`    // Flag describing whether actions should run synchronously or asynchronously
 }
 type ResponseItemOrganizationsGetOrganizationActionBatchesActions struct {
-	Body      *ResponseItemOrganizationsGetOrganizationActionBatchesActionsBody `json:"body,omitempty"`      //
-	Operation string                                                            `json:"operation,omitempty"` //
-	Resource  string                                                            `json:"resource,omitempty"`  //
+	Body      *ResponseItemOrganizationsGetOrganizationActionBatchesActionsBody `json:"body,omitempty"`      // Data provided in the body of the Action. Contents depend on the Action type
+	Operation string                                                            `json:"operation,omitempty"` // The operation to be used by this action
+	Resource  string                                                            `json:"resource,omitempty"`  // Unique identifier for the resource to be acted on
 }
-type ResponseItemOrganizationsGetOrganizationActionBatchesActionsBody struct {
-	Enabled *bool `json:"enabled,omitempty"` //
-}
+type ResponseItemOrganizationsGetOrganizationActionBatchesActionsBody interface{}
 type ResponseItemOrganizationsGetOrganizationActionBatchesStatus struct {
-	Completed        *bool                                                                          `json:"completed,omitempty"`        //
-	CreatedResources *[]ResponseItemOrganizationsGetOrganizationActionBatchesStatusCreatedResources `json:"createdResources,omitempty"` //
-	Errors           []string                                                                       `json:"errors,omitempty"`           //
-	Failed           *bool                                                                          `json:"failed,omitempty"`           //
+	Completed        *bool                                                                          `json:"completed,omitempty"`        // Flag describing whether all actions in the action batch have completed
+	CreatedResources *[]ResponseItemOrganizationsGetOrganizationActionBatchesStatusCreatedResources `json:"createdResources,omitempty"` // Resources created as a result of this action batch
+	Errors           []string                                                                       `json:"errors,omitempty"`           // List of errors encountered when running actions in the action batch
+	Failed           *bool                                                                          `json:"failed,omitempty"`           // Flag describing whether any actions in the action batch failed
 }
 type ResponseItemOrganizationsGetOrganizationActionBatchesStatusCreatedResources struct {
-	ID  *int   `json:"id,omitempty"`  //
-	URI string `json:"uri,omitempty"` //
+	ID  string `json:"id,omitempty"`  // ID of the created resource
+	URI string `json:"uri,omitempty"` // URI, not including base, of the created resource
 }
 type ResponseOrganizationsCreateOrganizationActionBatch struct {
 	Actions        *[]ResponseOrganizationsCreateOrganizationActionBatchActions `json:"actions,omitempty"`        // A set of changes made as part of this action (<a href='https://developer.cisco.com/meraki/api/#/rest/guides/action-batches/'>more details</a>)
+	Callback       *ResponseOrganizationsCreateOrganizationActionBatchCallback  `json:"callback,omitempty"`       // Information for callback used to send back results
 	Confirmed      *bool                                                        `json:"confirmed,omitempty"`      // Flag describing whether the action should be previewed before executing or not
 	ID             string                                                       `json:"id,omitempty"`             // ID of the action batch. Can be used to check the status of the action batch at /organizations/{organizationId}/actionBatches/{actionBatchId}
 	OrganizationID string                                                       `json:"organizationId,omitempty"` // ID of the organization this action batch belongs to
@@ -424,8 +463,15 @@ type ResponseOrganizationsCreateOrganizationActionBatch struct {
 	Synchronous    *bool                                                        `json:"synchronous,omitempty"`    // Flag describing whether actions should run synchronously or asynchronously
 }
 type ResponseOrganizationsCreateOrganizationActionBatchActions struct {
-	Operation string `json:"operation,omitempty"` // The operation to be used by this action
-	Resource  string `json:"resource,omitempty"`  // Unique identifier for the resource to be acted on
+	Body      *ResponseOrganizationsCreateOrganizationActionBatchActionsBody `json:"body,omitempty"`      // Data provided in the body of the Action. Contents depend on the Action type
+	Operation string                                                         `json:"operation,omitempty"` // The operation to be used by this action
+	Resource  string                                                         `json:"resource,omitempty"`  // Unique identifier for the resource to be acted on
+}
+type ResponseOrganizationsCreateOrganizationActionBatchActionsBody interface{}
+type ResponseOrganizationsCreateOrganizationActionBatchCallback struct {
+	ID     string `json:"id,omitempty"`     // The ID of the callback. To check the status of the callback, use this ID in a request to /webhooks/callbacks/statuses/{id}
+	Status string `json:"status,omitempty"` // The status of the callback
+	URL    string `json:"url,omitempty"`    // The callback URL for the webhook target. This was either provided in the original request or comes from a configured webhook receiver
 }
 type ResponseOrganizationsCreateOrganizationActionBatchStatus struct {
 	Completed        *bool                                                                       `json:"completed,omitempty"`        // Flag describing whether all actions in the action batch have completed
@@ -439,6 +485,7 @@ type ResponseOrganizationsCreateOrganizationActionBatchStatusCreatedResources st
 }
 type ResponseOrganizationsGetOrganizationActionBatch struct {
 	Actions        *[]ResponseOrganizationsGetOrganizationActionBatchActions `json:"actions,omitempty"`        // A set of changes made as part of this action (<a href='https://developer.cisco.com/meraki/api/#/rest/guides/action-batches/'>more details</a>)
+	Callback       *ResponseOrganizationsGetOrganizationActionBatchCallback  `json:"callback,omitempty"`       // Information for callback used to send back results
 	Confirmed      *bool                                                     `json:"confirmed,omitempty"`      // Flag describing whether the action should be previewed before executing or not
 	ID             string                                                    `json:"id,omitempty"`             // ID of the action batch. Can be used to check the status of the action batch at /organizations/{organizationId}/actionBatches/{actionBatchId}
 	OrganizationID string                                                    `json:"organizationId,omitempty"` // ID of the organization this action batch belongs to
@@ -446,8 +493,15 @@ type ResponseOrganizationsGetOrganizationActionBatch struct {
 	Synchronous    *bool                                                     `json:"synchronous,omitempty"`    // Flag describing whether actions should run synchronously or asynchronously
 }
 type ResponseOrganizationsGetOrganizationActionBatchActions struct {
-	Operation string `json:"operation,omitempty"` // The operation to be used by this action
-	Resource  string `json:"resource,omitempty"`  // Unique identifier for the resource to be acted on
+	Body      *ResponseOrganizationsGetOrganizationActionBatchActionsBody `json:"body,omitempty"`      // Data provided in the body of the Action. Contents depend on the Action type
+	Operation string                                                      `json:"operation,omitempty"` // The operation to be used by this action
+	Resource  string                                                      `json:"resource,omitempty"`  // Unique identifier for the resource to be acted on
+}
+type ResponseOrganizationsGetOrganizationActionBatchActionsBody interface{}
+type ResponseOrganizationsGetOrganizationActionBatchCallback struct {
+	ID     string `json:"id,omitempty"`     // The ID of the callback. To check the status of the callback, use this ID in a request to /webhooks/callbacks/statuses/{id}
+	Status string `json:"status,omitempty"` // The status of the callback
+	URL    string `json:"url,omitempty"`    // The callback URL for the webhook target. This was either provided in the original request or comes from a configured webhook receiver
 }
 type ResponseOrganizationsGetOrganizationActionBatchStatus struct {
 	Completed        *bool                                                                    `json:"completed,omitempty"`        // Flag describing whether all actions in the action batch have completed
@@ -459,7 +513,30 @@ type ResponseOrganizationsGetOrganizationActionBatchStatusCreatedResources struc
 	ID  string `json:"id,omitempty"`  // ID of the created resource
 	URI string `json:"uri,omitempty"` // URI, not including base, of the created resource
 }
-type ResponseOrganizationsUpdateOrganizationActionBatch interface{}
+type ResponseOrganizationsUpdateOrganizationActionBatch struct {
+	Actions        *[]ResponseOrganizationsUpdateOrganizationActionBatchActions `json:"actions,omitempty"`        // A set of changes made as part of this action (<a href='https://developer.cisco.com/meraki/api/#/rest/guides/action-batches/'>more details</a>)
+	Confirmed      *bool                                                        `json:"confirmed,omitempty"`      // Flag describing whether the action should be previewed before executing or not
+	ID             string                                                       `json:"id,omitempty"`             // ID of the action batch. Can be used to check the status of the action batch at /organizations/{organizationId}/actionBatches/{actionBatchId}
+	OrganizationID string                                                       `json:"organizationId,omitempty"` // ID of the organization this action batch belongs to
+	Status         *ResponseOrganizationsUpdateOrganizationActionBatchStatus    `json:"status,omitempty"`         // Status of action batch
+	Synchronous    *bool                                                        `json:"synchronous,omitempty"`    // Flag describing whether actions should run synchronously or asynchronously
+}
+type ResponseOrganizationsUpdateOrganizationActionBatchActions struct {
+	Body      *ResponseOrganizationsUpdateOrganizationActionBatchActionsBody `json:"body,omitempty"`      // Data provided in the body of the Action. Contents depend on the Action type
+	Operation string                                                         `json:"operation,omitempty"` // The operation to be used by this action
+	Resource  string                                                         `json:"resource,omitempty"`  // Unique identifier for the resource to be acted on
+}
+type ResponseOrganizationsUpdateOrganizationActionBatchActionsBody interface{}
+type ResponseOrganizationsUpdateOrganizationActionBatchStatus struct {
+	Completed        *bool                                                                       `json:"completed,omitempty"`        // Flag describing whether all actions in the action batch have completed
+	CreatedResources *[]ResponseOrganizationsUpdateOrganizationActionBatchStatusCreatedResources `json:"createdResources,omitempty"` // Resources created as a result of this action batch
+	Errors           []string                                                                    `json:"errors,omitempty"`           // List of errors encountered when running actions in the action batch
+	Failed           *bool                                                                       `json:"failed,omitempty"`           // Flag describing whether any actions in the action batch failed
+}
+type ResponseOrganizationsUpdateOrganizationActionBatchStatusCreatedResources struct {
+	ID  string `json:"id,omitempty"`  // ID of the created resource
+	URI string `json:"uri,omitempty"` // URI, not including base, of the created resource
+}
 type ResponseOrganizationsGetOrganizationAdaptivePolicyACLs []ResponseItemOrganizationsGetOrganizationAdaptivePolicyACLs // Array of ResponseOrganizationsGetOrganizationAdaptivePolicyAcls
 type ResponseItemOrganizationsGetOrganizationAdaptivePolicyACLs struct {
 	ACLID       string                                                             `json:"aclId,omitempty"`       // ID of the adaptive policy ACL
@@ -714,44 +791,62 @@ type ResponseOrganizationsUpdateOrganizationAdminTags struct {
 }
 type ResponseOrganizationsGetOrganizationAlertsProfiles []ResponseItemOrganizationsGetOrganizationAlertsProfiles // Array of ResponseOrganizationsGetOrganizationAlertsProfiles
 type ResponseItemOrganizationsGetOrganizationAlertsProfiles struct {
-	AlertCondition *ResponseItemOrganizationsGetOrganizationAlertsProfilesAlertCondition `json:"alertCondition,omitempty"` //
-	Description    string                                                                `json:"description,omitempty"`    //
-	Enabled        *bool                                                                 `json:"enabled,omitempty"`        //
-	ID             string                                                                `json:"id,omitempty"`             //
-	NetworkTags    []string                                                              `json:"networkTags,omitempty"`    //
-	Recipients     *ResponseItemOrganizationsGetOrganizationAlertsProfilesRecipients     `json:"recipients,omitempty"`     //
-	Type           string                                                                `json:"type,omitempty"`           //
+	AlertCondition *ResponseItemOrganizationsGetOrganizationAlertsProfilesAlertCondition `json:"alertCondition,omitempty"` // The conditions that determine if the alert triggers
+	Description    string                                                                `json:"description,omitempty"`    // User supplied description of the alert
+	Enabled        *bool                                                                 `json:"enabled,omitempty"`        // Is the alert config enabled
+	ID             string                                                                `json:"id,omitempty"`             // The alert config ID
+	NetworkTags    []string                                                              `json:"networkTags,omitempty"`    // Networks with these tags will be monitored for the alert
+	Recipients     *ResponseItemOrganizationsGetOrganizationAlertsProfilesRecipients     `json:"recipients,omitempty"`     // List of recipients that will recieve the alert.
+	Type           string                                                                `json:"type,omitempty"`           // The alert type
 }
 type ResponseItemOrganizationsGetOrganizationAlertsProfilesAlertCondition struct {
-	BitRateBps *int   `json:"bit_rate_bps,omitempty"` //
-	Duration   *int   `json:"duration,omitempty"`     //
-	Interface  string `json:"interface,omitempty"`    //
-	Window     *int   `json:"window,omitempty"`       //
+	BitRateBps *int   `json:"bit_rate_bps,omitempty"` // The threshold the metric must cross to be valid for alerting. Used only for WAN Utilization alerts.
+	Duration   *int   `json:"duration,omitempty"`     // The total duration in seconds that the threshold should be crossed before alerting
+	Interface  string `json:"interface,omitempty"`    // The uplink observed for the alert
+	Window     *int   `json:"window,omitempty"`       // The look back period in seconds for sensing the alert
 }
 type ResponseItemOrganizationsGetOrganizationAlertsProfilesRecipients struct {
-	Emails        []string `json:"emails,omitempty"`        //
-	HTTPServerIDs []string `json:"httpServerIds,omitempty"` //
+	Emails        []string `json:"emails,omitempty"`        // A list of emails that will receive information about the alert
+	HTTPServerIDs []string `json:"httpServerIds,omitempty"` // A list base64 encoded urls of webhook endpoints that will receive information about the alert
 }
 type ResponseOrganizationsCreateOrganizationAlertsProfile struct {
-	AlertCondition *ResponseOrganizationsCreateOrganizationAlertsProfileAlertCondition `json:"alertCondition,omitempty"` //
-	Description    string                                                              `json:"description,omitempty"`    //
-	Enabled        *bool                                                               `json:"enabled,omitempty"`        //
-	ID             string                                                              `json:"id,omitempty"`             //
-	NetworkTags    []string                                                            `json:"networkTags,omitempty"`    //
-	Recipients     *ResponseOrganizationsCreateOrganizationAlertsProfileRecipients     `json:"recipients,omitempty"`     //
-	Type           string                                                              `json:"type,omitempty"`           //
+	AlertCondition *ResponseOrganizationsCreateOrganizationAlertsProfileAlertCondition `json:"alertCondition,omitempty"` // The conditions that determine if the alert triggers
+	Description    string                                                              `json:"description,omitempty"`    // User supplied description of the alert
+	Enabled        *bool                                                               `json:"enabled,omitempty"`        // Is the alert config enabled
+	ID             string                                                              `json:"id,omitempty"`             // The alert config ID
+	NetworkTags    []string                                                            `json:"networkTags,omitempty"`    // Networks with these tags will be monitored for the alert
+	Recipients     *ResponseOrganizationsCreateOrganizationAlertsProfileRecipients     `json:"recipients,omitempty"`     // List of recipients that will recieve the alert.
+	Type           string                                                              `json:"type,omitempty"`           // The alert type
 }
 type ResponseOrganizationsCreateOrganizationAlertsProfileAlertCondition struct {
-	BitRateBps *int   `json:"bit_rate_bps,omitempty"` //
-	Duration   *int   `json:"duration,omitempty"`     //
-	Interface  string `json:"interface,omitempty"`    //
-	Window     *int   `json:"window,omitempty"`       //
+	BitRateBps *int   `json:"bit_rate_bps,omitempty"` // The threshold the metric must cross to be valid for alerting. Used only for WAN Utilization alerts.
+	Duration   *int   `json:"duration,omitempty"`     // The total duration in seconds that the threshold should be crossed before alerting
+	Interface  string `json:"interface,omitempty"`    // The uplink observed for the alert
+	Window     *int   `json:"window,omitempty"`       // The look back period in seconds for sensing the alert
 }
 type ResponseOrganizationsCreateOrganizationAlertsProfileRecipients struct {
-	Emails        []string `json:"emails,omitempty"`        //
-	HTTPServerIDs []string `json:"httpServerIds,omitempty"` //
+	Emails        []string `json:"emails,omitempty"`        // A list of emails that will receive information about the alert
+	HTTPServerIDs []string `json:"httpServerIds,omitempty"` // A list base64 encoded urls of webhook endpoints that will receive information about the alert
 }
-type ResponseOrganizationsUpdateOrganizationAlertsProfile interface{}
+type ResponseOrganizationsUpdateOrganizationAlertsProfile struct {
+	AlertCondition *ResponseOrganizationsUpdateOrganizationAlertsProfileAlertCondition `json:"alertCondition,omitempty"` // The conditions that determine if the alert triggers
+	Description    string                                                              `json:"description,omitempty"`    // User supplied description of the alert
+	Enabled        *bool                                                               `json:"enabled,omitempty"`        // Is the alert config enabled
+	ID             string                                                              `json:"id,omitempty"`             // The alert config ID
+	NetworkTags    []string                                                            `json:"networkTags,omitempty"`    // Networks with these tags will be monitored for the alert
+	Recipients     *ResponseOrganizationsUpdateOrganizationAlertsProfileRecipients     `json:"recipients,omitempty"`     // List of recipients that will recieve the alert.
+	Type           string                                                              `json:"type,omitempty"`           // The alert type
+}
+type ResponseOrganizationsUpdateOrganizationAlertsProfileAlertCondition struct {
+	BitRateBps *int   `json:"bit_rate_bps,omitempty"` // The threshold the metric must cross to be valid for alerting. Used only for WAN Utilization alerts.
+	Duration   *int   `json:"duration,omitempty"`     // The total duration in seconds that the threshold should be crossed before alerting
+	Interface  string `json:"interface,omitempty"`    // The uplink observed for the alert
+	Window     *int   `json:"window,omitempty"`       // The look back period in seconds for sensing the alert
+}
+type ResponseOrganizationsUpdateOrganizationAlertsProfileRecipients struct {
+	Emails        []string `json:"emails,omitempty"`        // A list of emails that will receive information about the alert
+	HTTPServerIDs []string `json:"httpServerIds,omitempty"` // A list base64 encoded urls of webhook endpoints that will receive information about the alert
+}
 type ResponseOrganizationsGetOrganizationAPIRequests []ResponseItemOrganizationsGetOrganizationAPIRequests // Array of ResponseOrganizationsGetOrganizationApiRequests
 type ResponseItemOrganizationsGetOrganizationAPIRequests struct {
 	AdminID      string `json:"adminId,omitempty"`      // Database ID for the admin user who made the API request.
@@ -1003,7 +1098,15 @@ type ResponseOrganizationsUpdateOrganizationBrandingPolicyHelpSettings struct {
 	SupportContactInfo                 string `json:"supportContactInfo,omitempty"`                 //       The 'Contact Meraki Support' section of the 'Help -> Get Help' subtab. Can be one of 'default or inherit', 'hide', 'show', or a replacement custom HTML string.
 	UniversalSearchKnowledgeBaseSearch string `json:"universalSearchKnowledgeBaseSearch,omitempty"` //       The universal search box always visible on Dashboard will, by default, present results from the Meraki KB. This configures       whether these Meraki KB results should be returned. Can be one of 'default or inherit', 'hide' or 'show'.
 }
-type ResponseOrganizationsClaimIntoOrganization interface{}
+type ResponseOrganizationsClaimIntoOrganization struct {
+	Licenses *[]ResponseOrganizationsClaimIntoOrganizationLicenses `json:"licenses,omitempty"` // The licenses claimed
+	Orders   []string                                              `json:"orders,omitempty"`   // The numbers of the orders claimed
+	Serials  []string                                              `json:"serials,omitempty"`  // The serials of the devices claimed
+}
+type ResponseOrganizationsClaimIntoOrganizationLicenses struct {
+	Key  string `json:"key,omitempty"`  // The key of the license
+	Mode string `json:"mode,omitempty"` // The mode of the license
+}
 type ResponseOrganizationsGetOrganizationClientsBandwidthUsageHistory []ResponseItemOrganizationsGetOrganizationClientsBandwidthUsageHistory // Array of ResponseOrganizationsGetOrganizationClientsBandwidthUsageHistory
 type ResponseItemOrganizationsGetOrganizationClientsBandwidthUsageHistory struct {
 	Downstream *int   `json:"downstream,omitempty"` // Downloaded data, in mbps.
@@ -1034,6 +1137,7 @@ type ResponseOrganizationsGetOrganizationClientsSearch struct {
 	Records      *[]ResponseOrganizationsGetOrganizationClientsSearchRecords `json:"records,omitempty"`      //
 }
 type ResponseOrganizationsGetOrganizationClientsSearchRecords struct {
+	Cdp                  string                                                                          `json:"cdp,omitempty"`                  //
 	ClientVpnConnections *[]ResponseOrganizationsGetOrganizationClientsSearchRecordsClientVpnConnections `json:"clientVpnConnections,omitempty"` //
 	Description          string                                                                          `json:"description,omitempty"`          //
 	FirstSeen            *int                                                                            `json:"firstSeen,omitempty"`            //
@@ -1046,6 +1150,7 @@ type ResponseOrganizationsGetOrganizationClientsSearchRecords struct {
 	SmInstalled          *bool                                                                           `json:"smInstalled,omitempty"`          //
 	SSID                 string                                                                          `json:"ssid,omitempty"`                 //
 	Status               string                                                                          `json:"status,omitempty"`               //
+	Switchport           string                                                                          `json:"switchport,omitempty"`           //
 	User                 string                                                                          `json:"user,omitempty"`                 //
 	VLAN                 string                                                                          `json:"vlan,omitempty"`                 //
 	WirelessCapabilities string                                                                          `json:"wirelessCapabilities,omitempty"` //
@@ -1088,7 +1193,7 @@ type ResponseOrganizationsCloneOrganizationLicensing struct {
 	Model string `json:"model,omitempty"` // Organization licensing model. Can be 'co-term', 'per-device', or 'subscription'.
 }
 type ResponseOrganizationsCloneOrganizationManagement struct {
-	Details *[]ResponseOrganizationsCloneOrganizationManagementDetails `json:"details,omitempty"` // Details related to organization management, possibly empty
+	Details *[]ResponseOrganizationsCloneOrganizationManagementDetails `json:"details,omitempty"` // Details related to organization management, possibly empty. Details may be named 'MSP ID', 'IP restriction mode for API', or 'IP restriction mode for dashboard', if the organization admin has configured any.
 }
 type ResponseOrganizationsCloneOrganizationManagementDetails struct {
 	Name  string `json:"name,omitempty"`  // Name of management data
@@ -1096,45 +1201,66 @@ type ResponseOrganizationsCloneOrganizationManagementDetails struct {
 }
 type ResponseOrganizationsGetOrganizationConfigTemplates []ResponseItemOrganizationsGetOrganizationConfigTemplates // Array of ResponseOrganizationsGetOrganizationConfigTemplates
 type ResponseItemOrganizationsGetOrganizationConfigTemplates struct {
-	ID           string   `json:"id,omitempty"`           //
-	Name         string   `json:"name,omitempty"`         //
-	ProductTypes []string `json:"productTypes,omitempty"` //
-	TimeZone     string   `json:"timeZone,omitempty"`     //
+	ID           string   `json:"id,omitempty"`           // The ID of the network or config template to copy configuration from
+	Name         string   `json:"name,omitempty"`         // The name of the configuration template
+	ProductTypes []string `json:"productTypes,omitempty"` // The product types of the configuration template
+	TimeZone     string   `json:"timeZone,omitempty"`     // The timezone of the configuration template. For a list of allowed timezones, please see the 'TZ' column in the table in <a target='_blank' href='https://en.wikipedia.org/wiki/List_of_tz_database_time_zones'>this article</a>. Not applicable if copying from existing network or template
 }
-type ResponseOrganizationsCreateOrganizationConfigTemplate interface{}
+type ResponseOrganizationsCreateOrganizationConfigTemplate struct {
+	ID           string   `json:"id,omitempty"`           // The ID of the network or config template to copy configuration from
+	Name         string   `json:"name,omitempty"`         // The name of the configuration template
+	ProductTypes []string `json:"productTypes,omitempty"` // The product types of the configuration template
+	TimeZone     string   `json:"timeZone,omitempty"`     // The timezone of the configuration template. For a list of allowed timezones, please see the 'TZ' column in the table in <a target='_blank' href='https://en.wikipedia.org/wiki/List_of_tz_database_time_zones'>this article</a>. Not applicable if copying from existing network or template
+}
 type ResponseOrganizationsGetOrganizationConfigTemplate struct {
-	ID           string   `json:"id,omitempty"`           //
-	Name         string   `json:"name,omitempty"`         //
-	ProductTypes []string `json:"productTypes,omitempty"` //
-	TimeZone     string   `json:"timeZone,omitempty"`     //
+	ID           string   `json:"id,omitempty"`           // The ID of the network or config template to copy configuration from
+	Name         string   `json:"name,omitempty"`         // The name of the configuration template
+	ProductTypes []string `json:"productTypes,omitempty"` // The product types of the configuration template
+	TimeZone     string   `json:"timeZone,omitempty"`     // The timezone of the configuration template. For a list of allowed timezones, please see the 'TZ' column in the table in <a target='_blank' href='https://en.wikipedia.org/wiki/List_of_tz_database_time_zones'>this article</a>. Not applicable if copying from existing network or template
 }
-type ResponseOrganizationsUpdateOrganizationConfigTemplate interface{}
+type ResponseOrganizationsUpdateOrganizationConfigTemplate struct {
+	ID           string   `json:"id,omitempty"`           // The ID of the network or config template to copy configuration from
+	Name         string   `json:"name,omitempty"`         // The name of the configuration template
+	ProductTypes []string `json:"productTypes,omitempty"` // The product types of the configuration template
+	TimeZone     string   `json:"timeZone,omitempty"`     // The timezone of the configuration template. For a list of allowed timezones, please see the 'TZ' column in the table in <a target='_blank' href='https://en.wikipedia.org/wiki/List_of_tz_database_time_zones'>this article</a>. Not applicable if copying from existing network or template
+}
 type ResponseOrganizationsGetOrganizationConfigurationChanges []ResponseItemOrganizationsGetOrganizationConfigurationChanges // Array of ResponseOrganizationsGetOrganizationConfigurationChanges
 type ResponseItemOrganizationsGetOrganizationConfigurationChanges struct {
-	AdminEmail string `json:"adminEmail,omitempty"` //
-	AdminID    string `json:"adminId,omitempty"`    //
-	AdminName  string `json:"adminName,omitempty"`  //
-	Label      string `json:"label,omitempty"`      //
-	NewValue   string `json:"newValue,omitempty"`   //
-	OldValue   string `json:"oldValue,omitempty"`   //
-	Page       string `json:"page,omitempty"`       //
-	Ts         string `json:"ts,omitempty"`         //
+	AdminEmail  string `json:"adminEmail,omitempty"`  // The email address of the admin who made the configuration change. This attribute may be null.
+	AdminID     string `json:"adminId,omitempty"`     // The ID of the admin who made the configuration change. This attribute may be null.
+	AdminName   string `json:"adminName,omitempty"`   // The name of the admin who made the configuration change.
+	Label       string `json:"label,omitempty"`       // Description of the configuration change.
+	NetworkID   string `json:"networkId,omitempty"`   // The ID of the network that the configuration change was applied to. This attribute may be null.
+	NetworkName string `json:"networkName,omitempty"` // The name of the network that the configuration change was applied to. This attribute may be null.
+	NetworkURL  string `json:"networkUrl,omitempty"`  // The url of the network that the configuration change was applied to. This attribute may be null.
+	NewValue    string `json:"newValue,omitempty"`    // The value of the configuration, after the change was applied.
+	OldValue    string `json:"oldValue,omitempty"`    // The value of the configuration, before the change was applied.
+	Page        string `json:"page,omitempty"`        // The name of the Meraki Dashboard page on which the configuration change was made.
+	SSIDName    string `json:"ssidName,omitempty"`    // The name of the ssid that the configuration change was applied to, if applicable. This attribute may be null.
+	SSIDNumber  *int   `json:"ssidNumber,omitempty"`  // The ssid number that the configuration change was applied to, if applicable. This attribute may be null.
+	Ts          string `json:"ts,omitempty"`          // Time, in ISO8601 format, when the configuration change was made.
 }
 type ResponseOrganizationsGetOrganizationDevices []ResponseItemOrganizationsGetOrganizationDevices // Array of ResponseOrganizationsGetOrganizationDevices
 type ResponseItemOrganizationsGetOrganizationDevices struct {
-	Address     string   `json:"address,omitempty"`     // Physical address of the device
-	Firmware    string   `json:"firmware,omitempty"`    // Firmware version of the device
-	LanIP       string   `json:"lanIp,omitempty"`       // LAN IP address of the device
-	Lat         *float64 `json:"lat,omitempty"`         // Latitude of the device
-	Lng         *float64 `json:"lng,omitempty"`         // Longitude of the device
-	Mac         string   `json:"mac,omitempty"`         // MAC address of the device
-	Model       string   `json:"model,omitempty"`       // Model of the device
-	Name        string   `json:"name,omitempty"`        // Name of the device
-	NetworkID   string   `json:"networkId,omitempty"`   // ID of the network the device belongs to
-	Notes       string   `json:"notes,omitempty"`       // Notes for the device, limited to 255 characters
-	ProductType string   `json:"productType,omitempty"` // Product type of the device
-	Serial      string   `json:"serial,omitempty"`      // Serial number of the device
-	Tags        []string `json:"tags,omitempty"`        // List of tags assigned to the device
+	Address     string                                                    `json:"address,omitempty"`     // Physical address of the device
+	Details     *[]ResponseItemOrganizationsGetOrganizationDevicesDetails `json:"details,omitempty"`     // Additional device information
+	Firmware    string                                                    `json:"firmware,omitempty"`    // Firmware version of the device
+	Imei        string                                                    `json:"imei,omitempty"`        // IMEI of the device, if applicable
+	LanIP       string                                                    `json:"lanIp,omitempty"`       // LAN IP address of the device
+	Lat         *float64                                                  `json:"lat,omitempty"`         // Latitude of the device
+	Lng         *float64                                                  `json:"lng,omitempty"`         // Longitude of the device
+	Mac         string                                                    `json:"mac,omitempty"`         // MAC address of the device
+	Model       string                                                    `json:"model,omitempty"`       // Model of the device
+	Name        string                                                    `json:"name,omitempty"`        // Name of the device
+	NetworkID   string                                                    `json:"networkId,omitempty"`   // ID of the network the device belongs to
+	Notes       string                                                    `json:"notes,omitempty"`       // Notes for the device, limited to 255 characters
+	ProductType string                                                    `json:"productType,omitempty"` // Product type of the device
+	Serial      string                                                    `json:"serial,omitempty"`      // Serial number of the device
+	Tags        []string                                                  `json:"tags,omitempty"`        // List of tags assigned to the device
+}
+type ResponseItemOrganizationsGetOrganizationDevicesDetails struct {
+	Name  string `json:"name,omitempty"`  // Additional property name
+	Value string `json:"value,omitempty"` // Additional property value
 }
 type ResponseOrganizationsGetOrganizationDevicesAvailabilities []ResponseItemOrganizationsGetOrganizationDevicesAvailabilities // Array of ResponseOrganizationsGetOrganizationDevicesAvailabilities
 type ResponseItemOrganizationsGetOrganizationDevicesAvailabilities struct {
@@ -1148,6 +1274,49 @@ type ResponseItemOrganizationsGetOrganizationDevicesAvailabilities struct {
 }
 type ResponseItemOrganizationsGetOrganizationDevicesAvailabilitiesNetwork struct {
 	ID string `json:"id,omitempty"` // ID for the network containing the device.
+}
+type ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory []ResponseItemOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory // Array of ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory
+type ResponseItemOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory struct {
+	Details *ResponseItemOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistoryDetails `json:"details,omitempty"` // Details about the status changes
+	Device  *ResponseItemOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistoryDevice  `json:"device,omitempty"`  // Device information
+	Network *ResponseItemOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistoryNetwork `json:"network,omitempty"` // Network information
+	Ts      string                                                                             `json:"ts,omitempty"`      // Timestamp, in iso8601 format, at which the event happened
+}
+type ResponseItemOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistoryDetails struct {
+	New *[]ResponseItemOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistoryDetailsNew `json:"new,omitempty"` // Details about the new status
+	Old *[]ResponseItemOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistoryDetailsOld `json:"old,omitempty"` // Details about the old status
+}
+type ResponseItemOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistoryDetailsNew struct {
+	Name  string `json:"name,omitempty"`  // Name of the detail
+	Value string `json:"value,omitempty"` // Value of the detail
+}
+type ResponseItemOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistoryDetailsOld struct {
+	Name  string `json:"name,omitempty"`  // Name of the detail
+	Value string `json:"value,omitempty"` // Value of the detail
+}
+type ResponseItemOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistoryDevice struct {
+	Model       string `json:"model,omitempty"`       // Device model
+	Name        string `json:"name,omitempty"`        // Device name
+	ProductType string `json:"productType,omitempty"` // Device product type.
+	Serial      string `json:"serial,omitempty"`      // Device serial number
+}
+type ResponseItemOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistoryNetwork struct {
+	ID   string   `json:"id,omitempty"`   // Network id
+	Name string   `json:"name,omitempty"` // Network name
+	Tags []string `json:"tags,omitempty"` // Network tags
+	URL  string   `json:"url,omitempty"`  // Network dashboard url
+}
+type ResponseOrganizationsGetOrganizationDevicesBootsHistory []ResponseItemOrganizationsGetOrganizationDevicesBootsHistory // Array of ResponseOrganizationsGetOrganizationDevicesBootsHistory
+type ResponseItemOrganizationsGetOrganizationDevicesBootsHistory struct {
+	Network *ResponseItemOrganizationsGetOrganizationDevicesBootsHistoryNetwork `json:"network,omitempty"` // Device network
+	Serial  string                                                              `json:"serial,omitempty"`  // Device serial number
+	Start   *ResponseItemOrganizationsGetOrganizationDevicesBootsHistoryStart   `json:"start,omitempty"`   // Device power up
+}
+type ResponseItemOrganizationsGetOrganizationDevicesBootsHistoryNetwork struct {
+	ID string `json:"id,omitempty"` // API-formatted network ID
+}
+type ResponseItemOrganizationsGetOrganizationDevicesBootsHistoryStart struct {
+	BootedAt string `json:"bootedAt,omitempty"` // Indicates when the device booted
 }
 type ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice []ResponseItemOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice // Array of ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice
 type ResponseItemOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice struct {
@@ -1181,26 +1350,38 @@ type ResponseItemOrganizationsGetOrganizationDevicesProvisioningStatuses struct 
 type ResponseItemOrganizationsGetOrganizationDevicesProvisioningStatusesNetwork struct {
 	ID string `json:"id,omitempty"` // ID for the network containing the device.
 }
-type ResponseOrganizationsGetOrganizationDevicesStatuses struct {
-	Components     *ResponseOrganizationsGetOrganizationDevicesStatusesComponents `json:"components,omitempty"`     // Components
-	Gateway        string                                                         `json:"gateway,omitempty"`        // IP Gateway
-	IPType         string                                                         `json:"ipType,omitempty"`         // IP Type
-	LanIP          string                                                         `json:"lanIp,omitempty"`          // LAN IP Address
-	LastReportedAt string                                                         `json:"lastReportedAt,omitempty"` // Device Last Reported Location
-	Mac            string                                                         `json:"mac,omitempty"`            // MAC Address
-	Model          string                                                         `json:"model,omitempty"`          // Model
-	Name           string                                                         `json:"name,omitempty"`           // Device Name
-	NetworkID      string                                                         `json:"networkId,omitempty"`      // Network ID
-	PrimaryDNS     string                                                         `json:"primaryDns,omitempty"`     // Primary DNS
-	ProductType    string                                                         `json:"productType,omitempty"`    // Product Type
-	PublicIP       string                                                         `json:"publicIp,omitempty"`       // Public IP Address
-	SecondaryDNS   string                                                         `json:"secondaryDns,omitempty"`   // Secondary DNS
-	Serial         string                                                         `json:"serial,omitempty"`         // Device Serial Number
-	Status         string                                                         `json:"status,omitempty"`         // Device Status
-	Tags           []string                                                       `json:"tags,omitempty"`           // Tags
+type ResponseOrganizationsGetOrganizationDevicesStatuses []ResponseItemOrganizationsGetOrganizationDevicesStatuses // Array of ResponseOrganizationsGetOrganizationDevicesStatuses
+type ResponseItemOrganizationsGetOrganizationDevicesStatuses struct {
+	Components     *ResponseItemOrganizationsGetOrganizationDevicesStatusesComponents `json:"components,omitempty"`     // Components
+	Gateway        string                                                             `json:"gateway,omitempty"`        // IP Gateway
+	IPType         string                                                             `json:"ipType,omitempty"`         // IP Type
+	LanIP          string                                                             `json:"lanIp,omitempty"`          // LAN IP Address
+	LastReportedAt string                                                             `json:"lastReportedAt,omitempty"` // Device Last Reported Location
+	Mac            string                                                             `json:"mac,omitempty"`            // MAC Address
+	Model          string                                                             `json:"model,omitempty"`          // Model
+	Name           string                                                             `json:"name,omitempty"`           // Device Name
+	NetworkID      string                                                             `json:"networkId,omitempty"`      // Network ID
+	PrimaryDNS     string                                                             `json:"primaryDns,omitempty"`     // Primary DNS
+	ProductType    string                                                             `json:"productType,omitempty"`    // Product Type
+	PublicIP       string                                                             `json:"publicIp,omitempty"`       // Public IP Address
+	SecondaryDNS   string                                                             `json:"secondaryDns,omitempty"`   // Secondary DNS
+	Serial         string                                                             `json:"serial,omitempty"`         // Device Serial Number
+	Status         string                                                             `json:"status,omitempty"`         // Device Status
+	Tags           []string                                                           `json:"tags,omitempty"`           // Tags
 }
-type ResponseOrganizationsGetOrganizationDevicesStatusesComponents struct {
-	PowerSupplies []string `json:"powerSupplies,omitempty"` // Power Supplies
+type ResponseItemOrganizationsGetOrganizationDevicesStatusesComponents struct {
+	PowerSupplies *[]ResponseItemOrganizationsGetOrganizationDevicesStatusesComponentsPowerSupplies `json:"powerSupplies,omitempty"` // Power Supplies
+}
+type ResponseItemOrganizationsGetOrganizationDevicesStatusesComponentsPowerSupplies struct {
+	Model  string                                                                             `json:"model,omitempty"`  // Model of the power supply
+	Poe    *ResponseItemOrganizationsGetOrganizationDevicesStatusesComponentsPowerSuppliesPoe `json:"poe,omitempty"`    // PoE info of the power supply
+	Serial string                                                                             `json:"serial,omitempty"` // Serial of the power supply
+	Slot   *int                                                                               `json:"slot,omitempty"`   // Slot the power supply is in
+	Status string                                                                             `json:"status,omitempty"` // Status of the power supply
+}
+type ResponseItemOrganizationsGetOrganizationDevicesStatusesComponentsPowerSuppliesPoe struct {
+	Maximum *int   `json:"maximum,omitempty"` // Maximum PoE this power supply can provide when connected to the current switch model
+	Unit    string `json:"unit,omitempty"`    // Unit of the PoE maximum
 }
 type ResponseOrganizationsGetOrganizationDevicesStatusesOverview struct {
 	Counts *ResponseOrganizationsGetOrganizationDevicesStatusesOverviewCounts `json:"counts,omitempty"` // counts
@@ -1268,44 +1449,52 @@ type ResponseItemOrganizationsGetOrganizationEarlyAccessFeaturesDescriptions str
 	Long  string `json:"long,omitempty"`  // Long description
 	Short string `json:"short,omitempty"` // Short description
 }
-type ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptIns []ResponseItemOrganizationsGetOrganizationEarlyAccessFeaturesOptIns // Array of ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptIns
-type ResponseItemOrganizationsGetOrganizationEarlyAccessFeaturesOptIns struct {
-	CreatedAt            string                                                                                   `json:"createdAt,omitempty"`            //
-	ID                   string                                                                                   `json:"id,omitempty"`                   //
-	LimitScopeToNetworks *[]ResponseItemOrganizationsGetOrganizationEarlyAccessFeaturesOptInsLimitScopeToNetworks `json:"limitScopeToNetworks,omitempty"` //
-	ShortName            string                                                                                   `json:"shortName,omitempty"`            //
+type ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptIns struct {
+	CreatedAt            string                                                                               `json:"createdAt,omitempty"`            // Time when Early Access Feature was created
+	ID                   string                                                                               `json:"id,omitempty"`                   // ID of Early Access Feature
+	LimitScopeToNetworks *[]ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptInsLimitScopeToNetworks `json:"limitScopeToNetworks,omitempty"` // Networks assigned to the Early Access Feature
+	ShortName            string                                                                               `json:"shortName,omitempty"`            // Name of Early Access Feature
 }
-type ResponseItemOrganizationsGetOrganizationEarlyAccessFeaturesOptInsLimitScopeToNetworks struct {
-	ID   string `json:"id,omitempty"`   //
-	Name string `json:"name,omitempty"` //
+type ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptInsLimitScopeToNetworks struct {
+	ID   string `json:"id,omitempty"`   // ID of Network
+	Name string `json:"name,omitempty"` // Name of Network
 }
 type ResponseOrganizationsCreateOrganizationEarlyAccessFeaturesOptIn struct {
-	CreatedAt            string                                                                                 `json:"createdAt,omitempty"`            //
-	ID                   string                                                                                 `json:"id,omitempty"`                   //
-	LimitScopeToNetworks *[]ResponseOrganizationsCreateOrganizationEarlyAccessFeaturesOptInLimitScopeToNetworks `json:"limitScopeToNetworks,omitempty"` //
-	ShortName            string                                                                                 `json:"shortName,omitempty"`            //
+	CreatedAt            string                                                                                 `json:"createdAt,omitempty"`            // Time when Early Access Feature was created
+	ID                   string                                                                                 `json:"id,omitempty"`                   // ID of Early Access Feature
+	LimitScopeToNetworks *[]ResponseOrganizationsCreateOrganizationEarlyAccessFeaturesOptInLimitScopeToNetworks `json:"limitScopeToNetworks,omitempty"` // Networks assigned to the Early Access Feature
+	ShortName            string                                                                                 `json:"shortName,omitempty"`            // Name of Early Access Feature
 }
 type ResponseOrganizationsCreateOrganizationEarlyAccessFeaturesOptInLimitScopeToNetworks struct {
-	ID   string `json:"id,omitempty"`   //
-	Name string `json:"name,omitempty"` //
+	ID   string `json:"id,omitempty"`   // ID of Network
+	Name string `json:"name,omitempty"` // Name of Network
 }
 type ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptIn struct {
-	CreatedAt            string                                                                              `json:"createdAt,omitempty"`            //
-	ID                   string                                                                              `json:"id,omitempty"`                   //
-	LimitScopeToNetworks *[]ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptInLimitScopeToNetworks `json:"limitScopeToNetworks,omitempty"` //
-	ShortName            string                                                                              `json:"shortName,omitempty"`            //
+	CreatedAt            string                                                                              `json:"createdAt,omitempty"`            // Time when Early Access Feature was created
+	ID                   string                                                                              `json:"id,omitempty"`                   // ID of Early Access Feature
+	LimitScopeToNetworks *[]ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptInLimitScopeToNetworks `json:"limitScopeToNetworks,omitempty"` // Networks assigned to the Early Access Feature
+	ShortName            string                                                                              `json:"shortName,omitempty"`            // Name of Early Access Feature
 }
 type ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptInLimitScopeToNetworks struct {
-	ID   string `json:"id,omitempty"`   //
-	Name string `json:"name,omitempty"` //
+	ID   string `json:"id,omitempty"`   // ID of Network
+	Name string `json:"name,omitempty"` // Name of Network
 }
-type ResponseOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn interface{}
+type ResponseOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn struct {
+	CreatedAt            string                                                                                 `json:"createdAt,omitempty"`            // Time when Early Access Feature was created
+	ID                   string                                                                                 `json:"id,omitempty"`                   // ID of Early Access Feature
+	LimitScopeToNetworks *[]ResponseOrganizationsUpdateOrganizationEarlyAccessFeaturesOptInLimitScopeToNetworks `json:"limitScopeToNetworks,omitempty"` // Networks assigned to the Early Access Feature
+	ShortName            string                                                                                 `json:"shortName,omitempty"`            // Name of Early Access Feature
+}
+type ResponseOrganizationsUpdateOrganizationEarlyAccessFeaturesOptInLimitScopeToNetworks struct {
+	ID   string `json:"id,omitempty"`   // ID of Network
+	Name string `json:"name,omitempty"` // Name of Network
+}
 type ResponseOrganizationsGetOrganizationFirmwareUpgrades []ResponseItemOrganizationsGetOrganizationFirmwareUpgrades // Array of ResponseOrganizationsGetOrganizationFirmwareUpgrades
 type ResponseItemOrganizationsGetOrganizationFirmwareUpgrades struct {
 	CompletedAt    string                                                               `json:"completedAt,omitempty"`    // Timestamp when upgrade completed. Null if status pending.
 	FromVersion    *ResponseItemOrganizationsGetOrganizationFirmwareUpgradesFromVersion `json:"fromVersion,omitempty"`    // ID of the upgrade's starting version
 	Network        *ResponseItemOrganizationsGetOrganizationFirmwareUpgradesNetwork     `json:"network,omitempty"`        // Network of the upgrade
-	ProductType    string                                                               `json:"productType,omitempty"`    // product upgraded [wireless, appliance, switch, systemsManager, camera, cellularGateway, sensor]
+	ProductTypes   string                                                               `json:"productTypes,omitempty"`   // product upgraded [wireless, appliance, switch, systemsManager, camera, cellularGateway, sensor]
 	Status         string                                                               `json:"status,omitempty"`         // Status of upgrade event: [Cancelled, Completed]
 	Time           string                                                               `json:"time,omitempty"`           // Scheduled start time
 	ToVersion      *ResponseItemOrganizationsGetOrganizationFirmwareUpgradesToVersion   `json:"toVersion,omitempty"`      // ID of the upgrade's target version
@@ -1313,6 +1502,7 @@ type ResponseItemOrganizationsGetOrganizationFirmwareUpgrades struct {
 	UpgradeID      string                                                               `json:"upgradeId,omitempty"`      // The upgrade
 }
 type ResponseItemOrganizationsGetOrganizationFirmwareUpgradesFromVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Firmware name
 	ID          string `json:"id,omitempty"`          // Firmware version ID
 	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
 	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
@@ -1323,6 +1513,7 @@ type ResponseItemOrganizationsGetOrganizationFirmwareUpgradesNetwork struct {
 	Name string `json:"name,omitempty"` // The network
 }
 type ResponseItemOrganizationsGetOrganizationFirmwareUpgradesToVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Firmware name
 	ID          string `json:"id,omitempty"`          // Firmware version ID
 	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
 	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
@@ -1362,31 +1553,109 @@ type ResponseItemOrganizationsGetOrganizationFirmwareUpgradesByDeviceUpgradeToVe
 	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
 	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
 }
-type ResponseOrganizationsClaimIntoOrganizationInventory interface{}
+type ResponseOrganizationsClaimIntoOrganizationInventory struct {
+	Licenses *[]ResponseOrganizationsClaimIntoOrganizationInventoryLicenses `json:"licenses,omitempty"` // The licenses claimed
+	Orders   []string                                                       `json:"orders,omitempty"`   // The numbers of the orders claimed
+	Serials  []string                                                       `json:"serials,omitempty"`  // The serials of the devices claimed
+}
+type ResponseOrganizationsClaimIntoOrganizationInventoryLicenses struct {
+	Key  string `json:"key,omitempty"`  // The key of the license
+	Mode string `json:"mode,omitempty"` // The mode of the license
+}
 type ResponseOrganizationsGetOrganizationInventoryDevices []ResponseItemOrganizationsGetOrganizationInventoryDevices // Array of ResponseOrganizationsGetOrganizationInventoryDevices
 type ResponseItemOrganizationsGetOrganizationInventoryDevices struct {
-	ClaimedAt             string   `json:"claimedAt,omitempty"`             // Claimed time of the device
-	LicenseExpirationDate string   `json:"licenseExpirationDate,omitempty"` // License expiration date of the device
-	Mac                   string   `json:"mac,omitempty"`                   // MAC address of the device
-	Model                 string   `json:"model,omitempty"`                 // Model type of the device
-	Name                  string   `json:"name,omitempty"`                  // Name of the device
-	NetworkID             string   `json:"networkId,omitempty"`             // Network Id of the device
-	OrderNumber           string   `json:"orderNumber,omitempty"`           // Order number of the device
-	ProductType           string   `json:"productType,omitempty"`           // Product type of the device
-	Serial                string   `json:"serial,omitempty"`                // Serial number of the device
-	Tags                  []string `json:"tags,omitempty"`                  // Device tags
+	ClaimedAt             string                                                             `json:"claimedAt,omitempty"`             // Claimed time of the device
+	CountryCode           string                                                             `json:"countryCode,omitempty"`           // Country/region code from device, network, or store order
+	Details               *[]ResponseItemOrganizationsGetOrganizationInventoryDevicesDetails `json:"details,omitempty"`               // Additional device information
+	LicenseExpirationDate string                                                             `json:"licenseExpirationDate,omitempty"` // License expiration date of the device
+	Mac                   string                                                             `json:"mac,omitempty"`                   // MAC address of the device
+	Model                 string                                                             `json:"model,omitempty"`                 // Model type of the device
+	Name                  string                                                             `json:"name,omitempty"`                  // Name of the device
+	NetworkID             string                                                             `json:"networkId,omitempty"`             // Network Id of the device
+	OrderNumber           string                                                             `json:"orderNumber,omitempty"`           // Order number of the device
+	ProductType           string                                                             `json:"productType,omitempty"`           // Product type of the device
+	Serial                string                                                             `json:"serial,omitempty"`                // Serial number of the device
+	Tags                  []string                                                           `json:"tags,omitempty"`                  // Device tags
+}
+type ResponseItemOrganizationsGetOrganizationInventoryDevicesDetails struct {
+	Name  string `json:"name,omitempty"`  // Additional property name
+	Value string `json:"value,omitempty"` // Additional property value
+}
+type ResponseOrganizationsCreateOrganizationInventoryDevicesSwapsBulk struct {
+	JobID string                                                                   `json:"jobId,omitempty"` // The ID of the job that was used to create all of the device swaps.
+	Swaps *[]ResponseOrganizationsCreateOrganizationInventoryDevicesSwapsBulkSwaps `json:"swaps,omitempty"` // An array of recent swap requests and their statuses.
+}
+type ResponseOrganizationsCreateOrganizationInventoryDevicesSwapsBulkSwaps struct {
+	AfterAction string                                                                        `json:"afterAction,omitempty"` // An action to perform on the devices.old object after swap is complete.
+	CompletedAt string                                                                        `json:"completedAt,omitempty"` // An iso8601 timestamp for when the swap completed or failed.
+	CreatedAt   string                                                                        `json:"createdAt,omitempty"`   // An iso8601 timestamp for the creation of the swap request.
+	Devices     *ResponseOrganizationsCreateOrganizationInventoryDevicesSwapsBulkSwapsDevices `json:"devices,omitempty"`     // The devices involved in the swap
+	Errors      []string                                                                      `json:"errors,omitempty"`      // A list of error messages for why a swap failed.
+	ID          string                                                                        `json:"id,omitempty"`          // Swap Request ID
+	Status      string                                                                        `json:"status,omitempty"`      // The current status of the swap job.
+}
+type ResponseOrganizationsCreateOrganizationInventoryDevicesSwapsBulkSwapsDevices struct {
+	New *ResponseOrganizationsCreateOrganizationInventoryDevicesSwapsBulkSwapsDevicesNew `json:"new,omitempty"` // The device that will have settings cloned to
+	Old *ResponseOrganizationsCreateOrganizationInventoryDevicesSwapsBulkSwapsDevicesOld `json:"old,omitempty"` // The device that will be cloned
+}
+type ResponseOrganizationsCreateOrganizationInventoryDevicesSwapsBulkSwapsDevicesNew struct {
+	Mac    string `json:"mac,omitempty"`    // MAC address of the device
+	Model  string `json:"model,omitempty"`  // Model name for device
+	Name   string `json:"name,omitempty"`   // Customized name for device, or MAC address
+	Serial string `json:"serial,omitempty"` // Serial number of device
+}
+type ResponseOrganizationsCreateOrganizationInventoryDevicesSwapsBulkSwapsDevicesOld struct {
+	Mac    string `json:"mac,omitempty"`    // MAC address of the device
+	Model  string `json:"model,omitempty"`  // Model name for device
+	Name   string `json:"name,omitempty"`   // Customized name for device, or MAC address
+	Serial string `json:"serial,omitempty"` // Serial number of device
+}
+type ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulk struct {
+	JobID string                                                                `json:"jobId,omitempty"` // The ID of the job that was used to create all of the device swaps.
+	Swaps *[]ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulkSwaps `json:"swaps,omitempty"` // An array of recent swap requests and their statuses.
+}
+type ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulkSwaps struct {
+	AfterAction string                                                                     `json:"afterAction,omitempty"` // An action to perform on the devices.old object after swap is complete.
+	CompletedAt string                                                                     `json:"completedAt,omitempty"` // An iso8601 timestamp for when the swap completed or failed.
+	CreatedAt   string                                                                     `json:"createdAt,omitempty"`   // An iso8601 timestamp for the creation of the swap request.
+	Devices     *ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulkSwapsDevices `json:"devices,omitempty"`     // The devices involved in the swap
+	Errors      []string                                                                   `json:"errors,omitempty"`      // A list of error messages for why a swap failed.
+	ID          string                                                                     `json:"id,omitempty"`          // Swap Request ID
+	Status      string                                                                     `json:"status,omitempty"`      // The current status of the swap job.
+}
+type ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulkSwapsDevices struct {
+	New *ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulkSwapsDevicesNew `json:"new,omitempty"` // The device that will have settings cloned to
+	Old *ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulkSwapsDevicesOld `json:"old,omitempty"` // The device that will be cloned
+}
+type ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulkSwapsDevicesNew struct {
+	Mac    string `json:"mac,omitempty"`    // MAC address of the device
+	Model  string `json:"model,omitempty"`  // Model name for device
+	Name   string `json:"name,omitempty"`   // Customized name for device, or MAC address
+	Serial string `json:"serial,omitempty"` // Serial number of device
+}
+type ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulkSwapsDevicesOld struct {
+	Mac    string `json:"mac,omitempty"`    // MAC address of the device
+	Model  string `json:"model,omitempty"`  // Model name for device
+	Name   string `json:"name,omitempty"`   // Customized name for device, or MAC address
+	Serial string `json:"serial,omitempty"` // Serial number of device
 }
 type ResponseOrganizationsGetOrganizationInventoryDevice struct {
-	ClaimedAt             string   `json:"claimedAt,omitempty"`             // Claimed time of the device
-	LicenseExpirationDate string   `json:"licenseExpirationDate,omitempty"` // License expiration date of the device
-	Mac                   string   `json:"mac,omitempty"`                   // MAC address of the device
-	Model                 string   `json:"model,omitempty"`                 // Model type of the device
-	Name                  string   `json:"name,omitempty"`                  // Name of the device
-	NetworkID             string   `json:"networkId,omitempty"`             // Network Id of the device
-	OrderNumber           string   `json:"orderNumber,omitempty"`           // Order number of the device
-	ProductType           string   `json:"productType,omitempty"`           // Product type of the device
-	Serial                string   `json:"serial,omitempty"`                // Serial number of the device
-	Tags                  []string `json:"tags,omitempty"`                  // Device tags
+	ClaimedAt             string                                                        `json:"claimedAt,omitempty"`             // Claimed time of the device
+	CountryCode           string                                                        `json:"countryCode,omitempty"`           // Country/region code from device, network, or store order
+	Details               *[]ResponseOrganizationsGetOrganizationInventoryDeviceDetails `json:"details,omitempty"`               // Additional device information
+	LicenseExpirationDate string                                                        `json:"licenseExpirationDate,omitempty"` // License expiration date of the device
+	Mac                   string                                                        `json:"mac,omitempty"`                   // MAC address of the device
+	Model                 string                                                        `json:"model,omitempty"`                 // Model type of the device
+	Name                  string                                                        `json:"name,omitempty"`                  // Name of the device
+	NetworkID             string                                                        `json:"networkId,omitempty"`             // Network Id of the device
+	OrderNumber           string                                                        `json:"orderNumber,omitempty"`           // Order number of the device
+	ProductType           string                                                        `json:"productType,omitempty"`           // Product type of the device
+	Serial                string                                                        `json:"serial,omitempty"`                // Serial number of the device
+	Tags                  []string                                                      `json:"tags,omitempty"`                  // Device tags
+}
+type ResponseOrganizationsGetOrganizationInventoryDeviceDetails struct {
+	Name  string `json:"name,omitempty"`  // Additional property name
+	Value string `json:"value,omitempty"` // Additional property value
 }
 type ResponseOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringExportEvent interface{}
 type ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringImports []ResponseItemOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringImports // Array of ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringImports
@@ -1450,7 +1719,9 @@ type ResponseItemOrganizationsCreateOrganizationInventoryOnboardingCloudMonitori
 type ResponseItemOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringPrepareConfigParamsUserSecret struct {
 	Hash string `json:"hash,omitempty"` // The hashed secret
 }
-type ResponseOrganizationsReleaseFromOrganizationInventory interface{}
+type ResponseOrganizationsReleaseFromOrganizationInventory struct {
+	Serials []string `json:"serials,omitempty"` // Serials of the devices that were released
+}
 type ResponseOrganizationsGetOrganizationLicenses []ResponseItemOrganizationsGetOrganizationLicenses // Array of ResponseOrganizationsGetOrganizationLicenses
 type ResponseItemOrganizationsGetOrganizationLicenses struct {
 	ActivationDate            string                                                                       `json:"activationDate,omitempty"`            // The date the license started burning
@@ -1466,7 +1737,7 @@ type ResponseItemOrganizationsGetOrganizationLicenses struct {
 	OrderNumber               string                                                                       `json:"orderNumber,omitempty"`               // Order number
 	PermanentlyQueuedLicenses *[]ResponseItemOrganizationsGetOrganizationLicensesPermanentlyQueuedLicenses `json:"permanentlyQueuedLicenses,omitempty"` // DEPRECATED List of permanently queued licenses attached to the license. Instead, use /organizations/{organizationId}/licenses?deviceSerial= to retrieved queued licenses for a given device.
 	SeatCount                 *int                                                                         `json:"seatCount,omitempty"`                 // The number of seats of the license. Only applicable to SM licenses.
-	State                     string                                                                       `json:"state,omitempty"`                     // The state of the license. All queued licenses have a status of *recentlyQueued*.
+	State                     string                                                                       `json:"state,omitempty"`                     // The state of the license. All queued licenses have a status of `recentlyQueued`.
 	TotalDurationInDays       *int                                                                         `json:"totalDurationInDays,omitempty"`       // The duration of the license plus all permanently queued licenses associated with it
 }
 type ResponseItemOrganizationsGetOrganizationLicensesPermanentlyQueuedLicenses struct {
@@ -1493,7 +1764,7 @@ type ResponseOrganizationsAssignOrganizationLicensesSeatsResultingLicenses struc
 	OrderNumber               string                                                                                            `json:"orderNumber,omitempty"`               // Order number
 	PermanentlyQueuedLicenses *[]ResponseOrganizationsAssignOrganizationLicensesSeatsResultingLicensesPermanentlyQueuedLicenses `json:"permanentlyQueuedLicenses,omitempty"` // DEPRECATED List of permanently queued licenses attached to the license. Instead, use /organizations/{organizationId}/licenses?deviceSerial= to retrieved queued licenses for a given device.
 	SeatCount                 *int                                                                                              `json:"seatCount,omitempty"`                 // The number of seats of the license. Only applicable to SM licenses.
-	State                     string                                                                                            `json:"state,omitempty"`                     // The state of the license. All queued licenses have a status of *recentlyQueued*.
+	State                     string                                                                                            `json:"state,omitempty"`                     // The state of the license. All queued licenses have a status of `recentlyQueued`.
 	TotalDurationInDays       *int                                                                                              `json:"totalDurationInDays,omitempty"`       // The duration of the license plus all permanently queued licenses associated with it
 }
 type ResponseOrganizationsAssignOrganizationLicensesSeatsResultingLicensesPermanentlyQueuedLicenses struct {
@@ -1513,12 +1784,76 @@ type ResponseOrganizationsMoveOrganizationLicensesSeats struct {
 	SeatCount          *int   `json:"seatCount,omitempty"`          // The number of seats to move to the new organization. Must be less than or equal to the total number of seats of the license
 }
 type ResponseOrganizationsGetOrganizationLicensesOverview struct {
-	ExpirationDate       string                                                                    `json:"expirationDate,omitempty"`       //
-	LicensedDeviceCounts *ResponseOrganizationsGetOrganizationLicensesOverviewLicensedDeviceCounts `json:"licensedDeviceCounts,omitempty"` //
-	Status               string                                                                    `json:"status,omitempty"`               //
+	ExpirationDate       string                                                                    `json:"expirationDate,omitempty"`       // License expiration date (Co-termination licensing only)
+	LicenseCount         *int                                                                      `json:"licenseCount,omitempty"`         // Total number of licenses (Per-device licensing only)
+	LicenseTypes         *[]ResponseOrganizationsGetOrganizationLicensesOverviewLicenseTypes       `json:"licenseTypes,omitempty"`         // Data by license type (Per-device licensing only)
+	LicensedDeviceCounts *ResponseOrganizationsGetOrganizationLicensesOverviewLicensedDeviceCounts `json:"licensedDeviceCounts,omitempty"` // License counts (Co-termination licensing only)
+	States               *ResponseOrganizationsGetOrganizationLicensesOverviewStates               `json:"states,omitempty"`               // Aggregated data for licenses by state (Per-device licensing only)
+	Status               string                                                                    `json:"status,omitempty"`               // License status (Co-termination licensing only)
+	SystemsManager       *ResponseOrganizationsGetOrganizationLicensesOverviewSystemsManager       `json:"systemsManager,omitempty"`       // Aggregated data for Systems Manager licenses (Per-device licensing only)
 }
-type ResponseOrganizationsGetOrganizationLicensesOverviewLicensedDeviceCounts struct {
-	MS *int `json:"MS,omitempty"` //
+type ResponseOrganizationsGetOrganizationLicensesOverviewLicenseTypes struct {
+	Counts      *ResponseOrganizationsGetOrganizationLicensesOverviewLicenseTypesCounts `json:"counts,omitempty"`      // Aggregated count data for the license type
+	LicenseType string                                                                  `json:"licenseType,omitempty"` // License type
+}
+type ResponseOrganizationsGetOrganizationLicensesOverviewLicenseTypesCounts struct {
+	Unassigned *int `json:"unassigned,omitempty"` // The number of unassigned licenses
+}
+type ResponseOrganizationsGetOrganizationLicensesOverviewLicensedDeviceCounts interface{}
+type ResponseOrganizationsGetOrganizationLicensesOverviewStates struct {
+	Active         *ResponseOrganizationsGetOrganizationLicensesOverviewStatesActive         `json:"active,omitempty"`         // Data for active licenses
+	Expired        *ResponseOrganizationsGetOrganizationLicensesOverviewStatesExpired        `json:"expired,omitempty"`        // Data for expired licenses
+	Expiring       *ResponseOrganizationsGetOrganizationLicensesOverviewStatesExpiring       `json:"expiring,omitempty"`       // Data for expiring licenses
+	RecentlyQueued *ResponseOrganizationsGetOrganizationLicensesOverviewStatesRecentlyQueued `json:"recentlyQueued,omitempty"` // Data for recently queued licenses
+	Unused         *ResponseOrganizationsGetOrganizationLicensesOverviewStatesUnused         `json:"unused,omitempty"`         // Data for unused licenses
+	UnusedActive   *ResponseOrganizationsGetOrganizationLicensesOverviewStatesUnusedActive   `json:"unusedActive,omitempty"`   // Data for unused, active licenses
+}
+type ResponseOrganizationsGetOrganizationLicensesOverviewStatesActive struct {
+	Count *int `json:"count,omitempty"` // The number of active licenses
+}
+type ResponseOrganizationsGetOrganizationLicensesOverviewStatesExpired struct {
+	Count *int `json:"count,omitempty"` // The number of expired licenses
+}
+type ResponseOrganizationsGetOrganizationLicensesOverviewStatesExpiring struct {
+	Count    *int                                                                        `json:"count,omitempty"`    // The number of expiring licenses
+	Critical *ResponseOrganizationsGetOrganizationLicensesOverviewStatesExpiringCritical `json:"critical,omitempty"` // Data for the critical threshold
+	Warning  *ResponseOrganizationsGetOrganizationLicensesOverviewStatesExpiringWarning  `json:"warning,omitempty"`  // Data for the warning threshold
+}
+type ResponseOrganizationsGetOrganizationLicensesOverviewStatesExpiringCritical struct {
+	ExpiringCount   *int `json:"expiringCount,omitempty"`   // The number of licenses that will expire in this window
+	ThresholdInDays *int `json:"thresholdInDays,omitempty"` // The number of days from now denoting the critical threshold for an expiring license
+}
+type ResponseOrganizationsGetOrganizationLicensesOverviewStatesExpiringWarning struct {
+	ExpiringCount   *int `json:"expiringCount,omitempty"`   // The number of licenses that will expire in this window
+	ThresholdInDays *int `json:"thresholdInDays,omitempty"` // The number of days from now denoting the warning threshold for an expiring license
+}
+type ResponseOrganizationsGetOrganizationLicensesOverviewStatesRecentlyQueued struct {
+	Count *int `json:"count,omitempty"` // The number of recently queued licenses
+}
+type ResponseOrganizationsGetOrganizationLicensesOverviewStatesUnused struct {
+	Count             *int                                                                               `json:"count,omitempty"`             // The number of unused licenses
+	SoonestActivation *ResponseOrganizationsGetOrganizationLicensesOverviewStatesUnusedSoonestActivation `json:"soonestActivation,omitempty"` // Information about the soonest forthcoming license activation
+}
+type ResponseOrganizationsGetOrganizationLicensesOverviewStatesUnusedSoonestActivation struct {
+	ActivationDate  string `json:"activationDate,omitempty"`  // The soonest license activation date
+	ToActivateCount *int   `json:"toActivateCount,omitempty"` // The number of licenses that will activate on this date
+}
+type ResponseOrganizationsGetOrganizationLicensesOverviewStatesUnusedActive struct {
+	Count            *int                                                                                    `json:"count,omitempty"`            // The number of unused, active licenses
+	OldestActivation *ResponseOrganizationsGetOrganizationLicensesOverviewStatesUnusedActiveOldestActivation `json:"oldestActivation,omitempty"` // Information about the oldest historical license activation
+}
+type ResponseOrganizationsGetOrganizationLicensesOverviewStatesUnusedActiveOldestActivation struct {
+	ActivationDate string `json:"activationDate,omitempty"` // The oldest license activation date
+	ActiveCount    *int   `json:"activeCount,omitempty"`    // The number of licenses that activated on this date
+}
+type ResponseOrganizationsGetOrganizationLicensesOverviewSystemsManager struct {
+	Counts *ResponseOrganizationsGetOrganizationLicensesOverviewSystemsManagerCounts `json:"counts,omitempty"` // Aggregated license count data for Systems Manager
+}
+type ResponseOrganizationsGetOrganizationLicensesOverviewSystemsManagerCounts struct {
+	ActiveSeats            *int `json:"activeSeats,omitempty"`            // The number of Systems Manager seats in use
+	OrgwideEnrolledDevices *int `json:"orgwideEnrolledDevices,omitempty"` // The total number of enrolled Systems Manager devices
+	TotalSeats             *int `json:"totalSeats,omitempty"`             // The total number of Systems Manager seats
+	UnassignedSeats        *int `json:"unassignedSeats,omitempty"`        // The number of unused Systems Manager seats
 }
 type ResponseOrganizationsRenewOrganizationLicensesSeats struct {
 	ResultingLicenses *[]ResponseOrganizationsRenewOrganizationLicensesSeatsResultingLicenses `json:"resultingLicenses,omitempty"` // Resulting licenses from the move
@@ -1537,7 +1872,7 @@ type ResponseOrganizationsRenewOrganizationLicensesSeatsResultingLicenses struct
 	OrderNumber               string                                                                                           `json:"orderNumber,omitempty"`               // Order number
 	PermanentlyQueuedLicenses *[]ResponseOrganizationsRenewOrganizationLicensesSeatsResultingLicensesPermanentlyQueuedLicenses `json:"permanentlyQueuedLicenses,omitempty"` // DEPRECATED List of permanently queued licenses attached to the license. Instead, use /organizations/{organizationId}/licenses?deviceSerial= to retrieved queued licenses for a given device.
 	SeatCount                 *int                                                                                             `json:"seatCount,omitempty"`                 // The number of seats of the license. Only applicable to SM licenses.
-	State                     string                                                                                           `json:"state,omitempty"`                     // The state of the license. All queued licenses have a status of *recentlyQueued*.
+	State                     string                                                                                           `json:"state,omitempty"`                     // The state of the license. All queued licenses have a status of `recentlyQueued`.
 	TotalDurationInDays       *int                                                                                             `json:"totalDurationInDays,omitempty"`       // The duration of the license plus all permanently queued licenses associated with it
 }
 type ResponseOrganizationsRenewOrganizationLicensesSeatsResultingLicensesPermanentlyQueuedLicenses struct {
@@ -1561,7 +1896,7 @@ type ResponseOrganizationsGetOrganizationLicense struct {
 	OrderNumber               string                                                                  `json:"orderNumber,omitempty"`               // Order number
 	PermanentlyQueuedLicenses *[]ResponseOrganizationsGetOrganizationLicensePermanentlyQueuedLicenses `json:"permanentlyQueuedLicenses,omitempty"` // DEPRECATED List of permanently queued licenses attached to the license. Instead, use /organizations/{organizationId}/licenses?deviceSerial= to retrieved queued licenses for a given device.
 	SeatCount                 *int                                                                    `json:"seatCount,omitempty"`                 // The number of seats of the license. Only applicable to SM licenses.
-	State                     string                                                                  `json:"state,omitempty"`                     // The state of the license. All queued licenses have a status of *recentlyQueued*.
+	State                     string                                                                  `json:"state,omitempty"`                     // The state of the license. All queued licenses have a status of `recentlyQueued`.
 	TotalDurationInDays       *int                                                                    `json:"totalDurationInDays,omitempty"`       // The duration of the license plus all permanently queued licenses associated with it
 }
 type ResponseOrganizationsGetOrganizationLicensePermanentlyQueuedLicenses struct {
@@ -1585,7 +1920,7 @@ type ResponseOrganizationsUpdateOrganizationLicense struct {
 	OrderNumber               string                                                                     `json:"orderNumber,omitempty"`               // Order number
 	PermanentlyQueuedLicenses *[]ResponseOrganizationsUpdateOrganizationLicensePermanentlyQueuedLicenses `json:"permanentlyQueuedLicenses,omitempty"` // DEPRECATED List of permanently queued licenses attached to the license. Instead, use /organizations/{organizationId}/licenses?deviceSerial= to retrieved queued licenses for a given device.
 	SeatCount                 *int                                                                       `json:"seatCount,omitempty"`                 // The number of seats of the license. Only applicable to SM licenses.
-	State                     string                                                                     `json:"state,omitempty"`                     // The state of the license. All queued licenses have a status of *recentlyQueued*.
+	State                     string                                                                     `json:"state,omitempty"`                     // The state of the license. All queued licenses have a status of `recentlyQueued`.
 	TotalDurationInDays       *int                                                                       `json:"totalDurationInDays,omitempty"`       // The duration of the license plus all permanently queued licenses associated with it
 }
 type ResponseOrganizationsUpdateOrganizationLicensePermanentlyQueuedLicenses struct {
@@ -1716,50 +2051,85 @@ type ResponseOrganizationsGetOrganizationOpenapiSpecPathsOrganizationsGetRespons
 }
 type ResponseOrganizationsGetOrganizationPolicyObjects []ResponseItemOrganizationsGetOrganizationPolicyObjects // Array of ResponseOrganizationsGetOrganizationPolicyObjects
 type ResponseItemOrganizationsGetOrganizationPolicyObjects struct {
-	Category   string   `json:"category,omitempty"`   //
-	Cidr       string   `json:"cidr,omitempty"`       //
-	CreatedAt  string   `json:"created_at,omitempty"` //
-	GroupIDs   []string `json:"groupIds,omitempty"`   //
-	ID         string   `json:"id,omitempty"`         //
-	Name       string   `json:"name,omitempty"`       //
-	NetworkIDs []string `json:"networkIds,omitempty"` //
-	Type       string   `json:"type,omitempty"`       //
-	UpdatedAt  string   `json:"updated_at,omitempty"` //
+	Category   string   `json:"category,omitempty"`   // Category of a policy object (one of: adaptivePolicy, network)
+	Cidr       string   `json:"cidr,omitempty"`       // CIDR Value of a policy object
+	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
+	GroupIDs   []string `json:"groupIds,omitempty"`   // The IDs of policy object groups the policy object belongs to.
+	ID         string   `json:"id,omitempty"`         // Policy object ID
+	Name       string   `json:"name,omitempty"`       // Name of policy object (alphanumeric, space, dash, or underscore characters only).
+	NetworkIDs []string `json:"networkIds,omitempty"` // The IDs of the networks that use the policy object.
+	Type       string   `json:"type,omitempty"`       // Type of a policy object (one of: adaptivePolicyIpv4Cidr, cidr, fqdn, ipAndMask)
+	UpdatedAt  string   `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
 }
-type ResponseOrganizationsCreateOrganizationPolicyObject interface{}
-type ResponseOrganizationsGetOrganizationPolicyObjectsGroups []ResponseItemOrganizationsGetOrganizationPolicyObjectsGroups // Array of ResponseOrganizationsGetOrganizationPolicyObjectsGroups
-type ResponseItemOrganizationsGetOrganizationPolicyObjectsGroups struct {
-	Category   string   `json:"category,omitempty"`   //
-	CreatedAt  string   `json:"created_at,omitempty"` //
-	ID         string   `json:"id,omitempty"`         //
-	Name       string   `json:"name,omitempty"`       //
-	NetworkIDs []string `json:"networkIds,omitempty"` //
-	ObjectIDs  []string `json:"objectIds,omitempty"`  //
-	UpdatedAt  string   `json:"updated_at,omitempty"` //
+type ResponseOrganizationsCreateOrganizationPolicyObject struct {
+	Category   string   `json:"category,omitempty"`   // Category of a policy object (one of: adaptivePolicy, network)
+	Cidr       string   `json:"cidr,omitempty"`       // CIDR Value of a policy object
+	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
+	GroupIDs   []string `json:"groupIds,omitempty"`   // The IDs of policy object groups the policy object belongs to.
+	ID         string   `json:"id,omitempty"`         // Policy object ID
+	Name       string   `json:"name,omitempty"`       // Name of policy object (alphanumeric, space, dash, or underscore characters only).
+	NetworkIDs []string `json:"networkIds,omitempty"` // The IDs of the networks that use the policy object.
+	Type       string   `json:"type,omitempty"`       // Type of a policy object (one of: adaptivePolicyIpv4Cidr, cidr, fqdn, ipAndMask)
+	UpdatedAt  string   `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
 }
-type ResponseOrganizationsCreateOrganizationPolicyObjectsGroup interface{}
+type ResponseOrganizationsGetOrganizationPolicyObjectsGroups struct {
+	Category   string   `json:"category,omitempty"`   // Type of object groups. (NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
+	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
+	ID         string   `json:"id,omitempty"`         // Policy object ID
+	Name       string   `json:"name,omitempty"`       // Name of the Policy object group.
+	NetworkIDs []string `json:"networkIds,omitempty"` // Network ID's associated with the policy objects.
+	ObjectIDs  *[]int   `json:"objectIds,omitempty"`  // Policy objects associated with Network Object Group or Port Object Group
+	UpdatedAt  string   `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
+}
+type ResponseOrganizationsCreateOrganizationPolicyObjectsGroup struct {
+	Category   string   `json:"category,omitempty"`   // Type of object groups. (NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
+	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
+	ID         string   `json:"id,omitempty"`         // Policy object ID
+	Name       string   `json:"name,omitempty"`       // Name of the Policy object group.
+	NetworkIDs []string `json:"networkIds,omitempty"` // Network ID's associated with the policy objects.
+	ObjectIDs  *[]int   `json:"objectIds,omitempty"`  // Policy objects associated with Network Object Group or Port Object Group
+	UpdatedAt  string   `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
+}
 type ResponseOrganizationsGetOrganizationPolicyObjectsGroup struct {
-	Category   string   `json:"category,omitempty"`   //
-	CreatedAt  string   `json:"created_at,omitempty"` //
-	ID         string   `json:"id,omitempty"`         //
-	Name       string   `json:"name,omitempty"`       //
-	NetworkIDs []string `json:"networkIds,omitempty"` //
-	ObjectIDs  []string `json:"objectIds,omitempty"`  //
-	UpdatedAt  string   `json:"updated_at,omitempty"` //
+	Category   string   `json:"category,omitempty"`   // Type of object groups. (NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
+	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
+	ID         string   `json:"id,omitempty"`         // Policy object ID
+	Name       string   `json:"name,omitempty"`       // Name of the Policy object group.
+	NetworkIDs []string `json:"networkIds,omitempty"` // Network ID's associated with the policy objects.
+	ObjectIDs  *[]int   `json:"objectIds,omitempty"`  // Policy objects associated with Network Object Group or Port Object Group
+	UpdatedAt  string   `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
 }
-type ResponseOrganizationsUpdateOrganizationPolicyObjectsGroup interface{}
+type ResponseOrganizationsUpdateOrganizationPolicyObjectsGroup struct {
+	Category   string   `json:"category,omitempty"`   // Type of object groups. (NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
+	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
+	ID         string   `json:"id,omitempty"`         // Policy object ID
+	Name       string   `json:"name,omitempty"`       // Name of the Policy object group.
+	NetworkIDs []string `json:"networkIds,omitempty"` // Network ID's associated with the policy objects.
+	ObjectIDs  *[]int   `json:"objectIds,omitempty"`  // Policy objects associated with Network Object Group or Port Object Group
+	UpdatedAt  string   `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
+}
 type ResponseOrganizationsGetOrganizationPolicyObject struct {
-	Category   string   `json:"category,omitempty"`   //
-	Cidr       string   `json:"cidr,omitempty"`       //
-	CreatedAt  string   `json:"created_at,omitempty"` //
-	GroupIDs   []string `json:"groupIds,omitempty"`   //
-	ID         string   `json:"id,omitempty"`         //
-	Name       string   `json:"name,omitempty"`       //
-	NetworkIDs []string `json:"networkIds,omitempty"` //
-	Type       string   `json:"type,omitempty"`       //
-	UpdatedAt  string   `json:"updated_at,omitempty"` //
+	Category   string   `json:"category,omitempty"`   // Category of a policy object (one of: adaptivePolicy, network)
+	Cidr       string   `json:"cidr,omitempty"`       // CIDR Value of a policy object
+	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
+	GroupIDs   []string `json:"groupIds,omitempty"`   // The IDs of policy object groups the policy object belongs to.
+	ID         string   `json:"id,omitempty"`         // Policy object ID
+	Name       string   `json:"name,omitempty"`       // Name of policy object (alphanumeric, space, dash, or underscore characters only).
+	NetworkIDs []string `json:"networkIds,omitempty"` // The IDs of the networks that use the policy object.
+	Type       string   `json:"type,omitempty"`       // Type of a policy object (one of: adaptivePolicyIpv4Cidr, cidr, fqdn, ipAndMask)
+	UpdatedAt  string   `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
 }
-type ResponseOrganizationsUpdateOrganizationPolicyObject interface{}
+type ResponseOrganizationsUpdateOrganizationPolicyObject struct {
+	Category   string   `json:"category,omitempty"`   // Category of a policy object (one of: adaptivePolicy, network)
+	Cidr       string   `json:"cidr,omitempty"`       // CIDR Value of a policy object
+	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
+	GroupIDs   []string `json:"groupIds,omitempty"`   // The IDs of policy object groups the policy object belongs to.
+	ID         string   `json:"id,omitempty"`         // Policy object ID
+	Name       string   `json:"name,omitempty"`       // Name of policy object (alphanumeric, space, dash, or underscore characters only).
+	NetworkIDs []string `json:"networkIds,omitempty"` // The IDs of the networks that use the policy object.
+	Type       string   `json:"type,omitempty"`       // Type of a policy object (one of: adaptivePolicyIpv4Cidr, cidr, fqdn, ipAndMask)
+	UpdatedAt  string   `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
+}
 type ResponseOrganizationsGetOrganizationSaml struct {
 	Enabled *bool `json:"enabled,omitempty"` // Toggle depicting if SAML SSO settings are enabled
 }
@@ -1795,42 +2165,76 @@ type ResponseItemOrganizationsUpdateOrganizationSamlIDp struct {
 }
 type ResponseOrganizationsGetOrganizationSamlRoles []ResponseItemOrganizationsGetOrganizationSamlRoles // Array of ResponseOrganizationsGetOrganizationSamlRoles
 type ResponseItemOrganizationsGetOrganizationSamlRoles struct {
-	ID        string                                                       `json:"id,omitempty"`        //
-	Networks  *[]ResponseItemOrganizationsGetOrganizationSamlRolesNetworks `json:"networks,omitempty"`  //
-	OrgAccess string                                                       `json:"orgAccess,omitempty"` //
-	Role      string                                                       `json:"role,omitempty"`      //
-	Tags      *[]ResponseItemOrganizationsGetOrganizationSamlRolesTags     `json:"tags,omitempty"`      //
+	Camera    *[]ResponseItemOrganizationsGetOrganizationSamlRolesCamera   `json:"camera,omitempty"`    // The list of camera access privileges for SAML administrator
+	ID        string                                                       `json:"id,omitempty"`        // ID associated with the SAML role
+	Networks  *[]ResponseItemOrganizationsGetOrganizationSamlRolesNetworks `json:"networks,omitempty"`  // The list of networks that the SAML administrator has privileges on
+	OrgAccess string                                                       `json:"orgAccess,omitempty"` // The privilege of the SAML administrator on the organization
+	Role      string                                                       `json:"role,omitempty"`      // The role of the SAML administrator
+	Tags      *[]ResponseItemOrganizationsGetOrganizationSamlRolesTags     `json:"tags,omitempty"`      // The list of tags that the SAML administrator has privleges on
+}
+type ResponseItemOrganizationsGetOrganizationSamlRolesCamera struct {
+	Access  string `json:"access,omitempty"`  // Camera access ability
+	OrgWide *bool  `json:"orgWide,omitempty"` // Whether or not SAML administrator has org-wide access
 }
 type ResponseItemOrganizationsGetOrganizationSamlRolesNetworks struct {
-	Access string `json:"access,omitempty"` //
-	ID     string `json:"id,omitempty"`     //
+	Access string `json:"access,omitempty"` // The privilege of the SAML administrator on the network
+	ID     string `json:"id,omitempty"`     // The network ID
 }
 type ResponseItemOrganizationsGetOrganizationSamlRolesTags struct {
-	Access string `json:"access,omitempty"` //
-	Tag    string `json:"tag,omitempty"`    //
+	Access string `json:"access,omitempty"` // The privilege of the SAML administrator on the tag
+	Tag    string `json:"tag,omitempty"`    // The name of the tag
 }
-type ResponseOrganizationsCreateOrganizationSamlRole interface{}
+type ResponseOrganizationsCreateOrganizationSamlRole struct {
+	Camera    *[]ResponseOrganizationsCreateOrganizationSamlRoleCamera   `json:"camera,omitempty"`    // The list of camera access privileges for SAML administrator
+	ID        string                                                     `json:"id,omitempty"`        // ID associated with the SAML role
+	Networks  *[]ResponseOrganizationsCreateOrganizationSamlRoleNetworks `json:"networks,omitempty"`  // The list of networks that the SAML administrator has privileges on
+	OrgAccess string                                                     `json:"orgAccess,omitempty"` // The privilege of the SAML administrator on the organization
+	Role      string                                                     `json:"role,omitempty"`      // The role of the SAML administrator
+	Tags      *[]ResponseOrganizationsCreateOrganizationSamlRoleTags     `json:"tags,omitempty"`      // The list of tags that the SAML administrator has privleges on
+}
+type ResponseOrganizationsCreateOrganizationSamlRoleCamera struct {
+	Access  string `json:"access,omitempty"`  // Camera access ability
+	OrgWide *bool  `json:"orgWide,omitempty"` // Whether or not SAML administrator has org-wide access
+}
+type ResponseOrganizationsCreateOrganizationSamlRoleNetworks struct {
+	Access string `json:"access,omitempty"` // The privilege of the SAML administrator on the network
+	ID     string `json:"id,omitempty"`     // The network ID
+}
+type ResponseOrganizationsCreateOrganizationSamlRoleTags struct {
+	Access string `json:"access,omitempty"` // The privilege of the SAML administrator on the tag
+	Tag    string `json:"tag,omitempty"`    // The name of the tag
+}
 type ResponseOrganizationsGetOrganizationSamlRole struct {
-	ID        string                                                  `json:"id,omitempty"`        //
-	Networks  *[]ResponseOrganizationsGetOrganizationSamlRoleNetworks `json:"networks,omitempty"`  //
-	OrgAccess string                                                  `json:"orgAccess,omitempty"` //
-	Role      string                                                  `json:"role,omitempty"`      //
-	Tags      *[]ResponseOrganizationsGetOrganizationSamlRoleTags     `json:"tags,omitempty"`      //
+	Camera    *[]ResponseOrganizationsGetOrganizationSamlRoleCamera   `json:"camera,omitempty"`    // The list of camera access privileges for SAML administrator
+	ID        string                                                  `json:"id,omitempty"`        // ID associated with the SAML role
+	Networks  *[]ResponseOrganizationsGetOrganizationSamlRoleNetworks `json:"networks,omitempty"`  // The list of networks that the SAML administrator has privileges on
+	OrgAccess string                                                  `json:"orgAccess,omitempty"` // The privilege of the SAML administrator on the organization
+	Role      string                                                  `json:"role,omitempty"`      // The role of the SAML administrator
+	Tags      *[]ResponseOrganizationsGetOrganizationSamlRoleTags     `json:"tags,omitempty"`      // The list of tags that the SAML administrator has privleges on
+}
+type ResponseOrganizationsGetOrganizationSamlRoleCamera struct {
+	Access  string `json:"access,omitempty"`  // Camera access ability
+	OrgWide *bool  `json:"orgWide,omitempty"` // Whether or not SAML administrator has org-wide access
 }
 type ResponseOrganizationsGetOrganizationSamlRoleNetworks struct {
-	Access string `json:"access,omitempty"` //
-	ID     string `json:"id,omitempty"`     //
+	Access string `json:"access,omitempty"` // The privilege of the SAML administrator on the network
+	ID     string `json:"id,omitempty"`     // The network ID
 }
 type ResponseOrganizationsGetOrganizationSamlRoleTags struct {
-	Access string `json:"access,omitempty"` //
-	Tag    string `json:"tag,omitempty"`    //
+	Access string `json:"access,omitempty"` // The privilege of the SAML administrator on the tag
+	Tag    string `json:"tag,omitempty"`    // The name of the tag
 }
 type ResponseOrganizationsUpdateOrganizationSamlRole struct {
+	Camera    *[]ResponseOrganizationsUpdateOrganizationSamlRoleCamera   `json:"camera,omitempty"`    // The list of camera access privileges for SAML administrator
 	ID        string                                                     `json:"id,omitempty"`        // ID associated with the SAML role
 	Networks  *[]ResponseOrganizationsUpdateOrganizationSamlRoleNetworks `json:"networks,omitempty"`  // The list of networks that the SAML administrator has privileges on
 	OrgAccess string                                                     `json:"orgAccess,omitempty"` // The privilege of the SAML administrator on the organization
 	Role      string                                                     `json:"role,omitempty"`      // The role of the SAML administrator
 	Tags      *[]ResponseOrganizationsUpdateOrganizationSamlRoleTags     `json:"tags,omitempty"`      // The list of tags that the SAML administrator has privleges on
+}
+type ResponseOrganizationsUpdateOrganizationSamlRoleCamera struct {
+	Access  string `json:"access,omitempty"`  // Camera access ability
+	OrgWide *bool  `json:"orgWide,omitempty"` // Whether or not SAML administrator has org-wide access
 }
 type ResponseOrganizationsUpdateOrganizationSamlRoleNetworks struct {
 	Access string `json:"access,omitempty"` // The privilege of the SAML administrator on the network
@@ -1841,15 +2245,27 @@ type ResponseOrganizationsUpdateOrganizationSamlRoleTags struct {
 	Tag    string `json:"tag,omitempty"`    // The name of the tag
 }
 type ResponseOrganizationsGetOrganizationSNMP struct {
-	Hostname   string   `json:"hostname,omitempty"`   //
-	PeerIPs    []string `json:"peerIps,omitempty"`    //
-	Port       *int     `json:"port,omitempty"`       //
-	V2CEnabled *bool    `json:"v2cEnabled,omitempty"` //
-	V3AuthMode string   `json:"v3AuthMode,omitempty"` //
-	V3Enabled  *bool    `json:"v3Enabled,omitempty"`  //
-	V3PrivMode string   `json:"v3PrivMode,omitempty"` //
+	Hostname          string   `json:"hostname,omitempty"`          // The hostname of the SNMP server.
+	PeerIPs           []string `json:"peerIps,omitempty"`           // The list of IPv4 addresses that are allowed to access the SNMP server.
+	Port              *int     `json:"port,omitempty"`              // The port of the SNMP server.
+	V2CommunityString string   `json:"v2CommunityString,omitempty"` // The community string for SNMP version 2c, if enabled.
+	V2CEnabled        *bool    `json:"v2cEnabled,omitempty"`        // Boolean indicating whether SNMP version 2c is enabled for the organization.
+	V3AuthMode        string   `json:"v3AuthMode,omitempty"`        // The SNMP version 3 authentication mode. Can be either 'MD5' or 'SHA'.
+	V3Enabled         *bool    `json:"v3Enabled,omitempty"`         // Boolean indicating whether SNMP version 3 is enabled for the organization.
+	V3PrivMode        string   `json:"v3PrivMode,omitempty"`        // The SNMP version 3 privacy mode. Can be either 'DES' or 'AES128'.
+	V3User            string   `json:"v3User,omitempty"`            // The user for SNMP version 3, if enabled.
 }
-type ResponseOrganizationsUpdateOrganizationSNMP interface{}
+type ResponseOrganizationsUpdateOrganizationSNMP struct {
+	Hostname          string   `json:"hostname,omitempty"`          // The hostname of the SNMP server.
+	PeerIPs           []string `json:"peerIps,omitempty"`           // The list of IPv4 addresses that are allowed to access the SNMP server.
+	Port              *int     `json:"port,omitempty"`              // The port of the SNMP server.
+	V2CommunityString string   `json:"v2CommunityString,omitempty"` // The community string for SNMP version 2c, if enabled.
+	V2CEnabled        *bool    `json:"v2cEnabled,omitempty"`        // Boolean indicating whether SNMP version 2c is enabled for the organization.
+	V3AuthMode        string   `json:"v3AuthMode,omitempty"`        // The SNMP version 3 authentication mode. Can be either 'MD5' or 'SHA'.
+	V3Enabled         *bool    `json:"v3Enabled,omitempty"`         // Boolean indicating whether SNMP version 3 is enabled for the organization.
+	V3PrivMode        string   `json:"v3PrivMode,omitempty"`        // The SNMP version 3 privacy mode. Can be either 'DES' or 'AES128'.
+	V3User            string   `json:"v3User,omitempty"`            // The user for SNMP version 3, if enabled.
+}
 type ResponseOrganizationsGetOrganizationSummaryTopAppliancesByUtilization []ResponseItemOrganizationsGetOrganizationSummaryTopAppliancesByUtilization // Array of ResponseOrganizationsGetOrganizationSummaryTopAppliancesByUtilization
 type ResponseItemOrganizationsGetOrganizationSummaryTopAppliancesByUtilization struct {
 	Mac         string                                                                                `json:"mac,omitempty"`         // Mac address of the appliance
@@ -1939,6 +2355,49 @@ type ResponseItemOrganizationsGetOrganizationSummaryTopDevicesModelsByUsageUsage
 	Average *float64 `json:"average,omitempty"` // Average usage in megabytes
 	Total   *float64 `json:"total,omitempty"`   // Total usage in megabytes
 }
+type ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus []ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatus // Array of ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus
+type ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatus struct {
+	Clients      *ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusClients  `json:"clients,omitempty"`      // Network clients data
+	Devices      *ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusDevices  `json:"devices,omitempty"`      // Network device information
+	Name         string                                                                      `json:"name,omitempty"`         // Network name
+	NetworkID    string                                                                      `json:"networkId,omitempty"`    // Network identifier
+	ProductTypes []string                                                                    `json:"productTypes,omitempty"` // Product types in network
+	Statuses     *ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusStatuses `json:"statuses,omitempty"`     // Network device statuses
+	Tags         []string                                                                    `json:"tags,omitempty"`         // Network tags
+	URL          string                                                                      `json:"url,omitempty"`          // Network clients list URL
+}
+type ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusClients struct {
+	Counts *ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusClientsCounts `json:"counts,omitempty"` // Network client counts
+	Usage  *ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusClientsUsage  `json:"usage,omitempty"`  // Network client usage data
+}
+type ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusClientsCounts struct {
+	Total *int `json:"total,omitempty"` // Total count of clients in network
+}
+type ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusClientsUsage struct {
+	Downstream *float64 `json:"downstream,omitempty"` // Total downstream usage in network, in KB
+	Upstream   *float64 `json:"upstream,omitempty"`   // Total upstream usage in network, in KB
+}
+type ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusDevices struct {
+	ByProductType *[]ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusDevicesByProductType `json:"byProductType,omitempty"` // URLs by product type
+}
+type ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusDevicesByProductType struct {
+	ProductType string `json:"productType,omitempty"` // Product type
+	URL         string `json:"url,omitempty"`         // URL to clients list for the relevant product type
+}
+type ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusStatuses struct {
+	ByProductType *[]ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusStatusesByProductType `json:"byProductType,omitempty"` // List of status counts by product type
+	Overall       string                                                                                     `json:"overall,omitempty"`       // Overall status of network
+}
+type ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusStatusesByProductType struct {
+	Counts      *ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusStatusesByProductTypeCounts `json:"counts,omitempty"`      // Counts of devices by status
+	ProductType string                                                                                         `json:"productType,omitempty"` // Product type
+}
+type ResponseItemOrganizationsGetOrganizationSummaryTopNetworksByStatusStatusesByProductTypeCounts struct {
+	Alerting *int `json:"alerting,omitempty"` // Count of alerting devices
+	Dormant  *int `json:"dormant,omitempty"`  // Count of dormant devices
+	Offline  *int `json:"offline,omitempty"`  // Count of offline devices
+	Online   *int `json:"online,omitempty"`   // Count of online devices
+}
 type ResponseOrganizationsGetOrganizationSummaryTopSSIDsByUsage []ResponseItemOrganizationsGetOrganizationSummaryTopSSIDsByUsage // Array of ResponseOrganizationsGetOrganizationSummaryTopSsidsByUsage
 type ResponseItemOrganizationsGetOrganizationSummaryTopSSIDsByUsage struct {
 	Clients *ResponseItemOrganizationsGetOrganizationSummaryTopSSIDsByUsageClients `json:"clients,omitempty"` // Clients info of the SSID
@@ -1974,11 +2433,16 @@ type ResponseItemOrganizationsGetOrganizationSummaryTopSwitchesByEnergyUsageUsag
 }
 type ResponseOrganizationsGetOrganizationUplinksStatuses []ResponseItemOrganizationsGetOrganizationUplinksStatuses // Array of ResponseOrganizationsGetOrganizationUplinksStatuses
 type ResponseItemOrganizationsGetOrganizationUplinksStatuses struct {
-	LastReportedAt string                                                            `json:"lastReportedAt,omitempty"` // Last reported time for the device
-	Model          string                                                            `json:"model,omitempty"`          // The uplink model
-	NetworkID      string                                                            `json:"networkId,omitempty"`      // Network identifier
-	Serial         string                                                            `json:"serial,omitempty"`         // The uplink serial
-	Uplinks        *[]ResponseItemOrganizationsGetOrganizationUplinksStatusesUplinks `json:"uplinks,omitempty"`        // Uplinks
+	HighAvailability *ResponseItemOrganizationsGetOrganizationUplinksStatusesHighAvailability `json:"highAvailability,omitempty"` // Device High Availability Capabilities
+	LastReportedAt   string                                                                   `json:"lastReportedAt,omitempty"`   // Last reported time for the device
+	Model            string                                                                   `json:"model,omitempty"`            // The uplink model
+	NetworkID        string                                                                   `json:"networkId,omitempty"`        // Network identifier
+	Serial           string                                                                   `json:"serial,omitempty"`           // The uplink serial
+	Uplinks          *[]ResponseItemOrganizationsGetOrganizationUplinksStatusesUplinks        `json:"uplinks,omitempty"`          // Uplinks
+}
+type ResponseItemOrganizationsGetOrganizationUplinksStatusesHighAvailability struct {
+	Enabled *bool  `json:"enabled,omitempty"` // Indicates whether High Availability is enabled for the device. For devices that do not support HA, this will be 'false'
+	Role    string `json:"role,omitempty"`    // The HA role of the device on the network. For devices that do not support HA, this will be 'primary'
 }
 type ResponseItemOrganizationsGetOrganizationUplinksStatusesUplinks struct {
 	Apn            string                                                                    `json:"apn,omitempty"`            // Access Point Name
@@ -2002,34 +2466,59 @@ type ResponseItemOrganizationsGetOrganizationUplinksStatusesUplinksSignalStat st
 	Rsrp string `json:"rsrp,omitempty"` // Reference Signal Received Power
 	Rsrq string `json:"rsrq,omitempty"` // Reference Signal Received Quality
 }
-type ResponseOrganizationsGetOrganizationWebhooksAlertTypes []ResponseItemOrganizationsGetOrganizationWebhooksAlertTypes // Array of ResponseOrganizationsGetOrganizationWebhooksAlertTypes
-type ResponseItemOrganizationsGetOrganizationWebhooksAlertTypes struct {
-	AlertData        *ResponseItemOrganizationsGetOrganizationWebhooksAlertTypesAlertData `json:"alertData,omitempty"`        //
-	AlertID          string                                                               `json:"alertId,omitempty"`          //
-	AlertLevel       string                                                               `json:"alertLevel,omitempty"`       //
-	AlertType        string                                                               `json:"alertType,omitempty"`        //
-	AlertTypeID      string                                                               `json:"alertTypeId,omitempty"`      //
-	DeviceMac        string                                                               `json:"deviceMac,omitempty"`        //
-	DeviceModel      string                                                               `json:"deviceModel,omitempty"`      //
-	DeviceName       string                                                               `json:"deviceName,omitempty"`       //
-	DeviceSerial     string                                                               `json:"deviceSerial,omitempty"`     //
-	DeviceTags       []string                                                             `json:"deviceTags,omitempty"`       //
-	DeviceURL        string                                                               `json:"deviceUrl,omitempty"`        //
-	EnrollmentString string                                                               `json:"enrollmentString,omitempty"` //
-	NetworkID        string                                                               `json:"networkId,omitempty"`        //
-	NetworkName      string                                                               `json:"networkName,omitempty"`      //
-	NetworkURL       string                                                               `json:"networkUrl,omitempty"`       //
-	Notes            string                                                               `json:"notes,omitempty"`            //
-	OccurredAt       string                                                               `json:"occurredAt,omitempty"`       //
-	OrganizationID   string                                                               `json:"organizationId,omitempty"`   //
-	OrganizationName string                                                               `json:"organizationName,omitempty"` //
-	OrganizationURL  string                                                               `json:"organizationUrl,omitempty"`  //
-	ProductTypes     []string                                                             `json:"productTypes,omitempty"`     //
-	SentAt           string                                                               `json:"sentAt,omitempty"`           //
-	SharedSecret     string                                                               `json:"sharedSecret,omitempty"`     //
-	Version          string                                                               `json:"version,omitempty"`          //
+type ResponseOrganizationsGetOrganizationWebhooksAlertTypes struct {
+	AlertType   string                                                         `json:"alertType,omitempty"`   // The type of Meraki alert
+	AlertTypeID string                                                         `json:"alertTypeId,omitempty"` // The type ID of Meraki alert
+	Example     *ResponseOrganizationsGetOrganizationWebhooksAlertTypesExample `json:"example,omitempty"`     // Example alert type
 }
-type ResponseItemOrganizationsGetOrganizationWebhooksAlertTypesAlertData interface{}
+type ResponseOrganizationsGetOrganizationWebhooksAlertTypesExample struct {
+	AlertData        *ResponseOrganizationsGetOrganizationWebhooksAlertTypesExampleAlertData `json:"alertData,omitempty"`        // Data for the specific alert. Contents depend on the type of the alert
+	AlertID          string                                                                  `json:"alertId,omitempty"`          // ID for the alert instance
+	AlertLevel       string                                                                  `json:"alertLevel,omitempty"`       // Severity level of the alert
+	DeviceMac        string                                                                  `json:"deviceMac,omitempty"`        // Mac address for the device associated with the alert
+	DeviceModel      string                                                                  `json:"deviceModel,omitempty"`      // Model of the device associated with the alert
+	DeviceName       string                                                                  `json:"deviceName,omitempty"`       // Name of the device associated with the alert
+	DeviceSerial     string                                                                  `json:"deviceSerial,omitempty"`     // Serial for the device associated with the alert
+	DeviceTags       []string                                                                `json:"deviceTags,omitempty"`       // List of tags for the device associated with the alert
+	DeviceURL        string                                                                  `json:"deviceUrl,omitempty"`        // URL of the device associated with the alert
+	EncryptedID      string                                                                  `json:"encryptedId,omitempty"`      // Encrypted ID of the network associated with the alert
+	EnrollmentString string                                                                  `json:"enrollmentString,omitempty"` // Enrollment string of the network associated with the alert
+	NetworkID        string                                                                  `json:"networkId,omitempty"`        // ID of the network associated with the alert
+	NetworkName      string                                                                  `json:"networkName,omitempty"`      // Name of the network associated with the alert
+	NetworkURL       string                                                                  `json:"networkUrl,omitempty"`       // URL of the network associated with the alert
+	Notes            string                                                                  `json:"notes,omitempty"`            // Notes for the network associated with the alert
+	OccurredAt       string                                                                  `json:"occurredAt,omitempty"`       // When the alert occurred, in ISO8601 format
+	OrganizationID   string                                                                  `json:"organizationId,omitempty"`   // ID of the organization associated with the alert
+	OrganizationName string                                                                  `json:"organizationName,omitempty"` // Name of the organization associated with the alert
+	OrganizationURL  string                                                                  `json:"organizationUrl,omitempty"`  // URL of the organization associated with the alert
+	ProductTypes     []string                                                                `json:"productTypes,omitempty"`     // List of product types that are part of the network associated with the alert
+	SentAt           string                                                                  `json:"sentAt,omitempty"`           // When the alert notification was sent, in ISO8601 format
+	SharedSecret     string                                                                  `json:"sharedSecret,omitempty"`     // Shared secret for the alert
+	Version          string                                                                  `json:"version,omitempty"`          // Version of the alert
+}
+type ResponseOrganizationsGetOrganizationWebhooksAlertTypesExampleAlertData interface{}
+type ResponseOrganizationsGetOrganizationWebhooksCallbacksStatus struct {
+	CallbackID string                                                                `json:"callbackId,omitempty"` // The ID of the callback
+	CreatedBy  *ResponseOrganizationsGetOrganizationWebhooksCallbacksStatusCreatedBy `json:"createdBy,omitempty"`  // Information around who initiated the callback
+	Errors     []string                                                              `json:"errors,omitempty"`     // The errors returned by the callback
+	Status     string                                                                `json:"status,omitempty"`     // The status of the callback
+	Webhook    *ResponseOrganizationsGetOrganizationWebhooksCallbacksStatusWebhook   `json:"webhook,omitempty"`    // The webhook receiver used by the callback to send results
+}
+type ResponseOrganizationsGetOrganizationWebhooksCallbacksStatusCreatedBy struct {
+	AdminID string `json:"adminId,omitempty"` // The ID of the user who initiated the callback
+}
+type ResponseOrganizationsGetOrganizationWebhooksCallbacksStatusWebhook struct {
+	HTTPServer      *ResponseOrganizationsGetOrganizationWebhooksCallbacksStatusWebhookHTTPServer      `json:"httpServer,omitempty"`      // The webhook receiver used for the callback webhook
+	PayloadTemplate *ResponseOrganizationsGetOrganizationWebhooksCallbacksStatusWebhookPayloadTemplate `json:"payloadTemplate,omitempty"` // The payload template of the webhook used for the callback
+	SentAt          string                                                                             `json:"sentAt,omitempty"`          // The timestamp the callback was sent to the webhook receiver
+	URL             string                                                                             `json:"url,omitempty"`             // The webhook receiver URL where the callback will be sent
+}
+type ResponseOrganizationsGetOrganizationWebhooksCallbacksStatusWebhookHTTPServer struct {
+	ID string `json:"id,omitempty"` // The webhook receiver ID that will receive information
+}
+type ResponseOrganizationsGetOrganizationWebhooksCallbacksStatusWebhookPayloadTemplate struct {
+	ID string `json:"id,omitempty"` // The ID of the payload template
+}
 type ResponseOrganizationsGetOrganizationWebhooksLogs []ResponseItemOrganizationsGetOrganizationWebhooksLogs // Array of ResponseOrganizationsGetOrganizationWebhooksLogs
 type ResponseItemOrganizationsGetOrganizationWebhooksLogs struct {
 	AlertType        string `json:"alertType,omitempty"`        // Type of alert that the webhook is delivering
@@ -2069,6 +2558,7 @@ type RequestOrganizationsUpdateOrganizationManagementDetails struct {
 }
 type RequestOrganizationsCreateOrganizationActionBatch struct {
 	Actions     *[]RequestOrganizationsCreateOrganizationActionBatchActions `json:"actions,omitempty"`     // A set of changes to make as part of this action (<a href='https://developer.cisco.com/meraki/api/#/rest/guides/action-batches/'>more details</a>)
+	Callback    *RequestOrganizationsCreateOrganizationActionBatchCallback  `json:"callback,omitempty"`    // Details for the callback. Please include either an httpServerId OR url and sharedSecret
 	Confirmed   *bool                                                       `json:"confirmed,omitempty"`   // Set to true for immediate execution. Set to false if the action should be previewed before executing. This property cannot be unset once it is true. Defaults to false.
 	Synchronous *bool                                                       `json:"synchronous,omitempty"` // Set to true to force the batch to run synchronous. There can be at most 20 actions in synchronous batch. Defaults to false.
 }
@@ -2078,6 +2568,18 @@ type RequestOrganizationsCreateOrganizationActionBatchActions struct {
 	Resource  string                                                        `json:"resource,omitempty"`  // Unique identifier for the resource to be acted on
 }
 type RequestOrganizationsCreateOrganizationActionBatchActionsBody interface{}
+type RequestOrganizationsCreateOrganizationActionBatchCallback struct {
+	HTTPServer      *RequestOrganizationsCreateOrganizationActionBatchCallbackHTTPServer      `json:"httpServer,omitempty"`      // The webhook receiver used for the callback webhook.
+	PayloadTemplate *RequestOrganizationsCreateOrganizationActionBatchCallbackPayloadTemplate `json:"payloadTemplate,omitempty"` // The payload template of the webhook used for the callback
+	SharedSecret    string                                                                    `json:"sharedSecret,omitempty"`    // A shared secret that will be included in the requests sent to the callback URL. It can be used to verify that the request was sent by Meraki. If using this field, please also specify an url.
+	URL             string                                                                    `json:"url,omitempty"`             // The callback URL for the webhook target. If using this field, please also specify a sharedSecret.
+}
+type RequestOrganizationsCreateOrganizationActionBatchCallbackHTTPServer struct {
+	ID string `json:"id,omitempty"` // The webhook receiver ID that will receive information. If specifying this, please leave the url and sharedSecret fields blank.
+}
+type RequestOrganizationsCreateOrganizationActionBatchCallbackPayloadTemplate struct {
+	ID string `json:"id,omitempty"` // The ID of the payload template. Defaults to 'wpt_00005' for the Callback (included) template.
+}
 type RequestOrganizationsUpdateOrganizationActionBatch struct {
 	Confirmed   *bool `json:"confirmed,omitempty"`   // A boolean representing whether or not the batch has been confirmed. This property cannot be unset once it is true.
 	Synchronous *bool `json:"synchronous,omitempty"` // Set to true to force the batch to run synchronous. There can be at most 20 actions in synchronous batch.
@@ -2109,7 +2611,7 @@ type RequestOrganizationsUpdateOrganizationAdaptivePolicyACLRules struct {
 type RequestOrganizationsCreateOrganizationAdaptivePolicyGroup struct {
 	Description   string                                                                    `json:"description,omitempty"`   // Description of the group (default: "")
 	Name          string                                                                    `json:"name,omitempty"`          // Name of the group
-	PolicyObjects *[]RequestOrganizationsCreateOrganizationAdaptivePolicyGroupPolicyObjects `json:"policyObjects,omitempty"` // The policy objects that belong to this group; traffic from addresses specified by these policy objects will be tagged with this group's SGT value if no other tagging scheme is being used (each requires one unique attribute) (default: [])
+	PolicyObjects *[]RequestOrganizationsCreateOrganizationAdaptivePolicyGroupPolicyObjects `json:"policyObjects,omitempty"` // The policy objects that belong to this group; traffic from addresses specified by these policy objects will be tagged with this group's SGT value if no other tagging scheme is being used (each requires one unique attribute) ()
 	Sgt           *int                                                                      `json:"sgt,omitempty"`           // SGT value of the group
 }
 type RequestOrganizationsCreateOrganizationAdaptivePolicyGroupPolicyObjects struct {
@@ -2127,7 +2629,7 @@ type RequestOrganizationsUpdateOrganizationAdaptivePolicyGroupPolicyObjects stru
 	Name string `json:"name,omitempty"` // The name of the policy object
 }
 type RequestOrganizationsCreateOrganizationAdaptivePolicyPolicy struct {
-	ACLs             *[]RequestOrganizationsCreateOrganizationAdaptivePolicyPolicyACLs           `json:"acls,omitempty"`             // An ordered array of adaptive policy ACLs (each requires one unique attribute) that apply to this policy (default: [])
+	ACLs             *[]RequestOrganizationsCreateOrganizationAdaptivePolicyPolicyACLs           `json:"acls,omitempty"`             // An ordered array of adaptive policy ACLs (each requires one unique attribute) that apply to this policy ()
 	DestinationGroup *RequestOrganizationsCreateOrganizationAdaptivePolicyPolicyDestinationGroup `json:"destinationGroup,omitempty"` // The destination adaptive policy group (requires one unique attribute)
 	LastEntryRule    string                                                                      `json:"lastEntryRule,omitempty"`    // The rule to apply if there is no matching ACL (default: "default")
 	SourceGroup      *RequestOrganizationsCreateOrganizationAdaptivePolicyPolicySourceGroup      `json:"sourceGroup,omitempty"`      // The source adaptive policy group (requires one unique attribute)
@@ -2209,7 +2711,7 @@ type RequestOrganizationsCreateOrganizationAlertsProfile struct {
 type RequestOrganizationsCreateOrganizationAlertsProfileAlertCondition struct {
 	BitRateBps *int     `json:"bit_rate_bps,omitempty"` // The threshold the metric must cross to be valid for alerting. Used only for WAN Utilization alerts.
 	Duration   *int     `json:"duration,omitempty"`     // The total duration in seconds that the threshold should be crossed before alerting
-	Interface  string   `json:"interface,omitempty"`    // The uplink observed for the alert.  interface must be one of the following: wan1, wan2, cellular
+	Interface  string   `json:"interface,omitempty"`    // The uplink observed for the alert.  interface must be one of the following: wan1, wan2, wan3, cellular
 	JitterMs   *int     `json:"jitter_ms,omitempty"`    // The threshold the metric must cross to be valid for alerting. Used only for VoIP Jitter alerts.
 	LatencyMs  *int     `json:"latency_ms,omitempty"`   // The threshold the metric must cross to be valid for alerting. Used only for WAN Latency alerts.
 	LossRatio  *float64 `json:"loss_ratio,omitempty"`   // The threshold the metric must cross to be valid for alerting. Used only for Packet Loss alerts.
@@ -2231,7 +2733,7 @@ type RequestOrganizationsUpdateOrganizationAlertsProfile struct {
 type RequestOrganizationsUpdateOrganizationAlertsProfileAlertCondition struct {
 	BitRateBps *int     `json:"bit_rate_bps,omitempty"` // The threshold the metric must cross to be valid for alerting. Used only for WAN Utilization alerts.
 	Duration   *int     `json:"duration,omitempty"`     // The total duration in seconds that the threshold should be crossed before alerting
-	Interface  string   `json:"interface,omitempty"`    // The uplink observed for the alert.  interface must be one of the following: wan1, wan2, cellular
+	Interface  string   `json:"interface,omitempty"`    // The uplink observed for the alert.  interface must be one of the following: wan1, wan2, wan3, cellular
 	JitterMs   *int     `json:"jitter_ms,omitempty"`    // The threshold the metric must cross to be valid for alerting. Used only for VoIP Jitter alerts.
 	LatencyMs  *int     `json:"latency_ms,omitempty"`   // The threshold the metric must cross to be valid for alerting. Used only for WAN Latency alerts.
 	LossRatio  *float64 `json:"loss_ratio,omitempty"`   // The threshold the metric must cross to be valid for alerting. Used only for Packet Loss alerts.
@@ -2330,8 +2832,9 @@ type RequestOrganizationsCloneOrganization struct {
 	Name string `json:"name,omitempty"` // The name of the new organization
 }
 type RequestOrganizationsCreateOrganizationConfigTemplate struct {
-	Name     string `json:"name,omitempty"`     // The name of the configuration template
-	TimeZone string `json:"timeZone,omitempty"` // The timezone of the configuration template. For a list of allowed timezones, please see the 'TZ' column in the table in <a target='_blank' href='https://en.wikipedia.org/wiki/List_of_tz_database_time_zones'>this article</a>. Not applicable if copying from existing network or template
+	CopyFromNetworkID string `json:"copyFromNetworkId,omitempty"` // The ID of the network or config template to copy configuration from
+	Name              string `json:"name,omitempty"`              // The name of the configuration template
+	TimeZone          string `json:"timeZone,omitempty"`          // The timezone of the configuration template. For a list of allowed timezones, please see the 'TZ' column in the table in <a target='_blank' href='https://en.wikipedia.org/wiki/List_of_tz_database_time_zones'>this article</a>. Not applicable if copying from existing network or template
 }
 type RequestOrganizationsUpdateOrganizationConfigTemplate struct {
 	Name     string `json:"name,omitempty"`     // The name of the configuration template
@@ -2352,6 +2855,17 @@ type RequestOrganizationsClaimIntoOrganizationInventory struct {
 type RequestOrganizationsClaimIntoOrganizationInventoryLicenses struct {
 	Key  string `json:"key,omitempty"`  // The key of the license
 	Mode string `json:"mode,omitempty"` // Co-term licensing only: either 'renew' or 'addDevices'. 'addDevices' will increase the license limit, while 'renew' will extend the amount of time until expiration. Defaults to 'addDevices'. All licenses must be claimed with the same mode, and at most one renewal can be claimed at a time. Does not apply to organizations using per-device licensing model.
+}
+type RequestOrganizationsCreateOrganizationInventoryDevicesSwapsBulk struct {
+	Swaps *[]RequestOrganizationsCreateOrganizationInventoryDevicesSwapsBulkSwaps `json:"swaps,omitempty"` // List of replacments to perform
+}
+type RequestOrganizationsCreateOrganizationInventoryDevicesSwapsBulkSwaps struct {
+	AfterAction string                                                                       `json:"afterAction,omitempty"` // What action to perform on devices.old after the device cloning is complete. 'remove from network' will return the device to inventory, while 'release from organization inventory' will free up the license attached to the device.
+	Devices     *RequestOrganizationsCreateOrganizationInventoryDevicesSwapsBulkSwapsDevices `json:"devices,omitempty"`     // The devices involved in the swap.
+}
+type RequestOrganizationsCreateOrganizationInventoryDevicesSwapsBulkSwapsDevices struct {
+	New string `json:"new,omitempty"` // The serial of the device that the old device's settings will be cloned to.
+	Old string `json:"old,omitempty"` // The serial of the device to be cloned.
 }
 type RequestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringExportEvent struct {
 	LogEvent  string `json:"logEvent,omitempty"`  // The type of log event this is recording, e.g. download or opening a banner
@@ -2475,14 +2989,14 @@ type RequestOrganizationsCombineOrganizationNetworks struct {
 	NetworkIDs       []string `json:"networkIds,omitempty"`       // A list of the network IDs that will be combined. If an ID of a combined network is included in this list, the other networks in the list will be grouped into that network
 }
 type RequestOrganizationsCreateOrganizationPolicyObject struct {
-	Category string `json:"category,omitempty"` // Category of a policy object (one of: adaptivePolicy, network)
-	Cidr     string `json:"cidr,omitempty"`     // CIDR Value of a policy object (e.g. 10.11.12.1/24")
-	Fqdn     string `json:"fqdn,omitempty"`     // Fully qualified domain name of policy object (e.g. "example.com")
-	GroupIDs *[]int `json:"groupIds,omitempty"` // The IDs of policy object groups the policy object belongs to
-	IP       string `json:"ip,omitempty"`       // IP Address of a policy object (e.g. "1.2.3.4")
-	Mask     string `json:"mask,omitempty"`     // Mask of a policy object (e.g. "255.255.0.0")
-	Name     string `json:"name,omitempty"`     // Name of a policy object, unique within the organization (alphanumeric, space, dash, or underscore characters only)
-	Type     string `json:"type,omitempty"`     // Type of a policy object (one of: adaptivePolicyIpv4Cidr, cidr, fqdn, ipAndMask)
+	Category string   `json:"category,omitempty"` // Category of a policy object (one of: adaptivePolicy, network)
+	Cidr     string   `json:"cidr,omitempty"`     // CIDR Value of a policy object (e.g. 10.11.12.1/24")
+	Fqdn     string   `json:"fqdn,omitempty"`     // Fully qualified domain name of policy object (e.g. "example.com")
+	GroupIDs []string `json:"groupIds,omitempty"` // The IDs of policy object groups the policy object belongs to
+	IP       string   `json:"ip,omitempty"`       // IP Address of a policy object (e.g. "1.2.3.4")
+	Mask     string   `json:"mask,omitempty"`     // Mask of a policy object (e.g. "255.255.0.0")
+	Name     string   `json:"name,omitempty"`     // Name of a policy object, unique within the organization (alphanumeric, space, dash, or underscore characters only)
+	Type     string   `json:"type,omitempty"`     // Type of a policy object (one of: adaptivePolicyIpv4Cidr, cidr, fqdn, ipAndMask)
 }
 type RequestOrganizationsCreateOrganizationPolicyObjectsGroup struct {
 	Category  string `json:"category,omitempty"`  // Category of a policy object group (one of: NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
@@ -2494,12 +3008,12 @@ type RequestOrganizationsUpdateOrganizationPolicyObjectsGroup struct {
 	ObjectIDs *[]int `json:"objectIds,omitempty"` // A list of Policy Object ID's that this NetworkObjectGroup should be associated to (note: these ID's will replace the existing associated Policy Objects)
 }
 type RequestOrganizationsUpdateOrganizationPolicyObject struct {
-	Cidr     string `json:"cidr,omitempty"`     // CIDR Value of a policy object (e.g. 10.11.12.1/24")
-	Fqdn     string `json:"fqdn,omitempty"`     // Fully qualified domain name of policy object (e.g. "example.com")
-	GroupIDs *[]int `json:"groupIds,omitempty"` // The IDs of policy object groups the policy object belongs to
-	IP       string `json:"ip,omitempty"`       // IP Address of a policy object (e.g. "1.2.3.4")
-	Mask     string `json:"mask,omitempty"`     // Mask of a policy object (e.g. "255.255.0.0")
-	Name     string `json:"name,omitempty"`     // Name of a policy object, unique within the organization (alphanumeric, space, dash, or underscore characters only)
+	Cidr     string   `json:"cidr,omitempty"`     // CIDR Value of a policy object (e.g. 10.11.12.1/24")
+	Fqdn     string   `json:"fqdn,omitempty"`     // Fully qualified domain name of policy object (e.g. "example.com")
+	GroupIDs []string `json:"groupIds,omitempty"` // The IDs of policy object groups the policy object belongs to
+	IP       string   `json:"ip,omitempty"`       // IP Address of a policy object (e.g. "1.2.3.4")
+	Mask     string   `json:"mask,omitempty"`     // Mask of a policy object (e.g. "255.255.0.0")
+	Name     string   `json:"name,omitempty"`     // Name of a policy object, unique within the organization (alphanumeric, space, dash, or underscore characters only)
 }
 type RequestOrganizationsUpdateOrganizationSaml struct {
 	Enabled *bool `json:"enabled,omitempty"` // Boolean for updating SAML SSO enabled settings.
@@ -2516,7 +3030,7 @@ type RequestOrganizationsCreateOrganizationSamlRole struct {
 	Networks  *[]RequestOrganizationsCreateOrganizationSamlRoleNetworks `json:"networks,omitempty"`  // The list of networks that the SAML administrator has privileges on
 	OrgAccess string                                                    `json:"orgAccess,omitempty"` // The privilege of the SAML administrator on the organization. Can be one of 'none', 'read-only', 'full' or 'enterprise'
 	Role      string                                                    `json:"role,omitempty"`      // The role of the SAML administrator
-	Tags      *[]RequestOrganizationsCreateOrganizationSamlRoleTags     `json:"tags,omitempty"`      // The list of tags that the SAML administrator has privleges on
+	Tags      *[]RequestOrganizationsCreateOrganizationSamlRoleTags     `json:"tags,omitempty"`      // The list of tags that the SAML administrator has privileges on
 }
 type RequestOrganizationsCreateOrganizationSamlRoleNetworks struct {
 	Access string `json:"access,omitempty"` // The privilege of the SAML administrator on the network. Can be one of 'full', 'read-only', 'guest-ambassador', 'monitor-only' or 'ssid-admin'
@@ -2530,7 +3044,7 @@ type RequestOrganizationsUpdateOrganizationSamlRole struct {
 	Networks  *[]RequestOrganizationsUpdateOrganizationSamlRoleNetworks `json:"networks,omitempty"`  // The list of networks that the SAML administrator has privileges on
 	OrgAccess string                                                    `json:"orgAccess,omitempty"` // The privilege of the SAML administrator on the organization. Can be one of 'none', 'read-only', 'full' or 'enterprise'
 	Role      string                                                    `json:"role,omitempty"`      // The role of the SAML administrator
-	Tags      *[]RequestOrganizationsUpdateOrganizationSamlRoleTags     `json:"tags,omitempty"`      // The list of tags that the SAML administrator has privleges on
+	Tags      *[]RequestOrganizationsUpdateOrganizationSamlRoleTags     `json:"tags,omitempty"`      // The list of tags that the SAML administrator has privileges on
 }
 type RequestOrganizationsUpdateOrganizationSamlRoleNetworks struct {
 	Access string `json:"access,omitempty"` // The privilege of the SAML administrator on the network. Can be one of 'full', 'read-only', 'guest-ambassador', 'monitor-only' or 'ssid-admin'
@@ -2553,17 +3067,20 @@ type RequestOrganizationsUpdateOrganizationSNMP struct {
 //GetOrganizations List the organizations that the user has privileges on
 /* List the organizations that the user has privileges on
 
+@param getOrganizationsQueryParams Filtering parameter
 
 
- */
-func (s *OrganizationsService) GetOrganizations() (*ResponseOrganizationsGetOrganizations, *resty.Response, error) {
+*/
+func (s *OrganizationsService) GetOrganizations(getOrganizationsQueryParams *GetOrganizationsQueryParams) (*ResponseOrganizationsGetOrganizations, *resty.Response, error) {
 	path := "/api/v1/organizations"
 	s.rateLimiterBucket.Wait(1)
+
+	queryString, _ := query.Values(getOrganizationsQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizations{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizations{}).
 		SetError(&Error).
 		Get(path)
 
@@ -3514,8 +4031,80 @@ func (s *OrganizationsService) GetOrganizationDevicesAvailabilities(organization
 
 }
 
-//GetOrganizationDevicesPowerModulesStatusesByDevice List the power status information for devices in an organization
-/* List the power status information for devices in an organization. The data returned by this endpoint is updated every 5 minutes.
+//GetOrganizationDevicesAvailabilitiesChangeHistory List the availability history information for devices in an organization.
+/* List the availability history information for devices in an organization.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams Filtering parameter
+
+
+*/
+func (s *OrganizationsService) GetOrganizationDevicesAvailabilitiesChangeHistory(organizationID string, getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams *GetOrganizationDevicesAvailabilitiesChangeHistoryQueryParams) (*ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/devices/availabilities/changeHistory"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesAvailabilitiesChangeHistory")
+	}
+
+	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory)
+	return result, response, err
+
+}
+
+//GetOrganizationDevicesBootsHistory Returns the history of device boots in reverse chronological order (most recent first)
+/* Returns the history of device boots in reverse chronological order (most recent first). Currently supported for MS devices only.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationDevicesBootsHistoryQueryParams Filtering parameter
+
+
+*/
+func (s *OrganizationsService) GetOrganizationDevicesBootsHistory(organizationID string, getOrganizationDevicesBootsHistoryQueryParams *GetOrganizationDevicesBootsHistoryQueryParams) (*ResponseOrganizationsGetOrganizationDevicesBootsHistory, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/devices/boots/history"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationDevicesBootsHistoryQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevicesBootsHistory{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesBootsHistory")
+	}
+
+	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesBootsHistory)
+	return result, response, err
+
+}
+
+//GetOrganizationDevicesPowerModulesStatusesByDevice List the most recent status information for power modules in rackmount MX and MS devices that support them
+/* List the most recent status information for power modules in rackmount MX and MS devices that support them. The data returned by this endpoint is updated every 5 minutes.
 
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams Filtering parameter
@@ -3868,7 +4457,7 @@ func (s *OrganizationsService) GetOrganizationFirmwareUpgrades(organizationID st
 }
 
 //GetOrganizationFirmwareUpgradesByDevice Get firmware upgrade status for the filtered devices
-/* Get firmware upgrade status for the filtered devices
+/* Get firmware upgrade status for the filtered devices. This endpoint currently only supports Meraki switches.
 
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationFirmwareUpgradesByDeviceQueryParams Filtering parameter
@@ -3935,6 +4524,41 @@ func (s *OrganizationsService) GetOrganizationInventoryDevices(organizationID st
 	}
 
 	result := response.Result().(*ResponseOrganizationsGetOrganizationInventoryDevices)
+	return result, response, err
+
+}
+
+//GetOrganizationInventoryDevicesSwapsBulk List of device swaps for a given request ID ({id}).
+/* List of device swaps for a given request ID ({id}).
+
+@param organizationID organizationId path parameter. Organization ID
+@param id id path parameter.
+
+
+*/
+func (s *OrganizationsService) GetOrganizationInventoryDevicesSwapsBulk(organizationID string, id string) (*ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulk, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/inventory/devices/swaps/bulk/{id}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulk{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationInventoryDevicesSwapsBulk")
+	}
+
+	result := response.Result().(*ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulk)
 	return result, response, err
 
 }
@@ -4219,22 +4843,25 @@ func (s *OrganizationsService) GetOrganizationNetworks(organizationID string, ge
 
 }
 
-//GetOrganizationOpenapiSpec Return the OpenAPI 2.0 Specification of the organization's API documentation in JSON
-/* Return the OpenAPI 2.0 Specification of the organization's API documentation in JSON
+//GetOrganizationOpenapiSpec Return the OpenAPI Specification of the organization's API documentation in JSON
+/* Return the OpenAPI Specification of the organization's API documentation in JSON
 
 @param organizationID organizationId path parameter. Organization ID
+@param getOrganizationOpenapiSpecQueryParams Filtering parameter
 
 
 */
-func (s *OrganizationsService) GetOrganizationOpenapiSpec(organizationID string) (*ResponseOrganizationsGetOrganizationOpenapiSpec, *resty.Response, error) {
+func (s *OrganizationsService) GetOrganizationOpenapiSpec(organizationID string, getOrganizationOpenapiSpecQueryParams *GetOrganizationOpenapiSpecQueryParams) (*ResponseOrganizationsGetOrganizationOpenapiSpec, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/openapiSpec"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
+	queryString, _ := query.Values(getOrganizationOpenapiSpecQueryParams)
+
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationOpenapiSpec{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationOpenapiSpec{}).
 		SetError(&Error).
 		Get(path)
 
@@ -4776,6 +5403,42 @@ func (s *OrganizationsService) GetOrganizationSummaryTopDevicesModelsByUsage(org
 
 }
 
+//GetOrganizationSummaryTopNetworksByStatus List the client and status overview information for the networks in an organization
+/* List the client and status overview information for the networks in an organization. Usage is measured in kilobytes and from the last seven days.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationSummaryTopNetworksByStatusQueryParams Filtering parameter
+
+
+*/
+func (s *OrganizationsService) GetOrganizationSummaryTopNetworksByStatus(organizationID string, getOrganizationSummaryTopNetworksByStatusQueryParams *GetOrganizationSummaryTopNetworksByStatusQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/summary/top/networks/byStatus"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationSummaryTopNetworksByStatusQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationSummaryTopNetworksByStatus")
+	}
+
+	result := response.Result().(*ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus)
+	return result, response, err
+
+}
+
 //GetOrganizationSummaryTopSSIDsByUsage Return metrics for organization's top 10 ssids by data usage over given time range
 /* Return metrics for organization's top 10 ssids by data usage over given time range. Default unit is megabytes.
 
@@ -4916,6 +5579,41 @@ func (s *OrganizationsService) GetOrganizationWebhooksAlertTypes(organizationID 
 	}
 
 	result := response.Result().(*ResponseOrganizationsGetOrganizationWebhooksAlertTypes)
+	return result, response, err
+
+}
+
+//GetOrganizationWebhooksCallbacksStatus Return the status of an API callback
+/* Return the status of an API callback
+
+@param organizationID organizationId path parameter. Organization ID
+@param callbackID callbackId path parameter. Callback ID
+
+
+*/
+func (s *OrganizationsService) GetOrganizationWebhooksCallbacksStatus(organizationID string, callbackID string) (*ResponseOrganizationsGetOrganizationWebhooksCallbacksStatus, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/webhooks/callbacks/statuses/{callbackId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{callbackId}", fmt.Sprintf("%v", callbackID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseOrganizationsGetOrganizationWebhooksCallbacksStatus{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationWebhooksCallbacksStatus")
+	}
+
+	result := response.Result().(*ResponseOrganizationsGetOrganizationWebhooksCallbacksStatus)
 	return result, response, err
 
 }
@@ -5233,15 +5931,15 @@ func (s *OrganizationsService) CreateOrganizationBrandingPolicy(organizationID s
 
 }
 
-//ClaimIntoOrganization Claim a list of devices, licenses, and/or orders into an organization
-/* Claim a list of devices, licenses, and/or orders into an organization. When claiming by order, all devices and licenses in the order will be claimed; licenses will be added to the organization and devices will be placed in the organization's inventory.
+//ClaimIntoOrganization Claim a list of devices, licenses, and/or orders into an organization inventory
+/* Claim a list of devices, licenses, and/or orders into an organization inventory. When claiming by order, all devices and licenses in the order will be claimed; licenses will be added to the organization and devices will be placed in the organization's inventory. This operation can be used up to ten times within a single five minute window.
 
 @param organizationID organizationId path parameter. Organization ID
 
 
 */
 
-func (s *OrganizationsService) ClaimIntoOrganization(organizationID string, requestOrganizationsClaimIntoOrganization *RequestOrganizationsClaimIntoOrganization) (*resty.Response, error) {
+func (s *OrganizationsService) ClaimIntoOrganization(organizationID string, requestOrganizationsClaimIntoOrganization *RequestOrganizationsClaimIntoOrganization) (*ResponseOrganizationsClaimIntoOrganization, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/claim"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -5250,20 +5948,21 @@ func (s *OrganizationsService) ClaimIntoOrganization(organizationID string, requ
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestOrganizationsClaimIntoOrganization).
-		// SetResult(&ResponseOrganizationsClaimIntoOrganization{}).
+		SetResult(&ResponseOrganizationsClaimIntoOrganization{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation ClaimIntoOrganization")
+		return nil, response, fmt.Errorf("error with operation ClaimIntoOrganization")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseOrganizationsClaimIntoOrganization)
+	return result, response, err
 
 }
 
@@ -5310,7 +6009,7 @@ func (s *OrganizationsService) CloneOrganization(organizationID string, requestO
 
 */
 
-func (s *OrganizationsService) CreateOrganizationConfigTemplate(organizationID string, requestOrganizationsCreateOrganizationConfigTemplate *RequestOrganizationsCreateOrganizationConfigTemplate) (*resty.Response, error) {
+func (s *OrganizationsService) CreateOrganizationConfigTemplate(organizationID string, requestOrganizationsCreateOrganizationConfigTemplate *RequestOrganizationsCreateOrganizationConfigTemplate) (*ResponseOrganizationsCreateOrganizationConfigTemplate, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configTemplates"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -5319,20 +6018,21 @@ func (s *OrganizationsService) CreateOrganizationConfigTemplate(organizationID s
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestOrganizationsCreateOrganizationConfigTemplate).
-		// SetResult(&ResponseOrganizationsCreateOrganizationConfigTemplate{}).
+		SetResult(&ResponseOrganizationsCreateOrganizationConfigTemplate{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateOrganizationConfigTemplate")
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationConfigTemplate")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseOrganizationsCreateOrganizationConfigTemplate)
+	return result, response, err
 
 }
 
@@ -5372,14 +6072,14 @@ func (s *OrganizationsService) CreateOrganizationEarlyAccessFeaturesOptIn(organi
 }
 
 //ClaimIntoOrganizationInventory Claim a list of devices, licenses, and/or orders into an organization inventory
-/* Claim a list of devices, licenses, and/or orders into an organization inventory. When claiming by order, all devices and licenses in the order will be claimed; licenses will be added to the organization and devices will be placed in the organization's inventory. Use /organizations/{organizationId}/inventory/release to release devices from an organization.
+/* Claim a list of devices, licenses, and/or orders into an organization inventory. When claiming by order, all devices and licenses in the order will be claimed; licenses will be added to the organization and devices will be placed in the organization's inventory. This operation can be used up to ten times within a single five minute window.
 
 @param organizationID organizationId path parameter. Organization ID
 
 
 */
 
-func (s *OrganizationsService) ClaimIntoOrganizationInventory(organizationID string, requestOrganizationsClaimIntoOrganizationInventory *RequestOrganizationsClaimIntoOrganizationInventory) (*resty.Response, error) {
+func (s *OrganizationsService) ClaimIntoOrganizationInventory(organizationID string, requestOrganizationsClaimIntoOrganizationInventory *RequestOrganizationsClaimIntoOrganizationInventory) (*ResponseOrganizationsClaimIntoOrganizationInventory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/claim"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -5388,20 +6088,56 @@ func (s *OrganizationsService) ClaimIntoOrganizationInventory(organizationID str
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestOrganizationsClaimIntoOrganizationInventory).
-		// SetResult(&ResponseOrganizationsClaimIntoOrganizationInventory{}).
+		SetResult(&ResponseOrganizationsClaimIntoOrganizationInventory{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation ClaimIntoOrganizationInventory")
+		return nil, response, fmt.Errorf("error with operation ClaimIntoOrganizationInventory")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseOrganizationsClaimIntoOrganizationInventory)
+	return result, response, err
+
+}
+
+//CreateOrganizationInventoryDevicesSwapsBulk Swap the devices identified by devices.old with a devices.new, then perform the :afterAction on the devices.old.
+/* Swap the devices identified by devices.old with a devices.new, then perform the :afterAction on the devices.old.
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *OrganizationsService) CreateOrganizationInventoryDevicesSwapsBulk(organizationID string, requestOrganizationsCreateOrganizationInventoryDevicesSwapsBulk *RequestOrganizationsCreateOrganizationInventoryDevicesSwapsBulk) (*ResponseOrganizationsCreateOrganizationInventoryDevicesSwapsBulk, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/inventory/devices/swaps/bulk"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestOrganizationsCreateOrganizationInventoryDevicesSwapsBulk).
+		SetResult(&ResponseOrganizationsCreateOrganizationInventoryDevicesSwapsBulk{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationInventoryDevicesSwapsBulk")
+	}
+
+	result := response.Result().(*ResponseOrganizationsCreateOrganizationInventoryDevicesSwapsBulk)
+	return result, response, err
 
 }
 
@@ -5517,7 +6253,7 @@ func (s *OrganizationsService) CreateOrganizationInventoryOnboardingCloudMonitor
 
 */
 
-func (s *OrganizationsService) ReleaseFromOrganizationInventory(organizationID string, requestOrganizationsReleaseFromOrganizationInventory *RequestOrganizationsReleaseFromOrganizationInventory) (*resty.Response, error) {
+func (s *OrganizationsService) ReleaseFromOrganizationInventory(organizationID string, requestOrganizationsReleaseFromOrganizationInventory *RequestOrganizationsReleaseFromOrganizationInventory) (*ResponseOrganizationsReleaseFromOrganizationInventory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/release"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -5526,20 +6262,21 @@ func (s *OrganizationsService) ReleaseFromOrganizationInventory(organizationID s
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestOrganizationsReleaseFromOrganizationInventory).
-		// SetResult(&ResponseOrganizationsReleaseFromOrganizationInventory{}).
+		SetResult(&ResponseOrganizationsReleaseFromOrganizationInventory{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation ReleaseFromOrganizationInventory")
+		return nil, response, fmt.Errorf("error with operation ReleaseFromOrganizationInventory")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseOrganizationsReleaseFromOrganizationInventory)
+	return result, response, err
 
 }
 
@@ -5761,7 +6498,7 @@ func (s *OrganizationsService) CombineOrganizationNetworks(organizationID string
 
 */
 
-func (s *OrganizationsService) CreateOrganizationPolicyObject(organizationID string, requestOrganizationsCreateOrganizationPolicyObject *RequestOrganizationsCreateOrganizationPolicyObject) (*resty.Response, error) {
+func (s *OrganizationsService) CreateOrganizationPolicyObject(organizationID string, requestOrganizationsCreateOrganizationPolicyObject *RequestOrganizationsCreateOrganizationPolicyObject) (*ResponseOrganizationsCreateOrganizationPolicyObject, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -5770,20 +6507,21 @@ func (s *OrganizationsService) CreateOrganizationPolicyObject(organizationID str
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestOrganizationsCreateOrganizationPolicyObject).
-		// SetResult(&ResponseOrganizationsCreateOrganizationPolicyObject{}).
+		SetResult(&ResponseOrganizationsCreateOrganizationPolicyObject{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateOrganizationPolicyObject")
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationPolicyObject")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseOrganizationsCreateOrganizationPolicyObject)
+	return result, response, err
 
 }
 
@@ -5795,7 +6533,7 @@ func (s *OrganizationsService) CreateOrganizationPolicyObject(organizationID str
 
 */
 
-func (s *OrganizationsService) CreateOrganizationPolicyObjectsGroup(organizationID string, requestOrganizationsCreateOrganizationPolicyObjectsGroup *RequestOrganizationsCreateOrganizationPolicyObjectsGroup) (*resty.Response, error) {
+func (s *OrganizationsService) CreateOrganizationPolicyObjectsGroup(organizationID string, requestOrganizationsCreateOrganizationPolicyObjectsGroup *RequestOrganizationsCreateOrganizationPolicyObjectsGroup) (*ResponseOrganizationsCreateOrganizationPolicyObjectsGroup, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects/groups"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -5804,20 +6542,21 @@ func (s *OrganizationsService) CreateOrganizationPolicyObjectsGroup(organization
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestOrganizationsCreateOrganizationPolicyObjectsGroup).
-		// SetResult(&ResponseOrganizationsCreateOrganizationPolicyObjectsGroup{}).
+		SetResult(&ResponseOrganizationsCreateOrganizationPolicyObjectsGroup{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateOrganizationPolicyObjectsGroup")
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationPolicyObjectsGroup")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseOrganizationsCreateOrganizationPolicyObjectsGroup)
+	return result, response, err
 
 }
 
@@ -5864,7 +6603,7 @@ func (s *OrganizationsService) CreateOrganizationSamlIDp(organizationID string, 
 
 */
 
-func (s *OrganizationsService) CreateOrganizationSamlRole(organizationID string, requestOrganizationsCreateOrganizationSamlRole *RequestOrganizationsCreateOrganizationSamlRole) (*resty.Response, error) {
+func (s *OrganizationsService) CreateOrganizationSamlRole(organizationID string, requestOrganizationsCreateOrganizationSamlRole *RequestOrganizationsCreateOrganizationSamlRole) (*ResponseOrganizationsCreateOrganizationSamlRole, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/samlRoles"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -5873,20 +6612,21 @@ func (s *OrganizationsService) CreateOrganizationSamlRole(organizationID string,
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestOrganizationsCreateOrganizationSamlRole).
-		// SetResult(&ResponseOrganizationsCreateOrganizationSamlRole{}).
+		SetResult(&ResponseOrganizationsCreateOrganizationSamlRole{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateOrganizationSamlRole")
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationSamlRole")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseOrganizationsCreateOrganizationSamlRole)
+	return result, response, err
 
 }
 
@@ -5928,7 +6668,7 @@ func (s *OrganizationsService) UpdateOrganization(organizationID string, request
 @param organizationID organizationId path parameter. Organization ID
 @param actionBatchID actionBatchId path parameter. Action batch ID
 */
-func (s *OrganizationsService) UpdateOrganizationActionBatch(organizationID string, actionBatchID string, requestOrganizationsUpdateOrganizationActionBatch *RequestOrganizationsUpdateOrganizationActionBatch) (*resty.Response, error) {
+func (s *OrganizationsService) UpdateOrganizationActionBatch(organizationID string, actionBatchID string, requestOrganizationsUpdateOrganizationActionBatch *RequestOrganizationsUpdateOrganizationActionBatch) (*ResponseOrganizationsUpdateOrganizationActionBatch, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/actionBatches/{actionBatchId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -5938,19 +6678,21 @@ func (s *OrganizationsService) UpdateOrganizationActionBatch(organizationID stri
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestOrganizationsUpdateOrganizationActionBatch).
+		SetResult(&ResponseOrganizationsUpdateOrganizationActionBatch{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateOrganizationActionBatch")
+		return nil, response, fmt.Errorf("error with operation UpdateOrganizationActionBatch")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseOrganizationsUpdateOrganizationActionBatch)
+	return result, response, err
 
 }
 
@@ -6122,7 +6864,7 @@ func (s *OrganizationsService) UpdateOrganizationAdmin(organizationID string, ad
 @param organizationID organizationId path parameter. Organization ID
 @param alertConfigID alertConfigId path parameter. Alert config ID
 */
-func (s *OrganizationsService) UpdateOrganizationAlertsProfile(organizationID string, alertConfigID string, requestOrganizationsUpdateOrganizationAlertsProfile *RequestOrganizationsUpdateOrganizationAlertsProfile) (*resty.Response, error) {
+func (s *OrganizationsService) UpdateOrganizationAlertsProfile(organizationID string, alertConfigID string, requestOrganizationsUpdateOrganizationAlertsProfile *RequestOrganizationsUpdateOrganizationAlertsProfile) (*ResponseOrganizationsUpdateOrganizationAlertsProfile, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/alerts/profiles/{alertConfigId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -6132,19 +6874,21 @@ func (s *OrganizationsService) UpdateOrganizationAlertsProfile(organizationID st
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestOrganizationsUpdateOrganizationAlertsProfile).
+		SetResult(&ResponseOrganizationsUpdateOrganizationAlertsProfile{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateOrganizationAlertsProfile")
+		return nil, response, fmt.Errorf("error with operation UpdateOrganizationAlertsProfile")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseOrganizationsUpdateOrganizationAlertsProfile)
+	return result, response, err
 
 }
 
@@ -6220,7 +6964,7 @@ func (s *OrganizationsService) UpdateOrganizationBrandingPolicy(organizationID s
 @param organizationID organizationId path parameter. Organization ID
 @param configTemplateID configTemplateId path parameter. Config template ID
 */
-func (s *OrganizationsService) UpdateOrganizationConfigTemplate(organizationID string, configTemplateID string, requestOrganizationsUpdateOrganizationConfigTemplate *RequestOrganizationsUpdateOrganizationConfigTemplate) (*resty.Response, error) {
+func (s *OrganizationsService) UpdateOrganizationConfigTemplate(organizationID string, configTemplateID string, requestOrganizationsUpdateOrganizationConfigTemplate *RequestOrganizationsUpdateOrganizationConfigTemplate) (*ResponseOrganizationsUpdateOrganizationConfigTemplate, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configTemplates/{configTemplateId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -6230,19 +6974,21 @@ func (s *OrganizationsService) UpdateOrganizationConfigTemplate(organizationID s
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestOrganizationsUpdateOrganizationConfigTemplate).
+		SetResult(&ResponseOrganizationsUpdateOrganizationConfigTemplate{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateOrganizationConfigTemplate")
+		return nil, response, fmt.Errorf("error with operation UpdateOrganizationConfigTemplate")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseOrganizationsUpdateOrganizationConfigTemplate)
+	return result, response, err
 
 }
 
@@ -6252,7 +6998,7 @@ func (s *OrganizationsService) UpdateOrganizationConfigTemplate(organizationID s
 @param organizationID organizationId path parameter. Organization ID
 @param optInID optInId path parameter. Opt in ID
 */
-func (s *OrganizationsService) UpdateOrganizationEarlyAccessFeaturesOptIn(organizationID string, optInID string, requestOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn *RequestOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn) (*resty.Response, error) {
+func (s *OrganizationsService) UpdateOrganizationEarlyAccessFeaturesOptIn(organizationID string, optInID string, requestOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn *RequestOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn) (*ResponseOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -6262,19 +7008,21 @@ func (s *OrganizationsService) UpdateOrganizationEarlyAccessFeaturesOptIn(organi
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn).
+		SetResult(&ResponseOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateOrganizationEarlyAccessFeaturesOptIn")
+		return nil, response, fmt.Errorf("error with operation UpdateOrganizationEarlyAccessFeaturesOptIn")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn)
+	return result, response, err
 
 }
 
@@ -6350,7 +7098,7 @@ func (s *OrganizationsService) UpdateOrganizationLoginSecurity(organizationID st
 @param organizationID organizationId path parameter. Organization ID
 @param policyObjectGroupID policyObjectGroupId path parameter. Policy object group ID
 */
-func (s *OrganizationsService) UpdateOrganizationPolicyObjectsGroup(organizationID string, policyObjectGroupID string, requestOrganizationsUpdateOrganizationPolicyObjectsGroup *RequestOrganizationsUpdateOrganizationPolicyObjectsGroup) (*resty.Response, error) {
+func (s *OrganizationsService) UpdateOrganizationPolicyObjectsGroup(organizationID string, policyObjectGroupID string, requestOrganizationsUpdateOrganizationPolicyObjectsGroup *RequestOrganizationsUpdateOrganizationPolicyObjectsGroup) (*ResponseOrganizationsUpdateOrganizationPolicyObjectsGroup, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -6360,19 +7108,21 @@ func (s *OrganizationsService) UpdateOrganizationPolicyObjectsGroup(organization
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestOrganizationsUpdateOrganizationPolicyObjectsGroup).
+		SetResult(&ResponseOrganizationsUpdateOrganizationPolicyObjectsGroup{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateOrganizationPolicyObjectsGroup")
+		return nil, response, fmt.Errorf("error with operation UpdateOrganizationPolicyObjectsGroup")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseOrganizationsUpdateOrganizationPolicyObjectsGroup)
+	return result, response, err
 
 }
 
@@ -6382,7 +7132,7 @@ func (s *OrganizationsService) UpdateOrganizationPolicyObjectsGroup(organization
 @param organizationID organizationId path parameter. Organization ID
 @param policyObjectID policyObjectId path parameter. Policy object ID
 */
-func (s *OrganizationsService) UpdateOrganizationPolicyObject(organizationID string, policyObjectID string, requestOrganizationsUpdateOrganizationPolicyObject *RequestOrganizationsUpdateOrganizationPolicyObject) (*resty.Response, error) {
+func (s *OrganizationsService) UpdateOrganizationPolicyObject(organizationID string, policyObjectID string, requestOrganizationsUpdateOrganizationPolicyObject *RequestOrganizationsUpdateOrganizationPolicyObject) (*ResponseOrganizationsUpdateOrganizationPolicyObject, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects/{policyObjectId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -6392,19 +7142,21 @@ func (s *OrganizationsService) UpdateOrganizationPolicyObject(organizationID str
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestOrganizationsUpdateOrganizationPolicyObject).
+		SetResult(&ResponseOrganizationsUpdateOrganizationPolicyObject{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateOrganizationPolicyObject")
+		return nil, response, fmt.Errorf("error with operation UpdateOrganizationPolicyObject")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseOrganizationsUpdateOrganizationPolicyObject)
+	return result, response, err
 
 }
 
@@ -6513,7 +7265,7 @@ func (s *OrganizationsService) UpdateOrganizationSamlRole(organizationID string,
 
 @param organizationID organizationId path parameter. Organization ID
 */
-func (s *OrganizationsService) UpdateOrganizationSNMP(organizationID string, requestOrganizationsUpdateOrganizationSnmp *RequestOrganizationsUpdateOrganizationSNMP) (*resty.Response, error) {
+func (s *OrganizationsService) UpdateOrganizationSNMP(organizationID string, requestOrganizationsUpdateOrganizationSnmp *RequestOrganizationsUpdateOrganizationSNMP) (*ResponseOrganizationsUpdateOrganizationSNMP, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/snmp"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -6522,19 +7274,21 @@ func (s *OrganizationsService) UpdateOrganizationSNMP(organizationID string, req
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestOrganizationsUpdateOrganizationSnmp).
+		SetResult(&ResponseOrganizationsUpdateOrganizationSNMP{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateOrganizationSnmp")
+		return nil, response, fmt.Errorf("error with operation UpdateOrganizationSnmp")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseOrganizationsUpdateOrganizationSNMP)
+	return result, response, err
 
 }
 

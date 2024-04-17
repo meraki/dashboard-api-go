@@ -29,6 +29,19 @@ type GetDeviceCameraAnalyticsZoneHistoryQueryParams struct {
 type GetDeviceCameraVideoLinkQueryParams struct {
 	Timestamp string `url:"timestamp,omitempty"` //[optional] The video link will start at this time. The timestamp should be a string in ISO8601 format. If no timestamp is specified, we will assume current time.
 }
+type GetOrganizationCameraBoundariesAreasByDeviceQueryParams struct {
+	Serials []string `url:"serials[],omitempty"` //A list of serial numbers. The returned cameras will be filtered to only include these serials.
+}
+type GetOrganizationCameraBoundariesLinesByDeviceQueryParams struct {
+	Serials []string `url:"serials[],omitempty"` //A list of serial numbers. The returned cameras will be filtered to only include these serials.
+}
+type GetOrganizationCameraDetectionsHistoryByBoundaryByIntervalQueryParams struct {
+	BoundaryIDs   []string `url:"boundaryIds[],omitempty"`   //A list of boundary ids. The returned cameras will be filtered to only include these ids.
+	Ranges        []string `url:"ranges[],omitempty"`        //A list of time ranges with intervals
+	Duration      int      `url:"duration,omitempty"`        //The minimum time, in seconds, that the person or car remains in the area to be counted. Defaults to boundary configuration or 60.
+	PerPage       int      `url:"perPage,omitempty"`         //The number of entries per page returned. Acceptable range is 1 - 1000. Defaults to 1000.
+	BoundaryTypes []string `url:"boundaryTypes[],omitempty"` //The detection types. Defaults to 'person'.
+}
 type GetOrganizationCameraOnboardingStatusesQueryParams struct {
 	Serials    []string `url:"serials[],omitempty"`    //A list of serial numbers. The returned cameras will be filtered to only include these serials.
 	NetworkIDs []string `url:"networkIds[],omitempty"` //A list of network IDs. The returned cameras will be filtered to only include these networks.
@@ -81,15 +94,23 @@ type ResponseItemCameraGetDeviceCameraAnalyticsZoneHistory struct {
 	StartTs      string   `json:"startTs,omitempty"`      //
 }
 type ResponseCameraGetDeviceCameraCustomAnalytics struct {
-	ArtifactID string                                                    `json:"artifactId,omitempty"` //
-	Enabled    *bool                                                     `json:"enabled,omitempty"`    //
-	Parameters *[]ResponseCameraGetDeviceCameraCustomAnalyticsParameters `json:"parameters,omitempty"` //
+	ArtifactID string                                                    `json:"artifactId,omitempty"` // Custom analytics artifact ID
+	Enabled    *bool                                                     `json:"enabled,omitempty"`    // Whether custom analytics is enabled
+	Parameters *[]ResponseCameraGetDeviceCameraCustomAnalyticsParameters `json:"parameters,omitempty"` // Parameters for the custom analytics workload
 }
 type ResponseCameraGetDeviceCameraCustomAnalyticsParameters struct {
-	Name  string   `json:"name,omitempty"`  //
-	Value *float64 `json:"value,omitempty"` //
+	Name  string   `json:"name,omitempty"`  // Name of the parameter
+	Value *float64 `json:"value,omitempty"` // Value of the parameter
 }
-type ResponseCameraUpdateDeviceCameraCustomAnalytics interface{}
+type ResponseCameraUpdateDeviceCameraCustomAnalytics struct {
+	ArtifactID string                                                       `json:"artifactId,omitempty"` // Custom analytics artifact ID
+	Enabled    *bool                                                        `json:"enabled,omitempty"`    // Whether custom analytics is enabled
+	Parameters *[]ResponseCameraUpdateDeviceCameraCustomAnalyticsParameters `json:"parameters,omitempty"` // Parameters for the custom analytics workload
+}
+type ResponseCameraUpdateDeviceCameraCustomAnalyticsParameters struct {
+	Name  string   `json:"name,omitempty"`  // Name of the parameter
+	Value *float64 `json:"value,omitempty"` // Value of the parameter
+}
 type ResponseCameraGenerateDeviceCameraSnapshot interface{}
 type ResponseCameraGetDeviceCameraQualityAndRetention struct {
 	AudioRecordingEnabled          *bool  `json:"audioRecordingEnabled,omitempty"`          //
@@ -117,12 +138,16 @@ type ResponseItemCameraGetDeviceCameraSenseObjectDetectionModels struct {
 	ID          string `json:"id,omitempty"`          //
 }
 type ResponseCameraGetDeviceCameraVideoSettings struct {
-	ExternalRtspEnabled *bool  `json:"externalRtspEnabled,omitempty"` //
-	RtspURL             string `json:"rtspUrl,omitempty"`             //
+	ExternalRtspEnabled *bool  `json:"externalRtspEnabled,omitempty"` // Boolean indicating if external rtsp stream is exposed
+	RtspURL             string `json:"rtspUrl,omitempty"`             // External rstp url. Will only be returned if external rtsp stream is exposed
 }
-type ResponseCameraUpdateDeviceCameraVideoSettings interface{}
+type ResponseCameraUpdateDeviceCameraVideoSettings struct {
+	ExternalRtspEnabled *bool  `json:"externalRtspEnabled,omitempty"` // Boolean indicating if external rtsp stream is exposed
+	RtspURL             string `json:"rtspUrl,omitempty"`             // External rstp url. Will only be returned if external rtsp stream is exposed
+}
 type ResponseCameraGetDeviceCameraVideoLink struct {
-	URL string `json:"url,omitempty"` //
+	URL       string `json:"url,omitempty"`       //
+	VisionURL string `json:"visionUrl,omitempty"` //
 }
 type ResponseCameraGetDeviceCameraWirelessProfiles struct {
 	IDs *ResponseCameraGetDeviceCameraWirelessProfilesIDs `json:"ids,omitempty"` //
@@ -144,6 +169,7 @@ type ResponseItemCameraGetNetworkCameraQualityRetentionProfiles struct {
 	Name                           string                                                                   `json:"name,omitempty"`                           //
 	NetworkID                      string                                                                   `json:"networkId,omitempty"`                      //
 	RestrictedBandwidthModeEnabled *bool                                                                    `json:"restrictedBandwidthModeEnabled,omitempty"` //
+	ScheduleID                     string                                                                   `json:"scheduleId,omitempty"`                     //
 	VideoSettings                  *ResponseItemCameraGetNetworkCameraQualityRetentionProfilesVideoSettings `json:"videoSettings,omitempty"`                  //
 }
 type ResponseItemCameraGetNetworkCameraQualityRetentionProfilesVideoSettings struct {
@@ -179,6 +205,7 @@ type ResponseCameraGetNetworkCameraQualityRetentionProfile struct {
 	Name                           string                                                              `json:"name,omitempty"`                           //
 	NetworkID                      string                                                              `json:"networkId,omitempty"`                      //
 	RestrictedBandwidthModeEnabled *bool                                                               `json:"restrictedBandwidthModeEnabled,omitempty"` //
+	ScheduleID                     string                                                              `json:"scheduleId,omitempty"`                     //
 	VideoSettings                  *ResponseCameraGetNetworkCameraQualityRetentionProfileVideoSettings `json:"videoSettings,omitempty"`                  //
 }
 type ResponseCameraGetNetworkCameraQualityRetentionProfileVideoSettings struct {
@@ -206,8 +233,8 @@ type ResponseCameraGetNetworkCameraQualityRetentionProfileVideoSettingsMV32 stru
 type ResponseCameraUpdateNetworkCameraQualityRetentionProfile interface{}
 type ResponseCameraGetNetworkCameraSchedules []ResponseItemCameraGetNetworkCameraSchedules // Array of ResponseCameraGetNetworkCameraSchedules
 type ResponseItemCameraGetNetworkCameraSchedules struct {
-	ID   string `json:"id,omitempty"`   //
-	Name string `json:"name,omitempty"` //
+	ID   string `json:"id,omitempty"`   // Schedule id
+	Name string `json:"name,omitempty"` // Schedule name
 }
 type ResponseCameraGetNetworkCameraWirelessProfiles []ResponseItemCameraGetNetworkCameraWirelessProfiles // Array of ResponseCameraGetNetworkCameraWirelessProfiles
 type ResponseItemCameraGetNetworkCameraWirelessProfiles struct {
@@ -244,25 +271,89 @@ type ResponseCameraGetNetworkCameraWirelessProfileSSID struct {
 	Name           string `json:"name,omitempty"`           //
 }
 type ResponseCameraUpdateNetworkCameraWirelessProfile interface{}
+type ResponseCameraGetOrganizationCameraBoundariesAreasByDevice []ResponseItemCameraGetOrganizationCameraBoundariesAreasByDevice // Array of ResponseCameraGetOrganizationCameraBoundariesAreasByDevice
+type ResponseItemCameraGetOrganizationCameraBoundariesAreasByDevice struct {
+	Boundaries *ResponseItemCameraGetOrganizationCameraBoundariesAreasByDeviceBoundaries `json:"boundaries,omitempty"` // Configured area boundaries of the camera
+	NetworkID  string                                                                    `json:"networkId,omitempty"`  // The network id of the camera
+	Serial     string                                                                    `json:"serial,omitempty"`     // The serial number of the camera
+}
+type ResponseItemCameraGetOrganizationCameraBoundariesAreasByDeviceBoundaries struct {
+	ID       string                                                                              `json:"id,omitempty"`       // The area boundary id
+	Name     string                                                                              `json:"name,omitempty"`     // The area boundary name
+	Type     string                                                                              `json:"type,omitempty"`     // The area boundary type
+	Vertices *[]ResponseItemCameraGetOrganizationCameraBoundariesAreasByDeviceBoundariesVertices `json:"vertices,omitempty"` // The area boundary vertices
+}
+type ResponseItemCameraGetOrganizationCameraBoundariesAreasByDeviceBoundariesVertices struct {
+	X *float64 `json:"x,omitempty"` // The vertex x coordinate
+	Y *float64 `json:"y,omitempty"` // The vertex y coordinate
+}
+type ResponseCameraGetOrganizationCameraBoundariesLinesByDevice []ResponseItemCameraGetOrganizationCameraBoundariesLinesByDevice // Array of ResponseCameraGetOrganizationCameraBoundariesLinesByDevice
+type ResponseItemCameraGetOrganizationCameraBoundariesLinesByDevice struct {
+	Boundaries *ResponseItemCameraGetOrganizationCameraBoundariesLinesByDeviceBoundaries `json:"boundaries,omitempty"` // Configured line boundaries of the camera
+	NetworkID  string                                                                    `json:"networkId,omitempty"`  // The network id of the camera
+	Serial     string                                                                    `json:"serial,omitempty"`     // The serial number of the camera
+}
+type ResponseItemCameraGetOrganizationCameraBoundariesLinesByDeviceBoundaries struct {
+	DirectionVertex *ResponseItemCameraGetOrganizationCameraBoundariesLinesByDeviceBoundariesDirectionVertex `json:"directionVertex,omitempty"` // The line boundary crossing direction vertex
+	ID              string                                                                                   `json:"id,omitempty"`              // The line boundary id
+	Name            string                                                                                   `json:"name,omitempty"`            // The line boundary name
+	Type            string                                                                                   `json:"type,omitempty"`            // The line boundary type
+	Vertices        *[]ResponseItemCameraGetOrganizationCameraBoundariesLinesByDeviceBoundariesVertices      `json:"vertices,omitempty"`        // The line boundary vertices
+}
+type ResponseItemCameraGetOrganizationCameraBoundariesLinesByDeviceBoundariesDirectionVertex struct {
+	X *float64 `json:"x,omitempty"` // The vertex x coordinate
+	Y *float64 `json:"y,omitempty"` // The vertex y coordinate
+}
+type ResponseItemCameraGetOrganizationCameraBoundariesLinesByDeviceBoundariesVertices struct {
+	X *float64 `json:"x,omitempty"` // The vertex x coordinate
+	Y *float64 `json:"y,omitempty"` // The vertex y coordinate
+}
 type ResponseCameraGetOrganizationCameraCustomAnalyticsArtifacts []ResponseItemCameraGetOrganizationCameraCustomAnalyticsArtifacts // Array of ResponseCameraGetOrganizationCameraCustomAnalyticsArtifacts
 type ResponseItemCameraGetOrganizationCameraCustomAnalyticsArtifacts struct {
-	ArtifactID     string                                                                 `json:"artifactId,omitempty"`     //
-	Name           string                                                                 `json:"name,omitempty"`           //
-	OrganizationID string                                                                 `json:"organizationId,omitempty"` //
-	Status         *ResponseItemCameraGetOrganizationCameraCustomAnalyticsArtifactsStatus `json:"status,omitempty"`         //
+	ArtifactID     string                                                                 `json:"artifactId,omitempty"`     // Custom analytics artifact ID
+	Name           string                                                                 `json:"name,omitempty"`           // Custom analytics artifact name
+	OrganizationID string                                                                 `json:"organizationId,omitempty"` // Organization ID
+	Status         *ResponseItemCameraGetOrganizationCameraCustomAnalyticsArtifactsStatus `json:"status,omitempty"`         // Custom analytics artifact status
 }
 type ResponseItemCameraGetOrganizationCameraCustomAnalyticsArtifactsStatus struct {
-	Type string `json:"type,omitempty"` //
+	Message string `json:"message,omitempty"` // Status message
+	Type    string `json:"type,omitempty"`    // Status type
 }
-type ResponseCameraCreateOrganizationCameraCustomAnalyticsArtifact interface{}
+type ResponseCameraCreateOrganizationCameraCustomAnalyticsArtifact struct {
+	ArtifactID      string                                                               `json:"artifactId,omitempty"`      // Custom analytics artifact ID
+	Name            string                                                               `json:"name,omitempty"`            // Custom analytics artifact name
+	OrganizationID  string                                                               `json:"organizationId,omitempty"`  // Organization ID
+	Status          *ResponseCameraCreateOrganizationCameraCustomAnalyticsArtifactStatus `json:"status,omitempty"`          // Custom analytics artifact status
+	UploadID        string                                                               `json:"uploadId,omitempty"`        // Upload ID
+	UploadURL       string                                                               `json:"uploadUrl,omitempty"`       // Upload URL
+	UploadURLExpiry string                                                               `json:"uploadUrlExpiry,omitempty"` // Upload URL expiry time
+}
+type ResponseCameraCreateOrganizationCameraCustomAnalyticsArtifactStatus struct {
+	Message string `json:"message,omitempty"` // Status message
+	Type    string `json:"type,omitempty"`    // Status type
+}
 type ResponseCameraGetOrganizationCameraCustomAnalyticsArtifact struct {
-	ArtifactID     string                                                            `json:"artifactId,omitempty"`     //
-	Name           string                                                            `json:"name,omitempty"`           //
-	OrganizationID string                                                            `json:"organizationId,omitempty"` //
-	Status         *ResponseCameraGetOrganizationCameraCustomAnalyticsArtifactStatus `json:"status,omitempty"`         //
+	ArtifactID     string                                                            `json:"artifactId,omitempty"`     // Custom analytics artifact ID
+	Name           string                                                            `json:"name,omitempty"`           // Custom analytics artifact name
+	OrganizationID string                                                            `json:"organizationId,omitempty"` // Organization ID
+	Status         *ResponseCameraGetOrganizationCameraCustomAnalyticsArtifactStatus `json:"status,omitempty"`         // Custom analytics artifact status
 }
 type ResponseCameraGetOrganizationCameraCustomAnalyticsArtifactStatus struct {
-	Type string `json:"type,omitempty"` //
+	Message string `json:"message,omitempty"` // Status message
+	Type    string `json:"type,omitempty"`    // Status type
+}
+type ResponseCameraGetOrganizationCameraDetectionsHistoryByBoundaryByInterval []ResponseItemCameraGetOrganizationCameraDetectionsHistoryByBoundaryByInterval // Array of ResponseCameraGetOrganizationCameraDetectionsHistoryByBoundaryByInterval
+type ResponseItemCameraGetOrganizationCameraDetectionsHistoryByBoundaryByInterval struct {
+	BoundaryID string                                                                               `json:"boundaryId,omitempty"` // The boundary id
+	Results    *ResponseItemCameraGetOrganizationCameraDetectionsHistoryByBoundaryByIntervalResults `json:"results,omitempty"`    // The analytics data
+	Type       string                                                                               `json:"type,omitempty"`       // The boundary type
+}
+type ResponseItemCameraGetOrganizationCameraDetectionsHistoryByBoundaryByIntervalResults struct {
+	EndTime    string `json:"endTime,omitempty"`    // The period end time
+	In         *int   `json:"in,omitempty"`         // The number of detections entered
+	ObjectType string `json:"objectType,omitempty"` // The detection type
+	Out        *int   `json:"out,omitempty"`        // The number of detections exited
+	StartTime  string `json:"startTime,omitempty"`  // The period start time
 }
 type ResponseCameraGetOrganizationCameraOnboardingStatuses []ResponseItemCameraGetOrganizationCameraOnboardingStatuses // Array of ResponseCameraGetOrganizationCameraOnboardingStatuses
 type ResponseItemCameraGetOrganizationCameraOnboardingStatuses struct {
@@ -272,6 +363,72 @@ type ResponseItemCameraGetOrganizationCameraOnboardingStatuses struct {
 	UpdatedAt string `json:"updatedAt,omitempty"` //
 }
 type ResponseCameraUpdateOrganizationCameraOnboardingStatuses interface{}
+type ResponseCameraGetOrganizationCameraPermissions []ResponseItemCameraGetOrganizationCameraPermissions // Array of ResponseCameraGetOrganizationCameraPermissions
+type ResponseItemCameraGetOrganizationCameraPermissions struct {
+	ID    string `json:"id,omitempty"`    // Permission scope id
+	Level string `json:"level,omitempty"` // Permission scope level
+	Name  string `json:"name,omitempty"`  // Name of permission scope
+}
+type ResponseCameraGetOrganizationCameraPermission struct {
+	ID    string `json:"id,omitempty"`    // Permission scope id
+	Level string `json:"level,omitempty"` // Permission scope level
+	Name  string `json:"name,omitempty"`  // Name of permission scope
+}
+type ResponseCameraGetOrganizationCameraRoles []ResponseItemCameraGetOrganizationCameraRoles // Array of ResponseCameraGetOrganizationCameraRoles
+type ResponseItemCameraGetOrganizationCameraRoles struct {
+	AppliedOnDevices  *[]ResponseItemCameraGetOrganizationCameraRolesAppliedOnDevices  `json:"appliedOnDevices,omitempty"`  //
+	AppliedOnNetworks *[]ResponseItemCameraGetOrganizationCameraRolesAppliedOnNetworks `json:"appliedOnNetworks,omitempty"` //
+	AppliedOrgWide    *[]ResponseItemCameraGetOrganizationCameraRolesAppliedOrgWide    `json:"appliedOrgWide,omitempty"`    //
+	Name              string                                                           `json:"name,omitempty"`              //
+}
+type ResponseItemCameraGetOrganizationCameraRolesAppliedOnDevices struct {
+	ID                string `json:"id,omitempty"`                //
+	PermissionLevel   string `json:"permissionLevel,omitempty"`   //
+	PermissionScope   string `json:"permissionScope,omitempty"`   //
+	PermissionScopeID string `json:"permissionScopeId,omitempty"` //
+	Tag               string `json:"tag,omitempty"`               //
+}
+type ResponseItemCameraGetOrganizationCameraRolesAppliedOnNetworks struct {
+	ID                string `json:"id,omitempty"`                //
+	PermissionLevel   string `json:"permissionLevel,omitempty"`   //
+	PermissionScope   string `json:"permissionScope,omitempty"`   //
+	PermissionScopeID string `json:"permissionScopeId,omitempty"` //
+	Tag               string `json:"tag,omitempty"`               //
+}
+type ResponseItemCameraGetOrganizationCameraRolesAppliedOrgWide struct {
+	PermissionLevel   string `json:"permissionLevel,omitempty"`   //
+	PermissionScope   string `json:"permissionScope,omitempty"`   //
+	PermissionScopeID string `json:"permissionScopeId,omitempty"` //
+	Tag               string `json:"tag,omitempty"`               //
+}
+type ResponseCameraCreateOrganizationCameraRole interface{}
+type ResponseCameraGetOrganizationCameraRole struct {
+	AppliedOnDevices  *[]ResponseCameraGetOrganizationCameraRoleAppliedOnDevices  `json:"appliedOnDevices,omitempty"`  //
+	AppliedOnNetworks *[]ResponseCameraGetOrganizationCameraRoleAppliedOnNetworks `json:"appliedOnNetworks,omitempty"` //
+	AppliedOrgWide    *[]ResponseCameraGetOrganizationCameraRoleAppliedOrgWide    `json:"appliedOrgWide,omitempty"`    //
+	Name              string                                                      `json:"name,omitempty"`              //
+}
+type ResponseCameraGetOrganizationCameraRoleAppliedOnDevices struct {
+	ID                string `json:"id,omitempty"`                //
+	PermissionLevel   string `json:"permissionLevel,omitempty"`   //
+	PermissionScope   string `json:"permissionScope,omitempty"`   //
+	PermissionScopeID string `json:"permissionScopeId,omitempty"` //
+	Tag               string `json:"tag,omitempty"`               //
+}
+type ResponseCameraGetOrganizationCameraRoleAppliedOnNetworks struct {
+	ID                string `json:"id,omitempty"`                //
+	PermissionLevel   string `json:"permissionLevel,omitempty"`   //
+	PermissionScope   string `json:"permissionScope,omitempty"`   //
+	PermissionScopeID string `json:"permissionScopeId,omitempty"` //
+	Tag               string `json:"tag,omitempty"`               //
+}
+type ResponseCameraGetOrganizationCameraRoleAppliedOrgWide struct {
+	PermissionLevel   string `json:"permissionLevel,omitempty"`   //
+	PermissionScope   string `json:"permissionScope,omitempty"`   //
+	PermissionScopeID string `json:"permissionScopeId,omitempty"` //
+	Tag               string `json:"tag,omitempty"`               //
+}
+type ResponseCameraUpdateOrganizationCameraRole interface{}
 type RequestCameraUpdateDeviceCameraCustomAnalytics struct {
 	ArtifactID string                                                      `json:"artifactId,omitempty"` // The ID of the custom analytics artifact
 	Enabled    *bool                                                       `json:"enabled,omitempty"`    // Enable custom analytics
@@ -291,7 +448,7 @@ type RequestCameraUpdateDeviceCameraQualityAndRetention struct {
 	MotionDetectorVersion          *int   `json:"motionDetectorVersion,omitempty"`          // The version of the motion detector that will be used by the camera. Only applies to Gen 2 cameras. Defaults to v2.
 	ProfileID                      string `json:"profileId,omitempty"`                      // The ID of a quality and retention profile to assign to the camera. The profile's settings will override all of the per-camera quality and retention settings. If the value of this parameter is null, any existing profile will be unassigned from the camera.
 	Quality                        string `json:"quality,omitempty"`                        // Quality of the camera. Can be one of 'Standard', 'High' or 'Enhanced'. Not all qualities are supported by every camera model.
-	Resolution                     string `json:"resolution,omitempty"`                     // Resolution of the camera. Can be one of '1280x720', '1920x1080', '1080x1080', '2058x2058', '2112x2112', '2880x2880', '2688x1512' or '3840x2160'.Not all resolutions are supported by every camera model.
+	Resolution                     string `json:"resolution,omitempty"`                     // Resolution of the camera. Can be one of '1280x720', '1920x1080', '1080x1080', '2112x2112', '2880x2880', '2688x1512' or '3840x2160'.Not all resolutions are supported by every camera model.
 	RestrictedBandwidthModeEnabled *bool  `json:"restrictedBandwidthModeEnabled,omitempty"` // Boolean indicating if restricted bandwidth is enabled(true) or disabled(false) on the camera. This setting does not apply to MV2 cameras.
 }
 type RequestCameraUpdateDeviceCameraSense struct {
@@ -349,7 +506,7 @@ type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV12WE 
 }
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV13 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
-	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080' or '2688x1512'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
 }
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV21MV71 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
@@ -361,11 +518,11 @@ type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV22XMV
 }
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV32 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
-	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080' or '2058x2058'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080' or '2112x2112'.
 }
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV33 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
-	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080' or '2112x2112'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080', '2112x2112' or '2880x2880'.
 }
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV52 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
@@ -422,7 +579,7 @@ type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV12WE 
 }
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV13 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
-	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080' or '2688x1512'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
 }
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV21MV71 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
@@ -434,11 +591,11 @@ type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV22XMV
 }
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV32 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
-	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080' or '2058x2058'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080' or '2112x2112'.
 }
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV33 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
-	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080' or '2112x2112'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080', '2112x2112' or '2880x2880'.
 }
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV52 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
@@ -496,6 +653,48 @@ type RequestCameraCreateOrganizationCameraCustomAnalyticsArtifact struct {
 type RequestCameraUpdateOrganizationCameraOnboardingStatuses struct {
 	Serial                  string `json:"serial,omitempty"`                  // Serial of camera
 	WirelessCredentialsSent *bool  `json:"wirelessCredentialsSent,omitempty"` // Note whether credentials were sent successfully
+}
+type RequestCameraCreateOrganizationCameraRole struct {
+	AppliedOnDevices  *[]RequestCameraCreateOrganizationCameraRoleAppliedOnDevices  `json:"appliedOnDevices,omitempty"`  // Device tag on which this specified permission is applied.
+	AppliedOnNetworks *[]RequestCameraCreateOrganizationCameraRoleAppliedOnNetworks `json:"appliedOnNetworks,omitempty"` // Network tag on which this specified permission is applied.
+	AppliedOrgWide    *[]RequestCameraCreateOrganizationCameraRoleAppliedOrgWide    `json:"appliedOrgWide,omitempty"`    // Permissions to be applied org wide.
+	Name              string                                                        `json:"name,omitempty"`              // The name of the new role. Must be unique. This parameter is required.
+}
+type RequestCameraCreateOrganizationCameraRoleAppliedOnDevices struct {
+	ID                string `json:"id,omitempty"`                // Device id.
+	InNetworksWithID  string `json:"inNetworksWithId,omitempty"`  // Network id scope
+	InNetworksWithTag string `json:"inNetworksWithTag,omitempty"` // Network tag scope
+	PermissionScopeID string `json:"permissionScopeId,omitempty"` // Permission scope id
+	Tag               string `json:"tag,omitempty"`               // Device tag.
+}
+type RequestCameraCreateOrganizationCameraRoleAppliedOnNetworks struct {
+	ID                string `json:"id,omitempty"`                // Network id.
+	PermissionScopeID string `json:"permissionScopeId,omitempty"` // Permission scope id
+	Tag               string `json:"tag,omitempty"`               // Network tag
+}
+type RequestCameraCreateOrganizationCameraRoleAppliedOrgWide struct {
+	PermissionScopeID string `json:"permissionScopeId,omitempty"` // Permission scope id
+}
+type RequestCameraUpdateOrganizationCameraRole struct {
+	AppliedOnDevices  *[]RequestCameraUpdateOrganizationCameraRoleAppliedOnDevices  `json:"appliedOnDevices,omitempty"`  // Device tag on which this specified permission is applied.
+	AppliedOnNetworks *[]RequestCameraUpdateOrganizationCameraRoleAppliedOnNetworks `json:"appliedOnNetworks,omitempty"` // Network tag on which this specified permission is applied.
+	AppliedOrgWide    *[]RequestCameraUpdateOrganizationCameraRoleAppliedOrgWide    `json:"appliedOrgWide,omitempty"`    // Permissions to be applied org wide.
+	Name              string                                                        `json:"name,omitempty"`              // The name of the new role. Must be unique.
+}
+type RequestCameraUpdateOrganizationCameraRoleAppliedOnDevices struct {
+	ID                string `json:"id,omitempty"`                // Device id.
+	InNetworksWithID  string `json:"inNetworksWithId,omitempty"`  // Network id scope
+	InNetworksWithTag string `json:"inNetworksWithTag,omitempty"` // Network tag scope
+	PermissionScopeID string `json:"permissionScopeId,omitempty"` // Permission scope id
+	Tag               string `json:"tag,omitempty"`               // Device tag.
+}
+type RequestCameraUpdateOrganizationCameraRoleAppliedOnNetworks struct {
+	ID                string `json:"id,omitempty"`                // Network id
+	PermissionScopeID string `json:"permissionScopeId,omitempty"` // Permission scope id
+	Tag               string `json:"tag,omitempty"`               // Network tag
+}
+type RequestCameraUpdateOrganizationCameraRoleAppliedOrgWide struct {
+	PermissionScopeID string `json:"permissionScopeId,omitempty"` // Permission scope id
 }
 
 //GetDeviceCameraAnalyticsLive Returns live state from camera of analytics zones
@@ -1077,6 +1276,78 @@ func (s *CameraService) GetNetworkCameraWirelessProfile(networkID string, wirele
 
 }
 
+//GetOrganizationCameraBoundariesAreasByDevice Returns all configured area boundaries of cameras
+/* Returns all configured area boundaries of cameras
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationCameraBoundariesAreasByDeviceQueryParams Filtering parameter
+
+
+*/
+func (s *CameraService) GetOrganizationCameraBoundariesAreasByDevice(organizationID string, getOrganizationCameraBoundariesAreasByDeviceQueryParams *GetOrganizationCameraBoundariesAreasByDeviceQueryParams) (*ResponseCameraGetOrganizationCameraBoundariesAreasByDevice, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/camera/boundaries/areas/byDevice"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationCameraBoundariesAreasByDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseCameraGetOrganizationCameraBoundariesAreasByDevice{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraBoundariesAreasByDevice")
+	}
+
+	result := response.Result().(*ResponseCameraGetOrganizationCameraBoundariesAreasByDevice)
+	return result, response, err
+
+}
+
+//GetOrganizationCameraBoundariesLinesByDevice Returns all configured crossingline boundaries of cameras
+/* Returns all configured crossingline boundaries of cameras
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationCameraBoundariesLinesByDeviceQueryParams Filtering parameter
+
+
+*/
+func (s *CameraService) GetOrganizationCameraBoundariesLinesByDevice(organizationID string, getOrganizationCameraBoundariesLinesByDeviceQueryParams *GetOrganizationCameraBoundariesLinesByDeviceQueryParams) (*ResponseCameraGetOrganizationCameraBoundariesLinesByDevice, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/camera/boundaries/lines/byDevice"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationCameraBoundariesLinesByDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseCameraGetOrganizationCameraBoundariesLinesByDevice{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraBoundariesLinesByDevice")
+	}
+
+	result := response.Result().(*ResponseCameraGetOrganizationCameraBoundariesLinesByDevice)
+	return result, response, err
+
+}
+
 //GetOrganizationCameraCustomAnalyticsArtifacts List Custom Analytics Artifacts
 /* List Custom Analytics Artifacts
 
@@ -1145,6 +1416,42 @@ func (s *CameraService) GetOrganizationCameraCustomAnalyticsArtifact(organizatio
 
 }
 
+//GetOrganizationCameraDetectionsHistoryByBoundaryByInterval Returns analytics data for timespans
+/* Returns analytics data for timespans
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationCameraDetectionsHistoryByBoundaryByIntervalQueryParams Filtering parameter
+
+
+*/
+func (s *CameraService) GetOrganizationCameraDetectionsHistoryByBoundaryByInterval(organizationID string, getOrganizationCameraDetectionsHistoryByBoundaryByIntervalQueryParams *GetOrganizationCameraDetectionsHistoryByBoundaryByIntervalQueryParams) (*ResponseCameraGetOrganizationCameraDetectionsHistoryByBoundaryByInterval, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/camera/detections/history/byBoundary/byInterval"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationCameraDetectionsHistoryByBoundaryByIntervalQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseCameraGetOrganizationCameraDetectionsHistoryByBoundaryByInterval{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraDetectionsHistoryByBoundaryByInterval")
+	}
+
+	result := response.Result().(*ResponseCameraGetOrganizationCameraDetectionsHistoryByBoundaryByInterval)
+	return result, response, err
+
+}
+
 //GetOrganizationCameraOnboardingStatuses Fetch onboarding status of cameras
 /* Fetch onboarding status of cameras
 
@@ -1177,6 +1484,142 @@ func (s *CameraService) GetOrganizationCameraOnboardingStatuses(organizationID s
 	}
 
 	result := response.Result().(*ResponseCameraGetOrganizationCameraOnboardingStatuses)
+	return result, response, err
+
+}
+
+//GetOrganizationCameraPermissions List the permissions scopes for this organization
+/* List the permissions scopes for this organization
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+func (s *CameraService) GetOrganizationCameraPermissions(organizationID string) (*ResponseCameraGetOrganizationCameraPermissions, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/camera/permissions"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseCameraGetOrganizationCameraPermissions{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraPermissions")
+	}
+
+	result := response.Result().(*ResponseCameraGetOrganizationCameraPermissions)
+	return result, response, err
+
+}
+
+//GetOrganizationCameraPermission Retrieve a single permission scope
+/* Retrieve a single permission scope
+
+@param organizationID organizationId path parameter. Organization ID
+@param permissionScopeID permissionScopeId path parameter. Permission scope ID
+
+
+*/
+func (s *CameraService) GetOrganizationCameraPermission(organizationID string, permissionScopeID string) (*ResponseCameraGetOrganizationCameraPermission, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/camera/permissions/{permissionScopeId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{permissionScopeId}", fmt.Sprintf("%v", permissionScopeID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseCameraGetOrganizationCameraPermission{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraPermission")
+	}
+
+	result := response.Result().(*ResponseCameraGetOrganizationCameraPermission)
+	return result, response, err
+
+}
+
+//GetOrganizationCameraRoles List all the roles in this organization
+/* List all the roles in this organization
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+func (s *CameraService) GetOrganizationCameraRoles(organizationID string) (*ResponseCameraGetOrganizationCameraRoles, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/camera/roles"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseCameraGetOrganizationCameraRoles{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraRoles")
+	}
+
+	result := response.Result().(*ResponseCameraGetOrganizationCameraRoles)
+	return result, response, err
+
+}
+
+//GetOrganizationCameraRole Retrieve a single role.
+/* Retrieve a single role.
+
+@param organizationID organizationId path parameter. Organization ID
+@param roleID roleId path parameter. Role ID
+
+
+*/
+func (s *CameraService) GetOrganizationCameraRole(organizationID string, roleID string) (*ResponseCameraGetOrganizationCameraRole, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/camera/roles/{roleId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{roleId}", fmt.Sprintf("%v", roleID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseCameraGetOrganizationCameraRole{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraRole")
+	}
+
+	result := response.Result().(*ResponseCameraGetOrganizationCameraRole)
 	return result, response, err
 
 }
@@ -1291,7 +1734,7 @@ func (s *CameraService) CreateNetworkCameraWirelessProfile(networkID string, req
 
 */
 
-func (s *CameraService) CreateOrganizationCameraCustomAnalyticsArtifact(organizationID string, requestCameraCreateOrganizationCameraCustomAnalyticsArtifact *RequestCameraCreateOrganizationCameraCustomAnalyticsArtifact) (*resty.Response, error) {
+func (s *CameraService) CreateOrganizationCameraCustomAnalyticsArtifact(organizationID string, requestCameraCreateOrganizationCameraCustomAnalyticsArtifact *RequestCameraCreateOrganizationCameraCustomAnalyticsArtifact) (*ResponseCameraCreateOrganizationCameraCustomAnalyticsArtifact, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/customAnalytics/artifacts"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -1300,7 +1743,42 @@ func (s *CameraService) CreateOrganizationCameraCustomAnalyticsArtifact(organiza
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestCameraCreateOrganizationCameraCustomAnalyticsArtifact).
-		// SetResult(&ResponseCameraCreateOrganizationCameraCustomAnalyticsArtifact{}).
+		SetResult(&ResponseCameraCreateOrganizationCameraCustomAnalyticsArtifact{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationCameraCustomAnalyticsArtifact")
+	}
+
+	result := response.Result().(*ResponseCameraCreateOrganizationCameraCustomAnalyticsArtifact)
+	return result, response, err
+
+}
+
+//CreateOrganizationCameraRole Creates new role for this organization.
+/* Creates new role for this organization.
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *CameraService) CreateOrganizationCameraRole(organizationID string, requestCameraCreateOrganizationCameraRole *RequestCameraCreateOrganizationCameraRole) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/camera/roles"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestCameraCreateOrganizationCameraRole).
+		// SetResult(&ResponseCameraCreateOrganizationCameraRole{}).
 		SetError(&Error).
 		Post(path)
 
@@ -1310,7 +1788,7 @@ func (s *CameraService) CreateOrganizationCameraCustomAnalyticsArtifact(organiza
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateOrganizationCameraCustomAnalyticsArtifact")
+		return response, fmt.Errorf("error with operation CreateOrganizationCameraRole")
 	}
 
 	return response, err
@@ -1322,7 +1800,7 @@ func (s *CameraService) CreateOrganizationCameraCustomAnalyticsArtifact(organiza
 
 @param serial serial path parameter.
 */
-func (s *CameraService) UpdateDeviceCameraCustomAnalytics(serial string, requestCameraUpdateDeviceCameraCustomAnalytics *RequestCameraUpdateDeviceCameraCustomAnalytics) (*resty.Response, error) {
+func (s *CameraService) UpdateDeviceCameraCustomAnalytics(serial string, requestCameraUpdateDeviceCameraCustomAnalytics *RequestCameraUpdateDeviceCameraCustomAnalytics) (*ResponseCameraUpdateDeviceCameraCustomAnalytics, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/customAnalytics"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
@@ -1331,19 +1809,21 @@ func (s *CameraService) UpdateDeviceCameraCustomAnalytics(serial string, request
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestCameraUpdateDeviceCameraCustomAnalytics).
+		SetResult(&ResponseCameraUpdateDeviceCameraCustomAnalytics{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateDeviceCameraCustomAnalytics")
+		return nil, response, fmt.Errorf("error with operation UpdateDeviceCameraCustomAnalytics")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseCameraUpdateDeviceCameraCustomAnalytics)
+	return result, response, err
 
 }
 
@@ -1412,7 +1892,7 @@ func (s *CameraService) UpdateDeviceCameraSense(serial string, requestCameraUpda
 
 @param serial serial path parameter.
 */
-func (s *CameraService) UpdateDeviceCameraVideoSettings(serial string, requestCameraUpdateDeviceCameraVideoSettings *RequestCameraUpdateDeviceCameraVideoSettings) (*resty.Response, error) {
+func (s *CameraService) UpdateDeviceCameraVideoSettings(serial string, requestCameraUpdateDeviceCameraVideoSettings *RequestCameraUpdateDeviceCameraVideoSettings) (*ResponseCameraUpdateDeviceCameraVideoSettings, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/video/settings"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
@@ -1421,19 +1901,21 @@ func (s *CameraService) UpdateDeviceCameraVideoSettings(serial string, requestCa
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestCameraUpdateDeviceCameraVideoSettings).
+		SetResult(&ResponseCameraUpdateDeviceCameraVideoSettings{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateDeviceCameraVideoSettings")
+		return nil, response, fmt.Errorf("error with operation UpdateDeviceCameraVideoSettings")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseCameraUpdateDeviceCameraVideoSettings)
+	return result, response, err
 
 }
 
@@ -1561,6 +2043,38 @@ func (s *CameraService) UpdateOrganizationCameraOnboardingStatuses(organizationI
 
 }
 
+//UpdateOrganizationCameraRole Update an existing role in this organization.
+/* Update an existing role in this organization.
+
+@param organizationID organizationId path parameter. Organization ID
+@param roleID roleId path parameter. Role ID
+*/
+func (s *CameraService) UpdateOrganizationCameraRole(organizationID string, roleID string, requestCameraUpdateOrganizationCameraRole *RequestCameraUpdateOrganizationCameraRole) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/camera/roles/{roleId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{roleId}", fmt.Sprintf("%v", roleID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestCameraUpdateOrganizationCameraRole).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation UpdateOrganizationCameraRole")
+	}
+
+	return response, err
+
+}
+
 //DeleteNetworkCameraQualityRetentionProfile Delete an existing quality retention profile for this network.
 /* Delete an existing quality retention profile for this network.
 
@@ -1657,6 +2171,40 @@ func (s *CameraService) DeleteOrganizationCameraCustomAnalyticsArtifact(organiza
 
 	if response.IsError() {
 		return response, fmt.Errorf("error with operation DeleteOrganizationCameraCustomAnalyticsArtifact")
+	}
+
+	return response, err
+
+}
+
+//DeleteOrganizationCameraRole Delete an existing role for this organization.
+/* Delete an existing role for this organization.
+
+@param organizationID organizationId path parameter. Organization ID
+@param roleID roleId path parameter. Role ID
+
+
+*/
+func (s *CameraService) DeleteOrganizationCameraRole(organizationID string, roleID string) (*resty.Response, error) {
+	//organizationID string,roleID string
+	path := "/api/v1/organizations/{organizationId}/camera/roles/{roleId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{roleId}", fmt.Sprintf("%v", roleID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation DeleteOrganizationCameraRole")
 	}
 
 	return response, err

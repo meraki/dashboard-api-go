@@ -11,10 +11,12 @@ import (
 type SmService service
 
 type GetNetworkSmDevicesQueryParams struct {
-	Fields        []string `url:"fields[],omitempty"`      //Additional fields that will be displayed for each device.     The default fields are: id, name, tags, ssid, wifiMac, osName, systemModel, uuid, and serialNumber. The additional fields are: ip,     systemType, availableDeviceCapacity, kioskAppName, biosVersion, lastConnected, missingAppsCount, userSuppliedAddress, location, lastUser,     ownerEmail, ownerUsername, osBuild, publicIp, phoneNumber, diskInfoJson, deviceCapacity, isManaged, hadMdm, isSupervised, meid, imei, iccid,     simCarrierNetwork, cellularDataUsed, isHotspotEnabled, createdAt, batteryEstCharge, quarantined, avName, avRunning, asName, fwName,     isRooted, loginRequired, screenLockEnabled, screenLockDelay, autoLoginDisabled, autoTags, hasMdm, hasDesktopAgent, diskEncryptionEnabled,     hardwareEncryptionCaps, passCodeLock, usesHardwareKeystore, androidSecurityPatchVersion, and url.
+	Fields        []string `url:"fields[],omitempty"`      //Additional fields that will be displayed for each device.     The default fields are: id, name, tags, ssid, wifiMac, osName, systemModel, uuid, and serialNumber. The additional fields are: ip,     systemType, availableDeviceCapacity, kioskAppName, biosVersion, lastConnected, missingAppsCount, userSuppliedAddress, location, lastUser,     ownerEmail, ownerUsername, osBuild, publicIp, phoneNumber, diskInfoJson, deviceCapacity, isManaged, hadMdm, isSupervised, meid, imei, iccid,     simCarrierNetwork, cellularDataUsed, isHotspotEnabled, createdAt, batteryEstCharge, quarantined, avName, avRunning, asName, fwName,     isRooted, loginRequired, screenLockEnabled, screenLockDelay, autoLoginDisabled, autoTags, hasMdm, hasDesktopAgent, diskEncryptionEnabled,     hardwareEncryptionCaps, passCodeLock, usesHardwareKeystore, androidSecurityPatchVersion, cellular, and url.
 	WifiMacs      []string `url:"wifiMacs[],omitempty"`    //Filter devices by wifi mac(s).
 	Serials       []string `url:"serials[],omitempty"`     //Filter devices by serial(s).
 	IDs           []string `url:"ids[],omitempty"`         //Filter devices by id(s).
+	UUIDs         []string `url:"uuids[],omitempty"`       //Filter devices by uuid(s).
+	SystemTypes   []string `url:"systemTypes[],omitempty"` //Filter devices by system type(s).
 	Scope         []string `url:"scope[],omitempty"`       //Specify a scope (one of all, none, withAny, withAll, withoutAny, or withoutAll) and a set of tags.
 	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
 	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
@@ -40,6 +42,9 @@ type GetNetworkSmDevicePerformanceHistoryQueryParams struct {
 	StartingAfter string `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	EndingBefore  string `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 }
+type GetNetworkSmProfilesQueryParams struct {
+	PayloadTypes []string `url:"payloadTypes[],omitempty"` //Filter by payload types
+}
 type GetNetworkSmTargetGroupsQueryParams struct {
 	WithDetails bool `url:"withDetails,omitempty"` //Boolean indicating if the the ids of the devices or users scoped by the target group should be included in the response
 }
@@ -61,6 +66,17 @@ type GetNetworkSmUsersQueryParams struct {
 	Usernames []string `url:"usernames[],omitempty"` //Filter users by username(s).
 	Emails    []string `url:"emails[],omitempty"`    //Filter users by email(s).
 	Scope     []string `url:"scope[],omitempty"`     //Specifiy a scope (one of all, none, withAny, withAll, withoutAny, withoutAll) and a set of tags.
+}
+type GetOrganizationSmAdminsRolesQueryParams struct {
+	PerPage       int    `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 50.
+	StartingAfter string `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+}
+type GetOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams struct {
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 50.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Optional parameter to filter Sentry Policies by Network Id
 }
 
 type ResponseSmCreateNetworkSmBypassActivationLockAttempt interface{}
@@ -119,6 +135,12 @@ type ResponseItemSmModifyNetworkSmDevicesTags struct {
 type ResponseSmMoveNetworkSmDevices struct {
 	IDs        []string `json:"ids,omitempty"`        // The Meraki Ids of the set of devices.
 	NewNetwork string   `json:"newNetwork,omitempty"` // The network to which the devices was moved.
+}
+type ResponseSmRebootNetworkSmDevices struct {
+	IDs []string `json:"ids,omitempty"` // The Meraki Ids of the set of endpoints.
+}
+type ResponseSmShutdownNetworkSmDevices struct {
+	IDs []string `json:"ids,omitempty"` // The Meraki Ids of the set of endpoints.
 }
 type ResponseSmWipeNetworkSmDevices struct {
 	ID string `json:"id,omitempty"` // The Meraki Id of the devices.
@@ -266,7 +288,9 @@ type ResponseItemSmGetNetworkSmDeviceSoftwares struct {
 	Vendor            string `json:"vendor,omitempty"`            // The vendor of the software.
 	Version           string `json:"version,omitempty"`           // Full version notation for the software.
 }
-type ResponseSmUnenrollNetworkSmDevice interface{}
+type ResponseSmUnenrollNetworkSmDevice struct {
+	Success *bool `json:"success,omitempty"` // Boolean indicating whether the operation was completed successfully.
+}
 type ResponseSmGetNetworkSmDeviceWLANLists []ResponseItemSmGetNetworkSmDeviceWLANLists // Array of ResponseSmGetNetworkSmDeviceWlanLists
 type ResponseItemSmGetNetworkSmDeviceWLANLists struct {
 	CreatedAt string `json:"createdAt,omitempty"` // When the Meraki record for the wlanList was created.
@@ -275,37 +299,51 @@ type ResponseItemSmGetNetworkSmDeviceWLANLists struct {
 }
 type ResponseSmGetNetworkSmProfiles []ResponseItemSmGetNetworkSmProfiles // Array of ResponseSmGetNetworkSmProfiles
 type ResponseItemSmGetNetworkSmProfiles struct {
-	Description string   `json:"description,omitempty"` // Description of a profile.
-	ID          string   `json:"id,omitempty"`          // ID of a profile.
-	Name        string   `json:"name,omitempty"`        // Name of a profile.
-	Scope       string   `json:"scope,omitempty"`       // Scope of a profile.
-	Tags        []string `json:"tags,omitempty"`        // Tags of a profile.
+	Description  string   `json:"description,omitempty"`  // Description of a profile.
+	ID           string   `json:"id,omitempty"`           // ID of a profile.
+	Name         string   `json:"name,omitempty"`         // Name of a profile.
+	PayloadTypes []string `json:"payloadTypes,omitempty"` // Payloads in the profile.
+	Scope        string   `json:"scope,omitempty"`        // Scope of a profile.
+	Tags         []string `json:"tags,omitempty"`         // Tags of a profile.
 }
 type ResponseSmGetNetworkSmTargetGroups []ResponseItemSmGetNetworkSmTargetGroups // Array of ResponseSmGetNetworkSmTargetGroups
 type ResponseItemSmGetNetworkSmTargetGroups struct {
-	Name  string `json:"name,omitempty"`  //
-	Scope string `json:"scope,omitempty"` //
-	Tags  string `json:"tags,omitempty"`  //
-	Type  string `json:"type,omitempty"`  //
+	ID    string   `json:"id,omitempty"`    // The ID of this target group.
+	Name  string   `json:"name,omitempty"`  // The name of this target group.
+	Scope string   `json:"scope,omitempty"` // The scope of the target group.
+	Tags  []string `json:"tags,omitempty"`  // The tags of the target group.
 }
-type ResponseSmCreateNetworkSmTargetGroup interface{}
+type ResponseSmCreateNetworkSmTargetGroup struct {
+	ID    string   `json:"id,omitempty"`    // The ID of this target group.
+	Name  string   `json:"name,omitempty"`  // The name of this target group.
+	Scope string   `json:"scope,omitempty"` // The scope of the target group.
+	Tags  []string `json:"tags,omitempty"`  // The tags of the target group.
+}
 type ResponseSmGetNetworkSmTargetGroup struct {
-	Name  string `json:"name,omitempty"`  //
-	Scope string `json:"scope,omitempty"` //
-	Tags  string `json:"tags,omitempty"`  //
-	Type  string `json:"type,omitempty"`  //
+	ID    string   `json:"id,omitempty"`    // The ID of this target group.
+	Name  string   `json:"name,omitempty"`  // The name of this target group.
+	Scope string   `json:"scope,omitempty"` // The scope of the target group.
+	Tags  []string `json:"tags,omitempty"`  // The tags of the target group.
 }
-type ResponseSmUpdateNetworkSmTargetGroup interface{}
+type ResponseSmUpdateNetworkSmTargetGroup struct {
+	ID    string   `json:"id,omitempty"`    // The ID of this target group.
+	Name  string   `json:"name,omitempty"`  // The name of this target group.
+	Scope string   `json:"scope,omitempty"` // The scope of the target group.
+	Tags  []string `json:"tags,omitempty"`  // The tags of the target group.
+}
 type ResponseSmGetNetworkSmTrustedAccessConfigs []ResponseItemSmGetNetworkSmTrustedAccessConfigs // Array of ResponseSmGetNetworkSmTrustedAccessConfigs
 type ResponseItemSmGetNetworkSmTrustedAccessConfigs struct {
-	AccessEndAt   string   `json:"accessEndAt,omitempty"`   // time that access ends
-	AccessStartAt string   `json:"accessStartAt,omitempty"` // time that access starts
-	ID            string   `json:"id,omitempty"`            // device ID
-	Name          string   `json:"name,omitempty"`          // device name
-	Scope         string   `json:"scope,omitempty"`         // scope
-	SSIDName      string   `json:"ssidName,omitempty"`      // SSID name
-	Tags          []string `json:"tags,omitempty"`          // device tags
-	TimeboundType string   `json:"timeboundType,omitempty"` // type of access period, either a static range or a dynamic period
+	AccessEndAt                string   `json:"accessEndAt,omitempty"`                // time that access ends
+	AccessStartAt              string   `json:"accessStartAt,omitempty"`              // time that access starts
+	AdditionalEmailText        string   `json:"additionalEmailText,omitempty"`        // Optional email text
+	ID                         string   `json:"id,omitempty"`                         // device ID
+	Name                       string   `json:"name,omitempty"`                       // device name
+	NotifyTimeBeforeAccessEnds *int     `json:"notifyTimeBeforeAccessEnds,omitempty"` // Time before access expiration reminder email sends
+	Scope                      string   `json:"scope,omitempty"`                      // scope
+	SendExpirationEmails       *bool    `json:"sendExpirationEmails,omitempty"`       // Send Email Notifications
+	SSIDName                   string   `json:"ssidName,omitempty"`                   // SSID name
+	Tags                       []string `json:"tags,omitempty"`                       // device tags
+	TimeboundType              string   `json:"timeboundType,omitempty"`              // type of access period, either a static range or a dynamic period
 }
 type ResponseSmGetNetworkSmUserAccessDevices []ResponseItemSmGetNetworkSmUserAccessDevices // Array of ResponseSmGetNetworkSmUserAccessDevices
 type ResponseItemSmGetNetworkSmUserAccessDevices struct {
@@ -378,17 +416,141 @@ type ResponseItemSmGetNetworkSmUserSoftwares struct {
 	Vendor            string `json:"vendor,omitempty"`            // The vendor of the software.
 	Version           string `json:"version,omitempty"`           // Full version notation for the software.
 }
+type ResponseSmGetOrganizationSmAdminsRoles struct {
+	Items *[]ResponseSmGetOrganizationSmAdminsRolesItems `json:"items,omitempty"` // Array of Limited Access Roles
+	Meta  *ResponseSmGetOrganizationSmAdminsRolesMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseSmGetOrganizationSmAdminsRolesItems struct {
+	Name   string   `json:"name,omitempty"`   // The name of the limited access role
+	RoleID string   `json:"roleId,omitempty"` // The Id of the limited access role
+	Scope  string   `json:"scope,omitempty"`  // The scope of the limited access role
+	Tags   []string `json:"tags,omitempty"`   // The tags of the limited access role
+}
+type ResponseSmGetOrganizationSmAdminsRolesMeta struct {
+	Counts *ResponseSmGetOrganizationSmAdminsRolesMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseSmGetOrganizationSmAdminsRolesMetaCounts struct {
+	Items *ResponseSmGetOrganizationSmAdminsRolesMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseSmGetOrganizationSmAdminsRolesMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseSmCreateOrganizationSmAdminsRole struct {
+	Name   string   `json:"name,omitempty"`   // The name of the limited access role
+	RoleID string   `json:"roleId,omitempty"` // The Id of the limited access role
+	Scope  string   `json:"scope,omitempty"`  // The scope of the limited access role
+	Tags   []string `json:"tags,omitempty"`   // The tags of the limited access role
+}
+type ResponseSmGetOrganizationSmAdminsRole struct {
+	Name   string   `json:"name,omitempty"`   // The name of the limited access role
+	RoleID string   `json:"roleId,omitempty"` // The Id of the limited access role
+	Scope  string   `json:"scope,omitempty"`  // The scope of the limited access role
+	Tags   []string `json:"tags,omitempty"`   // The tags of the limited access role
+}
+type ResponseSmUpdateOrganizationSmAdminsRole struct {
+	Name   string   `json:"name,omitempty"`   // The name of the limited access role
+	RoleID string   `json:"roleId,omitempty"` // The Id of the limited access role
+	Scope  string   `json:"scope,omitempty"`  // The scope of the limited access role
+	Tags   []string `json:"tags,omitempty"`   // The tags of the limited access role
+}
 type ResponseSmGetOrganizationSmApnsCert struct {
 	Certificate string `json:"certificate,omitempty"` // Organization APNS Certificate used by devices to communication with Apple
 }
+type ResponseSmUpdateOrganizationSmSentryPoliciesAssignments struct {
+	Items *[]ResponseSmUpdateOrganizationSmSentryPoliciesAssignmentsItems `json:"items,omitempty"` // Sentry Group Policies for the Organization keyed by Network Id
+}
+type ResponseSmUpdateOrganizationSmSentryPoliciesAssignmentsItems struct {
+	NetworkID string                                                                  `json:"networkId,omitempty"` // The Id of the Network
+	Policies  *[]ResponseSmUpdateOrganizationSmSentryPoliciesAssignmentsItemsPolicies `json:"policies,omitempty"`  // Array of Sentry Group Policies for the Network
+}
+type ResponseSmUpdateOrganizationSmSentryPoliciesAssignmentsItemsPolicies struct {
+	CreatedAt     string   `json:"createdAt,omitempty"`     // The creation time of the Sentry Policy
+	GroupNumber   string   `json:"groupNumber,omitempty"`   // The number of the Group Policy
+	GroupPolicyID string   `json:"groupPolicyId,omitempty"` // The Id of the Group Policy. This is associated with the network specified by the networkId.
+	LastUpdatedAt string   `json:"lastUpdatedAt,omitempty"` // The last update time of the Sentry Policy
+	NetworkID     string   `json:"networkId,omitempty"`     // The Id of the Network the Sentry Policy is associated with. In a locale, this should be the Wireless Group if present, otherwise the Wired Group.
+	PolicyID      string   `json:"policyId,omitempty"`      // The Id of the Sentry Policy
+	Priority      string   `json:"priority,omitempty"`      // The priority of the Sentry Policy
+	Scope         string   `json:"scope,omitempty"`         // The scope of the Sentry Policy
+	SmNetworkID   string   `json:"smNetworkId,omitempty"`   // The Id of the Systems Manager Network the Sentry Policy is assigned to
+	Tags          []string `json:"tags,omitempty"`          // The tags of the Sentry Policy
+}
+type ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork []ResponseItemSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork // Array of ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork
+type ResponseItemSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork struct {
+	Items *[]ResponseItemSmGetOrganizationSmSentryPoliciesAssignmentsByNetworkItems `json:"items,omitempty"` // Sentry Group Policies for the Organization keyed by the Network or Locale Id the Policy belongs to
+	Meta  *ResponseItemSmGetOrganizationSmSentryPoliciesAssignmentsByNetworkMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseItemSmGetOrganizationSmSentryPoliciesAssignmentsByNetworkItems struct {
+	NetworkID string                                                                            `json:"networkId,omitempty"` // The Id of the Network
+	Policies  *[]ResponseItemSmGetOrganizationSmSentryPoliciesAssignmentsByNetworkItemsPolicies `json:"policies,omitempty"`  // Array of Sentry Group Policies for the Network
+}
+type ResponseItemSmGetOrganizationSmSentryPoliciesAssignmentsByNetworkItemsPolicies struct {
+	CreatedAt     string   `json:"createdAt,omitempty"`     // The creation time of the Sentry Policy
+	GroupNumber   string   `json:"groupNumber,omitempty"`   // The number of the Group Policy
+	GroupPolicyID string   `json:"groupPolicyId,omitempty"` // The Id of the Group Policy. This is associated with the network specified by the networkId.
+	LastUpdatedAt string   `json:"lastUpdatedAt,omitempty"` // The last update time of the Sentry Policy
+	NetworkID     string   `json:"networkId,omitempty"`     // The Id of the Network the Sentry Policy is associated with. In a locale, this should be the Wireless Group if present, otherwise the Wired Group.
+	PolicyID      string   `json:"policyId,omitempty"`      // The Id of the Sentry Policy
+	Priority      string   `json:"priority,omitempty"`      // The priority of the Sentry Policy
+	Scope         string   `json:"scope,omitempty"`         // The scope of the Sentry Policy
+	SmNetworkID   string   `json:"smNetworkId,omitempty"`   // The Id of the Systems Manager Network the Sentry Policy is assigned to
+	Tags          []string `json:"tags,omitempty"`          // The tags of the Sentry Policy
+}
+type ResponseItemSmGetOrganizationSmSentryPoliciesAssignmentsByNetworkMeta struct {
+	Counts *ResponseItemSmGetOrganizationSmSentryPoliciesAssignmentsByNetworkMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseItemSmGetOrganizationSmSentryPoliciesAssignmentsByNetworkMetaCounts struct {
+	Items *ResponseItemSmGetOrganizationSmSentryPoliciesAssignmentsByNetworkMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseItemSmGetOrganizationSmSentryPoliciesAssignmentsByNetworkMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
 type ResponseSmGetOrganizationSmVppAccounts []ResponseItemSmGetOrganizationSmVppAccounts // Array of ResponseSmGetOrganizationSmVppAccounts
 type ResponseItemSmGetOrganizationSmVppAccounts struct {
-	ID              string `json:"id,omitempty"`              // The id of the VPP Account
-	VppServiceToken string `json:"vppServiceToken,omitempty"` // The VPP Account's Service Token
+	AllowedAdmins        string                                                 `json:"allowedAdmins,omitempty"`        // The allowed admins for the VPP account
+	AssignableNetworkIDs []string                                               `json:"assignableNetworkIds,omitempty"` // The network IDs of the assignable networks for the VPP account
+	AssignableNetworks   string                                                 `json:"assignableNetworks,omitempty"`   // The assignable networks for the VPP account
+	ContentToken         string                                                 `json:"contentToken,omitempty"`         // The VPP service token
+	Email                string                                                 `json:"email,omitempty"`                // The email address associated with the VPP account
+	ID                   string                                                 `json:"id,omitempty"`                   // The id of the VPP Account
+	LastForceSyncedAt    string                                                 `json:"lastForceSyncedAt,omitempty"`    // The last time the VPP account was force synced
+	LastSyncedAt         string                                                 `json:"lastSyncedAt,omitempty"`         // The last time the VPP account was synced
+	Name                 string                                                 `json:"name,omitempty"`                 // The name of the VPP account
+	NetworkIDAdmins      string                                                 `json:"networkIdAdmins,omitempty"`      // The network IDs of the admins for the VPP account
+	ParsedToken          *ResponseItemSmGetOrganizationSmVppAccountsParsedToken `json:"parsedToken,omitempty"`          // The parsed VPP service token
+	VppAccountID         string                                                 `json:"vppAccountId,omitempty"`         // The id of the VPP Account
+	VppLocationID        string                                                 `json:"vppLocationId,omitempty"`        // The VPP location ID
+	VppLocationName      string                                                 `json:"vppLocationName,omitempty"`      // The VPP location name
+	VppServiceToken      string                                                 `json:"vppServiceToken,omitempty"`      // The VPP Account's Service Token
+}
+type ResponseItemSmGetOrganizationSmVppAccountsParsedToken struct {
+	ExpiresAt   string `json:"expiresAt,omitempty"`   // The expiration time of the token
+	HashedToken string `json:"hashedToken,omitempty"` // The hashed token
+	OrgName     string `json:"orgName,omitempty"`     // The organization name
 }
 type ResponseSmGetOrganizationSmVppAccount struct {
-	ID              string `json:"id,omitempty"`              // The id of the VPP Account
-	VppServiceToken string `json:"vppServiceToken,omitempty"` // The VPP Account's Service Token
+	AllowedAdmins        string                                            `json:"allowedAdmins,omitempty"`        // The allowed admins for the VPP account
+	AssignableNetworkIDs []string                                          `json:"assignableNetworkIds,omitempty"` // The network IDs of the assignable networks for the VPP account
+	AssignableNetworks   string                                            `json:"assignableNetworks,omitempty"`   // The assignable networks for the VPP account
+	ContentToken         string                                            `json:"contentToken,omitempty"`         // The VPP service token
+	Email                string                                            `json:"email,omitempty"`                // The email address associated with the VPP account
+	ID                   string                                            `json:"id,omitempty"`                   // The id of the VPP Account
+	LastForceSyncedAt    string                                            `json:"lastForceSyncedAt,omitempty"`    // The last time the VPP account was force synced
+	LastSyncedAt         string                                            `json:"lastSyncedAt,omitempty"`         // The last time the VPP account was synced
+	Name                 string                                            `json:"name,omitempty"`                 // The name of the VPP account
+	NetworkIDAdmins      string                                            `json:"networkIdAdmins,omitempty"`      // The network IDs of the admins for the VPP account
+	ParsedToken          *ResponseSmGetOrganizationSmVppAccountParsedToken `json:"parsedToken,omitempty"`          // The parsed VPP service token
+	VppAccountID         string                                            `json:"vppAccountId,omitempty"`         // The id of the VPP Account
+	VppLocationID        string                                            `json:"vppLocationId,omitempty"`        // The VPP location ID
+	VppLocationName      string                                            `json:"vppLocationName,omitempty"`      // The VPP location name
+	VppServiceToken      string                                            `json:"vppServiceToken,omitempty"`      // The VPP Account's Service Token
+}
+type ResponseSmGetOrganizationSmVppAccountParsedToken struct {
+	ExpiresAt   string `json:"expiresAt,omitempty"`   // The expiration time of the token
+	HashedToken string `json:"hashedToken,omitempty"` // The hashed token
+	OrgName     string `json:"orgName,omitempty"`     // The organization name
 }
 type RequestSmCreateNetworkSmBypassActivationLockAttempt struct {
 	IDs []string `json:"ids,omitempty"` // The ids of the devices to attempt activation lock bypass.
@@ -412,7 +574,7 @@ type RequestSmUpdateNetworkSmDevicesFieldsDeviceFields struct {
 type RequestSmLockNetworkSmDevices struct {
 	IDs      []string `json:"ids,omitempty"`      // The ids of the devices to be locked.
 	Pin      *int     `json:"pin,omitempty"`      // The pin number for locking macOS devices (a six digit number). Required only for macOS devices.
-	Scope    []string `json:"scope,omitempty"`    // The scope (one of all, none, withAny, withAll, withoutAny, or withoutAll) and a set of tags of the devices to be wiped.
+	Scope    []string `json:"scope,omitempty"`    // The scope (one of all, none, withAny, withAll, withoutAny, or withoutAll) and a set of tags of the devices to be locked.
 	Serials  []string `json:"serials,omitempty"`  // The serials of the devices to be locked.
 	WifiMacs []string `json:"wifiMacs,omitempty"` // The wifiMacs of the devices to be locked.
 }
@@ -431,11 +593,34 @@ type RequestSmMoveNetworkSmDevices struct {
 	Serials    []string `json:"serials,omitempty"`    // The serials of the devices to be moved.
 	WifiMacs   []string `json:"wifiMacs,omitempty"`   // The wifiMacs of the devices to be moved.
 }
+type RequestSmRebootNetworkSmDevices struct {
+	IDs                          []string `json:"ids,omitempty"`                          // The ids of the endpoints to be rebooted.
+	KextPaths                    []string `json:"kextPaths,omitempty"`                    // The KextPaths of the endpoints to be rebooted. Available for macOS 11+
+	NotifyUser                   *bool    `json:"notifyUser,omitempty"`                   // Whether or not to notify the user before rebooting the endpoint. Available for macOS 11.3+
+	RebuildKernelCache           *bool    `json:"rebuildKernelCache,omitempty"`           // Whether or not to rebuild the kernel cache when rebooting the endpoint. Available for macOS 11+
+	RequestRequiresNetworkTether *bool    `json:"requestRequiresNetworkTether,omitempty"` // Whether or not the request requires network tethering. Available for macOS and supervised iOS or tvOS
+	Scope                        []string `json:"scope,omitempty"`                        // The scope (one of all, none, withAny, withAll, withoutAny, or withoutAll) and a set of tags of the endpoints to be rebooted.
+	Serials                      []string `json:"serials,omitempty"`                      // The serials of the endpoints to be rebooted.
+	WifiMacs                     []string `json:"wifiMacs,omitempty"`                     // The wifiMacs of the endpoints to be rebooted.
+}
+type RequestSmShutdownNetworkSmDevices struct {
+	IDs      []string `json:"ids,omitempty"`      // The ids of the endpoints to be shutdown.
+	Scope    []string `json:"scope,omitempty"`    // The scope (one of all, none, withAny, withAll, withoutAny, or withoutAll) and a set of tags of the endpoints to be shutdown.
+	Serials  []string `json:"serials,omitempty"`  // The serials of the endpoints to be shutdown.
+	WifiMacs []string `json:"wifiMacs,omitempty"` // The wifiMacs of the endpoints to be shutdown.
+}
 type RequestSmWipeNetworkSmDevices struct {
 	ID      string `json:"id,omitempty"`      // The id of the device to be wiped.
 	Pin     *int   `json:"pin,omitempty"`     // The pin number (a six digit value) for wiping a macOS device. Required only for macOS devices.
 	Serial  string `json:"serial,omitempty"`  // The serial of the device to be wiped.
 	WifiMac string `json:"wifiMac,omitempty"` // The wifiMac of the device to be wiped.
+}
+type RequestSmInstallNetworkSmDeviceApps struct {
+	AppIDs []string `json:"appIds,omitempty"` // ids of applications to be installed
+	Force  *bool    `json:"force,omitempty"`  // By default, installation of an app which is believed to already be present on the device will be skipped. If you'd like to force the installation of the app, set this parameter to true.
+}
+type RequestSmUninstallNetworkSmDeviceApps struct {
+	AppIDs []string `json:"appIds,omitempty"` // ids of applications to be uninstalled
 }
 type RequestSmCreateNetworkSmTargetGroup struct {
 	Name  string `json:"name,omitempty"`  // The name of this target group
@@ -444,6 +629,30 @@ type RequestSmCreateNetworkSmTargetGroup struct {
 type RequestSmUpdateNetworkSmTargetGroup struct {
 	Name  string `json:"name,omitempty"`  // The name of this target group
 	Scope string `json:"scope,omitempty"` // The scope and tag options of the target group. Comma separated values beginning with one of withAny, withAll, withoutAny, withoutAll, all, none, followed by tags. Default to none if empty.
+}
+type RequestSmCreateOrganizationSmAdminsRole struct {
+	Name  string   `json:"name,omitempty"`  // The name of the Limited Access Role
+	Scope string   `json:"scope,omitempty"` // The scope of the Limited Access Role
+	Tags  []string `json:"tags,omitempty"`  // The tags of the Limited Access Role
+}
+type RequestSmUpdateOrganizationSmAdminsRole struct {
+	Name  string   `json:"name,omitempty"`  // The name of the Limited Access Role
+	Scope string   `json:"scope,omitempty"` // The scope of the Limited Access Role
+	Tags  []string `json:"tags,omitempty"`  // The tags of the Limited Access Role
+}
+type RequestSmUpdateOrganizationSmSentryPoliciesAssignments struct {
+	Items *[]RequestSmUpdateOrganizationSmSentryPoliciesAssignmentsItems `json:"items,omitempty"` // Sentry Group Policies for the Organization keyed by Network Id
+}
+type RequestSmUpdateOrganizationSmSentryPoliciesAssignmentsItems struct {
+	NetworkID string                                                                 `json:"networkId,omitempty"` // The Id of the Network
+	Policies  *[]RequestSmUpdateOrganizationSmSentryPoliciesAssignmentsItemsPolicies `json:"policies,omitempty"`  // Array of Sentry Group Policies for the Network
+}
+type RequestSmUpdateOrganizationSmSentryPoliciesAssignmentsItemsPolicies struct {
+	GroupPolicyID string   `json:"groupPolicyId,omitempty"` // The Group Policy Id
+	PolicyID      string   `json:"policyId,omitempty"`      // The Sentry Policy Id, if updating an existing Sentry Policy
+	Scope         string   `json:"scope,omitempty"`         // The scope of the Sentry Policy
+	SmNetworkID   string   `json:"smNetworkId,omitempty"`   // The Id of the Systems Manager Network
+	Tags          []string `json:"tags,omitempty"`          // The tags for the Sentry Policy
 }
 
 //GetNetworkSmBypassActivationLockAttempt Bypass activation lock attempt status
@@ -953,18 +1162,21 @@ func (s *SmService) GetNetworkSmDeviceWLANLists(networkID string, deviceID strin
 /* List all profiles in a network
 
 @param networkID networkId path parameter. Network ID
+@param getNetworkSmProfilesQueryParams Filtering parameter
 
 
 */
-func (s *SmService) GetNetworkSmProfiles(networkID string) (*ResponseSmGetNetworkSmProfiles, *resty.Response, error) {
+func (s *SmService) GetNetworkSmProfiles(networkID string, getNetworkSmProfilesQueryParams *GetNetworkSmProfilesQueryParams) (*ResponseSmGetNetworkSmProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/profiles"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
+	queryString, _ := query.Values(getNetworkSmProfilesQueryParams)
+
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetNetworkSmProfiles{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetNetworkSmProfiles{}).
 		SetError(&Error).
 		Get(path)
 
@@ -1234,6 +1446,77 @@ func (s *SmService) GetNetworkSmUserSoftwares(networkID string, userID string) (
 
 }
 
+//GetOrganizationSmAdminsRoles List the Limited Access Roles for an organization
+/* List the Limited Access Roles for an organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationSmAdminsRolesQueryParams Filtering parameter
+
+
+*/
+func (s *SmService) GetOrganizationSmAdminsRoles(organizationID string, getOrganizationSmAdminsRolesQueryParams *GetOrganizationSmAdminsRolesQueryParams) (*ResponseSmGetOrganizationSmAdminsRoles, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/sm/admins/roles"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationSmAdminsRolesQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetOrganizationSmAdminsRoles{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationSmAdminsRoles")
+	}
+
+	result := response.Result().(*ResponseSmGetOrganizationSmAdminsRoles)
+	return result, response, err
+
+}
+
+//GetOrganizationSmAdminsRole Return a Limited Access Role
+/* Return a Limited Access Role
+
+@param organizationID organizationId path parameter. Organization ID
+@param roleID roleId path parameter. Role ID
+
+
+*/
+func (s *SmService) GetOrganizationSmAdminsRole(organizationID string, roleID string) (*ResponseSmGetOrganizationSmAdminsRole, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/sm/admins/roles/{roleId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{roleId}", fmt.Sprintf("%v", roleID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseSmGetOrganizationSmAdminsRole{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationSmAdminsRole")
+	}
+
+	result := response.Result().(*ResponseSmGetOrganizationSmAdminsRole)
+	return result, response, err
+
+}
+
 //GetOrganizationSmApnsCert Get the organization's APNS certificate
 /* Get the organization's APNS certificate
 
@@ -1263,6 +1546,42 @@ func (s *SmService) GetOrganizationSmApnsCert(organizationID string) (*ResponseS
 	}
 
 	result := response.Result().(*ResponseSmGetOrganizationSmApnsCert)
+	return result, response, err
+
+}
+
+//GetOrganizationSmSentryPoliciesAssignmentsByNetwork List the Sentry Policies for an organization ordered in ascending order of priority
+/* List the Sentry Policies for an organization ordered in ascending order of priority
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams Filtering parameter
+
+
+*/
+func (s *SmService) GetOrganizationSmSentryPoliciesAssignmentsByNetwork(organizationID string, getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams *GetOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams) (*ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/sm/sentry/policies/assignments/byNetwork"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationSmSentryPoliciesAssignmentsByNetwork")
+	}
+
+	result := response.Result().(*ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork)
 	return result, response, err
 
 }
@@ -1509,6 +1828,76 @@ func (s *SmService) MoveNetworkSmDevices(networkID string, requestSmMoveNetworkS
 
 }
 
+//RebootNetworkSmDevices Reboot a set of endpoints
+/* Reboot a set of endpoints
+
+@param networkID networkId path parameter. Network ID
+
+
+*/
+
+func (s *SmService) RebootNetworkSmDevices(networkID string, requestSmRebootNetworkSmDevices *RequestSmRebootNetworkSmDevices) (*ResponseSmRebootNetworkSmDevices, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/sm/devices/reboot"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSmRebootNetworkSmDevices).
+		SetResult(&ResponseSmRebootNetworkSmDevices{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation RebootNetworkSmDevices")
+	}
+
+	result := response.Result().(*ResponseSmRebootNetworkSmDevices)
+	return result, response, err
+
+}
+
+//ShutdownNetworkSmDevices Shutdown a set of endpoints
+/* Shutdown a set of endpoints
+
+@param networkID networkId path parameter. Network ID
+
+
+*/
+
+func (s *SmService) ShutdownNetworkSmDevices(networkID string, requestSmShutdownNetworkSmDevices *RequestSmShutdownNetworkSmDevices) (*ResponseSmShutdownNetworkSmDevices, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/sm/devices/shutdown"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSmShutdownNetworkSmDevices).
+		SetResult(&ResponseSmShutdownNetworkSmDevices{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation ShutdownNetworkSmDevices")
+	}
+
+	result := response.Result().(*ResponseSmShutdownNetworkSmDevices)
+	return result, response, err
+
+}
+
 //WipeNetworkSmDevices Wipe a device
 /* Wipe a device
 
@@ -1541,6 +1930,41 @@ func (s *SmService) WipeNetworkSmDevices(networkID string, requestSmWipeNetworkS
 
 	result := response.Result().(*ResponseSmWipeNetworkSmDevices)
 	return result, response, err
+
+}
+
+//InstallNetworkSmDeviceApps Install applications on a device
+/* Install applications on a device
+
+@param networkID networkId path parameter. Network ID
+@param deviceID deviceId path parameter. Device ID
+
+
+*/
+
+func (s *SmService) InstallNetworkSmDeviceApps(networkID string, deviceID string, requestSmInstallNetworkSmDeviceApps *RequestSmInstallNetworkSmDeviceApps) (*resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/installApps"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSmInstallNetworkSmDeviceApps).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation InstallNetworkSmDeviceApps")
+	}
+
+	return response, err
 
 }
 
@@ -1587,7 +2011,7 @@ func (s *SmService) RefreshNetworkSmDeviceDetails(networkID string, deviceID str
 
 */
 
-func (s *SmService) UnenrollNetworkSmDevice(networkID string, deviceID string) (*resty.Response, error) {
+func (s *SmService) UnenrollNetworkSmDevice(networkID string, deviceID string) (*ResponseSmUnenrollNetworkSmDevice, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/unenroll"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -1596,8 +2020,43 @@ func (s *SmService) UnenrollNetworkSmDevice(networkID string, deviceID string) (
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
+		SetResult(&ResponseSmUnenrollNetworkSmDevice{}).
+		SetError(&Error).
+		Post(path)
 
-		// SetResult(&ResponseSmUnenrollNetworkSmDevice{}).
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UnenrollNetworkSmDevice")
+	}
+
+	result := response.Result().(*ResponseSmUnenrollNetworkSmDevice)
+	return result, response, err
+
+}
+
+//UninstallNetworkSmDeviceApps Uninstall applications on a device
+/* Uninstall applications on a device
+
+@param networkID networkId path parameter. Network ID
+@param deviceID deviceId path parameter. Device ID
+
+
+*/
+
+func (s *SmService) UninstallNetworkSmDeviceApps(networkID string, deviceID string, requestSmUninstallNetworkSmDeviceApps *RequestSmUninstallNetworkSmDeviceApps) (*resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/uninstallApps"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSmUninstallNetworkSmDeviceApps).
 		SetError(&Error).
 		Post(path)
 
@@ -1607,7 +2066,7 @@ func (s *SmService) UnenrollNetworkSmDevice(networkID string, deviceID string) (
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UnenrollNetworkSmDevice")
+		return response, fmt.Errorf("error with operation UninstallNetworkSmDeviceApps")
 	}
 
 	return response, err
@@ -1622,7 +2081,7 @@ func (s *SmService) UnenrollNetworkSmDevice(networkID string, deviceID string) (
 
 */
 
-func (s *SmService) CreateNetworkSmTargetGroup(networkID string, requestSmCreateNetworkSmTargetGroup *RequestSmCreateNetworkSmTargetGroup) (*resty.Response, error) {
+func (s *SmService) CreateNetworkSmTargetGroup(networkID string, requestSmCreateNetworkSmTargetGroup *RequestSmCreateNetworkSmTargetGroup) (*ResponseSmCreateNetworkSmTargetGroup, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/targetGroups"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -1631,20 +2090,56 @@ func (s *SmService) CreateNetworkSmTargetGroup(networkID string, requestSmCreate
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestSmCreateNetworkSmTargetGroup).
-		// SetResult(&ResponseSmCreateNetworkSmTargetGroup{}).
+		SetResult(&ResponseSmCreateNetworkSmTargetGroup{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateNetworkSmTargetGroup")
+		return nil, response, fmt.Errorf("error with operation CreateNetworkSmTargetGroup")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseSmCreateNetworkSmTargetGroup)
+	return result, response, err
+
+}
+
+//CreateOrganizationSmAdminsRole Create a Limited Access Role
+/* Create a Limited Access Role
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *SmService) CreateOrganizationSmAdminsRole(organizationID string, requestSmCreateOrganizationSmAdminsRole *RequestSmCreateOrganizationSmAdminsRole) (*ResponseSmCreateOrganizationSmAdminsRole, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/sm/admins/roles"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSmCreateOrganizationSmAdminsRole).
+		SetResult(&ResponseSmCreateOrganizationSmAdminsRole{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationSmAdminsRole")
+	}
+
+	result := response.Result().(*ResponseSmCreateOrganizationSmAdminsRole)
+	return result, response, err
 
 }
 
@@ -1686,7 +2181,7 @@ func (s *SmService) UpdateNetworkSmDevicesFields(networkID string, requestSmUpda
 @param networkID networkId path parameter. Network ID
 @param targetGroupID targetGroupId path parameter. Target group ID
 */
-func (s *SmService) UpdateNetworkSmTargetGroup(networkID string, targetGroupID string, requestSmUpdateNetworkSmTargetGroup *RequestSmUpdateNetworkSmTargetGroup) (*resty.Response, error) {
+func (s *SmService) UpdateNetworkSmTargetGroup(networkID string, targetGroupID string, requestSmUpdateNetworkSmTargetGroup *RequestSmUpdateNetworkSmTargetGroup) (*ResponseSmUpdateNetworkSmTargetGroup, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/targetGroups/{targetGroupId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -1696,19 +2191,87 @@ func (s *SmService) UpdateNetworkSmTargetGroup(networkID string, targetGroupID s
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestSmUpdateNetworkSmTargetGroup).
+		SetResult(&ResponseSmUpdateNetworkSmTargetGroup{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkSmTargetGroup")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkSmTargetGroup")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseSmUpdateNetworkSmTargetGroup)
+	return result, response, err
+
+}
+
+//UpdateOrganizationSmAdminsRole Update a Limited Access Role
+/* Update a Limited Access Role
+
+@param organizationID organizationId path parameter. Organization ID
+@param roleID roleId path parameter. Role ID
+*/
+func (s *SmService) UpdateOrganizationSmAdminsRole(organizationID string, roleID string, requestSmUpdateOrganizationSmAdminsRole *RequestSmUpdateOrganizationSmAdminsRole) (*ResponseSmUpdateOrganizationSmAdminsRole, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/sm/admins/roles/{roleId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{roleId}", fmt.Sprintf("%v", roleID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSmUpdateOrganizationSmAdminsRole).
+		SetResult(&ResponseSmUpdateOrganizationSmAdminsRole{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateOrganizationSmAdminsRole")
+	}
+
+	result := response.Result().(*ResponseSmUpdateOrganizationSmAdminsRole)
+	return result, response, err
+
+}
+
+//UpdateOrganizationSmSentryPoliciesAssignments Update an Organizations Sentry Policies using the provided list
+/* Update an Organizations Sentry Policies using the provided list. Sentry Policies are ordered in descending order of priority (i.e. highest priority at the bottom, this is opposite the Dashboard UI). Policies not present in the request will be deleted.
+
+@param organizationID organizationId path parameter. Organization ID
+*/
+func (s *SmService) UpdateOrganizationSmSentryPoliciesAssignments(organizationID string, requestSmUpdateOrganizationSmSentryPoliciesAssignments *RequestSmUpdateOrganizationSmSentryPoliciesAssignments) (*ResponseSmUpdateOrganizationSmSentryPoliciesAssignments, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/sm/sentry/policies/assignments"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSmUpdateOrganizationSmSentryPoliciesAssignments).
+		SetResult(&ResponseSmUpdateOrganizationSmSentryPoliciesAssignments{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateOrganizationSmSentryPoliciesAssignments")
+	}
+
+	result := response.Result().(*ResponseSmUpdateOrganizationSmSentryPoliciesAssignments)
+	return result, response, err
 
 }
 
@@ -1774,6 +2337,40 @@ func (s *SmService) DeleteNetworkSmUserAccessDevice(networkID string, userAccess
 
 	if response.IsError() {
 		return response, fmt.Errorf("error with operation DeleteNetworkSmUserAccessDevice")
+	}
+
+	return response, err
+
+}
+
+//DeleteOrganizationSmAdminsRole Delete a Limited Access Role
+/* Delete a Limited Access Role
+
+@param organizationID organizationId path parameter. Organization ID
+@param roleID roleId path parameter. Role ID
+
+
+*/
+func (s *SmService) DeleteOrganizationSmAdminsRole(organizationID string, roleID string) (*resty.Response, error) {
+	//organizationID string,roleID string
+	path := "/api/v1/organizations/{organizationId}/sm/admins/roles/{roleId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{roleId}", fmt.Sprintf("%v", roleID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation DeleteOrganizationSmAdminsRole")
 	}
 
 	return response, err

@@ -219,6 +219,7 @@ type GetNetworkWirelessUsageHistoryQueryParams struct {
 	Band           string  `url:"band,omitempty"`           //Filter results by band (either '2.4', '5' or '6').
 	SSID           int     `url:"ssid,omitempty"`           //Filter results by SSID number.
 }
+
 type GetOrganizationWirelessDevicesEthernetStatusesQueryParams struct {
 	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 100.
 	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
@@ -226,6 +227,20 @@ type GetOrganizationWirelessDevicesEthernetStatusesQueryParams struct {
 	NetworkIDs    []string `url:"networkIds[],omitempty"`  //A list of Meraki network IDs to filter results to contain only specified networks. E.g.: networkIds[]=N_12345678&networkIds[]=L_3456
 }
 
+type ResponseWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6 struct {
+	Addresses *[]ResponseWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6Addresses `json:"addresses,omitempty"` // configured alternate management interface addresses
+}
+type ResponseWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6Addresses struct {
+	Address        string                                                                                    `json:"address,omitempty"`        // The IP address configured for the alternate management interface
+	AssignmentMode string                                                                                    `json:"assignmentMode,omitempty"` // The type of address assignment. Either static or dynamic.
+	Gateway        string                                                                                    `json:"gateway,omitempty"`        // The gateway address configured for the alternate managment interface
+	Nameservers    *ResponseWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6AddressesNameservers `json:"nameservers,omitempty"`    // The DNS servers settings for this address.
+	Prefix         string                                                                                    `json:"prefix,omitempty"`         // The IPv6 prefix of the interface. Required if IPv6 object is included.
+	Protocol       string                                                                                    `json:"protocol,omitempty"`       // The IP protocol used for the address
+}
+type ResponseWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6AddressesNameservers struct {
+	Addresses []string `json:"addresses,omitempty"` // Up to 2 nameserver addresses to use, ordered in priority from highest to lowest priority.
+}
 type ResponseWirelessGetDeviceWirelessBluetoothSettings struct {
 	Major *int   `json:"major,omitempty"` // Desired major value of the beacon. If the value is set to null it will reset to Dashboard's automatically generated value.
 	Minor *int   `json:"minor,omitempty"` // Desired minor value of the beacon. If the value is set to null it will reset to Dashboard's automatically generated value.
@@ -293,19 +308,19 @@ type ResponseWirelessGetDeviceWirelessRadioSettingsTwoFourGhzSettings struct {
 }
 type ResponseWirelessUpdateDeviceWirelessRadioSettings interface{}
 type ResponseWirelessGetDeviceWirelessStatus struct {
-	BasicServiceSets *[]ResponseWirelessGetDeviceWirelessStatusBasicServiceSets `json:"basicServiceSets,omitempty"` //
+	BasicServiceSets *[]ResponseWirelessGetDeviceWirelessStatusBasicServiceSets `json:"basicServiceSets,omitempty"` // SSID status list
 }
 type ResponseWirelessGetDeviceWirelessStatusBasicServiceSets struct {
-	Band         string `json:"band,omitempty"`         //
-	Broadcasting *bool  `json:"broadcasting,omitempty"` //
-	Bssid        string `json:"bssid,omitempty"`        //
-	Channel      *int   `json:"channel,omitempty"`      //
-	ChannelWidth string `json:"channelWidth,omitempty"` //
-	Enabled      *bool  `json:"enabled,omitempty"`      //
-	Power        string `json:"power,omitempty"`        //
-	SSIDName     string `json:"ssidName,omitempty"`     //
-	SSIDNumber   *int   `json:"ssidNumber,omitempty"`   //
-	Visible      *bool  `json:"visible,omitempty"`      //
+	Band         string `json:"band,omitempty"`         // Frequency range used by wireless network
+	Broadcasting *bool  `json:"broadcasting,omitempty"` // Whether the SSID is broadcasting based on an availability schedule
+	Bssid        string `json:"bssid,omitempty"`        // Unique identifier of wireless access point
+	Channel      *int   `json:"channel,omitempty"`      // Frequency channel used by wireless network
+	ChannelWidth string `json:"channelWidth,omitempty"` // Width of frequency channel used by wireless network
+	Enabled      *bool  `json:"enabled,omitempty"`      // Status of wireless network
+	Power        string `json:"power,omitempty"`        // Strength of wireless signal
+	SSIDName     string `json:"ssidName,omitempty"`     // Name of wireless network
+	SSIDNumber   *int   `json:"ssidNumber,omitempty"`   // Unique identifier of wireless network
+	Visible      *bool  `json:"visible,omitempty"`      // Whether the SSID is advertised or hidden
 }
 type ResponseWirelessGetNetworkWirelessAirMarshal []ResponseItemWirelessGetNetworkWirelessAirMarshal // Array of ResponseWirelessGetNetworkWirelessAirMarshal
 type ResponseItemWirelessGetNetworkWirelessAirMarshal struct {
@@ -343,20 +358,33 @@ type ResponseWirelessGetNetworkWirelessAlternateManagementInterfaceAccessPoints 
 }
 type ResponseWirelessUpdateNetworkWirelessAlternateManagementInterface interface{}
 type ResponseWirelessGetNetworkWirelessBilling struct {
-	Currency string                                            `json:"currency,omitempty"` //
-	Plans    *[]ResponseWirelessGetNetworkWirelessBillingPlans `json:"plans,omitempty"`    //
+	Currency string                                            `json:"currency,omitempty"` // The currency code of this node group's billing plans
+	Plans    *[]ResponseWirelessGetNetworkWirelessBillingPlans `json:"plans,omitempty"`    // Array of billing plans in the node group. (Can configure a maximum of 5)
 }
 type ResponseWirelessGetNetworkWirelessBillingPlans struct {
-	BandwidthLimits *ResponseWirelessGetNetworkWirelessBillingPlansBandwidthLimits `json:"bandwidthLimits,omitempty"` //
-	ID              string                                                         `json:"id,omitempty"`              //
-	Price           *float64                                                       `json:"price,omitempty"`           //
-	TimeLimit       string                                                         `json:"timeLimit,omitempty"`       //
+	BandwidthLimits *ResponseWirelessGetNetworkWirelessBillingPlansBandwidthLimits `json:"bandwidthLimits,omitempty"` // The uplink bandwidth settings for the pricing plan.
+	ID              string                                                         `json:"id,omitempty"`              // The id of the pricing plan to update.
+	Price           *float64                                                       `json:"price,omitempty"`           // The price of the billing plan.
+	TimeLimit       string                                                         `json:"timeLimit,omitempty"`       // The time limit of the pricing plan in minutes.
 }
 type ResponseWirelessGetNetworkWirelessBillingPlansBandwidthLimits struct {
-	LimitDown *int `json:"limitDown,omitempty"` //
-	LimitUp   *int `json:"limitUp,omitempty"`   //
+	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps).
+	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps).
 }
-type ResponseWirelessUpdateNetworkWirelessBilling interface{}
+type ResponseWirelessUpdateNetworkWirelessBilling struct {
+	Currency string                                               `json:"currency,omitempty"` // The currency code of this node group's billing plans
+	Plans    *[]ResponseWirelessUpdateNetworkWirelessBillingPlans `json:"plans,omitempty"`    // Array of billing plans in the node group. (Can configure a maximum of 5)
+}
+type ResponseWirelessUpdateNetworkWirelessBillingPlans struct {
+	BandwidthLimits *ResponseWirelessUpdateNetworkWirelessBillingPlansBandwidthLimits `json:"bandwidthLimits,omitempty"` // The uplink bandwidth settings for the pricing plan.
+	ID              string                                                            `json:"id,omitempty"`              // The id of the pricing plan to update.
+	Price           *float64                                                          `json:"price,omitempty"`           // The price of the billing plan.
+	TimeLimit       string                                                            `json:"timeLimit,omitempty"`       // The time limit of the pricing plan in minutes.
+}
+type ResponseWirelessUpdateNetworkWirelessBillingPlansBandwidthLimits struct {
+	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps).
+	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps).
+}
 type ResponseWirelessGetNetworkWirelessBluetoothSettings struct {
 	AdvertisingEnabled       *bool  `json:"advertisingEnabled,omitempty"`       // Whether APs will advertise beacons.
 	EslEnabled               *bool  `json:"eslEnabled,omitempty"`               // Whether ESL is enabled on this network.
@@ -461,75 +489,75 @@ type ResponseItemWirelessGetNetworkWirelessClientConnectivityEventsEventData str
 }
 type ResponseWirelessGetNetworkWirelessClientLatencyHistory []ResponseItemWirelessGetNetworkWirelessClientLatencyHistory // Array of ResponseWirelessGetNetworkWirelessClientLatencyHistory
 type ResponseItemWirelessGetNetworkWirelessClientLatencyHistory struct {
-	LatencyBinsByCategory *ResponseItemWirelessGetNetworkWirelessClientLatencyHistoryLatencyBinsByCategory `json:"latencyBinsByCategory,omitempty"` //
-	T0                    *int                                                                             `json:"t0,omitempty"`                    //
-	T1                    *int                                                                             `json:"t1,omitempty"`                    //
+	LatencyBinsByCategory *ResponseItemWirelessGetNetworkWirelessClientLatencyHistoryLatencyBinsByCategory `json:"latencyBinsByCategory,omitempty"` // The latency buckets by category
+	T0                    *int                                                                             `json:"t0,omitempty"`                    // The latency history bucket start time in seconds
+	T1                    *int                                                                             `json:"t1,omitempty"`                    // The latency history bucket end time in seconds
 }
 type ResponseItemWirelessGetNetworkWirelessClientLatencyHistoryLatencyBinsByCategory struct {
-	BackgroundTraffic *ResponseItemWirelessGetNetworkWirelessClientLatencyHistoryLatencyBinsByCategoryBackgroundTraffic `json:"backgroundTraffic,omitempty"` //
-	BestEffortTraffic *ResponseItemWirelessGetNetworkWirelessClientLatencyHistoryLatencyBinsByCategoryBestEffortTraffic `json:"bestEffortTraffic,omitempty"` //
-	VideoTraffic      *ResponseItemWirelessGetNetworkWirelessClientLatencyHistoryLatencyBinsByCategoryVideoTraffic      `json:"videoTraffic,omitempty"`      //
-	VoiceTraffic      *ResponseItemWirelessGetNetworkWirelessClientLatencyHistoryLatencyBinsByCategoryVoiceTraffic      `json:"voiceTraffic,omitempty"`      //
+	BackgroundTraffic *ResponseItemWirelessGetNetworkWirelessClientLatencyHistoryLatencyBinsByCategoryBackgroundTraffic `json:"backgroundTraffic,omitempty"` // The time bucket's background traffic latency history
+	BestEffortTraffic *ResponseItemWirelessGetNetworkWirelessClientLatencyHistoryLatencyBinsByCategoryBestEffortTraffic `json:"bestEffortTraffic,omitempty"` // The time bucket's best effort traffic latency history
+	VideoTraffic      *ResponseItemWirelessGetNetworkWirelessClientLatencyHistoryLatencyBinsByCategoryVideoTraffic      `json:"videoTraffic,omitempty"`      // The time bucket's video traffic latency history
+	VoiceTraffic      *ResponseItemWirelessGetNetworkWirelessClientLatencyHistoryLatencyBinsByCategoryVoiceTraffic      `json:"voiceTraffic,omitempty"`      // The time bucket's voice traffic latency history
 }
 type ResponseItemWirelessGetNetworkWirelessClientLatencyHistoryLatencyBinsByCategoryBackgroundTraffic struct {
-	Status05    *int `json:"0.5,omitempty"`    //
-	Status10    *int `json:"1.0,omitempty"`    //
-	Status10240 *int `json:"1024.0,omitempty"` //
-	Status1280  *int `json:"128.0,omitempty"`  //
-	Status160   *int `json:"16.0,omitempty"`   //
-	Status20    *int `json:"2.0,omitempty"`    //
-	Status20480 *int `json:"2048.0,omitempty"` //
-	Status2560  *int `json:"256.0,omitempty"`  //
-	Status320   *int `json:"32.0,omitempty"`   //
-	Status40    *int `json:"4.0,omitempty"`    //
-	Status5120  *int `json:"512.0,omitempty"`  //
-	Status640   *int `json:"64.0,omitempty"`   //
-	Status80    *int `json:"8.0,omitempty"`    //
+	Status05    *int `json:"0.5,omitempty"`    // The latency bucket for background traffic in 0.5 seconds
+	Status10    *int `json:"1.0,omitempty"`    // The latency bucket for background traffic in 1.0 seconds
+	Status10240 *int `json:"1024.0,omitempty"` // The latency bucket for background traffic in 1024.0 seconds
+	Status1280  *int `json:"128.0,omitempty"`  // The latency bucket for background traffic in 128.0 seconds
+	Status160   *int `json:"16.0,omitempty"`   // The latency bucket for background traffic in 16.0 seconds
+	Status20    *int `json:"2.0,omitempty"`    // The latency bucket for background traffic in 2.0 seconds
+	Status20480 *int `json:"2048.0,omitempty"` // The latency bucket for background traffic in 2048.0 seconds
+	Status2560  *int `json:"256.0,omitempty"`  // The latency bucket for background traffic in 256.0 seconds
+	Status320   *int `json:"32.0,omitempty"`   // The latency bucket for background traffic in 32.0 seconds
+	Status40    *int `json:"4.0,omitempty"`    // The latency bucket for background traffic in 4.0 seconds
+	Status5120  *int `json:"512.0,omitempty"`  // The latency bucket for background traffic in 512.0 seconds
+	Status640   *int `json:"64.0,omitempty"`   // The latency bucket for background traffic in 64.0 seconds
+	Status80    *int `json:"8.0,omitempty"`    // The latency bucket for background traffic in 8.0 seconds
 }
 type ResponseItemWirelessGetNetworkWirelessClientLatencyHistoryLatencyBinsByCategoryBestEffortTraffic struct {
-	Status05    *int `json:"0.5,omitempty"`    //
-	Status10    *int `json:"1.0,omitempty"`    //
-	Status10240 *int `json:"1024.0,omitempty"` //
-	Status1280  *int `json:"128.0,omitempty"`  //
-	Status160   *int `json:"16.0,omitempty"`   //
-	Status20    *int `json:"2.0,omitempty"`    //
-	Status20480 *int `json:"2048.0,omitempty"` //
-	Status2560  *int `json:"256.0,omitempty"`  //
-	Status320   *int `json:"32.0,omitempty"`   //
-	Status40    *int `json:"4.0,omitempty"`    //
-	Status5120  *int `json:"512.0,omitempty"`  //
-	Status640   *int `json:"64.0,omitempty"`   //
-	Status80    *int `json:"8.0,omitempty"`    //
+	Status05    *int `json:"0.5,omitempty"`    // The latency bucket for best effort traffic in 0.5 seconds
+	Status10    *int `json:"1.0,omitempty"`    // The latency bucket for best effort traffic in 1.0 seconds
+	Status10240 *int `json:"1024.0,omitempty"` // The latency bucket for best effort traffic in 1024.0 seconds
+	Status1280  *int `json:"128.0,omitempty"`  // The latency bucket for best effort traffic in 128.0 seconds
+	Status160   *int `json:"16.0,omitempty"`   // The latency bucket for best effort traffic in 16.0 seconds
+	Status20    *int `json:"2.0,omitempty"`    // The latency bucket for best effort traffic in 2.0 seconds
+	Status20480 *int `json:"2048.0,omitempty"` // The latency bucket for best effort traffic in 2048.0 seconds
+	Status2560  *int `json:"256.0,omitempty"`  // The latency bucket for best effort traffic in 256.0 seconds
+	Status320   *int `json:"32.0,omitempty"`   // The latency bucket for best effort traffic in 32.0 seconds
+	Status40    *int `json:"4.0,omitempty"`    // The latency bucket for best effort traffic in 4.0 seconds
+	Status5120  *int `json:"512.0,omitempty"`  // The latency bucket for best effort traffic in 512.0 seconds
+	Status640   *int `json:"64.0,omitempty"`   // The latency bucket for best effort traffic in 64.0 seconds
+	Status80    *int `json:"8.0,omitempty"`    // The latency bucket for best effort traffic in 8.0 seconds
 }
 type ResponseItemWirelessGetNetworkWirelessClientLatencyHistoryLatencyBinsByCategoryVideoTraffic struct {
-	Status05    *int `json:"0.5,omitempty"`    //
-	Status10    *int `json:"1.0,omitempty"`    //
-	Status10240 *int `json:"1024.0,omitempty"` //
-	Status1280  *int `json:"128.0,omitempty"`  //
-	Status160   *int `json:"16.0,omitempty"`   //
-	Status20    *int `json:"2.0,omitempty"`    //
-	Status20480 *int `json:"2048.0,omitempty"` //
-	Status2560  *int `json:"256.0,omitempty"`  //
-	Status320   *int `json:"32.0,omitempty"`   //
-	Status40    *int `json:"4.0,omitempty"`    //
-	Status5120  *int `json:"512.0,omitempty"`  //
-	Status640   *int `json:"64.0,omitempty"`   //
-	Status80    *int `json:"8.0,omitempty"`    //
+	Status05    *int `json:"0.5,omitempty"`    // The latency bucket for video traffic in 0.5 seconds
+	Status10    *int `json:"1.0,omitempty"`    // The latency bucket for video traffic in 1.0 seconds
+	Status10240 *int `json:"1024.0,omitempty"` // The latency bucket for video traffic in 1024.0 seconds
+	Status1280  *int `json:"128.0,omitempty"`  // The latency bucket for video traffic in 128.0 seconds
+	Status160   *int `json:"16.0,omitempty"`   // The latency bucket for video traffic in 16.0 seconds
+	Status20    *int `json:"2.0,omitempty"`    // The latency bucket for video traffic in 2.0 seconds
+	Status20480 *int `json:"2048.0,omitempty"` // The latency bucket for video traffic in 2048.0 seconds
+	Status2560  *int `json:"256.0,omitempty"`  // The latency bucket for video traffic in 256.0 seconds
+	Status320   *int `json:"32.0,omitempty"`   // The latency bucket for video traffic in 32.0 seconds
+	Status40    *int `json:"4.0,omitempty"`    // The latency bucket for video traffic in 4.0 seconds
+	Status5120  *int `json:"512.0,omitempty"`  // The latency bucket for video traffic in 512.0 seconds
+	Status640   *int `json:"64.0,omitempty"`   // The latency bucket for video traffic in 64.0 seconds
+	Status80    *int `json:"8.0,omitempty"`    // The latency bucket for video traffic in 8.0 seconds
 }
 type ResponseItemWirelessGetNetworkWirelessClientLatencyHistoryLatencyBinsByCategoryVoiceTraffic struct {
-	Status05    *int `json:"0.5,omitempty"`    //
-	Status10    *int `json:"1.0,omitempty"`    //
-	Status10240 *int `json:"1024.0,omitempty"` //
-	Status1280  *int `json:"128.0,omitempty"`  //
-	Status160   *int `json:"16.0,omitempty"`   //
-	Status20    *int `json:"2.0,omitempty"`    //
-	Status20480 *int `json:"2048.0,omitempty"` //
-	Status2560  *int `json:"256.0,omitempty"`  //
-	Status320   *int `json:"32.0,omitempty"`   //
-	Status40    *int `json:"4.0,omitempty"`    //
-	Status5120  *int `json:"512.0,omitempty"`  //
-	Status640   *int `json:"64.0,omitempty"`   //
-	Status80    *int `json:"8.0,omitempty"`    //
+	Status05    *int `json:"0.5,omitempty"`    // The latency bucket for voice traffic in 0.5 seconds
+	Status10    *int `json:"1.0,omitempty"`    // The latency bucket for voice traffic in 1.0 seconds
+	Status10240 *int `json:"1024.0,omitempty"` // The latency bucket for voice traffic in 1024.0 seconds
+	Status1280  *int `json:"128.0,omitempty"`  // The latency bucket for voice traffic in 128.0 seconds
+	Status160   *int `json:"16.0,omitempty"`   // The latency bucket for voice traffic in 16.0 seconds
+	Status20    *int `json:"2.0,omitempty"`    // The latency bucket for voice traffic in 2.0 seconds
+	Status20480 *int `json:"2048.0,omitempty"` // The latency bucket for voice traffic in 2048.0 seconds
+	Status2560  *int `json:"256.0,omitempty"`  // The latency bucket for voice traffic in 256.0 seconds
+	Status320   *int `json:"32.0,omitempty"`   // The latency bucket for voice traffic in 32.0 seconds
+	Status40    *int `json:"4.0,omitempty"`    // The latency bucket for voice traffic in 4.0 seconds
+	Status5120  *int `json:"512.0,omitempty"`  // The latency bucket for voice traffic in 512.0 seconds
+	Status640   *int `json:"64.0,omitempty"`   // The latency bucket for voice traffic in 64.0 seconds
+	Status80    *int `json:"8.0,omitempty"`    // The latency bucket for voice traffic in 8.0 seconds
 }
 type ResponseWirelessGetNetworkWirelessClientLatencyStats struct {
 	LatencyStats *ResponseWirelessGetNetworkWirelessClientLatencyStatsLatencyStats `json:"latencyStats,omitempty"` //
@@ -617,6 +645,90 @@ type ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsBackgr
 	Status64   *int `json:"64,omitempty"`   //
 	Status8    *int `json:"8,omitempty"`    //
 }
+type ResponseWirelessGetNetworkWirelessEthernetPortsProfiles []ResponseItemWirelessGetNetworkWirelessEthernetPortsProfiles // Array of ResponseWirelessGetNetworkWirelessEthernetPortsProfiles
+type ResponseItemWirelessGetNetworkWirelessEthernetPortsProfiles struct {
+	IsDefault *bool                                                                  `json:"isDefault,omitempty"` // Is default profile
+	Name      string                                                                 `json:"name,omitempty"`      // AP port profile name
+	Ports     *[]ResponseItemWirelessGetNetworkWirelessEthernetPortsProfilesPorts    `json:"ports,omitempty"`     // Ports config
+	ProfileID string                                                                 `json:"profileId,omitempty"` // AP port profile ID
+	UsbPorts  *[]ResponseItemWirelessGetNetworkWirelessEthernetPortsProfilesUsbPorts `json:"usbPorts,omitempty"`  // Usb ports config
+}
+type ResponseItemWirelessGetNetworkWirelessEthernetPortsProfilesPorts struct {
+	Enabled    *bool  `json:"enabled,omitempty"`    // Enabled
+	Name       string `json:"name,omitempty"`       // Name
+	Number     *int   `json:"number,omitempty"`     // Number
+	PskGroupID string `json:"pskGroupId,omitempty"` // PSK Group number
+	SSID       *int   `json:"ssid,omitempty"`       // Ssid number
+}
+type ResponseItemWirelessGetNetworkWirelessEthernetPortsProfilesUsbPorts struct {
+	Enabled *bool  `json:"enabled,omitempty"` // Enabled
+	Name    string `json:"name,omitempty"`    // Name
+	SSID    *int   `json:"ssid,omitempty"`    // Ssid number
+}
+type ResponseWirelessCreateNetworkWirelessEthernetPortsProfile struct {
+	IsDefault *bool                                                                `json:"isDefault,omitempty"` // Is default profile
+	Name      string                                                               `json:"name,omitempty"`      // AP port profile name
+	Ports     *[]ResponseWirelessCreateNetworkWirelessEthernetPortsProfilePorts    `json:"ports,omitempty"`     // Ports config
+	ProfileID string                                                               `json:"profileId,omitempty"` // AP port profile ID
+	UsbPorts  *[]ResponseWirelessCreateNetworkWirelessEthernetPortsProfileUsbPorts `json:"usbPorts,omitempty"`  // Usb ports config
+}
+type ResponseWirelessCreateNetworkWirelessEthernetPortsProfilePorts struct {
+	Enabled    *bool  `json:"enabled,omitempty"`    // Enabled
+	Name       string `json:"name,omitempty"`       // Name
+	Number     *int   `json:"number,omitempty"`     // Number
+	PskGroupID string `json:"pskGroupId,omitempty"` // PSK Group number
+	SSID       *int   `json:"ssid,omitempty"`       // Ssid number
+}
+type ResponseWirelessCreateNetworkWirelessEthernetPortsProfileUsbPorts struct {
+	Enabled *bool  `json:"enabled,omitempty"` // Enabled
+	Name    string `json:"name,omitempty"`    // Name
+	SSID    *int   `json:"ssid,omitempty"`    // Ssid number
+}
+type ResponseWirelessAssignNetworkWirelessEthernetPortsProfiles struct {
+	ProfileID string   `json:"profileId,omitempty"` // AP profile ID
+	Serials   []string `json:"serials,omitempty"`   // List of updated AP serials
+}
+type ResponseWirelessSetNetworkWirelessEthernetPortsProfilesDefault struct {
+	ProfileID string `json:"profileId,omitempty"` // AP profile ID
+}
+type ResponseWirelessGetNetworkWirelessEthernetPortsProfile struct {
+	IsDefault *bool                                                             `json:"isDefault,omitempty"` // Is default profile
+	Name      string                                                            `json:"name,omitempty"`      // AP port profile name
+	Ports     *[]ResponseWirelessGetNetworkWirelessEthernetPortsProfilePorts    `json:"ports,omitempty"`     // Ports config
+	ProfileID string                                                            `json:"profileId,omitempty"` // AP port profile ID
+	UsbPorts  *[]ResponseWirelessGetNetworkWirelessEthernetPortsProfileUsbPorts `json:"usbPorts,omitempty"`  // Usb ports config
+}
+type ResponseWirelessGetNetworkWirelessEthernetPortsProfilePorts struct {
+	Enabled    *bool  `json:"enabled,omitempty"`    // Enabled
+	Name       string `json:"name,omitempty"`       // Name
+	Number     *int   `json:"number,omitempty"`     // Number
+	PskGroupID string `json:"pskGroupId,omitempty"` // PSK Group number
+	SSID       *int   `json:"ssid,omitempty"`       // Ssid number
+}
+type ResponseWirelessGetNetworkWirelessEthernetPortsProfileUsbPorts struct {
+	Enabled *bool  `json:"enabled,omitempty"` // Enabled
+	Name    string `json:"name,omitempty"`    // Name
+	SSID    *int   `json:"ssid,omitempty"`    // Ssid number
+}
+type ResponseWirelessUpdateNetworkWirelessEthernetPortsProfile struct {
+	IsDefault *bool                                                                `json:"isDefault,omitempty"` // Is default profile
+	Name      string                                                               `json:"name,omitempty"`      // AP port profile name
+	Ports     *[]ResponseWirelessUpdateNetworkWirelessEthernetPortsProfilePorts    `json:"ports,omitempty"`     // Ports config
+	ProfileID string                                                               `json:"profileId,omitempty"` // AP port profile ID
+	UsbPorts  *[]ResponseWirelessUpdateNetworkWirelessEthernetPortsProfileUsbPorts `json:"usbPorts,omitempty"`  // Usb ports config
+}
+type ResponseWirelessUpdateNetworkWirelessEthernetPortsProfilePorts struct {
+	Enabled    *bool  `json:"enabled,omitempty"`    // Enabled
+	Name       string `json:"name,omitempty"`       // Name
+	Number     *int   `json:"number,omitempty"`     // Number
+	PskGroupID string `json:"pskGroupId,omitempty"` // PSK Group number
+	SSID       *int   `json:"ssid,omitempty"`       // Ssid number
+}
+type ResponseWirelessUpdateNetworkWirelessEthernetPortsProfileUsbPorts struct {
+	Enabled *bool  `json:"enabled,omitempty"` // Enabled
+	Name    string `json:"name,omitempty"`    // Name
+	SSID    *int   `json:"ssid,omitempty"`    // Ssid number
+}
 type ResponseWirelessGetNetworkWirelessFailedConnections []ResponseItemWirelessGetNetworkWirelessFailedConnections // Array of ResponseWirelessGetNetworkWirelessFailedConnections
 type ResponseItemWirelessGetNetworkWirelessFailedConnections struct {
 	ClientMac   string `json:"clientMac,omitempty"`   // Client Mac
@@ -658,167 +770,232 @@ type ResponseWirelessGetNetworkWirelessLatencyStatsBackgroundTrafficRawDistribut
 	Status64   *int `json:"64,omitempty"`   //
 	Status8    *int `json:"8,omitempty"`    //
 }
-type ResponseWirelessGetNetworkWirelessMeshStatuses struct {
-	LatestMeshPerformance *ResponseWirelessGetNetworkWirelessMeshStatusesLatestMeshPerformance `json:"latestMeshPerformance,omitempty"` //
-	MeshRoute             []string                                                             `json:"meshRoute,omitempty"`             //
-	Serial                string                                                               `json:"serial,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessMeshStatuses []ResponseItemWirelessGetNetworkWirelessMeshStatuses // Array of ResponseWirelessGetNetworkWirelessMeshStatuses
+type ResponseItemWirelessGetNetworkWirelessMeshStatuses struct {
+	LatestMeshPerformance *ResponseItemWirelessGetNetworkWirelessMeshStatusesLatestMeshPerformance `json:"latestMeshPerformance,omitempty"` // Current metrics on how the mesh is performing.
+	MeshRoute             []string                                                                 `json:"meshRoute,omitempty"`             // List of device serials that make up the mesh.
+	Serial                string                                                                   `json:"serial,omitempty"`                // The serial number for the device.
 }
-type ResponseWirelessGetNetworkWirelessMeshStatusesLatestMeshPerformance struct {
-	Mbps            *int   `json:"mbps,omitempty"`            //
-	Metric          *int   `json:"metric,omitempty"`          //
-	UsagePercentage string `json:"usagePercentage,omitempty"` //
+type ResponseItemWirelessGetNetworkWirelessMeshStatusesLatestMeshPerformance struct {
+	Mbps            *int   `json:"mbps,omitempty"`            // Average Mbps.
+	Metric          *int   `json:"metric,omitempty"`          // Represents the quality of the entire route from the repeater access point to its gateway access point.
+	UsagePercentage string `json:"usagePercentage,omitempty"` // Mesh utilization as a percentage.
 }
-type ResponseWirelessGetNetworkWirelessRfProfiles []ResponseItemWirelessGetNetworkWirelessRfProfiles // Array of ResponseWirelessGetNetworkWirelessRfProfiles
-type ResponseItemWirelessGetNetworkWirelessRfProfiles struct {
-	AfcEnabled             *bool                                                               `json:"afcEnabled,omitempty"`             //
-	ApBandSettings         *ResponseItemWirelessGetNetworkWirelessRfProfilesApBandSettings     `json:"apBandSettings,omitempty"`         //
-	BandSelectionType      string                                                              `json:"bandSelectionType,omitempty"`      //
-	ClientBalancingEnabled *bool                                                               `json:"clientBalancingEnabled,omitempty"` //
-	FiveGhzSettings        *ResponseItemWirelessGetNetworkWirelessRfProfilesFiveGhzSettings    `json:"fiveGhzSettings,omitempty"`        //
-	ID                     string                                                              `json:"id,omitempty"`                     //
-	MinBitrateType         string                                                              `json:"minBitrateType,omitempty"`         //
-	Name                   string                                                              `json:"name,omitempty"`                   //
-	NetworkID              string                                                              `json:"networkId,omitempty"`              //
-	PerSSIDSettings        *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings    `json:"perSsidSettings,omitempty"`        //
-	SixGhzSettings         *ResponseItemWirelessGetNetworkWirelessRfProfilesSixGhzSettings     `json:"sixGhzSettings,omitempty"`         //
-	Transmission           *ResponseItemWirelessGetNetworkWirelessRfProfilesTransmission       `json:"transmission,omitempty"`           //
-	TwoFourGhzSettings     *ResponseItemWirelessGetNetworkWirelessRfProfilesTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"`     //
+type ResponseWirelessGetNetworkWirelessRfProfiles struct {
+	ApBandSettings         *ResponseWirelessGetNetworkWirelessRfProfilesApBandSettings     `json:"apBandSettings,omitempty"`         // Settings that will be enabled if selectionType is set to 'ap'.
+	BandSelectionType      string                                                          `json:"bandSelectionType,omitempty"`      // Band selection can be set to either 'ssid' or 'ap'. This param is required on creation.
+	ClientBalancingEnabled *bool                                                           `json:"clientBalancingEnabled,omitempty"` // Steers client to best available access point. Can be either true or false. Defaults to true.
+	FiveGhzSettings        *ResponseWirelessGetNetworkWirelessRfProfilesFiveGhzSettings    `json:"fiveGhzSettings,omitempty"`        // Settings related to 5Ghz band
+	ID                     string                                                          `json:"id,omitempty"`                     // The name of the new profile. Must be unique.
+	MinBitrateType         string                                                          `json:"minBitrateType,omitempty"`         // Minimum bitrate can be set to either 'band' or 'ssid'. Defaults to band.
+	Name                   string                                                          `json:"name,omitempty"`                   // The name of the new profile. Must be unique. This param is required on creation.
+	NetworkID              string                                                          `json:"networkId,omitempty"`              // The network ID of the RF Profile
+	PerSSIDSettings        *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings    `json:"perSsidSettings,omitempty"`        // Per-SSID radio settings by number.
+	SixGhzSettings         *ResponseWirelessGetNetworkWirelessRfProfilesSixGhzSettings     `json:"sixGhzSettings,omitempty"`         // Settings related to 6Ghz band. Only applicable to networks with 6Ghz capable APs
+	Transmission           *ResponseWirelessGetNetworkWirelessRfProfilesTransmission       `json:"transmission,omitempty"`           // Settings related to radio transmission.
+	TwoFourGhzSettings     *ResponseWirelessGetNetworkWirelessRfProfilesTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"`     // Settings related to 2.4Ghz band
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesApBandSettings struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
+type ResponseWirelessGetNetworkWirelessRfProfilesApBandSettings struct {
+	BandOperationMode   string                                                           `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'. Defaults to dual.
+	BandSteeringEnabled *bool                                                            `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band. Can be either true or false. Defaults to true.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesApBandSettingsBands `json:"bands,omitempty"`               // Settings related to all bands
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesFiveGhzSettings struct {
-	ChannelWidth      string   `json:"channelWidth,omitempty"`      //
-	MaxPower          *int     `json:"maxPower,omitempty"`          //
-	MinBitrate        *int     `json:"minBitrate,omitempty"`        //
-	MinPower          *int     `json:"minPower,omitempty"`          //
-	ValidAutoChannels []string `json:"validAutoChannels,omitempty"` //
+type ResponseWirelessGetNetworkWirelessRfProfilesApBandSettingsBands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings struct {
-	Status0  *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings0  `json:"0,omitempty"`  //
-	Status1  *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings1  `json:"1,omitempty"`  //
-	Status10 *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings10 `json:"10,omitempty"` //
-	Status11 *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings11 `json:"11,omitempty"` //
-	Status12 *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings12 `json:"12,omitempty"` //
-	Status13 *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings13 `json:"13,omitempty"` //
-	Status14 *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings14 `json:"14,omitempty"` //
-	Status2  *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings2  `json:"2,omitempty"`  //
-	Status3  *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings3  `json:"3,omitempty"`  //
-	Status4  *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings4  `json:"4,omitempty"`  //
-	Status5  *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings5  `json:"5,omitempty"`  //
-	Status6  *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings6  `json:"6,omitempty"`  //
-	Status7  *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings7  `json:"7,omitempty"`  //
-	Status8  *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings8  `json:"8,omitempty"`  //
-	Status9  *ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings9  `json:"9,omitempty"`  //
+type ResponseWirelessGetNetworkWirelessRfProfilesFiveGhzSettings struct {
+	ChannelWidth      string `json:"channelWidth,omitempty"`      // Sets channel width (MHz) for 5Ghz band. Can be one of 'auto', '20', '40' or '80'. Defaults to auto.
+	MaxPower          *int   `json:"maxPower,omitempty"`          // Sets max power (dBm) of 5Ghz band. Can be integer between 2 and 30. Defaults to 30.
+	MinBitrate        *int   `json:"minBitrate,omitempty"`        // Sets min bitrate (Mbps) of 5Ghz band. Can be one of '6', '9', '12', '18', '24', '36', '48' or '54'. Defaults to 12.
+	MinPower          *int   `json:"minPower,omitempty"`          // Sets min power (dBm) of 5Ghz band. Can be integer between 2 and 30. Defaults to 8.
+	Rxsop             *int   `json:"rxsop,omitempty"`             // The RX-SOP level controls the sensitivity of the radio. It is strongly recommended to use RX-SOP only after consulting a wireless expert. RX-SOP can be configured in the range of -65 to -95 (dBm). A value of null will reset this to the default.
+	ValidAutoChannels *[]int `json:"validAutoChannels,omitempty"` // Sets valid auto channels for 5Ghz band. Can be one of '36', '40', '44', '48', '52', '56', '60', '64', '100', '104', '108', '112', '116', '120', '124', '128', '132', '136', '140', '144', '149', '153', '157', '161' or '165'.Defaults to [36, 40, 44, 48, 52, 56, 60, 64, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140, 144, 149, 153, 157, 161, 165].
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings0 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings struct {
+	Status0  *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings0  `json:"0,omitempty"`  // Settings for SSID 0
+	Status1  *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings1  `json:"1,omitempty"`  // Settings for SSID 1
+	Status10 *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings10 `json:"10,omitempty"` // Settings for SSID 10
+	Status11 *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings11 `json:"11,omitempty"` // Settings for SSID 11
+	Status12 *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings12 `json:"12,omitempty"` // Settings for SSID 12
+	Status13 *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings13 `json:"13,omitempty"` // Settings for SSID 13
+	Status14 *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings14 `json:"14,omitempty"` // Settings for SSID 14
+	Status2  *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings2  `json:"2,omitempty"`  // Settings for SSID 2
+	Status3  *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings3  `json:"3,omitempty"`  // Settings for SSID 3
+	Status4  *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings4  `json:"4,omitempty"`  // Settings for SSID 4
+	Status5  *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings5  `json:"5,omitempty"`  // Settings for SSID 5
+	Status6  *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings6  `json:"6,omitempty"`  // Settings for SSID 6
+	Status7  *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings7  `json:"7,omitempty"`  // Settings for SSID 7
+	Status8  *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings8  `json:"8,omitempty"`  // Settings for SSID 8
+	Status9  *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings9  `json:"9,omitempty"`  // Settings for SSID 9
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings1 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings0 struct {
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings0Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                               `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                             `json:"name,omitempty"`                // Name of SSID
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings10 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings0Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings11 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings1 struct {
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings1Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                               `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                             `json:"name,omitempty"`                // Name of SSID
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings12 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings1Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings13 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings10 struct {
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings10Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                              `json:"name,omitempty"`                // Name of SSID
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings14 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings10Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings2 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings11 struct {
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings11Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                              `json:"name,omitempty"`                // Name of SSID
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings3 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings11Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings4 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings12 struct {
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings12Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                              `json:"name,omitempty"`                // Name of SSID
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings5 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings12Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings6 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings13 struct {
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings13Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                              `json:"name,omitempty"`                // Name of SSID
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings7 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings13Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings8 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings14 struct {
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings14Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                              `json:"name,omitempty"`                // Name of SSID
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesPerSSIDSettings9 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings14Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesSixGhzSettings struct {
-	AfcEnabled        *bool    `json:"afcEnabled,omitempty"`        //
-	ChannelWidth      string   `json:"channelWidth,omitempty"`      //
-	MaxPower          *int     `json:"maxPower,omitempty"`          //
-	MinBitrate        *int     `json:"minBitrate,omitempty"`        //
-	MinPower          *int     `json:"minPower,omitempty"`          //
-	ValidAutoChannels []string `json:"validAutoChannels,omitempty"` //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings2 struct {
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings2Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                               `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                             `json:"name,omitempty"`                // Name of SSID
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesTransmission struct {
-	Enabled *bool `json:"enabled,omitempty"` //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings2Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
-type ResponseItemWirelessGetNetworkWirelessRfProfilesTwoFourGhzSettings struct {
-	AxEnabled         *bool    `json:"axEnabled,omitempty"`         //
-	MaxPower          *int     `json:"maxPower,omitempty"`          //
-	MinBitrate        *int     `json:"minBitrate,omitempty"`        //
-	MinPower          *int     `json:"minPower,omitempty"`          //
-	ValidAutoChannels []string `json:"validAutoChannels,omitempty"` //
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings3 struct {
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings3Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                               `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                             `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings3Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings4 struct {
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings4Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                               `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                             `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings4Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings5 struct {
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings5Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                               `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                             `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings5Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings6 struct {
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings6Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                               `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                             `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings6Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings7 struct {
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings7Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                               `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                             `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings7Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings8 struct {
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings8Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                               `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                             `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings8Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings9 struct {
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings9Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                               `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                             `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesPerSSIDSettings9Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesSixGhzSettings struct {
+	ChannelWidth      string `json:"channelWidth,omitempty"`      // Sets channel width (MHz) for 6Ghz band. Can be one of '0', '20', '40', '80' or '160'. Defaults to auto.
+	MaxPower          *int   `json:"maxPower,omitempty"`          // Sets max power (dBm) of 6Ghz band. Can be integer between 2 and 30. Defaults to 30.
+	MinBitrate        *int   `json:"minBitrate,omitempty"`        // Sets min bitrate (Mbps) of 6Ghz band. Can be one of '6', '9', '12', '18', '24', '36', '48' or '54'. Defaults to 12.
+	MinPower          *int   `json:"minPower,omitempty"`          // Sets min power (dBm) of 6Ghz band. Can be integer between 2 and 30. Defaults to 8.
+	Rxsop             *int   `json:"rxsop,omitempty"`             // The RX-SOP level controls the sensitivity of the radio. It is strongly recommended to use RX-SOP only after consulting a wireless expert. RX-SOP can be configured in the range of -65 to -95 (dBm). A value of null will reset this to the default.
+	ValidAutoChannels *[]int `json:"validAutoChannels,omitempty"` // Sets valid auto channels for 6Ghz band. Can be one of '1', '5', '9', '13', '17', '21', '25', '29', '33', '37', '41', '45', '49', '53', '57', '61', '65', '69', '73', '77', '81', '85', '89', '93', '97', '101', '105', '109', '113', '117', '121', '125', '129', '133', '137', '141', '145', '149', '153', '157', '161', '165', '169', '173', '177', '181', '185', '189', '193', '197', '201', '205', '209', '213', '217', '221', '225', '229' or '233'. Defaults to auto.
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesTransmission struct {
+	Enabled *bool `json:"enabled,omitempty"` // Toggle for radio transmission. When false, radios will not transmit at all.
+}
+type ResponseWirelessGetNetworkWirelessRfProfilesTwoFourGhzSettings struct {
+	AxEnabled         *bool    `json:"axEnabled,omitempty"`         // Determines whether ax radio on 2.4Ghz band is on or off. Can be either true or false. If false, we highly recommend disabling band steering. Defaults to true.
+	MaxPower          *int     `json:"maxPower,omitempty"`          // Sets max power (dBm) of 2.4Ghz band. Can be integer between 2 and 30. Defaults to 30.
+	MinBitrate        *float64 `json:"minBitrate,omitempty"`        // Sets min bitrate (Mbps) of 2.4Ghz band. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'. Defaults to 11.
+	MinPower          *int     `json:"minPower,omitempty"`          // Sets min power (dBm) of 2.4Ghz band. Can be integer between 2 and 30. Defaults to 5.
+	Rxsop             *int     `json:"rxsop,omitempty"`             // The RX-SOP level controls the sensitivity of the radio. It is strongly recommended to use RX-SOP only after consulting a wireless expert. RX-SOP can be configured in the range of -65 to -95 (dBm). A value of null will reset this to the default.
+	ValidAutoChannels *[]int   `json:"validAutoChannels,omitempty"` // Sets valid auto channels for 2.4Ghz band. Can be one of '1', '6' or '11'. Defaults to [1, 6, 11].
 }
 type ResponseWirelessCreateNetworkWirelessRfProfile struct {
 	ApBandSettings         *ResponseWirelessCreateNetworkWirelessRfProfileApBandSettings     `json:"apBandSettings,omitempty"`         // Settings that will be enabled if selectionType is set to 'ap'.
@@ -830,12 +1007,17 @@ type ResponseWirelessCreateNetworkWirelessRfProfile struct {
 	Name                   string                                                            `json:"name,omitempty"`                   // The name of the new profile. Must be unique. This param is required on creation.
 	NetworkID              string                                                            `json:"networkId,omitempty"`              // The network ID of the RF Profile
 	PerSSIDSettings        *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings    `json:"perSsidSettings,omitempty"`        // Per-SSID radio settings by number.
+	SixGhzSettings         *ResponseWirelessCreateNetworkWirelessRfProfileSixGhzSettings     `json:"sixGhzSettings,omitempty"`         // Settings related to 6Ghz band. Only applicable to networks with 6Ghz capable APs
 	Transmission           *ResponseWirelessCreateNetworkWirelessRfProfileTransmission       `json:"transmission,omitempty"`           // Settings related to radio transmission.
 	TwoFourGhzSettings     *ResponseWirelessCreateNetworkWirelessRfProfileTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"`     // Settings related to 2.4Ghz band
 }
 type ResponseWirelessCreateNetworkWirelessRfProfileApBandSettings struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'. Defaults to dual.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band. Can be either true or false. Defaults to true.
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'. Defaults to dual.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band. Can be either true or false. Defaults to true.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfileApBandSettingsBands `json:"bands,omitempty"`               // Settings related to all bands
+}
+type ResponseWirelessCreateNetworkWirelessRfProfileApBandSettingsBands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type ResponseWirelessCreateNetworkWirelessRfProfileFiveGhzSettings struct {
 	ChannelWidth      string `json:"channelWidth,omitempty"`      // Sets channel width (MHz) for 5Ghz band. Can be one of 'auto', '20', '40' or '80'. Defaults to auto.
@@ -863,94 +1045,162 @@ type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings struct {
 	Status9  *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings9  `json:"9,omitempty"`  // Settings for SSID 9
 }
 type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings0 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings0Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings0Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings1 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings1Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings1Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings10 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                                `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                 `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings10Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                  `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                                `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings10Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings11 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                                `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                 `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings11Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                  `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                                `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings11Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings12 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                                `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                 `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings12Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                  `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                                `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings12Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings13 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                                `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                 `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings13Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                  `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                                `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings13Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings14 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                                `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                 `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings14Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                  `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                                `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings14Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings2 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings2Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings2Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings3 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings3Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings3Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings4 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings4Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings4Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings5 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings5Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings5Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings6 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings6Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings6Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings7 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings7Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings7Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings8 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings8Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings8Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings9 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings9Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessCreateNetworkWirelessRfProfilePerSSIDSettings9Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
+}
+type ResponseWirelessCreateNetworkWirelessRfProfileSixGhzSettings struct {
+	ChannelWidth      string `json:"channelWidth,omitempty"`      // Sets channel width (MHz) for 6Ghz band. Can be one of '0', '20', '40', '80' or '160'. Defaults to auto.
+	MaxPower          *int   `json:"maxPower,omitempty"`          // Sets max power (dBm) of 6Ghz band. Can be integer between 2 and 30. Defaults to 30.
+	MinBitrate        *int   `json:"minBitrate,omitempty"`        // Sets min bitrate (Mbps) of 6Ghz band. Can be one of '6', '9', '12', '18', '24', '36', '48' or '54'. Defaults to 12.
+	MinPower          *int   `json:"minPower,omitempty"`          // Sets min power (dBm) of 6Ghz band. Can be integer between 2 and 30. Defaults to 8.
+	Rxsop             *int   `json:"rxsop,omitempty"`             // The RX-SOP level controls the sensitivity of the radio. It is strongly recommended to use RX-SOP only after consulting a wireless expert. RX-SOP can be configured in the range of -65 to -95 (dBm). A value of null will reset this to the default.
+	ValidAutoChannels *[]int `json:"validAutoChannels,omitempty"` // Sets valid auto channels for 6Ghz band. Can be one of '1', '5', '9', '13', '17', '21', '25', '29', '33', '37', '41', '45', '49', '53', '57', '61', '65', '69', '73', '77', '81', '85', '89', '93', '97', '101', '105', '109', '113', '117', '121', '125', '129', '133', '137', '141', '145', '149', '153', '157', '161', '165', '169', '173', '177', '181', '185', '189', '193', '197', '201', '205', '209', '213', '217', '221', '225', '229' or '233'. Defaults to auto.
 }
 type ResponseWirelessCreateNetworkWirelessRfProfileTransmission struct {
 	Enabled *bool `json:"enabled,omitempty"` // Toggle for radio transmission. When false, radios will not transmit at all.
@@ -964,155 +1214,220 @@ type ResponseWirelessCreateNetworkWirelessRfProfileTwoFourGhzSettings struct {
 	ValidAutoChannels *[]int   `json:"validAutoChannels,omitempty"` // Sets valid auto channels for 2.4Ghz band. Can be one of '1', '6' or '11'. Defaults to [1, 6, 11].
 }
 type ResponseWirelessGetNetworkWirelessRfProfile struct {
-	AfcEnabled             *bool                                                          `json:"afcEnabled,omitempty"`             //
-	ApBandSettings         *ResponseWirelessGetNetworkWirelessRfProfileApBandSettings     `json:"apBandSettings,omitempty"`         //
-	BandSelectionType      string                                                         `json:"bandSelectionType,omitempty"`      //
-	ClientBalancingEnabled *bool                                                          `json:"clientBalancingEnabled,omitempty"` //
-	FiveGhzSettings        *ResponseWirelessGetNetworkWirelessRfProfileFiveGhzSettings    `json:"fiveGhzSettings,omitempty"`        //
-	ID                     string                                                         `json:"id,omitempty"`                     //
-	MinBitrateType         string                                                         `json:"minBitrateType,omitempty"`         //
-	Name                   string                                                         `json:"name,omitempty"`                   //
-	NetworkID              string                                                         `json:"networkId,omitempty"`              //
-	PerSSIDSettings        *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings    `json:"perSsidSettings,omitempty"`        //
-	SixGhzSettings         *ResponseWirelessGetNetworkWirelessRfProfileSixGhzSettings     `json:"sixGhzSettings,omitempty"`         //
-	Transmission           *ResponseWirelessGetNetworkWirelessRfProfileTransmission       `json:"transmission,omitempty"`           //
-	TwoFourGhzSettings     *ResponseWirelessGetNetworkWirelessRfProfileTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"`     //
+	ApBandSettings         *ResponseWirelessGetNetworkWirelessRfProfileApBandSettings     `json:"apBandSettings,omitempty"`         // Settings that will be enabled if selectionType is set to 'ap'.
+	BandSelectionType      string                                                         `json:"bandSelectionType,omitempty"`      // Band selection can be set to either 'ssid' or 'ap'. This param is required on creation.
+	ClientBalancingEnabled *bool                                                          `json:"clientBalancingEnabled,omitempty"` // Steers client to best available access point. Can be either true or false. Defaults to true.
+	FiveGhzSettings        *ResponseWirelessGetNetworkWirelessRfProfileFiveGhzSettings    `json:"fiveGhzSettings,omitempty"`        // Settings related to 5Ghz band
+	ID                     string                                                         `json:"id,omitempty"`                     // The name of the new profile. Must be unique.
+	MinBitrateType         string                                                         `json:"minBitrateType,omitempty"`         // Minimum bitrate can be set to either 'band' or 'ssid'. Defaults to band.
+	Name                   string                                                         `json:"name,omitempty"`                   // The name of the new profile. Must be unique. This param is required on creation.
+	NetworkID              string                                                         `json:"networkId,omitempty"`              // The network ID of the RF Profile
+	PerSSIDSettings        *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings    `json:"perSsidSettings,omitempty"`        // Per-SSID radio settings by number.
+	SixGhzSettings         *ResponseWirelessGetNetworkWirelessRfProfileSixGhzSettings     `json:"sixGhzSettings,omitempty"`         // Settings related to 6Ghz band. Only applicable to networks with 6Ghz capable APs
+	Transmission           *ResponseWirelessGetNetworkWirelessRfProfileTransmission       `json:"transmission,omitempty"`           // Settings related to radio transmission.
+	TwoFourGhzSettings     *ResponseWirelessGetNetworkWirelessRfProfileTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"`     // Settings related to 2.4Ghz band
 }
 type ResponseWirelessGetNetworkWirelessRfProfileApBandSettings struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
+	BandOperationMode   string                                                          `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'. Defaults to dual.
+	BandSteeringEnabled *bool                                                           `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band. Can be either true or false. Defaults to true.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfileApBandSettingsBands `json:"bands,omitempty"`               // Settings related to all bands
+}
+type ResponseWirelessGetNetworkWirelessRfProfileApBandSettingsBands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfileFiveGhzSettings struct {
-	ChannelWidth      string   `json:"channelWidth,omitempty"`      //
-	MaxPower          *int     `json:"maxPower,omitempty"`          //
-	MinBitrate        *int     `json:"minBitrate,omitempty"`        //
-	MinPower          *int     `json:"minPower,omitempty"`          //
-	ValidAutoChannels []string `json:"validAutoChannels,omitempty"` //
+	ChannelWidth      string `json:"channelWidth,omitempty"`      // Sets channel width (MHz) for 5Ghz band. Can be one of 'auto', '20', '40' or '80'. Defaults to auto.
+	MaxPower          *int   `json:"maxPower,omitempty"`          // Sets max power (dBm) of 5Ghz band. Can be integer between 2 and 30. Defaults to 30.
+	MinBitrate        *int   `json:"minBitrate,omitempty"`        // Sets min bitrate (Mbps) of 5Ghz band. Can be one of '6', '9', '12', '18', '24', '36', '48' or '54'. Defaults to 12.
+	MinPower          *int   `json:"minPower,omitempty"`          // Sets min power (dBm) of 5Ghz band. Can be integer between 2 and 30. Defaults to 8.
+	Rxsop             *int   `json:"rxsop,omitempty"`             // The RX-SOP level controls the sensitivity of the radio. It is strongly recommended to use RX-SOP only after consulting a wireless expert. RX-SOP can be configured in the range of -65 to -95 (dBm). A value of null will reset this to the default.
+	ValidAutoChannels *[]int `json:"validAutoChannels,omitempty"` // Sets valid auto channels for 5Ghz band. Can be one of '36', '40', '44', '48', '52', '56', '60', '64', '100', '104', '108', '112', '116', '120', '124', '128', '132', '136', '140', '144', '149', '153', '157', '161' or '165'.Defaults to [36, 40, 44, 48, 52, 56, 60, 64, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140, 144, 149, 153, 157, 161, 165].
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings struct {
-	Status0  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings0  `json:"0,omitempty"`  //
-	Status1  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings1  `json:"1,omitempty"`  //
-	Status10 *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings10 `json:"10,omitempty"` //
-	Status11 *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings11 `json:"11,omitempty"` //
-	Status12 *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings12 `json:"12,omitempty"` //
-	Status13 *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings13 `json:"13,omitempty"` //
-	Status14 *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings14 `json:"14,omitempty"` //
-	Status2  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings2  `json:"2,omitempty"`  //
-	Status3  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings3  `json:"3,omitempty"`  //
-	Status4  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings4  `json:"4,omitempty"`  //
-	Status5  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings5  `json:"5,omitempty"`  //
-	Status6  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings6  `json:"6,omitempty"`  //
-	Status7  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings7  `json:"7,omitempty"`  //
-	Status8  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings8  `json:"8,omitempty"`  //
-	Status9  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings9  `json:"9,omitempty"`  //
+	Status0  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings0  `json:"0,omitempty"`  // Settings for SSID 0
+	Status1  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings1  `json:"1,omitempty"`  // Settings for SSID 1
+	Status10 *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings10 `json:"10,omitempty"` // Settings for SSID 10
+	Status11 *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings11 `json:"11,omitempty"` // Settings for SSID 11
+	Status12 *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings12 `json:"12,omitempty"` // Settings for SSID 12
+	Status13 *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings13 `json:"13,omitempty"` // Settings for SSID 13
+	Status14 *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings14 `json:"14,omitempty"` // Settings for SSID 14
+	Status2  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings2  `json:"2,omitempty"`  // Settings for SSID 2
+	Status3  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings3  `json:"3,omitempty"`  // Settings for SSID 3
+	Status4  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings4  `json:"4,omitempty"`  // Settings for SSID 4
+	Status5  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings5  `json:"5,omitempty"`  // Settings for SSID 5
+	Status6  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings6  `json:"6,omitempty"`  // Settings for SSID 6
+	Status7  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings7  `json:"7,omitempty"`  // Settings for SSID 7
+	Status8  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings8  `json:"8,omitempty"`  // Settings for SSID 8
+	Status9  *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings9  `json:"9,omitempty"`  // Settings for SSID 9
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings0 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+	BandOperationMode   string                                                            `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                             `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings0Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                              `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                            `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings0Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings1 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+	BandOperationMode   string                                                            `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                             `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings1Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                              `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                            `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings1Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings10 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings10Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                               `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                             `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings10Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings11 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings11Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                               `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                             `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings11Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings12 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings12Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                               `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                             `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings12Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings13 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings13Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                               `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                             `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings13Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings14 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings14Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                               `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                             `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings14Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings2 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+	BandOperationMode   string                                                            `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                             `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings2Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                              `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                            `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings2Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings3 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+	BandOperationMode   string                                                            `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                             `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings3Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                              `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                            `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings3Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings4 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+	BandOperationMode   string                                                            `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                             `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings4Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                              `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                            `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings4Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings5 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+	BandOperationMode   string                                                            `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                             `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings5Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                              `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                            `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings5Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings6 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+	BandOperationMode   string                                                            `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                             `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings6Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                              `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                            `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings6Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings7 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+	BandOperationMode   string                                                            `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                             `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings7Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                              `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                            `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings7Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings8 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+	BandOperationMode   string                                                            `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                             `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings8Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                              `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                            `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings8Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings9 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   //
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` //
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          //
-	Name                string `json:"name,omitempty"`                //
+	BandOperationMode   string                                                            `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                             `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings9Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                              `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                            `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessGetNetworkWirelessRfProfilePerSSIDSettings9Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessGetNetworkWirelessRfProfileSixGhzSettings struct {
-	AfcEnabled        *bool    `json:"afcEnabled,omitempty"`        //
-	ChannelWidth      string   `json:"channelWidth,omitempty"`      //
-	MaxPower          *int     `json:"maxPower,omitempty"`          //
-	MinBitrate        *int     `json:"minBitrate,omitempty"`        //
-	MinPower          *int     `json:"minPower,omitempty"`          //
-	ValidAutoChannels []string `json:"validAutoChannels,omitempty"` //
+	ChannelWidth      string `json:"channelWidth,omitempty"`      // Sets channel width (MHz) for 6Ghz band. Can be one of '0', '20', '40', '80' or '160'. Defaults to auto.
+	MaxPower          *int   `json:"maxPower,omitempty"`          // Sets max power (dBm) of 6Ghz band. Can be integer between 2 and 30. Defaults to 30.
+	MinBitrate        *int   `json:"minBitrate,omitempty"`        // Sets min bitrate (Mbps) of 6Ghz band. Can be one of '6', '9', '12', '18', '24', '36', '48' or '54'. Defaults to 12.
+	MinPower          *int   `json:"minPower,omitempty"`          // Sets min power (dBm) of 6Ghz band. Can be integer between 2 and 30. Defaults to 8.
+	Rxsop             *int   `json:"rxsop,omitempty"`             // The RX-SOP level controls the sensitivity of the radio. It is strongly recommended to use RX-SOP only after consulting a wireless expert. RX-SOP can be configured in the range of -65 to -95 (dBm). A value of null will reset this to the default.
+	ValidAutoChannels *[]int `json:"validAutoChannels,omitempty"` // Sets valid auto channels for 6Ghz band. Can be one of '1', '5', '9', '13', '17', '21', '25', '29', '33', '37', '41', '45', '49', '53', '57', '61', '65', '69', '73', '77', '81', '85', '89', '93', '97', '101', '105', '109', '113', '117', '121', '125', '129', '133', '137', '141', '145', '149', '153', '157', '161', '165', '169', '173', '177', '181', '185', '189', '193', '197', '201', '205', '209', '213', '217', '221', '225', '229' or '233'. Defaults to auto.
 }
 type ResponseWirelessGetNetworkWirelessRfProfileTransmission struct {
-	Enabled *bool `json:"enabled,omitempty"` //
+	Enabled *bool `json:"enabled,omitempty"` // Toggle for radio transmission. When false, radios will not transmit at all.
 }
 type ResponseWirelessGetNetworkWirelessRfProfileTwoFourGhzSettings struct {
-	AxEnabled         *bool    `json:"axEnabled,omitempty"`         //
-	MaxPower          *int     `json:"maxPower,omitempty"`          //
-	MinBitrate        *int     `json:"minBitrate,omitempty"`        //
-	MinPower          *int     `json:"minPower,omitempty"`          //
-	ValidAutoChannels []string `json:"validAutoChannels,omitempty"` //
+	AxEnabled         *bool    `json:"axEnabled,omitempty"`         // Determines whether ax radio on 2.4Ghz band is on or off. Can be either true or false. If false, we highly recommend disabling band steering. Defaults to true.
+	MaxPower          *int     `json:"maxPower,omitempty"`          // Sets max power (dBm) of 2.4Ghz band. Can be integer between 2 and 30. Defaults to 30.
+	MinBitrate        *float64 `json:"minBitrate,omitempty"`        // Sets min bitrate (Mbps) of 2.4Ghz band. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'. Defaults to 11.
+	MinPower          *int     `json:"minPower,omitempty"`          // Sets min power (dBm) of 2.4Ghz band. Can be integer between 2 and 30. Defaults to 5.
+	Rxsop             *int     `json:"rxsop,omitempty"`             // The RX-SOP level controls the sensitivity of the radio. It is strongly recommended to use RX-SOP only after consulting a wireless expert. RX-SOP can be configured in the range of -65 to -95 (dBm). A value of null will reset this to the default.
+	ValidAutoChannels *[]int   `json:"validAutoChannels,omitempty"` // Sets valid auto channels for 2.4Ghz band. Can be one of '1', '6' or '11'. Defaults to [1, 6, 11].
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfile struct {
 	ApBandSettings         *ResponseWirelessUpdateNetworkWirelessRfProfileApBandSettings     `json:"apBandSettings,omitempty"`         // Settings that will be enabled if selectionType is set to 'ap'.
@@ -1124,12 +1439,17 @@ type ResponseWirelessUpdateNetworkWirelessRfProfile struct {
 	Name                   string                                                            `json:"name,omitempty"`                   // The name of the new profile. Must be unique. This param is required on creation.
 	NetworkID              string                                                            `json:"networkId,omitempty"`              // The network ID of the RF Profile
 	PerSSIDSettings        *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings    `json:"perSsidSettings,omitempty"`        // Per-SSID radio settings by number.
+	SixGhzSettings         *ResponseWirelessUpdateNetworkWirelessRfProfileSixGhzSettings     `json:"sixGhzSettings,omitempty"`         // Settings related to 6Ghz band. Only applicable to networks with 6Ghz capable APs
 	Transmission           *ResponseWirelessUpdateNetworkWirelessRfProfileTransmission       `json:"transmission,omitempty"`           // Settings related to radio transmission.
 	TwoFourGhzSettings     *ResponseWirelessUpdateNetworkWirelessRfProfileTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"`     // Settings related to 2.4Ghz band
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfileApBandSettings struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'. Defaults to dual.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band. Can be either true or false. Defaults to true.
+	BandOperationMode   string                                                             `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'. Defaults to dual.
+	BandSteeringEnabled *bool                                                              `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band. Can be either true or false. Defaults to true.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfileApBandSettingsBands `json:"bands,omitempty"`               // Settings related to all bands
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfileApBandSettingsBands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfileFiveGhzSettings struct {
 	ChannelWidth      string `json:"channelWidth,omitempty"`      // Sets channel width (MHz) for 5Ghz band. Can be one of 'auto', '20', '40' or '80'. Defaults to auto.
@@ -1157,94 +1477,162 @@ type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings struct {
 	Status9  *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings9  `json:"9,omitempty"`  // Settings for SSID 9
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings0 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings0Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings0Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings1 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings1Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings1Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings10 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                                `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                 `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings10Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                  `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                                `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings10Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings11 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                                `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                 `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings11Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                  `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                                `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings11Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings12 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                                `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                 `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings12Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                  `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                                `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings12Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings13 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                                `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                 `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings13Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                  `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                                `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings13Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings14 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                                `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                 `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings14Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                  `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                                `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings14Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings2 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings2Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings2Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings3 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings3Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings3Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings4 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings4Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings4Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings5 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings5Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings5Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings6 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings6Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings6Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings7 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings7Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings7Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings8 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings8Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings8Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings9 struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *int   `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
-	Name                string `json:"name,omitempty"`                // Name of SSID
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings9Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *int                                                                 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	Name                string                                                               `json:"name,omitempty"`                // Name of SSID
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings9Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
+}
+type ResponseWirelessUpdateNetworkWirelessRfProfileSixGhzSettings struct {
+	ChannelWidth      string `json:"channelWidth,omitempty"`      // Sets channel width (MHz) for 6Ghz band. Can be one of '0', '20', '40', '80' or '160'. Defaults to auto.
+	MaxPower          *int   `json:"maxPower,omitempty"`          // Sets max power (dBm) of 6Ghz band. Can be integer between 2 and 30. Defaults to 30.
+	MinBitrate        *int   `json:"minBitrate,omitempty"`        // Sets min bitrate (Mbps) of 6Ghz band. Can be one of '6', '9', '12', '18', '24', '36', '48' or '54'. Defaults to 12.
+	MinPower          *int   `json:"minPower,omitempty"`          // Sets min power (dBm) of 6Ghz band. Can be integer between 2 and 30. Defaults to 8.
+	Rxsop             *int   `json:"rxsop,omitempty"`             // The RX-SOP level controls the sensitivity of the radio. It is strongly recommended to use RX-SOP only after consulting a wireless expert. RX-SOP can be configured in the range of -65 to -95 (dBm). A value of null will reset this to the default.
+	ValidAutoChannels *[]int `json:"validAutoChannels,omitempty"` // Sets valid auto channels for 6Ghz band. Can be one of '1', '5', '9', '13', '17', '21', '25', '29', '33', '37', '41', '45', '49', '53', '57', '61', '65', '69', '73', '77', '81', '85', '89', '93', '97', '101', '105', '109', '113', '117', '121', '125', '129', '133', '137', '141', '145', '149', '153', '157', '161', '165', '169', '173', '177', '181', '185', '189', '193', '197', '201', '205', '209', '213', '217', '221', '225', '229' or '233'. Defaults to auto.
 }
 type ResponseWirelessUpdateNetworkWirelessRfProfileTransmission struct {
 	Enabled *bool `json:"enabled,omitempty"` // Toggle for radio transmission. When false, radios will not transmit at all.
@@ -1258,12 +1646,13 @@ type ResponseWirelessUpdateNetworkWirelessRfProfileTwoFourGhzSettings struct {
 	ValidAutoChannels *[]int   `json:"validAutoChannels,omitempty"` // Sets valid auto channels for 2.4Ghz band. Can be one of '1', '6' or '11'. Defaults to [1, 6, 11].
 }
 type ResponseWirelessGetNetworkWirelessSettings struct {
-	IPv6BridgeEnabled        *bool                                                 `json:"ipv6BridgeEnabled,omitempty"`        // Toggle for enabling or disabling IPv6 bridging in a network (Note: if enabled, SSIDs must also be configured to use bridge mode)
-	LedLightsOn              *bool                                                 `json:"ledLightsOn,omitempty"`              // Toggle for enabling or disabling LED lights on all APs in the network (making them run dark)
-	LocationAnalyticsEnabled *bool                                                 `json:"locationAnalyticsEnabled,omitempty"` // Toggle for enabling or disabling location analytics for your network
-	MeshingEnabled           *bool                                                 `json:"meshingEnabled,omitempty"`           // Toggle for enabling or disabling meshing in a network
-	NamedVLANs               *ResponseWirelessGetNetworkWirelessSettingsNamedVLANs `json:"namedVlans,omitempty"`               // Named VLAN settings for wireless networks.
-	Upgradestrategy          string                                                `json:"upgradeStrategy,omitempty"`          // The upgrade strategy to apply to the network. Must be one of 'minimizeUpgradeTime' or 'minimizeClientDowntime'. Requires firmware version MR 26.8 or higher'
+	IPv6BridgeEnabled        *bool                                                       `json:"ipv6BridgeEnabled,omitempty"`        // Toggle for enabling or disabling IPv6 bridging in a network (Note: if enabled, SSIDs must also be configured to use bridge mode)
+	LedLightsOn              *bool                                                       `json:"ledLightsOn,omitempty"`              // Toggle for enabling or disabling LED lights on all APs in the network (making them run dark)
+	LocationAnalyticsEnabled *bool                                                       `json:"locationAnalyticsEnabled,omitempty"` // Toggle for enabling or disabling location analytics for your network
+	MeshingEnabled           *bool                                                       `json:"meshingEnabled,omitempty"`           // Toggle for enabling or disabling meshing in a network
+	NamedVLANs               *ResponseWirelessGetNetworkWirelessSettingsNamedVLANs       `json:"namedVlans,omitempty"`               // Named VLAN settings for wireless networks.
+	RegulatoryDomain         *ResponseWirelessGetNetworkWirelessSettingsRegulatoryDomain `json:"regulatoryDomain,omitempty"`         // Regulatory domain information for this network.
+	Upgradestrategy          string                                                      `json:"upgradeStrategy,omitempty"`          // The upgrade strategy to apply to the network. Must be one of 'minimizeUpgradeTime' or 'minimizeClientDowntime'. Requires firmware version MR 26.8 or higher'
 }
 type ResponseWirelessGetNetworkWirelessSettingsNamedVLANs struct {
 	PoolDhcpMonitoring *ResponseWirelessGetNetworkWirelessSettingsNamedVLANsPoolDhcpMonitoring `json:"poolDhcpMonitoring,omitempty"` // Named VLAN Pool DHCP Monitoring settings.
@@ -1272,13 +1661,19 @@ type ResponseWirelessGetNetworkWirelessSettingsNamedVLANsPoolDhcpMonitoring stru
 	Duration *int  `json:"duration,omitempty"` // The duration in minutes that devices will refrain from using dirty VLANs before adding them back to the pool.
 	Enabled  *bool `json:"enabled,omitempty"`  // Whether or not devices using named VLAN pools should remove dirty VLANs from the pool, thereby preventing clients from being assigned to VLANs where they would be unable to obtain an IP address via DHCP
 }
+type ResponseWirelessGetNetworkWirelessSettingsRegulatoryDomain struct {
+	CountryCode string `json:"countryCode,omitempty"` // The country code of the regulatory domain.
+	Name        string `json:"name,omitempty"`        // The name of the regulatory domain for this network.
+	Permits6E   *bool  `json:"permits6e,omitempty"`   // Whether or not the regulatory domain for this network permits Wifi 6E.
+}
 type ResponseWirelessUpdateNetworkWirelessSettings struct {
-	IPv6BridgeEnabled        *bool                                                    `json:"ipv6BridgeEnabled,omitempty"`        // Toggle for enabling or disabling IPv6 bridging in a network (Note: if enabled, SSIDs must also be configured to use bridge mode)
-	LedLightsOn              *bool                                                    `json:"ledLightsOn,omitempty"`              // Toggle for enabling or disabling LED lights on all APs in the network (making them run dark)
-	LocationAnalyticsEnabled *bool                                                    `json:"locationAnalyticsEnabled,omitempty"` // Toggle for enabling or disabling location analytics for your network
-	MeshingEnabled           *bool                                                    `json:"meshingEnabled,omitempty"`           // Toggle for enabling or disabling meshing in a network
-	NamedVLANs               *ResponseWirelessUpdateNetworkWirelessSettingsNamedVLANs `json:"namedVlans,omitempty"`               // Named VLAN settings for wireless networks.
-	Upgradestrategy          string                                                   `json:"upgradeStrategy,omitempty"`          // The upgrade strategy to apply to the network. Must be one of 'minimizeUpgradeTime' or 'minimizeClientDowntime'. Requires firmware version MR 26.8 or higher'
+	IPv6BridgeEnabled        *bool                                                          `json:"ipv6BridgeEnabled,omitempty"`        // Toggle for enabling or disabling IPv6 bridging in a network (Note: if enabled, SSIDs must also be configured to use bridge mode)
+	LedLightsOn              *bool                                                          `json:"ledLightsOn,omitempty"`              // Toggle for enabling or disabling LED lights on all APs in the network (making them run dark)
+	LocationAnalyticsEnabled *bool                                                          `json:"locationAnalyticsEnabled,omitempty"` // Toggle for enabling or disabling location analytics for your network
+	MeshingEnabled           *bool                                                          `json:"meshingEnabled,omitempty"`           // Toggle for enabling or disabling meshing in a network
+	NamedVLANs               *ResponseWirelessUpdateNetworkWirelessSettingsNamedVLANs       `json:"namedVlans,omitempty"`               // Named VLAN settings for wireless networks.
+	RegulatoryDomain         *ResponseWirelessUpdateNetworkWirelessSettingsRegulatoryDomain `json:"regulatoryDomain,omitempty"`         // Regulatory domain information for this network.
+	Upgradestrategy          string                                                         `json:"upgradeStrategy,omitempty"`          // The upgrade strategy to apply to the network. Must be one of 'minimizeUpgradeTime' or 'minimizeClientDowntime'. Requires firmware version MR 26.8 or higher'
 }
 type ResponseWirelessUpdateNetworkWirelessSettingsNamedVLANs struct {
 	PoolDhcpMonitoring *ResponseWirelessUpdateNetworkWirelessSettingsNamedVLANsPoolDhcpMonitoring `json:"poolDhcpMonitoring,omitempty"` // Named VLAN Pool DHCP Monitoring settings.
@@ -1286,6 +1681,11 @@ type ResponseWirelessUpdateNetworkWirelessSettingsNamedVLANs struct {
 type ResponseWirelessUpdateNetworkWirelessSettingsNamedVLANsPoolDhcpMonitoring struct {
 	Duration *int  `json:"duration,omitempty"` // The duration in minutes that devices will refrain from using dirty VLANs before adding them back to the pool.
 	Enabled  *bool `json:"enabled,omitempty"`  // Whether or not devices using named VLAN pools should remove dirty VLANs from the pool, thereby preventing clients from being assigned to VLANs where they would be unable to obtain an IP address via DHCP
+}
+type ResponseWirelessUpdateNetworkWirelessSettingsRegulatoryDomain struct {
+	CountryCode string `json:"countryCode,omitempty"` // The country code of the regulatory domain.
+	Name        string `json:"name,omitempty"`        // The name of the regulatory domain for this network.
+	Permits6E   *bool  `json:"permits6e,omitempty"`   // Whether or not the regulatory domain for this network permits Wifi 6E.
 }
 type ResponseWirelessGetNetworkWirelessSignalQualityHistory []ResponseItemWirelessGetNetworkWirelessSignalQualityHistory // Array of ResponseWirelessGetNetworkWirelessSignalQualityHistory
 type ResponseItemWirelessGetNetworkWirelessSignalQualityHistory struct {
@@ -1296,104 +1696,166 @@ type ResponseItemWirelessGetNetworkWirelessSignalQualityHistory struct {
 }
 type ResponseWirelessGetNetworkWirelessSSIDs []ResponseItemWirelessGetNetworkWirelessSSIDs // Array of ResponseWirelessGetNetworkWirelessSsids
 type ResponseItemWirelessGetNetworkWirelessSSIDs struct {
-	AdminSplashURL                  string                                                                `json:"adminSplashUrl,omitempty"`                  //
-	AuthMode                        string                                                                `json:"authMode,omitempty"`                        //
-	AvailabilityTags                []string                                                              `json:"availabilityTags,omitempty"`                //
-	AvailableOnAllAps               *bool                                                                 `json:"availableOnAllAps,omitempty"`               //
-	BandSelection                   string                                                                `json:"bandSelection,omitempty"`                   //
-	Enabled                         *bool                                                                 `json:"enabled,omitempty"`                         //
-	EncryptionMode                  string                                                                `json:"encryptionMode,omitempty"`                  //
-	IPAssignmentMode                string                                                                `json:"ipAssignmentMode,omitempty"`                //
-	MandatoryDhcpEnabled            *bool                                                                 `json:"mandatoryDhcpEnabled,omitempty"`            //
-	MinBitrate                      *int                                                                  `json:"minBitrate,omitempty"`                      //
-	Name                            string                                                                `json:"name,omitempty"`                            //
-	Number                          *int                                                                  `json:"number,omitempty"`                          //
-	PerClientBandwidthLimitDown     *int                                                                  `json:"perClientBandwidthLimitDown,omitempty"`     //
-	PerClientBandwidthLimitUp       *int                                                                  `json:"perClientBandwidthLimitUp,omitempty"`       //
-	PerSSIDBandwidthLimitDown       *int                                                                  `json:"perSsidBandwidthLimitDown,omitempty"`       //
-	PerSSIDBandwidthLimitUp         *int                                                                  `json:"perSsidBandwidthLimitUp,omitempty"`         //
-	RadiusAccountingEnabled         *bool                                                                 `json:"radiusAccountingEnabled,omitempty"`         //
-	RadiusAccountingServers         *[]ResponseItemWirelessGetNetworkWirelessSSIDsRadiusAccountingServers `json:"radiusAccountingServers,omitempty"`         //
-	RadiusAttributeForGroupPolicies string                                                                `json:"radiusAttributeForGroupPolicies,omitempty"` //
-	RadiusEnabled                   *bool                                                                 `json:"radiusEnabled,omitempty"`                   //
-	RadiusFailoverPolicy            string                                                                `json:"radiusFailoverPolicy,omitempty"`            //
-	RadiusLoadBalancingPolicy       string                                                                `json:"radiusLoadBalancingPolicy,omitempty"`       //
-	RadiusServers                   *[]ResponseItemWirelessGetNetworkWirelessSSIDsRadiusServers           `json:"radiusServers,omitempty"`                   //
-	SplashPage                      string                                                                `json:"splashPage,omitempty"`                      //
-	SplashTimeout                   string                                                                `json:"splashTimeout,omitempty"`                   //
-	SSIDAdminAccessible             *bool                                                                 `json:"ssidAdminAccessible,omitempty"`             //
-	Visible                         *bool                                                                 `json:"visible,omitempty"`                         //
-	WalledGardenEnabled             *bool                                                                 `json:"walledGardenEnabled,omitempty"`             //
-	WalledGardenRanges              []string                                                              `json:"walledGardenRanges,omitempty"`              //
-	WpaEncryptionMode               string                                                                `json:"wpaEncryptionMode,omitempty"`               //
+	AdminSplashURL                  string                                                                `json:"adminSplashUrl,omitempty"`                  // URL for the admin splash page
+	AuthMode                        string                                                                `json:"authMode,omitempty"`                        // The association control method for the SSID
+	AvailabilityTags                []string                                                              `json:"availabilityTags,omitempty"`                // List of tags for this SSID. If availableOnAllAps is false, then the SSID is only broadcast by APs with tags matching any of the tags in this list
+	AvailableOnAllAps               *bool                                                                 `json:"availableOnAllAps,omitempty"`               // Whether all APs broadcast the SSID or if it's restricted to APs matching any availability tags
+	BandSelection                   string                                                                `json:"bandSelection,omitempty"`                   // The client-serving radio frequencies of this SSID in the default indoor RF profile
+	Enabled                         *bool                                                                 `json:"enabled,omitempty"`                         // Whether or not the SSID is enabled
+	EncryptionMode                  string                                                                `json:"encryptionMode,omitempty"`                  // The psk encryption mode for the SSID
+	IPAssignmentMode                string                                                                `json:"ipAssignmentMode,omitempty"`                // The client IP assignment mode
+	LocalAuth                       *bool                                                                 `json:"localAuth,omitempty"`                       // Extended local auth flag for Enterprise NAC
+	MandatoryDhcpEnabled            *bool                                                                 `json:"mandatoryDhcpEnabled,omitempty"`            // Whether clients connecting to this SSID must use the IP address assigned by the DHCP server
+	MinBitrate                      *int                                                                  `json:"minBitrate,omitempty"`                      // The minimum bitrate in Mbps of this SSID in the default indoor RF profile
+	Name                            string                                                                `json:"name,omitempty"`                            // The name of the SSID
+	Number                          *int                                                                  `json:"number,omitempty"`                          // Unique identifier of the SSID
+	PerClientBandwidthLimitDown     *int                                                                  `json:"perClientBandwidthLimitDown,omitempty"`     // The download bandwidth limit in Kbps. (0 represents no limit.)
+	PerClientBandwidthLimitUp       *int                                                                  `json:"perClientBandwidthLimitUp,omitempty"`       // The upload bandwidth limit in Kbps. (0 represents no limit.)
+	PerSSIDBandwidthLimitDown       *int                                                                  `json:"perSsidBandwidthLimitDown,omitempty"`       // The total download bandwidth limit in Kbps (0 represents no limit)
+	PerSSIDBandwidthLimitUp         *int                                                                  `json:"perSsidBandwidthLimitUp,omitempty"`         // The total upload bandwidth limit in Kbps (0 represents no limit)
+	RadiusAccountingEnabled         *bool                                                                 `json:"radiusAccountingEnabled,omitempty"`         // Whether or not RADIUS accounting is enabled
+	RadiusAccountingServers         *[]ResponseItemWirelessGetNetworkWirelessSSIDsRadiusAccountingServers `json:"radiusAccountingServers,omitempty"`         // List of RADIUS accounting 802.1X servers to be used for authentication
+	RadiusAttributeForGroupPolicies string                                                                `json:"radiusAttributeForGroupPolicies,omitempty"` // RADIUS attribute used to look up group policies
+	RadiusEnabled                   *bool                                                                 `json:"radiusEnabled,omitempty"`                   // Whether RADIUS authentication is enabled
+	RadiusFailoverPolicy            string                                                                `json:"radiusFailoverPolicy,omitempty"`            // Policy which determines how authentication requests should be handled in the event that all of the configured RADIUS servers are unreachable
+	RadiusLoadBalancingPolicy       string                                                                `json:"radiusLoadBalancingPolicy,omitempty"`       // Policy which determines which RADIUS server will be contacted first in an authentication attempt, and the ordering of any necessary retry attempts
+	RadiusServers                   *[]ResponseItemWirelessGetNetworkWirelessSSIDsRadiusServers           `json:"radiusServers,omitempty"`                   // List of RADIUS 802.1X servers to be used for authentication
+	SplashPage                      string                                                                `json:"splashPage,omitempty"`                      // The type of splash page for the SSID
+	SplashTimeout                   string                                                                `json:"splashTimeout,omitempty"`                   // Splash page timeout
+	SSIDAdminAccessible             *bool                                                                 `json:"ssidAdminAccessible,omitempty"`             // SSID Administrator access status
+	Visible                         *bool                                                                 `json:"visible,omitempty"`                         // Whether the SSID is advertised or hidden by the AP
+	WalledGardenEnabled             *bool                                                                 `json:"walledGardenEnabled,omitempty"`             // Allow users to access a configurable list of IP ranges prior to sign-on
+	WalledGardenRanges              []string                                                              `json:"walledGardenRanges,omitempty"`              // Domain names and IP address ranges available in Walled Garden mode
+	WpaEncryptionMode               string                                                                `json:"wpaEncryptionMode,omitempty"`               // The types of WPA encryption
 }
 type ResponseItemWirelessGetNetworkWirelessSSIDsRadiusAccountingServers struct {
-	CaCertificate            string `json:"caCertificate,omitempty"`            //
-	Host                     string `json:"host,omitempty"`                     //
-	OpenRoamingCertificateID *int   `json:"openRoamingCertificateId,omitempty"` //
-	Port                     *int   `json:"port,omitempty"`                     //
+	CaCertificate            string `json:"caCertificate,omitempty"`            // Certificate used for authorization for the RADSEC Server
+	Host                     string `json:"host,omitempty"`                     // IP address (or FQDN) to which the APs will send RADIUS accounting messages
+	OpenRoamingCertificateID *int   `json:"openRoamingCertificateId,omitempty"` // The ID of the Openroaming Certificate attached to radius server
+	Port                     *int   `json:"port,omitempty"`                     // Port on the RADIUS server that is listening for accounting messages
 }
 type ResponseItemWirelessGetNetworkWirelessSSIDsRadiusServers struct {
-	CaCertificate            string `json:"caCertificate,omitempty"`            //
-	Host                     string `json:"host,omitempty"`                     //
-	OpenRoamingCertificateID *int   `json:"openRoamingCertificateId,omitempty"` //
-	Port                     *int   `json:"port,omitempty"`                     //
+	CaCertificate            string `json:"caCertificate,omitempty"`            // Certificate used for authorization for the RADSEC Server
+	Host                     string `json:"host,omitempty"`                     // IP address (or FQDN) of your RADIUS server
+	OpenRoamingCertificateID *int   `json:"openRoamingCertificateId,omitempty"` // The ID of the Openroaming Certificate attached to radius server
+	Port                     *int   `json:"port,omitempty"`                     // UDP port the RADIUS server listens on for Access-requests
 }
 type ResponseWirelessGetNetworkWirelessSSID struct {
-	AdminSplashURL                  string                                                           `json:"adminSplashUrl,omitempty"`                  //
-	AuthMode                        string                                                           `json:"authMode,omitempty"`                        //
-	AvailabilityTags                []string                                                         `json:"availabilityTags,omitempty"`                //
-	AvailableOnAllAps               *bool                                                            `json:"availableOnAllAps,omitempty"`               //
-	BandSelection                   string                                                           `json:"bandSelection,omitempty"`                   //
-	Enabled                         *bool                                                            `json:"enabled,omitempty"`                         //
-	EncryptionMode                  string                                                           `json:"encryptionMode,omitempty"`                  //
-	IPAssignmentMode                string                                                           `json:"ipAssignmentMode,omitempty"`                //
-	MandatoryDhcpEnabled            *bool                                                            `json:"mandatoryDhcpEnabled,omitempty"`            //
-	MinBitrate                      *int                                                             `json:"minBitrate,omitempty"`                      //
-	Name                            string                                                           `json:"name,omitempty"`                            //
-	Number                          *int                                                             `json:"number,omitempty"`                          //
-	PerClientBandwidthLimitDown     *int                                                             `json:"perClientBandwidthLimitDown,omitempty"`     //
-	PerClientBandwidthLimitUp       *int                                                             `json:"perClientBandwidthLimitUp,omitempty"`       //
-	PerSSIDBandwidthLimitDown       *int                                                             `json:"perSsidBandwidthLimitDown,omitempty"`       //
-	PerSSIDBandwidthLimitUp         *int                                                             `json:"perSsidBandwidthLimitUp,omitempty"`         //
-	RadiusAccountingEnabled         *bool                                                            `json:"radiusAccountingEnabled,omitempty"`         //
-	RadiusAccountingServers         *[]ResponseWirelessGetNetworkWirelessSSIDRadiusAccountingServers `json:"radiusAccountingServers,omitempty"`         //
-	RadiusAttributeForGroupPolicies string                                                           `json:"radiusAttributeForGroupPolicies,omitempty"` //
-	RadiusEnabled                   *bool                                                            `json:"radiusEnabled,omitempty"`                   //
-	RadiusFailoverPolicy            string                                                           `json:"radiusFailoverPolicy,omitempty"`            //
-	RadiusLoadBalancingPolicy       string                                                           `json:"radiusLoadBalancingPolicy,omitempty"`       //
-	RadiusServers                   *[]ResponseWirelessGetNetworkWirelessSSIDRadiusServers           `json:"radiusServers,omitempty"`                   //
-	SplashPage                      string                                                           `json:"splashPage,omitempty"`                      //
-	SplashTimeout                   string                                                           `json:"splashTimeout,omitempty"`                   //
-	SSIDAdminAccessible             *bool                                                            `json:"ssidAdminAccessible,omitempty"`             //
-	Visible                         *bool                                                            `json:"visible,omitempty"`                         //
-	WalledGardenEnabled             *bool                                                            `json:"walledGardenEnabled,omitempty"`             //
-	WalledGardenRanges              []string                                                         `json:"walledGardenRanges,omitempty"`              //
-	WpaEncryptionMode               string                                                           `json:"wpaEncryptionMode,omitempty"`               //
+	AdminSplashURL                  string                                                           `json:"adminSplashUrl,omitempty"`                  // URL for the admin splash page
+	AuthMode                        string                                                           `json:"authMode,omitempty"`                        // The association control method for the SSID
+	AvailabilityTags                []string                                                         `json:"availabilityTags,omitempty"`                // List of tags for this SSID. If availableOnAllAps is false, then the SSID is only broadcast by APs with tags matching any of the tags in this list
+	AvailableOnAllAps               *bool                                                            `json:"availableOnAllAps,omitempty"`               // Whether all APs broadcast the SSID or if it's restricted to APs matching any availability tags
+	BandSelection                   string                                                           `json:"bandSelection,omitempty"`                   // The client-serving radio frequencies of this SSID in the default indoor RF profile
+	Enabled                         *bool                                                            `json:"enabled,omitempty"`                         // Whether or not the SSID is enabled
+	EncryptionMode                  string                                                           `json:"encryptionMode,omitempty"`                  // The psk encryption mode for the SSID
+	IPAssignmentMode                string                                                           `json:"ipAssignmentMode,omitempty"`                // The client IP assignment mode
+	LocalAuth                       *bool                                                            `json:"localAuth,omitempty"`                       // Extended local auth flag for Enterprise NAC
+	MandatoryDhcpEnabled            *bool                                                            `json:"mandatoryDhcpEnabled,omitempty"`            // Whether clients connecting to this SSID must use the IP address assigned by the DHCP server
+	MinBitrate                      *int                                                             `json:"minBitrate,omitempty"`                      // The minimum bitrate in Mbps of this SSID in the default indoor RF profile
+	Name                            string                                                           `json:"name,omitempty"`                            // The name of the SSID
+	Number                          *int                                                             `json:"number,omitempty"`                          // Unique identifier of the SSID
+	PerClientBandwidthLimitDown     *int                                                             `json:"perClientBandwidthLimitDown,omitempty"`     // The download bandwidth limit in Kbps. (0 represents no limit.)
+	PerClientBandwidthLimitUp       *int                                                             `json:"perClientBandwidthLimitUp,omitempty"`       // The upload bandwidth limit in Kbps. (0 represents no limit.)
+	PerSSIDBandwidthLimitDown       *int                                                             `json:"perSsidBandwidthLimitDown,omitempty"`       // The total download bandwidth limit in Kbps (0 represents no limit)
+	PerSSIDBandwidthLimitUp         *int                                                             `json:"perSsidBandwidthLimitUp,omitempty"`         // The total upload bandwidth limit in Kbps (0 represents no limit)
+	RadiusAccountingEnabled         *bool                                                            `json:"radiusAccountingEnabled,omitempty"`         // Whether or not RADIUS accounting is enabled
+	RadiusAccountingServers         *[]ResponseWirelessGetNetworkWirelessSSIDRadiusAccountingServers `json:"radiusAccountingServers,omitempty"`         // List of RADIUS accounting 802.1X servers to be used for authentication
+	RadiusAttributeForGroupPolicies string                                                           `json:"radiusAttributeForGroupPolicies,omitempty"` // RADIUS attribute used to look up group policies
+	RadiusEnabled                   *bool                                                            `json:"radiusEnabled,omitempty"`                   // Whether RADIUS authentication is enabled
+	RadiusFailoverPolicy            string                                                           `json:"radiusFailoverPolicy,omitempty"`            // Policy which determines how authentication requests should be handled in the event that all of the configured RADIUS servers are unreachable
+	RadiusLoadBalancingPolicy       string                                                           `json:"radiusLoadBalancingPolicy,omitempty"`       // Policy which determines which RADIUS server will be contacted first in an authentication attempt, and the ordering of any necessary retry attempts
+	RadiusServers                   *[]ResponseWirelessGetNetworkWirelessSSIDRadiusServers           `json:"radiusServers,omitempty"`                   // List of RADIUS 802.1X servers to be used for authentication
+	SplashPage                      string                                                           `json:"splashPage,omitempty"`                      // The type of splash page for the SSID
+	SplashTimeout                   string                                                           `json:"splashTimeout,omitempty"`                   // Splash page timeout
+	SSIDAdminAccessible             *bool                                                            `json:"ssidAdminAccessible,omitempty"`             // SSID Administrator access status
+	Visible                         *bool                                                            `json:"visible,omitempty"`                         // Whether the SSID is advertised or hidden by the AP
+	WalledGardenEnabled             *bool                                                            `json:"walledGardenEnabled,omitempty"`             // Allow users to access a configurable list of IP ranges prior to sign-on
+	WalledGardenRanges              []string                                                         `json:"walledGardenRanges,omitempty"`              // Domain names and IP address ranges available in Walled Garden mode
+	WpaEncryptionMode               string                                                           `json:"wpaEncryptionMode,omitempty"`               // The types of WPA encryption
 }
 type ResponseWirelessGetNetworkWirelessSSIDRadiusAccountingServers struct {
-	CaCertificate            string `json:"caCertificate,omitempty"`            //
-	Host                     string `json:"host,omitempty"`                     //
-	OpenRoamingCertificateID *int   `json:"openRoamingCertificateId,omitempty"` //
-	Port                     *int   `json:"port,omitempty"`                     //
+	CaCertificate            string `json:"caCertificate,omitempty"`            // Certificate used for authorization for the RADSEC Server
+	Host                     string `json:"host,omitempty"`                     // IP address (or FQDN) to which the APs will send RADIUS accounting messages
+	OpenRoamingCertificateID *int   `json:"openRoamingCertificateId,omitempty"` // The ID of the Openroaming Certificate attached to radius server
+	Port                     *int   `json:"port,omitempty"`                     // Port on the RADIUS server that is listening for accounting messages
 }
 type ResponseWirelessGetNetworkWirelessSSIDRadiusServers struct {
-	CaCertificate            string `json:"caCertificate,omitempty"`            //
-	Host                     string `json:"host,omitempty"`                     //
-	OpenRoamingCertificateID *int   `json:"openRoamingCertificateId,omitempty"` //
-	Port                     *int   `json:"port,omitempty"`                     //
+	CaCertificate            string `json:"caCertificate,omitempty"`            // Certificate used for authorization for the RADSEC Server
+	Host                     string `json:"host,omitempty"`                     // IP address (or FQDN) of your RADIUS server
+	OpenRoamingCertificateID *int   `json:"openRoamingCertificateId,omitempty"` // The ID of the Openroaming Certificate attached to radius server
+	Port                     *int   `json:"port,omitempty"`                     // UDP port the RADIUS server listens on for Access-requests
 }
-type ResponseWirelessUpdateNetworkWirelessSSID interface{}
+type ResponseWirelessUpdateNetworkWirelessSSID struct {
+	AdminSplashURL                  string                                                              `json:"adminSplashUrl,omitempty"`                  // URL for the admin splash page
+	AuthMode                        string                                                              `json:"authMode,omitempty"`                        // The association control method for the SSID
+	AvailabilityTags                []string                                                            `json:"availabilityTags,omitempty"`                // List of tags for this SSID. If availableOnAllAps is false, then the SSID is only broadcast by APs with tags matching any of the tags in this list
+	AvailableOnAllAps               *bool                                                               `json:"availableOnAllAps,omitempty"`               // Whether all APs broadcast the SSID or if it's restricted to APs matching any availability tags
+	BandSelection                   string                                                              `json:"bandSelection,omitempty"`                   // The client-serving radio frequencies of this SSID in the default indoor RF profile
+	Enabled                         *bool                                                               `json:"enabled,omitempty"`                         // Whether or not the SSID is enabled
+	EncryptionMode                  string                                                              `json:"encryptionMode,omitempty"`                  // The psk encryption mode for the SSID
+	IPAssignmentMode                string                                                              `json:"ipAssignmentMode,omitempty"`                // The client IP assignment mode
+	LocalAuth                       *bool                                                               `json:"localAuth,omitempty"`                       // Extended local auth flag for Enterprise NAC
+	MandatoryDhcpEnabled            *bool                                                               `json:"mandatoryDhcpEnabled,omitempty"`            // Whether clients connecting to this SSID must use the IP address assigned by the DHCP server
+	MinBitrate                      *int                                                                `json:"minBitrate,omitempty"`                      // The minimum bitrate in Mbps of this SSID in the default indoor RF profile
+	Name                            string                                                              `json:"name,omitempty"`                            // The name of the SSID
+	Number                          *int                                                                `json:"number,omitempty"`                          // Unique identifier of the SSID
+	PerClientBandwidthLimitDown     *int                                                                `json:"perClientBandwidthLimitDown,omitempty"`     // The download bandwidth limit in Kbps. (0 represents no limit.)
+	PerClientBandwidthLimitUp       *int                                                                `json:"perClientBandwidthLimitUp,omitempty"`       // The upload bandwidth limit in Kbps. (0 represents no limit.)
+	PerSSIDBandwidthLimitDown       *int                                                                `json:"perSsidBandwidthLimitDown,omitempty"`       // The total download bandwidth limit in Kbps (0 represents no limit)
+	PerSSIDBandwidthLimitUp         *int                                                                `json:"perSsidBandwidthLimitUp,omitempty"`         // The total upload bandwidth limit in Kbps (0 represents no limit)
+	RadiusAccountingEnabled         *bool                                                               `json:"radiusAccountingEnabled,omitempty"`         // Whether or not RADIUS accounting is enabled
+	RadiusAccountingServers         *[]ResponseWirelessUpdateNetworkWirelessSSIDRadiusAccountingServers `json:"radiusAccountingServers,omitempty"`         // List of RADIUS accounting 802.1X servers to be used for authentication
+	RadiusAttributeForGroupPolicies string                                                              `json:"radiusAttributeForGroupPolicies,omitempty"` // RADIUS attribute used to look up group policies
+	RadiusEnabled                   *bool                                                               `json:"radiusEnabled,omitempty"`                   // Whether RADIUS authentication is enabled
+	RadiusFailoverPolicy            string                                                              `json:"radiusFailoverPolicy,omitempty"`            // Policy which determines how authentication requests should be handled in the event that all of the configured RADIUS servers are unreachable
+	RadiusLoadBalancingPolicy       string                                                              `json:"radiusLoadBalancingPolicy,omitempty"`       // Policy which determines which RADIUS server will be contacted first in an authentication attempt, and the ordering of any necessary retry attempts
+	RadiusServers                   *[]ResponseWirelessUpdateNetworkWirelessSSIDRadiusServers           `json:"radiusServers,omitempty"`                   // List of RADIUS 802.1X servers to be used for authentication
+	SplashPage                      string                                                              `json:"splashPage,omitempty"`                      // The type of splash page for the SSID
+	SplashTimeout                   string                                                              `json:"splashTimeout,omitempty"`                   // Splash page timeout
+	SSIDAdminAccessible             *bool                                                               `json:"ssidAdminAccessible,omitempty"`             // SSID Administrator access status
+	Visible                         *bool                                                               `json:"visible,omitempty"`                         // Whether the SSID is advertised or hidden by the AP
+	WalledGardenEnabled             *bool                                                               `json:"walledGardenEnabled,omitempty"`             // Allow users to access a configurable list of IP ranges prior to sign-on
+	WalledGardenRanges              []string                                                            `json:"walledGardenRanges,omitempty"`              // Domain names and IP address ranges available in Walled Garden mode
+	WpaEncryptionMode               string                                                              `json:"wpaEncryptionMode,omitempty"`               // The types of WPA encryption
+}
+type ResponseWirelessUpdateNetworkWirelessSSIDRadiusAccountingServers struct {
+	CaCertificate            string `json:"caCertificate,omitempty"`            // Certificate used for authorization for the RADSEC Server
+	Host                     string `json:"host,omitempty"`                     // IP address (or FQDN) to which the APs will send RADIUS accounting messages
+	OpenRoamingCertificateID *int   `json:"openRoamingCertificateId,omitempty"` // The ID of the Openroaming Certificate attached to radius server
+	Port                     *int   `json:"port,omitempty"`                     // Port on the RADIUS server that is listening for accounting messages
+}
+type ResponseWirelessUpdateNetworkWirelessSSIDRadiusServers struct {
+	CaCertificate            string `json:"caCertificate,omitempty"`            // Certificate used for authorization for the RADSEC Server
+	Host                     string `json:"host,omitempty"`                     // IP address (or FQDN) of your RADIUS server
+	OpenRoamingCertificateID *int   `json:"openRoamingCertificateId,omitempty"` // The ID of the Openroaming Certificate attached to radius server
+	Port                     *int   `json:"port,omitempty"`                     // UDP port the RADIUS server listens on for Access-requests
+}
 type ResponseWirelessGetNetworkWirelessSSIDBonjourForwarding struct {
-	Enabled *bool                                                           `json:"enabled,omitempty"` //
-	Rules   *[]ResponseWirelessGetNetworkWirelessSSIDBonjourForwardingRules `json:"rules,omitempty"`   //
+	Enabled   *bool                                                             `json:"enabled,omitempty"`   // If true, Bonjour forwarding is enabled on the SSID.
+	Exception *ResponseWirelessGetNetworkWirelessSSIDBonjourForwardingException `json:"exception,omitempty"` // Bonjour forwarding exception
+	Rules     *[]ResponseWirelessGetNetworkWirelessSSIDBonjourForwardingRules   `json:"rules,omitempty"`     // Bonjour forwarding rules
+}
+type ResponseWirelessGetNetworkWirelessSSIDBonjourForwardingException struct {
+	Enabled *bool `json:"enabled,omitempty"` // If true, Bonjour forwarding exception is enabled on this SSID. Exception is required to enable L2 isolation and Bonjour forwarding to work together.
 }
 type ResponseWirelessGetNetworkWirelessSSIDBonjourForwardingRules struct {
-	Description string   `json:"description,omitempty"` //
-	Services    []string `json:"services,omitempty"`    //
-	VLANID      string   `json:"vlanId,omitempty"`      //
+	Description string   `json:"description,omitempty"` // Desctiption of the bonjour forwarding rule
+	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AirPlay', 'AFP', 'BitTorrent', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners' and 'SSH'
+	VLANID      string   `json:"vlanId,omitempty"`      // The ID of the service VLAN. Required
 }
-type ResponseWirelessUpdateNetworkWirelessSSIDBonjourForwarding interface{}
+type ResponseWirelessUpdateNetworkWirelessSSIDBonjourForwarding struct {
+	Enabled   *bool                                                                `json:"enabled,omitempty"`   // If true, Bonjour forwarding is enabled on the SSID.
+	Exception *ResponseWirelessUpdateNetworkWirelessSSIDBonjourForwardingException `json:"exception,omitempty"` // Bonjour forwarding exception
+	Rules     *[]ResponseWirelessUpdateNetworkWirelessSSIDBonjourForwardingRules   `json:"rules,omitempty"`     // Bonjour forwarding rules
+}
+type ResponseWirelessUpdateNetworkWirelessSSIDBonjourForwardingException struct {
+	Enabled *bool `json:"enabled,omitempty"` // If true, Bonjour forwarding exception is enabled on this SSID. Exception is required to enable L2 isolation and Bonjour forwarding to work together.
+}
+type ResponseWirelessUpdateNetworkWirelessSSIDBonjourForwardingRules struct {
+	Description string   `json:"description,omitempty"` // Desctiption of the bonjour forwarding rule
+	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AirPlay', 'AFP', 'BitTorrent', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners' and 'SSH'
+	VLANID      string   `json:"vlanId,omitempty"`      // The ID of the service VLAN. Required
+}
 type ResponseWirelessGetNetworkWirelessSSIDDeviceTypeGroupPolicies struct {
 	DeviceTypePolicies *[]ResponseWirelessGetNetworkWirelessSSIDDeviceTypeGroupPoliciesDeviceTypePolicies `json:"deviceTypePolicies,omitempty"` //
 	Enabled            *bool                                                                              `json:"enabled,omitempty"`            //
@@ -1432,25 +1894,41 @@ type ResponseWirelessUpdateNetworkWirelessSSIDEapOverrideIDentity struct {
 	Timeout *int `json:"timeout,omitempty"` // EAP timeout in seconds.
 }
 type ResponseWirelessGetNetworkWirelessSSIDFirewallL3FirewallRules struct {
-	Rules *[]ResponseWirelessGetNetworkWirelessSSIDFirewallL3FirewallRulesRules `json:"rules,omitempty"` //
+	Rules *[]ResponseWirelessGetNetworkWirelessSSIDFirewallL3FirewallRulesRules `json:"rules,omitempty"` // An ordered array of the firewall rules for this SSID (not including the local LAN access rule or the default rule).
 }
 type ResponseWirelessGetNetworkWirelessSSIDFirewallL3FirewallRulesRules struct {
-	Comment  string `json:"comment,omitempty"`  //
-	DestCidr string `json:"destCidr,omitempty"` //
-	DestPort string `json:"destPort,omitempty"` //
-	Policy   string `json:"policy,omitempty"`   //
-	Protocol string `json:"protocol,omitempty"` //
+	Comment  string `json:"comment,omitempty"`  // Description of the rule (optional)
+	DestCidr string `json:"destCidr,omitempty"` // Comma-separated list of destination IP address(es) (in IP or CIDR notation), fully-qualified domain names (FQDN) or 'any'
+	DestPort string `json:"destPort,omitempty"` // Comma-separated list of destination port(s) (integer in the range 1-65535), or 'any'
+	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
+	Protocol string `json:"protocol,omitempty"` // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
 }
-type ResponseWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRules interface{}
+type ResponseWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRules struct {
+	Rules *[]ResponseWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRulesRules `json:"rules,omitempty"` // An ordered array of the firewall rules for this SSID (not including the local LAN access rule or the default rule).
+}
+type ResponseWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRulesRules struct {
+	Comment  string `json:"comment,omitempty"`  // Description of the rule (optional)
+	DestCidr string `json:"destCidr,omitempty"` // Comma-separated list of destination IP address(es) (in IP or CIDR notation), fully-qualified domain names (FQDN) or 'any'
+	DestPort string `json:"destPort,omitempty"` // Comma-separated list of destination port(s) (integer in the range 1-65535), or 'any'
+	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
+	Protocol string `json:"protocol,omitempty"` // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
+}
 type ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRules struct {
-	Rules *[]ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRulesRules `json:"rules,omitempty"` //
+	Rules *[]ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRulesRules `json:"rules,omitempty"` // An ordered array of the firewall rules for this SSID (not including the local LAN access rule or the default rule).
 }
 type ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRulesRules struct {
-	Policy string `json:"policy,omitempty"` //
-	Type   string `json:"type,omitempty"`   //
-	Value  string `json:"value,omitempty"`  //
+	Policy string `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
+	Type   string `json:"type,omitempty"`   // Type of the L7 firewall rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
+	Value  string `json:"value,omitempty"`  // The value of what needs to get blocked. Format of the value varies depending on type of the firewall rule selected.
 }
-type ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRules interface{}
+type ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRules struct {
+	Rules *[]ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRules `json:"rules,omitempty"` // An ordered array of the firewall rules for this SSID (not including the local LAN access rule or the default rule).
+}
+type ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRules struct {
+	Policy string `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
+	Type   string `json:"type,omitempty"`   // Type of the L7 firewall rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
+	Value  string `json:"value,omitempty"`  // The value of what needs to get blocked. Format of the value varies depending on type of the firewall rule selected.
+}
 type ResponseWirelessGetNetworkWirelessSSIDHotspot20 struct {
 	Domains           []string                                                    `json:"domains,omitempty"`           //
 	Enabled           *bool                                                       `json:"enabled,omitempty"`           //
@@ -1498,7 +1976,15 @@ type ResponseItemWirelessGetNetworkWirelessSSIDIDentityPsks struct {
 	Passphrase            string `json:"passphrase,omitempty"`            // The passphrase for client authentication
 	WifiPersonalNetworkID string `json:"wifiPersonalNetworkId,omitempty"` // The WiFi Personal Network unique identifier
 }
-type ResponseWirelessCreateNetworkWirelessSSIDIDentityPsk interface{}
+type ResponseWirelessCreateNetworkWirelessSSIDIDentityPsk struct {
+	Email                 string `json:"email,omitempty"`                 // The email associated with the System's Manager User
+	ExpiresAt             string `json:"expiresAt,omitempty"`             // Timestamp for when the Identity PSK expires, or 'null' to never expire
+	GroupPolicyID         string `json:"groupPolicyId,omitempty"`         // The group policy to be applied to clients
+	ID                    string `json:"id,omitempty"`                    // The unique identifier of the Identity PSK
+	Name                  string `json:"name,omitempty"`                  // The name of the Identity PSK
+	Passphrase            string `json:"passphrase,omitempty"`            // The passphrase for client authentication
+	WifiPersonalNetworkID string `json:"wifiPersonalNetworkId,omitempty"` // The WiFi Personal Network unique identifier
+}
 type ResponseWirelessGetNetworkWirelessSSIDIDentityPsk struct {
 	Email                 string `json:"email,omitempty"`                 // The email associated with the System's Manager User
 	ExpiresAt             string `json:"expiresAt,omitempty"`             // Timestamp for when the Identity PSK expires, or 'null' to never expire
@@ -1508,7 +1994,15 @@ type ResponseWirelessGetNetworkWirelessSSIDIDentityPsk struct {
 	Passphrase            string `json:"passphrase,omitempty"`            // The passphrase for client authentication
 	WifiPersonalNetworkID string `json:"wifiPersonalNetworkId,omitempty"` // The WiFi Personal Network unique identifier
 }
-type ResponseWirelessUpdateNetworkWirelessSSIDIDentityPsk interface{}
+type ResponseWirelessUpdateNetworkWirelessSSIDIDentityPsk struct {
+	Email                 string `json:"email,omitempty"`                 // The email associated with the System's Manager User
+	ExpiresAt             string `json:"expiresAt,omitempty"`             // Timestamp for when the Identity PSK expires, or 'null' to never expire
+	GroupPolicyID         string `json:"groupPolicyId,omitempty"`         // The group policy to be applied to clients
+	ID                    string `json:"id,omitempty"`                    // The unique identifier of the Identity PSK
+	Name                  string `json:"name,omitempty"`                  // The name of the Identity PSK
+	Passphrase            string `json:"passphrase,omitempty"`            // The passphrase for client authentication
+	WifiPersonalNetworkID string `json:"wifiPersonalNetworkId,omitempty"` // The WiFi Personal Network unique identifier
+}
 type ResponseWirelessGetNetworkWirelessSSIDSchedules struct {
 	Enabled *bool                                                    `json:"enabled,omitempty"` //
 	Ranges  *[]ResponseWirelessGetNetworkWirelessSSIDSchedulesRanges `json:"ranges,omitempty"`  //
@@ -1536,6 +2030,7 @@ type ResponseWirelessGetNetworkWirelessSSIDSplashSettings struct {
 	SplashTimeout                   *int                                                                    `json:"splashTimeout,omitempty"`                   // Splash timeout in minutes.
 	SplashURL                       string                                                                  `json:"splashUrl,omitempty"`                       // The custom splash URL of the click-through splash page.
 	SSIDNumber                      *int                                                                    `json:"ssidNumber,omitempty"`                      // SSID number
+	ThemeID                         string                                                                  `json:"themeId,omitempty"`                         // The id of the selected splash theme.
 	UseRedirectURL                  *bool                                                                   `json:"useRedirectUrl,omitempty"`                  // The Boolean indicating whether the the user will be redirected to the custom redirect URL after the splash page.
 	UseSplashURL                    *bool                                                                   `json:"useSplashUrl,omitempty"`                    // Boolean indicating whether the users will be redirected to the custom splash url
 	WelcomeMessage                  string                                                                  `json:"welcomeMessage,omitempty"`                  // The welcome message for the users on the splash page.
@@ -1593,6 +2088,7 @@ type ResponseWirelessUpdateNetworkWirelessSSIDSplashSettings struct {
 	SplashTimeout                   *int                                                                       `json:"splashTimeout,omitempty"`                   // Splash timeout in minutes.
 	SplashURL                       string                                                                     `json:"splashUrl,omitempty"`                       // The custom splash URL of the click-through splash page.
 	SSIDNumber                      *int                                                                       `json:"ssidNumber,omitempty"`                      // SSID number
+	ThemeID                         string                                                                     `json:"themeId,omitempty"`                         // The id of the selected splash theme.
 	UseRedirectURL                  *bool                                                                      `json:"useRedirectUrl,omitempty"`                  // The Boolean indicating whether the the user will be redirected to the custom redirect URL after the splash page.
 	UseSplashURL                    *bool                                                                      `json:"useSplashUrl,omitempty"`                    // Boolean indicating whether the users will be redirected to the custom splash url
 	WelcomeMessage                  string                                                                     `json:"welcomeMessage,omitempty"`                  // The welcome message for the users on the splash page.
@@ -1635,29 +2131,51 @@ type ResponseWirelessUpdateNetworkWirelessSSIDSplashSettingsSplashPrepaidFront s
 	Md5       string `json:"md5,omitempty"`       // The MD5 value of the prepaid front image file.
 }
 type ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRules struct {
-	DefaultRulesEnabled   *bool                                                             `json:"defaultRulesEnabled,omitempty"`   //
-	Rules                 *[]ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRulesRules `json:"rules,omitempty"`                 //
-	TrafficShapingEnabled *bool                                                             `json:"trafficShapingEnabled,omitempty"` //
+	DefaultRulesEnabled   *bool                                                             `json:"defaultRulesEnabled,omitempty"`   // Whether default traffic shaping rules are enabled (true) or disabled (false). There are 4 default rules, which can be seen on your network's traffic shaping page. Note that default rules count against the rule limit of 8.
+	Rules                 *[]ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRulesRules `json:"rules,omitempty"`                 //     An array of traffic shaping rules. Rules are applied in the order that     they are specified in. An empty list (or null) means no rules. Note that     you are allowed a maximum of 8 rules.
+	TrafficShapingEnabled *bool                                                             `json:"trafficShapingEnabled,omitempty"` // Whether traffic shaping rules are applied to clients on your SSID.
 }
 type ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRulesRules struct {
-	Definitions              *[]ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRulesRulesDefinitions            `json:"definitions,omitempty"`              //
-	DscpTagValue             *int                                                                                    `json:"dscpTagValue,omitempty"`             //
-	PcpTagValue              *int                                                                                    `json:"pcpTagValue,omitempty"`              //
-	PerClientBandwidthLimits *ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRulesRulesPerClientBandwidthLimits `json:"perClientBandwidthLimits,omitempty"` //
+	Definitions              *[]ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRulesRulesDefinitions            `json:"definitions,omitempty"`              //     A list of objects describing the definitions of your traffic shaping rule. At least one definition is required.
+	DscpTagValue             *int                                                                                    `json:"dscpTagValue,omitempty"`             //     The DSCP tag applied by your rule. null means 'Do not change DSCP tag'.     For a list of possible tag values, use the trafficShaping/dscpTaggingOptions endpoint.
+	PcpTagValue              *int                                                                                    `json:"pcpTagValue,omitempty"`              //     The PCP tag applied by your rule. Can be 0 (lowest priority) through 7 (highest priority).     null means 'Do not set PCP tag'.
+	PerClientBandwidthLimits *ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRulesRulesPerClientBandwidthLimits `json:"perClientBandwidthLimits,omitempty"` //     An object describing the bandwidth settings for your rule.
 }
 type ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRulesRulesDefinitions struct {
-	Type  string `json:"type,omitempty"`  //
-	Value string `json:"value,omitempty"` //
+	Type  string `json:"type,omitempty"`  // The type of definition. Can be one of 'application', 'applicationCategory', 'host', 'port', 'ipRange' or 'localNet'.
+	Value string `json:"value,omitempty"` //     If "type" is 'host', 'port', 'ipRange' or 'localNet', then "value" must be a string, matching either     a hostname (e.g. "somesite.com"), a port (e.g. 8080), or an IP range ("192.1.0.0",     "192.1.0.0/16", or "10.1.0.0/16:80"). 'localNet' also supports CIDR notation, excluding     custom ports.      If "type" is 'application' or 'applicationCategory', then "value" must be an object     with the structure { "id": "meraki:layer7/..." }, where "id" is the application category or     application ID (for a list of IDs for your network, use the trafficShaping/applicationCategories     endpoint).
 }
 type ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRulesRulesPerClientBandwidthLimits struct {
-	BandwidthLimits *ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRulesRulesPerClientBandwidthLimitsBandwidthLimits `json:"bandwidthLimits,omitempty"` //
-	Settings        string                                                                                                 `json:"settings,omitempty"`        //
+	BandwidthLimits *ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRulesRulesPerClientBandwidthLimitsBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth limits object, specifying the upload ('limitUp') and download ('limitDown') speed in Kbps. These are only enforced if 'settings' is set to 'custom'.
+	Settings        string                                                                                                 `json:"settings,omitempty"`        // How bandwidth limits are applied by your rule. Can be one of 'network default', 'ignore' or 'custom'.
 }
 type ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRulesRulesPerClientBandwidthLimitsBandwidthLimits struct {
-	LimitDown *int `json:"limitDown,omitempty"` //
-	LimitUp   *int `json:"limitUp,omitempty"`   //
+	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps).
+	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps).
 }
-type ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRules interface{}
+type ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRules struct {
+	DefaultRulesEnabled   *bool                                                                `json:"defaultRulesEnabled,omitempty"`   // Whether default traffic shaping rules are enabled (true) or disabled (false). There are 4 default rules, which can be seen on your network's traffic shaping page. Note that default rules count against the rule limit of 8.
+	Rules                 *[]ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRulesRules `json:"rules,omitempty"`                 //     An array of traffic shaping rules. Rules are applied in the order that     they are specified in. An empty list (or null) means no rules. Note that     you are allowed a maximum of 8 rules.
+	TrafficShapingEnabled *bool                                                                `json:"trafficShapingEnabled,omitempty"` // Whether traffic shaping rules are applied to clients on your SSID.
+}
+type ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRulesRules struct {
+	Definitions              *[]ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRulesRulesDefinitions            `json:"definitions,omitempty"`              //     A list of objects describing the definitions of your traffic shaping rule. At least one definition is required.
+	DscpTagValue             *int                                                                                       `json:"dscpTagValue,omitempty"`             //     The DSCP tag applied by your rule. null means 'Do not change DSCP tag'.     For a list of possible tag values, use the trafficShaping/dscpTaggingOptions endpoint.
+	PcpTagValue              *int                                                                                       `json:"pcpTagValue,omitempty"`              //     The PCP tag applied by your rule. Can be 0 (lowest priority) through 7 (highest priority).     null means 'Do not set PCP tag'.
+	PerClientBandwidthLimits *ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRulesRulesPerClientBandwidthLimits `json:"perClientBandwidthLimits,omitempty"` //     An object describing the bandwidth settings for your rule.
+}
+type ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRulesRulesDefinitions struct {
+	Type  string `json:"type,omitempty"`  // The type of definition. Can be one of 'application', 'applicationCategory', 'host', 'port', 'ipRange' or 'localNet'.
+	Value string `json:"value,omitempty"` //     If "type" is 'host', 'port', 'ipRange' or 'localNet', then "value" must be a string, matching either     a hostname (e.g. "somesite.com"), a port (e.g. 8080), or an IP range ("192.1.0.0",     "192.1.0.0/16", or "10.1.0.0/16:80"). 'localNet' also supports CIDR notation, excluding     custom ports.      If "type" is 'application' or 'applicationCategory', then "value" must be an object     with the structure { "id": "meraki:layer7/..." }, where "id" is the application category or     application ID (for a list of IDs for your network, use the trafficShaping/applicationCategories     endpoint).
+}
+type ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRulesRulesPerClientBandwidthLimits struct {
+	BandwidthLimits *ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRulesRulesPerClientBandwidthLimitsBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth limits object, specifying the upload ('limitUp') and download ('limitDown') speed in Kbps. These are only enforced if 'settings' is set to 'custom'.
+	Settings        string                                                                                                    `json:"settings,omitempty"`        // How bandwidth limits are applied by your rule. Can be one of 'network default', 'ignore' or 'custom'.
+}
+type ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRulesRulesPerClientBandwidthLimitsBandwidthLimits struct {
+	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps).
+	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps).
+}
 type ResponseWirelessGetNetworkWirelessSSIDVpn struct {
 	Concentrator *ResponseWirelessGetNetworkWirelessSSIDVpnConcentrator `json:"concentrator,omitempty"` //
 	Failover     *ResponseWirelessGetNetworkWirelessSSIDVpnFailover     `json:"failover,omitempty"`     //
@@ -1692,6 +2210,106 @@ type ResponseItemWirelessGetNetworkWirelessUsageHistory struct {
 	SentKbps     *int   `json:"sentKbps,omitempty"`     // Sent kilobytes-per-second
 	StartTs      string `json:"startTs,omitempty"`      // The start time of the query range
 	TotalKbps    *int   `json:"totalKbps,omitempty"`    // Total usage in kilobytes-per-second
+}
+type ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice []ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice // Array of ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice struct {
+	ByBand  *[]ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByDeviceByBand `json:"byBand,omitempty"`  // Channel utilization broken down by band.
+	Mac     string                                                                                `json:"mac,omitempty"`     // The MAC address of the device.
+	Network *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByDeviceNetwork  `json:"network,omitempty"` // Network for the given utilization metrics.
+	Serial  string                                                                                `json:"serial,omitempty"`  // The serial number for the device.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByDeviceByBand struct {
+	Band    string                                                                                     `json:"band,omitempty"`    // The band for the given metrics.
+	NonWifi *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByDeviceByBandNonWifi `json:"nonWifi,omitempty"` // An object containing non-wifi utilization.
+	Total   *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByDeviceByBandTotal   `json:"total,omitempty"`   // An object containing total channel utilization.
+	Wifi    *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByDeviceByBandWifi    `json:"wifi,omitempty"`    // An object containing wifi utilization.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByDeviceByBandNonWifi struct {
+	Percentage *float64 `json:"percentage,omitempty"` // Percentage of non-wifi channel utiliation for the given band.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByDeviceByBandTotal struct {
+	Percentage *float64 `json:"percentage,omitempty"` // Percentage of total channel utiliation for the given band.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByDeviceByBandWifi struct {
+	Percentage *float64 `json:"percentage,omitempty"` // Percentage of wifi channel utiliation for the given band.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByDeviceNetwork struct {
+	ID string `json:"id,omitempty"` // Network ID of the given utilization metrics.
+}
+type ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork []ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork // Array of ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork struct {
+	ByBand  *[]ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetworkByBand `json:"byBand,omitempty"`  // Channel utilization broken down by band.
+	Network *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetworkNetwork  `json:"network,omitempty"` // Network for the given utilization metrics.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetworkByBand struct {
+	Band    string                                                                                      `json:"band,omitempty"`    // The band for the given metrics.
+	NonWifi *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetworkByBandNonWifi `json:"nonWifi,omitempty"` // An object containing non-wifi utilization.
+	Total   *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetworkByBandTotal   `json:"total,omitempty"`   // An object containing total channel utilization.
+	Wifi    *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetworkByBandWifi    `json:"wifi,omitempty"`    // An object containing wifi utilization.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetworkByBandNonWifi struct {
+	Percentage *float64 `json:"percentage,omitempty"` // Percentage of non-wifi channel utiliation for the given band.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetworkByBandTotal struct {
+	Percentage *float64 `json:"percentage,omitempty"` // Percentage of total channel utiliation for the given band.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetworkByBandWifi struct {
+	Percentage *float64 `json:"percentage,omitempty"` // Percentage of wifi channel utiliation for the given band.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetworkNetwork struct {
+	ID string `json:"id,omitempty"` // Network ID of the given utilization metrics.
+}
+type ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval []ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval // Array of ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval struct {
+	ByBand  *[]ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalByBand `json:"byBand,omitempty"`  // Channel utilization broken down by band.
+	EndTs   string                                                                                                 `json:"endTs,omitempty"`   // The end time of the channel utilization interval.
+	Mac     string                                                                                                 `json:"mac,omitempty"`     // The MAC address of the device.
+	Network *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalNetwork  `json:"network,omitempty"` // Network for the given utilization metrics.
+	Serial  string                                                                                                 `json:"serial,omitempty"`  // The serial number for the device.
+	StartTs string                                                                                                 `json:"startTs,omitempty"` // The start time of the channel utilization interval.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalByBand struct {
+	Band    string                                                                                                      `json:"band,omitempty"`    // The band for the given metrics.
+	NonWifi *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalByBandNonWifi `json:"nonWifi,omitempty"` // An object containing non-wifi utilization.
+	Total   *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalByBandTotal   `json:"total,omitempty"`   // An object containing total channel utilization.
+	Wifi    *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalByBandWifi    `json:"wifi,omitempty"`    // An object containing wifi utilization.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalByBandNonWifi struct {
+	Percentage *float64 `json:"percentage,omitempty"` // Percentage of non-wifi channel utiliation for the given band.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalByBandTotal struct {
+	Percentage *float64 `json:"percentage,omitempty"` // Percentage of total channel utiliation for the given band.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalByBandWifi struct {
+	Percentage *float64 `json:"percentage,omitempty"` // Percentage of wifi channel utiliation for the given band.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalNetwork struct {
+	ID string `json:"id,omitempty"` // Network ID of the given utilization metrics.
+}
+type ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval []ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval // Array of ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval struct {
+	ByBand  *[]ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalByBand `json:"byBand,omitempty"`  // Channel utilization broken down by band.
+	EndTs   string                                                                                                  `json:"endTs,omitempty"`   // The end time of the channel utilization interval.
+	Network *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalNetwork  `json:"network,omitempty"` // Network for the given utilization metrics.
+	StartTs string                                                                                                  `json:"startTs,omitempty"` // The start time of the channel utilization interval.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalByBand struct {
+	Band    string                                                                                                       `json:"band,omitempty"`    // The band for the given metrics.
+	NonWifi *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalByBandNonWifi `json:"nonWifi,omitempty"` // An object containing non-wifi utilization.
+	Total   *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalByBandTotal   `json:"total,omitempty"`   // An object containing total channel utilization.
+	Wifi    *ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalByBandWifi    `json:"wifi,omitempty"`    // An object containing wifi utilization.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalByBandNonWifi struct {
+	Percentage *float64 `json:"percentage,omitempty"` // Percentage of non-wifi channel utiliation for the given band.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalByBandTotal struct {
+	Percentage *float64 `json:"percentage,omitempty"` // Percentage of total channel utiliation for the given band.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalByBandWifi struct {
+	Percentage *float64 `json:"percentage,omitempty"` // Percentage of wifi channel utiliation for the given band.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalNetwork struct {
+	ID string `json:"id,omitempty"` // Network ID of the given utilization metrics.
 }
 type ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses []ResponseItemWirelessGetOrganizationWirelessDevicesEthernetStatuses // Array of ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses
 type ResponseItemWirelessGetOrganizationWirelessDevicesEthernetStatuses struct {
@@ -1731,6 +2349,91 @@ type ResponseItemWirelessGetOrganizationWirelessDevicesEthernetStatusesPowerAc s
 }
 type ResponseItemWirelessGetOrganizationWirelessDevicesEthernetStatusesPowerPoe struct {
 	IsConnected *bool `json:"isConnected,omitempty"` // PoE power connected
+}
+type ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient []ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByClient // Array of ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient
+type ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByClient struct {
+	Client     *ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByClientClient     `json:"client,omitempty"`     // Client.
+	Downstream *ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByClientDownstream `json:"downstream,omitempty"` // Packets sent from an AP to a client.
+	Network    *ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByClientNetwork    `json:"network,omitempty"`    // Network.
+	Upstream   *ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByClientUpstream   `json:"upstream,omitempty"`   // Packets sent from a client to an AP.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByClientClient struct {
+	ID  string `json:"id,omitempty"`  // Client ID.
+	Mac string `json:"mac,omitempty"` // MAC address.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByClientDownstream struct {
+	LossPercentage *float64 `json:"lossPercentage,omitempty"` // Percentage of lost packets.
+	Lost           *int     `json:"lost,omitempty"`           // Total packets sent by an AP that did not reach the client.
+	Total          *int     `json:"total,omitempty"`          // Total packets received by a client.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByClientNetwork struct {
+	ID   string `json:"id,omitempty"`   // Network ID.
+	Name string `json:"name,omitempty"` // Name of the network.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByClientUpstream struct {
+	LossPercentage *float64 `json:"lossPercentage,omitempty"` // Percentage of lost packets.
+	Lost           *int     `json:"lost,omitempty"`           // Total packets sent by a client and did not reach the AP.
+	Total          *int     `json:"total,omitempty"`          // Total packets sent by a client to an AP.
+}
+type ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice []ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByDevice // Array of ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice
+type ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByDevice struct {
+	Device     *ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByDeviceDevice     `json:"device,omitempty"`     // Device.
+	Downstream *ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByDeviceDownstream `json:"downstream,omitempty"` // Packets sent from an AP to a client.
+	Network    *ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByDeviceNetwork    `json:"network,omitempty"`    // Network.
+	Upstream   *ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByDeviceUpstream   `json:"upstream,omitempty"`   // Packets sent from a client to an AP.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByDeviceDevice struct {
+	Mac    string `json:"mac,omitempty"`    // MAC address
+	Name   string `json:"name,omitempty"`   // Name
+	Serial string `json:"serial,omitempty"` // Serial Number
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByDeviceDownstream struct {
+	LossPercentage *float64 `json:"lossPercentage,omitempty"` // Percentage of lost packets.
+	Lost           *int     `json:"lost,omitempty"`           // Total packets sent by an AP that did not reach the client.
+	Total          *int     `json:"total,omitempty"`          // Total packets received by a client.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByDeviceNetwork struct {
+	ID   string `json:"id,omitempty"`   // Network ID.
+	Name string `json:"name,omitempty"` // Name of the network.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByDeviceUpstream struct {
+	LossPercentage *float64 `json:"lossPercentage,omitempty"` // Percentage of lost packets.
+	Lost           *int     `json:"lost,omitempty"`           // Total packets sent by a client and did not reach the AP.
+	Total          *int     `json:"total,omitempty"`          // Total packets sent by a client to an AP.
+}
+type ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork []ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByNetwork // Array of ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork
+type ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByNetwork struct {
+	Downstream *ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByNetworkDownstream `json:"downstream,omitempty"` // Packets sent from an AP to a client.
+	Network    *ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByNetworkNetwork    `json:"network,omitempty"`    // Network.
+	Upstream   *ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByNetworkUpstream   `json:"upstream,omitempty"`   // Packets sent from a client to an AP.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByNetworkDownstream struct {
+	LossPercentage *float64 `json:"lossPercentage,omitempty"` // Percentage of lost packets.
+	Lost           *int     `json:"lost,omitempty"`           // Total packets sent by an AP that did not reach the client.
+	Total          *int     `json:"total,omitempty"`          // Total packets received by a client.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByNetworkNetwork struct {
+	ID   string `json:"id,omitempty"`   // Network ID.
+	Name string `json:"name,omitempty"` // Name of the network.
+}
+type ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByNetworkUpstream struct {
+	LossPercentage *float64 `json:"lossPercentage,omitempty"` // Percentage of lost packets.
+	Lost           *int     `json:"lost,omitempty"`           // Total packets sent by a client and did not reach the AP.
+	Total          *int     `json:"total,omitempty"`          // Total packets sent by a client to an AP.
+}
+type RequestWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6 struct {
+	Addresses *[]RequestWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6Addresses `json:"addresses,omitempty"` // configured alternate management interface addresses
+}
+type RequestWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6Addresses struct {
+	Address        string                                                                                   `json:"address,omitempty"`        // The IP address configured for the alternate management interface
+	AssignmentMode string                                                                                   `json:"assignmentMode,omitempty"` // The type of address assignment. Either static or dynamic.
+	Gateway        string                                                                                   `json:"gateway,omitempty"`        // The gateway address configured for the alternate managment interface
+	Nameservers    *RequestWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6AddressesNameservers `json:"nameservers,omitempty"`    // The DNS servers settings for this address.
+	Prefix         string                                                                                   `json:"prefix,omitempty"`         // The IPv6 prefix length of the IPv6 interface. Required if IPv6 object is included.
+	Protocol       string                                                                                   `json:"protocol,omitempty"`       // The IP protocol used for the address
+}
+type RequestWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6AddressesNameservers struct {
+	Addresses []string `json:"addresses,omitempty"` // Up to 2 nameserver addresses to use, ordered in priority from highest to lowest priority.
 }
 type RequestWirelessUpdateDeviceWirelessBluetoothSettings struct {
 	Major *int   `json:"major,omitempty"` // Desired major value of the beacon. If the value is set to null it will reset to Dashboard's automatically generated value.
@@ -1787,21 +2490,65 @@ type RequestWirelessUpdateNetworkWirelessBluetoothSettings struct {
 	ScanningEnabled          *bool  `json:"scanningEnabled,omitempty"`          // Whether APs will scan for Bluetooth enabled clients.
 	UUID                     string `json:"uuid,omitempty"`                     // The UUID to be used in the beacon identifier.
 }
+type RequestWirelessCreateNetworkWirelessEthernetPortsProfile struct {
+	Name     string                                                              `json:"name,omitempty"`     // AP port profile name
+	Ports    *[]RequestWirelessCreateNetworkWirelessEthernetPortsProfilePorts    `json:"ports,omitempty"`    // AP ports configuration
+	UsbPorts *[]RequestWirelessCreateNetworkWirelessEthernetPortsProfileUsbPorts `json:"usbPorts,omitempty"` // AP usb ports configuration
+}
+type RequestWirelessCreateNetworkWirelessEthernetPortsProfilePorts struct {
+	Enabled    *bool  `json:"enabled,omitempty"`    // AP port enabled
+	Name       string `json:"name,omitempty"`       // AP port name
+	PskGroupID string `json:"pskGroupId,omitempty"` // AP port PSK Group ID
+	SSID       *int   `json:"ssid,omitempty"`       // AP port ssid number
+}
+type RequestWirelessCreateNetworkWirelessEthernetPortsProfileUsbPorts struct {
+	Enabled *bool  `json:"enabled,omitempty"` // AP usb port enabled
+	Name    string `json:"name,omitempty"`    // AP usb port name
+	SSID    *int   `json:"ssid,omitempty"`    // AP usb port ssid number
+}
+type RequestWirelessAssignNetworkWirelessEthernetPortsProfiles struct {
+	ProfileID string   `json:"profileId,omitempty"` // AP profile ID
+	Serials   []string `json:"serials,omitempty"`   // List of AP serials
+}
+type RequestWirelessSetNetworkWirelessEthernetPortsProfilesDefault struct {
+	ProfileID string `json:"profileId,omitempty"` // AP profile ID
+}
+type RequestWirelessUpdateNetworkWirelessEthernetPortsProfile struct {
+	Name     string                                                              `json:"name,omitempty"`     // AP port profile name
+	Ports    *[]RequestWirelessUpdateNetworkWirelessEthernetPortsProfilePorts    `json:"ports,omitempty"`    // AP ports configuration
+	UsbPorts *[]RequestWirelessUpdateNetworkWirelessEthernetPortsProfileUsbPorts `json:"usbPorts,omitempty"` // AP usb ports configuration
+}
+type RequestWirelessUpdateNetworkWirelessEthernetPortsProfilePorts struct {
+	Enabled    *bool  `json:"enabled,omitempty"`    // AP port enabled
+	Name       string `json:"name,omitempty"`       // AP port name
+	PskGroupID string `json:"pskGroupId,omitempty"` // AP port PSK Group number
+	SSID       *int   `json:"ssid,omitempty"`       // AP port ssid number
+}
+type RequestWirelessUpdateNetworkWirelessEthernetPortsProfileUsbPorts struct {
+	Enabled *bool  `json:"enabled,omitempty"` // AP usb port enabled
+	Name    string `json:"name,omitempty"`    // AP usb port name
+	SSID    *int   `json:"ssid,omitempty"`    // AP usb port ssid number
+}
 type RequestWirelessCreateNetworkWirelessRfProfile struct {
 	ApBandSettings         *RequestWirelessCreateNetworkWirelessRfProfileApBandSettings     `json:"apBandSettings,omitempty"`         // Settings that will be enabled if selectionType is set to 'ap'.
 	BandSelectionType      string                                                           `json:"bandSelectionType,omitempty"`      // Band selection can be set to either 'ssid' or 'ap'. This param is required on creation.
 	ClientBalancingEnabled *bool                                                            `json:"clientBalancingEnabled,omitempty"` // Steers client to best available access point. Can be either true or false. Defaults to true.
 	FiveGhzSettings        *RequestWirelessCreateNetworkWirelessRfProfileFiveGhzSettings    `json:"fiveGhzSettings,omitempty"`        // Settings related to 5Ghz band
+	FlexRadios             *RequestWirelessCreateNetworkWirelessRfProfileFlexRadios         `json:"flexRadios,omitempty"`             // Flex radio settings.
 	MinBitrateType         string                                                           `json:"minBitrateType,omitempty"`         // Minimum bitrate can be set to either 'band' or 'ssid'. Defaults to band.
 	Name                   string                                                           `json:"name,omitempty"`                   // The name of the new profile. Must be unique. This param is required on creation.
 	PerSSIDSettings        *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings    `json:"perSsidSettings,omitempty"`        // Per-SSID radio settings by number.
-	SixGhzSettings         *RequestWirelessCreateNetworkWirelessRfProfileSixGhzSettings     `json:"sixGhzSettings,omitempty"`         // Settings related to 6Ghz band
+	SixGhzSettings         *RequestWirelessCreateNetworkWirelessRfProfileSixGhzSettings     `json:"sixGhzSettings,omitempty"`         // Settings related to 6Ghz band. Only applicable to networks with 6Ghz capable APs
 	Transmission           *RequestWirelessCreateNetworkWirelessRfProfileTransmission       `json:"transmission,omitempty"`           // Settings related to radio transmission.
 	TwoFourGhzSettings     *RequestWirelessCreateNetworkWirelessRfProfileTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"`     // Settings related to 2.4Ghz band
 }
 type RequestWirelessCreateNetworkWirelessRfProfileApBandSettings struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'. Defaults to dual.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band. Can be either true or false. Defaults to true.
+	BandOperationMode   string                                                            `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'. Defaults to dual.
+	BandSteeringEnabled *bool                                                             `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band. Can be either true or false. Defaults to true.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfileApBandSettingsBands `json:"bands,omitempty"`               // Settings related to all bands
+}
+type RequestWirelessCreateNetworkWirelessRfProfileApBandSettingsBands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfileFiveGhzSettings struct {
 	ChannelWidth      string `json:"channelWidth,omitempty"`      // Sets channel width (MHz) for 5Ghz band. Can be one of 'auto', '20', '40' or '80'. Defaults to auto.
@@ -1810,6 +2557,13 @@ type RequestWirelessCreateNetworkWirelessRfProfileFiveGhzSettings struct {
 	MinPower          *int   `json:"minPower,omitempty"`          // Sets min power (dBm) of 5Ghz band. Can be integer between 2 and 30. Defaults to 8.
 	Rxsop             *int   `json:"rxsop,omitempty"`             // The RX-SOP level controls the sensitivity of the radio. It is strongly recommended to use RX-SOP only after consulting a wireless expert. RX-SOP can be configured in the range of -65 to -95 (dBm). A value of null will reset this to the default.
 	ValidAutoChannels *[]int `json:"validAutoChannels,omitempty"` // Sets valid auto channels for 5Ghz band. Can be one of '36', '40', '44', '48', '52', '56', '60', '64', '100', '104', '108', '112', '116', '120', '124', '128', '132', '136', '140', '144', '149', '153', '157', '161' or '165'.Defaults to [36, 40, 44, 48, 52, 56, 60, 64, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140, 144, 149, 153, 157, 161, 165].
+}
+type RequestWirelessCreateNetworkWirelessRfProfileFlexRadios struct {
+	ByModel *[]RequestWirelessCreateNetworkWirelessRfProfileFlexRadiosByModel `json:"byModel,omitempty"` // Flex radios by model.
+}
+type RequestWirelessCreateNetworkWirelessRfProfileFlexRadiosByModel struct {
+	Bands []string `json:"bands,omitempty"` // Band to use for each flex radio. For example, ['6'] will set the AP's first flex radio to 6 GHz
+	Model string   `json:"model,omitempty"` // Model of the AP
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings struct {
 	Status0  *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings0  `json:"0,omitempty"`  // Settings for SSID 0
@@ -1829,79 +2583,139 @@ type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings struct {
 	Status9  *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings9  `json:"9,omitempty"`  // Settings for SSID 9
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings0 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings0Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings0Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings1 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings1Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings1Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings10 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings10Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                             `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings10Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings11 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings11Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                             `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings11Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings12 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings12Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                             `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings12Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings13 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings13Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                             `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings13Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings14 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings14Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                             `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings14Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings2 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings2Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings2Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings3 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings3Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings3Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings4 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings4Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings4Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings5 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings5Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings5Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings6 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings6Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings6Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings7 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings7Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings7Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings8 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings8Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings8Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings9 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings9Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessCreateNetworkWirelessRfProfilePerSSIDSettings9Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4","5", "6", "disabled"
 }
 type RequestWirelessCreateNetworkWirelessRfProfileSixGhzSettings struct {
 	ChannelWidth      string `json:"channelWidth,omitempty"`      // Sets channel width (MHz) for 6Ghz band. Can be one of '0', '20', '40', '80' or '160'. Defaults to 0.
@@ -1927,16 +2741,21 @@ type RequestWirelessUpdateNetworkWirelessRfProfile struct {
 	BandSelectionType      string                                                           `json:"bandSelectionType,omitempty"`      // Band selection can be set to either 'ssid' or 'ap'.
 	ClientBalancingEnabled *bool                                                            `json:"clientBalancingEnabled,omitempty"` // Steers client to best available access point. Can be either true or false.
 	FiveGhzSettings        *RequestWirelessUpdateNetworkWirelessRfProfileFiveGhzSettings    `json:"fiveGhzSettings,omitempty"`        // Settings related to 5Ghz band
+	FlexRadios             *RequestWirelessUpdateNetworkWirelessRfProfileFlexRadios         `json:"flexRadios,omitempty"`             // Flex radio settings.
 	MinBitrateType         string                                                           `json:"minBitrateType,omitempty"`         // Minimum bitrate can be set to either 'band' or 'ssid'.
 	Name                   string                                                           `json:"name,omitempty"`                   // The name of the new profile. Must be unique.
 	PerSSIDSettings        *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings    `json:"perSsidSettings,omitempty"`        // Per-SSID radio settings by number.
-	SixGhzSettings         *RequestWirelessUpdateNetworkWirelessRfProfileSixGhzSettings     `json:"sixGhzSettings,omitempty"`         // Settings related to 6Ghz band
+	SixGhzSettings         *RequestWirelessUpdateNetworkWirelessRfProfileSixGhzSettings     `json:"sixGhzSettings,omitempty"`         // Settings related to 6Ghz band. Only applicable to networks with 6Ghz capable APs
 	Transmission           *RequestWirelessUpdateNetworkWirelessRfProfileTransmission       `json:"transmission,omitempty"`           // Settings related to radio transmission.
 	TwoFourGhzSettings     *RequestWirelessUpdateNetworkWirelessRfProfileTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"`     // Settings related to 2.4Ghz band
 }
 type RequestWirelessUpdateNetworkWirelessRfProfileApBandSettings struct {
-	BandOperationMode   string `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool  `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band. Can be either true or false.
+	BandOperationMode   string                                                            `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                             `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfileApBandSettingsBands `json:"bands,omitempty"`               // Settings related to all bands
+}
+type RequestWirelessUpdateNetworkWirelessRfProfileApBandSettingsBands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfileFiveGhzSettings struct {
 	ChannelWidth      string `json:"channelWidth,omitempty"`      // Sets channel width (MHz) for 5Ghz band. Can be one of 'auto', '20', '40' or '80'.
@@ -1945,6 +2764,13 @@ type RequestWirelessUpdateNetworkWirelessRfProfileFiveGhzSettings struct {
 	MinPower          *int   `json:"minPower,omitempty"`          // Sets min power (dBm) of 5Ghz band. Can be integer between 2 and 30.
 	Rxsop             *int   `json:"rxsop,omitempty"`             // The RX-SOP level controls the sensitivity of the radio. It is strongly recommended to use RX-SOP only after consulting a wireless expert. RX-SOP can be configured in the range of -65 to -95 (dBm). A value of null will reset this to the default.
 	ValidAutoChannels *[]int `json:"validAutoChannels,omitempty"` // Sets valid auto channels for 5Ghz band. Can be one of '36', '40', '44', '48', '52', '56', '60', '64', '100', '104', '108', '112', '116', '120', '124', '128', '132', '136', '140', '144', '149', '153', '157', '161' or '165'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfileFlexRadios struct {
+	ByModel *[]RequestWirelessUpdateNetworkWirelessRfProfileFlexRadiosByModel `json:"byModel,omitempty"` // Flex radios by model.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfileFlexRadiosByModel struct {
+	Bands []string `json:"bands,omitempty"` // Band to use for each flex radio. For example, ['6'] will set the AP's first flex radio to 6 GHz
+	Model string   `json:"model,omitempty"` // Model of the AP
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings struct {
 	Status0  *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings0  `json:"0,omitempty"`  // Settings for SSID 0
@@ -1964,79 +2790,139 @@ type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings struct {
 	Status9  *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings9  `json:"9,omitempty"`  // Settings for SSID 9
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings0 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings0Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings0Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings1 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings1Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings1Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings10 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings10Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                             `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings10Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings11 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings11Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                             `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings11Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings12 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings12Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                             `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings12Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings13 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings13Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                             `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings13Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings14 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                               `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                                `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings14Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                             `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings14Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings2 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings2Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings2Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings3 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings3Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings3Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings4 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings4Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings4Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings5 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings5Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings5Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings6 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings6Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings6Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings7 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings7Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings7Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings8 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings8Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings8Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings9 struct {
-	BandOperationMode   string   `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz' or '5ghz'.
-	BandSteeringEnabled *bool    `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
-	MinBitrate          *float64 `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+	BandOperationMode   string                                                              `json:"bandOperationMode,omitempty"`   // Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.
+	BandSteeringEnabled *bool                                                               `json:"bandSteeringEnabled,omitempty"` // Steers client to most open band between 2.4 GHz and 5 GHz. Can be either true or false.
+	Bands               *RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings9Bands `json:"bands,omitempty"`               // Settings related to all bands
+	MinBitrate          *float64                                                            `json:"minBitrate,omitempty"`          // Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
+}
+type RequestWirelessUpdateNetworkWirelessRfProfilePerSSIDSettings9Bands struct {
+	Enabled []string `json:"enabled,omitempty"` // List of enabled bands. Can include ["2.4", "5", "6", "disabled"
 }
 type RequestWirelessUpdateNetworkWirelessRfProfileSixGhzSettings struct {
 	ChannelWidth      string `json:"channelWidth,omitempty"`      // Sets channel width (MHz) for 6Ghz band. Can be one of '0', '20', '40', '80' or '160'.
@@ -2058,17 +2944,25 @@ type RequestWirelessUpdateNetworkWirelessRfProfileTwoFourGhzSettings struct {
 	ValidAutoChannels *[]int   `json:"validAutoChannels,omitempty"` // Sets valid auto channels for 2.4Ghz band. Can be one of '1', '6' or '11'.
 }
 type RequestWirelessUpdateNetworkWirelessSettings struct {
-	IPv6BridgeEnabled        *bool  `json:"ipv6BridgeEnabled,omitempty"`        // Toggle for enabling or disabling IPv6 bridging in a network (Note: if enabled, SSIDs must also be configured to use bridge mode)
-	LedLightsOn              *bool  `json:"ledLightsOn,omitempty"`              // Toggle for enabling or disabling LED lights on all APs in the network (making them run dark)
-	LocationAnalyticsEnabled *bool  `json:"locationAnalyticsEnabled,omitempty"` // Toggle for enabling or disabling location analytics for your network
-	MeshingEnabled           *bool  `json:"meshingEnabled,omitempty"`           // Toggle for enabling or disabling meshing in a network
-	Upgradestrategy          string `json:"upgradeStrategy,omitempty"`          // The upgrade strategy to apply to the network. Must be one of 'minimizeUpgradeTime' or 'minimizeClientDowntime'. Requires firmware version MR 26.8 or higher'
+	IPv6BridgeEnabled        *bool                                                   `json:"ipv6BridgeEnabled,omitempty"`        // Toggle for enabling or disabling IPv6 bridging in a network (Note: if enabled, SSIDs must also be configured to use bridge mode)
+	LedLightsOn              *bool                                                   `json:"ledLightsOn,omitempty"`              // Toggle for enabling or disabling LED lights on all APs in the network (making them run dark)
+	LocationAnalyticsEnabled *bool                                                   `json:"locationAnalyticsEnabled,omitempty"` // Toggle for enabling or disabling location analytics for your network
+	MeshingEnabled           *bool                                                   `json:"meshingEnabled,omitempty"`           // Toggle for enabling or disabling meshing in a network
+	NamedVLANs               *RequestWirelessUpdateNetworkWirelessSettingsNamedVLANs `json:"namedVlans,omitempty"`               // Named VLAN settings for wireless networks.
+	Upgradestrategy          string                                                  `json:"upgradeStrategy,omitempty"`          // The upgrade strategy to apply to the network. Must be one of 'minimizeUpgradeTime' or 'minimizeClientDowntime'. Requires firmware version MR 26.8 or higher'
+}
+type RequestWirelessUpdateNetworkWirelessSettingsNamedVLANs struct {
+	PoolDhcpMonitoring *RequestWirelessUpdateNetworkWirelessSettingsNamedVLANsPoolDhcpMonitoring `json:"poolDhcpMonitoring,omitempty"` // Named VLAN Pool DHCP Monitoring settings.
+}
+type RequestWirelessUpdateNetworkWirelessSettingsNamedVLANsPoolDhcpMonitoring struct {
+	Duration *int  `json:"duration,omitempty"` // The duration in minutes that devices will refrain from using dirty VLANs before adding them back to the pool.
+	Enabled  *bool `json:"enabled,omitempty"`  // Whether or not devices using named VLAN pools should remove dirty VLANs from the pool, thereby preventing clients from being assigned to VLANs where they would be unable to obtain an IP address via DHCP.
 }
 type RequestWirelessUpdateNetworkWirelessSSID struct {
 	ActiveDirectory                  *RequestWirelessUpdateNetworkWirelessSSIDActiveDirectory           `json:"activeDirectory,omitempty"`                  // The current setting for Active Directory. Only valid if splashPage is 'Password-protected with Active Directory'
 	AdultContentFilteringEnabled     *bool                                                              `json:"adultContentFilteringEnabled,omitempty"`     // Boolean indicating whether or not adult content will be blocked
 	ApTagsAndVLANIDs                 *[]RequestWirelessUpdateNetworkWirelessSSIDApTagsAndVLANIDs        `json:"apTagsAndVlanIds,omitempty"`                 // The list of tags and VLAN IDs used for VLAN tagging. This param is only valid when the ipAssignmentMode is 'Bridge mode' or 'Layer 3 roaming'
-	AuthMode                         string                                                             `json:"authMode,omitempty"`                         // The association control method for the SSID ('open', 'open-enhanced', 'psk', 'open-with-radius', 'open-with-nac', '8021x-meraki', '8021x-nac', '8021x-radius', '8021x-google', '8021x-localradius', 'ipsk-with-radius' or 'ipsk-without-radius')
+	AuthMode                         string                                                             `json:"authMode,omitempty"`                         // The association control method for the SSID ('open', 'open-enhanced', 'psk', 'open-with-radius', 'open-with-nac', '8021x-meraki', '8021x-nac', '8021x-radius', '8021x-google', '8021x-localradius', 'ipsk-with-radius', 'ipsk-without-radius' or 'ipsk-with-nac')
 	AvailabilityTags                 []string                                                           `json:"availabilityTags,omitempty"`                 // Accepts a list of tags for this SSID. If availableOnAllAps is false, then the SSID will only be broadcast by APs with tags matching any of the tags in this list.
 	AvailableOnAllAps                *bool                                                              `json:"availableOnAllAps,omitempty"`                // Boolean indicating whether all APs should broadcast the SSID or if it should be restricted to APs matching any availability tags. Can only be false if the SSID has availability tags.
 	BandSelection                    string                                                             `json:"bandSelection,omitempty"`                    // The client-serving radio frequencies of this SSID in the default indoor RF profile. ('Dual band operation', '5 GHz band only' or 'Dual band operation with Band Steering')
@@ -2089,6 +2983,7 @@ type RequestWirelessUpdateNetworkWirelessSSID struct {
 	MandatoryDhcpEnabled             *bool                                                              `json:"mandatoryDhcpEnabled,omitempty"`             // If true, Mandatory DHCP will enforce that clients connecting to this SSID must use the IP address assigned by the DHCP server. Clients who use a static IP address won't be able to associate.
 	MinBitrate                       *float64                                                           `json:"minBitrate,omitempty"`                       // The minimum bitrate in Mbps of this SSID in the default indoor RF profile. ('1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54')
 	Name                             string                                                             `json:"name,omitempty"`                             // The name of the SSID
+	NamedVLANs                       *RequestWirelessUpdateNetworkWirelessSSIDNamedVLANs                `json:"namedVlans,omitempty"`                       // Named VLAN settings.
 	Oauth                            *RequestWirelessUpdateNetworkWirelessSSIDOauth                     `json:"oauth,omitempty"`                            // The OAuth settings of this SSID. Only valid if splashPage is 'Google OAuth'.
 	PerClientBandwidthLimitDown      *int                                                               `json:"perClientBandwidthLimitDown,omitempty"`      // The download bandwidth limit in Kbps. (0 represents no limit.)
 	PerClientBandwidthLimitUp        *int                                                               `json:"perClientBandwidthLimitUp,omitempty"`        // The upload bandwidth limit in Kbps. (0 represents no limit.)
@@ -2133,7 +3028,7 @@ type RequestWirelessUpdateNetworkWirelessSSIDActiveDirectoryCredentials struct {
 	Password  string `json:"password,omitempty"`  // The password to the Active Directory user account.
 }
 type RequestWirelessUpdateNetworkWirelessSSIDActiveDirectoryServers struct {
-	Host string `json:"host,omitempty"` // IP address of your Active Directory server.
+	Host string `json:"host,omitempty"` // IP address (or FQDN) of your Active Directory server.
 	Port *int   `json:"port,omitempty"` // (Optional) UDP port the Active Directory server listens on. By default, uses port 3268.
 }
 type RequestWirelessUpdateNetworkWirelessSSIDApTagsAndVLANIDs struct {
@@ -2173,7 +3068,7 @@ type RequestWirelessUpdateNetworkWirelessSSIDLdapServerCaCertificate struct {
 	Contents string `json:"contents,omitempty"` // The contents of the CA certificate. Must be in PEM or DER format.
 }
 type RequestWirelessUpdateNetworkWirelessSSIDLdapServers struct {
-	Host string `json:"host,omitempty"` // IP address of your LDAP server.
+	Host string `json:"host,omitempty"` // IP address (or FQDN) of your LDAP server.
 	Port *int   `json:"port,omitempty"` // UDP port the LDAP server listens on.
 }
 type RequestWirelessUpdateNetworkWirelessSSIDLocalRadius struct {
@@ -2194,19 +3089,39 @@ type RequestWirelessUpdateNetworkWirelessSSIDLocalRadiusCertificateAuthenticatio
 type RequestWirelessUpdateNetworkWirelessSSIDLocalRadiusPasswordAuthentication struct {
 	Enabled *bool `json:"enabled,omitempty"` // Whether or not to use EAP-TTLS/PAP or PEAP-GTC password-based authentication via LDAP lookup.
 }
+type RequestWirelessUpdateNetworkWirelessSSIDNamedVLANs struct {
+	Radius  *RequestWirelessUpdateNetworkWirelessSSIDNamedVLANsRadius  `json:"radius,omitempty"`  // RADIUS settings. This param is only valid when authMode is 'open-with-radius' and ipAssignmentMode is not 'NAT mode'.
+	Tagging *RequestWirelessUpdateNetworkWirelessSSIDNamedVLANsTagging `json:"tagging,omitempty"` // VLAN tagging settings. This param is only valid when ipAssignmentMode is 'Bridge mode' or 'Layer 3 roaming'.
+}
+type RequestWirelessUpdateNetworkWirelessSSIDNamedVLANsRadius struct {
+	GuestVLAN *RequestWirelessUpdateNetworkWirelessSSIDNamedVLANsRadiusGuestVLAN `json:"guestVlan,omitempty"` // Guest VLAN settings. Used to direct traffic to a guest VLAN when none of the RADIUS servers are reachable or a client receives access-reject from the RADIUS server.
+}
+type RequestWirelessUpdateNetworkWirelessSSIDNamedVLANsRadiusGuestVLAN struct {
+	Enabled *bool  `json:"enabled,omitempty"` // Whether or not RADIUS guest named VLAN is enabled.
+	Name    string `json:"name,omitempty"`    // RADIUS guest VLAN name.
+}
+type RequestWirelessUpdateNetworkWirelessSSIDNamedVLANsTagging struct {
+	ByApTags        *[]RequestWirelessUpdateNetworkWirelessSSIDNamedVLANsTaggingByApTags `json:"byApTags,omitempty"`        // The list of AP tags and VLAN names used for named VLAN tagging. If an AP has a tag matching one in the list, then traffic on this SSID will be directed to use the VLAN name associated to the tag.
+	DefaultVLANName string                                                               `json:"defaultVlanName,omitempty"` // The default VLAN name used to tag traffic in the absence of a matching AP tag.
+	Enabled         *bool                                                                `json:"enabled,omitempty"`         // Whether or not traffic should be directed to use specific VLAN names.
+}
+type RequestWirelessUpdateNetworkWirelessSSIDNamedVLANsTaggingByApTags struct {
+	Tags     []string `json:"tags,omitempty"`     // List of AP tags.
+	VLANName string   `json:"vlanName,omitempty"` // VLAN name that will be used to tag traffic.
+}
 type RequestWirelessUpdateNetworkWirelessSSIDOauth struct {
 	AllowedDomains []string `json:"allowedDomains,omitempty"` // (Optional) The list of domains allowed access to the network.
 }
 type RequestWirelessUpdateNetworkWirelessSSIDRadiusAccountingServers struct {
 	CaCertificate string `json:"caCertificate,omitempty"` // Certificate used for authorization for the RADSEC Server
-	Host          string `json:"host,omitempty"`          // IP address to which the APs will send RADIUS accounting messages
+	Host          string `json:"host,omitempty"`          // IP address (or FQDN) to which the APs will send RADIUS accounting messages
 	Port          *int   `json:"port,omitempty"`          // Port on the RADIUS server that is listening for accounting messages
 	RadsecEnabled *bool  `json:"radsecEnabled,omitempty"` // Use RADSEC (TLS over TCP) to connect to this RADIUS accounting server. Requires radiusProxyEnabled.
 	Secret        string `json:"secret,omitempty"`        // Shared key used to authenticate messages between the APs and RADIUS server
 }
 type RequestWirelessUpdateNetworkWirelessSSIDRadiusServers struct {
 	CaCertificate            string `json:"caCertificate,omitempty"`            // Certificate used for authorization for the RADSEC Server
-	Host                     string `json:"host,omitempty"`                     // IP address of your RADIUS server
+	Host                     string `json:"host,omitempty"`                     // IP address (or FQDN) of your RADIUS server
 	OpenRoamingCertificateID *int   `json:"openRoamingCertificateId,omitempty"` // The ID of the Openroaming Certificate attached to radius server.
 	Port                     *int   `json:"port,omitempty"`                     // UDP port the RADIUS server listens on for Access-requests
 	RadsecEnabled            *bool  `json:"radsecEnabled,omitempty"`            // Use RADSEC (TLS over TCP) to connect to this RADIUS server. Requires radiusProxyEnabled.
@@ -2216,8 +3131,12 @@ type RequestWirelessUpdateNetworkWirelessSSIDSpeedBurst struct {
 	Enabled *bool `json:"enabled,omitempty"` // Boolean indicating whether or not to allow users to temporarily exceed the bandwidth limit for short periods while still keeping them under the bandwidth limit over time.
 }
 type RequestWirelessUpdateNetworkWirelessSSIDBonjourForwarding struct {
-	Enabled *bool                                                             `json:"enabled,omitempty"` // If true, Bonjour forwarding is enabled on this SSID.
-	Rules   *[]RequestWirelessUpdateNetworkWirelessSSIDBonjourForwardingRules `json:"rules,omitempty"`   // List of bonjour forwarding rules.
+	Enabled   *bool                                                               `json:"enabled,omitempty"`   // If true, Bonjour forwarding is enabled on this SSID.
+	Exception *RequestWirelessUpdateNetworkWirelessSSIDBonjourForwardingException `json:"exception,omitempty"` // Bonjour forwarding exception
+	Rules     *[]RequestWirelessUpdateNetworkWirelessSSIDBonjourForwardingRules   `json:"rules,omitempty"`     // List of bonjour forwarding rules.
+}
+type RequestWirelessUpdateNetworkWirelessSSIDBonjourForwardingException struct {
+	Enabled *bool `json:"enabled,omitempty"` // If true, Bonjour forwarding exception is enabled on this SSID. Exception is required to enable L2 isolation and Bonjour forwarding to work together.
 }
 type RequestWirelessUpdateNetworkWirelessSSIDBonjourForwardingRules struct {
 	Description string   `json:"description,omitempty"` // A description for your Bonjour forwarding rule. Optional.
@@ -2249,7 +3168,7 @@ type RequestWirelessUpdateNetworkWirelessSSIDEapOverrideIDentity struct {
 }
 type RequestWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRules struct {
 	AllowLanAccess *bool                                                                   `json:"allowLanAccess,omitempty"` // Allow wireless client access to local LAN (boolean value - true allows access and false denies access) (optional)
-	Rules          *[]RequestWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRulesRules `json:"rules,omitempty"`          // An ordered array of the firewall rules for this SSID (not including the local LAN access rule or the default rule)
+	Rules          *[]RequestWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRulesRules `json:"rules,omitempty"`          // An ordered array of the firewall rules for this SSID (not including the local LAN access rule or the default rule).
 }
 type RequestWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRulesRules struct {
 	Comment  string `json:"comment,omitempty"`  // Description of the rule (optional)
@@ -2289,12 +3208,7 @@ type RequestWirelessUpdateNetworkWirelessSSIDHotspot20NaiRealmsMethods struct {
 	AuthenticationTypes *RequestWirelessUpdateNetworkWirelessSSIDHotspot20NaiRealmsMethodsAuthenticationTypes `json:"authenticationTypes,omitempty"` // The authentication types for the method. These should be formatted as an object with the EAP method category in camelcase as the key and the list of types as the value (nonEapInnerAuthentication: Reserved, PAP, CHAP, MSCHAP, MSCHAPV2; eapInnerAuthentication: EAP-TLS, EAP-SIM, EAP-AKA, EAP-TTLS with MSCHAPv2; credentials: SIM, USIM, NFC Secure Element, Hardware Token, Softoken, Certificate, username/password, none, Reserved, Vendor Specific; tunneledEapMethodCredentials: SIM, USIM, NFC Secure Element, Hardware Token, Softoken, Certificate, username/password, Reserved, Anonymous, Vendor Specific)
 	ID                  string                                                                                `json:"id,omitempty"`                  // ID of method
 }
-type RequestWirelessUpdateNetworkWirelessSSIDHotspot20NaiRealmsMethodsAuthenticationTypes struct {
-	Credentials                  []string `json:"credentials,omitempty"`                  //
-	EapinnerAuthentication       []string `json:"eapInnerAuthentication,omitempty"`       //
-	NonEapinnerAuthentication    []string `json:"nonEapInnerAuthentication,omitempty"`    //
-	TunneledEapMethodCredentials []string `json:"tunneledEapMethodCredentials,omitempty"` //
-}
+type RequestWirelessUpdateNetworkWirelessSSIDHotspot20NaiRealmsMethodsAuthenticationTypes interface{}
 type RequestWirelessUpdateNetworkWirelessSSIDHotspot20Operator struct {
 	Name string `json:"name,omitempty"` // Operator name
 }
@@ -2342,6 +3256,7 @@ type RequestWirelessUpdateNetworkWirelessSSIDSplashSettings struct {
 	SplashPrepaidFront              *RequestWirelessUpdateNetworkWirelessSSIDSplashSettingsSplashPrepaidFront `json:"splashPrepaidFront,omitempty"`              // The prepaid front image used in the splash page.
 	SplashTimeout                   *int                                                                      `json:"splashTimeout,omitempty"`                   // Splash timeout in minutes. This will determine how often users will see the splash page.
 	SplashURL                       string                                                                    `json:"splashUrl,omitempty"`                       // [optional] The custom splash URL of the click-through splash page. Note that the URL can be configured without necessarily being used. In order to enable the custom URL, see 'useSplashUrl'
+	ThemeID                         string                                                                    `json:"themeId,omitempty"`                         // The id of the selected splash theme.
 	UseRedirectURL                  *bool                                                                     `json:"useRedirectUrl,omitempty"`                  // The Boolean indicating whether the the user will be redirected to the custom redirect URL after the splash page. A custom redirect URL must be set if this is true.
 	UseSplashURL                    *bool                                                                     `json:"useSplashUrl,omitempty"`                    // [optional] Boolean indicating whether the users will be redirected to the custom splash url. A custom splash URL must be set if this is true. Note that depending on your SSID's access control settings, it may not be possible to use the custom splash URL.
 	WelcomeMessage                  string                                                                    `json:"welcomeMessage,omitempty"`                  // The welcome message for the users on the splash page.
@@ -2448,7 +3363,7 @@ type RequestWirelessUpdateNetworkWirelessSSIDVpnSplitTunnelRules struct {
 
 @param serial serial path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-wireless-bluetooth-settings
 */
 func (s *WirelessService) GetDeviceWirelessBluetoothSettings(serial string) (*ResponseWirelessGetDeviceWirelessBluetoothSettings, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/bluetooth/settings"
@@ -2482,7 +3397,7 @@ func (s *WirelessService) GetDeviceWirelessBluetoothSettings(serial string) (*Re
 @param serial serial path parameter.
 @param getDeviceWirelessConnectionStatsQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-wireless-connection-stats
 */
 func (s *WirelessService) GetDeviceWirelessConnectionStats(serial string, getDeviceWirelessConnectionStatsQueryParams *GetDeviceWirelessConnectionStatsQueryParams) (*ResponseWirelessGetDeviceWirelessConnectionStats, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/connectionStats"
@@ -2518,7 +3433,7 @@ func (s *WirelessService) GetDeviceWirelessConnectionStats(serial string, getDev
 @param serial serial path parameter.
 @param getDeviceWirelessLatencyStatsQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-wireless-latency-stats
 */
 func (s *WirelessService) GetDeviceWirelessLatencyStats(serial string, getDeviceWirelessLatencyStatsQueryParams *GetDeviceWirelessLatencyStatsQueryParams) (*ResponseWirelessGetDeviceWirelessLatencyStats, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/latencyStats"
@@ -2553,7 +3468,7 @@ func (s *WirelessService) GetDeviceWirelessLatencyStats(serial string, getDevice
 
 @param serial serial path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-wireless-radio-settings
 */
 func (s *WirelessService) GetDeviceWirelessRadioSettings(serial string) (*ResponseWirelessGetDeviceWirelessRadioSettings, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/radio/settings"
@@ -2586,7 +3501,7 @@ func (s *WirelessService) GetDeviceWirelessRadioSettings(serial string) (*Respon
 
 @param serial serial path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-wireless-status
 */
 func (s *WirelessService) GetDeviceWirelessStatus(serial string) (*ResponseWirelessGetDeviceWirelessStatus, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/status"
@@ -2620,7 +3535,7 @@ func (s *WirelessService) GetDeviceWirelessStatus(serial string) (*ResponseWirel
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessAirMarshalQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-air-marshal
 */
 func (s *WirelessService) GetNetworkWirelessAirMarshal(networkID string, getNetworkWirelessAirMarshalQueryParams *GetNetworkWirelessAirMarshalQueryParams) (*ResponseWirelessGetNetworkWirelessAirMarshal, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/airMarshal"
@@ -2655,7 +3570,7 @@ func (s *WirelessService) GetNetworkWirelessAirMarshal(networkID string, getNetw
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-alternate-management-interface
 */
 func (s *WirelessService) GetNetworkWirelessAlternateManagementInterface(networkID string) (*ResponseWirelessGetNetworkWirelessAlternateManagementInterface, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/alternateManagementInterface"
@@ -2688,7 +3603,7 @@ func (s *WirelessService) GetNetworkWirelessAlternateManagementInterface(network
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-billing
 */
 func (s *WirelessService) GetNetworkWirelessBilling(networkID string) (*ResponseWirelessGetNetworkWirelessBilling, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/billing"
@@ -2723,7 +3638,7 @@ Bluetooth settings
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-bluetooth-settings
 */
 func (s *WirelessService) GetNetworkWirelessBluetoothSettings(networkID string) (*ResponseWirelessGetNetworkWirelessBluetoothSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/bluetooth/settings"
@@ -2757,7 +3672,7 @@ func (s *WirelessService) GetNetworkWirelessBluetoothSettings(networkID string) 
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessChannelUtilizationHistoryQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-channel-utilization-history
 */
 func (s *WirelessService) GetNetworkWirelessChannelUtilizationHistory(networkID string, getNetworkWirelessChannelUtilizationHistoryQueryParams *GetNetworkWirelessChannelUtilizationHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessChannelUtilizationHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/channelUtilizationHistory"
@@ -2793,7 +3708,7 @@ func (s *WirelessService) GetNetworkWirelessChannelUtilizationHistory(networkID 
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessClientCountHistoryQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-client-count-history
 */
 func (s *WirelessService) GetNetworkWirelessClientCountHistory(networkID string, getNetworkWirelessClientCountHistoryQueryParams *GetNetworkWirelessClientCountHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessClientCountHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clientCountHistory"
@@ -2829,7 +3744,7 @@ func (s *WirelessService) GetNetworkWirelessClientCountHistory(networkID string,
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessClientsConnectionStatsQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-clients-connection-stats
 */
 func (s *WirelessService) GetNetworkWirelessClientsConnectionStats(networkID string, getNetworkWirelessClientsConnectionStatsQueryParams *GetNetworkWirelessClientsConnectionStatsQueryParams) (*ResponseWirelessGetNetworkWirelessClientsConnectionStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/connectionStats"
@@ -2865,7 +3780,7 @@ func (s *WirelessService) GetNetworkWirelessClientsConnectionStats(networkID str
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessClientsLatencyStatsQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-clients-latency-stats
 */
 func (s *WirelessService) GetNetworkWirelessClientsLatencyStats(networkID string, getNetworkWirelessClientsLatencyStatsQueryParams *GetNetworkWirelessClientsLatencyStatsQueryParams) (*ResponseWirelessGetNetworkWirelessClientsLatencyStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/latencyStats"
@@ -2902,7 +3817,7 @@ func (s *WirelessService) GetNetworkWirelessClientsLatencyStats(networkID string
 @param clientID clientId path parameter. Client ID
 @param getNetworkWirelessClientConnectionStatsQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-client-connection-stats
 */
 func (s *WirelessService) GetNetworkWirelessClientConnectionStats(networkID string, clientID string, getNetworkWirelessClientConnectionStatsQueryParams *GetNetworkWirelessClientConnectionStatsQueryParams) (*ResponseWirelessGetNetworkWirelessClientConnectionStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/{clientId}/connectionStats"
@@ -2940,7 +3855,7 @@ func (s *WirelessService) GetNetworkWirelessClientConnectionStats(networkID stri
 @param clientID clientId path parameter. Client ID
 @param getNetworkWirelessClientConnectivityEventsQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-client-connectivity-events
 */
 func (s *WirelessService) GetNetworkWirelessClientConnectivityEvents(networkID string, clientID string, getNetworkWirelessClientConnectivityEventsQueryParams *GetNetworkWirelessClientConnectivityEventsQueryParams) (*ResponseWirelessGetNetworkWirelessClientConnectivityEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/{clientId}/connectivityEvents"
@@ -2978,7 +3893,7 @@ func (s *WirelessService) GetNetworkWirelessClientConnectivityEvents(networkID s
 @param clientID clientId path parameter. Client ID
 @param getNetworkWirelessClientLatencyHistoryQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-client-latency-history
 */
 func (s *WirelessService) GetNetworkWirelessClientLatencyHistory(networkID string, clientID string, getNetworkWirelessClientLatencyHistoryQueryParams *GetNetworkWirelessClientLatencyHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessClientLatencyHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/{clientId}/latencyHistory"
@@ -3016,7 +3931,7 @@ func (s *WirelessService) GetNetworkWirelessClientLatencyHistory(networkID strin
 @param clientID clientId path parameter. Client ID
 @param getNetworkWirelessClientLatencyStatsQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-client-latency-stats
 */
 func (s *WirelessService) GetNetworkWirelessClientLatencyStats(networkID string, clientID string, getNetworkWirelessClientLatencyStatsQueryParams *GetNetworkWirelessClientLatencyStatsQueryParams) (*ResponseWirelessGetNetworkWirelessClientLatencyStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/{clientId}/latencyStats"
@@ -3053,7 +3968,7 @@ func (s *WirelessService) GetNetworkWirelessClientLatencyStats(networkID string,
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessConnectionStatsQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-connection-stats
 */
 func (s *WirelessService) GetNetworkWirelessConnectionStats(networkID string, getNetworkWirelessConnectionStatsQueryParams *GetNetworkWirelessConnectionStatsQueryParams) (*ResponseWirelessGetNetworkWirelessConnectionStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/connectionStats"
@@ -3089,7 +4004,7 @@ func (s *WirelessService) GetNetworkWirelessConnectionStats(networkID string, ge
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessDataRateHistoryQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-data-rate-history
 */
 func (s *WirelessService) GetNetworkWirelessDataRateHistory(networkID string, getNetworkWirelessDataRateHistoryQueryParams *GetNetworkWirelessDataRateHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessDataRateHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/dataRateHistory"
@@ -3125,7 +4040,7 @@ func (s *WirelessService) GetNetworkWirelessDataRateHistory(networkID string, ge
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessDevicesConnectionStatsQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-devices-connection-stats
 */
 func (s *WirelessService) GetNetworkWirelessDevicesConnectionStats(networkID string, getNetworkWirelessDevicesConnectionStatsQueryParams *GetNetworkWirelessDevicesConnectionStatsQueryParams) (*ResponseWirelessGetNetworkWirelessDevicesConnectionStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/devices/connectionStats"
@@ -3161,7 +4076,7 @@ func (s *WirelessService) GetNetworkWirelessDevicesConnectionStats(networkID str
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessDevicesLatencyStatsQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-devices-latency-stats
 */
 func (s *WirelessService) GetNetworkWirelessDevicesLatencyStats(networkID string, getNetworkWirelessDevicesLatencyStatsQueryParams *GetNetworkWirelessDevicesLatencyStatsQueryParams) (*ResponseWirelessGetNetworkWirelessDevicesLatencyStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/devices/latencyStats"
@@ -3191,13 +4106,81 @@ func (s *WirelessService) GetNetworkWirelessDevicesLatencyStats(networkID string
 
 }
 
+//GetNetworkWirelessEthernetPortsProfiles List the AP port profiles for this network
+/* List the AP port profiles for this network
+
+@param networkID networkId path parameter. Network ID
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ethernet-ports-profiles
+*/
+func (s *WirelessService) GetNetworkWirelessEthernetPortsProfiles(networkID string) (*ResponseWirelessGetNetworkWirelessEthernetPortsProfiles, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/wireless/ethernet/ports/profiles"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseWirelessGetNetworkWirelessEthernetPortsProfiles{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessEthernetPortsProfiles")
+	}
+
+	result := response.Result().(*ResponseWirelessGetNetworkWirelessEthernetPortsProfiles)
+	return result, response, err
+
+}
+
+//GetNetworkWirelessEthernetPortsProfile Show the AP port profile by ID for this network
+/* Show the AP port profile by ID for this network
+
+@param networkID networkId path parameter. Network ID
+@param profileID profileId path parameter. Profile ID
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ethernet-ports-profile
+*/
+func (s *WirelessService) GetNetworkWirelessEthernetPortsProfile(networkID string, profileID string) (*ResponseWirelessGetNetworkWirelessEthernetPortsProfile, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseWirelessGetNetworkWirelessEthernetPortsProfile{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessEthernetPortsProfile")
+	}
+
+	result := response.Result().(*ResponseWirelessGetNetworkWirelessEthernetPortsProfile)
+	return result, response, err
+
+}
+
 //GetNetworkWirelessFailedConnections List of all failed client connection events on this network in a given time range
 /* List of all failed client connection events on this network in a given time range
 
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessFailedConnectionsQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-failed-connections
 */
 func (s *WirelessService) GetNetworkWirelessFailedConnections(networkID string, getNetworkWirelessFailedConnectionsQueryParams *GetNetworkWirelessFailedConnectionsQueryParams) (*ResponseWirelessGetNetworkWirelessFailedConnections, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/failedConnections"
@@ -3233,7 +4216,7 @@ func (s *WirelessService) GetNetworkWirelessFailedConnections(networkID string, 
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessLatencyHistoryQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-latency-history
 */
 func (s *WirelessService) GetNetworkWirelessLatencyHistory(networkID string, getNetworkWirelessLatencyHistoryQueryParams *GetNetworkWirelessLatencyHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessLatencyHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/latencyHistory"
@@ -3269,7 +4252,7 @@ func (s *WirelessService) GetNetworkWirelessLatencyHistory(networkID string, get
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessLatencyStatsQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-latency-stats
 */
 func (s *WirelessService) GetNetworkWirelessLatencyStats(networkID string, getNetworkWirelessLatencyStatsQueryParams *GetNetworkWirelessLatencyStatsQueryParams) (*ResponseWirelessGetNetworkWirelessLatencyStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/latencyStats"
@@ -3305,7 +4288,7 @@ func (s *WirelessService) GetNetworkWirelessLatencyStats(networkID string, getNe
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessMeshStatusesQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-mesh-statuses
 */
 func (s *WirelessService) GetNetworkWirelessMeshStatuses(networkID string, getNetworkWirelessMeshStatusesQueryParams *GetNetworkWirelessMeshStatusesQueryParams) (*ResponseWirelessGetNetworkWirelessMeshStatuses, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/meshStatuses"
@@ -3335,13 +4318,13 @@ func (s *WirelessService) GetNetworkWirelessMeshStatuses(networkID string, getNe
 
 }
 
-//GetNetworkWirelessRfProfiles List the non-basic RF profiles for this network
-/* List the non-basic RF profiles for this network
+//GetNetworkWirelessRfProfiles List RF profiles for this network
+/* List RF profiles for this network
 
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessRfProfilesQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-rf-profiles
 */
 func (s *WirelessService) GetNetworkWirelessRfProfiles(networkID string, getNetworkWirelessRfProfilesQueryParams *GetNetworkWirelessRfProfilesQueryParams) (*ResponseWirelessGetNetworkWirelessRfProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/rfProfiles"
@@ -3377,7 +4360,7 @@ func (s *WirelessService) GetNetworkWirelessRfProfiles(networkID string, getNetw
 @param networkID networkId path parameter. Network ID
 @param rfProfileID rfProfileId path parameter. Rf profile ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-rf-profile
 */
 func (s *WirelessService) GetNetworkWirelessRfProfile(networkID string, rfProfileID string) (*ResponseWirelessGetNetworkWirelessRfProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/rfProfiles/{rfProfileId}"
@@ -3411,7 +4394,7 @@ func (s *WirelessService) GetNetworkWirelessRfProfile(networkID string, rfProfil
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-settings
 */
 func (s *WirelessService) GetNetworkWirelessSettings(networkID string) (*ResponseWirelessGetNetworkWirelessSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/settings"
@@ -3445,7 +4428,7 @@ func (s *WirelessService) GetNetworkWirelessSettings(networkID string) (*Respons
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessSignalQualityHistoryQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-signal-quality-history
 */
 func (s *WirelessService) GetNetworkWirelessSignalQualityHistory(networkID string, getNetworkWirelessSignalQualityHistoryQueryParams *GetNetworkWirelessSignalQualityHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessSignalQualityHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/signalQualityHistory"
@@ -3480,7 +4463,7 @@ func (s *WirelessService) GetNetworkWirelessSignalQualityHistory(networkID strin
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssids
 */
 func (s *WirelessService) GetNetworkWirelessSSIDs(networkID string) (*ResponseWirelessGetNetworkWirelessSSIDs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids"
@@ -3514,7 +4497,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDs(networkID string) (*ResponseWi
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid
 */
 func (s *WirelessService) GetNetworkWirelessSSID(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSID, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}"
@@ -3549,7 +4532,7 @@ func (s *WirelessService) GetNetworkWirelessSSID(networkID string, number string
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-bonjour-forwarding
 */
 func (s *WirelessService) GetNetworkWirelessSSIDBonjourForwarding(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDBonjourForwarding, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/bonjourForwarding"
@@ -3584,7 +4567,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDBonjourForwarding(networkID stri
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-device-type-group-policies
 */
 func (s *WirelessService) GetNetworkWirelessSSIDDeviceTypeGroupPolicies(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDDeviceTypeGroupPolicies, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/deviceTypeGroupPolicies"
@@ -3619,7 +4602,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDDeviceTypeGroupPolicies(networkI
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-eap-override
 */
 func (s *WirelessService) GetNetworkWirelessSSIDEapOverride(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDEapOverride, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/eapOverride"
@@ -3654,7 +4637,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDEapOverride(networkID string, nu
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-firewall-l3-firewall-rules
 */
 func (s *WirelessService) GetNetworkWirelessSSIDFirewallL3FirewallRules(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDFirewallL3FirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/firewall/l3FirewallRules"
@@ -3689,7 +4672,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDFirewallL3FirewallRules(networkI
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-firewall-l7-firewall-rules
 */
 func (s *WirelessService) GetNetworkWirelessSSIDFirewallL7FirewallRules(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/firewall/l7FirewallRules"
@@ -3724,7 +4707,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDFirewallL7FirewallRules(networkI
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-hotspot20
 */
 func (s *WirelessService) GetNetworkWirelessSSIDHotspot20(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDHotspot20, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/hotspot20"
@@ -3759,7 +4742,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDHotspot20(networkID string, numb
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-identity-psks
 */
 func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsks(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDIDentityPsks, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/identityPsks"
@@ -3795,7 +4778,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsks(networkID string, n
 @param number number path parameter.
 @param identityPskID identityPskId path parameter. Identity psk ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-identity-psk
 */
 func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsk(networkID string, number string, identityPskID string) (*ResponseWirelessGetNetworkWirelessSSIDIDentityPsk, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/identityPsks/{identityPskId}"
@@ -3831,7 +4814,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsk(networkID string, nu
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-schedules
 */
 func (s *WirelessService) GetNetworkWirelessSSIDSchedules(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDSchedules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/schedules"
@@ -3866,7 +4849,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDSchedules(networkID string, numb
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-splash-settings
 */
 func (s *WirelessService) GetNetworkWirelessSSIDSplashSettings(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDSplashSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/splash/settings"
@@ -3901,7 +4884,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDSplashSettings(networkID string,
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-traffic-shaping-rules
 */
 func (s *WirelessService) GetNetworkWirelessSSIDTrafficShapingRules(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/trafficShaping/rules"
@@ -3936,7 +4919,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDTrafficShapingRules(networkID st
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-ssid-vpn
 */
 func (s *WirelessService) GetNetworkWirelessSSIDVpn(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDVpn, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/vpn"
@@ -3971,7 +4954,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDVpn(networkID string, number str
 @param networkID networkId path parameter. Network ID
 @param getNetworkWirelessUsageHistoryQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-wireless-usage-history
 */
 func (s *WirelessService) GetNetworkWirelessUsageHistory(networkID string, getNetworkWirelessUsageHistoryQueryParams *GetNetworkWirelessUsageHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/usageHistory"
@@ -4001,13 +4984,157 @@ func (s *WirelessService) GetNetworkWirelessUsageHistory(networkID string, getNe
 
 }
 
-//GetOrganizationWirelessDevicesEthernetStatuses Endpoint to see power status for wireless devices
-/* Endpoint to see power status for wireless devices
+//GetOrganizationWirelessDevicesChannelUtilizationByDevice Get average channel utilization for all bands in a network, split by AP
+/* Get average channel utilization for all bands in a network, split by AP
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-channel-utilization-by-device
+*/
+func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByDevice(organizationID string, getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams *GetOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/byDevice"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesChannelUtilizationByDevice")
+	}
+
+	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice)
+	return result, response, err
+
+}
+
+//GetOrganizationWirelessDevicesChannelUtilizationByNetwork Get average channel utilization across all bands for all networks in the organization
+/* Get average channel utilization across all bands for all networks in the organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-channel-utilization-by-network
+*/
+func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByNetwork(organizationID string, getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams *GetOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/byNetwork"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesChannelUtilizationByNetwork")
+	}
+
+	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork)
+	return result, response, err
+
+}
+
+//GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval Get a time-series of average channel utilization for all bands, segmented by device.
+/* Get a time-series of average channel utilization for all bands, segmented by device.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-channel-utilization-history-by-device-by-interval
+*/
+func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval(organizationID string, getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams *GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/history/byDevice/byInterval"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval")
+	}
+
+	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval)
+	return result, response, err
+
+}
+
+//GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval Get a time-series of average channel utilization for all bands
+/* Get a time-series of average channel utilization for all bands
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-channel-utilization-history-by-network-by-interval
+*/
+func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval(organizationID string, getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/history/byNetwork/byInterval"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval")
+	}
+
+	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval)
+	return result, response, err
+
+}
+
+//GetOrganizationWirelessDevicesEthernetStatuses List the most recent Ethernet link speed, duplex, aggregation and power mode and status information for wireless devices.
+/* List the most recent Ethernet link speed, duplex, aggregation and power mode and status information for wireless devices.
 
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationWirelessDevicesEthernetStatusesQueryParams Filtering parameter
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-ethernet-statuses
 */
 func (s *WirelessService) GetOrganizationWirelessDevicesEthernetStatuses(organizationID string, getOrganizationWirelessDevicesEthernetStatusesQueryParams *GetOrganizationWirelessDevicesEthernetStatusesQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/ethernet/statuses"
@@ -4037,12 +5164,225 @@ func (s *WirelessService) GetOrganizationWirelessDevicesEthernetStatuses(organiz
 
 }
 
+//GetOrganizationWirelessDevicesPacketLossByClient Get average packet loss for the given timespan for all clients in the organization.
+/* Get average packet loss for the given timespan for all clients in the organization.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessDevicesPacketLossByClientQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-packet-loss-by-client
+*/
+func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByClient(organizationID string, getOrganizationWirelessDevicesPacketLossByClientQueryParams *GetOrganizationWirelessDevicesPacketLossByClientQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/devices/packetLoss/byClient"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessDevicesPacketLossByClientQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesPacketLossByClient")
+	}
+
+	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient)
+	return result, response, err
+
+}
+
+//GetOrganizationWirelessDevicesPacketLossByDevice Get average packet loss for the given timespan for all devices in the organization
+/* Get average packet loss for the given timespan for all devices in the organization. Does not include device's own traffic.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessDevicesPacketLossByDeviceQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-packet-loss-by-device
+*/
+func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByDevice(organizationID string, getOrganizationWirelessDevicesPacketLossByDeviceQueryParams *GetOrganizationWirelessDevicesPacketLossByDeviceQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/devices/packetLoss/byDevice"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessDevicesPacketLossByDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesPacketLossByDevice")
+	}
+
+	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice)
+	return result, response, err
+
+}
+
+//GetOrganizationWirelessDevicesPacketLossByNetwork Get average packet loss for the given timespan for all networks in the organization.
+/* Get average packet loss for the given timespan for all networks in the organization.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessDevicesPacketLossByNetworkQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-packet-loss-by-network
+*/
+func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByNetwork(organizationID string, getOrganizationWirelessDevicesPacketLossByNetworkQueryParams *GetOrganizationWirelessDevicesPacketLossByNetworkQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/devices/packetLoss/byNetwork"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessDevicesPacketLossByNetworkQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesPacketLossByNetwork")
+	}
+
+	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork)
+	return result, response, err
+
+}
+
+//CreateNetworkWirelessEthernetPortsProfile Create an AP port profile
+/* Create an AP port profile
+
+@param networkID networkId path parameter. Network ID
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-wireless-ethernet-ports-profile
+*/
+
+func (s *WirelessService) CreateNetworkWirelessEthernetPortsProfile(networkID string, requestWirelessCreateNetworkWirelessEthernetPortsProfile *RequestWirelessCreateNetworkWirelessEthernetPortsProfile) (*ResponseWirelessCreateNetworkWirelessEthernetPortsProfile, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/wireless/ethernet/ports/profiles"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestWirelessCreateNetworkWirelessEthernetPortsProfile).
+		SetResult(&ResponseWirelessCreateNetworkWirelessEthernetPortsProfile{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateNetworkWirelessEthernetPortsProfile")
+	}
+
+	result := response.Result().(*ResponseWirelessCreateNetworkWirelessEthernetPortsProfile)
+	return result, response, err
+
+}
+
+//AssignNetworkWirelessEthernetPortsProfiles Assign AP port profile to list of APs
+/* Assign AP port profile to list of APs
+
+@param networkID networkId path parameter. Network ID
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-network-wireless-ethernet-ports-profiles
+*/
+
+func (s *WirelessService) AssignNetworkWirelessEthernetPortsProfiles(networkID string, requestWirelessAssignNetworkWirelessEthernetPortsProfiles *RequestWirelessAssignNetworkWirelessEthernetPortsProfiles) (*ResponseWirelessAssignNetworkWirelessEthernetPortsProfiles, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/wireless/ethernet/ports/profiles/assign"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestWirelessAssignNetworkWirelessEthernetPortsProfiles).
+		SetResult(&ResponseWirelessAssignNetworkWirelessEthernetPortsProfiles{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation AssignNetworkWirelessEthernetPortsProfiles")
+	}
+
+	result := response.Result().(*ResponseWirelessAssignNetworkWirelessEthernetPortsProfiles)
+	return result, response, err
+
+}
+
+//SetNetworkWirelessEthernetPortsProfilesDefault Set the AP port profile to be default for this network
+/* Set the AP port profile to be default for this network
+
+@param networkID networkId path parameter. Network ID
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!set-network-wireless-ethernet-ports-profiles-default
+*/
+
+func (s *WirelessService) SetNetworkWirelessEthernetPortsProfilesDefault(networkID string, requestWirelessSetNetworkWirelessEthernetPortsProfilesDefault *RequestWirelessSetNetworkWirelessEthernetPortsProfilesDefault) (*ResponseWirelessSetNetworkWirelessEthernetPortsProfilesDefault, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/wireless/ethernet/ports/profiles/setDefault"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestWirelessSetNetworkWirelessEthernetPortsProfilesDefault).
+		SetResult(&ResponseWirelessSetNetworkWirelessEthernetPortsProfilesDefault{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation SetNetworkWirelessEthernetPortsProfilesDefault")
+	}
+
+	result := response.Result().(*ResponseWirelessSetNetworkWirelessEthernetPortsProfilesDefault)
+	return result, response, err
+
+}
+
 //CreateNetworkWirelessRfProfile Creates new RF profile for this network
 /* Creates new RF profile for this network
 
 @param networkID networkId path parameter. Network ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-wireless-rf-profile
 */
 
 func (s *WirelessService) CreateNetworkWirelessRfProfile(networkID string, requestWirelessCreateNetworkWirelessRfProfile *RequestWirelessCreateNetworkWirelessRfProfile) (*ResponseWirelessCreateNetworkWirelessRfProfile, *resty.Response, error) {
@@ -4078,10 +5418,10 @@ func (s *WirelessService) CreateNetworkWirelessRfProfile(networkID string, reque
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-wireless-ssid-identity-psk
 */
 
-func (s *WirelessService) CreateNetworkWirelessSSIDIDentityPsk(networkID string, number string, requestWirelessCreateNetworkWirelessSsidIdentityPsk *RequestWirelessCreateNetworkWirelessSSIDIDentityPsk) (*resty.Response, error) {
+func (s *WirelessService) CreateNetworkWirelessSSIDIDentityPsk(networkID string, number string, requestWirelessCreateNetworkWirelessSsidIdentityPsk *RequestWirelessCreateNetworkWirelessSSIDIDentityPsk) (*ResponseWirelessCreateNetworkWirelessSSIDIDentityPsk, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/identityPsks"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4091,20 +5431,53 @@ func (s *WirelessService) CreateNetworkWirelessSSIDIDentityPsk(networkID string,
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestWirelessCreateNetworkWirelessSsidIdentityPsk).
-		// SetResult(&ResponseWirelessCreateNetworkWirelessSSIDIDentityPsk{}).
+		SetResult(&ResponseWirelessCreateNetworkWirelessSSIDIDentityPsk{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateNetworkWirelessSsidIdentityPsk")
+		return nil, response, fmt.Errorf("error with operation CreateNetworkWirelessSsidIdentityPsk")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseWirelessCreateNetworkWirelessSSIDIDentityPsk)
+	return result, response, err
+
+}
+
+//UpdateDeviceWirelessAlternateManagementInterfaceIPv6 Update alternate management interface IPv6 address
+/* Update alternate management interface IPv6 address
+
+@param serial serial path parameter.
+*/
+func (s *WirelessService) UpdateDeviceWirelessAlternateManagementInterfaceIPv6(serial string, requestWirelessUpdateDeviceWirelessAlternateManagementInterfaceIpv6 *RequestWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6) (*ResponseWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6, *resty.Response, error) {
+	path := "/api/v1/devices/{serial}/wireless/alternateManagementInterface/ipv6"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestWirelessUpdateDeviceWirelessAlternateManagementInterfaceIpv6).
+		SetResult(&ResponseWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateDeviceWirelessAlternateManagementInterfaceIpv6")
+	}
+
+	result := response.Result().(*ResponseWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6)
+	return result, response, err
 
 }
 
@@ -4205,7 +5578,7 @@ func (s *WirelessService) UpdateNetworkWirelessAlternateManagementInterface(netw
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *WirelessService) UpdateNetworkWirelessBilling(networkID string, requestWirelessUpdateNetworkWirelessBilling *RequestWirelessUpdateNetworkWirelessBilling) (*resty.Response, error) {
+func (s *WirelessService) UpdateNetworkWirelessBilling(networkID string, requestWirelessUpdateNetworkWirelessBilling *RequestWirelessUpdateNetworkWirelessBilling) (*ResponseWirelessUpdateNetworkWirelessBilling, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/billing"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4214,19 +5587,21 @@ func (s *WirelessService) UpdateNetworkWirelessBilling(networkID string, request
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestWirelessUpdateNetworkWirelessBilling).
+		SetResult(&ResponseWirelessUpdateNetworkWirelessBilling{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkWirelessBilling")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessBilling")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessBilling)
+	return result, response, err
 
 }
 
@@ -4260,6 +5635,40 @@ func (s *WirelessService) UpdateNetworkWirelessBluetoothSettings(networkID strin
 	}
 
 	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessBluetoothSettings)
+	return result, response, err
+
+}
+
+//UpdateNetworkWirelessEthernetPortsProfile Update the AP port profile by ID for this network
+/* Update the AP port profile by ID for this network
+
+@param networkID networkId path parameter. Network ID
+@param profileID profileId path parameter. Profile ID
+*/
+func (s *WirelessService) UpdateNetworkWirelessEthernetPortsProfile(networkID string, profileID string, requestWirelessUpdateNetworkWirelessEthernetPortsProfile *RequestWirelessUpdateNetworkWirelessEthernetPortsProfile) (*ResponseWirelessUpdateNetworkWirelessEthernetPortsProfile, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestWirelessUpdateNetworkWirelessEthernetPortsProfile).
+		SetResult(&ResponseWirelessUpdateNetworkWirelessEthernetPortsProfile{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessEthernetPortsProfile")
+	}
+
+	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessEthernetPortsProfile)
 	return result, response, err
 
 }
@@ -4336,7 +5745,7 @@ func (s *WirelessService) UpdateNetworkWirelessSettings(networkID string, reques
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 */
-func (s *WirelessService) UpdateNetworkWirelessSSID(networkID string, number string, requestWirelessUpdateNetworkWirelessSsid *RequestWirelessUpdateNetworkWirelessSSID) (*resty.Response, error) {
+func (s *WirelessService) UpdateNetworkWirelessSSID(networkID string, number string, requestWirelessUpdateNetworkWirelessSsid *RequestWirelessUpdateNetworkWirelessSSID) (*ResponseWirelessUpdateNetworkWirelessSSID, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4346,19 +5755,21 @@ func (s *WirelessService) UpdateNetworkWirelessSSID(networkID string, number str
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestWirelessUpdateNetworkWirelessSsid).
+		SetResult(&ResponseWirelessUpdateNetworkWirelessSSID{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkWirelessSsid")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSsid")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSSID)
+	return result, response, err
 
 }
 
@@ -4368,7 +5779,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSID(networkID string, number str
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 */
-func (s *WirelessService) UpdateNetworkWirelessSSIDBonjourForwarding(networkID string, number string, requestWirelessUpdateNetworkWirelessSsidBonjourForwarding *RequestWirelessUpdateNetworkWirelessSSIDBonjourForwarding) (*resty.Response, error) {
+func (s *WirelessService) UpdateNetworkWirelessSSIDBonjourForwarding(networkID string, number string, requestWirelessUpdateNetworkWirelessSsidBonjourForwarding *RequestWirelessUpdateNetworkWirelessSSIDBonjourForwarding) (*ResponseWirelessUpdateNetworkWirelessSSIDBonjourForwarding, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/bonjourForwarding"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4378,19 +5789,21 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDBonjourForwarding(networkID s
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestWirelessUpdateNetworkWirelessSsidBonjourForwarding).
+		SetResult(&ResponseWirelessUpdateNetworkWirelessSSIDBonjourForwarding{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidBonjourForwarding")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidBonjourForwarding")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSSIDBonjourForwarding)
+	return result, response, err
 
 }
 
@@ -4466,7 +5879,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDEapOverride(networkID string,
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 */
-func (s *WirelessService) UpdateNetworkWirelessSSIDFirewallL3FirewallRules(networkID string, number string, requestWirelessUpdateNetworkWirelessSsidFirewallL3FirewallRules *RequestWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRules) (*resty.Response, error) {
+func (s *WirelessService) UpdateNetworkWirelessSSIDFirewallL3FirewallRules(networkID string, number string, requestWirelessUpdateNetworkWirelessSsidFirewallL3FirewallRules *RequestWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRules) (*ResponseWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/firewall/l3FirewallRules"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4476,19 +5889,21 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDFirewallL3FirewallRules(netwo
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestWirelessUpdateNetworkWirelessSsidFirewallL3FirewallRules).
+		SetResult(&ResponseWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRules{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidFirewallL3FirewallRules")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidFirewallL3FirewallRules")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRules)
+	return result, response, err
 
 }
 
@@ -4498,7 +5913,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDFirewallL3FirewallRules(netwo
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 */
-func (s *WirelessService) UpdateNetworkWirelessSSIDFirewallL7FirewallRules(networkID string, number string, requestWirelessUpdateNetworkWirelessSsidFirewallL7FirewallRules *RequestWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRules) (*resty.Response, error) {
+func (s *WirelessService) UpdateNetworkWirelessSSIDFirewallL7FirewallRules(networkID string, number string, requestWirelessUpdateNetworkWirelessSsidFirewallL7FirewallRules *RequestWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRules) (*ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/firewall/l7FirewallRules"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4508,19 +5923,21 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDFirewallL7FirewallRules(netwo
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestWirelessUpdateNetworkWirelessSsidFirewallL7FirewallRules).
+		SetResult(&ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRules{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidFirewallL7FirewallRules")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidFirewallL7FirewallRules")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRules)
+	return result, response, err
 
 }
 
@@ -4563,7 +5980,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDHotspot20(networkID string, n
 @param number number path parameter.
 @param identityPskID identityPskId path parameter. Identity psk ID
 */
-func (s *WirelessService) UpdateNetworkWirelessSSIDIDentityPsk(networkID string, number string, identityPskID string, requestWirelessUpdateNetworkWirelessSsidIdentityPsk *RequestWirelessUpdateNetworkWirelessSSIDIDentityPsk) (*resty.Response, error) {
+func (s *WirelessService) UpdateNetworkWirelessSSIDIDentityPsk(networkID string, number string, identityPskID string, requestWirelessUpdateNetworkWirelessSsidIdentityPsk *RequestWirelessUpdateNetworkWirelessSSIDIDentityPsk) (*ResponseWirelessUpdateNetworkWirelessSSIDIDentityPsk, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/identityPsks/{identityPskId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4574,19 +5991,21 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDIDentityPsk(networkID string,
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestWirelessUpdateNetworkWirelessSsidIdentityPsk).
+		SetResult(&ResponseWirelessUpdateNetworkWirelessSSIDIDentityPsk{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidIdentityPsk")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidIdentityPsk")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSSIDIDentityPsk)
+	return result, response, err
 
 }
 
@@ -4656,13 +6075,13 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDSplashSettings(networkID stri
 
 }
 
-//UpdateNetworkWirelessSSIDTrafficShapingRules Update the traffic shaping settings for an SSID on an MR network
-/* Update the traffic shaping settings for an SSID on an MR network
+//UpdateNetworkWirelessSSIDTrafficShapingRules Update the traffic shaping rules for an SSID on an MR network.
+/* Update the traffic shaping rules for an SSID on an MR network.
 
 @param networkID networkId path parameter. Network ID
 @param number number path parameter.
 */
-func (s *WirelessService) UpdateNetworkWirelessSSIDTrafficShapingRules(networkID string, number string, requestWirelessUpdateNetworkWirelessSsidTrafficShapingRules *RequestWirelessUpdateNetworkWirelessSSIDTrafficShapingRules) (*resty.Response, error) {
+func (s *WirelessService) UpdateNetworkWirelessSSIDTrafficShapingRules(networkID string, number string, requestWirelessUpdateNetworkWirelessSsidTrafficShapingRules *RequestWirelessUpdateNetworkWirelessSSIDTrafficShapingRules) (*ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/trafficShaping/rules"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4672,19 +6091,21 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDTrafficShapingRules(networkID
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestWirelessUpdateNetworkWirelessSsidTrafficShapingRules).
+		SetResult(&ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRules{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidTrafficShapingRules")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidTrafficShapingRules")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRules)
+	return result, response, err
 
 }
 
@@ -4720,13 +6141,47 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDVpn(networkID string, number 
 
 }
 
+//DeleteNetworkWirelessEthernetPortsProfile Delete an AP port profile
+/* Delete an AP port profile
+
+@param networkID networkId path parameter. Network ID
+@param profileID profileId path parameter. Profile ID
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-wireless-ethernet-ports-profile
+*/
+func (s *WirelessService) DeleteNetworkWirelessEthernetPortsProfile(networkID string, profileID string) (*resty.Response, error) {
+	//networkID string,profileID string
+	path := "/api/v1/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation DeleteNetworkWirelessEthernetPortsProfile")
+	}
+
+	return response, err
+
+}
+
 //DeleteNetworkWirelessRfProfile Delete a RF Profile
 /* Delete a RF Profile
 
 @param networkID networkId path parameter. Network ID
 @param rfProfileID rfProfileId path parameter. Rf profile ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-wireless-rf-profile
 */
 func (s *WirelessService) DeleteNetworkWirelessRfProfile(networkID string, rfProfileID string) (*resty.Response, error) {
 	//networkID string,rfProfileID string
@@ -4761,7 +6216,7 @@ func (s *WirelessService) DeleteNetworkWirelessRfProfile(networkID string, rfPro
 @param number number path parameter.
 @param identityPskID identityPskId path parameter. Identity psk ID
 
-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-network-wireless-ssid-identity-psk
 */
 func (s *WirelessService) DeleteNetworkWirelessSSIDIDentityPsk(networkID string, number string, identityPskID string) (*resty.Response, error) {
 	//networkID string,number string,identityPskID string

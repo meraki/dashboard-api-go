@@ -28,12 +28,16 @@ The client could be generated with the following parameters:
 - `baseURL`: The base URL, FQDN or IP, of the MERAKI instance.
 - `dashboardApiKey`: The meraki_key for access to API.
 - `debug`: Boolean to enable debugging
-- `sslVerify`: Boolean to enable or disable SSL certificate verification.
+- `userAgent`: String, set the User-Agent Format (AplicationName VendorName).
 
 ```go
 client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
-		"MERAKI_KEY",
-		"true")
+		"MerakiKey",
+		"true", "AplicationName VendorName")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 nResponse, _, err := client.Administered.GetAdministeredIDentitiesMe()
 	if err != nil {
 		fmt.Println(err)
@@ -48,7 +52,7 @@ The client can be configured with the following environment variables:
 - `MERAKI_BASE_URL`: The base URL, FQDN or IP, of the MERAKI instance.
 - `MERAKI_DASHBOARD_API_KEY`: The meraki_key for access to API.
 - `MERAKI_DEBUG`: Boolean to enable debugging
-- `MERAKI_SSL_VERIFY`: Boolean to enable or disable SSL certificate verification.
+- `MERAKI_USER_AGENT`: String, set the User-Agent Format (AplicationName VendorName).
 
 ```go
 Client, err = meraki.NewClient()
@@ -61,8 +65,8 @@ Here is an example of how we can generate a client, get a device count and then 
 
 ```go
 client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
-		"Meraki_key",
-		"true")
+		"MerakiKey",
+		"true", "AplicationName VendorName")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -89,6 +93,7 @@ client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
 | SDK versions | MERAKI Dashboard version supported |
 |--------------|------------------------------------|
 | 2.y.z        |  1.33.0                            |
+| 3.y.z        |  1.44.1                            |
 
 
 ## Changelog

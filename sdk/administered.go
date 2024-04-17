@@ -2,6 +2,7 @@ package meraki
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 )
@@ -42,6 +43,7 @@ type ResponseAdministeredGetAdministeredIDentitiesMeAuthenticationTwoFactor stru
 func (s *AdministeredService) GetAdministeredIDentitiesMe() (*ResponseAdministeredGetAdministeredIDentitiesMe, *resty.Response, error) {
 	path := "/api/v1/administered/identities/me"
 	s.rateLimiterBucket.Wait(1)
+
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
@@ -55,7 +57,10 @@ func (s *AdministeredService) GetAdministeredIDentitiesMe() (*ResponseAdminister
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetAdministeredIdentitiesMe")
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAdministeredIDentitiesMe()
+		}
+		return nil, response, fmt.Errorf("error with operation GetApplications")
 	}
 
 	result := response.Result().(*ResponseAdministeredGetAdministeredIDentitiesMe)
