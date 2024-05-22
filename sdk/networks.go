@@ -1768,6 +1768,7 @@ type ResponseItemNetworksGetNetworkGroupPolicies struct {
 	Scheduling                *ResponseItemNetworksGetNetworkGroupPoliciesScheduling                `json:"scheduling,omitempty"`                //     The schedule for the group policy. Schedules are applied to days of the week.
 	SplashAuthSettings        string                                                                `json:"splashAuthSettings,omitempty"`        // Whether clients bound to your policy will bypass splash authorization or behave according to the network's rules. Can be one of 'network default' or 'bypass'. Only available if your network has a wireless configuration.
 	VLANTagging               *ResponseItemNetworksGetNetworkGroupPoliciesVLANTagging               `json:"vlanTagging,omitempty"`               // The VLAN tagging settings for your group policy. Only available if your network has a wireless configuration.
+	Name                      string                                                                `json:"name,omitempty"`                      // The VLAN tagging settings for your group policy. Only available if your network has a wireless configuration.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesBandwidth struct {
 	BandwidthLimits *ResponseItemNetworksGetNetworkGroupPoliciesBandwidthBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth limits object, specifying upload and download speed for clients bound to the group policy. These are only enforced if 'settings' is set to 'custom'.
@@ -2661,7 +2662,7 @@ type ResponseNetworksGetNetworkSyslogServers struct {
 }
 type ResponseNetworksGetNetworkSyslogServersServers struct {
 	Host  string   `json:"host,omitempty"`  // The IP address of the syslog server
-	Port  *int     `json:"port,omitempty"`  // The port of the syslog server
+	Port  string   `json:"port,omitempty"`  // The port of the syslog server
 	Roles []string `json:"roles,omitempty"` // A list of roles for the syslog server. Options (case-insensitive): 'Wireless event log', 'Appliance event log', 'Switch event log', 'Air Marshal events', 'Flows', 'URLs', 'IDS alerts', 'Security events'
 }
 type ResponseNetworksUpdateNetworkSyslogServers struct {
@@ -2669,7 +2670,7 @@ type ResponseNetworksUpdateNetworkSyslogServers struct {
 }
 type ResponseNetworksUpdateNetworkSyslogServersServers struct {
 	Host  string   `json:"host,omitempty"`  // The IP address of the syslog server
-	Port  *int     `json:"port,omitempty"`  // The port of the syslog server
+	Port  string   `json:"port,omitempty"`  // The port of the syslog server
 	Roles []string `json:"roles,omitempty"` // A list of roles for the syslog server. Options (case-insensitive): 'Wireless event log', 'Appliance event log', 'Switch event log', 'Air Marshal events', 'Flows', 'URLs', 'IDS alerts', 'Security events'
 }
 type ResponseNetworksGetNetworkTopologyLinkLayer struct {
