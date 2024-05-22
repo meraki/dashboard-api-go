@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.1] - 2024-05-22
+### Changed
+- `ResponseItemNetworksGetNetworkGroupPolicies` add new attribute `Name`.
+- `ResponseNetworksGetNetworkSyslogServersServers` change `Port` to string.
+- `ResponseNetworksUpdateNetworkSyslogServersServers` change `Port` to string.
+
 ## [3.0.0] - 2024-04-16
 - dashboard-api-go supports now v1.44.1 of Meraki Dashboard API.
 - User-agent is now required. Format of string "ApplicationName VendorName".
@@ -1343,4 +1349,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.0.8]: https://github.com/meraki/dashboard-api-go/compare/v2.0.7...2.0.8
 [2.0.9]: https://github.com/meraki/dashboard-api-go/compare/v2.0.8...2.0.9
 [3.0.0]: https://github.com/meraki/dashboard-api-go/compare/v2.0.9...3.0.0
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v3.0.0...main
+[3.0.1]: https://github.com/meraki/dashboard-api-go/compare/v3.0.0...3.0.1
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v3.0.1...main
