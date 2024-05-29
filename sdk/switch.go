@@ -536,6 +536,7 @@ type ResponseSwitchUpdateNetworkSwitchAccessControlListsRules struct {
 }
 type ResponseSwitchGetNetworkSwitchAccessPolicies []ResponseItemSwitchGetNetworkSwitchAccessPolicies // Array of ResponseSwitchGetNetworkSwitchAccessPolicies
 type ResponseItemSwitchGetNetworkSwitchAccessPolicies struct {
+	AccessPolicyNumber             string                                                                     `json:"accessPolicyNumber,omitempty"`             // Access Type of the policy. Automatically 'Hybrid authentication' when hostMode is 'Multi-Domain'.
 	AccessPolicyType               string                                                                     `json:"accessPolicyType,omitempty"`               // Access Type of the policy. Automatically 'Hybrid authentication' when hostMode is 'Multi-Domain'.
 	Counts                         *ResponseItemSwitchGetNetworkSwitchAccessPoliciesCounts                    `json:"counts,omitempty"`                         // Counts associated with the access policy
 	Dot1X                          *ResponseItemSwitchGetNetworkSwitchAccessPoliciesDot1X                     `json:"dot1x,omitempty"`                          // 802.1x Settings
@@ -630,6 +631,7 @@ type ResponseSwitchCreateNetworkSwitchAccessPolicyRadiusServers struct {
 	Port *int   `json:"port,omitempty"` // UDP port that the RADIUS server listens on for access requests
 }
 type ResponseSwitchGetNetworkSwitchAccessPolicy struct {
+	AccessPolicyNumber             string                                                               `json:"accessPolicyNumber,omitempty"`             // Access Type of the policy. Automatically 'Hybrid authentication' when hostMode is 'Multi-Domain'.
 	AccessPolicyType               string                                                               `json:"accessPolicyType,omitempty"`               // Access Type of the policy. Automatically 'Hybrid authentication' when hostMode is 'Multi-Domain'.
 	Counts                         *ResponseSwitchGetNetworkSwitchAccessPolicyCounts                    `json:"counts,omitempty"`                         // Counts associated with the access policy
 	Dot1X                          *ResponseSwitchGetNetworkSwitchAccessPolicyDot1X                     `json:"dot1x,omitempty"`                          // 802.1x Settings
