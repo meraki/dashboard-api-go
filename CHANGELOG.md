@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.2] - 2024-05-29
+### Changed
+- `ResponseItemSwitchGetNetworkSwitchAccessPolicies` add new attribute `AccessPolicyNumber`.
+- `ResponseSwitchGetNetworkSwitchAccessPolicy` add new attribute `AccessPolicyNumber`.
+
 ## [3.0.1] - 2024-05-22
 ### Changed
 - `ResponseItemNetworksGetNetworkGroupPolicies` add new attribute `Name`.
@@ -1350,4 +1355,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.0.9]: https://github.com/meraki/dashboard-api-go/compare/v2.0.8...2.0.9
 [3.0.0]: https://github.com/meraki/dashboard-api-go/compare/v2.0.9...3.0.0
 [3.0.1]: https://github.com/meraki/dashboard-api-go/compare/v3.0.0...3.0.1
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v3.0.1...main
+[3.0.2]: https://github.com/meraki/dashboard-api-go/compare/v3.0.1...3.0.2
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v3.0.2...main
