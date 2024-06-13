@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.3] - 2024-06-13
+### Changed
+- `ResponseWirelessGetNetworkWirelessSSIDFirewallL3FirewallRulesRules` add new attribute `IpVer`.
+- `RequestWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRulesRules` add new attribute `IpVer`.
+
 ## [3.0.2] - 2024-05-29
 ### Changed
 - `ResponseItemSwitchGetNetworkSwitchAccessPolicies` add new attribute `AccessPolicyNumber`.
@@ -1356,4 +1361,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.0.0]: https://github.com/meraki/dashboard-api-go/compare/v2.0.9...3.0.0
 [3.0.1]: https://github.com/meraki/dashboard-api-go/compare/v3.0.0...3.0.1
 [3.0.2]: https://github.com/meraki/dashboard-api-go/compare/v3.0.1...3.0.2
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v3.0.2...main
+[3.0.3]: https://github.com/meraki/dashboard-api-go/compare/v3.0.2...3.0.3
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v3.0.3...main
