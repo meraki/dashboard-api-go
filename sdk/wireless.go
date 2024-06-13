@@ -1902,6 +1902,7 @@ type ResponseWirelessGetNetworkWirelessSSIDFirewallL3FirewallRulesRules struct {
 	DestPort string `json:"destPort,omitempty"` // Comma-separated list of destination port(s) (integer in the range 1-65535), or 'any'
 	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
 	Protocol string `json:"protocol,omitempty"` // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
+	IpVer    string `json:"ipVer,omitempty"`    //
 }
 type ResponseWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRules struct {
 	Rules *[]ResponseWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRulesRules `json:"rules,omitempty"` // An ordered array of the firewall rules for this SSID (not including the local LAN access rule or the default rule).
@@ -3176,6 +3177,7 @@ type RequestWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRulesRules struct
 	DestPort string `json:"destPort,omitempty"` // Comma-separated list of destination port(s) (integer in the range 1-65535), or 'any'
 	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
 	Protocol string `json:"protocol,omitempty"` // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
+	IpVer    string `json:"ipVer,omitempty"`    //
 }
 type RequestWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRules struct {
 	Rules *[]RequestWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRules `json:"rules,omitempty"` // An array of L7 firewall rules for this SSID. Rules will get applied in the same order user has specified in request. Empty array will clear the L7 firewall rule configuration.
