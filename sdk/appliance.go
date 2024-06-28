@@ -5910,7 +5910,7 @@ func (s *ApplianceService) UpdateOrganizationApplianceSecurityIntrusion(organiza
 
 @param organizationID organizationId path parameter. Organization ID
 */
-func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(organizationID string) (*resty.Response, error) {
+func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(organizationID string, requestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers *RequestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -5918,6 +5918,7 @@ func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(orga
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers).
 		SetError(&Error).
 		Put(path)
 
