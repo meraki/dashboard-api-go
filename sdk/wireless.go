@@ -781,7 +781,10 @@ type ResponseItemWirelessGetNetworkWirelessMeshStatusesLatestMeshPerformance str
 	Metric          *int   `json:"metric,omitempty"`          // Represents the quality of the entire route from the repeater access point to its gateway access point.
 	UsagePercentage string `json:"usagePercentage,omitempty"` // Mesh utilization as a percentage.
 }
-type ResponseWirelessGetNetworkWirelessRfProfiles struct {
+
+type ResponseWirelessGetNetworkWirelessRfProfiles []ResponseItemWirelessGetNetworkWirelessRfProfiles
+
+type ResponseItemWirelessGetNetworkWirelessRfProfiles struct {
 	ApBandSettings         *ResponseWirelessGetNetworkWirelessRfProfilesApBandSettings     `json:"apBandSettings,omitempty"`         // Settings that will be enabled if selectionType is set to 'ap'.
 	BandSelectionType      string                                                          `json:"bandSelectionType,omitempty"`      // Band selection can be set to either 'ssid' or 'ap'. This param is required on creation.
 	ClientBalancingEnabled *bool                                                           `json:"clientBalancingEnabled,omitempty"` // Steers client to best available access point. Can be either true or false. Defaults to true.

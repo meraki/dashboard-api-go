@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.5] - 2024-07-09
+### Changed
+- `ResponseWirelessGetNetworkWirelessRfProfiles`is now an array.
+
 ## [3.0.4] - 2024-06-28
 ### Changed
 - Adding request body for `UpdateOrganizationApplianceVpnThirdPartyVpnpeers` in `appliance` settings.
@@ -1367,4 +1371,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.0.2]: https://github.com/meraki/dashboard-api-go/compare/v3.0.1...3.0.2
 [3.0.3]: https://github.com/meraki/dashboard-api-go/compare/v3.0.2...3.0.3
 [3.0.4]: https://github.com/meraki/dashboard-api-go/compare/v3.0.3...3.0.4
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v3.0.4...main
+[3.0.5]: https://github.com/meraki/dashboard-api-go/compare/v3.0.4...3.0.5
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v3.0.5...main
