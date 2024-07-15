@@ -1072,9 +1072,42 @@ type ResponseApplianceGetNetworkApplianceTrafficShapingRulesRules struct {
 	Priority                 string                                                                                `json:"priority,omitempty"`                 //
 }
 type ResponseApplianceGetNetworkApplianceTrafficShapingRulesRulesDefinitions struct {
-	Type  string `json:"type,omitempty"`  //
-	Value string `json:"value,omitempty"` //
+	Type      string                                                                    `json:"type,omitempty"` //
+	Value     *string                                                                   //
+	ValueObj  *ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj //
+	ValueList *[]string                                                                 //
 }
+
+func (r *ResponseApplianceGetNetworkApplianceTrafficShapingRulesRulesDefinitions) UnmarshalJSON(data []byte) error {
+	type Alias ResponseApplianceGetNetworkApplianceTrafficShapingRulesRulesDefinitions
+	aux := &struct {
+		Value interface{} `json:"value"`
+		*Alias
+	}{
+		Alias: (*Alias)(r),
+	}
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+	switch v := aux.Value.(type) {
+	case string:
+		r.Value = &v
+	case []interface{}:
+		strList := make([]string, len(v))
+		for i, item := range v {
+			strList[i] = item.(string)
+		}
+		r.ValueList = &strList
+	case map[string]interface{}:
+		valueObj := &ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj{
+			ID:   v["id"].(string),
+			Name: v["name"].(string),
+		}
+		r.ValueObj = valueObj
+	}
+	return nil
+}
+
 type ResponseApplianceGetNetworkApplianceTrafficShapingRulesRulesPerClientBandwidthLimits struct {
 	BandwidthLimits *ResponseApplianceGetNetworkApplianceTrafficShapingRulesRulesPerClientBandwidthLimitsBandwidthLimits `json:"bandwidthLimits,omitempty"` //
 	Settings        string                                                                                               `json:"settings,omitempty"`        //
@@ -2245,8 +2278,8 @@ type RequestApplianceUpdateNetworkApplianceTrafficShapingRulesRules struct {
 	Priority                 string                                                                                  `json:"priority,omitempty"`                 //     A string, indicating the priority level for packets bound to your rule.     Can be 'low', 'normal' or 'high'.
 }
 type RequestApplianceUpdateNetworkApplianceTrafficShapingRulesRulesDefinitions struct {
-	Type  string `json:"type,omitempty"`  // The type of definition. Can be one of 'application', 'applicationCategory', 'host', 'port', 'ipRange' or 'localNet'.
-	Value string `json:"value,omitempty"` //     If "type" is 'host', 'port', 'ipRange' or 'localNet', then "value" must be a string, matching either     a hostname (e.g. "somesite.com"), a port (e.g. 8080), or an IP range ("192.1.0.0",     "192.1.0.0/16", or "10.1.0.0/16:80"). 'localNet' also supports CIDR notation, excluding     custom ports.      If "type" is 'application' or 'applicationCategory', then "value" must be an object     with the structure { "id": "meraki:layer7/..." }, where "id" is the application category or     application ID (for a list of IDs for your network, use the trafficShaping/applicationCategories     endpoint).
+	Type  string      `json:"type,omitempty"`  // The type of definition. Can be one of 'application', 'applicationCategory', 'host', 'port', 'ipRange' or 'localNet'.
+	Value interface{} `json:"value,omitempty"` //     If "type" is 'host', 'port', 'ipRange' or 'localNet', then "value" must be a string, matching either     a hostname (e.g. "somesite.com"), a port (e.g. 8080), or an IP range ("192.1.0.0",     "192.1.0.0/16", or "10.1.0.0/16:80"). 'localNet' also supports CIDR notation, excluding     custom ports.      If "type" is 'application' or 'applicationCategory', then "value" must be an object     with the structure { "id": "meraki:layer7/..." }, where "id" is the application category or     application ID (for a list of IDs for your network, use the trafficShaping/applicationCategories     endpoint).
 }
 type RequestApplianceUpdateNetworkApplianceTrafficShapingRulesRulesPerClientBandwidthLimits struct {
 	BandwidthLimits *RequestApplianceUpdateNetworkApplianceTrafficShapingRulesRulesPerClientBandwidthLimitsBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth limits object, specifying the upload ('limitUp') and download ('limitDown') speed in Kbps. These are only enforced if 'settings' is set to 'custom'.
