@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [3.06] - 2024-07-15
+## [3.0.7] - 2024-07-23
+### Changed
+- update switch.go areaId is now an *int.
+
+## [3.0.6] - 2024-07-15
 ### Changed
 - Managing different types of values are accepted in `appliance_traffic_shapping`  operations.
 - Managing different types of values are accepted in `wireless_ssids_firewall_l7FirewallRules` operations.
@@ -1378,4 +1382,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.0.4]: https://github.com/meraki/dashboard-api-go/compare/v3.0.3...3.0.4
 [3.0.5]: https://github.com/meraki/dashboard-api-go/compare/v3.0.4...3.0.5
 [3.0.6]: https://github.com/meraki/dashboard-api-go/compare/v3.0.5...3.0.6
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v3.0.6...main
+[3.0.7]: https://github.com/meraki/dashboard-api-go/compare/v3.0.6...3.0.7
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v3.0.7...main
