@@ -1209,7 +1209,7 @@ type ResponseSwitchGetNetworkSwitchRoutingOspf struct {
 	V3                       *ResponseSwitchGetNetworkSwitchRoutingOspfV3                   `json:"v3,omitempty"`                       //
 }
 type ResponseSwitchGetNetworkSwitchRoutingOspfAreas struct {
-	AreaID   string `json:"areaId,omitempty"`   //
+	AreaID   *int   `json:"areaId,omitempty"`   //
 	AreaName string `json:"areaName,omitempty"` //
 	AreaType string `json:"areaType,omitempty"` //
 }
@@ -1224,7 +1224,7 @@ type ResponseSwitchGetNetworkSwitchRoutingOspfV3 struct {
 	HelloTimerInSeconds *int                                                `json:"helloTimerInSeconds,omitempty"` //
 }
 type ResponseSwitchGetNetworkSwitchRoutingOspfV3Areas struct {
-	AreaID   string `json:"areaId,omitempty"`   //
+	AreaID   *int   `json:"areaId,omitempty"`   //
 	AreaName string `json:"areaName,omitempty"` //
 	AreaType string `json:"areaType,omitempty"` //
 }
