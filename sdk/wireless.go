@@ -299,9 +299,9 @@ type ResponseWirelessGetDeviceWirelessRadioSettings struct {
 	TwoFourGhzSettings *ResponseWirelessGetDeviceWirelessRadioSettingsTwoFourGhzSettings `json:"twoFourGhzSettings,omitempty"` //
 }
 type ResponseWirelessGetDeviceWirelessRadioSettingsFiveGhzSettings struct {
-	Channel      *int `json:"channel,omitempty"`      //
-	ChannelWidth *int `json:"channelWidth,omitempty"` //
-	TargetPower  *int `json:"targetPower,omitempty"`  //
+	Channel      *int   `json:"channel,omitempty"`      //
+	ChannelWidth string `json:"channelWidth,omitempty"` //
+	TargetPower  *int   `json:"targetPower,omitempty"`  //
 }
 type ResponseWirelessGetDeviceWirelessRadioSettingsTwoFourGhzSettings struct {
 	Channel     *int `json:"channel,omitempty"`     //
