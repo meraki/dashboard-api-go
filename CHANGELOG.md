@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.9] - 2024-08-05
+### Changed
+- update wireless.go, RequestWirelessUpdateDeviceWirelessRadioSettingsFiveGhzSettings.ChannelWidth is now string.
+
 ## [3.0.8] - 2024-08-05
 ### Changed
 - update switch.go ResponseItemOrganizationsGetOrganizationDevices.Imei is now a *float64.
@@ -1389,4 +1393,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.0.6]: https://github.com/meraki/dashboard-api-go/compare/v3.0.5...3.0.6
 [3.0.7]: https://github.com/meraki/dashboard-api-go/compare/v3.0.6...3.0.7
 [3.0.8]: https://github.com/meraki/dashboard-api-go/compare/v3.0.7...3.0.8
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v3.0.8...main
+[3.0.9]: https://github.com/meraki/dashboard-api-go/compare/v3.0.8...3.0.9
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v3.0.9...main
