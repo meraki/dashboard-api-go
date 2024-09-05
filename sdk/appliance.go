@@ -87,7 +87,7 @@ type ResponseItemApplianceGetDeviceApplianceDhcpSubnets struct {
 	VLANID    *int   `json:"vlanId,omitempty"`    //
 }
 type ResponseApplianceGetDeviceAppliancePerformance struct {
-	PerfScore *int `json:"perfScore,omitempty"` //
+	PerfScore *float64 `json:"perfScore,omitempty"` //
 }
 type ResponseApplianceGetDeviceAppliancePrefixesDelegated []ResponseItemApplianceGetDeviceAppliancePrefixesDelegated // Array of ResponseApplianceGetDeviceAppliancePrefixesDelegated
 type ResponseItemApplianceGetDeviceAppliancePrefixesDelegated struct {
