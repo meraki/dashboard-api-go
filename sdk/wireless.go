@@ -1710,7 +1710,7 @@ type ResponseItemWirelessGetNetworkWirelessSSIDs struct {
 	IPAssignmentMode                string                                                                `json:"ipAssignmentMode,omitempty"`                // The client IP assignment mode
 	LocalAuth                       *bool                                                                 `json:"localAuth,omitempty"`                       // Extended local auth flag for Enterprise NAC
 	MandatoryDhcpEnabled            *bool                                                                 `json:"mandatoryDhcpEnabled,omitempty"`            // Whether clients connecting to this SSID must use the IP address assigned by the DHCP server
-	MinBitrate                      *int                                                                  `json:"minBitrate,omitempty"`                      // The minimum bitrate in Mbps of this SSID in the default indoor RF profile
+	MinBitrate                      *float64                                                              `json:"minBitrate,omitempty"`                      // The minimum bitrate in Mbps of this SSID in the default indoor RF profile
 	Name                            string                                                                `json:"name,omitempty"`                            // The name of the SSID
 	Number                          *int                                                                  `json:"number,omitempty"`                          // Unique identifier of the SSID
 	PerClientBandwidthLimitDown     *int                                                                  `json:"perClientBandwidthLimitDown,omitempty"`     // The download bandwidth limit in Kbps. (0 represents no limit.)
