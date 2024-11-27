@@ -2072,41 +2072,44 @@ type ResponseOrganizationsCreateOrganizationPolicyObject struct {
 	Type       string   `json:"type,omitempty"`       // Type of a policy object (one of: adaptivePolicyIpv4Cidr, cidr, fqdn, ipAndMask)
 	UpdatedAt  string   `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
 }
+
+type ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray []ResponseOrganizationsGetOrganizationPolicyObjectsGroups
+
 type ResponseOrganizationsGetOrganizationPolicyObjectsGroups struct {
-	Category   string   `json:"category,omitempty"`   // Type of object groups. (NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
-	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
-	ID         string   `json:"id,omitempty"`         // Policy object ID
-	Name       string   `json:"name,omitempty"`       // Name of the Policy object group.
-	NetworkIDs []string `json:"networkIds,omitempty"` // Network ID's associated with the policy objects.
-	ObjectIDs  *[]int   `json:"objectIds,omitempty"`  // Policy objects associated with Network Object Group or Port Object Group
-	UpdatedAt  string   `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
+	Category   string    `json:"category,omitempty"`   // Type of object groups. (NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
+	CreatedAt  string    `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
+	ID         string    `json:"id,omitempty"`         // Policy object ID
+	Name       string    `json:"name,omitempty"`       // Name of the Policy object group.
+	NetworkIDs []string  `json:"networkIds,omitempty"` // Network ID's associated with the policy objects.
+	ObjectIDs  *[]string `json:"objectIds,omitempty"`  // Policy objects associated with Network Object Group or Port Object Group
+	UpdatedAt  string    `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
 }
 type ResponseOrganizationsCreateOrganizationPolicyObjectsGroup struct {
-	Category   string   `json:"category,omitempty"`   // Type of object groups. (NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
-	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
-	ID         string   `json:"id,omitempty"`         // Policy object ID
-	Name       string   `json:"name,omitempty"`       // Name of the Policy object group.
-	NetworkIDs []string `json:"networkIds,omitempty"` // Network ID's associated with the policy objects.
-	ObjectIDs  *[]int   `json:"objectIds,omitempty"`  // Policy objects associated with Network Object Group or Port Object Group
-	UpdatedAt  string   `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
+	Category   string    `json:"category,omitempty"`   // Type of object groups. (NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
+	CreatedAt  string    `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
+	ID         string    `json:"id,omitempty"`         // Policy object ID
+	Name       string    `json:"name,omitempty"`       // Name of the Policy object group.
+	NetworkIDs []string  `json:"networkIds,omitempty"` // Network ID's associated with the policy objects.
+	ObjectIDs  *[]string `json:"objectIds,omitempty"`  // Policy objects associated with Network Object Group or Port Object Group
+	UpdatedAt  string    `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
 }
 type ResponseOrganizationsGetOrganizationPolicyObjectsGroup struct {
-	Category   string   `json:"category,omitempty"`   // Type of object groups. (NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
-	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
-	ID         string   `json:"id,omitempty"`         // Policy object ID
-	Name       string   `json:"name,omitempty"`       // Name of the Policy object group.
-	NetworkIDs []string `json:"networkIds,omitempty"` // Network ID's associated with the policy objects.
-	ObjectIDs  *[]int   `json:"objectIds,omitempty"`  // Policy objects associated with Network Object Group or Port Object Group
-	UpdatedAt  string   `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
+	Category   string    `json:"category,omitempty"`   // Type of object groups. (NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
+	CreatedAt  string    `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
+	ID         string    `json:"id,omitempty"`         // Policy object ID
+	Name       string    `json:"name,omitempty"`       // Name of the Policy object group.
+	NetworkIDs []string  `json:"networkIds,omitempty"` // Network ID's associated with the policy objects.
+	ObjectIDs  *[]string `json:"objectIds,omitempty"`  // Policy objects associated with Network Object Group or Port Object Group
+	UpdatedAt  string    `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
 }
 type ResponseOrganizationsUpdateOrganizationPolicyObjectsGroup struct {
-	Category   string   `json:"category,omitempty"`   // Type of object groups. (NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
-	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
-	ID         string   `json:"id,omitempty"`         // Policy object ID
-	Name       string   `json:"name,omitempty"`       // Name of the Policy object group.
-	NetworkIDs []string `json:"networkIds,omitempty"` // Network ID's associated with the policy objects.
-	ObjectIDs  *[]int   `json:"objectIds,omitempty"`  // Policy objects associated with Network Object Group or Port Object Group
-	UpdatedAt  string   `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
+	Category   string    `json:"category,omitempty"`   // Type of object groups. (NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
+	CreatedAt  string    `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
+	ID         string    `json:"id,omitempty"`         // Policy object ID
+	Name       string    `json:"name,omitempty"`       // Name of the Policy object group.
+	NetworkIDs []string  `json:"networkIds,omitempty"` // Network ID's associated with the policy objects.
+	ObjectIDs  *[]string `json:"objectIds,omitempty"`  // Policy objects associated with Network Object Group or Port Object Group
+	UpdatedAt  string    `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
 }
 type ResponseOrganizationsGetOrganizationPolicyObject struct {
 	Category   string   `json:"category,omitempty"`   // Category of a policy object (one of: adaptivePolicy, network)
@@ -2999,13 +3002,13 @@ type RequestOrganizationsCreateOrganizationPolicyObject struct {
 	Type     string   `json:"type,omitempty"`     // Type of a policy object (one of: adaptivePolicyIpv4Cidr, cidr, fqdn, ipAndMask)
 }
 type RequestOrganizationsCreateOrganizationPolicyObjectsGroup struct {
-	Category  string `json:"category,omitempty"`  // Category of a policy object group (one of: NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
-	Name      string `json:"name,omitempty"`      // A name for the group of network addresses, unique within the organization (alphanumeric, space, dash, or underscore characters only)
-	ObjectIDs *[]int `json:"objectIds,omitempty"` // A list of Policy Object ID's that this NetworkObjectGroup should be associated to (note: these ID's will replace the existing associated Policy Objects)
+	Category  string    `json:"category,omitempty"`  // Category of a policy object group (one of: NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
+	Name      string    `json:"name,omitempty"`      // A name for the group of network addresses, unique within the organization (alphanumeric, space, dash, or underscore characters only)
+	ObjectIDs *[]string `json:"objectIds,omitempty"` // A list of Policy Object ID's that this NetworkObjectGroup should be associated to (note: these ID's will replace the existing associated Policy Objects)
 }
 type RequestOrganizationsUpdateOrganizationPolicyObjectsGroup struct {
-	Name      string `json:"name,omitempty"`      // A name for the group of network addresses, unique within the organization (alphanumeric, space, dash, or underscore characters only)
-	ObjectIDs *[]int `json:"objectIds,omitempty"` // A list of Policy Object ID's that this NetworkObjectGroup should be associated to (note: these ID's will replace the existing associated Policy Objects)
+	Name      string    `json:"name,omitempty"`      // A name for the group of network addresses, unique within the organization (alphanumeric, space, dash, or underscore characters only)
+	ObjectIDs *[]string `json:"objectIds,omitempty"` // A list of Policy Object ID's that this NetworkObjectGroup should be associated to (note: these ID's will replace the existing associated Policy Objects)
 }
 type RequestOrganizationsUpdateOrganizationPolicyObject struct {
 	Cidr     string   `json:"cidr,omitempty"`     // CIDR Value of a policy object (e.g. 10.11.12.1/24")
@@ -4923,7 +4926,7 @@ func (s *OrganizationsService) GetOrganizationPolicyObjects(organizationID strin
 
 
 */
-func (s *OrganizationsService) GetOrganizationPolicyObjectsGroups(organizationID string, getOrganizationPolicyObjectsGroupsQueryParams *GetOrganizationPolicyObjectsGroupsQueryParams) (*ResponseOrganizationsGetOrganizationPolicyObjectsGroups, *resty.Response, error) {
+func (s *OrganizationsService) GetOrganizationPolicyObjectsGroups(organizationID string, getOrganizationPolicyObjectsGroupsQueryParams *GetOrganizationPolicyObjectsGroupsQueryParams) (*ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects/groups"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -4933,7 +4936,7 @@ func (s *OrganizationsService) GetOrganizationPolicyObjectsGroups(organizationID
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationPolicyObjectsGroups{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray{}).
 		SetError(&Error).
 		Get(path)
 
@@ -4946,7 +4949,7 @@ func (s *OrganizationsService) GetOrganizationPolicyObjectsGroups(organizationID
 		return nil, response, fmt.Errorf("error with operation GetOrganizationPolicyObjectsGroups")
 	}
 
-	result := response.Result().(*ResponseOrganizationsGetOrganizationPolicyObjectsGroups)
+	result := response.Result().(*ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray)
 	return result, response, err
 
 }
