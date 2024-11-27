@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.10] - 2024-11-27
+### Changed
+- update networks.go, GetOrganizationPolicyObjectsGroups returns an array.
+- update networks.go, ObjectIDs is now an `[]string`
+
 ## [3.0.9] - 2024-08-05
 ### Changed
 - update wireless.go, RequestWirelessUpdateDeviceWirelessRadioSettingsFiveGhzSettings.ChannelWidth is now string.
