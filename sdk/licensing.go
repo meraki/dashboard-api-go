@@ -21,6 +21,7 @@ type GetAdministeredLicensingSubscriptionSubscriptionsQueryParams struct {
 	OrganizationIDs []string `url:"organizationIds[],omitempty"` //Organizations to get associated subscriptions for
 	Statuses        []string `url:"statuses[],omitempty"`        //List of statuses that returned subscriptions can have
 	ProductTypes    []string `url:"productTypes[],omitempty"`    //List of product types that returned subscriptions need to have entitlements for.
+	Name            string   `url:"name,omitempty"`              //Search for subscription name
 	StartDate       string   `url:"startDate,omitempty"`         //Filter subscriptions by start date, ISO 8601 format. To filter with a range of dates, use 'startDate[<option>]=?' in the request. Accepted options include lt, gt, lte, gte.
 	EndDate         string   `url:"endDate,omitempty"`           //Filter subscriptions by end date, ISO 8601 format. To filter with a range of dates, use 'endDate[<option>]=?' in the request. Accepted options include lt, gt, lte, gte.
 }
@@ -52,94 +53,151 @@ type ResponseLicensingGetAdministeredLicensingSubscriptionEntitlements struct {
 }
 type ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptions []ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptions // Array of ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptions
 type ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptions struct {
-	Counts         *ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsCounts         `json:"counts,omitempty"`         // Numeric breakdown of network and entitlement counts
-	Description    string                                                                                `json:"description,omitempty"`    // Subscription description
-	EndDate        string                                                                                `json:"endDate,omitempty"`        // Subscription expiration date
-	Entitlements   *[]ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsEntitlements `json:"entitlements,omitempty"`   // Entitlement info
-	Name           string                                                                                `json:"name,omitempty"`           // Subscription name
-	ProductTypes   []string                                                                              `json:"productTypes,omitempty"`   // Products the subscription has entitlements for
-	StartDate      string                                                                                `json:"startDate,omitempty"`      // Subscription start date
-	Status         string                                                                                `json:"status,omitempty"`         // Subscription status
-	SubscriptionID string                                                                                `json:"subscriptionId,omitempty"` // Subscription's ID
-	WebOrderID     string                                                                                `json:"webOrderId,omitempty"`     // Web order id
+	Counts              *ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsCounts              `json:"counts,omitempty"`              // Numeric breakdown of network, organizations, entitlement counts
+	Description         string                                                                                     `json:"description,omitempty"`         // Subscription description
+	EndDate             string                                                                                     `json:"endDate,omitempty"`             // Subscription expiration date
+	EnterpriseAgreement *ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsEnterpriseAgreement `json:"enterpriseAgreement,omitempty"` // enterprise agreement details
+	Entitlements        *[]ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsEntitlements      `json:"entitlements,omitempty"`        // Entitlement info
+	LastUpdatedAt       string                                                                                     `json:"lastUpdatedAt,omitempty"`       // When the subscription was last changed
+	Name                string                                                                                     `json:"name,omitempty"`                // Subscription name
+	ProductTypes        []string                                                                                   `json:"productTypes,omitempty"`        // Products the subscription has entitlements for
+	RenewalRequested    *bool                                                                                      `json:"renewalRequested,omitempty"`    // Whether a renewal has been requested for the subscription
+	SmartAccount        *ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsSmartAccount        `json:"smartAccount,omitempty"`        // Smart Account linkage information
+	StartDate           string                                                                                     `json:"startDate,omitempty"`           // Subscription start date
+	Status              string                                                                                     `json:"status,omitempty"`              // Subscription status
+	SubscriptionID      string                                                                                     `json:"subscriptionId,omitempty"`      // Subscription's ID
+	Type                string                                                                                     `json:"type,omitempty"`                // Subscription type
+	WebOrderID          string                                                                                     `json:"webOrderId,omitempty"`          // Web order id
 }
 type ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsCounts struct {
-	Networks *int                                                                               `json:"networks,omitempty"` // Number of networks bound to this subscription
-	Seats    *ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsCountsSeats `json:"seats,omitempty"`    // Seat distribution
+	Networks      *int                                                                               `json:"networks,omitempty"`      // Number of networks bound to this subscription
+	Organizations *int                                                                               `json:"organizations,omitempty"` // Number of organizations bound to this subscription
+	Seats         *ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsCountsSeats `json:"seats,omitempty"`         // Seat distribution
 }
 type ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsCountsSeats struct {
 	Assigned  *int `json:"assigned,omitempty"`  // Number of seats in use
 	Available *int `json:"available,omitempty"` // Number of seats available for use
 	Limit     *int `json:"limit,omitempty"`     // Total number of seats provided by this subscription
 }
+type ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsEnterpriseAgreement struct {
+	Suites []string `json:"suites,omitempty"` // List of suites included. Empty for non-EA subscriptions.
+}
 type ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsEntitlements struct {
-	Seats *ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsEntitlementsSeats `json:"seats,omitempty"` // Seat distribution
-	Sku   string                                                                                   `json:"sku,omitempty"`   // SKU of the required product
+	Seats          *ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsEntitlementsSeats `json:"seats,omitempty"`          // Seat distribution
+	Sku            string                                                                                   `json:"sku,omitempty"`            // SKU of the required product
+	WebOrderLineID string                                                                                   `json:"webOrderLineId,omitempty"` // Web order line ID
 }
 type ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsEntitlementsSeats struct {
 	Assigned  *int `json:"assigned,omitempty"`  // Number of seats in use
 	Available *int `json:"available,omitempty"` // Number of seats available for use
 	Limit     *int `json:"limit,omitempty"`     // Total number of seats provided by this subscription for this sku
 }
+type ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsSmartAccount struct {
+	Account *ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsSmartAccountAccount `json:"account,omitempty"` // Smart Account data
+	Status  string                                                                                     `json:"status,omitempty"`  // Subscription Smart Account status
+}
+type ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsSmartAccountAccount struct {
+	Domain string `json:"domain,omitempty"` // The domain of the Smart Account
+	ID     string `json:"id,omitempty"`     // Smart Account ID
+	Name   string `json:"name,omitempty"`   // The name of the smart account
+}
 type ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptions struct {
-	Counts         *ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsCounts         `json:"counts,omitempty"`         // Numeric breakdown of network and entitlement counts
-	Description    string                                                                              `json:"description,omitempty"`    // Subscription description
-	EndDate        string                                                                              `json:"endDate,omitempty"`        // Subscription expiration date
-	Entitlements   *[]ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsEntitlements `json:"entitlements,omitempty"`   // Entitlement info
-	Name           string                                                                              `json:"name,omitempty"`           // Subscription name
-	ProductTypes   []string                                                                            `json:"productTypes,omitempty"`   // Products the subscription has entitlements for
-	StartDate      string                                                                              `json:"startDate,omitempty"`      // Subscription start date
-	Status         string                                                                              `json:"status,omitempty"`         // Subscription status
-	SubscriptionID string                                                                              `json:"subscriptionId,omitempty"` // Subscription's ID
-	WebOrderID     string                                                                              `json:"webOrderId,omitempty"`     // Web order id
+	Counts              *ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsCounts              `json:"counts,omitempty"`              // Numeric breakdown of network, organizations, entitlement counts
+	Description         string                                                                                   `json:"description,omitempty"`         // Subscription description
+	EndDate             string                                                                                   `json:"endDate,omitempty"`             // Subscription expiration date
+	EnterpriseAgreement *ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsEnterpriseAgreement `json:"enterpriseAgreement,omitempty"` // enterprise agreement details
+	Entitlements        *[]ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsEntitlements      `json:"entitlements,omitempty"`        // Entitlement info
+	LastUpdatedAt       string                                                                                   `json:"lastUpdatedAt,omitempty"`       // When the subscription was last changed
+	Name                string                                                                                   `json:"name,omitempty"`                // Subscription name
+	ProductTypes        []string                                                                                 `json:"productTypes,omitempty"`        // Products the subscription has entitlements for
+	RenewalRequested    *bool                                                                                    `json:"renewalRequested,omitempty"`    // Whether a renewal has been requested for the subscription
+	SmartAccount        *ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsSmartAccount        `json:"smartAccount,omitempty"`        // Smart Account linkage information
+	StartDate           string                                                                                   `json:"startDate,omitempty"`           // Subscription start date
+	Status              string                                                                                   `json:"status,omitempty"`              // Subscription status
+	SubscriptionID      string                                                                                   `json:"subscriptionId,omitempty"`      // Subscription's ID
+	Type                string                                                                                   `json:"type,omitempty"`                // Subscription type
+	WebOrderID          string                                                                                   `json:"webOrderId,omitempty"`          // Web order id
 }
 type ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsCounts struct {
-	Networks *int                                                                             `json:"networks,omitempty"` // Number of networks bound to this subscription
-	Seats    *ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsCountsSeats `json:"seats,omitempty"`    // Seat distribution
+	Networks      *int                                                                             `json:"networks,omitempty"`      // Number of networks bound to this subscription
+	Organizations *int                                                                             `json:"organizations,omitempty"` // Number of organizations bound to this subscription
+	Seats         *ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsCountsSeats `json:"seats,omitempty"`         // Seat distribution
 }
 type ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsCountsSeats struct {
 	Assigned  *int `json:"assigned,omitempty"`  // Number of seats in use
 	Available *int `json:"available,omitempty"` // Number of seats available for use
 	Limit     *int `json:"limit,omitempty"`     // Total number of seats provided by this subscription
 }
+type ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsEnterpriseAgreement struct {
+	Suites []string `json:"suites,omitempty"` // List of suites included. Empty for non-EA subscriptions.
+}
 type ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsEntitlements struct {
-	Seats *ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsEntitlementsSeats `json:"seats,omitempty"` // Seat distribution
-	Sku   string                                                                                 `json:"sku,omitempty"`   // SKU of the required product
+	Seats          *ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsEntitlementsSeats `json:"seats,omitempty"`          // Seat distribution
+	Sku            string                                                                                 `json:"sku,omitempty"`            // SKU of the required product
+	WebOrderLineID string                                                                                 `json:"webOrderLineId,omitempty"` // Web order line ID
 }
 type ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsEntitlementsSeats struct {
 	Assigned  *int `json:"assigned,omitempty"`  // Number of seats in use
 	Available *int `json:"available,omitempty"` // Number of seats available for use
 	Limit     *int `json:"limit,omitempty"`     // Total number of seats provided by this subscription for this sku
 }
+type ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsSmartAccount struct {
+	Account *ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsSmartAccountAccount `json:"account,omitempty"` // Smart Account data
+	Status  string                                                                                   `json:"status,omitempty"`  // Subscription Smart Account status
+}
+type ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptionsSmartAccountAccount struct {
+	Domain string `json:"domain,omitempty"` // The domain of the Smart Account
+	ID     string `json:"id,omitempty"`     // Smart Account ID
+	Name   string `json:"name,omitempty"`   // The name of the smart account
+}
 type ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKey struct {
-	Counts         *ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeyCounts         `json:"counts,omitempty"`         // Numeric breakdown of network and entitlement counts
-	Description    string                                                                                         `json:"description,omitempty"`    // Subscription description
-	EndDate        string                                                                                         `json:"endDate,omitempty"`        // Subscription expiration date
-	Entitlements   *[]ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeyEntitlements `json:"entitlements,omitempty"`   // Entitlement info
-	Name           string                                                                                         `json:"name,omitempty"`           // Subscription name
-	ProductTypes   []string                                                                                       `json:"productTypes,omitempty"`   // Products the subscription has entitlements for
-	StartDate      string                                                                                         `json:"startDate,omitempty"`      // Subscription start date
-	Status         string                                                                                         `json:"status,omitempty"`         // Subscription status
-	SubscriptionID string                                                                                         `json:"subscriptionId,omitempty"` // Subscription's ID
-	WebOrderID     string                                                                                         `json:"webOrderId,omitempty"`     // Web order id
+	Counts              *ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeyCounts              `json:"counts,omitempty"`              // Numeric breakdown of network, organizations, entitlement counts
+	Description         string                                                                                              `json:"description,omitempty"`         // Subscription description
+	EndDate             string                                                                                              `json:"endDate,omitempty"`             // Subscription expiration date
+	EnterpriseAgreement *ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeyEnterpriseAgreement `json:"enterpriseAgreement,omitempty"` // enterprise agreement details
+	Entitlements        *[]ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeyEntitlements      `json:"entitlements,omitempty"`        // Entitlement info
+	LastUpdatedAt       string                                                                                              `json:"lastUpdatedAt,omitempty"`       // When the subscription was last changed
+	Name                string                                                                                              `json:"name,omitempty"`                // Subscription name
+	ProductTypes        []string                                                                                            `json:"productTypes,omitempty"`        // Products the subscription has entitlements for
+	RenewalRequested    *bool                                                                                               `json:"renewalRequested,omitempty"`    // Whether a renewal has been requested for the subscription
+	SmartAccount        *ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeySmartAccount        `json:"smartAccount,omitempty"`        // Smart Account linkage information
+	StartDate           string                                                                                              `json:"startDate,omitempty"`           // Subscription start date
+	Status              string                                                                                              `json:"status,omitempty"`              // Subscription status
+	SubscriptionID      string                                                                                              `json:"subscriptionId,omitempty"`      // Subscription's ID
+	Type                string                                                                                              `json:"type,omitempty"`                // Subscription type
+	WebOrderID          string                                                                                              `json:"webOrderId,omitempty"`          // Web order id
 }
 type ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeyCounts struct {
-	Networks *int                                                                                        `json:"networks,omitempty"` // Number of networks bound to this subscription
-	Seats    *ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeyCountsSeats `json:"seats,omitempty"`    // Seat distribution
+	Networks      *int                                                                                        `json:"networks,omitempty"`      // Number of networks bound to this subscription
+	Organizations *int                                                                                        `json:"organizations,omitempty"` // Number of organizations bound to this subscription
+	Seats         *ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeyCountsSeats `json:"seats,omitempty"`         // Seat distribution
 }
 type ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeyCountsSeats struct {
 	Assigned  *int `json:"assigned,omitempty"`  // Number of seats in use
 	Available *int `json:"available,omitempty"` // Number of seats available for use
 	Limit     *int `json:"limit,omitempty"`     // Total number of seats provided by this subscription
 }
+type ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeyEnterpriseAgreement struct {
+	Suites []string `json:"suites,omitempty"` // List of suites included. Empty for non-EA subscriptions.
+}
 type ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeyEntitlements struct {
-	Seats *ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeyEntitlementsSeats `json:"seats,omitempty"` // Seat distribution
-	Sku   string                                                                                            `json:"sku,omitempty"`   // SKU of the required product
+	Seats          *ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeyEntitlementsSeats `json:"seats,omitempty"`          // Seat distribution
+	Sku            string                                                                                            `json:"sku,omitempty"`            // SKU of the required product
+	WebOrderLineID string                                                                                            `json:"webOrderLineId,omitempty"` // Web order line ID
 }
 type ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeyEntitlementsSeats struct {
 	Assigned  *int `json:"assigned,omitempty"`  // Number of seats in use
 	Available *int `json:"available,omitempty"` // Number of seats available for use
 	Limit     *int `json:"limit,omitempty"`     // Total number of seats provided by this subscription for this sku
+}
+type ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeySmartAccount struct {
+	Account *ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeySmartAccountAccount `json:"account,omitempty"` // Smart Account data
+	Status  string                                                                                              `json:"status,omitempty"`  // Subscription Smart Account status
+}
+type ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKeySmartAccountAccount struct {
+	Domain string `json:"domain,omitempty"` // The domain of the Smart Account
+	ID     string `json:"id,omitempty"`     // Smart Account ID
+	Name   string `json:"name,omitempty"`   // The name of the smart account
 }
 type ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptionsComplianceStatuses []ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsComplianceStatuses // Array of ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptionsComplianceStatuses
 type ResponseItemLicensingGetAdministeredLicensingSubscriptionSubscriptionsComplianceStatuses struct {

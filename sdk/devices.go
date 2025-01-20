@@ -104,50 +104,110 @@ type GetOrganizationWirelessDevicesPacketLossByNetworkQueryParams struct {
 }
 
 type ResponseDevicesGetDevice struct {
-	Address     string                             `json:"address,omitempty"`     // Physical address of the device
-	Details     *[]ResponseDevicesGetDeviceDetails `json:"details,omitempty"`     // Additional device information
-	Firmware    string                             `json:"firmware,omitempty"`    // Firmware version of the device
-	Imei        string                             `json:"imei,omitempty"`        // IMEI of the device, if applicable
-	LanIP       string                             `json:"lanIp,omitempty"`       // LAN IP address of the device
-	Lat         *float64                           `json:"lat,omitempty"`         // Latitude of the device
-	Lng         *float64                           `json:"lng,omitempty"`         // Longitude of the device
-	Mac         string                             `json:"mac,omitempty"`         // MAC address of the device
-	Model       string                             `json:"model,omitempty"`       // Model of the device
-	Name        string                             `json:"name,omitempty"`        // Name of the device
-	NetworkID   string                             `json:"networkId,omitempty"`   // ID of the network the device belongs to
-	Notes       string                             `json:"notes,omitempty"`       // Notes for the device, limited to 255 characters
-	ProductType string                             `json:"productType,omitempty"` // Product type of the device
-	Serial      string                             `json:"serial,omitempty"`      // Serial number of the device
-	Tags        []string                           `json:"tags,omitempty"`        // List of tags assigned to the device
+	Address        string                                  `json:"address,omitempty"`        // Physical address of the device
+	BeaconIDParams *ResponseDevicesGetDeviceBeaconIDParams `json:"beaconIdParams,omitempty"` // Beacon Id parameters with an identifier and major and minor versions
+	Details        *[]ResponseDevicesGetDeviceDetails      `json:"details,omitempty"`        // Additional device information
+	Firmware       string                                  `json:"firmware,omitempty"`       // Firmware version of the device
+	FloorPlanID    string                                  `json:"floorPlanId,omitempty"`    // The floor plan to associate to this device. null disassociates the device from the floorplan.
+	LanIP          string                                  `json:"lanIp,omitempty"`          // LAN IP address of the device
+	Lat            *float64                                `json:"lat,omitempty"`            // Latitude of the device
+	Lng            *float64                                `json:"lng,omitempty"`            // Longitude of the device
+	Mac            string                                  `json:"mac,omitempty"`            // MAC address of the device
+	Model          string                                  `json:"model,omitempty"`          // Model of the device
+	Name           string                                  `json:"name,omitempty"`           // Name of the device
+	NetworkID      string                                  `json:"networkId,omitempty"`      // ID of the network the device belongs to
+	Notes          string                                  `json:"notes,omitempty"`          // Notes for the device, limited to 255 characters
+	Serial         string                                  `json:"serial,omitempty"`         // Serial number of the device
+	Tags           []string                                `json:"tags,omitempty"`           // List of tags assigned to the device
+}
+type ResponseDevicesGetDeviceBeaconIDParams struct {
+	Major *int   `json:"major,omitempty"` // The major number to be used in the beacon identifier
+	Minor *int   `json:"minor,omitempty"` // The minor number to be used in the beacon identifier
+	UUID  string `json:"uuid,omitempty"`  // The UUID to be used in the beacon identifier
 }
 type ResponseDevicesGetDeviceDetails struct {
 	Name  string `json:"name,omitempty"`  // Additional property name
 	Value string `json:"value,omitempty"` // Additional property value
 }
-type ResponseDevicesUpdateDevice interface{}
+type ResponseDevicesUpdateDevice struct {
+	Address        string                                     `json:"address,omitempty"`        // Physical address of the device
+	BeaconIDParams *ResponseDevicesUpdateDeviceBeaconIDParams `json:"beaconIdParams,omitempty"` // Beacon Id parameters with an identifier and major and minor versions
+	Details        *[]ResponseDevicesUpdateDeviceDetails      `json:"details,omitempty"`        // Additional device information
+	Firmware       string                                     `json:"firmware,omitempty"`       // Firmware version of the device
+	FloorPlanID    string                                     `json:"floorPlanId,omitempty"`    // The floor plan to associate to this device. null disassociates the device from the floorplan.
+	LanIP          string                                     `json:"lanIp,omitempty"`          // LAN IP address of the device
+	Lat            *float64                                   `json:"lat,omitempty"`            // Latitude of the device
+	Lng            *float64                                   `json:"lng,omitempty"`            // Longitude of the device
+	Mac            string                                     `json:"mac,omitempty"`            // MAC address of the device
+	Model          string                                     `json:"model,omitempty"`          // Model of the device
+	Name           string                                     `json:"name,omitempty"`           // Name of the device
+	NetworkID      string                                     `json:"networkId,omitempty"`      // ID of the network the device belongs to
+	Notes          string                                     `json:"notes,omitempty"`          // Notes for the device, limited to 255 characters
+	Serial         string                                     `json:"serial,omitempty"`         // Serial number of the device
+	Tags           []string                                   `json:"tags,omitempty"`           // List of tags assigned to the device
+}
+type ResponseDevicesUpdateDeviceBeaconIDParams struct {
+	Major *int   `json:"major,omitempty"` // The major number to be used in the beacon identifier
+	Minor *int   `json:"minor,omitempty"` // The minor number to be used in the beacon identifier
+	UUID  string `json:"uuid,omitempty"`  // The UUID to be used in the beacon identifier
+}
+type ResponseDevicesUpdateDeviceDetails struct {
+	Name  string `json:"name,omitempty"`  // Additional property name
+	Value string `json:"value,omitempty"` // Additional property value
+}
 type ResponseDevicesBlinkDeviceLeds struct {
 	Duration *int `json:"duration,omitempty"` // The duration in seconds. Will be between 5 and 120. Default is 20 seconds
 	Duty     *int `json:"duty,omitempty"`     // The duty cycle as the percent active. Will be between 10 and 90. Default is 50
 	Period   *int `json:"period,omitempty"`   // The period in milliseconds. Will be between 100 and 1000. Default is 160 milliseconds
 }
 type ResponseDevicesGetDeviceCellularSims struct {
-	Sims *[]ResponseDevicesGetDeviceCellularSimsSims `json:"sims,omitempty"` //
+	SimFailover *ResponseDevicesGetDeviceCellularSimsSimFailover `json:"simFailover,omitempty"` // SIM Failover settings.
+	SimOrdering []string                                         `json:"simOrdering,omitempty"` // Specifies the ordering of all SIMs for an MG: primary, secondary, and not-in-use (when applicable). It's required for devices with 3 or more SIMs and can be used in place of 'isPrimary' for dual-SIM devices. To indicate eSIM, use 'sim3'. Sim failover will occur only between primary and secondary sim slots.
+	Sims        *[]ResponseDevicesGetDeviceCellularSimsSims      `json:"sims,omitempty"`        // List of SIMs. If a SIM was previously configured and not specified in this request, it will remain unchanged.
+}
+type ResponseDevicesGetDeviceCellularSimsSimFailover struct {
+	Enabled *bool `json:"enabled,omitempty"` // Failover to secondary SIM
+	Timeout *int  `json:"timeout,omitempty"` // Failover timeout in seconds
 }
 type ResponseDevicesGetDeviceCellularSimsSims struct {
-	Apns      *[]ResponseDevicesGetDeviceCellularSimsSimsApns `json:"apns,omitempty"`      //
-	IsPrimary *bool                                           `json:"isPrimary,omitempty"` //
-	Slot      string                                          `json:"slot,omitempty"`      //
+	Apns      *[]ResponseDevicesGetDeviceCellularSimsSimsApns `json:"apns,omitempty"`      // APN configurations. If empty, the default APN will be used.
+	IsPrimary *bool                                           `json:"isPrimary,omitempty"` // If true, this SIM is activated on platform bootup. It must be true on single-SIM devices and is a required field for dual-SIM MGs unless it is being configured using 'simOrdering'.
+	Slot      string                                          `json:"slot,omitempty"`      // SIM slot being configured. Must be 'sim1' on single-sim devices. Use 'sim3' for eSIM.
 }
 type ResponseDevicesGetDeviceCellularSimsSimsApns struct {
-	AllowedIPTypes []string                                                    `json:"allowedIpTypes,omitempty"` //
-	Authentication *ResponseDevicesGetDeviceCellularSimsSimsApnsAuthentication `json:"authentication,omitempty"` //
-	Name           string                                                      `json:"name,omitempty"`           //
+	AllowedIPTypes []string                                                    `json:"allowedIpTypes,omitempty"` // IP versions to support (permitted values include 'ipv4', 'ipv6').
+	Authentication *ResponseDevicesGetDeviceCellularSimsSimsApnsAuthentication `json:"authentication,omitempty"` // APN authentication configurations.
+	Name           string                                                      `json:"name,omitempty"`           // APN name.
 }
 type ResponseDevicesGetDeviceCellularSimsSimsApnsAuthentication struct {
-	Type     string `json:"type,omitempty"`     //
-	Username string `json:"username,omitempty"` //
+	Password string `json:"password,omitempty"` // APN password, if type is set (if APN password is not supplied, the password is left unchanged).
+	Type     string `json:"type,omitempty"`     // APN auth type.
+	Username string `json:"username,omitempty"` // APN username, if type is set.
 }
-type ResponseDevicesUpdateDeviceCellularSims interface{}
+type ResponseDevicesUpdateDeviceCellularSims struct {
+	SimFailover *ResponseDevicesUpdateDeviceCellularSimsSimFailover `json:"simFailover,omitempty"` // SIM Failover settings.
+	SimOrdering []string                                            `json:"simOrdering,omitempty"` // Specifies the ordering of all SIMs for an MG: primary, secondary, and not-in-use (when applicable). It's required for devices with 3 or more SIMs and can be used in place of 'isPrimary' for dual-SIM devices. To indicate eSIM, use 'sim3'. Sim failover will occur only between primary and secondary sim slots.
+	Sims        *[]ResponseDevicesUpdateDeviceCellularSimsSims      `json:"sims,omitempty"`        // List of SIMs. If a SIM was previously configured and not specified in this request, it will remain unchanged.
+}
+type ResponseDevicesUpdateDeviceCellularSimsSimFailover struct {
+	Enabled *bool `json:"enabled,omitempty"` // Failover to secondary SIM
+	Timeout *int  `json:"timeout,omitempty"` // Failover timeout in seconds
+}
+type ResponseDevicesUpdateDeviceCellularSimsSims struct {
+	Apns      *[]ResponseDevicesUpdateDeviceCellularSimsSimsApns `json:"apns,omitempty"`      // APN configurations. If empty, the default APN will be used.
+	IsPrimary *bool                                              `json:"isPrimary,omitempty"` // If true, this SIM is activated on platform bootup. It must be true on single-SIM devices and is a required field for dual-SIM MGs unless it is being configured using 'simOrdering'.
+	Slot      string                                             `json:"slot,omitempty"`      // SIM slot being configured. Must be 'sim1' on single-sim devices. Use 'sim3' for eSIM.
+}
+type ResponseDevicesUpdateDeviceCellularSimsSimsApns struct {
+	AllowedIPTypes []string                                                       `json:"allowedIpTypes,omitempty"` // IP versions to support (permitted values include 'ipv4', 'ipv6').
+	Authentication *ResponseDevicesUpdateDeviceCellularSimsSimsApnsAuthentication `json:"authentication,omitempty"` // APN authentication configurations.
+	Name           string                                                         `json:"name,omitempty"`           // APN name.
+}
+type ResponseDevicesUpdateDeviceCellularSimsSimsApnsAuthentication struct {
+	Password string `json:"password,omitempty"` // APN password, if type is set (if APN password is not supplied, the password is left unchanged).
+	Type     string `json:"type,omitempty"`     // APN auth type.
+	Username string `json:"username,omitempty"` // APN username, if type is set.
+}
 type ResponseDevicesGetDeviceClients []ResponseItemDevicesGetDeviceClients // Array of ResponseDevicesGetDeviceClients
 type ResponseItemDevicesGetDeviceClients struct {
 	AdaptivePolicyGroup string                                    `json:"adaptivePolicyGroup,omitempty"` // A description of the adaptive policy group
@@ -239,6 +299,34 @@ type ResponseDevicesGetDeviceLiveToolsCableTestResultsPairs struct {
 	LengthMeters *int   `json:"lengthMeters,omitempty"` // The detected length of the twisted pair.
 	Status       string `json:"status,omitempty"`       // The test result of the twisted pair tested.
 }
+type ResponseDevicesCreateDeviceLiveToolsLedsBlink struct {
+	Callback    *ResponseDevicesCreateDeviceLiveToolsLedsBlinkCallback `json:"callback,omitempty"`    // Information for callback used to send back results
+	Error       string                                                 `json:"error,omitempty"`       // An error message for a failed Blink LEDs execution, if present
+	LedsBlinkID string                                                 `json:"ledsBlinkId,omitempty"` // ID of led blink job
+	Request     *ResponseDevicesCreateDeviceLiveToolsLedsBlinkRequest  `json:"request,omitempty"`     // The parameters of the leds blink request
+	Status      string                                                 `json:"status,omitempty"`      // Status of the leds blink request
+	URL         string                                                 `json:"url,omitempty"`         // GET this url to check the status of your leds blink request
+}
+type ResponseDevicesCreateDeviceLiveToolsLedsBlinkCallback struct {
+	ID     string `json:"id,omitempty"`     // The ID of the callback. To check the status of the callback, use this ID in a request to /webhooks/callbacks/statuses/{id}
+	Status string `json:"status,omitempty"` // The status of the callback
+	URL    string `json:"url,omitempty"`    // The callback URL for the webhook target. This was either provided in the original request or comes from a configured webhook receiver
+}
+type ResponseDevicesCreateDeviceLiveToolsLedsBlinkRequest struct {
+	Duration *int   `json:"duration,omitempty"` // The duration to blink leds in seconds
+	Serial   string `json:"serial,omitempty"`   // Device serial number
+}
+type ResponseDevicesGetDeviceLiveToolsLedsBlink struct {
+	Error       string                                             `json:"error,omitempty"`       // An error message for a failed Blink LEDs execution, if present
+	LedsBlinkID string                                             `json:"ledsBlinkId,omitempty"` // ID of led blink job
+	Request     *ResponseDevicesGetDeviceLiveToolsLedsBlinkRequest `json:"request,omitempty"`     // The parameters of the leds blink request
+	Status      string                                             `json:"status,omitempty"`      // Status of the leds blink request
+	URL         string                                             `json:"url,omitempty"`         // GET this url to check the status of your leds blink request
+}
+type ResponseDevicesGetDeviceLiveToolsLedsBlinkRequest struct {
+	Duration *int   `json:"duration,omitempty"` // The duration to blink leds in seconds
+	Serial   string `json:"serial,omitempty"`   // Device serial number
+}
 type ResponseDevicesCreateDeviceLiveToolsPing struct {
 	Callback *ResponseDevicesCreateDeviceLiveToolsPingCallback `json:"callback,omitempty"` // Information for callback used to send back results
 	PingID   string                                            `json:"pingId,omitempty"`   // Id to check the status of your ping request.
@@ -252,7 +340,7 @@ type ResponseDevicesCreateDeviceLiveToolsPingCallback struct {
 	URL    string `json:"url,omitempty"`    // The callback URL for the webhook target. This was either provided in the original request or comes from a configured webhook receiver
 }
 type ResponseDevicesCreateDeviceLiveToolsPingRequest struct {
-	Count  *int   `json:"count,omitempty"`  // Number of pings to send
+	Count  *int   `json:"count,omitempty"`  // Number of pings to send. [1..5], default 5
 	Serial string `json:"serial,omitempty"` // Device serial number
 	Target string `json:"target,omitempty"` // IP address or FQDN to ping
 }
@@ -264,7 +352,7 @@ type ResponseDevicesGetDeviceLiveToolsPing struct {
 	URL     string                                        `json:"url,omitempty"`     // GET this url to check the status of your ping request.
 }
 type ResponseDevicesGetDeviceLiveToolsPingRequest struct {
-	Count  *int   `json:"count,omitempty"`  // Number of pings to send
+	Count  *int   `json:"count,omitempty"`  // Number of pings to send. [1..5], default 5
 	Serial string `json:"serial,omitempty"` // Device serial number
 	Target string `json:"target,omitempty"` // IP address or FQDN to ping
 }
@@ -301,9 +389,8 @@ type ResponseDevicesCreateDeviceLiveToolsPingDeviceCallback struct {
 	URL    string `json:"url,omitempty"`    // The callback URL for the webhook target. This was either provided in the original request or comes from a configured webhook receiver
 }
 type ResponseDevicesCreateDeviceLiveToolsPingDeviceRequest struct {
-	Count  *int   `json:"count,omitempty"`  // Number of pings to send
+	Count  *int   `json:"count,omitempty"`  // Number of pings to send. [1..5], default 5
 	Serial string `json:"serial,omitempty"` // Device serial number
-	Target string `json:"target,omitempty"` // IP address or FQDN to ping
 }
 type ResponseDevicesGetDeviceLiveToolsPingDevice struct {
 	Callback *ResponseDevicesGetDeviceLiveToolsPingDeviceCallback `json:"callback,omitempty"` // Information for callback used to send back results
@@ -319,9 +406,8 @@ type ResponseDevicesGetDeviceLiveToolsPingDeviceCallback struct {
 	URL    string `json:"url,omitempty"`    // The callback URL for the webhook target. This was either provided in the original request or comes from a configured webhook receiver
 }
 type ResponseDevicesGetDeviceLiveToolsPingDeviceRequest struct {
-	Count  *int   `json:"count,omitempty"`  // Number of pings to send
+	Count  *int   `json:"count,omitempty"`  // Number of pings to send. [1..5], default 5
 	Serial string `json:"serial,omitempty"` // Device serial number
-	Target string `json:"target,omitempty"` // IP address or FQDN to ping
 }
 type ResponseDevicesGetDeviceLiveToolsPingDeviceResults struct {
 	Latencies *ResponseDevicesGetDeviceLiveToolsPingDeviceResultsLatencies `json:"latencies,omitempty"` // Packet latency stats
@@ -364,7 +450,7 @@ type ResponseDevicesCreateDeviceLiveToolsThroughputTestResult struct {
 	Speeds *ResponseDevicesCreateDeviceLiveToolsThroughputTestResultSpeeds `json:"speeds,omitempty"` // Shows the speeds (Mbps)
 }
 type ResponseDevicesCreateDeviceLiveToolsThroughputTestResultSpeeds struct {
-	Downstream *int `json:"downstream,omitempty"` // Shows the download speed from shard (Mbps)
+	Downstream *float64 `json:"downstream,omitempty"` // Shows the download speed from shard (Mbps)
 }
 type ResponseDevicesGetDeviceLiveToolsThroughputTest struct {
 	Error            string                                                  `json:"error,omitempty"`            // Description of the error.
@@ -381,7 +467,7 @@ type ResponseDevicesGetDeviceLiveToolsThroughputTestResult struct {
 	Speeds *ResponseDevicesGetDeviceLiveToolsThroughputTestResultSpeeds `json:"speeds,omitempty"` // Shows the speeds (Mbps)
 }
 type ResponseDevicesGetDeviceLiveToolsThroughputTestResultSpeeds struct {
-	Downstream *int `json:"downstream,omitempty"` // Shows the download speed from shard (Mbps)
+	Downstream *float64 `json:"downstream,omitempty"` // Shows the download speed from shard (Mbps)
 }
 type ResponseDevicesCreateDeviceLiveToolsWakeOnLan struct {
 	Callback    *ResponseDevicesCreateDeviceLiveToolsWakeOnLanCallback `json:"callback,omitempty"`    // Information for callback used to send back results
@@ -516,28 +602,38 @@ type ResponseDevicesRebootDevice struct {
 }
 type ResponseDevicesGetNetworkDevices []ResponseItemDevicesGetNetworkDevices // Array of ResponseDevicesGetNetworkDevices
 type ResponseItemDevicesGetNetworkDevices struct {
-	Address     string                                         `json:"address,omitempty"`     // Physical address of the device
-	Details     *[]ResponseItemDevicesGetNetworkDevicesDetails `json:"details,omitempty"`     // Additional device information
-	Firmware    string                                         `json:"firmware,omitempty"`    // Firmware version of the device
-	Imei        string                                         `json:"imei,omitempty"`        // IMEI of the device, if applicable
-	LanIP       string                                         `json:"lanIp,omitempty"`       // LAN IP address of the device
-	Lat         *float64                                       `json:"lat,omitempty"`         // Latitude of the device
-	Lng         *float64                                       `json:"lng,omitempty"`         // Longitude of the device
-	Mac         string                                         `json:"mac,omitempty"`         // MAC address of the device
-	Model       string                                         `json:"model,omitempty"`       // Model of the device
-	Name        string                                         `json:"name,omitempty"`        // Name of the device
-	NetworkID   string                                         `json:"networkId,omitempty"`   // ID of the network the device belongs to
-	Notes       string                                         `json:"notes,omitempty"`       // Notes for the device, limited to 255 characters
-	ProductType string                                         `json:"productType,omitempty"` // Product type of the device
-	Serial      string                                         `json:"serial,omitempty"`      // Serial number of the device
-	Tags        []string                                       `json:"tags,omitempty"`        // List of tags assigned to the device
+	Address        string                                              `json:"address,omitempty"`        // Physical address of the device
+	BeaconIDParams *ResponseItemDevicesGetNetworkDevicesBeaconIDParams `json:"beaconIdParams,omitempty"` // Beacon Id parameters with an identifier and major and minor versions
+	Details        *[]ResponseItemDevicesGetNetworkDevicesDetails      `json:"details,omitempty"`        // Additional device information
+	Firmware       string                                              `json:"firmware,omitempty"`       // Firmware version of the device
+	FloorPlanID    string                                              `json:"floorPlanId,omitempty"`    // The floor plan to associate to this device. null disassociates the device from the floorplan.
+	LanIP          string                                              `json:"lanIp,omitempty"`          // LAN IP address of the device
+	Lat            *float64                                            `json:"lat,omitempty"`            // Latitude of the device
+	Lng            *float64                                            `json:"lng,omitempty"`            // Longitude of the device
+	Mac            string                                              `json:"mac,omitempty"`            // MAC address of the device
+	Model          string                                              `json:"model,omitempty"`          // Model of the device
+	Name           string                                              `json:"name,omitempty"`           // Name of the device
+	NetworkID      string                                              `json:"networkId,omitempty"`      // ID of the network the device belongs to
+	Notes          string                                              `json:"notes,omitempty"`          // Notes for the device, limited to 255 characters
+	Serial         string                                              `json:"serial,omitempty"`         // Serial number of the device
+	Tags           []string                                            `json:"tags,omitempty"`           // List of tags assigned to the device
+}
+type ResponseItemDevicesGetNetworkDevicesBeaconIDParams struct {
+	Major *int   `json:"major,omitempty"` // The major number to be used in the beacon identifier
+	Minor *int   `json:"minor,omitempty"` // The minor number to be used in the beacon identifier
+	UUID  string `json:"uuid,omitempty"`  // The UUID to be used in the beacon identifier
 }
 type ResponseItemDevicesGetNetworkDevicesDetails struct {
 	Name  string `json:"name,omitempty"`  // Additional property name
 	Value string `json:"value,omitempty"` // Additional property value
 }
 type ResponseDevicesClaimNetworkDevices struct {
-	Serials []string `json:"serials,omitempty"` // The serials of the devices
+	Errors  *[]ResponseDevicesClaimNetworkDevicesErrors `json:"errors,omitempty"`  // Errors for devices that were not added
+	Serials []string                                    `json:"serials,omitempty"` // The serials of the devices
+}
+type ResponseDevicesClaimNetworkDevicesErrors struct {
+	Errors []string `json:"errors,omitempty"` // The errors for the device
+	Serial string   `json:"serial,omitempty"` // The serial of the device
 }
 type ResponseDevicesVmxNetworkDevicesClaim struct {
 	Address     string                                          `json:"address,omitempty"`     // Physical address of the device
@@ -559,6 +655,9 @@ type ResponseDevicesVmxNetworkDevicesClaim struct {
 type ResponseDevicesVmxNetworkDevicesClaimDetails struct {
 	Name  string `json:"name,omitempty"`  // Additional property name
 	Value string `json:"value,omitempty"` // Additional property value
+}
+type ResponseDevicesBatchNetworkFloorPlansDevicesUpdate struct {
+	Success *bool `json:"success,omitempty"` // Status of attempt to update device floorplan assignments
 }
 type ResponseDevicesCheckinNetworkSmDevices struct {
 	IDs []string `json:"ids,omitempty"` // The Meraki Ids of the set of devices.
@@ -622,6 +721,7 @@ type ResponseItemDevicesGetNetworkSmDeviceDeviceProfiles struct {
 	ProfileIDentifier string `json:"profileIdentifier,omitempty"` // The identifier of the profile.
 	Version           string `json:"version,omitempty"`           // The verison of the profile.
 }
+type ResponseDevicesInstallNetworkSmDeviceApps interface{}
 type ResponseDevicesGetNetworkSmDeviceNetworkAdapters []ResponseItemDevicesGetNetworkSmDeviceNetworkAdapters // Array of ResponseDevicesGetNetworkSmDeviceNetworkAdapters
 type ResponseItemDevicesGetNetworkSmDeviceNetworkAdapters struct {
 	DhcpServer string `json:"dhcpServer,omitempty"` // The IP address of the DCHP Server.
@@ -633,17 +733,15 @@ type ResponseItemDevicesGetNetworkSmDeviceNetworkAdapters struct {
 	Name       string `json:"name,omitempty"`       // The name of the newtwork adapter.
 	Subnet     string `json:"subnet,omitempty"`     // The subnet for the network adapter.
 }
-type ResponseDevicesGetNetworkSmDeviceRestrictions []ResponseItemDevicesGetNetworkSmDeviceRestrictions // Array of ResponseDevicesGetNetworkSmDeviceRestrictions
-type ResponseItemDevicesGetNetworkSmDeviceRestrictions struct {
-	Profile      string                                                         `json:"profile,omitempty"`      //
-	Restrictions *ResponseItemDevicesGetNetworkSmDeviceRestrictionsRestrictions `json:"restrictions,omitempty"` //
+type ResponseDevicesRefreshNetworkSmDeviceDetails interface{}
+type ResponseDevicesGetNetworkSmDeviceRestrictions struct {
+	Restrictions *[]ResponseDevicesGetNetworkSmDeviceRestrictionsRestrictions `json:"restrictions,omitempty"` // The list of restrictions for the device
 }
-type ResponseItemDevicesGetNetworkSmDeviceRestrictionsRestrictions struct {
-	MyRestriction *ResponseItemDevicesGetNetworkSmDeviceRestrictionsRestrictionsMyRestriction `json:"myRestriction,omitempty"` //
+type ResponseDevicesGetNetworkSmDeviceRestrictionsRestrictions struct {
+	Profile      string                                                                 `json:"profile,omitempty"`      // The profile identifier.
+	Restrictions *ResponseDevicesGetNetworkSmDeviceRestrictionsRestrictionsRestrictions `json:"restrictions,omitempty"` // The restrictions for the profile.
 }
-type ResponseItemDevicesGetNetworkSmDeviceRestrictionsRestrictionsMyRestriction struct {
-	Value *bool `json:"value,omitempty"` //
-}
+type ResponseDevicesGetNetworkSmDeviceRestrictionsRestrictionsRestrictions interface{}
 type ResponseDevicesGetNetworkSmDeviceSecurityCenters []ResponseItemDevicesGetNetworkSmDeviceSecurityCenters // Array of ResponseDevicesGetNetworkSmDeviceSecurityCenters
 type ResponseItemDevicesGetNetworkSmDeviceSecurityCenters struct {
 	AntiVirusName        string `json:"antiVirusName,omitempty"`        // The name of the Antivirus.
@@ -686,14 +784,17 @@ type ResponseItemDevicesGetNetworkSmDeviceSoftwares struct {
 type ResponseDevicesUnenrollNetworkSmDevice struct {
 	Success *bool `json:"success,omitempty"` // Boolean indicating whether the operation was completed successfully.
 }
+type ResponseDevicesUninstallNetworkSmDeviceApps interface{}
 type ResponseDevicesGetNetworkSmDeviceWLANLists []ResponseItemDevicesGetNetworkSmDeviceWLANLists // Array of ResponseDevicesGetNetworkSmDeviceWlanLists
 type ResponseItemDevicesGetNetworkSmDeviceWLANLists struct {
 	CreatedAt string `json:"createdAt,omitempty"` // When the Meraki record for the wlanList was created.
 	ID        string `json:"id,omitempty"`        // The Meraki managed Id of the wlanList record.
 	Xml       string `json:"xml,omitempty"`       // An XML string containing the WLAN List for the device.
 }
-
-type ResponseOrganizationsCloneOrganizationSwitchDevices interface{}
+type ResponseOrganizationsCloneOrganizationSwitchDevices struct {
+	SourceSerial  string   `json:"sourceSerial,omitempty"`  // Serial number of the source switch (must be on a network not bound to a template)
+	TargetSerials []string `json:"targetSerials,omitempty"` // Array of serial numbers of one or more target switches (must be on a network not bound to a template)
+}
 type ResponseOrganizationsGetOrganizationWirelessDevicesChannelUtilizationByDevice []ResponseItemOrganizationsGetOrganizationWirelessDevicesChannelUtilizationByDevice // Array of ResponseOrganizationsGetOrganizationWirelessDevicesChannelUtilizationByDevice
 type ResponseItemOrganizationsGetOrganizationWirelessDevicesChannelUtilizationByDevice struct {
 	ByBand  *[]ResponseItemOrganizationsGetOrganizationWirelessDevicesChannelUtilizationByDeviceByBand `json:"byBand,omitempty"`  // Channel utilization broken down by band.
@@ -865,6 +966,417 @@ type ResponseItemOrganizationsGetOrganizationWirelessDevicesPacketLossByNetworkU
 	Lost           *int     `json:"lost,omitempty"`           // Total packets sent by a client and did not reach the AP.
 	Total          *int     `json:"total,omitempty"`          // Total packets sent by a client to an AP.
 }
+type ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDevice struct {
+	Items *[]ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceItems `json:"items,omitempty"` // List of Catalyst access points information
+	Meta  *ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceItems struct {
+	Controller  *ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceItemsController `json:"controller,omitempty"`  // Associated wireless controller
+	CountryCode string                                                                                         `json:"countryCode,omitempty"` // Country code (2 characters)
+	Details     *[]ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceItemsDetails  `json:"details,omitempty"`     // Catalyst access point details
+	JoinedAt    string                                                                                         `json:"joinedAt,omitempty"`    // The time when AP joins wireless controller
+	Mode        string                                                                                         `json:"mode,omitempty"`        // AP mode (local, flex, etc.)
+	Model       string                                                                                         `json:"model,omitempty"`       // AP model
+	Network     *ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceItemsNetwork    `json:"network,omitempty"`     // Catalyst access point network
+	Serial      string                                                                                         `json:"serial,omitempty"`      // AP cloud ID
+	Tags        *[]ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceItemsTags     `json:"tags,omitempty"`        // The tags of the catalyst access point
+}
+type ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceItemsController struct {
+	Serial string `json:"serial,omitempty"` // Associated wireless controller cloud ID
+}
+type ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceItemsDetails struct {
+	Name  string `json:"name,omitempty"`  // Item name
+	Value string `json:"value,omitempty"` // Item value
+}
+type ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceItemsNetwork struct {
+	ID string `json:"id,omitempty"` // Catalyst access point network ID
+}
+type ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceItemsTags struct {
+	Policy string `json:"policy,omitempty"` // Policy tag
+	Rf     string `json:"rf,omitempty"`     // RF tag
+	Site   string `json:"site,omitempty"`   // Site tag
+}
+type ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceMeta struct {
+	Counts *ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceMetaCounts struct {
+	Items *ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseOrganizationsGetOrganizationWirelessDevicesWirelessControllersByDeviceMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2ByDevice struct {
+	Items *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceItems `json:"items,omitempty"` // Wireless LAN controller L2 interfaces
+	Meta  *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceItems struct {
+	Interfaces *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceItemsInterfaces `json:"interfaces,omitempty"` // Layer 2 interfaces belongs to the wireless LAN controller
+	Serial     string                                                                                              `json:"serial,omitempty"`     // The cloud ID of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceItemsInterfaces struct {
+	ChannelGroup     *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceItemsInterfacesChannelGroup `json:"channelGroup,omitempty"`     // The channel group of this wireless LAN controller interface
+	Description      string                                                                                                        `json:"description,omitempty"`      // The description of the wireless LAN controller interface
+	Enabled          *bool                                                                                                         `json:"enabled,omitempty"`          // The status of the wireless LAN controller interface
+	IsRedundancyPort *bool                                                                                                         `json:"isRedundancyPort,omitempty"` // Indicate whether the interface is a redundancy port used to perform HA role negotiation
+	IsUplink         *bool                                                                                                         `json:"isUplink,omitempty"`         // Indicate whether the interface is uplink
+	LinkNegotiation  string                                                                                                        `json:"linkNegotiation,omitempty"`  // The interface negotiation mode
+	Mac              string                                                                                                        `json:"mac,omitempty"`              // The MAC address of the wireless LAN controller interface
+	Module           *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceItemsInterfacesModule       `json:"module,omitempty"`           // The module of this wireless LAN controller interface
+	Name             string                                                                                                        `json:"name,omitempty"`             // The name of the wireless LAN controller interface
+	Speed            string                                                                                                        `json:"speed,omitempty"`            // The current data transfer rate which the interface is operating at. enum = [1 Gbps, 2 Gbps, 5 Gbps, 10 Gbps, 20 Gbps, 40 Gbps, 100 Gbps]
+	Status           string                                                                                                        `json:"status,omitempty"`           // The status of the wireless LAN controller interface
+	VLAN             *int                                                                                                          `json:"vlan,omitempty"`             // The VLAN of the switch port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceItemsInterfacesChannelGroup struct {
+	Number *int `json:"number,omitempty"` // The interface channel group number
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceItemsInterfacesModule struct {
+	Model string `json:"model,omitempty"` // The module type of this wireless LAN controller interface
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceMeta struct {
+	Counts *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceMetaCounts struct {
+	Items *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice struct {
+	Items *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceItems `json:"items,omitempty"` // Wireless LAN controller layer 2 interfaces historical status
+	Meta  *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceItems struct {
+	Interfaces *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceItemsInterfaces `json:"interfaces,omitempty"` // layer 2 interfaces belongs to the wireless LAN controller
+	Serial     string                                                                                                                   `json:"serial,omitempty"`     // The cloud ID of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceItemsInterfaces struct {
+	Changes *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceItemsInterfacesChanges `json:"changes,omitempty"` // The statuses of layer 2 interfaces of the wireless LAN controller
+	Mac     string                                                                                                                          `json:"mac,omitempty"`     // The MAC address of the wireless LAN controller interface
+	Name    string                                                                                                                          `json:"name,omitempty"`    // The name of the wireless LAN controller interface
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceItemsInterfacesChanges struct {
+	Errors   []string `json:"errors,omitempty"`   // All errors present on the port
+	Status   string   `json:"status,omitempty"`   // The status of the interface
+	Ts       string   `json:"ts,omitempty"`       // The timestamp of current status of the interface
+	Warnings []string `json:"warnings,omitempty"` // All warnings present on the port
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceMeta struct {
+	Counts *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceMetaCounts struct {
+	Items *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval struct {
+	Items *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalItems `json:"items,omitempty"` // Wireless LAN controller layer 2 interfaces usage
+	Meta  *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalItems struct {
+	Readings *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalItemsReadings `json:"readings,omitempty"` // The usages of layer 2 interfaces of the wireless LAN controller. Usage is in bytes
+	Serial   string                                                                                                          `json:"serial,omitempty"`   // The cloud ID of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalItemsReadings struct {
+	Mac  string `json:"mac,omitempty"`  // The MAC address of the wireless controller interface
+	Name string `json:"name,omitempty"` // The name of the wireless LAN controller interface
+	Recv *int   `json:"recv,omitempty"` // The volume of data, in bytes/sec, received by wireless controller interface
+	Send *int   `json:"send,omitempty"` // The volume of data, in bytes/sec, transmitted by wireless controller interface
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalMeta struct {
+	Counts *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalMetaCounts struct {
+	Items *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDevice struct {
+	Items *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceItems `json:"items,omitempty"` // Wireless LAN controller L3 interfaces
+	Meta  *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceItems struct {
+	Interfaces *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceItemsInterfaces `json:"interfaces,omitempty"` // Layer 3 interfaces belongs to the wireless LAN controller
+	Serial     string                                                                                              `json:"serial,omitempty"`     // The cloud ID of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceItemsInterfaces struct {
+	Addresses       *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceItemsInterfacesAddresses  `json:"addresses,omitempty"`       // Available addresses for the interface.
+	ChannelGroup    *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceItemsInterfacesChannelGroup `json:"channelGroup,omitempty"`    // The channel group of this wireless LAN controller interface
+	Description     string                                                                                                        `json:"description,omitempty"`     // The description of the wireless LAN controller interface
+	IsUplink        *bool                                                                                                         `json:"isUplink,omitempty"`        // Indicate whether the interface is uplink
+	LinkNegotiation string                                                                                                        `json:"linkNegotiation,omitempty"` // The interface negotiation mode
+	Mac             string                                                                                                        `json:"mac,omitempty"`             // The MAC address of the wireless LAN controller interface
+	Module          *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceItemsInterfacesModule       `json:"module,omitempty"`          // The module of this wireless LAN controller interface
+	Name            string                                                                                                        `json:"name,omitempty"`            // The name of the wireless LAN controller interface
+	Speed           string                                                                                                        `json:"speed,omitempty"`           // The current data transfer rate which the interface is operating at. enum = [1 Gbps, 2 Gbps, 5 Gbps, 10 Gbps, 20 Gbps, 40 Gbps, 100 Gbps]
+	Status          string                                                                                                        `json:"status,omitempty"`          // The status of the wireless LAN controller interface
+	VLAN            *int                                                                                                          `json:"vlan,omitempty"`            // The VLAN of the switch port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
+	Vrf             *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceItemsInterfacesVrf          `json:"vrf,omitempty"`             // The virtual routing and forwarding (VRF) for the wireless LAN controller interface
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceItemsInterfacesAddresses struct {
+	Address  string `json:"address,omitempty"`  // The address of the wireless LAN controller interface
+	Protocol string `json:"protocol,omitempty"` // Type of address for the device uplink. Available options are: ipv4, ipv6. enum = [ipv4, ipv6]
+	Subnet   string `json:"subnet,omitempty"`   // The address of the wireless LAN controller interface
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceItemsInterfacesChannelGroup struct {
+	Number *int `json:"number,omitempty"` // The interface channel group number
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceItemsInterfacesModule struct {
+	Model string `json:"model,omitempty"` // The module type of this wireless LAN controller interface
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceItemsInterfacesVrf struct {
+	Name string `json:"name,omitempty"` // The virtual routing and forwarding (VRF) name
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceMeta struct {
+	Counts *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceMetaCounts struct {
+	Items *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice struct {
+	Items *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceItems `json:"items,omitempty"` // Wireless LAN controller layer 3 interfaces historical status
+	Meta  *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceItems struct {
+	Interfaces *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceItemsInterfaces `json:"interfaces,omitempty"` // layer 3 interfaces belongs to the wireless LAN controller
+	Serial     string                                                                                                                   `json:"serial,omitempty"`     // The cloud ID of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceItemsInterfaces struct {
+	Changes *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceItemsInterfacesChanges `json:"changes,omitempty"` // The statuses of layer 3 interfaces of the wireless LAN controller
+	Mac     string                                                                                                                          `json:"mac,omitempty"`     // The MAC address of the wireless LAN controller interface
+	Name    string                                                                                                                          `json:"name,omitempty"`    // The name of the wireless LAN controller interface
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceItemsInterfacesChanges struct {
+	Errors   []string `json:"errors,omitempty"`   // All errors present on the port
+	Status   string   `json:"status,omitempty"`   // The status of the interface
+	Ts       string   `json:"ts,omitempty"`       // The timestamp of current status of the interface
+	Warnings []string `json:"warnings,omitempty"` // All warnings present on the port
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceMeta struct {
+	Counts *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceMetaCounts struct {
+	Items *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval struct {
+	Items *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalItems `json:"items,omitempty"` // Wireless LAN controller layer 3 interfaces usage
+	Meta  *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalItems struct {
+	Readings *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalItemsReadings `json:"readings,omitempty"` // The usages of layer 3 interfaces of the wireless LAN controller. Usage is in bytes
+	Serial   string                                                                                                          `json:"serial,omitempty"`   // The cloud ID of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalItemsReadings struct {
+	Mac  string `json:"mac,omitempty"`  // The MAC address of the wireless controller interface
+	Name string `json:"name,omitempty"` // The name of the wireless LAN controller interface
+	Recv *int   `json:"recv,omitempty"` // The volume of data, in bytes/sec, received by wireless controller interface
+	Send *int   `json:"send,omitempty"` // The volume of data, in bytes/sec, transmitted by wireless controller interface
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalMeta struct {
+	Counts *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalMetaCounts struct {
+	Items *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice struct {
+	Items *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceItems `json:"items,omitempty"` // Wireless LAN controller interfaces packets statuses
+	Meta  *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceItems struct {
+	Interfaces *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceItemsInterfaces `json:"interfaces,omitempty"` // Interfaces belongs to the wireless LAN controller
+	Serial     string                                                                                                           `json:"serial,omitempty"`     // The cloud ID of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceItemsInterfaces struct {
+	Name     string                                                                                                                   `json:"name,omitempty"`     // The name of the wireless LAN controller interface
+	Readings *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceItemsInterfacesReadings `json:"readings,omitempty"` // The status of packets counter on the interfaces of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceItemsInterfacesReadings struct {
+	Name  string                                                                                                                     `json:"name,omitempty"`  // The type of packets being counted
+	Rate  *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceItemsInterfacesReadingsRate `json:"rate,omitempty"`  // The interface packet rates measured in packets per second
+	Recv  *int                                                                                                                       `json:"recv,omitempty"`  // The total count of packets received by the interface during the timespan
+	Send  *int                                                                                                                       `json:"send,omitempty"`  // The total count of packets sent by the interface during the timespan
+	Total *int                                                                                                                       `json:"total,omitempty"` // The total count of sent and received packets during the timespan
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceItemsInterfacesReadingsRate struct {
+	Recv  *int `json:"recv,omitempty"`  // The rate of packets received during the timespan
+	Send  *int `json:"send,omitempty"`  // The rate of packets sent during the timespan
+	Total *int `json:"total,omitempty"` // The rate of all packets sent and received during the timespan
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceMeta struct {
+	Counts *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceMetaCounts struct {
+	Items *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval struct {
+	Items *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalItems `json:"items,omitempty"` // Wireless LAN controller interfaces usage data
+	Meta  *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalItems struct {
+	Intervals *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalItemsIntervals `json:"intervals,omitempty"` // Time interval snapshots of interfaces usage data of the wireless LAN controller
+	Serial    string                                                                                                         `json:"serial,omitempty"`    // The cloud ID of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalItemsIntervals struct {
+	ByInterface *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalItemsIntervalsByInterface `json:"byInterface,omitempty"` // The usage data on the interfaces of the wireless LAN controller
+	EndTs       string                                                                                                                    `json:"endTs,omitempty"`       // The end time interval snapshots of the query range with iso8601 format
+	Overall     *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalItemsIntervalsOverall       `json:"overall,omitempty"`     // The overall usage of all queried interfaces of the wireless LAN controller
+	StartTs     string                                                                                                                    `json:"startTs,omitempty"`     // The start time interval snapshots of the query range with iso8601 format
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalItemsIntervalsByInterface struct {
+	Name  string                                                                                                                       `json:"name,omitempty"`  // The name of the wireless LAN controller interface
+	Usage *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalItemsIntervalsByInterfaceUsage `json:"usage,omitempty"` // The usage on the interfaces of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalItemsIntervalsByInterfaceUsage struct {
+	Recv  *int `json:"recv,omitempty"`  // The received usage on the interface during the interval, unit is bit/sec
+	Send  *int `json:"send,omitempty"`  // The sent usage on the interface during the interval, unit is bit/sec
+	Total *int `json:"total,omitempty"` // The total usage on the interface during the interval, unit is bit/sec
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalItemsIntervalsOverall struct {
+	Recv  *int `json:"recv,omitempty"`  // The received usage of all queried interfaces during the interval, unit is bit/sec
+	Send  *int `json:"send,omitempty"`  // The sent usage of all queried interfaces during the interval, unit is bit/sec
+	Total *int `json:"total,omitempty"` // The total usage of all queried interfaces during the interval, unit is bit/sec
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalMeta struct {
+	Counts *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalMetaCounts struct {
+	Items *ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory []ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory // Array of ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory
+type ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory struct {
+	Items *[]ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryItems `json:"items,omitempty"` // Wireless LAN controller HA failover events
+	Meta  *ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryItems struct {
+	Active *ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryItemsActive `json:"active,omitempty"` // Details about the active unit
+	Failed *ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryItemsFailed `json:"failed,omitempty"` // Details about the failed unit
+	Reason string                                                                                                 `json:"reason,omitempty"` // Failover reason
+	Serial string                                                                                                 `json:"serial,omitempty"` // Wireless LAN controller cloud ID
+	Ts     string                                                                                                 `json:"ts,omitempty"`     // Failover time
+}
+type ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryItemsActive struct {
+	Chassis *ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryItemsActiveChassis `json:"chassis,omitempty"` // Details about the active unit chassis
+}
+type ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryItemsActiveChassis struct {
+	Name string `json:"name,omitempty"` // The name of the active chassis unit
+}
+type ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryItemsFailed struct {
+	Chassis *ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryItemsFailedChassis `json:"chassis,omitempty"` // Details about the failed unit chassis
+}
+type ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryItemsFailedChassis struct {
+	Name string `json:"name,omitempty"` // The name of the failed chassis unit
+}
+type ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryMeta struct {
+	Counts *ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryMetaCounts struct {
+	Items *ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseItemOrganizationsGetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyStatuses struct {
+	Items *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyStatusesItems `json:"items,omitempty"` // Wireless LAN controller redundancy statuses
+	Meta  *ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyStatusesMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyStatusesItems struct {
+	Enabled     *bool                                                                                         `json:"enabled,omitempty"`     // Wireless LAN controller redundancy enablement
+	Failover    *ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyStatusesItemsFailover `json:"failover,omitempty"`    // Wireless LAN controller failover information
+	MobilityMac string                                                                                        `json:"mobilityMac,omitempty"` // Wireless LAN controller redundancy mobility mac
+	Mode        string                                                                                        `json:"mode,omitempty"`        // Wireless LAN controller redundancy SSO (stateful switchover)
+	Serial      string                                                                                        `json:"serial,omitempty"`      // Wireless LAN controller cloud ID
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyStatusesItemsFailover struct {
+	Counts *ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyStatusesItemsFailoverCounts `json:"counts,omitempty"` // Wireless LAN controller switchover counts
+	Last   *ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyStatusesItemsFailoverLast   `json:"last,omitempty"`   // Wireless LAN controller last failover information
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyStatusesItemsFailoverCounts struct {
+	Total *int `json:"total,omitempty"` // Total number of failovers
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyStatusesItemsFailoverLast struct {
+	Reason string `json:"reason,omitempty"` // Wireless LAN controller last redundancy switchover reason
+	Ts     string `json:"ts,omitempty"`     // Wireless LAN controller last redundancy switchover time
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyStatusesMeta struct {
+	Counts *ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyStatusesMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyStatusesMetaCounts struct {
+	Items *ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyStatusesMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesRedundancyStatusesMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval struct {
+	Items *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItems `json:"items,omitempty"` // Wireless LAN controller CPU usage data
+	Meta  *ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItems struct {
+	Intervals *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItemsIntervals `json:"intervals,omitempty"` // Time interval snapshots of CPU usage data of the wireless LAN controller
+	Serial    string                                                                                                           `json:"serial,omitempty"`    // The cloud ID of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItemsIntervals struct {
+	ByCore  *[]ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItemsIntervalsByCore `json:"byCore,omitempty"`  // The CPU usage per core of the wireless LAN controller
+	EndTs   string                                                                                                                 `json:"endTs,omitempty"`   // The end time of the query range  with iso8601 format
+	Overall *ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItemsIntervalsOverall  `json:"overall,omitempty"` // The overall CPU usage of the wireless LAN controller
+	StartTs string                                                                                                                 `json:"startTs,omitempty"` // The start time of the query range with iso8601 format
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItemsIntervalsByCore struct {
+	Name  string                                                                                                                    `json:"name,omitempty"`  // The CPU core name
+	Usage *ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItemsIntervalsByCoreUsage `json:"usage,omitempty"` // The specific core CPU usage of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItemsIntervalsByCoreUsage struct {
+	Average *ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItemsIntervalsByCoreUsageAverage `json:"average,omitempty"` // The specific core average CPU usage of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItemsIntervalsByCoreUsageAverage struct {
+	Percentage *float64 `json:"percentage,omitempty"` // The specific core CPU usage percentage of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItemsIntervalsOverall struct {
+	Usage *ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItemsIntervalsOverallUsage `json:"usage,omitempty"` // The CPU usage of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItemsIntervalsOverallUsage struct {
+	Average *ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItemsIntervalsOverallUsageAverage `json:"average,omitempty"` // The average CPU usage of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalItemsIntervalsOverallUsageAverage struct {
+	Percentage *float64 `json:"percentage,omitempty"` // The CPU usage percentage of the wireless LAN controller
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalMeta struct {
+	Counts *ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalMetaCounts struct {
+	Items *ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseOrganizationsGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
 type RequestDevicesUpdateDevice struct {
 	Address         string   `json:"address,omitempty"`         // The address of a device
 	FloorPlanID     string   `json:"floorPlanId,omitempty"`     // The floor plan to associate to this device. null disassociates the device from the floorplan.
@@ -883,6 +1395,7 @@ type RequestDevicesBlinkDeviceLeds struct {
 }
 type RequestDevicesUpdateDeviceCellularSims struct {
 	SimFailover *RequestDevicesUpdateDeviceCellularSimsSimFailover `json:"simFailover,omitempty"` // SIM Failover settings.
+	SimOrdering []string                                           `json:"simOrdering,omitempty"` // Specifies the ordering of all SIMs for an MG: primary, secondary, and not-in-use (when applicable). It's required for devices with 3 or more SIMs and can be used in place of 'isPrimary' for dual-SIM devices. To indicate eSIM, use 'sim3'. Sim failover will occur only between primary and secondary sim slots.
 	Sims        *[]RequestDevicesUpdateDeviceCellularSimsSims      `json:"sims,omitempty"`        // List of SIMs. If a SIM was previously configured and not specified in this request, it will remain unchanged.
 }
 type RequestDevicesUpdateDeviceCellularSimsSimFailover struct {
@@ -891,8 +1404,9 @@ type RequestDevicesUpdateDeviceCellularSimsSimFailover struct {
 }
 type RequestDevicesUpdateDeviceCellularSimsSims struct {
 	Apns      *[]RequestDevicesUpdateDeviceCellularSimsSimsApns `json:"apns,omitempty"`      // APN configurations. If empty, the default APN will be used.
-	IsPrimary *bool                                             `json:"isPrimary,omitempty"` // If true, this SIM is used for boot. Must be true on single-sim devices.
-	Slot      string                                            `json:"slot,omitempty"`      // SIM slot being configured. Must be 'sim1' on single-sim devices.
+	IsPrimary *bool                                             `json:"isPrimary,omitempty"` // If true, this SIM is activated on platform bootup. It must be true on single-SIM devices and is a required field for dual-SIM MGs unless it is being configured using 'simOrdering'.
+	SimOrder  *int                                              `json:"simOrder,omitempty"`  // Priority of SIM slot being configured. Use a value between 1 and total number of SIMs available. The value must be unique for each SIM.
+	Slot      string                                            `json:"slot,omitempty"`      // SIM slot being configured. Must be 'sim1' on single-sim devices. Use 'sim3' for eSIM.
 }
 type RequestDevicesUpdateDeviceCellularSimsSimsApns struct {
 	AllowedIPTypes []string                                                      `json:"allowedIpTypes,omitempty"` // IP versions to support (permitted values include 'ipv4', 'ipv6').
@@ -921,7 +1435,7 @@ type RequestDevicesCreateDeviceLiveToolsArpTableCallbackPayloadTemplate struct {
 }
 type RequestDevicesCreateDeviceLiveToolsCableTest struct {
 	Callback *RequestDevicesCreateDeviceLiveToolsCableTestCallback `json:"callback,omitempty"` // Details for the callback. Please include either an httpServerId OR url and sharedSecret
-	Ports    []string                                              `json:"ports,omitempty"`    // A list of ports for which to perform the cable test.
+	Ports    []string                                              `json:"ports,omitempty"`    // A list of ports for which to perform the cable test.  For Catalyst switches, IOS interface names are also supported, such as "GigabitEthernet1/0/8", "Gi1/0/8", or even "1/0/8".
 }
 type RequestDevicesCreateDeviceLiveToolsCableTestCallback struct {
 	HTTPServer      *RequestDevicesCreateDeviceLiveToolsCableTestCallbackHTTPServer      `json:"httpServer,omitempty"`      // The webhook receiver used for the callback webhook.
@@ -933,6 +1447,22 @@ type RequestDevicesCreateDeviceLiveToolsCableTestCallbackHTTPServer struct {
 	ID string `json:"id,omitempty"` // The webhook receiver ID that will receive information. If specifying this, please leave the url and sharedSecret fields blank.
 }
 type RequestDevicesCreateDeviceLiveToolsCableTestCallbackPayloadTemplate struct {
+	ID string `json:"id,omitempty"` // The ID of the payload template. Defaults to 'wpt_00005' for the Callback (included) template.
+}
+type RequestDevicesCreateDeviceLiveToolsLedsBlink struct {
+	Callback *RequestDevicesCreateDeviceLiveToolsLedsBlinkCallback `json:"callback,omitempty"` // Details for the callback. Please include either an httpServerId OR url and sharedSecret
+	Duration *int                                                  `json:"duration,omitempty"` // The duration in seconds to blink LEDs.
+}
+type RequestDevicesCreateDeviceLiveToolsLedsBlinkCallback struct {
+	HTTPServer      *RequestDevicesCreateDeviceLiveToolsLedsBlinkCallbackHTTPServer      `json:"httpServer,omitempty"`      // The webhook receiver used for the callback webhook.
+	PayloadTemplate *RequestDevicesCreateDeviceLiveToolsLedsBlinkCallbackPayloadTemplate `json:"payloadTemplate,omitempty"` // The payload template of the webhook used for the callback
+	SharedSecret    string                                                               `json:"sharedSecret,omitempty"`    // A shared secret that will be included in the requests sent to the callback URL. It can be used to verify that the request was sent by Meraki. If using this field, please also specify an url.
+	URL             string                                                               `json:"url,omitempty"`             // The callback URL for the webhook target. If using this field, please also specify a sharedSecret.
+}
+type RequestDevicesCreateDeviceLiveToolsLedsBlinkCallbackHTTPServer struct {
+	ID string `json:"id,omitempty"` // The webhook receiver ID that will receive information. If specifying this, please leave the url and sharedSecret fields blank.
+}
+type RequestDevicesCreateDeviceLiveToolsLedsBlinkCallbackPayloadTemplate struct {
 	ID string `json:"id,omitempty"` // The ID of the payload template. Defaults to 'wpt_00005' for the Callback (included) template.
 }
 type RequestDevicesCreateDeviceLiveToolsPing struct {
@@ -1031,6 +1561,16 @@ type RequestDevicesVmxNetworkDevicesClaim struct {
 type RequestDevicesRemoveNetworkDevices struct {
 	Serial string `json:"serial,omitempty"` // The serial of a device
 }
+type RequestDevicesBatchNetworkFloorPlansDevicesUpdate struct {
+	Assignments *[]RequestDevicesBatchNetworkFloorPlansDevicesUpdateAssignments `json:"assignments,omitempty"` // List of floorplan assignments to update. Up to 100 floor plan assignments can be provided in a request.
+}
+type RequestDevicesBatchNetworkFloorPlansDevicesUpdateAssignments struct {
+	FloorPlan *RequestDevicesBatchNetworkFloorPlansDevicesUpdateAssignmentsFloorPlan `json:"floorPlan,omitempty"` // Floorplan to be assigned or unassigned
+	Serial    string                                                                 `json:"serial,omitempty"`    // Serial of the device to change the floor plan assignment for
+}
+type RequestDevicesBatchNetworkFloorPlansDevicesUpdateAssignmentsFloorPlan struct {
+	ID string `json:"id,omitempty"` // The ID of the floor plan to assign the device to, or null to unassign the device from its floor plan
+}
 type RequestDevicesCheckinNetworkSmDevices struct {
 	IDs      []string `json:"ids,omitempty"`      // The ids of the devices to be checked-in.
 	Scope    []string `json:"scope,omitempty"`    // The scope (one of all, none, withAny, withAll, withoutAny, or withoutAll) and a set of tags of the devices to be checked-in.
@@ -1108,7 +1648,7 @@ type RequestOrganizationsCloneOrganizationSwitchDevices struct {
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device
+
 */
 func (s *DevicesService) GetDevice(serial string) (*ResponseDevicesGetDevice, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}"
@@ -1141,7 +1681,7 @@ func (s *DevicesService) GetDevice(serial string) (*ResponseDevicesGetDevice, *r
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-cellular-sims
+
 */
 func (s *DevicesService) GetDeviceCellularSims(serial string) (*ResponseDevicesGetDeviceCellularSims, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/cellular/sims"
@@ -1175,7 +1715,7 @@ func (s *DevicesService) GetDeviceCellularSims(serial string) (*ResponseDevicesG
 @param serial serial path parameter.
 @param getDeviceClientsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-clients
+
 */
 func (s *DevicesService) GetDeviceClients(serial string, getDeviceClientsQueryParams *GetDeviceClientsQueryParams) (*ResponseDevicesGetDeviceClients, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/clients"
@@ -1211,7 +1751,7 @@ func (s *DevicesService) GetDeviceClients(serial string, getDeviceClientsQueryPa
 @param serial serial path parameter.
 @param arpTableID arpTableId path parameter. Arp table ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-live-tools-arp-table
+
 */
 func (s *DevicesService) GetDeviceLiveToolsArpTable(serial string, arpTableID string) (*ResponseDevicesGetDeviceLiveToolsArpTable, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/liveTools/arpTable/{arpTableId}"
@@ -1246,7 +1786,7 @@ func (s *DevicesService) GetDeviceLiveToolsArpTable(serial string, arpTableID st
 @param serial serial path parameter.
 @param id id path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-live-tools-cable-test
+
 */
 func (s *DevicesService) GetDeviceLiveToolsCableTest(serial string, id string) (*ResponseDevicesGetDeviceLiveToolsCableTest, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/liveTools/cableTest/{id}"
@@ -1275,13 +1815,48 @@ func (s *DevicesService) GetDeviceLiveToolsCableTest(serial string, id string) (
 
 }
 
+//GetDeviceLiveToolsLedsBlink Return a blink LEDs job
+/* Return a blink LEDs job
+
+@param serial serial path parameter.
+@param ledsBlinkID ledsBlinkId path parameter. Leds blink ID
+
+
+*/
+func (s *DevicesService) GetDeviceLiveToolsLedsBlink(serial string, ledsBlinkID string) (*ResponseDevicesGetDeviceLiveToolsLedsBlink, *resty.Response, error) {
+	path := "/api/v1/devices/{serial}/liveTools/leds/blink/{ledsBlinkId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
+	path = strings.Replace(path, "{ledsBlinkId}", fmt.Sprintf("%v", ledsBlinkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseDevicesGetDeviceLiveToolsLedsBlink{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetDeviceLiveToolsLedsBlink")
+	}
+
+	result := response.Result().(*ResponseDevicesGetDeviceLiveToolsLedsBlink)
+	return result, response, err
+
+}
+
 //GetDeviceLiveToolsPing Return a ping job
 /* Return a ping job. Latency unit in response is in milliseconds. Size is in bytes.
 
 @param serial serial path parameter.
 @param id id path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-live-tools-ping
+
 */
 func (s *DevicesService) GetDeviceLiveToolsPing(serial string, id string) (*ResponseDevicesGetDeviceLiveToolsPing, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/liveTools/ping/{id}"
@@ -1316,7 +1891,7 @@ func (s *DevicesService) GetDeviceLiveToolsPing(serial string, id string) (*Resp
 @param serial serial path parameter.
 @param id id path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-live-tools-ping-device
+
 */
 func (s *DevicesService) GetDeviceLiveToolsPingDevice(serial string, id string) (*ResponseDevicesGetDeviceLiveToolsPingDevice, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/liveTools/pingDevice/{id}"
@@ -1351,7 +1926,7 @@ func (s *DevicesService) GetDeviceLiveToolsPingDevice(serial string, id string) 
 @param serial serial path parameter.
 @param throughputTestID throughputTestId path parameter. Throughput test ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-live-tools-throughput-test
+
 */
 func (s *DevicesService) GetDeviceLiveToolsThroughputTest(serial string, throughputTestID string) (*ResponseDevicesGetDeviceLiveToolsThroughputTest, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/liveTools/throughputTest/{throughputTestId}"
@@ -1386,7 +1961,7 @@ func (s *DevicesService) GetDeviceLiveToolsThroughputTest(serial string, through
 @param serial serial path parameter.
 @param wakeOnLanID wakeOnLanId path parameter. Wake on lan ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-live-tools-wake-on-lan
+
 */
 func (s *DevicesService) GetDeviceLiveToolsWakeOnLan(serial string, wakeOnLanID string) (*ResponseDevicesGetDeviceLiveToolsWakeOnLan, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/liveTools/wakeOnLan/{wakeOnLanId}"
@@ -1420,7 +1995,7 @@ func (s *DevicesService) GetDeviceLiveToolsWakeOnLan(serial string, wakeOnLanID 
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-lldp-cdp
+
 */
 func (s *DevicesService) GetDeviceLldpCdp(serial string) (*ResponseDevicesGetDeviceLldpCdp, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/lldpCdp"
@@ -1454,7 +2029,7 @@ func (s *DevicesService) GetDeviceLldpCdp(serial string) (*ResponseDevicesGetDev
 @param serial serial path parameter.
 @param getDeviceLossAndLatencyHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-loss-and-latency-history
+
 */
 func (s *DevicesService) GetDeviceLossAndLatencyHistory(serial string, getDeviceLossAndLatencyHistoryQueryParams *GetDeviceLossAndLatencyHistoryQueryParams) (*ResponseDevicesGetDeviceLossAndLatencyHistory, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/lossAndLatencyHistory"
@@ -1489,7 +2064,7 @@ func (s *DevicesService) GetDeviceLossAndLatencyHistory(serial string, getDevice
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-management-interface
+
 */
 func (s *DevicesService) GetDeviceManagementInterface(serial string) (*ResponseDevicesGetDeviceManagementInterface, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/managementInterface"
@@ -1522,7 +2097,7 @@ func (s *DevicesService) GetDeviceManagementInterface(serial string) (*ResponseD
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-devices
+
 */
 func (s *DevicesService) GetNetworkDevices(networkID string) (*ResponseDevicesGetNetworkDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/devices"
@@ -1556,7 +2131,7 @@ func (s *DevicesService) GetNetworkDevices(networkID string) (*ResponseDevicesGe
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-cellular-usage-history
+
 */
 func (s *DevicesService) GetNetworkSmDeviceCellularUsageHistory(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceCellularUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/cellularUsageHistory"
@@ -1591,7 +2166,7 @@ func (s *DevicesService) GetNetworkSmDeviceCellularUsageHistory(networkID string
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-certs
+
 */
 func (s *DevicesService) GetNetworkSmDeviceCerts(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceCerts, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/certs"
@@ -1626,7 +2201,7 @@ func (s *DevicesService) GetNetworkSmDeviceCerts(networkID string, deviceID stri
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-device-profiles
+
 */
 func (s *DevicesService) GetNetworkSmDeviceDeviceProfiles(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceDeviceProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/deviceProfiles"
@@ -1661,7 +2236,7 @@ func (s *DevicesService) GetNetworkSmDeviceDeviceProfiles(networkID string, devi
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-network-adapters
+
 */
 func (s *DevicesService) GetNetworkSmDeviceNetworkAdapters(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceNetworkAdapters, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/networkAdapters"
@@ -1696,7 +2271,7 @@ func (s *DevicesService) GetNetworkSmDeviceNetworkAdapters(networkID string, dev
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-restrictions
+
 */
 func (s *DevicesService) GetNetworkSmDeviceRestrictions(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceRestrictions, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/restrictions"
@@ -1731,7 +2306,7 @@ func (s *DevicesService) GetNetworkSmDeviceRestrictions(networkID string, device
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-security-centers
+
 */
 func (s *DevicesService) GetNetworkSmDeviceSecurityCenters(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceSecurityCenters, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/securityCenters"
@@ -1766,7 +2341,7 @@ func (s *DevicesService) GetNetworkSmDeviceSecurityCenters(networkID string, dev
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-softwares
+
 */
 func (s *DevicesService) GetNetworkSmDeviceSoftwares(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceSoftwares, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/softwares"
@@ -1801,7 +2376,7 @@ func (s *DevicesService) GetNetworkSmDeviceSoftwares(networkID string, deviceID 
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-sm-device-wlan-lists
+
 */
 func (s *DevicesService) GetNetworkSmDeviceWLANLists(networkID string, deviceID string) (*ResponseDevicesGetNetworkSmDeviceWLANLists, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/wlanLists"
@@ -1836,7 +2411,7 @@ func (s *DevicesService) GetNetworkSmDeviceWLANLists(networkID string, deviceID 
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-devices-availabilities-change-history
+
 */
 func (s *DevicesService) GetOrganizationDevicesAvailabilitiesChangeHistory(organizationID string, getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams *GetOrganizationDevicesAvailabilitiesChangeHistoryQueryParams) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/availabilities/changeHistory"
@@ -1865,20 +2440,20 @@ func (s *DevicesService) GetOrganizationDevicesAvailabilitiesChangeHistory(organ
 
 }
 
-//GetOrganizationDevicesBootsHistory Returns the history of device boots in reverse chronological order (most recent first)
-/* Returns the history of device boots in reverse chronological order (most recent first). Currently supported for MS devices only.
+//GetOrganizationDevicesOverviewByModel Lists the count for each device model
+/* Lists the count for each device model
 
 @param organizationID organizationId path parameter. Organization ID
-@param getOrganizationDevicesBootsHistoryQueryParams Filtering parameter
+@param getOrganizationDevicesOverviewByModelQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-devices-boots-history
+
 */
-func (s *DevicesService) GetOrganizationDevicesBootsHistory(organizationID string, getOrganizationDevicesBootsHistoryQueryParams *GetOrganizationDevicesBootsHistoryQueryParams) (*resty.Response, error) {
-	path := "/api/v1/organizations/{organizationId}/devices/boots/history"
+func (s *DevicesService) GetOrganizationDevicesOverviewByModel(organizationID string, getOrganizationDevicesOverviewByModelQueryParams *GetOrganizationDevicesOverviewByModelQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/devices/overview/byModel"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationDevicesBootsHistoryQueryParams)
+	queryString, _ := query.Values(getOrganizationDevicesOverviewByModelQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -1893,7 +2468,42 @@ func (s *DevicesService) GetOrganizationDevicesBootsHistory(organizationID strin
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation GetOrganizationDevicesBootsHistory")
+		return response, fmt.Errorf("error with operation GetOrganizationDevicesOverviewByModel")
+	}
+
+	return response, err
+
+}
+
+//GetOrganizationFloorPlansAutoLocateDevices List auto locate details for each device in your organization
+/* List auto locate details for each device in your organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationFloorPlansAutoLocateDevicesQueryParams Filtering parameter
+
+
+*/
+func (s *DevicesService) GetOrganizationFloorPlansAutoLocateDevices(organizationID string, getOrganizationFloorPlansAutoLocateDevicesQueryParams *GetOrganizationFloorPlansAutoLocateDevicesQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/floorPlans/autoLocate/devices"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationFloorPlansAutoLocateDevicesQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation GetOrganizationFloorPlansAutoLocateDevices")
 	}
 
 	return response, err
@@ -1906,7 +2516,7 @@ func (s *DevicesService) GetOrganizationDevicesBootsHistory(organizationID strin
 @param organizationID organizationId path parameter. Organization ID
 @param id id path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-inventory-devices-swaps-bulk
+
 */
 func (s *DevicesService) GetOrganizationInventoryDevicesSwapsBulk(organizationID string, id string) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/devices/swaps/bulk/{id}"
@@ -1939,7 +2549,7 @@ func (s *DevicesService) GetOrganizationInventoryDevicesSwapsBulk(organizationID
 @param organizationID organizationId path parameter. Organization ID
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-inventory-device
+
 */
 func (s *DevicesService) GetOrganizationInventoryDevice(organizationID string, serial string) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/devices/{serial}"
@@ -1972,7 +2582,7 @@ func (s *DevicesService) GetOrganizationInventoryDevice(organizationID string, s
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-channel-utilization-by-device
+
 */
 func (s *DevicesService) GetOrganizationWirelessDevicesChannelUtilizationByDevice(organizationID string, getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams *GetOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/byDevice"
@@ -2007,7 +2617,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesChannelUtilizationByDevic
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-channel-utilization-by-network
+
 */
 func (s *DevicesService) GetOrganizationWirelessDevicesChannelUtilizationByNetwork(organizationID string, getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams *GetOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/byNetwork"
@@ -2042,7 +2652,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesChannelUtilizationByNetwo
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-channel-utilization-history-by-device-by-interval
+
 */
 func (s *DevicesService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval(organizationID string, getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams *GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/history/byDevice/byInterval"
@@ -2077,7 +2687,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesChannelUtilizationHistory
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-channel-utilization-history-by-network-by-interval
+
 */
 func (s *DevicesService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval(organizationID string, getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/history/byNetwork/byInterval"
@@ -2112,7 +2722,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesChannelUtilizationHistory
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationWirelessDevicesPacketLossByClientQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-packet-loss-by-client
+
 */
 func (s *DevicesService) GetOrganizationWirelessDevicesPacketLossByClient(organizationID string, getOrganizationWirelessDevicesPacketLossByClientQueryParams *GetOrganizationWirelessDevicesPacketLossByClientQueryParams) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/packetLoss/byClient"
@@ -2147,7 +2757,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesPacketLossByClient(organi
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationWirelessDevicesPacketLossByDeviceQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-packet-loss-by-device
+
 */
 func (s *DevicesService) GetOrganizationWirelessDevicesPacketLossByDevice(organizationID string, getOrganizationWirelessDevicesPacketLossByDeviceQueryParams *GetOrganizationWirelessDevicesPacketLossByDeviceQueryParams) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/packetLoss/byDevice"
@@ -2182,7 +2792,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesPacketLossByDevice(organi
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationWirelessDevicesPacketLossByNetworkQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-wireless-devices-packet-loss-by-network
+
 */
 func (s *DevicesService) GetOrganizationWirelessDevicesPacketLossByNetwork(organizationID string, getOrganizationWirelessDevicesPacketLossByNetworkQueryParams *GetOrganizationWirelessDevicesPacketLossByNetworkQueryParams) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/packetLoss/byNetwork"
@@ -2211,12 +2821,432 @@ func (s *DevicesService) GetOrganizationWirelessDevicesPacketLossByNetwork(organ
 
 }
 
+//GetOrganizationWirelessDevicesWirelessControllersByDevice List of Catalyst access points information
+/* List of Catalyst access points information
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams Filtering parameter
+
+
+*/
+func (s *DevicesService) GetOrganizationWirelessDevicesWirelessControllersByDevice(organizationID string, getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams *GetOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/devices/wirelessControllers/byDevice"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesWirelessControllersByDevice")
+	}
+
+	return response, err
+
+}
+
+//GetOrganizationWirelessControllerDevicesInterfacesL2ByDevice List wireless LAN controller layer 2 interfaces in an organization
+/* List wireless LAN controller layer 2 interfaces in an organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams Filtering parameter
+
+
+*/
+func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesL2ByDevice(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams *GetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/l2/byDevice"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesL2ByDevice")
+	}
+
+	return response, err
+
+}
+
+//GetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice List wireless LAN controller layer 2 interfaces history status in an organization
+/* List wireless LAN controller layer 2 interfaces history status in an organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams Filtering parameter
+
+
+*/
+func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams *GetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/l2/statuses/changeHistory/byDevice"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice")
+	}
+
+	return response, err
+
+}
+
+//GetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval List wireless LAN controller layer 2 interfaces history usage in an organization
+/* List wireless LAN controller layer 2 interfaces history usage in an organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams Filtering parameter
+
+
+*/
+func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams *GetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/l2/usage/history/byInterval"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval")
+	}
+
+	return response, err
+
+}
+
+//GetOrganizationWirelessControllerDevicesInterfacesL3ByDevice List wireless LAN controller layer 3 interfaces in an organization
+/* List wireless LAN controller layer 3 interfaces in an organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams Filtering parameter
+
+
+*/
+func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesL3ByDevice(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams *GetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/l3/byDevice"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesL3ByDevice")
+	}
+
+	return response, err
+
+}
+
+//GetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice List wireless LAN controller layer 3 interfaces history status in an organization
+/* List wireless LAN controller layer 3 interfaces history status in an organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams Filtering parameter
+
+
+*/
+func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams *GetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/l3/statuses/changeHistory/byDevice"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice")
+	}
+
+	return response, err
+
+}
+
+//GetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval List wireless LAN controller layer 3 interfaces history usage in an organization
+/* List wireless LAN controller layer 3 interfaces history usage in an organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams Filtering parameter
+
+
+*/
+func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams *GetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/l3/usage/history/byInterval"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval")
+	}
+
+	return response, err
+
+}
+
+//GetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice Retrieve the packet counters for the interfaces of a Wireless LAN controller
+/* Retrieve the packet counters for the interfaces of a Wireless LAN controller
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams Filtering parameter
+
+
+*/
+func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice(organizationID string, getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams *GetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/packets/overview/byDevice"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice")
+	}
+
+	return response, err
+
+}
+
+//GetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval Retrieve the traffic for the interfaces of a Wireless LAN controller
+/* Retrieve the traffic for the interfaces of a Wireless LAN controller
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams Filtering parameter
+
+
+*/
+func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval(organizationID string, getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams *GetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/usage/history/byInterval"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval")
+	}
+
+	return response, err
+
+}
+
+//GetOrganizationWirelessControllerDevicesRedundancyFailoverHistory List the failover events of wireless LAN controllers in an organization
+/* List the failover events of wireless LAN controllers in an organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams Filtering parameter
+
+
+*/
+func (s *DevicesService) GetOrganizationWirelessControllerDevicesRedundancyFailoverHistory(organizationID string, getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams *GetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/redundancy/failover/history"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesRedundancyFailoverHistory")
+	}
+
+	return response, err
+
+}
+
+//GetOrganizationWirelessControllerDevicesRedundancyStatuses List redundancy details of wireless LAN controllers in an organization
+/* List redundancy details of wireless LAN controllers in an organization. The failover count refers to the total failovers system happens from the moment of this device onboarding to Dashboard
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams Filtering parameter
+
+
+*/
+func (s *DevicesService) GetOrganizationWirelessControllerDevicesRedundancyStatuses(organizationID string, getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams *GetOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/redundancy/statuses"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesRedundancyStatuses")
+	}
+
+	return response, err
+
+}
+
+//GetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval List cpu utilization data of wireless LAN controllers in an organization
+/* List cpu utilization data of wireless LAN controllers in an organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams Filtering parameter
+
+
+*/
+func (s *DevicesService) GetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval(organizationID string, getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams *GetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/system/utilization/history/byInterval"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval")
+	}
+
+	return response, err
+
+}
+
 //BlinkDeviceLeds Blink the LEDs on a device
-/* Blink the LEDs on a device
+/* Blink the LEDs on a device.  This endpoint is deprecrated in favor of "/devices/{serial}/liveTools/leds/blink".
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!blink-device-leds
+
 */
 
 func (s *DevicesService) BlinkDeviceLeds(serial string, requestDevicesBlinkDeviceLeds *RequestDevicesBlinkDeviceLeds) (*ResponseDevicesBlinkDeviceLeds, *resty.Response, error) {
@@ -2247,11 +3277,11 @@ func (s *DevicesService) BlinkDeviceLeds(serial string, requestDevicesBlinkDevic
 }
 
 //CreateDeviceLiveToolsArpTable Enqueue a job to perform a ARP table request for the device
-/* Enqueue a job to perform a ARP table request for the device. This endpoint currently supports switches.
+/* Enqueue a job to perform a ARP table request for the device. This endpoint currently supports switches. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-live-tools-arp-table
+
 */
 
 func (s *DevicesService) CreateDeviceLiveToolsArpTable(serial string, requestDevicesCreateDeviceLiveToolsArpTable *RequestDevicesCreateDeviceLiveToolsArpTable) (*ResponseDevicesCreateDeviceLiveToolsArpTable, *resty.Response, error) {
@@ -2281,12 +3311,12 @@ func (s *DevicesService) CreateDeviceLiveToolsArpTable(serial string, requestDev
 
 }
 
-//CreateDeviceLiveToolsCableTest Enqueue a job to perform a cable test for the device on the specified ports.
-/* Enqueue a job to perform a cable test for the device on the specified ports.
+//CreateDeviceLiveToolsCableTest Enqueue a job to perform a cable test for the device on the specified ports
+/* Enqueue a job to perform a cable test for the device on the specified ports. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-live-tools-cable-test
+
 */
 
 func (s *DevicesService) CreateDeviceLiveToolsCableTest(serial string, requestDevicesCreateDeviceLiveToolsCableTest *RequestDevicesCreateDeviceLiveToolsCableTest) (*ResponseDevicesCreateDeviceLiveToolsCableTest, *resty.Response, error) {
@@ -2316,12 +3346,47 @@ func (s *DevicesService) CreateDeviceLiveToolsCableTest(serial string, requestDe
 
 }
 
-//CreateDeviceLiveToolsPing Enqueue a job to ping a target host from the device
-/* Enqueue a job to ping a target host from the device
+//CreateDeviceLiveToolsLedsBlink Enqueue a job to blink LEDs on a device
+/* Enqueue a job to blink LEDs on a device. This endpoint has a rate limit of one request every 10 seconds.
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-live-tools-ping
+
+*/
+
+func (s *DevicesService) CreateDeviceLiveToolsLedsBlink(serial string, requestDevicesCreateDeviceLiveToolsLedsBlink *RequestDevicesCreateDeviceLiveToolsLedsBlink) (*ResponseDevicesCreateDeviceLiveToolsLedsBlink, *resty.Response, error) {
+	path := "/api/v1/devices/{serial}/liveTools/leds/blink"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesCreateDeviceLiveToolsLedsBlink).
+		SetResult(&ResponseDevicesCreateDeviceLiveToolsLedsBlink{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateDeviceLiveToolsLedsBlink")
+	}
+
+	result := response.Result().(*ResponseDevicesCreateDeviceLiveToolsLedsBlink)
+	return result, response, err
+
+}
+
+//CreateDeviceLiveToolsPing Enqueue a job to ping a target host from the device
+/* Enqueue a job to ping a target host from the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+
+@param serial serial path parameter.
+
+
 */
 
 func (s *DevicesService) CreateDeviceLiveToolsPing(serial string, requestDevicesCreateDeviceLiveToolsPing *RequestDevicesCreateDeviceLiveToolsPing) (*ResponseDevicesCreateDeviceLiveToolsPing, *resty.Response, error) {
@@ -2352,11 +3417,11 @@ func (s *DevicesService) CreateDeviceLiveToolsPing(serial string, requestDevices
 }
 
 //CreateDeviceLiveToolsPingDevice Enqueue a job to check connectivity status to the device
-/* Enqueue a job to check connectivity status to the device
+/* Enqueue a job to check connectivity status to the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-live-tools-ping-device
+
 */
 
 func (s *DevicesService) CreateDeviceLiveToolsPingDevice(serial string, requestDevicesCreateDeviceLiveToolsPingDevice *RequestDevicesCreateDeviceLiveToolsPingDevice) (*ResponseDevicesCreateDeviceLiveToolsPingDevice, *resty.Response, error) {
@@ -2387,11 +3452,11 @@ func (s *DevicesService) CreateDeviceLiveToolsPingDevice(serial string, requestD
 }
 
 //CreateDeviceLiveToolsThroughputTest Enqueue a job to test a device throughput, the test will run for 10 secs to test throughput
-/* Enqueue a job to test a device throughput, the test will run for 10 secs to test throughput
+/* Enqueue a job to test a device throughput, the test will run for 10 secs to test throughput. This endpoint has a rate limit of one request every five seconds per device.
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-live-tools-throughput-test
+
 */
 
 func (s *DevicesService) CreateDeviceLiveToolsThroughputTest(serial string, requestDevicesCreateDeviceLiveToolsThroughputTest *RequestDevicesCreateDeviceLiveToolsThroughputTest) (*ResponseDevicesCreateDeviceLiveToolsThroughputTest, *resty.Response, error) {
@@ -2422,11 +3487,11 @@ func (s *DevicesService) CreateDeviceLiveToolsThroughputTest(serial string, requ
 }
 
 //CreateDeviceLiveToolsWakeOnLan Enqueue a job to send a Wake-on-LAN packet from the device
-/* Enqueue a job to send a Wake-on-LAN packet from the device
+/* Enqueue a job to send a Wake-on-LAN packet from the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-live-tools-wake-on-lan
+
 */
 
 func (s *DevicesService) CreateDeviceLiveToolsWakeOnLan(serial string, requestDevicesCreateDeviceLiveToolsWakeOnLan *RequestDevicesCreateDeviceLiveToolsWakeOnLan) (*ResponseDevicesCreateDeviceLiveToolsWakeOnLan, *resty.Response, error) {
@@ -2457,11 +3522,11 @@ func (s *DevicesService) CreateDeviceLiveToolsWakeOnLan(serial string, requestDe
 }
 
 //RebootDevice Reboot a device
-/* Reboot a device
+/* Reboot a device. This endpoint has a sustained rate limit of one request every 60 seconds.
 
 @param serial serial path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!reboot-device
+
 */
 
 func (s *DevicesService) RebootDevice(serial string) (*ResponseDevicesRebootDevice, *resty.Response, error) {
@@ -2494,19 +3559,22 @@ func (s *DevicesService) RebootDevice(serial string) (*ResponseDevicesRebootDevi
 /* Claim devices into a network. (Note: for recently claimed devices, it may take a few minutes for API requests against that device to succeed). This operation can be used up to ten times within a single five minute window.
 
 @param networkID networkId path parameter. Network ID
+@param claimNetworkDevicesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!claim-network-devices
+
 */
 
-func (s *DevicesService) ClaimNetworkDevices(networkID string, requestDevicesClaimNetworkDevices *RequestDevicesClaimNetworkDevices) (*ResponseDevicesClaimNetworkDevices, *resty.Response, error) {
+func (s *DevicesService) ClaimNetworkDevices(networkID string, requestDevicesClaimNetworkDevices *RequestDevicesClaimNetworkDevices, claimNetworkDevicesQueryParams *ClaimNetworkDevicesQueryParams) (*ResponseDevicesClaimNetworkDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/devices/claim"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
+	queryString, _ := query.Values(claimNetworkDevicesQueryParams)
+
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestDevicesClaimNetworkDevices).
+		SetQueryString(queryString.Encode()).SetBody(requestDevicesClaimNetworkDevices).
 		SetResult(&ResponseDevicesClaimNetworkDevices{}).
 		SetError(&Error).
 		Post(path)
@@ -2530,7 +3598,7 @@ func (s *DevicesService) ClaimNetworkDevices(networkID string, requestDevicesCla
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!vmx-network-devices-claim
+
 */
 
 func (s *DevicesService) VmxNetworkDevicesClaim(networkID string, requestDevicesVmxNetworkDevicesClaim *RequestDevicesVmxNetworkDevicesClaim) (*ResponseDevicesVmxNetworkDevicesClaim, *resty.Response, error) {
@@ -2565,7 +3633,7 @@ func (s *DevicesService) VmxNetworkDevicesClaim(networkID string, requestDevices
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-network-devices
+
 */
 
 func (s *DevicesService) RemoveNetworkDevices(networkID string, requestDevicesRemoveNetworkDevices *RequestDevicesRemoveNetworkDevices) (*resty.Response, error) {
@@ -2593,12 +3661,47 @@ func (s *DevicesService) RemoveNetworkDevices(networkID string, requestDevicesRe
 
 }
 
+//BatchNetworkFloorPlansDevicesUpdate Update floorplan assignments for a batch of devices
+/* Update floorplan assignments for a batch of devices
+
+@param networkID networkId path parameter. Network ID
+
+
+*/
+
+func (s *DevicesService) BatchNetworkFloorPlansDevicesUpdate(networkID string, requestDevicesBatchNetworkFloorPlansDevicesUpdate *RequestDevicesBatchNetworkFloorPlansDevicesUpdate) (*ResponseDevicesBatchNetworkFloorPlansDevicesUpdate, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/floorPlans/devices/batchUpdate"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesBatchNetworkFloorPlansDevicesUpdate).
+		SetResult(&ResponseDevicesBatchNetworkFloorPlansDevicesUpdate{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation BatchNetworkFloorPlansDevicesUpdate")
+	}
+
+	result := response.Result().(*ResponseDevicesBatchNetworkFloorPlansDevicesUpdate)
+	return result, response, err
+
+}
+
 //CheckinNetworkSmDevices Force check-in a set of devices
 /* Force check-in a set of devices
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!checkin-network-sm-devices
+
 */
 
 func (s *DevicesService) CheckinNetworkSmDevices(networkID string, requestDevicesCheckinNetworkSmDevices *RequestDevicesCheckinNetworkSmDevices) (*ResponseDevicesCheckinNetworkSmDevices, *resty.Response, error) {
@@ -2633,7 +3736,7 @@ func (s *DevicesService) CheckinNetworkSmDevices(networkID string, requestDevice
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!lock-network-sm-devices
+
 */
 
 func (s *DevicesService) LockNetworkSmDevices(networkID string, requestDevicesLockNetworkSmDevices *RequestDevicesLockNetworkSmDevices) (*ResponseDevicesLockNetworkSmDevices, *resty.Response, error) {
@@ -2668,7 +3771,7 @@ func (s *DevicesService) LockNetworkSmDevices(networkID string, requestDevicesLo
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!modify-network-sm-devices-tags
+
 */
 
 func (s *DevicesService) ModifyNetworkSmDevicesTags(networkID string, requestDevicesModifyNetworkSmDevicesTags *RequestDevicesModifyNetworkSmDevicesTags) (*ResponseDevicesModifyNetworkSmDevicesTags, *resty.Response, error) {
@@ -2703,7 +3806,7 @@ func (s *DevicesService) ModifyNetworkSmDevicesTags(networkID string, requestDev
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!move-network-sm-devices
+
 */
 
 func (s *DevicesService) MoveNetworkSmDevices(networkID string, requestDevicesMoveNetworkSmDevices *RequestDevicesMoveNetworkSmDevices) (*ResponseDevicesMoveNetworkSmDevices, *resty.Response, error) {
@@ -2738,7 +3841,7 @@ func (s *DevicesService) MoveNetworkSmDevices(networkID string, requestDevicesMo
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!reboot-network-sm-devices
+
 */
 
 func (s *DevicesService) RebootNetworkSmDevices(networkID string, requestDevicesRebootNetworkSmDevices *RequestDevicesRebootNetworkSmDevices) (*ResponseDevicesRebootNetworkSmDevices, *resty.Response, error) {
@@ -2773,7 +3876,7 @@ func (s *DevicesService) RebootNetworkSmDevices(networkID string, requestDevices
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!shutdown-network-sm-devices
+
 */
 
 func (s *DevicesService) ShutdownNetworkSmDevices(networkID string, requestDevicesShutdownNetworkSmDevices *RequestDevicesShutdownNetworkSmDevices) (*ResponseDevicesShutdownNetworkSmDevices, *resty.Response, error) {
@@ -2808,7 +3911,7 @@ func (s *DevicesService) ShutdownNetworkSmDevices(networkID string, requestDevic
 
 @param networkID networkId path parameter. Network ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!wipe-network-sm-devices
+
 */
 
 func (s *DevicesService) WipeNetworkSmDevices(networkID string, requestDevicesWipeNetworkSmDevices *RequestDevicesWipeNetworkSmDevices) (*ResponseDevicesWipeNetworkSmDevices, *resty.Response, error) {
@@ -2844,7 +3947,7 @@ func (s *DevicesService) WipeNetworkSmDevices(networkID string, requestDevicesWi
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!install-network-sm-device-apps
+
 */
 
 func (s *DevicesService) InstallNetworkSmDeviceApps(networkID string, deviceID string, requestDevicesInstallNetworkSmDeviceApps *RequestDevicesInstallNetworkSmDeviceApps) (*resty.Response, error) {
@@ -2857,6 +3960,7 @@ func (s *DevicesService) InstallNetworkSmDeviceApps(networkID string, deviceID s
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestDevicesInstallNetworkSmDeviceApps).
+		// SetResult(&ResponseDevicesInstallNetworkSmDeviceApps{}).
 		SetError(&Error).
 		Post(path)
 
@@ -2879,7 +3983,7 @@ func (s *DevicesService) InstallNetworkSmDeviceApps(networkID string, deviceID s
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!refresh-network-sm-device-details
+
 */
 
 func (s *DevicesService) RefreshNetworkSmDeviceDetails(networkID string, deviceID string) (*resty.Response, error) {
@@ -2891,6 +3995,8 @@ func (s *DevicesService) RefreshNetworkSmDeviceDetails(networkID string, deviceI
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
+
+		// SetResult(&ResponseDevicesRefreshNetworkSmDeviceDetails{}).
 		SetError(&Error).
 		Post(path)
 
@@ -2913,7 +4019,7 @@ func (s *DevicesService) RefreshNetworkSmDeviceDetails(networkID string, deviceI
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!unenroll-network-sm-device
+
 */
 
 func (s *DevicesService) UnenrollNetworkSmDevice(networkID string, deviceID string) (*ResponseDevicesUnenrollNetworkSmDevice, *resty.Response, error) {
@@ -2949,7 +4055,7 @@ func (s *DevicesService) UnenrollNetworkSmDevice(networkID string, deviceID stri
 @param networkID networkId path parameter. Network ID
 @param deviceID deviceId path parameter. Device ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!uninstall-network-sm-device-apps
+
 */
 
 func (s *DevicesService) UninstallNetworkSmDeviceApps(networkID string, deviceID string, requestDevicesUninstallNetworkSmDeviceApps *RequestDevicesUninstallNetworkSmDeviceApps) (*resty.Response, error) {
@@ -2962,6 +4068,7 @@ func (s *DevicesService) UninstallNetworkSmDeviceApps(networkID string, deviceID
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestDevicesUninstallNetworkSmDeviceApps).
+		// SetResult(&ResponseDevicesUninstallNetworkSmDeviceApps{}).
 		SetError(&Error).
 		Post(path)
 
@@ -2978,12 +4085,44 @@ func (s *DevicesService) UninstallNetworkSmDeviceApps(networkID string, deviceID
 
 }
 
+//BulkUpdateOrganizationDevicesDetails Updating device details (currently only used for Catalyst devices)
+/* Updating device details (currently only used for Catalyst devices)
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *DevicesService) BulkUpdateOrganizationDevicesDetails(organizationID string) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/devices/details/bulkUpdate"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation BulkUpdateOrganizationDevicesDetails")
+	}
+
+	return response, err
+
+}
+
 //CreateOrganizationInventoryDevicesSwapsBulk Swap the devices identified by devices.old with a devices.new, then perform the :afterAction on the devices.old.
 /* Swap the devices identified by devices.old with a devices.new, then perform the :afterAction on the devices.old.
 
 @param organizationID organizationId path parameter. Organization ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-organization-inventory-devices-swaps-bulk
+
 */
 
 func (s *DevicesService) CreateOrganizationInventoryDevicesSwapsBulk(organizationID string) (*resty.Response, error) {
@@ -3015,7 +4154,7 @@ func (s *DevicesService) CreateOrganizationInventoryDevicesSwapsBulk(organizatio
 
 @param organizationID organizationId path parameter. Organization ID
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!clone-organization-switch-devices
+
 */
 
 func (s *DevicesService) CloneOrganizationSwitchDevices(organizationID string) (*resty.Response, error) {
@@ -3047,7 +4186,7 @@ func (s *DevicesService) CloneOrganizationSwitchDevices(organizationID string) (
 
 @param serial serial path parameter.
 */
-func (s *DevicesService) UpdateDevice(serial string, requestDevicesUpdateDevice *RequestDevicesUpdateDevice) (*resty.Response, error) {
+func (s *DevicesService) UpdateDevice(serial string, requestDevicesUpdateDevice *RequestDevicesUpdateDevice) (*ResponseDevicesUpdateDevice, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
@@ -3056,19 +4195,21 @@ func (s *DevicesService) UpdateDevice(serial string, requestDevicesUpdateDevice 
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestDevicesUpdateDevice).
+		SetResult(&ResponseDevicesUpdateDevice{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateDevice")
+		return nil, response, fmt.Errorf("error with operation UpdateDevice")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseDevicesUpdateDevice)
+	return result, response, err
 
 }
 
@@ -3077,7 +4218,7 @@ func (s *DevicesService) UpdateDevice(serial string, requestDevicesUpdateDevice 
 
 @param serial serial path parameter.
 */
-func (s *DevicesService) UpdateDeviceCellularSims(serial string, requestDevicesUpdateDeviceCellularSims *RequestDevicesUpdateDeviceCellularSims) (*resty.Response, error) {
+func (s *DevicesService) UpdateDeviceCellularSims(serial string, requestDevicesUpdateDeviceCellularSims *RequestDevicesUpdateDeviceCellularSims) (*ResponseDevicesUpdateDeviceCellularSims, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/cellular/sims"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
@@ -3086,19 +4227,21 @@ func (s *DevicesService) UpdateDeviceCellularSims(serial string, requestDevicesU
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestDevicesUpdateDeviceCellularSims).
+		SetResult(&ResponseDevicesUpdateDeviceCellularSims{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateDeviceCellularSims")
+		return nil, response, fmt.Errorf("error with operation UpdateDeviceCellularSims")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseDevicesUpdateDeviceCellularSims)
+	return result, response, err
 
 }
 

@@ -94,6 +94,7 @@ client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
 |--------------|------------------------------------|
 | 2.y.z        |  1.33.0                            |
 | 3.y.z        |  1.44.1                            |
+| 4.y.z        |  1.53.0                            |
 
 
 ## Changelog

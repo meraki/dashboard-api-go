@@ -10,11 +10,21 @@ import (
 
 type SensorService service
 
+type GetDeviceSensorCommandsQueryParams struct {
+	Operations    []string `url:"operations[],omitempty"`  //Optional parameter to filter commands by operation. Allowed values are disableDownstreamPower, enableDownstreamPower, cycleDownstreamPower, and refreshData.
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 10.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	SortOrder     string   `url:"sortOrder,omitempty"`     //Sorted order of entries. Order options are 'ascending' and 'descending'. Default is 'descending'.
+	T0            string   `url:"t0,omitempty"`            //The beginning of the timespan for the data. The maximum lookback period is 30 days from today.
+	T1            string   `url:"t1,omitempty"`            //The end of the timespan for the data. t1 can be a maximum of 30 days after t0.
+	Timespan      float64  `url:"timespan,omitempty"`      //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 30 days. The default is 30 days.
+}
 type GetNetworkSensorAlertsOverviewByMetricQueryParams struct {
-	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data. The maximum lookback period is 365 days from today.
-	T1       string  `url:"t1,omitempty"`       //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
-	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 7 days.
-	Interval int     `url:"interval,omitempty"` //The time interval in seconds for returned data. The valid intervals are: 86400, 604800. The default is 604800.
+	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data. The maximum lookback period is 731 days from today.
+	T1       string  `url:"t1,omitempty"`       //The end of the timespan for the data. t1 can be a maximum of 366 days after t0.
+	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 366 days. The default is 7 days. If interval is provided, the timespan will be autocalculated.
+	Interval int     `url:"interval,omitempty"` //The time interval in seconds for returned data. The valid intervals are: 900, 3600, 86400, 604800, 2592000. The default is 604800. Interval is calculated if time params are provided.
 }
 type GetOrganizationSensorReadingsHistoryQueryParams struct {
 	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
@@ -36,6 +46,49 @@ type GetOrganizationSensorReadingsLatestQueryParams struct {
 	Metrics       []string `url:"metrics[],omitempty"`     //Types of sensor readings to retrieve. If no metrics are supplied, all available types of readings will be retrieved. Allowed values are apparentPower, battery, button, co2, current, door, downstreamPower, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, remoteLockoutSwitch, temperature, tvoc, voltage, and water.
 }
 
+type ResponseSensorGetDeviceSensorCommands []ResponseItemSensorGetDeviceSensorCommands // Array of ResponseSensorGetDeviceSensorCommands
+type ResponseItemSensorGetDeviceSensorCommands struct {
+	CommandID   string                                              `json:"commandId,omitempty"`   // ID to check the status of the command request
+	CompletedAt string                                              `json:"completedAt,omitempty"` // Time when the command was completed
+	CreatedAt   string                                              `json:"createdAt,omitempty"`   // Time when the command was triggered
+	CreatedBy   *ResponseItemSensorGetDeviceSensorCommandsCreatedBy `json:"createdBy,omitempty"`   // Information about the admin who triggered the command
+	Errors      []string                                            `json:"errors,omitempty"`      // Array of errors if failed
+	Operation   string                                              `json:"operation,omitempty"`   // Operation run on the sensor
+	Status      string                                              `json:"status,omitempty"`      // Status of the command request
+}
+type ResponseItemSensorGetDeviceSensorCommandsCreatedBy struct {
+	AdminID string `json:"adminId,omitempty"` // ID of the admin
+	Email   string `json:"email,omitempty"`   // Email of the admin
+	Name    string `json:"name,omitempty"`    // Name of the admin
+}
+type ResponseSensorCreateDeviceSensorCommand struct {
+	CommandID   string                                            `json:"commandId,omitempty"`   // ID to check the status of the command request
+	CompletedAt string                                            `json:"completedAt,omitempty"` // Time when the command was completed
+	CreatedAt   string                                            `json:"createdAt,omitempty"`   // Time when the command was triggered
+	CreatedBy   *ResponseSensorCreateDeviceSensorCommandCreatedBy `json:"createdBy,omitempty"`   // Information about the admin who triggered the command
+	Errors      []string                                          `json:"errors,omitempty"`      // Array of errors if failed
+	Operation   string                                            `json:"operation,omitempty"`   // Operation run on the sensor
+	Status      string                                            `json:"status,omitempty"`      // Status of the command request
+}
+type ResponseSensorCreateDeviceSensorCommandCreatedBy struct {
+	AdminID string `json:"adminId,omitempty"` // ID of the admin
+	Email   string `json:"email,omitempty"`   // Email of the admin
+	Name    string `json:"name,omitempty"`    // Name of the admin
+}
+type ResponseSensorGetDeviceSensorCommand struct {
+	CommandID   string                                         `json:"commandId,omitempty"`   // ID to check the status of the command request
+	CompletedAt string                                         `json:"completedAt,omitempty"` // Time when the command was completed
+	CreatedAt   string                                         `json:"createdAt,omitempty"`   // Time when the command was triggered
+	CreatedBy   *ResponseSensorGetDeviceSensorCommandCreatedBy `json:"createdBy,omitempty"`   // Information about the admin who triggered the command
+	Errors      []string                                       `json:"errors,omitempty"`      // Array of errors if failed
+	Operation   string                                         `json:"operation,omitempty"`   // Operation run on the sensor
+	Status      string                                         `json:"status,omitempty"`      // Status of the command request
+}
+type ResponseSensorGetDeviceSensorCommandCreatedBy struct {
+	AdminID string `json:"adminId,omitempty"` // ID of the admin
+	Email   string `json:"email,omitempty"`   // Email of the admin
+	Name    string `json:"name,omitempty"`    // Name of the admin
+}
 type ResponseSensorGetDeviceSensorRelationships struct {
 	Livestream *ResponseSensorGetDeviceSensorRelationshipsLivestream `json:"livestream,omitempty"` // A role defined between an MT sensor and an MV camera that adds the camera's livestream to the sensor's details page. Snapshots from the camera will also appear in alert notifications that the sensor triggers.
 }
@@ -120,11 +173,12 @@ type ResponseItemSensorGetNetworkSensorAlertsProfiles struct {
 type ResponseItemSensorGetNetworkSensorAlertsProfilesConditions struct {
 	Direction string                                                               `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
 	Duration  *int                                                                 `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, 1 hour, 2 hours, 4 hours, and 8 hours. Default is 0.
-	Metric    string                                                               `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are apparentPower, co2, current, door, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, temperature, tvoc, upstreamPower, voltage, and water.
+	Metric    string                                                               `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes.
 	Threshold *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThreshold `json:"threshold,omitempty"` // Threshold for sensor readings that will cause an alert to be sent. This object should contain a single property key matching the condition's 'metric' value.
 }
 type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThreshold struct {
 	ApparentPower    *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdApparentPower    `json:"apparentPower,omitempty"`    // Apparent power threshold. 'draw' must be provided.
+	Co2              *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdCo2              `json:"co2,omitempty"`              // CO2 concentration threshold. One of 'concentration' or 'quality' must be provided.
 	Current          *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdCurrent          `json:"current,omitempty"`          // Electrical current threshold. 'level' must be provided.
 	Door             *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdDoor             `json:"door,omitempty"`             // Door open threshold. 'open' must be provided and set to true.
 	Frequency        *ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdFrequency        `json:"frequency,omitempty"`        // Electrical frequency threshold. 'level' must be provided.
@@ -142,6 +196,10 @@ type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThreshold struct 
 }
 type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdApparentPower struct {
 	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in volt-amps. Must be between 0 and 3750.
+}
+type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdCo2 struct {
+	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as CO2 parts per million.
+	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative CO2 level.
 }
 type ResponseItemSensorGetNetworkSensorAlertsProfilesConditionsThresholdCurrent struct {
 	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in amps. Must be between 0 and 15.
@@ -215,11 +273,12 @@ type ResponseSensorCreateNetworkSensorAlertsProfile struct {
 type ResponseSensorCreateNetworkSensorAlertsProfileConditions struct {
 	Direction string                                                             `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
 	Duration  *int                                                               `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, 1 hour, 2 hours, 4 hours, and 8 hours. Default is 0.
-	Metric    string                                                             `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are apparentPower, co2, current, door, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, temperature, tvoc, upstreamPower, voltage, and water.
+	Metric    string                                                             `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes.
 	Threshold *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThreshold `json:"threshold,omitempty"` // Threshold for sensor readings that will cause an alert to be sent. This object should contain a single property key matching the condition's 'metric' value.
 }
 type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThreshold struct {
 	ApparentPower    *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdApparentPower    `json:"apparentPower,omitempty"`    // Apparent power threshold. 'draw' must be provided.
+	Co2              *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdCo2              `json:"co2,omitempty"`              // CO2 concentration threshold. One of 'concentration' or 'quality' must be provided.
 	Current          *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdCurrent          `json:"current,omitempty"`          // Electrical current threshold. 'level' must be provided.
 	Door             *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdDoor             `json:"door,omitempty"`             // Door open threshold. 'open' must be provided and set to true.
 	Frequency        *ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdFrequency        `json:"frequency,omitempty"`        // Electrical frequency threshold. 'level' must be provided.
@@ -237,6 +296,10 @@ type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThreshold struct {
 }
 type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdApparentPower struct {
 	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in volt-amps. Must be between 0 and 3750.
+}
+type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdCo2 struct {
+	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as CO2 parts per million.
+	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative CO2 level.
 }
 type ResponseSensorCreateNetworkSensorAlertsProfileConditionsThresholdCurrent struct {
 	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in amps. Must be between 0 and 15.
@@ -310,11 +373,12 @@ type ResponseSensorGetNetworkSensorAlertsProfile struct {
 type ResponseSensorGetNetworkSensorAlertsProfileConditions struct {
 	Direction string                                                          `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
 	Duration  *int                                                            `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, 1 hour, 2 hours, 4 hours, and 8 hours. Default is 0.
-	Metric    string                                                          `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are apparentPower, co2, current, door, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, temperature, tvoc, upstreamPower, voltage, and water.
+	Metric    string                                                          `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes.
 	Threshold *ResponseSensorGetNetworkSensorAlertsProfileConditionsThreshold `json:"threshold,omitempty"` // Threshold for sensor readings that will cause an alert to be sent. This object should contain a single property key matching the condition's 'metric' value.
 }
 type ResponseSensorGetNetworkSensorAlertsProfileConditionsThreshold struct {
 	ApparentPower    *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdApparentPower    `json:"apparentPower,omitempty"`    // Apparent power threshold. 'draw' must be provided.
+	Co2              *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdCo2              `json:"co2,omitempty"`              // CO2 concentration threshold. One of 'concentration' or 'quality' must be provided.
 	Current          *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdCurrent          `json:"current,omitempty"`          // Electrical current threshold. 'level' must be provided.
 	Door             *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdDoor             `json:"door,omitempty"`             // Door open threshold. 'open' must be provided and set to true.
 	Frequency        *ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdFrequency        `json:"frequency,omitempty"`        // Electrical frequency threshold. 'level' must be provided.
@@ -332,6 +396,10 @@ type ResponseSensorGetNetworkSensorAlertsProfileConditionsThreshold struct {
 }
 type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdApparentPower struct {
 	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in volt-amps. Must be between 0 and 3750.
+}
+type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdCo2 struct {
+	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as CO2 parts per million.
+	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative CO2 level.
 }
 type ResponseSensorGetNetworkSensorAlertsProfileConditionsThresholdCurrent struct {
 	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in amps. Must be between 0 and 15.
@@ -405,11 +473,12 @@ type ResponseSensorUpdateNetworkSensorAlertsProfile struct {
 type ResponseSensorUpdateNetworkSensorAlertsProfileConditions struct {
 	Direction string                                                             `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
 	Duration  *int                                                               `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, 1 hour, 2 hours, 4 hours, and 8 hours. Default is 0.
-	Metric    string                                                             `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are apparentPower, co2, current, door, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, temperature, tvoc, upstreamPower, voltage, and water.
+	Metric    string                                                             `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes.
 	Threshold *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThreshold `json:"threshold,omitempty"` // Threshold for sensor readings that will cause an alert to be sent. This object should contain a single property key matching the condition's 'metric' value.
 }
 type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThreshold struct {
 	ApparentPower    *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdApparentPower    `json:"apparentPower,omitempty"`    // Apparent power threshold. 'draw' must be provided.
+	Co2              *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdCo2              `json:"co2,omitempty"`              // CO2 concentration threshold. One of 'concentration' or 'quality' must be provided.
 	Current          *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdCurrent          `json:"current,omitempty"`          // Electrical current threshold. 'level' must be provided.
 	Door             *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdDoor             `json:"door,omitempty"`             // Door open threshold. 'open' must be provided and set to true.
 	Frequency        *ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdFrequency        `json:"frequency,omitempty"`        // Electrical frequency threshold. 'level' must be provided.
@@ -427,6 +496,10 @@ type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThreshold struct {
 }
 type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdApparentPower struct {
 	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in volt-amps. Must be between 0 and 3750.
+}
+type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdCo2 struct {
+	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as CO2 parts per million.
+	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative CO2 level.
 }
 type ResponseSensorUpdateNetworkSensorAlertsProfileConditionsThresholdCurrent struct {
 	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in amps. Must be between 0 and 15.
@@ -707,6 +780,9 @@ type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsVoltage struct
 type ResponseItemSensorGetOrganizationSensorReadingsLatestReadingsWater struct {
 	Present *bool `json:"present,omitempty"` // True if water is detected.
 }
+type RequestSensorCreateDeviceSensorCommand struct {
+	Operation string `json:"operation,omitempty"` // Operation to run on the sensor. 'enableDownstreamPower', 'disableDownstreamPower', and 'cycleDownstreamPower' turn power on/off to the device that is connected downstream of an MT40 power monitor. 'refreshData' causes an MT15 or MT40 device to upload its latest readings so that they are immediately available in the Dashboard API.
+}
 type RequestSensorUpdateDeviceSensorRelationships struct {
 	Livestream *RequestSensorUpdateDeviceSensorRelationshipsLivestream `json:"livestream,omitempty"` // A role defined between an MT sensor and an MV camera that adds the camera's livestream to the sensor's details page. Snapshots from the camera will also appear in alert notifications that the sensor triggers.
 }
@@ -726,11 +802,12 @@ type RequestSensorCreateNetworkSensorAlertsProfile struct {
 type RequestSensorCreateNetworkSensorAlertsProfileConditions struct {
 	Direction string                                                            `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
 	Duration  *int                                                              `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, 1 hour, 2 hours, 4 hours, and 8 hours. Default is 0.
-	Metric    string                                                            `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are apparentPower, co2, current, door, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, temperature, tvoc, upstreamPower, voltage, and water.
+	Metric    string                                                            `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes.
 	Threshold *RequestSensorCreateNetworkSensorAlertsProfileConditionsThreshold `json:"threshold,omitempty"` // Threshold for sensor readings that will cause an alert to be sent. This object should contain a single property key matching the condition's 'metric' value.
 }
 type RequestSensorCreateNetworkSensorAlertsProfileConditionsThreshold struct {
 	ApparentPower    *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdApparentPower    `json:"apparentPower,omitempty"`    // Apparent power threshold. 'draw' must be provided.
+	Co2              *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdCo2              `json:"co2,omitempty"`              // CO2 concentration threshold. One of 'concentration' or 'quality' must be provided.
 	Current          *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdCurrent          `json:"current,omitempty"`          // Electrical current threshold. 'level' must be provided.
 	Door             *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdDoor             `json:"door,omitempty"`             // Door open threshold. 'open' must be provided and set to true.
 	Frequency        *RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdFrequency        `json:"frequency,omitempty"`        // Electrical frequency threshold. 'level' must be provided.
@@ -748,6 +825,10 @@ type RequestSensorCreateNetworkSensorAlertsProfileConditionsThreshold struct {
 }
 type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdApparentPower struct {
 	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in volt-amps. Must be between 0 and 3750.
+}
+type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdCo2 struct {
+	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as CO2 parts per million.
+	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative CO2 level.
 }
 type RequestSensorCreateNetworkSensorAlertsProfileConditionsThresholdCurrent struct {
 	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in amps. Must be between 0 and 15.
@@ -819,11 +900,12 @@ type RequestSensorUpdateNetworkSensorAlertsProfile struct {
 type RequestSensorUpdateNetworkSensorAlertsProfileConditions struct {
 	Direction string                                                            `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
 	Duration  *int                                                              `json:"duration,omitempty"`  // Length of time in seconds that the triggering state must persist before an alert is sent. Available options are 0 seconds, 1 minute, 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes, 30 minutes, 1 hour, 2 hours, 4 hours, and 8 hours. Default is 0.
-	Metric    string                                                            `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes. Available metrics are apparentPower, co2, current, door, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, temperature, tvoc, upstreamPower, voltage, and water.
+	Metric    string                                                            `json:"metric,omitempty"`    // The type of sensor metric that will be monitored for changes.
 	Threshold *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThreshold `json:"threshold,omitempty"` // Threshold for sensor readings that will cause an alert to be sent. This object should contain a single property key matching the condition's 'metric' value.
 }
 type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThreshold struct {
 	ApparentPower    *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdApparentPower    `json:"apparentPower,omitempty"`    // Apparent power threshold. 'draw' must be provided.
+	Co2              *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdCo2              `json:"co2,omitempty"`              // CO2 concentration threshold. One of 'concentration' or 'quality' must be provided.
 	Current          *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdCurrent          `json:"current,omitempty"`          // Electrical current threshold. 'level' must be provided.
 	Door             *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdDoor             `json:"door,omitempty"`             // Door open threshold. 'open' must be provided and set to true.
 	Frequency        *RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdFrequency        `json:"frequency,omitempty"`        // Electrical frequency threshold. 'level' must be provided.
@@ -841,6 +923,10 @@ type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThreshold struct {
 }
 type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdApparentPower struct {
 	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in volt-amps. Must be between 0 and 3750.
+}
+type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdCo2 struct {
+	Concentration *int   `json:"concentration,omitempty"` // Alerting threshold as CO2 parts per million.
+	Quality       string `json:"quality,omitempty"`       // Alerting threshold as a qualitative CO2 level.
 }
 type RequestSensorUpdateNetworkSensorAlertsProfileConditionsThresholdCurrent struct {
 	Draw *float64 `json:"draw,omitempty"` // Alerting threshold in amps. Must be between 0 and 15.
@@ -904,6 +990,77 @@ type RequestSensorUpdateNetworkSensorAlertsProfileSchedule struct {
 }
 type RequestSensorUpdateNetworkSensorMqttBroker struct {
 	Enabled *bool `json:"enabled,omitempty"` // Set to true to enable MQTT broker for sensor network
+}
+
+//GetDeviceSensorCommands Returns a historical log of all commands
+/* Returns a historical log of all commands
+
+@param serial serial path parameter.
+@param getDeviceSensorCommandsQueryParams Filtering parameter
+
+
+*/
+func (s *SensorService) GetDeviceSensorCommands(serial string, getDeviceSensorCommandsQueryParams *GetDeviceSensorCommandsQueryParams) (*ResponseSensorGetDeviceSensorCommands, *resty.Response, error) {
+	path := "/api/v1/devices/{serial}/sensor/commands"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
+
+	queryString, _ := query.Values(getDeviceSensorCommandsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSensorGetDeviceSensorCommands{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetDeviceSensorCommands")
+	}
+
+	result := response.Result().(*ResponseSensorGetDeviceSensorCommands)
+	return result, response, err
+
+}
+
+//GetDeviceSensorCommand Returns information about the command's execution, including the status
+/* Returns information about the command's execution, including the status
+
+@param serial serial path parameter.
+@param commandID commandId path parameter. Command ID
+
+
+*/
+func (s *SensorService) GetDeviceSensorCommand(serial string, commandID string) (*ResponseSensorGetDeviceSensorCommand, *resty.Response, error) {
+	path := "/api/v1/devices/{serial}/sensor/commands/{commandId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
+	path = strings.Replace(path, "{commandId}", fmt.Sprintf("%v", commandID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseSensorGetDeviceSensorCommand{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetDeviceSensorCommand")
+	}
+
+	result := response.Result().(*ResponseSensorGetDeviceSensorCommand)
+	return result, response, err
+
 }
 
 //GetDeviceSensorRelationships List the sensor roles for a given sensor or camera device.
@@ -1245,6 +1402,41 @@ func (s *SensorService) GetOrganizationSensorReadingsLatest(organizationID strin
 	}
 
 	result := response.Result().(*ResponseSensorGetOrganizationSensorReadingsLatest)
+	return result, response, err
+
+}
+
+//CreateDeviceSensorCommand Sends a command to a sensor
+/* Sends a command to a sensor
+
+@param serial serial path parameter.
+
+
+*/
+
+func (s *SensorService) CreateDeviceSensorCommand(serial string, requestSensorCreateDeviceSensorCommand *RequestSensorCreateDeviceSensorCommand) (*ResponseSensorCreateDeviceSensorCommand, *resty.Response, error) {
+	path := "/api/v1/devices/{serial}/sensor/commands"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSensorCreateDeviceSensorCommand).
+		SetResult(&ResponseSensorCreateDeviceSensorCommand{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateDeviceSensorCommand")
+	}
+
+	result := response.Result().(*ResponseSensorCreateDeviceSensorCommand)
 	return result, response, err
 
 }
