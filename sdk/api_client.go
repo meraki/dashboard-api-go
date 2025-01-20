@@ -19,7 +19,7 @@ const (
 	MERAKI_DASHBOARD_API_KEY    = "MERAKI_DASHBOARD_API_KEY"
 	MERAKI_DEBUG                = "MERAKI_DEBUG"
 	MERAKI_REQUESTS_PER_SECOND  = "MERAKI_REQUESTS_PER_SECOND"
-	DEFAULT_USER_AGENT          = "go-meraki/1.44.1"
+	DEFAULT_USER_AGENT          = "go-meraki/1.53.0"
 	DEFAULT_REQUESTS_PER_SECOND = 10
 )
 
@@ -28,20 +28,21 @@ type Client struct {
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
 	// API Services
-	Administered    *AdministeredService
-	Appliance       *ApplianceService
-	Camera          *CameraService
-	CellularGateway *CellularGatewayService
-	Devices         *DevicesService
-	Insight         *InsightService
-	Licensing       *LicensingService
-	Networks        *NetworksService
-	Organizations   *OrganizationsService
-	Sensor          *SensorService
-	Sm              *SmService
-	Switch          *SwitchService
-	Wireless        *WirelessService
-	CustomCall      *CustomCallService
+	Administered       *AdministeredService
+	Appliance          *ApplianceService
+	Camera             *CameraService
+	CellularGateway    *CellularGatewayService
+	Devices            *DevicesService
+	Insight            *InsightService
+	Licensing          *LicensingService
+	Networks           *NetworksService
+	Organizations      *OrganizationsService
+	Sensor             *SensorService
+	Sm                 *SmService
+	Switch             *SwitchService
+	Wireless           *WirelessService
+	WirelessController *WirelessControllerService
+	CustomCall         *CustomCallService
 }
 
 type service struct {
@@ -165,7 +166,7 @@ func SetOptions(baseURL string, dashboardApiKey string, debug string, userAgent 
 	var err error
 
 	if !validateUserAgent(userAgent) {
-		return errors.New("user-agent bad format, expected: `AplicationName VendorName`")
+		return errors.New("user-agent bad format, expected: `AplicationName VendorName Client`")
 	}
 
 	err = os.Setenv(MERAKI_USER_AGENT, userAgent)
@@ -303,6 +304,6 @@ func convertToString(i interface{}) string {
 }
 
 func validateUserAgent(ua string) bool {
-	regex := regexp.MustCompile(`^\S+\s\S+$`)
+	regex := regexp.MustCompile(`^\S+ \S+ \S+$`)
 	return regex.MatchString(ua)
 }

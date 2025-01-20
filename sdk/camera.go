@@ -48,50 +48,50 @@ type GetOrganizationCameraOnboardingStatusesQueryParams struct {
 }
 
 type ResponseCameraGetDeviceCameraAnalyticsLive struct {
-	Ts    string                                           `json:"ts,omitempty"`    //
-	Zones *ResponseCameraGetDeviceCameraAnalyticsLiveZones `json:"zones,omitempty"` //
+	Ts    string                                           `json:"ts,omitempty"`    // The current time
+	Zones *ResponseCameraGetDeviceCameraAnalyticsLiveZones `json:"zones,omitempty"` // The zones state
 }
 type ResponseCameraGetDeviceCameraAnalyticsLiveZones struct {
-	Status0 *ResponseCameraGetDeviceCameraAnalyticsLiveZones0 `json:"0,omitempty"` //
+	ZoneID *ResponseCameraGetDeviceCameraAnalyticsLiveZonesZoneID `json:"zoneId,omitempty"` // The zone state, dynamic
 }
-type ResponseCameraGetDeviceCameraAnalyticsLiveZones0 struct {
-	Person *int `json:"person,omitempty"` //
+type ResponseCameraGetDeviceCameraAnalyticsLiveZonesZoneID struct {
+	Person *int `json:"person,omitempty"` // The count per type, dynamic
 }
 type ResponseCameraGetDeviceCameraAnalyticsOverview []ResponseItemCameraGetDeviceCameraAnalyticsOverview // Array of ResponseCameraGetDeviceCameraAnalyticsOverview
 type ResponseItemCameraGetDeviceCameraAnalyticsOverview struct {
-	AverageCount *int   `json:"averageCount,omitempty"` //
-	EndTs        string `json:"endTs,omitempty"`        //
-	Entrances    *int   `json:"entrances,omitempty"`    //
-	StartTs      string `json:"startTs,omitempty"`      //
-	ZoneID       *int   `json:"zoneId,omitempty"`       //
+	AverageCount *float64 `json:"averageCount,omitempty"` // The average count
+	EndTs        string   `json:"endTs,omitempty"`        // The end time
+	Entrances    *int     `json:"entrances,omitempty"`    // The number of sentrances
+	StartTs      string   `json:"startTs,omitempty"`      // The start time
+	ZoneID       *int     `json:"zoneId,omitempty"`       // The zone id
 }
 type ResponseCameraGetDeviceCameraAnalyticsRecent []ResponseItemCameraGetDeviceCameraAnalyticsRecent // Array of ResponseCameraGetDeviceCameraAnalyticsRecent
 type ResponseItemCameraGetDeviceCameraAnalyticsRecent struct {
-	AverageCount *float64 `json:"averageCount,omitempty"` //
-	EndTs        string   `json:"endTs,omitempty"`        //
-	Entrances    *int     `json:"entrances,omitempty"`    //
-	StartTs      string   `json:"startTs,omitempty"`      //
-	ZoneID       *int     `json:"zoneId,omitempty"`       //
+	AverageCount *float64 `json:"averageCount,omitempty"` // The average count
+	EndTs        string   `json:"endTs,omitempty"`        // The end time
+	Entrances    *int     `json:"entrances,omitempty"`    // The number of entrances
+	StartTs      string   `json:"startTs,omitempty"`      // The start time
+	ZoneID       *int     `json:"zoneId,omitempty"`       // The zone id
 }
 type ResponseCameraGetDeviceCameraAnalyticsZones []ResponseItemCameraGetDeviceCameraAnalyticsZones // Array of ResponseCameraGetDeviceCameraAnalyticsZones
 type ResponseItemCameraGetDeviceCameraAnalyticsZones struct {
-	ID               string                                                           `json:"id,omitempty"`               //
-	Label            string                                                           `json:"label,omitempty"`            //
-	RegionOfInterest *ResponseItemCameraGetDeviceCameraAnalyticsZonesRegionOfInterest `json:"regionOfInterest,omitempty"` //
-	Type             string                                                           `json:"type,omitempty"`             //
+	ID               string                                                           `json:"id,omitempty"`               // The zone ID
+	Label            string                                                           `json:"label,omitempty"`            // The zone label
+	RegionOfInterest *ResponseItemCameraGetDeviceCameraAnalyticsZonesRegionOfInterest `json:"regionOfInterest,omitempty"` // The region of interest
+	Type             string                                                           `json:"type,omitempty"`             // The zone type
 }
 type ResponseItemCameraGetDeviceCameraAnalyticsZonesRegionOfInterest struct {
-	X0 string `json:"x0,omitempty"` //
-	X1 string `json:"x1,omitempty"` //
-	Y0 string `json:"y0,omitempty"` //
-	Y1 string `json:"y1,omitempty"` //
+	X0 string `json:"x0,omitempty"` // The x0 coordinate
+	X1 string `json:"x1,omitempty"` // The x1 coordinate
+	Y0 string `json:"y0,omitempty"` // The y0 coordinate
+	Y1 string `json:"y1,omitempty"` // The y1 coordinate
 }
 type ResponseCameraGetDeviceCameraAnalyticsZoneHistory []ResponseItemCameraGetDeviceCameraAnalyticsZoneHistory // Array of ResponseCameraGetDeviceCameraAnalyticsZoneHistory
 type ResponseItemCameraGetDeviceCameraAnalyticsZoneHistory struct {
-	AverageCount *float64 `json:"averageCount,omitempty"` //
-	EndTs        string   `json:"endTs,omitempty"`        //
-	Entrances    *int     `json:"entrances,omitempty"`    //
-	StartTs      string   `json:"startTs,omitempty"`      //
+	AverageCount *float64 `json:"averageCount,omitempty"` // The average count
+	EndTs        string   `json:"endTs,omitempty"`        // The end time
+	Entrances    *int     `json:"entrances,omitempty"`    // The number of entrances
+	StartTs      string   `json:"startTs,omitempty"`      // The start time
 }
 type ResponseCameraGetDeviceCameraCustomAnalytics struct {
 	ArtifactID string                                                    `json:"artifactId,omitempty"` // Custom analytics artifact ID
@@ -111,7 +111,10 @@ type ResponseCameraUpdateDeviceCameraCustomAnalyticsParameters struct {
 	Name  string   `json:"name,omitempty"`  // Name of the parameter
 	Value *float64 `json:"value,omitempty"` // Value of the parameter
 }
-type ResponseCameraGenerateDeviceCameraSnapshot interface{}
+type ResponseCameraGenerateDeviceCameraSnapshot struct {
+	Expiry string `json:"expiry,omitempty"` // Expiration details for snapshot image access
+	URL    string `json:"url,omitempty"`    // Url for the snapshot
+}
 type ResponseCameraGetDeviceCameraQualityAndRetention struct {
 	AudioRecordingEnabled          *bool  `json:"audioRecordingEnabled,omitempty"`          //
 	MotionBasedRetentionEnabled    *bool  `json:"motionBasedRetentionEnabled,omitempty"`    //
@@ -160,17 +163,21 @@ type ResponseCameraGetDeviceCameraWirelessProfilesIDs struct {
 type ResponseCameraUpdateDeviceCameraWirelessProfiles interface{}
 type ResponseCameraGetNetworkCameraQualityRetentionProfiles []ResponseItemCameraGetNetworkCameraQualityRetentionProfiles // Array of ResponseCameraGetNetworkCameraQualityRetentionProfiles
 type ResponseItemCameraGetNetworkCameraQualityRetentionProfiles struct {
-	AudioRecordingEnabled          *bool                                                                    `json:"audioRecordingEnabled,omitempty"`          //
-	CloudArchiveEnabled            *bool                                                                    `json:"cloudArchiveEnabled,omitempty"`            //
-	ID                             string                                                                   `json:"id,omitempty"`                             //
-	MaxRetentionDays               *int                                                                     `json:"maxRetentionDays,omitempty"`               //
-	MotionBasedRetentionEnabled    *bool                                                                    `json:"motionBasedRetentionEnabled,omitempty"`    //
-	MotionDetectorVersion          *int                                                                     `json:"motionDetectorVersion,omitempty"`          //
-	Name                           string                                                                   `json:"name,omitempty"`                           //
-	NetworkID                      string                                                                   `json:"networkId,omitempty"`                      //
-	RestrictedBandwidthModeEnabled *bool                                                                    `json:"restrictedBandwidthModeEnabled,omitempty"` //
-	ScheduleID                     string                                                                   `json:"scheduleId,omitempty"`                     //
-	VideoSettings                  *ResponseItemCameraGetNetworkCameraQualityRetentionProfilesVideoSettings `json:"videoSettings,omitempty"`                  //
+	AudioRecordingEnabled          *bool                                                                     `json:"audioRecordingEnabled,omitempty"`          //
+	CloudArchiveEnabled            *bool                                                                     `json:"cloudArchiveEnabled,omitempty"`            //
+	ID                             string                                                                    `json:"id,omitempty"`                             //
+	MaxRetentionDays               *int                                                                      `json:"maxRetentionDays,omitempty"`               //
+	MotionBasedRetentionEnabled    *bool                                                                     `json:"motionBasedRetentionEnabled,omitempty"`    //
+	MotionDetectorVersion          *int                                                                      `json:"motionDetectorVersion,omitempty"`          //
+	Name                           string                                                                    `json:"name,omitempty"`                           //
+	NetworkID                      string                                                                    `json:"networkId,omitempty"`                      //
+	RestrictedBandwidthModeEnabled *bool                                                                     `json:"restrictedBandwidthModeEnabled,omitempty"` //
+	ScheduleID                     string                                                                    `json:"scheduleId,omitempty"`                     //
+	SmartRetention                 *ResponseItemCameraGetNetworkCameraQualityRetentionProfilesSmartRetention `json:"smartRetention,omitempty"`                 //
+	VideoSettings                  *ResponseItemCameraGetNetworkCameraQualityRetentionProfilesVideoSettings  `json:"videoSettings,omitempty"`                  //
+}
+type ResponseItemCameraGetNetworkCameraQualityRetentionProfilesSmartRetention struct {
+	Enabled *bool `json:"enabled,omitempty"` //
 }
 type ResponseItemCameraGetNetworkCameraQualityRetentionProfilesVideoSettings struct {
 	MV12MV22MV72 *ResponseItemCameraGetNetworkCameraQualityRetentionProfilesVideoSettingsMV12MV22MV72 `json:"MV12/MV22/MV72,omitempty"` //
@@ -196,17 +203,21 @@ type ResponseItemCameraGetNetworkCameraQualityRetentionProfilesVideoSettingsMV32
 }
 type ResponseCameraCreateNetworkCameraQualityRetentionProfile interface{}
 type ResponseCameraGetNetworkCameraQualityRetentionProfile struct {
-	AudioRecordingEnabled          *bool                                                               `json:"audioRecordingEnabled,omitempty"`          //
-	CloudArchiveEnabled            *bool                                                               `json:"cloudArchiveEnabled,omitempty"`            //
-	ID                             string                                                              `json:"id,omitempty"`                             //
-	MaxRetentionDays               *int                                                                `json:"maxRetentionDays,omitempty"`               //
-	MotionBasedRetentionEnabled    *bool                                                               `json:"motionBasedRetentionEnabled,omitempty"`    //
-	MotionDetectorVersion          *int                                                                `json:"motionDetectorVersion,omitempty"`          //
-	Name                           string                                                              `json:"name,omitempty"`                           //
-	NetworkID                      string                                                              `json:"networkId,omitempty"`                      //
-	RestrictedBandwidthModeEnabled *bool                                                               `json:"restrictedBandwidthModeEnabled,omitempty"` //
-	ScheduleID                     string                                                              `json:"scheduleId,omitempty"`                     //
-	VideoSettings                  *ResponseCameraGetNetworkCameraQualityRetentionProfileVideoSettings `json:"videoSettings,omitempty"`                  //
+	AudioRecordingEnabled          *bool                                                                `json:"audioRecordingEnabled,omitempty"`          //
+	CloudArchiveEnabled            *bool                                                                `json:"cloudArchiveEnabled,omitempty"`            //
+	ID                             string                                                               `json:"id,omitempty"`                             //
+	MaxRetentionDays               *int                                                                 `json:"maxRetentionDays,omitempty"`               //
+	MotionBasedRetentionEnabled    *bool                                                                `json:"motionBasedRetentionEnabled,omitempty"`    //
+	MotionDetectorVersion          *int                                                                 `json:"motionDetectorVersion,omitempty"`          //
+	Name                           string                                                               `json:"name,omitempty"`                           //
+	NetworkID                      string                                                               `json:"networkId,omitempty"`                      //
+	RestrictedBandwidthModeEnabled *bool                                                                `json:"restrictedBandwidthModeEnabled,omitempty"` //
+	ScheduleID                     string                                                               `json:"scheduleId,omitempty"`                     //
+	SmartRetention                 *ResponseCameraGetNetworkCameraQualityRetentionProfileSmartRetention `json:"smartRetention,omitempty"`                 //
+	VideoSettings                  *ResponseCameraGetNetworkCameraQualityRetentionProfileVideoSettings  `json:"videoSettings,omitempty"`                  //
+}
+type ResponseCameraGetNetworkCameraQualityRetentionProfileSmartRetention struct {
+	Enabled *bool `json:"enabled,omitempty"` //
 }
 type ResponseCameraGetNetworkCameraQualityRetentionProfileVideoSettings struct {
 	MV12MV22MV72 *ResponseCameraGetNetworkCameraQualityRetentionProfileVideoSettingsMV12MV22MV72 `json:"MV12/MV22/MV72,omitempty"` //
@@ -238,39 +249,73 @@ type ResponseItemCameraGetNetworkCameraSchedules struct {
 }
 type ResponseCameraGetNetworkCameraWirelessProfiles []ResponseItemCameraGetNetworkCameraWirelessProfiles // Array of ResponseCameraGetNetworkCameraWirelessProfiles
 type ResponseItemCameraGetNetworkCameraWirelessProfiles struct {
-	AppliedDeviceCount *int                                                        `json:"appliedDeviceCount,omitempty"` //
-	ID                 string                                                      `json:"id,omitempty"`                 //
-	IDentity           *ResponseItemCameraGetNetworkCameraWirelessProfilesIDentity `json:"identity,omitempty"`           //
-	Name               string                                                      `json:"name,omitempty"`               //
-	SSID               *ResponseItemCameraGetNetworkCameraWirelessProfilesSSID     `json:"ssid,omitempty"`               //
+	AppliedDeviceCount *int                                                        `json:"appliedDeviceCount,omitempty"` // The count of the applied devices.
+	ID                 string                                                      `json:"id,omitempty"`                 // The ID of the camera wireless profile.
+	IDentity           *ResponseItemCameraGetNetworkCameraWirelessProfilesIDentity `json:"identity,omitempty"`           // The identity of the wireless profile. Required for creating wireless profiles in 8021x-radius auth mode.
+	Name               string                                                      `json:"name,omitempty"`               // The name of the camera wireless profile.
+	SSID               *ResponseItemCameraGetNetworkCameraWirelessProfilesSSID     `json:"ssid,omitempty"`               // The details of the SSID config.
 }
 type ResponseItemCameraGetNetworkCameraWirelessProfilesIDentity struct {
-	Password string `json:"password,omitempty"` //
-	Username string `json:"username,omitempty"` //
+	Password string `json:"password,omitempty"` // The password of the identity.
+	Username string `json:"username,omitempty"` // The username of the identity.
 }
 type ResponseItemCameraGetNetworkCameraWirelessProfilesSSID struct {
-	AuthMode       string `json:"authMode,omitempty"`       //
-	EncryptionMode string `json:"encryptionMode,omitempty"` //
-	Name           string `json:"name,omitempty"`           //
+	AuthMode       string `json:"authMode,omitempty"`       // The auth mode of the SSID. It can be set to ('psk', '8021x-radius').
+	EncryptionMode string `json:"encryptionMode,omitempty"` // The encryption mode of the SSID.
+	Name           string `json:"name,omitempty"`           // The name of the SSID.
+	Psk            string `json:"psk,omitempty"`            // The pre-shared key of the SSID, if mode is PSK
 }
-type ResponseCameraCreateNetworkCameraWirelessProfile interface{}
+type ResponseCameraCreateNetworkCameraWirelessProfile struct {
+	AppliedDeviceCount *int                                                      `json:"appliedDeviceCount,omitempty"` // The count of the applied devices.
+	ID                 string                                                    `json:"id,omitempty"`                 // The ID of the camera wireless profile.
+	IDentity           *ResponseCameraCreateNetworkCameraWirelessProfileIDentity `json:"identity,omitempty"`           // The identity of the wireless profile. Required for creating wireless profiles in 8021x-radius auth mode.
+	Name               string                                                    `json:"name,omitempty"`               // The name of the camera wireless profile.
+	SSID               *ResponseCameraCreateNetworkCameraWirelessProfileSSID     `json:"ssid,omitempty"`               // The details of the SSID config.
+}
+type ResponseCameraCreateNetworkCameraWirelessProfileIDentity struct {
+	Password string `json:"password,omitempty"` // The password of the identity.
+	Username string `json:"username,omitempty"` // The username of the identity.
+}
+type ResponseCameraCreateNetworkCameraWirelessProfileSSID struct {
+	AuthMode       string `json:"authMode,omitempty"`       // The auth mode of the SSID. It can be set to ('psk', '8021x-radius').
+	EncryptionMode string `json:"encryptionMode,omitempty"` // The encryption mode of the SSID.
+	Name           string `json:"name,omitempty"`           // The name of the SSID.
+	Psk            string `json:"psk,omitempty"`            // The pre-shared key of the SSID, if mode is PSK
+}
 type ResponseCameraGetNetworkCameraWirelessProfile struct {
-	AppliedDeviceCount *int                                                   `json:"appliedDeviceCount,omitempty"` //
-	ID                 string                                                 `json:"id,omitempty"`                 //
-	IDentity           *ResponseCameraGetNetworkCameraWirelessProfileIDentity `json:"identity,omitempty"`           //
-	Name               string                                                 `json:"name,omitempty"`               //
-	SSID               *ResponseCameraGetNetworkCameraWirelessProfileSSID     `json:"ssid,omitempty"`               //
+	AppliedDeviceCount *int                                                   `json:"appliedDeviceCount,omitempty"` // The count of the applied devices.
+	ID                 string                                                 `json:"id,omitempty"`                 // The ID of the camera wireless profile.
+	IDentity           *ResponseCameraGetNetworkCameraWirelessProfileIDentity `json:"identity,omitempty"`           // The identity of the wireless profile. Required for creating wireless profiles in 8021x-radius auth mode.
+	Name               string                                                 `json:"name,omitempty"`               // The name of the camera wireless profile.
+	SSID               *ResponseCameraGetNetworkCameraWirelessProfileSSID     `json:"ssid,omitempty"`               // The details of the SSID config.
 }
 type ResponseCameraGetNetworkCameraWirelessProfileIDentity struct {
-	Password string `json:"password,omitempty"` //
-	Username string `json:"username,omitempty"` //
+	Password string `json:"password,omitempty"` // The password of the identity.
+	Username string `json:"username,omitempty"` // The username of the identity.
 }
 type ResponseCameraGetNetworkCameraWirelessProfileSSID struct {
-	AuthMode       string `json:"authMode,omitempty"`       //
-	EncryptionMode string `json:"encryptionMode,omitempty"` //
-	Name           string `json:"name,omitempty"`           //
+	AuthMode       string `json:"authMode,omitempty"`       // The auth mode of the SSID. It can be set to ('psk', '8021x-radius').
+	EncryptionMode string `json:"encryptionMode,omitempty"` // The encryption mode of the SSID.
+	Name           string `json:"name,omitempty"`           // The name of the SSID.
+	Psk            string `json:"psk,omitempty"`            // The pre-shared key of the SSID, if mode is PSK
 }
-type ResponseCameraUpdateNetworkCameraWirelessProfile interface{}
+type ResponseCameraUpdateNetworkCameraWirelessProfile struct {
+	AppliedDeviceCount *int                                                      `json:"appliedDeviceCount,omitempty"` // The count of the applied devices.
+	ID                 string                                                    `json:"id,omitempty"`                 // The ID of the camera wireless profile.
+	IDentity           *ResponseCameraUpdateNetworkCameraWirelessProfileIDentity `json:"identity,omitempty"`           // The identity of the wireless profile. Required for creating wireless profiles in 8021x-radius auth mode.
+	Name               string                                                    `json:"name,omitempty"`               // The name of the camera wireless profile.
+	SSID               *ResponseCameraUpdateNetworkCameraWirelessProfileSSID     `json:"ssid,omitempty"`               // The details of the SSID config.
+}
+type ResponseCameraUpdateNetworkCameraWirelessProfileIDentity struct {
+	Password string `json:"password,omitempty"` // The password of the identity.
+	Username string `json:"username,omitempty"` // The username of the identity.
+}
+type ResponseCameraUpdateNetworkCameraWirelessProfileSSID struct {
+	AuthMode       string `json:"authMode,omitempty"`       // The auth mode of the SSID. It can be set to ('psk', '8021x-radius').
+	EncryptionMode string `json:"encryptionMode,omitempty"` // The encryption mode of the SSID.
+	Name           string `json:"name,omitempty"`           // The name of the SSID.
+	Psk            string `json:"psk,omitempty"`            // The pre-shared key of the SSID, if mode is PSK
+}
 type ResponseCameraGetOrganizationCameraBoundariesAreasByDevice []ResponseItemCameraGetOrganizationCameraBoundariesAreasByDevice // Array of ResponseCameraGetOrganizationCameraBoundariesAreasByDevice
 type ResponseItemCameraGetOrganizationCameraBoundariesAreasByDevice struct {
 	Boundaries *ResponseItemCameraGetOrganizationCameraBoundariesAreasByDeviceBoundaries `json:"boundaries,omitempty"` // Configured area boundaries of the camera
@@ -472,28 +517,42 @@ type RequestCameraUpdateDeviceCameraWirelessProfilesIDs struct {
 	Secondary string `json:"secondary,omitempty"` // The id of the secondary wireless profile
 }
 type RequestCameraCreateNetworkCameraQualityRetentionProfile struct {
-	AudioRecordingEnabled          *bool                                                                 `json:"audioRecordingEnabled,omitempty"`          // Whether or not to record audio. Can be either true or false. Defaults to false.
-	CloudArchiveEnabled            *bool                                                                 `json:"cloudArchiveEnabled,omitempty"`            // Create redundant video backup using Cloud Archive. Can be either true or false. Defaults to false.
-	MaxRetentionDays               *int                                                                  `json:"maxRetentionDays,omitempty"`               // The maximum number of days for which the data will be stored, or 'null' to keep data until storage space runs out. If the former, it can be one of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 30, 60, 90] days.
-	MotionBasedRetentionEnabled    *bool                                                                 `json:"motionBasedRetentionEnabled,omitempty"`    // Deletes footage older than 3 days in which no motion was detected. Can be either true or false. Defaults to false. This setting does not apply to MV2 cameras.
-	MotionDetectorVersion          *int                                                                  `json:"motionDetectorVersion,omitempty"`          // The version of the motion detector that will be used by the camera. Only applies to Gen 2 cameras. Defaults to v2.
-	Name                           string                                                                `json:"name,omitempty"`                           // The name of the new profile. Must be unique. This parameter is required.
-	RestrictedBandwidthModeEnabled *bool                                                                 `json:"restrictedBandwidthModeEnabled,omitempty"` // Disable features that require additional bandwidth such as Motion Recap. Can be either true or false. Defaults to false. This setting does not apply to MV2 cameras.
-	ScheduleID                     string                                                                `json:"scheduleId,omitempty"`                     // Schedule for which this camera will record video, or 'null' to always record.
-	VideoSettings                  *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettings `json:"videoSettings,omitempty"`                  // Video quality and resolution settings for all the camera models.
+	AudioRecordingEnabled          *bool                                                                  `json:"audioRecordingEnabled,omitempty"`          // Whether or not to record audio. Can be either true or false. Defaults to false.
+	CloudArchiveEnabled            *bool                                                                  `json:"cloudArchiveEnabled,omitempty"`            // Create redundant video backup using Cloud Archive. Can be either true or false. Defaults to false.
+	MaxRetentionDays               *int                                                                   `json:"maxRetentionDays,omitempty"`               // The maximum number of days for which the data will be stored, or 'null' to keep data until storage space runs out. If the former, it can be in the range of one to ninety days.
+	MotionBasedRetentionEnabled    *bool                                                                  `json:"motionBasedRetentionEnabled,omitempty"`    // Deletes footage older than 3 days in which no motion was detected. Can be either true or false. Defaults to false. This setting does not apply to MV2 cameras.
+	MotionDetectorVersion          *int                                                                   `json:"motionDetectorVersion,omitempty"`          // The version of the motion detector that will be used by the camera. Only applies to Gen 2 cameras. Defaults to v2.
+	Name                           string                                                                 `json:"name,omitempty"`                           // The name of the new profile. Must be unique. This parameter is required.
+	RestrictedBandwidthModeEnabled *bool                                                                  `json:"restrictedBandwidthModeEnabled,omitempty"` // Disable features that require additional bandwidth such as Motion Recap. Can be either true or false. Defaults to false. This setting does not apply to MV2 cameras.
+	ScheduleID                     string                                                                 `json:"scheduleId,omitempty"`                     // Schedule for which this camera will record video, or 'null' to always record.
+	SmartRetention                 *RequestCameraCreateNetworkCameraQualityRetentionProfileSmartRetention `json:"smartRetention,omitempty"`                 // Smart Retention records footage in two qualities and intelligently retains higher quality when motion, people or vehicles are detected.
+	VideoSettings                  *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettings  `json:"videoSettings,omitempty"`                  // Video quality and resolution settings for all the camera models.
+}
+type RequestCameraCreateNetworkCameraQualityRetentionProfileSmartRetention struct {
+	Enabled *bool `json:"enabled,omitempty"` // Boolean indicating if Smart Retention is enabled(true) or disabled(false).
 }
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettings struct {
 	MV12MV22MV72 *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV12MV22MV72 `json:"MV12/MV22/MV72,omitempty"` // Quality and resolution for MV12/MV22/MV72 camera models.
 	MV12WE       *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV12WE       `json:"MV12WE,omitempty"`         // Quality and resolution for MV12WE camera models.
 	MV13         *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV13         `json:"MV13,omitempty"`           // Quality and resolution for MV13 camera models.
+	MV13M        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV13M        `json:"MV13M,omitempty"`          // Quality and resolution for MV13M camera models.
 	MV21MV71     *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV21MV71     `json:"MV21/MV71,omitempty"`      // Quality and resolution for MV21/MV71 camera models.
 	MV22XMV72X   *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV22XMV72X   `json:"MV22X/MV72X,omitempty"`    // Quality and resolution for MV22X/MV72X camera models.
+	MV23         *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV23         `json:"MV23,omitempty"`           // Quality and resolution for MV23 camera models.
+	MV23M        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV23M        `json:"MV23M,omitempty"`          // Quality and resolution for MV23M camera models.
+	MV23X        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV23X        `json:"MV23X,omitempty"`          // Quality and resolution for MV23X camera models.
 	MV32         *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV32         `json:"MV32,omitempty"`           // Quality and resolution for MV32 camera models.
 	MV33         *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV33         `json:"MV33,omitempty"`           // Quality and resolution for MV33 camera models.
+	MV33M        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV33M        `json:"MV33M,omitempty"`          // Quality and resolution for MV33M camera models.
 	MV52         *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV52         `json:"MV52,omitempty"`           // Quality and resolution for MV52 camera models.
 	MV63         *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV63         `json:"MV63,omitempty"`           // Quality and resolution for MV63 camera models.
+	MV63M        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV63M        `json:"MV63M,omitempty"`          // Quality and resolution for MV63M camera models.
 	MV63X        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV63X        `json:"MV63X,omitempty"`          // Quality and resolution for MV63X camera models.
+	MV73         *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV73         `json:"MV73,omitempty"`           // Quality and resolution for MV73 camera models.
+	MV73M        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV73M        `json:"MV73M,omitempty"`          // Quality and resolution for MV73M camera models.
+	MV73X        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV73X        `json:"MV73X,omitempty"`          // Quality and resolution for MV73X camera models.
 	MV93         *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV93         `json:"MV93,omitempty"`           // Quality and resolution for MV93 camera models.
+	MV93M        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV93M        `json:"MV93M,omitempty"`          // Quality and resolution for MV93M camera models.
 	MV93X        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV93X        `json:"MV93X,omitempty"`          // Quality and resolution for MV93X camera models.
 }
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV12MV22MV72 struct {
@@ -508,6 +567,10 @@ type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV13 st
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
 }
+type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV13M struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV21MV71 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1280x720'.
@@ -515,6 +578,18 @@ type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV21MV7
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV22XMV72X struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1280x720', '1920x1080' or '2688x1512'.
+}
+type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV23 struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
+type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV23M struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
+type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV23X struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
 }
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV32 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
@@ -524,49 +599,87 @@ type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV33 st
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080', '2112x2112' or '2880x2880'.
 }
+type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV33M struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080', '2112x2112' or '2880x2880'.
+}
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV52 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1280x720', '1920x1080', '2688x1512' or '3840x2160'.
 }
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV63 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
-	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080' or '2688x1512'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
+type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV63M struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
 }
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV63X struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
 }
+type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV73 struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
+type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV73M struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
+type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV73X struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV93 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
-	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080' or '2112x2112'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080', '2112x2112' or '2880x2880'.
+}
+type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV93M struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080', '2112x2112' or '2880x2880'.
 }
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV93X struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080', '2112x2112' or '2880x2880'.
 }
 type RequestCameraUpdateNetworkCameraQualityRetentionProfile struct {
-	AudioRecordingEnabled          *bool                                                                 `json:"audioRecordingEnabled,omitempty"`          // Whether or not to record audio. Can be either true or false. Defaults to false.
-	CloudArchiveEnabled            *bool                                                                 `json:"cloudArchiveEnabled,omitempty"`            // Create redundant video backup using Cloud Archive. Can be either true or false. Defaults to false.
-	MaxRetentionDays               *int                                                                  `json:"maxRetentionDays,omitempty"`               // The maximum number of days for which the data will be stored, or 'null' to keep data until storage space runs out. If the former, it can be one of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 30, 60, 90] days.
-	MotionBasedRetentionEnabled    *bool                                                                 `json:"motionBasedRetentionEnabled,omitempty"`    // Deletes footage older than 3 days in which no motion was detected. Can be either true or false. Defaults to false. This setting does not apply to MV2 cameras.
-	MotionDetectorVersion          *int                                                                  `json:"motionDetectorVersion,omitempty"`          // The version of the motion detector that will be used by the camera. Only applies to Gen 2 cameras. Defaults to v2.
-	Name                           string                                                                `json:"name,omitempty"`                           // The name of the new profile. Must be unique.
-	RestrictedBandwidthModeEnabled *bool                                                                 `json:"restrictedBandwidthModeEnabled,omitempty"` // Disable features that require additional bandwidth such as Motion Recap. Can be either true or false. Defaults to false. This setting does not apply to MV2 cameras.
-	ScheduleID                     string                                                                `json:"scheduleId,omitempty"`                     // Schedule for which this camera will record video, or 'null' to always record.
-	VideoSettings                  *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettings `json:"videoSettings,omitempty"`                  // Video quality and resolution settings for all the camera models.
+	AudioRecordingEnabled          *bool                                                                  `json:"audioRecordingEnabled,omitempty"`          // Whether or not to record audio. Can be either true or false. Defaults to false.
+	CloudArchiveEnabled            *bool                                                                  `json:"cloudArchiveEnabled,omitempty"`            // Create redundant video backup using Cloud Archive. Can be either true or false. Defaults to false.
+	MaxRetentionDays               *int                                                                   `json:"maxRetentionDays,omitempty"`               // The maximum number of days for which the data will be stored, or 'null' to keep data until storage space runs out. If the former, it can be in the range of one to ninety days.
+	MotionBasedRetentionEnabled    *bool                                                                  `json:"motionBasedRetentionEnabled,omitempty"`    // Deletes footage older than 3 days in which no motion was detected. Can be either true or false. Defaults to false. This setting does not apply to MV2 cameras.
+	MotionDetectorVersion          *int                                                                   `json:"motionDetectorVersion,omitempty"`          // The version of the motion detector that will be used by the camera. Only applies to Gen 2 cameras. Defaults to v2.
+	Name                           string                                                                 `json:"name,omitempty"`                           // The name of the new profile. Must be unique.
+	RestrictedBandwidthModeEnabled *bool                                                                  `json:"restrictedBandwidthModeEnabled,omitempty"` // Disable features that require additional bandwidth such as Motion Recap. Can be either true or false. Defaults to false. This setting does not apply to MV2 cameras.
+	ScheduleID                     string                                                                 `json:"scheduleId,omitempty"`                     // Schedule for which this camera will record video, or 'null' to always record.
+	SmartRetention                 *RequestCameraUpdateNetworkCameraQualityRetentionProfileSmartRetention `json:"smartRetention,omitempty"`                 // Smart Retention records footage in two qualities and intelligently retains higher quality when motion, people or vehicles are detected.
+	VideoSettings                  *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettings  `json:"videoSettings,omitempty"`                  // Video quality and resolution settings for all the camera models.
+}
+type RequestCameraUpdateNetworkCameraQualityRetentionProfileSmartRetention struct {
+	Enabled *bool `json:"enabled,omitempty"` // Boolean indicating if Smart Retention is enabled(true) or disabled(false).
 }
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettings struct {
 	MV12MV22MV72 *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV12MV22MV72 `json:"MV12/MV22/MV72,omitempty"` // Quality and resolution for MV12/MV22/MV72 camera models.
 	MV12WE       *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV12WE       `json:"MV12WE,omitempty"`         // Quality and resolution for MV12WE camera models.
 	MV13         *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV13         `json:"MV13,omitempty"`           // Quality and resolution for MV13 camera models.
+	MV13M        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV13M        `json:"MV13M,omitempty"`          // Quality and resolution for MV13M camera models.
 	MV21MV71     *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV21MV71     `json:"MV21/MV71,omitempty"`      // Quality and resolution for MV21/MV71 camera models.
 	MV22XMV72X   *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV22XMV72X   `json:"MV22X/MV72X,omitempty"`    // Quality and resolution for MV22X/MV72X camera models.
+	MV23         *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV23         `json:"MV23,omitempty"`           // Quality and resolution for MV23 camera models.
+	MV23M        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV23M        `json:"MV23M,omitempty"`          // Quality and resolution for MV23M camera models.
+	MV23X        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV23X        `json:"MV23X,omitempty"`          // Quality and resolution for MV23X camera models.
 	MV32         *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV32         `json:"MV32,omitempty"`           // Quality and resolution for MV32 camera models.
 	MV33         *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV33         `json:"MV33,omitempty"`           // Quality and resolution for MV33 camera models.
+	MV33M        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV33M        `json:"MV33M,omitempty"`          // Quality and resolution for MV33M camera models.
 	MV52         *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV52         `json:"MV52,omitempty"`           // Quality and resolution for MV52 camera models.
 	MV63         *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV63         `json:"MV63,omitempty"`           // Quality and resolution for MV63 camera models.
+	MV63M        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV63M        `json:"MV63M,omitempty"`          // Quality and resolution for MV63M camera models.
 	MV63X        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV63X        `json:"MV63X,omitempty"`          // Quality and resolution for MV63X camera models.
+	MV73         *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV73         `json:"MV73,omitempty"`           // Quality and resolution for MV73 camera models.
+	MV73M        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV73M        `json:"MV73M,omitempty"`          // Quality and resolution for MV73M camera models.
+	MV73X        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV73X        `json:"MV73X,omitempty"`          // Quality and resolution for MV73X camera models.
 	MV93         *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV93         `json:"MV93,omitempty"`           // Quality and resolution for MV93 camera models.
+	MV93M        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV93M        `json:"MV93M,omitempty"`          // Quality and resolution for MV93M camera models.
 	MV93X        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV93X        `json:"MV93X,omitempty"`          // Quality and resolution for MV93X camera models.
 }
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV12MV22MV72 struct {
@@ -581,6 +694,10 @@ type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV13 st
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
 }
+type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV13M struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV21MV71 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1280x720'.
@@ -588,6 +705,18 @@ type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV21MV7
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV22XMV72X struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1280x720', '1920x1080' or '2688x1512'.
+}
+type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV23 struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
+type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV23M struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
+type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV23X struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
 }
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV32 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
@@ -597,21 +726,45 @@ type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV33 st
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080', '2112x2112' or '2880x2880'.
 }
+type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV33M struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080', '2112x2112' or '2880x2880'.
+}
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV52 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1280x720', '1920x1080', '2688x1512' or '3840x2160'.
 }
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV63 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
-	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080' or '2688x1512'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
+type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV63M struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
 }
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV63X struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
 }
+type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV73 struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
+type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV73M struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
+type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV73X struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV93 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
-	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080' or '2112x2112'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080', '2112x2112' or '2880x2880'.
+}
+type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV93M struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1080x1080', '2112x2112' or '2880x2880'.
 }
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV93X struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
@@ -697,8 +850,8 @@ type RequestCameraUpdateOrganizationCameraRoleAppliedOrgWide struct {
 	PermissionScopeID string `json:"permissionScopeId,omitempty"` // Permission scope id
 }
 
-//GetDeviceCameraAnalyticsLive Returns live state from camera of analytics zones
-/* Returns live state from camera of analytics zones
+//GetDeviceCameraAnalyticsLive Returns live state from camera analytics zones
+/* Returns live state from camera analytics zones
 
 @param serial serial path parameter.
 
@@ -1632,7 +1785,7 @@ func (s *CameraService) GetOrganizationCameraRole(organizationID string, roleID 
 
 */
 
-func (s *CameraService) GenerateDeviceCameraSnapshot(serial string, requestCameraGenerateDeviceCameraSnapshot *RequestCameraGenerateDeviceCameraSnapshot) (*resty.Response, error) {
+func (s *CameraService) GenerateDeviceCameraSnapshot(serial string, requestCameraGenerateDeviceCameraSnapshot *RequestCameraGenerateDeviceCameraSnapshot) (*ResponseCameraGenerateDeviceCameraSnapshot, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/generateSnapshot"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
@@ -1641,20 +1794,21 @@ func (s *CameraService) GenerateDeviceCameraSnapshot(serial string, requestCamer
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestCameraGenerateDeviceCameraSnapshot).
-		// SetResult(&ResponseCameraGenerateDeviceCameraSnapshot{}).
+		SetResult(&ResponseCameraGenerateDeviceCameraSnapshot{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation GenerateDeviceCameraSnapshot")
+		return nil, response, fmt.Errorf("error with operation GenerateDeviceCameraSnapshot")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseCameraGenerateDeviceCameraSnapshot)
+	return result, response, err
 
 }
 
@@ -1700,7 +1854,7 @@ func (s *CameraService) CreateNetworkCameraQualityRetentionProfile(networkID str
 
 */
 
-func (s *CameraService) CreateNetworkCameraWirelessProfile(networkID string, requestCameraCreateNetworkCameraWirelessProfile *RequestCameraCreateNetworkCameraWirelessProfile) (*resty.Response, error) {
+func (s *CameraService) CreateNetworkCameraWirelessProfile(networkID string, requestCameraCreateNetworkCameraWirelessProfile *RequestCameraCreateNetworkCameraWirelessProfile) (*ResponseCameraCreateNetworkCameraWirelessProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/wirelessProfiles"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -1709,20 +1863,21 @@ func (s *CameraService) CreateNetworkCameraWirelessProfile(networkID string, req
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestCameraCreateNetworkCameraWirelessProfile).
-		// SetResult(&ResponseCameraCreateNetworkCameraWirelessProfile{}).
+		SetResult(&ResponseCameraCreateNetworkCameraWirelessProfile{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateNetworkCameraWirelessProfile")
+		return nil, response, fmt.Errorf("error with operation CreateNetworkCameraWirelessProfile")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseCameraCreateNetworkCameraWirelessProfile)
+	return result, response, err
 
 }
 
@@ -1987,7 +2142,7 @@ func (s *CameraService) UpdateNetworkCameraQualityRetentionProfile(networkID str
 @param networkID networkId path parameter. Network ID
 @param wirelessProfileID wirelessProfileId path parameter. Wireless profile ID
 */
-func (s *CameraService) UpdateNetworkCameraWirelessProfile(networkID string, wirelessProfileID string, requestCameraUpdateNetworkCameraWirelessProfile *RequestCameraUpdateNetworkCameraWirelessProfile) (*resty.Response, error) {
+func (s *CameraService) UpdateNetworkCameraWirelessProfile(networkID string, wirelessProfileID string, requestCameraUpdateNetworkCameraWirelessProfile *RequestCameraUpdateNetworkCameraWirelessProfile) (*ResponseCameraUpdateNetworkCameraWirelessProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/wirelessProfiles/{wirelessProfileId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -1997,19 +2152,21 @@ func (s *CameraService) UpdateNetworkCameraWirelessProfile(networkID string, wir
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestCameraUpdateNetworkCameraWirelessProfile).
+		SetResult(&ResponseCameraUpdateNetworkCameraWirelessProfile{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkCameraWirelessProfile")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkCameraWirelessProfile")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseCameraUpdateNetworkCameraWirelessProfile)
+	return result, response, err
 
 }
 

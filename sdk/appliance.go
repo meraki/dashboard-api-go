@@ -11,6 +11,11 @@ import (
 
 type ApplianceService service
 
+type GetDeviceAppliancePerformanceQueryParams struct {
+	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data. The maximum lookback period is 30 days from today.
+	T1       string  `url:"t1,omitempty"`       //The end of the timespan for the data. t1 can be a maximum of 14 days after t0.
+	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be greater than or equal to 30 minutes and be less than or equal to 14 days. The default is 30 minutes.
+}
 type GetNetworkApplianceClientSecurityEventsQueryParams struct {
 	T0            string  `url:"t0,omitempty"`            //The beginning of the timespan for the data. Data is gathered after the specified t0 value. The maximum lookback period is 791 days from today.
 	T1            string  `url:"t1,omitempty"`            //The end of the timespan for the data. t1 can be a maximum of 791 days after t0.
@@ -361,14 +366,21 @@ type ResponseItemApplianceGetNetworkApplianceClientSecurityEvents struct {
 	URI             string `json:"uri,omitempty"`             //
 }
 type ResponseApplianceGetNetworkApplianceConnectivityMonitoringDestinations struct {
-	Destinations *[]ResponseApplianceGetNetworkApplianceConnectivityMonitoringDestinationsDestinations `json:"destinations,omitempty"` //
+	Destinations *[]ResponseApplianceGetNetworkApplianceConnectivityMonitoringDestinationsDestinations `json:"destinations,omitempty"` // The list of connectivity monitoring destinations
 }
 type ResponseApplianceGetNetworkApplianceConnectivityMonitoringDestinationsDestinations struct {
-	Default     *bool  `json:"default,omitempty"`     //
-	Description string `json:"description,omitempty"` //
-	IP          string `json:"ip,omitempty"`          //
+	Default     *bool  `json:"default,omitempty"`     // Boolean indicating whether this is the default testing destination (true) or not (false). Defaults to false. Only one default is allowed
+	Description string `json:"description,omitempty"` // Description of the testing destination. Optional, defaults to an empty string
+	IP          string `json:"ip,omitempty"`          // The IP address to test connectivity with
 }
-type ResponseApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations interface{}
+type ResponseApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations struct {
+	Destinations *[]ResponseApplianceUpdateNetworkApplianceConnectivityMonitoringDestinationsDestinations `json:"destinations,omitempty"` // The list of connectivity monitoring destinations
+}
+type ResponseApplianceUpdateNetworkApplianceConnectivityMonitoringDestinationsDestinations struct {
+	Default     *bool  `json:"default,omitempty"`     // Boolean indicating whether this is the default testing destination (true) or not (false). Defaults to false. Only one default is allowed
+	Description string `json:"description,omitempty"` // Description of the testing destination. Optional, defaults to an empty string
+	IP          string `json:"ip,omitempty"`          // The IP address to test connectivity with
+}
 type ResponseApplianceGetNetworkApplianceContentFiltering struct {
 	AllowedURLPatterns   []string                                                                    `json:"allowedUrlPatterns,omitempty"`   //
 	BlockedURLCategories *[]ResponseApplianceGetNetworkApplianceContentFilteringBlockedURLCategories `json:"blockedUrlCategories,omitempty"` //
@@ -417,19 +429,32 @@ type ResponseApplianceUpdateNetworkApplianceFirewallFirewalledService struct {
 	AllowedIPs []string `json:"allowedIps,omitempty"` // An array of allowed IPs that can access the service
 	Service    string   `json:"service,omitempty"`    // Appliance service name
 }
-type ResponseApplianceGetNetworkApplianceFirewallInboundCellularFirewallRules []ResponseItemApplianceGetNetworkApplianceFirewallInboundCellularFirewallRules // Array of ResponseApplianceGetNetworkApplianceFirewallInboundCellularFirewallRules
-type ResponseItemApplianceGetNetworkApplianceFirewallInboundCellularFirewallRules struct {
-	Comment       string `json:"comment,omitempty"`       //
-	DestCidr      string `json:"destCidr,omitempty"`      //
-	DestPort      string `json:"destPort,omitempty"`      //
-	Policy        string `json:"policy,omitempty"`        //
-	Protocol      string `json:"protocol,omitempty"`      //
-	SrcCidr       string `json:"srcCidr,omitempty"`       //
-	SrcPort       string `json:"srcPort,omitempty"`       //
-	SyslogEnabled *bool  `json:"syslogEnabled,omitempty"` //
+type ResponseApplianceGetNetworkApplianceFirewallInboundCellularFirewallRules struct {
+	Rules *[]ResponseApplianceGetNetworkApplianceFirewallInboundCellularFirewallRulesRules `json:"rules,omitempty"` // An ordered array of the firewall rules (not including the default rule)
 }
-type ResponseApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules []ResponseItemApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules // Array of ResponseApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules
-type ResponseItemApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules interface{}
+type ResponseApplianceGetNetworkApplianceFirewallInboundCellularFirewallRulesRules struct {
+	Comment       string `json:"comment,omitempty"`       // Description of the rule (optional)
+	DestCidr      string `json:"destCidr,omitempty"`      // Comma-separated list of destination IP address(es) (in IP or CIDR notation), fully-qualified domain names (FQDN) or 'any'
+	DestPort      string `json:"destPort,omitempty"`      // Comma-separated list of destination port(s) (integer in the range 1-65535), or 'any'
+	Policy        string `json:"policy,omitempty"`        // 'allow' or 'deny' traffic specified by this rule
+	Protocol      string `json:"protocol,omitempty"`      // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
+	SrcCidr       string `json:"srcCidr,omitempty"`       // Comma-separated list of source IP address(es) (in IP or CIDR notation), or 'any' (note: FQDN not supported for source addresses)
+	SrcPort       string `json:"srcPort,omitempty"`       // Comma-separated list of source port(s) (integer in the range 1-65535), or 'any'
+	SyslogEnabled *bool  `json:"syslogEnabled,omitempty"` // Log this rule to syslog (true or false, boolean value) - only applicable if a syslog has been configured (optional)
+}
+type ResponseApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules struct {
+	Rules *[]ResponseApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRulesRules `json:"rules,omitempty"` // An ordered array of the firewall rules (not including the default rule)
+}
+type ResponseApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRulesRules struct {
+	Comment       string `json:"comment,omitempty"`       // Description of the rule (optional)
+	DestCidr      string `json:"destCidr,omitempty"`      // Comma-separated list of destination IP address(es) (in IP or CIDR notation), fully-qualified domain names (FQDN) or 'any'
+	DestPort      string `json:"destPort,omitempty"`      // Comma-separated list of destination port(s) (integer in the range 1-65535), or 'any'
+	Policy        string `json:"policy,omitempty"`        // 'allow' or 'deny' traffic specified by this rule
+	Protocol      string `json:"protocol,omitempty"`      // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
+	SrcCidr       string `json:"srcCidr,omitempty"`       // Comma-separated list of source IP address(es) (in IP or CIDR notation), or 'any' (note: FQDN not supported for source addresses)
+	SrcPort       string `json:"srcPort,omitempty"`       // Comma-separated list of source port(s) (integer in the range 1-65535), or 'any'
+	SyslogEnabled *bool  `json:"syslogEnabled,omitempty"` // Log this rule to syslog (true or false, boolean value) - only applicable if a syslog has been configured (optional)
+}
 type ResponseApplianceGetNetworkApplianceFirewallInboundFirewallRules struct {
 	Rules             *[]ResponseApplianceGetNetworkApplianceFirewallInboundFirewallRulesRules `json:"rules,omitempty"`             // An ordered array of the firewall rules (not including the default rule)
 	SyslogDefaultRule *bool                                                                    `json:"syslogDefaultRule,omitempty"` // Log the special default rule (boolean value - enable only if you've configured a syslog server) (optional)
@@ -564,18 +589,30 @@ type ResponseApplianceGetNetworkApplianceFirewallOneToOneNatRulesRulesAllowedInb
 }
 type ResponseApplianceUpdateNetworkApplianceFirewallOneToOneNatRules interface{}
 type ResponseApplianceGetNetworkApplianceFirewallPortForwardingRules struct {
-	Rules *[]ResponseApplianceGetNetworkApplianceFirewallPortForwardingRulesRules `json:"rules,omitempty"` //
+	Rules *[]ResponseApplianceGetNetworkApplianceFirewallPortForwardingRulesRules `json:"rules,omitempty"` // An array of port forwarding rules
 }
+
 type ResponseApplianceGetNetworkApplianceFirewallPortForwardingRulesRules struct {
-	AllowedIPs []string `json:"allowedIps,omitempty"` //
-	LanIP      string   `json:"lanIp,omitempty"`      //
-	LocalPort  string   `json:"localPort,omitempty"`  //
-	Name       string   `json:"name,omitempty"`       //
-	Protocol   string   `json:"protocol,omitempty"`   //
-	PublicPort string   `json:"publicPort,omitempty"` //
-	Uplink     string   `json:"uplink,omitempty"`     //
+	AllowedIPs []string `json:"allowedIps,omitempty"` // An array of ranges of WAN IP addresses that are allowed to make inbound connections on the specified ports or port ranges (or any)
+	LanIP      string   `json:"lanIp,omitempty"`      // IP address of the device subject to port forwarding
+	LocalPort  string   `json:"localPort,omitempty"`  // The port or port range that receives forwarded traffic from the WAN
+	Name       string   `json:"name,omitempty"`       // Name of the rule
+	Protocol   string   `json:"protocol,omitempty"`   // Protocol the rule applies to
+	PublicPort string   `json:"publicPort,omitempty"` // The port or port range forwarded to the host on the LAN
+	Uplink     string   `json:"uplink,omitempty"`     // The physical WAN interface on which the traffic arrives; allowed values vary by appliance model and configuration
 }
-type ResponseApplianceUpdateNetworkApplianceFirewallPortForwardingRules interface{}
+type ResponseApplianceUpdateNetworkApplianceFirewallPortForwardingRules struct {
+	Rules *[]ResponseApplianceUpdateNetworkApplianceFirewallPortForwardingRulesRules `json:"rules,omitempty"` // An array of port forwarding rules
+}
+type ResponseApplianceUpdateNetworkApplianceFirewallPortForwardingRulesRules struct {
+	AllowedIPs []string `json:"allowedIps,omitempty"` // An array of ranges of WAN IP addresses that are allowed to make inbound connections on the specified ports or port ranges (or any)
+	LanIP      string   `json:"lanIp,omitempty"`      // IP address of the device subject to port forwarding
+	LocalPort  string   `json:"localPort,omitempty"`  // The port or port range that receives forwarded traffic from the WAN
+	Name       string   `json:"name,omitempty"`       // Name of the rule
+	Protocol   string   `json:"protocol,omitempty"`   // Protocol the rule applies to
+	PublicPort string   `json:"publicPort,omitempty"` // The port or port range forwarded to the host on the LAN
+	Uplink     string   `json:"uplink,omitempty"`     // The physical WAN interface on which the traffic arrives; allowed values vary by appliance model and configuration
+}
 type ResponseApplianceGetNetworkApplianceFirewallSettings struct {
 	SpoofingProtection *ResponseApplianceGetNetworkApplianceFirewallSettingsSpoofingProtection `json:"spoofingProtection,omitempty"` //
 }
@@ -796,6 +833,45 @@ type ResponseApplianceUpdateNetworkApplianceRfProfileTwoFourGhzSettings struct {
 	AxEnabled  *bool    `json:"axEnabled,omitempty"`  // Whether ax radio on 2.4Ghz band is on or off.
 	MinBitrate *float64 `json:"minBitrate,omitempty"` // Min bitrate (Mbps) of 2.4Ghz band.
 }
+type ResponseApplianceUpdateNetworkApplianceSdwanInternetPolicies struct {
+	WanTrafficUplinkPreferences *[]ResponseApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferences `json:"wanTrafficUplinkPreferences,omitempty"` // policies with respective traffic filters for an MX network
+}
+type ResponseApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferences struct {
+	FailOverCriterion string                                                                                                   `json:"failOverCriterion,omitempty"` // WAN failover and failback behavior
+	PerformanceClass  *ResponseApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesPerformanceClass `json:"performanceClass,omitempty"`  // Performance class setting for uplink preference rule
+	PreferredUplink   string                                                                                                   `json:"preferredUplink,omitempty"`   // Preferred uplink for uplink preference rule. Must be one of: 'wan1', 'wan2', 'bestForVoIP', 'loadBalancing' or 'defaultUplink'
+	TrafficFilters    *[]ResponseApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFilters `json:"trafficFilters,omitempty"`    // Traffic filters
+}
+type ResponseApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesPerformanceClass struct {
+	BuiltinPerformanceClassName string `json:"builtinPerformanceClassName,omitempty"` // Name of builtin performance class. Must be present when performanceClass type is 'builtin' and value must be one of: 'VoIP'
+	CustomPerformanceClassID    string `json:"customPerformanceClassId,omitempty"`    // ID of created custom performance class, must be present when performanceClass type is "custom"
+	Type                        string `json:"type,omitempty"`                        // Type of this performance class. Must be one of: 'builtin' or 'custom'
+}
+type ResponseApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFilters struct {
+	Type  string                                                                                                      `json:"type,omitempty"`  // Traffic filter type. Must be 'custom', 'major_application', 'application (NBAR)', if type is 'application', you can pass either an NBAR App Category or Application
+	Value *ResponseApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValue `json:"value,omitempty"` // Value of traffic filter
+}
+type ResponseApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValue struct {
+	Destination *ResponseApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValueDestination `json:"destination,omitempty"` // Destination of 'custom' type traffic filter
+	Protocol    string                                                                                                                 `json:"protocol,omitempty"`    // Protocol of the traffic filter. Must be one of: 'tcp', 'udp', 'icmp6' or 'any'
+	Source      *ResponseApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValueSource      `json:"source,omitempty"`      // Source of traffic filter
+}
+type ResponseApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValueDestination struct {
+	Applications *[]ResponseApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValueDestinationApplications `json:"applications,omitempty"` // list of application objects (either majorApplication or nbar)
+	Cidr         string                                                                                                                               `json:"cidr,omitempty"`         // CIDR format address (e.g."192.168.10.1", which is the same as "192.168.10.1/32"), or "any"
+	Port         string                                                                                                                               `json:"port,omitempty"`         // E.g.: "any", "0" (also means "any"), "8080", "1-1024"
+}
+type ResponseApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValueDestinationApplications struct {
+	ID   string `json:"id,omitempty"`   // Id of the major application, or a list of NBAR Application Category or Application selections
+	Name string `json:"name,omitempty"` // Name of the major application or application category selected
+	Type string `json:"type,omitempty"` // app type (major or nbar)
+}
+type ResponseApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValueSource struct {
+	Cidr string `json:"cidr,omitempty"` // CIDR format address (e.g."192.168.10.1", which is the same as "192.168.10.1/32"), or "any". Cannot be used in combination with the "vlan" property
+	Host *int   `json:"host,omitempty"` // Host ID in the VLAN. Should not exceed the VLAN subnet capacity. Must be used along with the "vlan" property and is currently only available under a template network.
+	Port string `json:"port,omitempty"` // E.g.: "any", "0" (also means "any"), "8080", "1-1024"
+	VLAN *int   `json:"vlan,omitempty"` // VLAN ID of the configured VLAN in the Meraki network. Cannot be used in combination with the "cidr" property and is currently only available under a template network.
+}
 type ResponseApplianceGetNetworkApplianceSecurityEvents []ResponseItemApplianceGetNetworkApplianceSecurityEvents // Array of ResponseApplianceGetNetworkApplianceSecurityEvents
 type ResponseItemApplianceGetNetworkApplianceSecurityEvents struct {
 	Action          string `json:"action,omitempty"`          //
@@ -975,16 +1051,16 @@ type ResponseApplianceUpdateNetworkApplianceSSIDRadiusServers struct {
 }
 type ResponseApplianceGetNetworkApplianceStaticRoutes []ResponseItemApplianceGetNetworkApplianceStaticRoutes // Array of ResponseApplianceGetNetworkApplianceStaticRoutes
 type ResponseItemApplianceGetNetworkApplianceStaticRoutes struct {
-	Enabled            *bool                                                                   `json:"enabled,omitempty"`            //
-	FixedIPAssignments *ResponseItemApplianceGetNetworkApplianceStaticRoutesFixedIPAssignments `json:"fixedIpAssignments,omitempty"` //
-	GatewayIP          string                                                                  `json:"gatewayIp,omitempty"`          //
-	GatewayVLANID      *int                                                                    `json:"gatewayVlanId,omitempty"`      //
-	ID                 string                                                                  `json:"id,omitempty"`                 //
-	IPVersion          *int                                                                    `json:"ipVersion,omitempty"`          //
-	Name               string                                                                  `json:"name,omitempty"`               //
-	NetworkID          string                                                                  `json:"networkId,omitempty"`          //
-	ReservedIPRanges   *[]ResponseItemApplianceGetNetworkApplianceStaticRoutesReservedIPRanges `json:"reservedIpRanges,omitempty"`   //
-	Subnet             string                                                                  `json:"subnet,omitempty"`             //
+	Enabled            *bool                                                                   `json:"enabled,omitempty"`            // Whether the route is enabled or not
+	FixedIPAssignments *ResponseItemApplianceGetNetworkApplianceStaticRoutesFixedIPAssignments `json:"fixedIpAssignments,omitempty"` // Fixed DHCP IP assignments on the route
+	GatewayIP          string                                                                  `json:"gatewayIp,omitempty"`          // Gateway IP address (next hop)
+	GatewayVLANID      *int                                                                    `json:"gatewayVlanId,omitempty"`      // Gateway VLAN ID
+	ID                 string                                                                  `json:"id,omitempty"`                 // Route ID
+	IPVersion          *int                                                                    `json:"ipVersion,omitempty"`          // IP protocol version
+	Name               string                                                                  `json:"name,omitempty"`               // Name of the route
+	NetworkID          string                                                                  `json:"networkId,omitempty"`          // Network ID
+	ReservedIPRanges   *[]ResponseItemApplianceGetNetworkApplianceStaticRoutesReservedIPRanges `json:"reservedIpRanges,omitempty"`   // DHCP reserved IP ranges
+	Subnet             string                                                                  `json:"subnet,omitempty"`             // Subnet of the route
 }
 type ResponseItemApplianceGetNetworkApplianceStaticRoutesFixedIPAssignments struct {
 	Status223344556677 *ResponseItemApplianceGetNetworkApplianceStaticRoutesFixedIPAssignments223344556677 `json:"22:33:44:55:66:77,omitempty"` //
@@ -994,22 +1070,39 @@ type ResponseItemApplianceGetNetworkApplianceStaticRoutesFixedIPAssignments22334
 	Name string `json:"name,omitempty"` //
 }
 type ResponseItemApplianceGetNetworkApplianceStaticRoutesReservedIPRanges struct {
-	Comment string `json:"comment,omitempty"` //
-	End     string `json:"end,omitempty"`     //
-	Start   string `json:"start,omitempty"`   //
+	Comment string `json:"comment,omitempty"` // Description of the range
+	End     string `json:"end,omitempty"`     // Last address in the reserved range
+	Start   string `json:"start,omitempty"`   // First address in the reserved range
 }
-type ResponseApplianceCreateNetworkApplianceStaticRoute interface{}
+type ResponseApplianceCreateNetworkApplianceStaticRoute struct {
+	Enabled            *bool                                                                 `json:"enabled,omitempty"`            // Whether the route is enabled or not
+	FixedIPAssignments *ResponseApplianceCreateNetworkApplianceStaticRouteFixedIPAssignments `json:"fixedIpAssignments,omitempty"` // Fixed DHCP IP assignments on the route
+	GatewayIP          string                                                                `json:"gatewayIp,omitempty"`          // Gateway IP address (next hop)
+	GatewayVLANID      *int                                                                  `json:"gatewayVlanId,omitempty"`      // Gateway VLAN ID
+	ID                 string                                                                `json:"id,omitempty"`                 // Route ID
+	IPVersion          *int                                                                  `json:"ipVersion,omitempty"`          // IP protocol version
+	Name               string                                                                `json:"name,omitempty"`               // Name of the route
+	NetworkID          string                                                                `json:"networkId,omitempty"`          // Network ID
+	ReservedIPRanges   *[]ResponseApplianceCreateNetworkApplianceStaticRouteReservedIPRanges `json:"reservedIpRanges,omitempty"`   // DHCP reserved IP ranges
+	Subnet             string                                                                `json:"subnet,omitempty"`             // Subnet of the route
+}
+type ResponseApplianceCreateNetworkApplianceStaticRouteFixedIPAssignments interface{}
+type ResponseApplianceCreateNetworkApplianceStaticRouteReservedIPRanges struct {
+	Comment string `json:"comment,omitempty"` // Description of the range
+	End     string `json:"end,omitempty"`     // Last address in the reserved range
+	Start   string `json:"start,omitempty"`   // First address in the reserved range
+}
 type ResponseApplianceGetNetworkApplianceStaticRoute struct {
-	Enabled            *bool                                                              `json:"enabled,omitempty"`            //
-	FixedIPAssignments *ResponseApplianceGetNetworkApplianceStaticRouteFixedIPAssignments `json:"fixedIpAssignments,omitempty"` //
-	GatewayIP          string                                                             `json:"gatewayIp,omitempty"`          //
-	GatewayVLANID      *int                                                               `json:"gatewayVlanId,omitempty"`      //
-	ID                 string                                                             `json:"id,omitempty"`                 //
-	IPVersion          *int                                                               `json:"ipVersion,omitempty"`          //
-	Name               string                                                             `json:"name,omitempty"`               //
-	NetworkID          string                                                             `json:"networkId,omitempty"`          //
-	ReservedIPRanges   *[]ResponseApplianceGetNetworkApplianceStaticRouteReservedIPRanges `json:"reservedIpRanges,omitempty"`   //
-	Subnet             string                                                             `json:"subnet,omitempty"`             //
+	Enabled            *bool                                                              `json:"enabled,omitempty"`            // Whether the route is enabled or not
+	FixedIPAssignments *ResponseApplianceGetNetworkApplianceStaticRouteFixedIPAssignments `json:"fixedIpAssignments,omitempty"` // Fixed DHCP IP assignments on the route
+	GatewayIP          string                                                             `json:"gatewayIp,omitempty"`          // Gateway IP address (next hop)
+	GatewayVLANID      *int                                                               `json:"gatewayVlanId,omitempty"`      // Gateway VLAN ID
+	ID                 string                                                             `json:"id,omitempty"`                 // Route ID
+	IPVersion          *int                                                               `json:"ipVersion,omitempty"`          // IP protocol version
+	Name               string                                                             `json:"name,omitempty"`               // Name of the route
+	NetworkID          string                                                             `json:"networkId,omitempty"`          // Network ID
+	ReservedIPRanges   *[]ResponseApplianceGetNetworkApplianceStaticRouteReservedIPRanges `json:"reservedIpRanges,omitempty"`   // DHCP reserved IP ranges
+	Subnet             string                                                             `json:"subnet,omitempty"`             // Subnet of the route
 }
 type ResponseApplianceGetNetworkApplianceStaticRouteFixedIPAssignments struct {
 	Status223344556677 *ResponseApplianceGetNetworkApplianceStaticRouteFixedIPAssignments223344556677 `json:"22:33:44:55:66:77,omitempty"` //
@@ -1019,11 +1112,28 @@ type ResponseApplianceGetNetworkApplianceStaticRouteFixedIPAssignments2233445566
 	Name string `json:"name,omitempty"` //
 }
 type ResponseApplianceGetNetworkApplianceStaticRouteReservedIPRanges struct {
-	Comment string `json:"comment,omitempty"` //
-	End     string `json:"end,omitempty"`     //
-	Start   string `json:"start,omitempty"`   //
+	Comment string `json:"comment,omitempty"` // Description of the range
+	End     string `json:"end,omitempty"`     // Last address in the reserved range
+	Start   string `json:"start,omitempty"`   // First address in the reserved range
 }
-type ResponseApplianceUpdateNetworkApplianceStaticRoute interface{}
+type ResponseApplianceUpdateNetworkApplianceStaticRoute struct {
+	Enabled            *bool                                                                 `json:"enabled,omitempty"`            // Whether the route is enabled or not
+	FixedIPAssignments *ResponseApplianceUpdateNetworkApplianceStaticRouteFixedIPAssignments `json:"fixedIpAssignments,omitempty"` // Fixed DHCP IP assignments on the route
+	GatewayIP          string                                                                `json:"gatewayIp,omitempty"`          // Gateway IP address (next hop)
+	GatewayVLANID      *int                                                                  `json:"gatewayVlanId,omitempty"`      // Gateway VLAN ID
+	ID                 string                                                                `json:"id,omitempty"`                 // Route ID
+	IPVersion          *int                                                                  `json:"ipVersion,omitempty"`          // IP protocol version
+	Name               string                                                                `json:"name,omitempty"`               // Name of the route
+	NetworkID          string                                                                `json:"networkId,omitempty"`          // Network ID
+	ReservedIPRanges   *[]ResponseApplianceUpdateNetworkApplianceStaticRouteReservedIPRanges `json:"reservedIpRanges,omitempty"`   // DHCP reserved IP ranges
+	Subnet             string                                                                `json:"subnet,omitempty"`             // Subnet of the route
+}
+type ResponseApplianceUpdateNetworkApplianceStaticRouteFixedIPAssignments interface{}
+type ResponseApplianceUpdateNetworkApplianceStaticRouteReservedIPRanges struct {
+	Comment string `json:"comment,omitempty"` // Description of the range
+	End     string `json:"end,omitempty"`     // Last address in the reserved range
+	Start   string `json:"start,omitempty"`   // First address in the reserved range
+}
 type ResponseApplianceGetNetworkApplianceTrafficShaping struct {
 	GlobalBandwidthLimits *ResponseApplianceGetNetworkApplianceTrafficShapingGlobalBandwidthLimits `json:"globalBandwidthLimits,omitempty"` //
 }
@@ -1202,8 +1312,14 @@ type ResponseApplianceGetNetworkApplianceTrafficShapingUplinkSelectionWanTraffic
 	Source      *ResponseApplianceGetNetworkApplianceTrafficShapingUplinkSelectionWanTrafficUplinkPreferencesTrafficFiltersValueSource      `json:"source,omitempty"`      // Source of 'custom' type traffic filter
 }
 type ResponseApplianceGetNetworkApplianceTrafficShapingUplinkSelectionWanTrafficUplinkPreferencesTrafficFiltersValueDestination struct {
-	Cidr string `json:"cidr,omitempty"` // CIDR format address (e.g."192.168.10.1", which is the same as "192.168.10.1/32"), or "any"
-	Port string `json:"port,omitempty"` // E.g.: "any", "0" (also means "any"), "8080", "1-1024"
+	Applications *[]ResponseApplianceGetNetworkApplianceTrafficShapingUplinkSelectionWanTrafficUplinkPreferencesTrafficFiltersValueDestinationApplications `json:"applications,omitempty"` // list of application objects (either majorApplication or nbar)
+	Cidr         string                                                                                                                                    `json:"cidr,omitempty"`         // CIDR format address (e.g."192.168.10.1", which is the same as "192.168.10.1/32"), or "any"
+	Port         string                                                                                                                                    `json:"port,omitempty"`         // E.g.: "any", "0" (also means "any"), "8080", "1-1024"
+}
+type ResponseApplianceGetNetworkApplianceTrafficShapingUplinkSelectionWanTrafficUplinkPreferencesTrafficFiltersValueDestinationApplications struct {
+	ID   string `json:"id,omitempty"`   // Id of the major application, or a list of NBAR Application Category or Application selections
+	Name string `json:"name,omitempty"` // Name of the major application or application category selected
+	Type string `json:"type,omitempty"` // app type (major or nbar)
 }
 type ResponseApplianceGetNetworkApplianceTrafficShapingUplinkSelectionWanTrafficUplinkPreferencesTrafficFiltersValueSource struct {
 	Cidr string `json:"cidr,omitempty"` // CIDR format address (e.g."192.168.10.1", which is the same as "192.168.10.1/32"), or "any". Cannot be used in combination with the "vlan" property
@@ -1275,8 +1391,14 @@ type ResponseApplianceUpdateNetworkApplianceTrafficShapingUplinkSelectionWanTraf
 	Source      *ResponseApplianceUpdateNetworkApplianceTrafficShapingUplinkSelectionWanTrafficUplinkPreferencesTrafficFiltersValueSource      `json:"source,omitempty"`      // Source of 'custom' type traffic filter
 }
 type ResponseApplianceUpdateNetworkApplianceTrafficShapingUplinkSelectionWanTrafficUplinkPreferencesTrafficFiltersValueDestination struct {
-	Cidr string `json:"cidr,omitempty"` // CIDR format address (e.g."192.168.10.1", which is the same as "192.168.10.1/32"), or "any"
-	Port string `json:"port,omitempty"` // E.g.: "any", "0" (also means "any"), "8080", "1-1024"
+	Applications *[]ResponseApplianceUpdateNetworkApplianceTrafficShapingUplinkSelectionWanTrafficUplinkPreferencesTrafficFiltersValueDestinationApplications `json:"applications,omitempty"` // list of application objects (either majorApplication or nbar)
+	Cidr         string                                                                                                                                       `json:"cidr,omitempty"`         // CIDR format address (e.g."192.168.10.1", which is the same as "192.168.10.1/32"), or "any"
+	Port         string                                                                                                                                       `json:"port,omitempty"`         // E.g.: "any", "0" (also means "any"), "8080", "1-1024"
+}
+type ResponseApplianceUpdateNetworkApplianceTrafficShapingUplinkSelectionWanTrafficUplinkPreferencesTrafficFiltersValueDestinationApplications struct {
+	ID   string `json:"id,omitempty"`   // Id of the major application, or a list of NBAR Application Category or Application selections
+	Name string `json:"name,omitempty"` // Name of the major application or application category selected
+	Type string `json:"type,omitempty"` // app type (major or nbar)
 }
 type ResponseApplianceUpdateNetworkApplianceTrafficShapingUplinkSelectionWanTrafficUplinkPreferencesTrafficFiltersValueSource struct {
 	Cidr string `json:"cidr,omitempty"` // CIDR format address (e.g."192.168.10.1", which is the same as "192.168.10.1/32"), or "any". Cannot be used in combination with the "vlan" property
@@ -1504,20 +1626,61 @@ type ResponseApplianceUpdateNetworkApplianceVLANReservedIPRanges struct {
 	Start   string `json:"start,omitempty"`   // The first IP in the reserved range
 }
 type ResponseApplianceGetNetworkApplianceVpnBgp struct {
-	AsNumber      *int                                                   `json:"asNumber,omitempty"`      //
-	Enabled       *bool                                                  `json:"enabled,omitempty"`       //
-	IbgpHoldTimer *int                                                   `json:"ibgpHoldTimer,omitempty"` //
-	Neighbors     *[]ResponseApplianceGetNetworkApplianceVpnBgpNeighbors `json:"neighbors,omitempty"`     //
+	AsNumber      *int                                                   `json:"asNumber,omitempty"`      // The number of the Autonomous System to which the appliance belongs
+	Enabled       *bool                                                  `json:"enabled,omitempty"`       // Whether BGP is enabled on the appliance
+	IbgpHoldTimer *int                                                   `json:"ibgpHoldTimer,omitempty"` // The iBGP hold time in seconds
+	Neighbors     *[]ResponseApplianceGetNetworkApplianceVpnBgpNeighbors `json:"neighbors,omitempty"`     // List of eBGP neighbor configurations
 }
 type ResponseApplianceGetNetworkApplianceVpnBgpNeighbors struct {
-	AllowTransit   *bool  `json:"allowTransit,omitempty"`   //
-	EbgpHoldTimer  *int   `json:"ebgpHoldTimer,omitempty"`  //
-	EbgpMultihop   *int   `json:"ebgpMultihop,omitempty"`   //
-	IP             string `json:"ip,omitempty"`             //
-	ReceiveLimit   *int   `json:"receiveLimit,omitempty"`   //
-	RemoteAsNumber *int   `json:"remoteAsNumber,omitempty"` //
+	AllowTransit    *bool                                                              `json:"allowTransit,omitempty"`    // Whether the appliance will advertise routes learned from other Autonomous Systems
+	Authentication  *ResponseApplianceGetNetworkApplianceVpnBgpNeighborsAuthentication `json:"authentication,omitempty"`  // Authentication settings between BGP peers
+	EbgpHoldTimer   *int                                                               `json:"ebgpHoldTimer,omitempty"`   // The eBGP hold time in seconds for the neighbor
+	EbgpMultihop    *int                                                               `json:"ebgpMultihop,omitempty"`    // The number of hops the appliance must traverse to establish a peering relationship with the neighbor
+	IP              string                                                             `json:"ip,omitempty"`              // The IPv4 address of the neighbor
+	IPv6            *ResponseApplianceGetNetworkApplianceVpnBgpNeighborsIPv6           `json:"ipv6,omitempty"`            // Information regarding IPv6 address of the neighbor
+	NextHopIP       string                                                             `json:"nextHopIp,omitempty"`       // The IPv4 address of the neighbor that will establish a TCP session with the appliance
+	ReceiveLimit    *int                                                               `json:"receiveLimit,omitempty"`    // The maximum number of routes that the appliance can receive from the neighbor
+	RemoteAsNumber  *int                                                               `json:"remoteAsNumber,omitempty"`  // Remote AS number of the neighbor
+	SourceInterface string                                                             `json:"sourceInterface,omitempty"` // The output interface the appliance uses to establish a peering relationship with the neighbor
+	TtlSecurity     *ResponseApplianceGetNetworkApplianceVpnBgpNeighborsTtlSecurity    `json:"ttlSecurity,omitempty"`     // Settings for BGP TTL security to protect BGP peering sessions from forged IP attacks
 }
-type ResponseApplianceUpdateNetworkApplianceVpnBgp interface{}
+type ResponseApplianceGetNetworkApplianceVpnBgpNeighborsAuthentication struct {
+	Password string `json:"password,omitempty"` // Password to configure MD5 authentication between BGP peers
+}
+type ResponseApplianceGetNetworkApplianceVpnBgpNeighborsIPv6 struct {
+	Address string `json:"address,omitempty"` // The IPv6 address of the neighbor
+}
+type ResponseApplianceGetNetworkApplianceVpnBgpNeighborsTtlSecurity struct {
+	Enabled *bool `json:"enabled,omitempty"` // Whether BGP TTL security is enabled
+}
+type ResponseApplianceUpdateNetworkApplianceVpnBgp struct {
+	AsNumber      *int                                                      `json:"asNumber,omitempty"`      // The number of the Autonomous System to which the appliance belongs
+	Enabled       *bool                                                     `json:"enabled,omitempty"`       // Whether BGP is enabled on the appliance
+	IbgpHoldTimer *int                                                      `json:"ibgpHoldTimer,omitempty"` // The iBGP hold time in seconds
+	Neighbors     *[]ResponseApplianceUpdateNetworkApplianceVpnBgpNeighbors `json:"neighbors,omitempty"`     // List of eBGP neighbor configurations
+}
+type ResponseApplianceUpdateNetworkApplianceVpnBgpNeighbors struct {
+	AllowTransit    *bool                                                                 `json:"allowTransit,omitempty"`    // Whether the appliance will advertise routes learned from other Autonomous Systems
+	Authentication  *ResponseApplianceUpdateNetworkApplianceVpnBgpNeighborsAuthentication `json:"authentication,omitempty"`  // Authentication settings between BGP peers
+	EbgpHoldTimer   *int                                                                  `json:"ebgpHoldTimer,omitempty"`   // The eBGP hold time in seconds for the neighbor
+	EbgpMultihop    *int                                                                  `json:"ebgpMultihop,omitempty"`    // The number of hops the appliance must traverse to establish a peering relationship with the neighbor
+	IP              string                                                                `json:"ip,omitempty"`              // The IPv4 address of the neighbor
+	IPv6            *ResponseApplianceUpdateNetworkApplianceVpnBgpNeighborsIPv6           `json:"ipv6,omitempty"`            // Information regarding IPv6 address of the neighbor
+	NextHopIP       string                                                                `json:"nextHopIp,omitempty"`       // The IPv4 address of the neighbor that will establish a TCP session with the appliance
+	ReceiveLimit    *int                                                                  `json:"receiveLimit,omitempty"`    // The maximum number of routes that the appliance can receive from the neighbor
+	RemoteAsNumber  *int                                                                  `json:"remoteAsNumber,omitempty"`  // Remote AS number of the neighbor
+	SourceInterface string                                                                `json:"sourceInterface,omitempty"` // The output interface the appliance uses to establish a peering relationship with the neighbor
+	TtlSecurity     *ResponseApplianceUpdateNetworkApplianceVpnBgpNeighborsTtlSecurity    `json:"ttlSecurity,omitempty"`     // Settings for BGP TTL security to protect BGP peering sessions from forged IP attacks
+}
+type ResponseApplianceUpdateNetworkApplianceVpnBgpNeighborsAuthentication struct {
+	Password string `json:"password,omitempty"` // Password to configure MD5 authentication between BGP peers
+}
+type ResponseApplianceUpdateNetworkApplianceVpnBgpNeighborsIPv6 struct {
+	Address string `json:"address,omitempty"` // The IPv6 address of the neighbor
+}
+type ResponseApplianceUpdateNetworkApplianceVpnBgpNeighborsTtlSecurity struct {
+	Enabled *bool `json:"enabled,omitempty"` // Whether BGP TTL security is enabled
+}
 type ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpn struct {
 	Hubs    *[]ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpnHubs    `json:"hubs,omitempty"`    // The list of VPN hubs, in order of preference.
 	Mode    string                                                         `json:"mode,omitempty"`    // The site-to-site VPN mode.
@@ -1545,23 +1708,53 @@ type ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnets struct {
 	UseVpn      *bool  `json:"useVpn,omitempty"`      // Indicates the presence of the subnet in the VPN
 }
 type ResponseApplianceGetNetworkApplianceWarmSpare struct {
-	Enabled       *bool                                              `json:"enabled,omitempty"`       //
-	PrimarySerial string                                             `json:"primarySerial,omitempty"` //
-	SpareSerial   string                                             `json:"spareSerial,omitempty"`   //
-	UplinkMode    string                                             `json:"uplinkMode,omitempty"`    //
-	Wan1          *ResponseApplianceGetNetworkApplianceWarmSpareWan1 `json:"wan1,omitempty"`          //
-	Wan2          *ResponseApplianceGetNetworkApplianceWarmSpareWan2 `json:"wan2,omitempty"`          //
+	Enabled       *bool                                              `json:"enabled,omitempty"`       // Is the warm spare enabled
+	PrimarySerial string                                             `json:"primarySerial,omitempty"` // Serial number of the primary appliance
+	SpareSerial   string                                             `json:"spareSerial,omitempty"`   // Serial number of the warm spare appliance
+	UplinkMode    string                                             `json:"uplinkMode,omitempty"`    // Uplink mode, either virtual or public
+	Wan1          *ResponseApplianceGetNetworkApplianceWarmSpareWan1 `json:"wan1,omitempty"`          // WAN 1 IP and subnet
+	Wan2          *ResponseApplianceGetNetworkApplianceWarmSpareWan2 `json:"wan2,omitempty"`          // WAN 2 IP and subnet
 }
 type ResponseApplianceGetNetworkApplianceWarmSpareWan1 struct {
-	IP     string `json:"ip,omitempty"`     //
-	Subnet string `json:"subnet,omitempty"` //
+	IP     string `json:"ip,omitempty"`     // IP address used for WAN 1
+	Subnet string `json:"subnet,omitempty"` // Subnet used for WAN 1
 }
 type ResponseApplianceGetNetworkApplianceWarmSpareWan2 struct {
-	IP     string `json:"ip,omitempty"`     //
-	Subnet string `json:"subnet,omitempty"` //
+	IP     string `json:"ip,omitempty"`     // IP address used for WAN 2
+	Subnet string `json:"subnet,omitempty"` // Subnet used for WAN 2
 }
-type ResponseApplianceUpdateNetworkApplianceWarmSpare interface{}
-type ResponseApplianceSwapNetworkApplianceWarmSpare interface{}
+type ResponseApplianceUpdateNetworkApplianceWarmSpare struct {
+	Enabled       *bool                                                 `json:"enabled,omitempty"`       // Is the warm spare enabled
+	PrimarySerial string                                                `json:"primarySerial,omitempty"` // Serial number of the primary appliance
+	SpareSerial   string                                                `json:"spareSerial,omitempty"`   // Serial number of the warm spare appliance
+	UplinkMode    string                                                `json:"uplinkMode,omitempty"`    // Uplink mode, either virtual or public
+	Wan1          *ResponseApplianceUpdateNetworkApplianceWarmSpareWan1 `json:"wan1,omitempty"`          // WAN 1 IP and subnet
+	Wan2          *ResponseApplianceUpdateNetworkApplianceWarmSpareWan2 `json:"wan2,omitempty"`          // WAN 2 IP and subnet
+}
+type ResponseApplianceUpdateNetworkApplianceWarmSpareWan1 struct {
+	IP     string `json:"ip,omitempty"`     // IP address used for WAN 1
+	Subnet string `json:"subnet,omitempty"` // Subnet used for WAN 1
+}
+type ResponseApplianceUpdateNetworkApplianceWarmSpareWan2 struct {
+	IP     string `json:"ip,omitempty"`     // IP address used for WAN 2
+	Subnet string `json:"subnet,omitempty"` // Subnet used for WAN 2
+}
+type ResponseApplianceSwapNetworkApplianceWarmSpare struct {
+	Enabled       *bool                                               `json:"enabled,omitempty"`       // Is the warm spare enabled
+	PrimarySerial string                                              `json:"primarySerial,omitempty"` // Serial number of the primary appliance
+	SpareSerial   string                                              `json:"spareSerial,omitempty"`   // Serial number of the warm spare appliance
+	UplinkMode    string                                              `json:"uplinkMode,omitempty"`    // Uplink mode, either virtual or public
+	Wan1          *ResponseApplianceSwapNetworkApplianceWarmSpareWan1 `json:"wan1,omitempty"`          // WAN 1 IP and subnet
+	Wan2          *ResponseApplianceSwapNetworkApplianceWarmSpareWan2 `json:"wan2,omitempty"`          // WAN 2 IP and subnet
+}
+type ResponseApplianceSwapNetworkApplianceWarmSpareWan1 struct {
+	IP     string `json:"ip,omitempty"`     // IP address used for WAN 1
+	Subnet string `json:"subnet,omitempty"` // Subnet used for WAN 1
+}
+type ResponseApplianceSwapNetworkApplianceWarmSpareWan2 struct {
+	IP     string `json:"ip,omitempty"`     // IP address used for WAN 2
+	Subnet string `json:"subnet,omitempty"` // Subnet used for WAN 2
+}
 type ResponseApplianceGetOrganizationApplianceSecurityEvents []ResponseItemApplianceGetOrganizationApplianceSecurityEvents // Array of ResponseApplianceGetOrganizationApplianceSecurityEvents
 type ResponseItemApplianceGetOrganizationApplianceSecurityEvents struct {
 	Action          string `json:"action,omitempty"`          //
@@ -1702,35 +1895,37 @@ type ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersUsageSum
 	ReceivedInKilobytes *int `json:"receivedInKilobytes,omitempty"` //
 	SentInKilobytes     *int `json:"sentInKilobytes,omitempty"`     //
 }
-type ResponseApplianceGetOrganizationApplianceVpnStatuses []ResponseItemApplianceGetOrganizationApplianceVpnStatuses // Array of ResponseApplianceGetOrganizationApplianceVpnStatuses
-type ResponseItemApplianceGetOrganizationApplianceVpnStatuses struct {
-	DeviceSerial       string                                                                        `json:"deviceSerial,omitempty"`       //
-	DeviceStatus       string                                                                        `json:"deviceStatus,omitempty"`       //
-	ExportedSubnets    *[]ResponseItemApplianceGetOrganizationApplianceVpnStatusesExportedSubnets    `json:"exportedSubnets,omitempty"`    //
-	MerakiVpnpeers     *[]ResponseItemApplianceGetOrganizationApplianceVpnStatusesMerakiVpnpeers     `json:"merakiVpnPeers,omitempty"`     //
-	NetworkID          string                                                                        `json:"networkId,omitempty"`          //
-	NetworkName        string                                                                        `json:"networkName,omitempty"`        //
-	ThirdPartyVpnpeers *[]ResponseItemApplianceGetOrganizationApplianceVpnStatusesThirdPartyVpnpeers `json:"thirdPartyVpnPeers,omitempty"` //
-	Uplinks            *[]ResponseItemApplianceGetOrganizationApplianceVpnStatusesUplinks            `json:"uplinks,omitempty"`            //
-	VpnMode            string                                                                        `json:"vpnMode,omitempty"`            //
+type ResponseApplianceGetOrganizationApplianceVpnStatuses struct {
+	Vpnstatusentities *[]ResponseApplianceGetOrganizationApplianceVpnStatusesVpnstatusentities `json:"vpnstatusentities,omitempty"` // The list of VPN Status for networks
 }
-type ResponseItemApplianceGetOrganizationApplianceVpnStatusesExportedSubnets struct {
-	Name   string `json:"name,omitempty"`   //
-	Subnet string `json:"subnet,omitempty"` //
+type ResponseApplianceGetOrganizationApplianceVpnStatusesVpnstatusentities struct {
+	DeviceSerial       string                                                                                     `json:"deviceSerial,omitempty"`       // Serial number of the device
+	DeviceStatus       string                                                                                     `json:"deviceStatus,omitempty"`       // Device Status
+	ExportedSubnets    *[]ResponseApplianceGetOrganizationApplianceVpnStatusesVpnstatusentitiesExportedSubnets    `json:"exportedSubnets,omitempty"`    // List of Exported Subnets
+	MerakiVpnpeers     *[]ResponseApplianceGetOrganizationApplianceVpnStatusesVpnstatusentitiesMerakiVpnpeers     `json:"merakiVpnPeers,omitempty"`     // Meraki VPN Peers
+	NetworkID          string                                                                                     `json:"networkId,omitempty"`          // Network Id
+	NetworkName        string                                                                                     `json:"networkName,omitempty"`        // Network name
+	ThirdPartyVpnpeers *[]ResponseApplianceGetOrganizationApplianceVpnStatusesVpnstatusentitiesThirdPartyVpnpeers `json:"thirdPartyVpnPeers,omitempty"` // Third Party VPN Peers
+	Uplinks            *[]ResponseApplianceGetOrganizationApplianceVpnStatusesVpnstatusentitiesUplinks            `json:"uplinks,omitempty"`            // List of Uplink Information
+	VpnMode            string                                                                                     `json:"vpnMode,omitempty"`            // VPN Mode
 }
-type ResponseItemApplianceGetOrganizationApplianceVpnStatusesMerakiVpnpeers struct {
-	NetworkID    string `json:"networkId,omitempty"`    //
-	NetworkName  string `json:"networkName,omitempty"`  //
-	Reachability string `json:"reachability,omitempty"` //
+type ResponseApplianceGetOrganizationApplianceVpnStatusesVpnstatusentitiesExportedSubnets struct {
+	Name   string `json:"name,omitempty"`   // Name of the subnet
+	Subnet string `json:"subnet,omitempty"` // Subnet
 }
-type ResponseItemApplianceGetOrganizationApplianceVpnStatusesThirdPartyVpnpeers struct {
-	Name         string `json:"name,omitempty"`         //
-	PublicIP     string `json:"publicIp,omitempty"`     //
-	Reachability string `json:"reachability,omitempty"` //
+type ResponseApplianceGetOrganizationApplianceVpnStatusesVpnstatusentitiesMerakiVpnpeers struct {
+	NetworkID    string `json:"networkId,omitempty"`    // Network ID
+	NetworkName  string `json:"networkName,omitempty"`  // Network Name
+	Reachability string `json:"reachability,omitempty"` // Reachability
 }
-type ResponseItemApplianceGetOrganizationApplianceVpnStatusesUplinks struct {
-	Interface string `json:"interface,omitempty"` //
-	PublicIP  string `json:"publicIp,omitempty"`  //
+type ResponseApplianceGetOrganizationApplianceVpnStatusesVpnstatusentitiesThirdPartyVpnpeers struct {
+	Name         string `json:"name,omitempty"`         // Name of the peer
+	PublicIP     string `json:"publicIp,omitempty"`     // Public IP of the peer
+	Reachability string `json:"reachability,omitempty"` // Reachability
+}
+type ResponseApplianceGetOrganizationApplianceVpnStatusesVpnstatusentitiesUplinks struct {
+	Interface string `json:"interface,omitempty"` // Uplink Interface Name
+	PublicIP  string `json:"publicIp,omitempty"`  // Uplink IP address (in IP or CIDR notation)
 }
 type ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeers struct {
 	Peers *[]ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeersPeers `json:"peers,omitempty"` // The list of VPN peers
@@ -1738,7 +1933,7 @@ type ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeers struct {
 type ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeersPeers struct {
 	IkeVersion          string                                                                            `json:"ikeVersion,omitempty"`          // [optional] The IKE version to be used for the IPsec VPN peer configuration. Defaults to '1' when omitted.
 	IPsecPolicies       *ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeersPeersIPsecPolicies `json:"ipsecPolicies,omitempty"`       // Custom IPSec policies for the VPN peer. If not included and a preset has not been chosen, the default preset for IPSec policies will be used.
-	IPsecPoliciesPreset string                                                                            `json:"ipsecPoliciesPreset,omitempty"` // One of the following available presets: 'default', 'aws', 'azure'. If this is provided, the 'ipsecPolicies' parameter is ignored.
+	IPsecPoliciesPreset string                                                                            `json:"ipsecPoliciesPreset,omitempty"` // One of the following available presets: 'default', 'aws', 'azure', 'umbrella', 'zscaler'. If this is provided, the 'ipsecPolicies' parameter is ignored.
 	LocalID             string                                                                            `json:"localId,omitempty"`             // [optional] The local ID is used to identify the MX to the peer. This will apply to all MXs this peer applies to.
 	Name                string                                                                            `json:"name,omitempty"`                // The name of the VPN peer
 	NetworkTags         []string                                                                          `json:"networkTags,omitempty"`         // A list of network tags that will connect with this peer. Use ['all'] for all networks. Use ['none'] for no networks. If not included, the default is ['all'].
@@ -1764,7 +1959,7 @@ type ResponseApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers struct {
 type ResponseApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeersPeers struct {
 	IkeVersion          string                                                                               `json:"ikeVersion,omitempty"`          // [optional] The IKE version to be used for the IPsec VPN peer configuration. Defaults to '1' when omitted.
 	IPsecPolicies       *ResponseApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeersPeersIPsecPolicies `json:"ipsecPolicies,omitempty"`       // Custom IPSec policies for the VPN peer. If not included and a preset has not been chosen, the default preset for IPSec policies will be used.
-	IPsecPoliciesPreset string                                                                               `json:"ipsecPoliciesPreset,omitempty"` // One of the following available presets: 'default', 'aws', 'azure'. If this is provided, the 'ipsecPolicies' parameter is ignored.
+	IPsecPoliciesPreset string                                                                               `json:"ipsecPoliciesPreset,omitempty"` // One of the following available presets: 'default', 'aws', 'azure', 'umbrella', 'zscaler'. If this is provided, the 'ipsecPolicies' parameter is ignored.
 	LocalID             string                                                                               `json:"localId,omitempty"`             // [optional] The local ID is used to identify the MX to the peer. This will apply to all MXs this peer applies to.
 	Name                string                                                                               `json:"name,omitempty"`                // The name of the VPN peer
 	NetworkTags         []string                                                                             `json:"networkTags,omitempty"`         // A list of network tags that will connect with this peer. Use ['all'] for all networks. Use ['none'] for no networks. If not included, the default is ['all'].
@@ -1818,11 +2013,11 @@ type RequestApplianceUpdateDeviceApplianceRadioSettings struct {
 type RequestApplianceUpdateDeviceApplianceRadioSettingsFiveGhzSettings struct {
 	Channel      *int `json:"channel,omitempty"`      // Sets a manual channel for 5 GHz. Can be '36', '40', '44', '48', '52', '56', '60', '64', '100', '104', '108', '112', '116', '120', '124', '128', '132', '136', '140', '144', '149', '153', '157', '161', '165', '169', '173' or '177' or null for using auto channel.
 	ChannelWidth *int `json:"channelWidth,omitempty"` // Sets a manual channel width for 5 GHz. Can be '0', '20', '40', '80' or '160' or null for using auto channel width.
-	TargetPower  *int `json:"targetPower,omitempty"`  // Set a manual target power for 5 GHz. Can be between '8' or '30' or null for using auto power range.
+	TargetPower  *int `json:"targetPower,omitempty"`  // Set a manual target power for 5 GHz (dBm). Enter null for using auto power range.
 }
 type RequestApplianceUpdateDeviceApplianceRadioSettingsTwoFourGhzSettings struct {
 	Channel     *int `json:"channel,omitempty"`     // Sets a manual channel for 2.4 GHz. Can be '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13' or '14' or null for using auto channel.
-	TargetPower *int `json:"targetPower,omitempty"` // Set a manual target power for 2.4 GHz. Can be between '5' or '30' or null for using auto power range.
+	TargetPower *int `json:"targetPower,omitempty"` // Set a manual target power for 2.4 GHz (dBm). Enter null for using auto power range.
 }
 type RequestApplianceUpdateDeviceApplianceUplinksSettings struct {
 	Interfaces *RequestApplianceUpdateDeviceApplianceUplinksSettingsInterfaces `json:"interfaces,omitempty"` // Interface settings.
@@ -2147,6 +2342,45 @@ type RequestApplianceUpdateNetworkApplianceRfProfileTwoFourGhzSettings struct {
 	AxEnabled  *bool    `json:"axEnabled,omitempty"`  // Determines whether ax radio on 2.4Ghz band is on or off. Can be either true or false. If false, we highly recommend disabling band steering.
 	MinBitrate *float64 `json:"minBitrate,omitempty"` // Sets min bitrate (Mbps) of 2.4Ghz band. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
 }
+type RequestApplianceUpdateNetworkApplianceSdwanInternetPolicies struct {
+	WanTrafficUplinkPreferences *[]RequestApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferences `json:"wanTrafficUplinkPreferences,omitempty"` // policies with respective traffic filters for an MX network
+}
+type RequestApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferences struct {
+	FailOverCriterion string                                                                                                  `json:"failOverCriterion,omitempty"` // WAN failover and failback behavior
+	PerformanceClass  *RequestApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesPerformanceClass `json:"performanceClass,omitempty"`  // Performance class setting for uplink preference rule
+	PreferredUplink   string                                                                                                  `json:"preferredUplink,omitempty"`   // Preferred uplink for uplink preference rule. Must be one of: 'wan1', 'wan2', 'bestForVoIP', 'loadBalancing' or 'defaultUplink'
+	TrafficFilters    *[]RequestApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFilters `json:"trafficFilters,omitempty"`    // Traffic filters
+}
+type RequestApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesPerformanceClass struct {
+	BuiltinPerformanceClassName string `json:"builtinPerformanceClassName,omitempty"` // Name of builtin performance class. Must be present when performanceClass type is 'builtin' and value must be one of: 'VoIP'
+	CustomPerformanceClassID    string `json:"customPerformanceClassId,omitempty"`    // ID of created custom performance class, must be present when performanceClass type is "custom"
+	Type                        string `json:"type,omitempty"`                        // Type of this performance class. Must be one of: 'builtin' or 'custom'
+}
+type RequestApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFilters struct {
+	Type  string                                                                                                     `json:"type,omitempty"`  // Traffic filter type. Must be 'custom', 'major_application', 'application (NBAR)', if type is 'application', you can pass either an NBAR App Category or Application
+	Value *RequestApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValue `json:"value,omitempty"` // Value of traffic filter
+}
+type RequestApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValue struct {
+	Destination *RequestApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValueDestination `json:"destination,omitempty"` // Destination of 'custom' type traffic filter
+	Protocol    string                                                                                                                `json:"protocol,omitempty"`    // Protocol of the traffic filter. Must be one of: 'tcp', 'udp', 'icmp6' or 'any'
+	Source      *RequestApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValueSource      `json:"source,omitempty"`      // Source of traffic filter
+}
+type RequestApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValueDestination struct {
+	Applications *[]RequestApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValueDestinationApplications `json:"applications,omitempty"` // list of application objects (either majorApplication or nbar)
+	Cidr         string                                                                                                                              `json:"cidr,omitempty"`         // CIDR format address (e.g."192.168.10.1", which is the same as "192.168.10.1/32"), or "any"
+	Port         string                                                                                                                              `json:"port,omitempty"`         // E.g.: "any", "0" (also means "any"), "8080", "1-1024"
+}
+type RequestApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValueDestinationApplications struct {
+	ID   string `json:"id,omitempty"`   // Id of the major application, or a list of NBAR Application Category or Application selections
+	Name string `json:"name,omitempty"` // Name of the major application or application category selected
+	Type string `json:"type,omitempty"` // app type (major or nbar)
+}
+type RequestApplianceUpdateNetworkApplianceSdwanInternetPoliciesWanTrafficUplinkPreferencesTrafficFiltersValueSource struct {
+	Cidr string `json:"cidr,omitempty"` // CIDR format address (e.g."192.168.10.1", which is the same as "192.168.10.1/32"), or "any". Cannot be used in combination with the "vlan" property
+	Host *int   `json:"host,omitempty"` // Host ID in the VLAN. Should not exceed the VLAN subnet capacity. Must be used along with the "vlan" property and is currently only available under a template network.
+	Port string `json:"port,omitempty"` // E.g.: "any", "0" (also means "any"), "8080", "1-1024"
+	VLAN *int   `json:"vlan,omitempty"` // VLAN ID of the configured VLAN in the Meraki network. Cannot be used in combination with the "cidr" property and is currently only available under a template network.
+}
 type RequestApplianceUpdateNetworkApplianceSecurityIntrusion struct {
 	IDsRulesets       string                                                                    `json:"idsRulesets,omitempty"`       // Set the detection ruleset 'connectivity'/'balanced'/'security' (optional - omitting will leave current config unchanged). Default value is 'balanced' if none currently saved
 	Mode              string                                                                    `json:"mode,omitempty"`              // Set mode to 'disabled'/'detection'/'prevention' (optional - omitting will leave current config unchanged)
@@ -2228,25 +2462,25 @@ type RequestApplianceUpdateNetworkApplianceSSIDRadiusServers struct {
 	Secret string `json:"secret,omitempty"` // The RADIUS client shared secret.
 }
 type RequestApplianceCreateNetworkApplianceStaticRoute struct {
-	GatewayIP     string `json:"gatewayIp,omitempty"`     // The gateway IP (next hop) of the static route
-	GatewayVLANID string `json:"gatewayVlanId,omitempty"` // The gateway IP (next hop) VLAN ID of the static route
-	Name          string `json:"name,omitempty"`          // The name of the new static route
-	Subnet        string `json:"subnet,omitempty"`        // The subnet of the static route
+	GatewayIP     string `json:"gatewayIp,omitempty"`     // Gateway IP address (next hop)
+	GatewayVLANID string `json:"gatewayVlanId,omitempty"` // Gateway VLAN ID
+	Name          string `json:"name,omitempty"`          // Name of the route
+	Subnet        string `json:"subnet,omitempty"`        // Subnet of the route
 }
 type RequestApplianceUpdateNetworkApplianceStaticRoute struct {
-	Enabled            *bool                                                                `json:"enabled,omitempty"`            // The enabled state of the static route
-	FixedIPAssignments *RequestApplianceUpdateNetworkApplianceStaticRouteFixedIPAssignments `json:"fixedIpAssignments,omitempty"` // The DHCP fixed IP assignments on the static route. This should be an object that contains mappings from MAC addresses to objects that themselves each contain "ip" and "name" string fields. See the sample request/response for more details.
-	GatewayIP          string                                                               `json:"gatewayIp,omitempty"`          // The gateway IP (next hop) of the static route
-	GatewayVLANID      string                                                               `json:"gatewayVlanId,omitempty"`      // The gateway IP (next hop) VLAN ID of the static route
-	Name               string                                                               `json:"name,omitempty"`               // The name of the static route
-	ReservedIPRanges   *[]RequestApplianceUpdateNetworkApplianceStaticRouteReservedIPRanges `json:"reservedIpRanges,omitempty"`   // The DHCP reserved IP ranges on the static route
-	Subnet             string                                                               `json:"subnet,omitempty"`             // The subnet of the static route
+	Enabled            *bool                                                                `json:"enabled,omitempty"`            // Whether the route should be enabled or not
+	FixedIPAssignments *RequestApplianceUpdateNetworkApplianceStaticRouteFixedIPAssignments `json:"fixedIpAssignments,omitempty"` // Fixed DHCP IP assignments on the route
+	GatewayIP          string                                                               `json:"gatewayIp,omitempty"`          // Gateway IP address (next hop)
+	GatewayVLANID      string                                                               `json:"gatewayVlanId,omitempty"`      // Gateway VLAN ID
+	Name               string                                                               `json:"name,omitempty"`               // Name of the route
+	ReservedIPRanges   *[]RequestApplianceUpdateNetworkApplianceStaticRouteReservedIPRanges `json:"reservedIpRanges,omitempty"`   // DHCP reserved IP ranges
+	Subnet             string                                                               `json:"subnet,omitempty"`             // Subnet of the route
 }
 type RequestApplianceUpdateNetworkApplianceStaticRouteFixedIPAssignments interface{}
 type RequestApplianceUpdateNetworkApplianceStaticRouteReservedIPRanges struct {
-	Comment string `json:"comment,omitempty"` // A text comment for the reserved range
-	End     string `json:"end,omitempty"`     // The last IP in the reserved range
-	Start   string `json:"start,omitempty"`   // The first IP in the reserved range
+	Comment string `json:"comment,omitempty"` // Description of the range
+	End     string `json:"end,omitempty"`     // Last address in the reserved range
+	Start   string `json:"start,omitempty"`   // First address in the reserved range
 }
 type RequestApplianceUpdateNetworkApplianceTrafficShaping struct {
 	GlobalBandwidthLimits *RequestApplianceUpdateNetworkApplianceTrafficShapingGlobalBandwidthLimits `json:"globalBandwidthLimits,omitempty"` // Global per-client bandwidth limit
@@ -2396,16 +2630,25 @@ type RequestApplianceUpdateNetworkApplianceTrafficShapingVpnExclusionsMajorAppli
 	Name string `json:"name,omitempty"` // Application's name.
 }
 type RequestApplianceCreateNetworkApplianceVLAN struct {
-	ApplianceIP      string                                                   `json:"applianceIp,omitempty"`      // The local IP of the appliance on the VLAN
-	Cidr             string                                                   `json:"cidr,omitempty"`             // CIDR of the pool of subnets. Applicable only for template network. Each network bound to the template will automatically pick a subnet from this pool to build its own VLAN.
-	GroupPolicyID    string                                                   `json:"groupPolicyId,omitempty"`    // The id of the desired group policy to apply to the VLAN
-	ID               string                                                   `json:"id,omitempty"`               // The VLAN ID of the new VLAN (must be between 1 and 4094)
-	IPv6             *RequestApplianceCreateNetworkApplianceVLANIPv6          `json:"ipv6,omitempty"`             // IPv6 configuration on the VLAN
-	MandatoryDhcp    *RequestApplianceCreateNetworkApplianceVLANMandatoryDhcp `json:"mandatoryDhcp,omitempty"`    // Mandatory DHCP will enforce that clients connecting to this VLAN must use the IP address assigned by the DHCP server. Clients who use a static IP address won't be able to associate. Only available on firmware versions 17.0 and above
-	Mask             *int                                                     `json:"mask,omitempty"`             // Mask used for the subnet of all bound to the template networks. Applicable only for template network.
-	Name             string                                                   `json:"name,omitempty"`             // The name of the new VLAN
-	Subnet           string                                                   `json:"subnet,omitempty"`           // The subnet of the VLAN
-	TemplateVLANType string                                                   `json:"templateVlanType,omitempty"` // Type of subnetting of the VLAN. Applicable only for template network.
+	ApplianceIP            string                                                   `json:"applianceIp,omitempty"`            // The local IP of the appliance on the VLAN
+	Cidr                   string                                                   `json:"cidr,omitempty"`                   // CIDR of the pool of subnets. Applicable only for template network. Each network bound to the template will automatically pick a subnet from this pool to build its own VLAN.
+	DhcpBootOptionsEnabled *bool                                                    `json:"dhcpBootOptionsEnabled,omitempty"` // Use DHCP boot options specified in other properties
+	DhcpHandling           string                                                   `json:"dhcpHandling,omitempty"`           // The appliance's handling of DHCP requests on this VLAN. One of: 'Run a DHCP server', 'Relay DHCP to another server' or 'Do not respond to DHCP requests'
+	DhcpLeaseTime          string                                                   `json:"dhcpLeaseTime,omitempty"`          // The term of DHCP leases if the appliance is running a DHCP server on this VLAN. One of: '30 minutes', '1 hour', '4 hours', '12 hours', '1 day' or '1 week'
+	DhcpOptions            *[]RequestApplianceCreateNetworkApplianceVLANDhcpOptions `json:"dhcpOptions,omitempty"`            // The list of DHCP options that will be included in DHCP responses. Each object in the list should have "code", "type", and "value" properties.
+	GroupPolicyID          string                                                   `json:"groupPolicyId,omitempty"`          // The id of the desired group policy to apply to the VLAN
+	ID                     string                                                   `json:"id,omitempty"`                     // The VLAN ID of the new VLAN (must be between 1 and 4094)
+	IPv6                   *RequestApplianceCreateNetworkApplianceVLANIPv6          `json:"ipv6,omitempty"`                   // IPv6 configuration on the VLAN
+	MandatoryDhcp          *RequestApplianceCreateNetworkApplianceVLANMandatoryDhcp `json:"mandatoryDhcp,omitempty"`          // Mandatory DHCP will enforce that clients connecting to this VLAN must use the IP address assigned by the DHCP server. Clients who use a static IP address won't be able to associate. Only available on firmware versions 17.0 and above
+	Mask                   *int                                                     `json:"mask,omitempty"`                   // Mask used for the subnet of all bound to the template networks. Applicable only for template network.
+	Name                   string                                                   `json:"name,omitempty"`                   // The name of the new VLAN
+	Subnet                 string                                                   `json:"subnet,omitempty"`                 // The subnet of the VLAN
+	TemplateVLANType       string                                                   `json:"templateVlanType,omitempty"`       // Type of subnetting of the VLAN. Applicable only for template network.
+}
+type RequestApplianceCreateNetworkApplianceVLANDhcpOptions struct {
+	Code  string `json:"code,omitempty"`  // The code for the DHCP option. This should be an integer between 2 and 254.
+	Type  string `json:"type,omitempty"`  // The type for the DHCP option. One of: 'text', 'ip', 'hex' or 'integer'
+	Value string `json:"value,omitempty"` // The value for the DHCP option
 }
 type RequestApplianceCreateNetworkApplianceVLANIPv6 struct {
 	Enabled           *bool                                                              `json:"enabled,omitempty"`           // Enable IPv6 on VLAN.
@@ -2491,7 +2734,7 @@ type RequestApplianceUpdateNetworkApplianceVpnBgpNeighbors struct {
 	IP              string                                                               `json:"ip,omitempty"`              // The IPv4 address of the neighbor
 	IPv6            *RequestApplianceUpdateNetworkApplianceVpnBgpNeighborsIPv6           `json:"ipv6,omitempty"`            // Information regarding IPv6 address of the neighbor, Required if `ip` is not present.
 	NextHopIP       string                                                               `json:"nextHopIp,omitempty"`       // The IPv4 address of the remote BGP peer that will establish a TCP session with the local MX.
-	ReceiveLimit    *int                                                                 `json:"receiveLimit,omitempty"`    // The receive limit is the maximum number of routes that can be received from any BGP peer. The receive limit must be an integer between 0 and 4294967295. When absent, it defaults to 0.
+	ReceiveLimit    *int                                                                 `json:"receiveLimit,omitempty"`    // The receive limit is the maximum number of routes that can be received from any BGP peer. The receive limit must be an integer between 0 and 2147483647. When absent, it defaults to 0.
 	RemoteAsNumber  *int                                                                 `json:"remoteAsNumber,omitempty"`  // Remote ASN of the neighbor. The remote ASN must be an integer between 1 and 4294967295.
 	SourceInterface string                                                               `json:"sourceInterface,omitempty"` // The output interface for peering with the remote BGP peer. Valid values are: 'wan1', 'wan2' or 'vlan{VLAN ID}'(e.g. 'vlan123').
 	TtlSecurity     *RequestApplianceUpdateNetworkApplianceVpnBgpNeighborsTtlSecurity    `json:"ttlSecurity,omitempty"`     // Settings for BGP TTL security to protect BGP peering sessions from forged IP attacks.
@@ -2538,11 +2781,12 @@ type RequestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers struct {
 type RequestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeersPeers struct {
 	IkeVersion          string                                                                              `json:"ikeVersion,omitempty"`          // [optional] The IKE version to be used for the IPsec VPN peer configuration. Defaults to '1' when omitted.
 	IPsecPolicies       *RequestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeersPeersIPsecPolicies `json:"ipsecPolicies,omitempty"`       // Custom IPSec policies for the VPN peer. If not included and a preset has not been chosen, the default preset for IPSec policies will be used.
-	IPsecPoliciesPreset string                                                                              `json:"ipsecPoliciesPreset,omitempty"` // One of the following available presets: 'default', 'aws', 'azure'. If this is provided, the 'ipsecPolicies' parameter is ignored.
+	IPsecPoliciesPreset string                                                                              `json:"ipsecPoliciesPreset,omitempty"` // One of the following available presets: 'default', 'aws', 'azure', 'umbrella', 'zscaler'. If this is provided, the 'ipsecPolicies' parameter is ignored.
 	LocalID             string                                                                              `json:"localId,omitempty"`             // [optional] The local ID is used to identify the MX to the peer. This will apply to all MXs this peer applies to.
 	Name                string                                                                              `json:"name,omitempty"`                // The name of the VPN peer
 	NetworkTags         []string                                                                            `json:"networkTags,omitempty"`         // A list of network tags that will connect with this peer. Use ['all'] for all networks. Use ['none'] for no networks. If not included, the default is ['all'].
 	PrivateSubnets      []string                                                                            `json:"privateSubnets,omitempty"`      // The list of the private subnets of the VPN peer
+	PublicHostname      string                                                                              `json:"publicHostname,omitempty"`      // [optional] The public hostname of the VPN peer
 	PublicIP            string                                                                              `json:"publicIp,omitempty"`            // [optional] The public IP of the VPN peer
 	RemoteID            string                                                                              `json:"remoteId,omitempty"`            // [optional] The remote ID is used to identify the connecting VPN peer. This can either be a valid IPv4 Address, FQDN or User FQDN.
 	Secret              string                                                                              `json:"secret,omitempty"`              // The shared secret with the VPN peer
@@ -2610,18 +2854,21 @@ func (s *ApplianceService) GetDeviceApplianceDhcpSubnets(serial string) (*Respon
 /* Return the performance score for a single MX. Only primary MX devices supported. If no data is available, a 204 error code is returned.
 
 @param serial serial path parameter.
+@param getDeviceAppliancePerformanceQueryParams Filtering parameter
 
 
 */
-func (s *ApplianceService) GetDeviceAppliancePerformance(serial string) (*ResponseApplianceGetDeviceAppliancePerformance, *resty.Response, error) {
+func (s *ApplianceService) GetDeviceAppliancePerformance(serial string, getDeviceAppliancePerformanceQueryParams *GetDeviceAppliancePerformanceQueryParams) (*ResponseApplianceGetDeviceAppliancePerformance, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/performance"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
+	queryString, _ := query.Values(getDeviceAppliancePerformanceQueryParams)
+
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetDeviceAppliancePerformance{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetDeviceAppliancePerformance{}).
 		SetError(&Error).
 		Get(path)
 
@@ -4709,7 +4956,7 @@ func (s *ApplianceService) CreateNetworkApplianceRfProfile(networkID string, req
 
 */
 
-func (s *ApplianceService) CreateNetworkApplianceStaticRoute(networkID string, requestApplianceCreateNetworkApplianceStaticRoute *RequestApplianceCreateNetworkApplianceStaticRoute) (*resty.Response, error) {
+func (s *ApplianceService) CreateNetworkApplianceStaticRoute(networkID string, requestApplianceCreateNetworkApplianceStaticRoute *RequestApplianceCreateNetworkApplianceStaticRoute) (*ResponseApplianceCreateNetworkApplianceStaticRoute, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/staticRoutes"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4718,20 +4965,21 @@ func (s *ApplianceService) CreateNetworkApplianceStaticRoute(networkID string, r
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestApplianceCreateNetworkApplianceStaticRoute).
-		// SetResult(&ResponseApplianceCreateNetworkApplianceStaticRoute{}).
+		SetResult(&ResponseApplianceCreateNetworkApplianceStaticRoute{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateNetworkApplianceStaticRoute")
+		return nil, response, fmt.Errorf("error with operation CreateNetworkApplianceStaticRoute")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseApplianceCreateNetworkApplianceStaticRoute)
+	return result, response, err
 
 }
 
@@ -4743,7 +4991,7 @@ func (s *ApplianceService) CreateNetworkApplianceStaticRoute(networkID string, r
 
 */
 
-func (s *ApplianceService) CreateNetworkApplianceTrafficShapingCustomPerformanceClass(networkID string, requestApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass *RequestApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass) (*resty.Response, error) {
+func (s *ApplianceService) CreateNetworkApplianceTrafficShapingCustomPerformanceClass(networkID string, requestApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass *RequestApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass) (*ResponseApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4752,20 +5000,21 @@ func (s *ApplianceService) CreateNetworkApplianceTrafficShapingCustomPerformance
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass).
-		// SetResult(&ResponseApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass{}).
+		SetResult(&ResponseApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateNetworkApplianceTrafficShapingCustomPerformanceClass")
+		return nil, response, fmt.Errorf("error with operation CreateNetworkApplianceTrafficShapingCustomPerformanceClass")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass)
+	return result, response, err
 
 }
 
@@ -4812,7 +5061,7 @@ func (s *ApplianceService) CreateNetworkApplianceVLAN(networkID string, requestA
 
 */
 
-func (s *ApplianceService) SwapNetworkApplianceWarmSpare(networkID string) (*resty.Response, error) {
+func (s *ApplianceService) SwapNetworkApplianceWarmSpare(networkID string) (*ResponseApplianceSwapNetworkApplianceWarmSpare, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/warmSpare/swap"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4820,21 +5069,21 @@ func (s *ApplianceService) SwapNetworkApplianceWarmSpare(networkID string) (*res
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-
-		// SetResult(&ResponseApplianceSwapNetworkApplianceWarmSpare{}).
+		SetResult(&ResponseApplianceSwapNetworkApplianceWarmSpare{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation SwapNetworkApplianceWarmSpare")
+		return nil, response, fmt.Errorf("error with operation SwapNetworkApplianceWarmSpare")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseApplianceSwapNetworkApplianceWarmSpare)
+	return result, response, err
 
 }
 
@@ -4907,7 +5156,7 @@ func (s *ApplianceService) UpdateDeviceApplianceUplinksSettings(serial string, r
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *ApplianceService) UpdateNetworkApplianceConnectivityMonitoringDestinations(networkID string, requestApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations *RequestApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations) (*resty.Response, error) {
+func (s *ApplianceService) UpdateNetworkApplianceConnectivityMonitoringDestinations(networkID string, requestApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations *RequestApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations) (*ResponseApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/connectivityMonitoringDestinations"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4916,19 +5165,21 @@ func (s *ApplianceService) UpdateNetworkApplianceConnectivityMonitoringDestinati
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations).
+		SetResult(&ResponseApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceConnectivityMonitoringDestinations")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceConnectivityMonitoringDestinations")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations)
+	return result, response, err
 
 }
 
@@ -4998,7 +5249,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallCellularFirewallRules(n
 @param networkID networkId path parameter. Network ID
 @param service service path parameter.
 */
-func (s *ApplianceService) UpdateNetworkApplianceFirewallFirewalledService(networkID string, service string, requestApplianceUpdateNetworkApplianceFirewallFirewalledService *RequestApplianceUpdateNetworkApplianceFirewallFirewalledService) (*resty.Response, error) {
+func (s *ApplianceService) UpdateNetworkApplianceFirewallFirewalledService(networkID string, service string, requestApplianceUpdateNetworkApplianceFirewallFirewalledService *RequestApplianceUpdateNetworkApplianceFirewallFirewalledService) (*ResponseApplianceUpdateNetworkApplianceFirewallFirewalledService, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/firewalledServices/{service}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5008,19 +5259,21 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallFirewalledService(netwo
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestApplianceUpdateNetworkApplianceFirewallFirewalledService).
+		SetResult(&ResponseApplianceUpdateNetworkApplianceFirewallFirewalledService{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallFirewalledService")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallFirewalledService")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceFirewallFirewalledService)
+	return result, response, err
 
 }
 
@@ -5213,7 +5466,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallOneToOneNatRules(networ
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *ApplianceService) UpdateNetworkApplianceFirewallPortForwardingRules(networkID string, requestApplianceUpdateNetworkApplianceFirewallPortForwardingRules *RequestApplianceUpdateNetworkApplianceFirewallPortForwardingRules) (*resty.Response, error) {
+func (s *ApplianceService) UpdateNetworkApplianceFirewallPortForwardingRules(networkID string, requestApplianceUpdateNetworkApplianceFirewallPortForwardingRules *RequestApplianceUpdateNetworkApplianceFirewallPortForwardingRules) (*ResponseApplianceUpdateNetworkApplianceFirewallPortForwardingRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/portForwardingRules"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5222,19 +5475,21 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallPortForwardingRules(net
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestApplianceUpdateNetworkApplianceFirewallPortForwardingRules).
+		SetResult(&ResponseApplianceUpdateNetworkApplianceFirewallPortForwardingRules{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallPortForwardingRules")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallPortForwardingRules")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceFirewallPortForwardingRules)
+	return result, response, err
 
 }
 
@@ -5364,6 +5619,38 @@ func (s *ApplianceService) UpdateNetworkApplianceRfProfile(networkID string, rfP
 	}
 
 	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceRfProfile)
+	return result, response, err
+
+}
+
+//UpdateNetworkApplianceSdwanInternetPolicies Update SDWAN internet traffic preferences for an MX network
+/* Update SDWAN internet traffic preferences for an MX network
+
+@param networkID networkId path parameter. Network ID
+*/
+func (s *ApplianceService) UpdateNetworkApplianceSdwanInternetPolicies(networkID string, requestApplianceUpdateNetworkApplianceSdwanInternetPolicies *RequestApplianceUpdateNetworkApplianceSdwanInternetPolicies) (*ResponseApplianceUpdateNetworkApplianceSdwanInternetPolicies, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/appliance/sdwan/internetPolicies"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceUpdateNetworkApplianceSdwanInternetPolicies).
+		SetResult(&ResponseApplianceUpdateNetworkApplianceSdwanInternetPolicies{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceSdwanInternetPolicies")
+	}
+
+	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceSdwanInternetPolicies)
 	return result, response, err
 
 }
@@ -5536,7 +5823,7 @@ func (s *ApplianceService) UpdateNetworkApplianceSSID(networkID string, number s
 @param networkID networkId path parameter. Network ID
 @param staticRouteID staticRouteId path parameter. Static route ID
 */
-func (s *ApplianceService) UpdateNetworkApplianceStaticRoute(networkID string, staticRouteID string, requestApplianceUpdateNetworkApplianceStaticRoute *RequestApplianceUpdateNetworkApplianceStaticRoute) (*resty.Response, error) {
+func (s *ApplianceService) UpdateNetworkApplianceStaticRoute(networkID string, staticRouteID string, requestApplianceUpdateNetworkApplianceStaticRoute *RequestApplianceUpdateNetworkApplianceStaticRoute) (*ResponseApplianceUpdateNetworkApplianceStaticRoute, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/staticRoutes/{staticRouteId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5546,19 +5833,21 @@ func (s *ApplianceService) UpdateNetworkApplianceStaticRoute(networkID string, s
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestApplianceUpdateNetworkApplianceStaticRoute).
+		SetResult(&ResponseApplianceUpdateNetworkApplianceStaticRoute{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceStaticRoute")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceStaticRoute")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceStaticRoute)
+	return result, response, err
 
 }
 
@@ -5821,7 +6110,7 @@ func (s *ApplianceService) UpdateNetworkApplianceVLAN(networkID string, vlanID s
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *ApplianceService) UpdateNetworkApplianceVpnBgp(networkID string, requestApplianceUpdateNetworkApplianceVpnBgp *RequestApplianceUpdateNetworkApplianceVpnBgp) (*resty.Response, error) {
+func (s *ApplianceService) UpdateNetworkApplianceVpnBgp(networkID string, requestApplianceUpdateNetworkApplianceVpnBgp *RequestApplianceUpdateNetworkApplianceVpnBgp) (*ResponseApplianceUpdateNetworkApplianceVpnBgp, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vpn/bgp"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5830,19 +6119,21 @@ func (s *ApplianceService) UpdateNetworkApplianceVpnBgp(networkID string, reques
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestApplianceUpdateNetworkApplianceVpnBgp).
+		SetResult(&ResponseApplianceUpdateNetworkApplianceVpnBgp{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceVpnBgp")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceVpnBgp")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceVpnBgp)
+	return result, response, err
 
 }
 
@@ -5883,7 +6174,7 @@ func (s *ApplianceService) UpdateNetworkApplianceVpnSiteToSiteVpn(networkID stri
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *ApplianceService) UpdateNetworkApplianceWarmSpare(networkID string, requestApplianceUpdateNetworkApplianceWarmSpare *RequestApplianceUpdateNetworkApplianceWarmSpare) (*resty.Response, error) {
+func (s *ApplianceService) UpdateNetworkApplianceWarmSpare(networkID string, requestApplianceUpdateNetworkApplianceWarmSpare *RequestApplianceUpdateNetworkApplianceWarmSpare) (*ResponseApplianceUpdateNetworkApplianceWarmSpare, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/warmSpare"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5892,19 +6183,21 @@ func (s *ApplianceService) UpdateNetworkApplianceWarmSpare(networkID string, req
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestApplianceUpdateNetworkApplianceWarmSpare).
+		SetResult(&ResponseApplianceUpdateNetworkApplianceWarmSpare{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceWarmSpare")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceWarmSpare")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceWarmSpare)
+	return result, response, err
 
 }
 

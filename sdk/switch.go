@@ -1,7 +1,6 @@
 package meraki
 
 import (
-	"encoding/json"
 	"fmt"
 	"strings"
 
@@ -38,54 +37,113 @@ type GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams st
 }
 type GetOrganizationSummarySwitchPowerHistoryQueryParams struct {
 	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data.
-	T1       string  `url:"t1,omitempty"`       //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
-	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 1 day.
+	T1       string  `url:"t1,omitempty"`       //The end of the timespan for the data. t1 can be a maximum of 186 days after t0.
+	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 186 days. The default is 1 day.
 }
 type GetOrganizationSwitchPortsBySwitchQueryParams struct {
 	PerPage                   int      `url:"perPage,omitempty"`                   //The number of entries per page returned. Acceptable range is 3 - 50. Default is 50.
 	StartingAfter             string   `url:"startingAfter,omitempty"`             //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	EndingBefore              string   `url:"endingBefore,omitempty"`              //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
-	NetworkIDs                []string `url:"networkIds[],omitempty"`              //Optional parameter to filter switchports by network.
-	PortProfileIDs            []string `url:"portProfileIds[],omitempty"`          //Optional parameter to filter switchports belonging to the specified port profiles.
-	Name                      string   `url:"name,omitempty"`                      //Optional parameter to filter switchports belonging to switches by name. All returned switches will have a name that contains the search term or is an exact match.
-	Mac                       string   `url:"mac,omitempty"`                       //Optional parameter to filter switchports belonging to switches by MAC address. All returned switches will have a MAC address that contains the search term or is an exact match.
-	Macs                      []string `url:"macs[],omitempty"`                    //Optional parameter to filter switchports by one or more MAC addresses belonging to devices. All switchports returned belong to MAC addresses of switches that are an exact match.
-	Serial                    string   `url:"serial,omitempty"`                    //Optional parameter to filter switchports belonging to switches by serial number. All returned switches will have a serial number that contains the search term or is an exact match.
-	Serials                   []string `url:"serials[],omitempty"`                 //Optional parameter to filter switchports belonging to switches with one or more serial numbers. All switchports returned belong to serial numbers of switches that are an exact match.
-	ConfigurationUpdatedAfter string   `url:"configurationUpdatedAfter,omitempty"` //Optional parameter to filter results by switches where the configuration has been updated after the given timestamp.
+	ConfigurationUpdatedAfter string   `url:"configurationUpdatedAfter,omitempty"` //Optional parameter to filter items to switches where the configuration has been updated after the given timestamp.
+	Mac                       string   `url:"mac,omitempty"`                       //Optional parameter to filter items to switches with MAC addresses that contain the search term or are an exact match.
+	Macs                      []string `url:"macs[],omitempty"`                    //Optional parameter to filter items to switches that have one of the provided MAC addresses.
+	Name                      string   `url:"name,omitempty"`                      //Optional parameter to filter items to switches with names that contain the search term or are an exact match.
+	NetworkIDs                []string `url:"networkIds[],omitempty"`              //Optional parameter to filter items to switches in one of the provided networks.
+	PortProfileIDs            []string `url:"portProfileIds[],omitempty"`          //Optional parameter to filter items to switches that contain switchports belonging to one of the specified port profiles.
+	Serial                    string   `url:"serial,omitempty"`                    //Optional parameter to filter items to switches with serial number that contains the search term or are an exact match.
+	Serials                   []string `url:"serials[],omitempty"`                 //Optional parameter to filter items to switches that have one of the provided serials.
+}
+type GetOrganizationSwitchPortsClientsOverviewByDeviceQueryParams struct {
+	T0                        string   `url:"t0,omitempty"`                        //The beginning of the timespan for the data. The maximum lookback period is 31 days from today.
+	Timespan                  float64  `url:"timespan,omitempty"`                  //The timespan for which the information will be fetched. If specifying timespan, do not specify parameter t0. The value must be in seconds and be less than or equal to 31 days. The default is 1 day.
+	PerPage                   int      `url:"perPage,omitempty"`                   //The number of entries per page returned. Acceptable range is 3 - 20. Default is 20.
+	StartingAfter             string   `url:"startingAfter,omitempty"`             //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore              string   `url:"endingBefore,omitempty"`              //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	ConfigurationUpdatedAfter string   `url:"configurationUpdatedAfter,omitempty"` //Optional parameter to filter items to switches where the configuration has been updated after the given timestamp.
+	Mac                       string   `url:"mac,omitempty"`                       //Optional parameter to filter items to switches with MAC addresses that contain the search term or are an exact match.
+	Macs                      []string `url:"macs[],omitempty"`                    //Optional parameter to filter items to switches that have one of the provided MAC addresses.
+	Name                      string   `url:"name,omitempty"`                      //Optional parameter to filter items to switches with names that contain the search term or are an exact match.
+	NetworkIDs                []string `url:"networkIds[],omitempty"`              //Optional parameter to filter items to switches in one of the provided networks.
+	PortProfileIDs            []string `url:"portProfileIds[],omitempty"`          //Optional parameter to filter items to switches that contain switchports belonging to one of the specified port profiles.
+	Serial                    string   `url:"serial,omitempty"`                    //Optional parameter to filter items to switches with serial number that contains the search term or are an exact match.
+	Serials                   []string `url:"serials[],omitempty"`                 //Optional parameter to filter items to switches that have one of the provided serials.
+}
+type GetOrganizationSwitchPortsOverviewQueryParams struct {
+	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data.
+	T1       string  `url:"t1,omitempty"`       //The end of the timespan for the data. t1 can be a maximum of 186 days after t0.
+	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be greater than or equal to 12 hours and be less than or equal to 186 days. The default is 1 day.
+}
+type GetOrganizationSwitchPortsStatusesBySwitchQueryParams struct {
+	PerPage                   int      `url:"perPage,omitempty"`                   //The number of entries per page returned. Acceptable range is 3 - 20. Default is 10.
+	StartingAfter             string   `url:"startingAfter,omitempty"`             //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore              string   `url:"endingBefore,omitempty"`              //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	ConfigurationUpdatedAfter string   `url:"configurationUpdatedAfter,omitempty"` //Optional parameter to filter items to switches where the configuration has been updated after the given timestamp.
+	Mac                       string   `url:"mac,omitempty"`                       //Optional parameter to filter items to switches with MAC addresses that contain the search term or are an exact match.
+	Macs                      []string `url:"macs[],omitempty"`                    //Optional parameter to filter items to switches that have one of the provided MAC addresses.
+	Name                      string   `url:"name,omitempty"`                      //Optional parameter to filter items to switches with names that contain the search term or are an exact match.
+	NetworkIDs                []string `url:"networkIds[],omitempty"`              //Optional parameter to filter items to switches in one of the provided networks.
+	PortProfileIDs            []string `url:"portProfileIds[],omitempty"`          //Optional parameter to filter items to switches that contain switchports belonging to one of the specified port profiles.
+	Serial                    string   `url:"serial,omitempty"`                    //Optional parameter to filter items to switches with serial number that contains the search term or are an exact match.
+	Serials                   []string `url:"serials[],omitempty"`                 //Optional parameter to filter items to switches that have one of the provided serials.
+}
+type GetOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams struct {
+	T0                        string   `url:"t0,omitempty"`                        //The beginning of the timespan for the data. The maximum lookback period is 31 days from today.
+	Timespan                  float64  `url:"timespan,omitempty"`                  //The timespan for which the information will be fetched. If specifying timespan, do not specify parameter t0. The value must be in seconds and be less than or equal to 31 days. The default is 1 day.
+	PerPage                   int      `url:"perPage,omitempty"`                   //The number of entries per page returned. Acceptable range is 3 - 20. Default is 10.
+	StartingAfter             string   `url:"startingAfter,omitempty"`             //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore              string   `url:"endingBefore,omitempty"`              //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	ConfigurationUpdatedAfter string   `url:"configurationUpdatedAfter,omitempty"` //Optional parameter to filter items to switches where the configuration has been updated after the given timestamp.
+	Mac                       string   `url:"mac,omitempty"`                       //Optional parameter to filter items to switches with MAC addresses that contain the search term or are an exact match.
+	Macs                      []string `url:"macs[],omitempty"`                    //Optional parameter to filter items to switches that have one of the provided MAC addresses.
+	Name                      string   `url:"name,omitempty"`                      //Optional parameter to filter items to switches with names that contain the search term or are an exact match.
+	NetworkIDs                []string `url:"networkIds[],omitempty"`              //Optional parameter to filter items to switches in one of the provided networks.
+	PortProfileIDs            []string `url:"portProfileIds[],omitempty"`          //Optional parameter to filter items to switches that contain switchports belonging to one of the specified port profiles.
+	Serial                    string   `url:"serial,omitempty"`                    //Optional parameter to filter items to switches with serial number that contains the search term or are an exact match.
+	Serials                   []string `url:"serials[],omitempty"`                 //Optional parameter to filter items to switches that have one of the provided serials.
 }
 
 type ResponseSwitchGetDeviceSwitchPorts []ResponseItemSwitchGetDeviceSwitchPorts // Array of ResponseSwitchGetDeviceSwitchPorts
 type ResponseItemSwitchGetDeviceSwitchPorts struct {
-	AccessPolicyNumber          *int                                           `json:"accessPolicyNumber,omitempty"`          // The number of a custom access policy to configure on the switch port. Only applicable when 'accessPolicyType' is 'Custom access policy'.
-	AccessPolicyType            string                                         `json:"accessPolicyType,omitempty"`            // The type of the access policy of the switch port. Only applicable to access ports. Can be one of 'Open', 'Custom access policy', 'MAC allow list' or 'Sticky MAC allow list'.
-	AdaptivePolicyGroupID       string                                         `json:"adaptivePolicyGroupId,omitempty"`       // The adaptive policy group ID that will be used to tag traffic through this switch port. This ID must pre-exist during the configuration, else needs to be created using adaptivePolicy/groups API. Cannot be applied to a port on a switch bound to profile.
-	AllowedVLANs                string                                         `json:"allowedVlans,omitempty"`                // The VLANs allowed on the switch port. Only applicable to trunk ports.
-	DaiTrusted                  *bool                                          `json:"daiTrusted,omitempty"`                  // If true, ARP packets for this port will be considered trusted, and Dynamic ARP Inspection will allow the traffic.
-	Enabled                     *bool                                          `json:"enabled,omitempty"`                     // The status of the switch port.
-	FlexibleStackingEnabled     *bool                                          `json:"flexibleStackingEnabled,omitempty"`     // For supported switches (e.g. MS420/MS425), whether or not the port has flexible stacking enabled.
-	IsolationEnabled            *bool                                          `json:"isolationEnabled,omitempty"`            // The isolation status of the switch port.
-	LinkNegotiation             string                                         `json:"linkNegotiation,omitempty"`             // The link speed for the switch port.
-	LinkNegotiationCapabilities []string                                       `json:"linkNegotiationCapabilities,omitempty"` // Available link speeds for the switch port.
-	MacAllowList                []string                                       `json:"macAllowList,omitempty"`                // Only devices with MAC addresses specified in this list will have access to this port. Up to 20 MAC addresses can be defined. Only applicable when 'accessPolicyType' is 'MAC allow list'.
-	Mirror                      *ResponseItemSwitchGetDeviceSwitchPortsMirror  `json:"mirror,omitempty"`                      // Port mirror
-	Module                      *ResponseItemSwitchGetDeviceSwitchPortsModule  `json:"module,omitempty"`                      // Expansion module
-	Name                        string                                         `json:"name,omitempty"`                        // The name of the switch port.
-	PeerSgtCapable              *bool                                          `json:"peerSgtCapable,omitempty"`              // If true, Peer SGT is enabled for traffic through this switch port. Applicable to trunk port only, not access port. Cannot be applied to a port on a switch bound to profile.
-	PoeEnabled                  *bool                                          `json:"poeEnabled,omitempty"`                  // The PoE status of the switch port.
-	PortID                      string                                         `json:"portId,omitempty"`                      // The identifier of the switch port.
-	PortScheduleID              string                                         `json:"portScheduleId,omitempty"`              // The ID of the port schedule. A value of null will clear the port schedule.
-	Profile                     *ResponseItemSwitchGetDeviceSwitchPortsProfile `json:"profile,omitempty"`                     // Profile attributes
-	RstpEnabled                 *bool                                          `json:"rstpEnabled,omitempty"`                 // The rapid spanning tree protocol status.
-	StickyMacAllowList          []string                                       `json:"stickyMacAllowList,omitempty"`          // The initial list of MAC addresses for sticky Mac allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
-	StickyMacAllowListLimit     *int                                           `json:"stickyMacAllowListLimit,omitempty"`     // The maximum number of MAC addresses for sticky MAC allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
-	StormControlEnabled         *bool                                          `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch port.
-	StpGuard                    string                                         `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
-	Tags                        []string                                       `json:"tags,omitempty"`                        // The list of tags of the switch port.
-	Type                        string                                         `json:"type,omitempty"`                        // The type of the switch port ('trunk' or 'access').
-	Udld                        string                                         `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
-	VLAN                        *int                                           `json:"vlan,omitempty"`                        // The VLAN of the switch port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
-	VoiceVLAN                   *int                                           `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch port. Only applicable to access ports.
+	AccessPolicyNumber          *int                                                       `json:"accessPolicyNumber,omitempty"`          // The number of a custom access policy to configure on the switch port. Only applicable when 'accessPolicyType' is 'Custom access policy'.
+	AccessPolicyType            string                                                     `json:"accessPolicyType,omitempty"`            // The type of the access policy of the switch port. Only applicable to access ports. Can be one of 'Open', 'Custom access policy', 'MAC allow list' or 'Sticky MAC allow list'.
+	AdaptivePolicyGroup         *ResponseItemSwitchGetDeviceSwitchPortsAdaptivePolicyGroup `json:"adaptivePolicyGroup,omitempty"`         // The adaptive policy group data of the port.
+	AdaptivePolicyGroupID       string                                                     `json:"adaptivePolicyGroupId,omitempty"`       // The adaptive policy group ID that will be used to tag traffic through this switch port. This ID must pre-exist during the configuration, else needs to be created using adaptivePolicy/groups API. Cannot be applied to a port on a switch bound to profile.
+	AllowedVLANs                string                                                     `json:"allowedVlans,omitempty"`                // The VLANs allowed on the switch port. Only applicable to trunk ports.
+	DaiTrusted                  *bool                                                      `json:"daiTrusted,omitempty"`                  // If true, ARP packets for this port will be considered trusted, and Dynamic ARP Inspection will allow the traffic.
+	Dot3Az                      *ResponseItemSwitchGetDeviceSwitchPortsDot3Az              `json:"dot3az,omitempty"`                      // dot3az settings for the port
+	Enabled                     *bool                                                      `json:"enabled,omitempty"`                     // The status of the switch port.
+	FlexibleStackingEnabled     *bool                                                      `json:"flexibleStackingEnabled,omitempty"`     // For supported switches (e.g. MS420/MS425), whether or not the port has flexible stacking enabled.
+	IsolationEnabled            *bool                                                      `json:"isolationEnabled,omitempty"`            // The isolation status of the switch port.
+	LinkNegotiation             string                                                     `json:"linkNegotiation,omitempty"`             // The link speed for the switch port.
+	LinkNegotiationCapabilities []string                                                   `json:"linkNegotiationCapabilities,omitempty"` // Available link speeds for the switch port.
+	MacAllowList                []string                                                   `json:"macAllowList,omitempty"`                // Only devices with MAC addresses specified in this list will have access to this port. Up to 20 MAC addresses can be defined. Only applicable when 'accessPolicyType' is 'MAC allow list'.
+	Mirror                      *ResponseItemSwitchGetDeviceSwitchPortsMirror              `json:"mirror,omitempty"`                      // Port mirror
+	Module                      *ResponseItemSwitchGetDeviceSwitchPortsModule              `json:"module,omitempty"`                      // Expansion module
+	Name                        string                                                     `json:"name,omitempty"`                        // The name of the switch port.
+	PeerSgtCapable              *bool                                                      `json:"peerSgtCapable,omitempty"`              // If true, Peer SGT is enabled for traffic through this switch port. Applicable to trunk port only, not access port. Cannot be applied to a port on a switch bound to profile.
+	PoeEnabled                  *bool                                                      `json:"poeEnabled,omitempty"`                  // The PoE status of the switch port.
+	PortID                      string                                                     `json:"portId,omitempty"`                      // The identifier of the switch port.
+	PortScheduleID              string                                                     `json:"portScheduleId,omitempty"`              // The ID of the port schedule. A value of null will clear the port schedule.
+	Profile                     *ResponseItemSwitchGetDeviceSwitchPortsProfile             `json:"profile,omitempty"`                     // Profile attributes
+	RstpEnabled                 *bool                                                      `json:"rstpEnabled,omitempty"`                 // The rapid spanning tree protocol status.
+	Schedule                    *ResponseItemSwitchGetDeviceSwitchPortsSchedule            `json:"schedule,omitempty"`                    // The port schedule data.
+	StackwiseVirtual            *ResponseItemSwitchGetDeviceSwitchPortsStackwiseVirtual    `json:"stackwiseVirtual,omitempty"`            // Stackwise Virtual settings for the port
+	StickyMacAllowList          []string                                                   `json:"stickyMacAllowList,omitempty"`          // The initial list of MAC addresses for sticky Mac allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
+	StickyMacAllowListLimit     *int                                                       `json:"stickyMacAllowListLimit,omitempty"`     // The maximum number of MAC addresses for sticky MAC allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
+	StormControlEnabled         *bool                                                      `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch port.
+	StpGuard                    string                                                     `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
+	Tags                        []string                                                   `json:"tags,omitempty"`                        // The list of tags of the switch port.
+	Type                        string                                                     `json:"type,omitempty"`                        // The type of the switch port ('trunk', 'access' or 'stack').
+	Udld                        string                                                     `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
+	VLAN                        *int                                                       `json:"vlan,omitempty"`                        // The VLAN of the switch port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
+	VoiceVLAN                   *int                                                       `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch port. Only applicable to access ports.
+}
+type ResponseItemSwitchGetDeviceSwitchPortsAdaptivePolicyGroup struct {
+	ID   string `json:"id,omitempty"`   // The ID of the adaptive policy group.
+	Name string `json:"name,omitempty"` // The name of the adaptive policy group.
+}
+type ResponseItemSwitchGetDeviceSwitchPortsDot3Az struct {
+	Enabled *bool `json:"enabled,omitempty"` // The Energy Efficient Ethernet status of the switch port.
 }
 type ResponseItemSwitchGetDeviceSwitchPortsMirror struct {
 	Mode string `json:"mode,omitempty"` // The port mirror mode. Can be one of ('Destination port', 'Source port' or 'Not mirroring traffic').
@@ -97,6 +155,14 @@ type ResponseItemSwitchGetDeviceSwitchPortsProfile struct {
 	Enabled *bool  `json:"enabled,omitempty"` // When enabled, override this port's configuration with a port profile.
 	ID      string `json:"id,omitempty"`      // When enabled, the ID of the port profile used to override the port's configuration.
 	Iname   string `json:"iname,omitempty"`   // When enabled, the IName of the profile.
+}
+type ResponseItemSwitchGetDeviceSwitchPortsSchedule struct {
+	ID   string `json:"id,omitempty"`   // The ID of the port schedule.
+	Name string `json:"name,omitempty"` // The name of the port schedule.
+}
+type ResponseItemSwitchGetDeviceSwitchPortsStackwiseVirtual struct {
+	IsDualActiveDetector   *bool `json:"isDualActiveDetector,omitempty"`   // For SVL devices, whether or not the port is used for Dual Active Detection.
+	IsStackWiseVirtualLink *bool `json:"isStackWiseVirtualLink,omitempty"` // For SVL devices, whether or not the port is used for StackWise Virtual Link.
 }
 type ResponseSwitchCycleDeviceSwitchPorts struct {
 	Ports []string `json:"ports,omitempty"` // List of switch ports
@@ -110,6 +176,7 @@ type ResponseItemSwitchGetDeviceSwitchPortsStatuses struct {
 	Errors         []string                                                     `json:"errors,omitempty"`         // All errors present on the port.
 	IsUplink       *bool                                                        `json:"isUplink,omitempty"`       // Whether the port is the switch's uplink.
 	Lldp           *ResponseItemSwitchGetDeviceSwitchPortsStatusesLldp          `json:"lldp,omitempty"`           // The Link Layer Discovery Protocol (LLDP) information of the connected device.
+	Poe            *ResponseItemSwitchGetDeviceSwitchPortsStatusesPoe           `json:"poe,omitempty"`            // PoE status of the port.
 	PortID         string                                                       `json:"portId,omitempty"`         // The string identifier of this port on the switch. This is commonly just the port number but may contain additional identifying information such as the slot and module-type if the port is located on a port module.
 	PowerUsageInWh *float64                                                     `json:"powerUsageInWh,omitempty"` // How much power (in watt-hours) has been delivered by this port during the timespan.
 	SecurePort     *ResponseItemSwitchGetDeviceSwitchPortsStatusesSecurePort    `json:"securePort,omitempty"`     // The Secure Port status of the port.
@@ -143,6 +210,9 @@ type ResponseItemSwitchGetDeviceSwitchPortsStatusesLldp struct {
 	SystemDescription  string `json:"systemDescription,omitempty"`  // The device's system description.
 	SystemName         string `json:"systemName,omitempty"`         // The device's system name.
 }
+type ResponseItemSwitchGetDeviceSwitchPortsStatusesPoe struct {
+	IsAllocated *bool `json:"isAllocated,omitempty"` // Whether the port is drawing power
+}
 type ResponseItemSwitchGetDeviceSwitchPortsStatusesSecurePort struct {
 	Active               *bool                                                                    `json:"active,omitempty"`               // Whether Secure Port is currently active for this port.
 	AuthenticationStatus string                                                                   `json:"authenticationStatus,omitempty"` // The current Secure Port status.
@@ -151,7 +221,7 @@ type ResponseItemSwitchGetDeviceSwitchPortsStatusesSecurePort struct {
 }
 type ResponseItemSwitchGetDeviceSwitchPortsStatusesSecurePortConfigOverrides struct {
 	AllowedVLANs string `json:"allowedVlans,omitempty"` // The VLANs allowed on the . Only applicable to trunk ports.
-	Type         string `json:"type,omitempty"`         // The type of the  ('trunk' or 'access').
+	Type         string `json:"type,omitempty"`         // The type of the  ('trunk', 'access' or 'stack').
 	VLAN         *int   `json:"vlan,omitempty"`         // The VLAN of the . For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
 	VoiceVLAN    *int   `json:"voiceVlan,omitempty"`    // The voice VLAN of the . Only applicable to access ports.
 }
@@ -186,35 +256,46 @@ type ResponseItemSwitchGetDeviceSwitchPortsStatusesPacketsPacketsRatePerSec stru
 	Total *int `json:"total,omitempty"` // The rate of all packets sent and received during the timespan
 }
 type ResponseSwitchGetDeviceSwitchPort struct {
-	AccessPolicyNumber          *int                                      `json:"accessPolicyNumber,omitempty"`          // The number of a custom access policy to configure on the switch port. Only applicable when 'accessPolicyType' is 'Custom access policy'.
-	AccessPolicyType            string                                    `json:"accessPolicyType,omitempty"`            // The type of the access policy of the switch port. Only applicable to access ports. Can be one of 'Open', 'Custom access policy', 'MAC allow list' or 'Sticky MAC allow list'.
-	AdaptivePolicyGroupID       string                                    `json:"adaptivePolicyGroupId,omitempty"`       // The adaptive policy group ID that will be used to tag traffic through this switch port. This ID must pre-exist during the configuration, else needs to be created using adaptivePolicy/groups API. Cannot be applied to a port on a switch bound to profile.
-	AllowedVLANs                string                                    `json:"allowedVlans,omitempty"`                // The VLANs allowed on the switch port. Only applicable to trunk ports.
-	DaiTrusted                  *bool                                     `json:"daiTrusted,omitempty"`                  // If true, ARP packets for this port will be considered trusted, and Dynamic ARP Inspection will allow the traffic.
-	Enabled                     *bool                                     `json:"enabled,omitempty"`                     // The status of the switch port.
-	FlexibleStackingEnabled     *bool                                     `json:"flexibleStackingEnabled,omitempty"`     // For supported switches (e.g. MS420/MS425), whether or not the port has flexible stacking enabled.
-	IsolationEnabled            *bool                                     `json:"isolationEnabled,omitempty"`            // The isolation status of the switch port.
-	LinkNegotiation             string                                    `json:"linkNegotiation,omitempty"`             // The link speed for the switch port.
-	LinkNegotiationCapabilities []string                                  `json:"linkNegotiationCapabilities,omitempty"` // Available link speeds for the switch port.
-	MacAllowList                []string                                  `json:"macAllowList,omitempty"`                // Only devices with MAC addresses specified in this list will have access to this port. Up to 20 MAC addresses can be defined. Only applicable when 'accessPolicyType' is 'MAC allow list'.
-	Mirror                      *ResponseSwitchGetDeviceSwitchPortMirror  `json:"mirror,omitempty"`                      // Port mirror
-	Module                      *ResponseSwitchGetDeviceSwitchPortModule  `json:"module,omitempty"`                      // Expansion module
-	Name                        string                                    `json:"name,omitempty"`                        // The name of the switch port.
-	PeerSgtCapable              *bool                                     `json:"peerSgtCapable,omitempty"`              // If true, Peer SGT is enabled for traffic through this switch port. Applicable to trunk port only, not access port. Cannot be applied to a port on a switch bound to profile.
-	PoeEnabled                  *bool                                     `json:"poeEnabled,omitempty"`                  // The PoE status of the switch port.
-	PortID                      string                                    `json:"portId,omitempty"`                      // The identifier of the switch port.
-	PortScheduleID              string                                    `json:"portScheduleId,omitempty"`              // The ID of the port schedule. A value of null will clear the port schedule.
-	Profile                     *ResponseSwitchGetDeviceSwitchPortProfile `json:"profile,omitempty"`                     // Profile attributes
-	RstpEnabled                 *bool                                     `json:"rstpEnabled,omitempty"`                 // The rapid spanning tree protocol status.
-	StickyMacAllowList          []string                                  `json:"stickyMacAllowList,omitempty"`          // The initial list of MAC addresses for sticky Mac allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
-	StickyMacAllowListLimit     *int                                      `json:"stickyMacAllowListLimit,omitempty"`     // The maximum number of MAC addresses for sticky MAC allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
-	StormControlEnabled         *bool                                     `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch port.
-	StpGuard                    string                                    `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
-	Tags                        []string                                  `json:"tags,omitempty"`                        // The list of tags of the switch port.
-	Type                        string                                    `json:"type,omitempty"`                        // The type of the switch port ('trunk' or 'access').
-	Udld                        string                                    `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
-	VLAN                        *int                                      `json:"vlan,omitempty"`                        // The VLAN of the switch port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
-	VoiceVLAN                   *int                                      `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch port. Only applicable to access ports.
+	AccessPolicyNumber          *int                                                  `json:"accessPolicyNumber,omitempty"`          // The number of a custom access policy to configure on the switch port. Only applicable when 'accessPolicyType' is 'Custom access policy'.
+	AccessPolicyType            string                                                `json:"accessPolicyType,omitempty"`            // The type of the access policy of the switch port. Only applicable to access ports. Can be one of 'Open', 'Custom access policy', 'MAC allow list' or 'Sticky MAC allow list'.
+	AdaptivePolicyGroup         *ResponseSwitchGetDeviceSwitchPortAdaptivePolicyGroup `json:"adaptivePolicyGroup,omitempty"`         // The adaptive policy group data of the port.
+	AdaptivePolicyGroupID       string                                                `json:"adaptivePolicyGroupId,omitempty"`       // The adaptive policy group ID that will be used to tag traffic through this switch port. This ID must pre-exist during the configuration, else needs to be created using adaptivePolicy/groups API. Cannot be applied to a port on a switch bound to profile.
+	AllowedVLANs                string                                                `json:"allowedVlans,omitempty"`                // The VLANs allowed on the switch port. Only applicable to trunk ports.
+	DaiTrusted                  *bool                                                 `json:"daiTrusted,omitempty"`                  // If true, ARP packets for this port will be considered trusted, and Dynamic ARP Inspection will allow the traffic.
+	Dot3Az                      *ResponseSwitchGetDeviceSwitchPortDot3Az              `json:"dot3az,omitempty"`                      // dot3az settings for the port
+	Enabled                     *bool                                                 `json:"enabled,omitempty"`                     // The status of the switch port.
+	FlexibleStackingEnabled     *bool                                                 `json:"flexibleStackingEnabled,omitempty"`     // For supported switches (e.g. MS420/MS425), whether or not the port has flexible stacking enabled.
+	IsolationEnabled            *bool                                                 `json:"isolationEnabled,omitempty"`            // The isolation status of the switch port.
+	LinkNegotiation             string                                                `json:"linkNegotiation,omitempty"`             // The link speed for the switch port.
+	LinkNegotiationCapabilities []string                                              `json:"linkNegotiationCapabilities,omitempty"` // Available link speeds for the switch port.
+	MacAllowList                []string                                              `json:"macAllowList,omitempty"`                // Only devices with MAC addresses specified in this list will have access to this port. Up to 20 MAC addresses can be defined. Only applicable when 'accessPolicyType' is 'MAC allow list'.
+	Mirror                      *ResponseSwitchGetDeviceSwitchPortMirror              `json:"mirror,omitempty"`                      // Port mirror
+	Module                      *ResponseSwitchGetDeviceSwitchPortModule              `json:"module,omitempty"`                      // Expansion module
+	Name                        string                                                `json:"name,omitempty"`                        // The name of the switch port.
+	PeerSgtCapable              *bool                                                 `json:"peerSgtCapable,omitempty"`              // If true, Peer SGT is enabled for traffic through this switch port. Applicable to trunk port only, not access port. Cannot be applied to a port on a switch bound to profile.
+	PoeEnabled                  *bool                                                 `json:"poeEnabled,omitempty"`                  // The PoE status of the switch port.
+	PortID                      string                                                `json:"portId,omitempty"`                      // The identifier of the switch port.
+	PortScheduleID              string                                                `json:"portScheduleId,omitempty"`              // The ID of the port schedule. A value of null will clear the port schedule.
+	Profile                     *ResponseSwitchGetDeviceSwitchPortProfile             `json:"profile,omitempty"`                     // Profile attributes
+	RstpEnabled                 *bool                                                 `json:"rstpEnabled,omitempty"`                 // The rapid spanning tree protocol status.
+	Schedule                    *ResponseSwitchGetDeviceSwitchPortSchedule            `json:"schedule,omitempty"`                    // The port schedule data.
+	StackwiseVirtual            *ResponseSwitchGetDeviceSwitchPortStackwiseVirtual    `json:"stackwiseVirtual,omitempty"`            // Stackwise Virtual settings for the port
+	StickyMacAllowList          []string                                              `json:"stickyMacAllowList,omitempty"`          // The initial list of MAC addresses for sticky Mac allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
+	StickyMacAllowListLimit     *int                                                  `json:"stickyMacAllowListLimit,omitempty"`     // The maximum number of MAC addresses for sticky MAC allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
+	StormControlEnabled         *bool                                                 `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch port.
+	StpGuard                    string                                                `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
+	Tags                        []string                                              `json:"tags,omitempty"`                        // The list of tags of the switch port.
+	Type                        string                                                `json:"type,omitempty"`                        // The type of the switch port ('trunk', 'access' or 'stack').
+	Udld                        string                                                `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
+	VLAN                        *int                                                  `json:"vlan,omitempty"`                        // The VLAN of the switch port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
+	VoiceVLAN                   *int                                                  `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch port. Only applicable to access ports.
+}
+type ResponseSwitchGetDeviceSwitchPortAdaptivePolicyGroup struct {
+	ID   string `json:"id,omitempty"`   // The ID of the adaptive policy group.
+	Name string `json:"name,omitempty"` // The name of the adaptive policy group.
+}
+type ResponseSwitchGetDeviceSwitchPortDot3Az struct {
+	Enabled *bool `json:"enabled,omitempty"` // The Energy Efficient Ethernet status of the switch port.
 }
 type ResponseSwitchGetDeviceSwitchPortMirror struct {
 	Mode string `json:"mode,omitempty"` // The port mirror mode. Can be one of ('Destination port', 'Source port' or 'Not mirroring traffic').
@@ -227,36 +308,55 @@ type ResponseSwitchGetDeviceSwitchPortProfile struct {
 	ID      string `json:"id,omitempty"`      // When enabled, the ID of the port profile used to override the port's configuration.
 	Iname   string `json:"iname,omitempty"`   // When enabled, the IName of the profile.
 }
+type ResponseSwitchGetDeviceSwitchPortSchedule struct {
+	ID   string `json:"id,omitempty"`   // The ID of the port schedule.
+	Name string `json:"name,omitempty"` // The name of the port schedule.
+}
+type ResponseSwitchGetDeviceSwitchPortStackwiseVirtual struct {
+	IsDualActiveDetector   *bool `json:"isDualActiveDetector,omitempty"`   // For SVL devices, whether or not the port is used for Dual Active Detection.
+	IsStackWiseVirtualLink *bool `json:"isStackWiseVirtualLink,omitempty"` // For SVL devices, whether or not the port is used for StackWise Virtual Link.
+}
 type ResponseSwitchUpdateDeviceSwitchPort struct {
-	AccessPolicyNumber          *int                                         `json:"accessPolicyNumber,omitempty"`          // The number of a custom access policy to configure on the switch port. Only applicable when 'accessPolicyType' is 'Custom access policy'.
-	AccessPolicyType            string                                       `json:"accessPolicyType,omitempty"`            // The type of the access policy of the switch port. Only applicable to access ports. Can be one of 'Open', 'Custom access policy', 'MAC allow list' or 'Sticky MAC allow list'.
-	AdaptivePolicyGroupID       string                                       `json:"adaptivePolicyGroupId,omitempty"`       // The adaptive policy group ID that will be used to tag traffic through this switch port. This ID must pre-exist during the configuration, else needs to be created using adaptivePolicy/groups API. Cannot be applied to a port on a switch bound to profile.
-	AllowedVLANs                string                                       `json:"allowedVlans,omitempty"`                // The VLANs allowed on the switch port. Only applicable to trunk ports.
-	DaiTrusted                  *bool                                        `json:"daiTrusted,omitempty"`                  // If true, ARP packets for this port will be considered trusted, and Dynamic ARP Inspection will allow the traffic.
-	Enabled                     *bool                                        `json:"enabled,omitempty"`                     // The status of the switch port.
-	FlexibleStackingEnabled     *bool                                        `json:"flexibleStackingEnabled,omitempty"`     // For supported switches (e.g. MS420/MS425), whether or not the port has flexible stacking enabled.
-	IsolationEnabled            *bool                                        `json:"isolationEnabled,omitempty"`            // The isolation status of the switch port.
-	LinkNegotiation             string                                       `json:"linkNegotiation,omitempty"`             // The link speed for the switch port.
-	LinkNegotiationCapabilities []string                                     `json:"linkNegotiationCapabilities,omitempty"` // Available link speeds for the switch port.
-	MacAllowList                []string                                     `json:"macAllowList,omitempty"`                // Only devices with MAC addresses specified in this list will have access to this port. Up to 20 MAC addresses can be defined. Only applicable when 'accessPolicyType' is 'MAC allow list'.
-	Mirror                      *ResponseSwitchUpdateDeviceSwitchPortMirror  `json:"mirror,omitempty"`                      // Port mirror
-	Module                      *ResponseSwitchUpdateDeviceSwitchPortModule  `json:"module,omitempty"`                      // Expansion module
-	Name                        string                                       `json:"name,omitempty"`                        // The name of the switch port.
-	PeerSgtCapable              *bool                                        `json:"peerSgtCapable,omitempty"`              // If true, Peer SGT is enabled for traffic through this switch port. Applicable to trunk port only, not access port. Cannot be applied to a port on a switch bound to profile.
-	PoeEnabled                  *bool                                        `json:"poeEnabled,omitempty"`                  // The PoE status of the switch port.
-	PortID                      string                                       `json:"portId,omitempty"`                      // The identifier of the switch port.
-	PortScheduleID              string                                       `json:"portScheduleId,omitempty"`              // The ID of the port schedule. A value of null will clear the port schedule.
-	Profile                     *ResponseSwitchUpdateDeviceSwitchPortProfile `json:"profile,omitempty"`                     // Profile attributes
-	RstpEnabled                 *bool                                        `json:"rstpEnabled,omitempty"`                 // The rapid spanning tree protocol status.
-	StickyMacAllowList          []string                                     `json:"stickyMacAllowList,omitempty"`          // The initial list of MAC addresses for sticky Mac allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
-	StickyMacAllowListLimit     *int                                         `json:"stickyMacAllowListLimit,omitempty"`     // The maximum number of MAC addresses for sticky MAC allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
-	StormControlEnabled         *bool                                        `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch port.
-	StpGuard                    string                                       `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
-	Tags                        []string                                     `json:"tags,omitempty"`                        // The list of tags of the switch port.
-	Type                        string                                       `json:"type,omitempty"`                        // The type of the switch port ('trunk' or 'access').
-	Udld                        string                                       `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
-	VLAN                        *int                                         `json:"vlan,omitempty"`                        // The VLAN of the switch port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
-	VoiceVLAN                   *int                                         `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch port. Only applicable to access ports.
+	AccessPolicyNumber          *int                                                     `json:"accessPolicyNumber,omitempty"`          // The number of a custom access policy to configure on the switch port. Only applicable when 'accessPolicyType' is 'Custom access policy'.
+	AccessPolicyType            string                                                   `json:"accessPolicyType,omitempty"`            // The type of the access policy of the switch port. Only applicable to access ports. Can be one of 'Open', 'Custom access policy', 'MAC allow list' or 'Sticky MAC allow list'.
+	AdaptivePolicyGroup         *ResponseSwitchUpdateDeviceSwitchPortAdaptivePolicyGroup `json:"adaptivePolicyGroup,omitempty"`         // The adaptive policy group data of the port.
+	AdaptivePolicyGroupID       string                                                   `json:"adaptivePolicyGroupId,omitempty"`       // The adaptive policy group ID that will be used to tag traffic through this switch port. This ID must pre-exist during the configuration, else needs to be created using adaptivePolicy/groups API. Cannot be applied to a port on a switch bound to profile.
+	AllowedVLANs                string                                                   `json:"allowedVlans,omitempty"`                // The VLANs allowed on the switch port. Only applicable to trunk ports.
+	DaiTrusted                  *bool                                                    `json:"daiTrusted,omitempty"`                  // If true, ARP packets for this port will be considered trusted, and Dynamic ARP Inspection will allow the traffic.
+	Dot3Az                      *ResponseSwitchUpdateDeviceSwitchPortDot3Az              `json:"dot3az,omitempty"`                      // dot3az settings for the port
+	Enabled                     *bool                                                    `json:"enabled,omitempty"`                     // The status of the switch port.
+	FlexibleStackingEnabled     *bool                                                    `json:"flexibleStackingEnabled,omitempty"`     // For supported switches (e.g. MS420/MS425), whether or not the port has flexible stacking enabled.
+	IsolationEnabled            *bool                                                    `json:"isolationEnabled,omitempty"`            // The isolation status of the switch port.
+	LinkNegotiation             string                                                   `json:"linkNegotiation,omitempty"`             // The link speed for the switch port.
+	LinkNegotiationCapabilities []string                                                 `json:"linkNegotiationCapabilities,omitempty"` // Available link speeds for the switch port.
+	MacAllowList                []string                                                 `json:"macAllowList,omitempty"`                // Only devices with MAC addresses specified in this list will have access to this port. Up to 20 MAC addresses can be defined. Only applicable when 'accessPolicyType' is 'MAC allow list'.
+	Mirror                      *ResponseSwitchUpdateDeviceSwitchPortMirror              `json:"mirror,omitempty"`                      // Port mirror
+	Module                      *ResponseSwitchUpdateDeviceSwitchPortModule              `json:"module,omitempty"`                      // Expansion module
+	Name                        string                                                   `json:"name,omitempty"`                        // The name of the switch port.
+	PeerSgtCapable              *bool                                                    `json:"peerSgtCapable,omitempty"`              // If true, Peer SGT is enabled for traffic through this switch port. Applicable to trunk port only, not access port. Cannot be applied to a port on a switch bound to profile.
+	PoeEnabled                  *bool                                                    `json:"poeEnabled,omitempty"`                  // The PoE status of the switch port.
+	PortID                      string                                                   `json:"portId,omitempty"`                      // The identifier of the switch port.
+	PortScheduleID              string                                                   `json:"portScheduleId,omitempty"`              // The ID of the port schedule. A value of null will clear the port schedule.
+	Profile                     *ResponseSwitchUpdateDeviceSwitchPortProfile             `json:"profile,omitempty"`                     // Profile attributes
+	RstpEnabled                 *bool                                                    `json:"rstpEnabled,omitempty"`                 // The rapid spanning tree protocol status.
+	Schedule                    *ResponseSwitchUpdateDeviceSwitchPortSchedule            `json:"schedule,omitempty"`                    // The port schedule data.
+	StackwiseVirtual            *ResponseSwitchUpdateDeviceSwitchPortStackwiseVirtual    `json:"stackwiseVirtual,omitempty"`            // Stackwise Virtual settings for the port
+	StickyMacAllowList          []string                                                 `json:"stickyMacAllowList,omitempty"`          // The initial list of MAC addresses for sticky Mac allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
+	StickyMacAllowListLimit     *int                                                     `json:"stickyMacAllowListLimit,omitempty"`     // The maximum number of MAC addresses for sticky MAC allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
+	StormControlEnabled         *bool                                                    `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch port.
+	StpGuard                    string                                                   `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
+	Tags                        []string                                                 `json:"tags,omitempty"`                        // The list of tags of the switch port.
+	Type                        string                                                   `json:"type,omitempty"`                        // The type of the switch port ('trunk', 'access' or 'stack').
+	Udld                        string                                                   `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
+	VLAN                        *int                                                     `json:"vlan,omitempty"`                        // The VLAN of the switch port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
+	VoiceVLAN                   *int                                                     `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch port. Only applicable to access ports.
+}
+type ResponseSwitchUpdateDeviceSwitchPortAdaptivePolicyGroup struct {
+	ID   string `json:"id,omitempty"`   // The ID of the adaptive policy group.
+	Name string `json:"name,omitempty"` // The name of the adaptive policy group.
+}
+type ResponseSwitchUpdateDeviceSwitchPortDot3Az struct {
+	Enabled *bool `json:"enabled,omitempty"` // The Energy Efficient Ethernet status of the switch port.
 }
 type ResponseSwitchUpdateDeviceSwitchPortMirror struct {
 	Mode string `json:"mode,omitempty"` // The port mirror mode. Can be one of ('Destination port', 'Source port' or 'Not mirroring traffic').
@@ -269,6 +369,14 @@ type ResponseSwitchUpdateDeviceSwitchPortProfile struct {
 	ID      string `json:"id,omitempty"`      // When enabled, the ID of the port profile used to override the port's configuration.
 	Iname   string `json:"iname,omitempty"`   // When enabled, the IName of the profile.
 }
+type ResponseSwitchUpdateDeviceSwitchPortSchedule struct {
+	ID   string `json:"id,omitempty"`   // The ID of the port schedule.
+	Name string `json:"name,omitempty"` // The name of the port schedule.
+}
+type ResponseSwitchUpdateDeviceSwitchPortStackwiseVirtual struct {
+	IsDualActiveDetector   *bool `json:"isDualActiveDetector,omitempty"`   // For SVL devices, whether or not the port is used for Dual Active Detection.
+	IsStackWiseVirtualLink *bool `json:"isStackWiseVirtualLink,omitempty"` // For SVL devices, whether or not the port is used for StackWise Virtual Link.
+}
 type ResponseSwitchGetDeviceSwitchRoutingInterfaces []ResponseItemSwitchGetDeviceSwitchRoutingInterfaces // Array of ResponseSwitchGetDeviceSwitchRoutingInterfaces
 type ResponseItemSwitchGetDeviceSwitchRoutingInterfaces struct {
 	DefaultGateway   string                                                          `json:"defaultGateway,omitempty"`   // IPv4 default gateway
@@ -280,6 +388,8 @@ type ResponseItemSwitchGetDeviceSwitchRoutingInterfaces struct {
 	OspfSettings     *ResponseItemSwitchGetDeviceSwitchRoutingInterfacesOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseItemSwitchGetDeviceSwitchRoutingInterfacesOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                          `json:"subnet,omitempty"`           // IPv4 subnet
+	UplinkV4         *bool                                                           `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
+	UplinkV6         *bool                                                           `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
 	VLANID           *int                                                            `json:"vlanId,omitempty"`           // VLAN id
 }
 type ResponseItemSwitchGetDeviceSwitchRoutingInterfacesIPv6 struct {
@@ -308,6 +418,8 @@ type ResponseSwitchCreateDeviceSwitchRoutingInterface struct {
 	OspfSettings     *ResponseSwitchCreateDeviceSwitchRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseSwitchCreateDeviceSwitchRoutingInterfaceOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                        `json:"subnet,omitempty"`           // IPv4 subnet
+	UplinkV4         *bool                                                         `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
+	UplinkV6         *bool                                                         `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
 	VLANID           *int                                                          `json:"vlanId,omitempty"`           // VLAN id
 }
 type ResponseSwitchCreateDeviceSwitchRoutingInterfaceIPv6 struct {
@@ -336,6 +448,8 @@ type ResponseSwitchGetDeviceSwitchRoutingInterface struct {
 	OspfSettings     *ResponseSwitchGetDeviceSwitchRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseSwitchGetDeviceSwitchRoutingInterfaceOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                     `json:"subnet,omitempty"`           // IPv4 subnet
+	UplinkV4         *bool                                                      `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
+	UplinkV6         *bool                                                      `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
 	VLANID           *int                                                       `json:"vlanId,omitempty"`           // VLAN id
 }
 type ResponseSwitchGetDeviceSwitchRoutingInterfaceIPv6 struct {
@@ -364,6 +478,8 @@ type ResponseSwitchUpdateDeviceSwitchRoutingInterface struct {
 	OspfSettings     *ResponseSwitchUpdateDeviceSwitchRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseSwitchUpdateDeviceSwitchRoutingInterfaceOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                        `json:"subnet,omitempty"`           // IPv4 subnet
+	UplinkV4         *bool                                                         `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
+	UplinkV6         *bool                                                         `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
 	VLANID           *int                                                          `json:"vlanId,omitempty"`           // VLAN id
 }
 type ResponseSwitchUpdateDeviceSwitchRoutingInterfaceIPv6 struct {
@@ -441,32 +557,36 @@ type ResponseSwitchUpdateDeviceSwitchRoutingInterfaceDhcpReservedIPRanges struct
 type ResponseSwitchGetDeviceSwitchRoutingStaticRoutes []ResponseItemSwitchGetDeviceSwitchRoutingStaticRoutes // Array of ResponseSwitchGetDeviceSwitchRoutingStaticRoutes
 type ResponseItemSwitchGetDeviceSwitchRoutingStaticRoutes struct {
 	AdvertiseViaOspfEnabled     *bool  `json:"advertiseViaOspfEnabled,omitempty"`     // Option to advertise static routes via OSPF
+	ManagementNextHop           string `json:"managementNextHop,omitempty"`           // Optional fallback IP address for management traffic
 	Name                        string `json:"name,omitempty"`                        // The name or description of the layer 3 static route
-	NextHopIP                   string `json:"nextHopIp,omitempty"`                   //  The IP address of the router to which traffic for this destination network should be sent
+	NextHopIP                   string `json:"nextHopIp,omitempty"`                   // The IP address of the router to which traffic for this destination network should be sent
 	PreferOverOspfRoutesEnabled *bool  `json:"preferOverOspfRoutesEnabled,omitempty"` // Option to prefer static routes over OSPF routes
 	StaticRouteID               string `json:"staticRouteId,omitempty"`               // The identifier of a layer 3 static route
 	Subnet                      string `json:"subnet,omitempty"`                      // The IP address of the subnetwork specified in CIDR notation (ex. 1.2.3.0/24)
 }
 type ResponseSwitchCreateDeviceSwitchRoutingStaticRoute struct {
 	AdvertiseViaOspfEnabled     *bool  `json:"advertiseViaOspfEnabled,omitempty"`     // Option to advertise static routes via OSPF
+	ManagementNextHop           string `json:"managementNextHop,omitempty"`           // Optional fallback IP address for management traffic
 	Name                        string `json:"name,omitempty"`                        // The name or description of the layer 3 static route
-	NextHopIP                   string `json:"nextHopIp,omitempty"`                   //  The IP address of the router to which traffic for this destination network should be sent
+	NextHopIP                   string `json:"nextHopIp,omitempty"`                   // The IP address of the router to which traffic for this destination network should be sent
 	PreferOverOspfRoutesEnabled *bool  `json:"preferOverOspfRoutesEnabled,omitempty"` // Option to prefer static routes over OSPF routes
 	StaticRouteID               string `json:"staticRouteId,omitempty"`               // The identifier of a layer 3 static route
 	Subnet                      string `json:"subnet,omitempty"`                      // The IP address of the subnetwork specified in CIDR notation (ex. 1.2.3.0/24)
 }
 type ResponseSwitchGetDeviceSwitchRoutingStaticRoute struct {
 	AdvertiseViaOspfEnabled     *bool  `json:"advertiseViaOspfEnabled,omitempty"`     // Option to advertise static routes via OSPF
+	ManagementNextHop           string `json:"managementNextHop,omitempty"`           // Optional fallback IP address for management traffic
 	Name                        string `json:"name,omitempty"`                        // The name or description of the layer 3 static route
-	NextHopIP                   string `json:"nextHopIp,omitempty"`                   //  The IP address of the router to which traffic for this destination network should be sent
+	NextHopIP                   string `json:"nextHopIp,omitempty"`                   // The IP address of the router to which traffic for this destination network should be sent
 	PreferOverOspfRoutesEnabled *bool  `json:"preferOverOspfRoutesEnabled,omitempty"` // Option to prefer static routes over OSPF routes
 	StaticRouteID               string `json:"staticRouteId,omitempty"`               // The identifier of a layer 3 static route
 	Subnet                      string `json:"subnet,omitempty"`                      // The IP address of the subnetwork specified in CIDR notation (ex. 1.2.3.0/24)
 }
 type ResponseSwitchUpdateDeviceSwitchRoutingStaticRoute struct {
 	AdvertiseViaOspfEnabled     *bool  `json:"advertiseViaOspfEnabled,omitempty"`     // Option to advertise static routes via OSPF
+	ManagementNextHop           string `json:"managementNextHop,omitempty"`           // Optional fallback IP address for management traffic
 	Name                        string `json:"name,omitempty"`                        // The name or description of the layer 3 static route
-	NextHopIP                   string `json:"nextHopIp,omitempty"`                   //  The IP address of the router to which traffic for this destination network should be sent
+	NextHopIP                   string `json:"nextHopIp,omitempty"`                   // The IP address of the router to which traffic for this destination network should be sent
 	PreferOverOspfRoutesEnabled *bool  `json:"preferOverOspfRoutesEnabled,omitempty"` // Option to prefer static routes over OSPF routes
 	StaticRouteID               string `json:"staticRouteId,omitempty"`               // The identifier of a layer 3 static route
 	Subnet                      string `json:"subnet,omitempty"`                      // The IP address of the subnetwork specified in CIDR notation (ex. 1.2.3.0/24)
@@ -495,31 +615,6 @@ type ResponseSwitchGetNetworkSwitchAccessControlListsRules struct {
 	SrcPort   string `json:"srcPort,omitempty"`   // Source port
 	VLAN      string `json:"vlan,omitempty"`      // ncoming traffic VLAN
 }
-
-func (r *ResponseSwitchGetNetworkSwitchAccessControlListsRules) UnmarshalJSON(data []byte) error {
-	type Alias ResponseSwitchGetNetworkSwitchAccessControlListsRules
-	aux := &struct {
-		SrcPort interface{} `json:"srcPort"`
-		VLAN    interface{} `json:"vlan"`
-		DstCidr interface{} `json:"dstCidr"`
-		DstPort interface{} `json:"dstPort"`
-		SrcCidr interface{} `json:"srcCidr"`
-
-		*Alias
-	}{
-		Alias: (*Alias)(r),
-	}
-	if err := json.Unmarshal(data, &aux); err != nil {
-		return err
-	}
-	r.SrcPort = convertToString(aux.SrcPort)
-	r.VLAN = convertToString(aux.VLAN)
-	r.DstCidr = convertToString(aux.DstCidr)
-	r.DstPort = convertToString(aux.DstPort)
-	r.SrcCidr = convertToString(aux.SrcCidr)
-	return nil
-}
-
 type ResponseSwitchUpdateNetworkSwitchAccessControlLists struct {
 	Rules *[]ResponseSwitchUpdateNetworkSwitchAccessControlListsRules `json:"rules,omitempty"` // An ordered array of the access control list rules
 }
@@ -566,9 +661,14 @@ type ResponseItemSwitchGetNetworkSwitchAccessPoliciesDot1X struct {
 	ControlDirection string `json:"controlDirection,omitempty"` // Supports either 'both' or 'inbound'. Set to 'inbound' to allow unauthorized egress on the switchport. Set to 'both' to control both traffic directions with authorization. Defaults to 'both'
 }
 type ResponseItemSwitchGetNetworkSwitchAccessPoliciesRadius struct {
+	Cache                    *ResponseItemSwitchGetNetworkSwitchAccessPoliciesRadiusCache        `json:"cache,omitempty"`                    // Object for RADIUS Cache Settings
 	CriticalAuth             *ResponseItemSwitchGetNetworkSwitchAccessPoliciesRadiusCriticalAuth `json:"criticalAuth,omitempty"`             // Critical auth settings for when authentication is rejected by the RADIUS server
 	FailedAuthVLANID         *int                                                                `json:"failedAuthVlanId,omitempty"`         // VLAN that clients will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
 	ReAuthenticationInterval *int                                                                `json:"reAuthenticationInterval,omitempty"` // Re-authentication period in seconds. Will be null if hostMode is Multi-Auth
+}
+type ResponseItemSwitchGetNetworkSwitchAccessPoliciesRadiusCache struct {
+	Enabled *bool `json:"enabled,omitempty"` // Enable to cache authorization and authentication responses on the RADIUS server
+	Timeout *int  `json:"timeout,omitempty"` // If RADIUS caching is enabled, this value dictates how long the cache will remain in the RADIUS server, in hours, to allow network access without authentication
 }
 type ResponseItemSwitchGetNetworkSwitchAccessPoliciesRadiusCriticalAuth struct {
 	DataVLANID        *int  `json:"dataVlanId,omitempty"`        // VLAN that clients who use data will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
@@ -576,12 +676,16 @@ type ResponseItemSwitchGetNetworkSwitchAccessPoliciesRadiusCriticalAuth struct {
 	VoiceVLANID       *int  `json:"voiceVlanId,omitempty"`       // VLAN that clients who use voice will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
 }
 type ResponseItemSwitchGetNetworkSwitchAccessPoliciesRadiusAccountingServers struct {
-	Host string `json:"host,omitempty"` // Public IP address of the RADIUS accounting server
-	Port *int   `json:"port,omitempty"` // UDP port that the RADIUS Accounting server listens on for access requests
+	Host                       string `json:"host,omitempty"`                       // Public IP address of the RADIUS accounting server
+	OrganizationRadiusServerID string `json:"organizationRadiusServerId,omitempty"` // Organization wide RADIUS server ID. This value will be empty if this RADIUS server is not an organization wide RADIUS server
+	Port                       *int   `json:"port,omitempty"`                       // UDP port that the RADIUS Accounting server listens on for access requests
+	ServerID                   string `json:"serverId,omitempty"`                   // Unique ID of the RADIUS accounting server
 }
 type ResponseItemSwitchGetNetworkSwitchAccessPoliciesRadiusServers struct {
-	Host string `json:"host,omitempty"` // Public IP address of the RADIUS server
-	Port *int   `json:"port,omitempty"` // UDP port that the RADIUS server listens on for access requests
+	Host                       string `json:"host,omitempty"`                       // Public IP address of the RADIUS server
+	OrganizationRadiusServerID string `json:"organizationRadiusServerId,omitempty"` // Organization wide RADIUS server ID. This value will be empty if this RADIUS server is not an organization wide RADIUS server
+	Port                       *int   `json:"port,omitempty"`                       // UDP port that the RADIUS server listens on for access requests
+	ServerID                   string `json:"serverId,omitempty"`                   // Unique ID of the RADIUS server
 }
 type ResponseSwitchCreateNetworkSwitchAccessPolicy struct {
 	AccessPolicyType               string                                                                  `json:"accessPolicyType,omitempty"`               // Access Type of the policy. Automatically 'Hybrid authentication' when hostMode is 'Multi-Domain'.
@@ -613,9 +717,14 @@ type ResponseSwitchCreateNetworkSwitchAccessPolicyDot1X struct {
 	ControlDirection string `json:"controlDirection,omitempty"` // Supports either 'both' or 'inbound'. Set to 'inbound' to allow unauthorized egress on the switchport. Set to 'both' to control both traffic directions with authorization. Defaults to 'both'
 }
 type ResponseSwitchCreateNetworkSwitchAccessPolicyRadius struct {
+	Cache                    *ResponseSwitchCreateNetworkSwitchAccessPolicyRadiusCache        `json:"cache,omitempty"`                    // Object for RADIUS Cache Settings
 	CriticalAuth             *ResponseSwitchCreateNetworkSwitchAccessPolicyRadiusCriticalAuth `json:"criticalAuth,omitempty"`             // Critical auth settings for when authentication is rejected by the RADIUS server
 	FailedAuthVLANID         *int                                                             `json:"failedAuthVlanId,omitempty"`         // VLAN that clients will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
 	ReAuthenticationInterval *int                                                             `json:"reAuthenticationInterval,omitempty"` // Re-authentication period in seconds. Will be null if hostMode is Multi-Auth
+}
+type ResponseSwitchCreateNetworkSwitchAccessPolicyRadiusCache struct {
+	Enabled *bool `json:"enabled,omitempty"` // Enable to cache authorization and authentication responses on the RADIUS server
+	Timeout *int  `json:"timeout,omitempty"` // If RADIUS caching is enabled, this value dictates how long the cache will remain in the RADIUS server, in hours, to allow network access without authentication
 }
 type ResponseSwitchCreateNetworkSwitchAccessPolicyRadiusCriticalAuth struct {
 	DataVLANID        *int  `json:"dataVlanId,omitempty"`        // VLAN that clients who use data will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
@@ -623,15 +732,19 @@ type ResponseSwitchCreateNetworkSwitchAccessPolicyRadiusCriticalAuth struct {
 	VoiceVLANID       *int  `json:"voiceVlanId,omitempty"`       // VLAN that clients who use voice will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
 }
 type ResponseSwitchCreateNetworkSwitchAccessPolicyRadiusAccountingServers struct {
-	Host string `json:"host,omitempty"` // Public IP address of the RADIUS accounting server
-	Port *int   `json:"port,omitempty"` // UDP port that the RADIUS Accounting server listens on for access requests
+	Host                       string `json:"host,omitempty"`                       // Public IP address of the RADIUS accounting server
+	OrganizationRadiusServerID string `json:"organizationRadiusServerId,omitempty"` // Organization wide RADIUS server ID. This value will be empty if this RADIUS server is not an organization wide RADIUS server
+	Port                       *int   `json:"port,omitempty"`                       // UDP port that the RADIUS Accounting server listens on for access requests
+	ServerID                   string `json:"serverId,omitempty"`                   // Unique ID of the RADIUS accounting server
 }
 type ResponseSwitchCreateNetworkSwitchAccessPolicyRadiusServers struct {
-	Host string `json:"host,omitempty"` // Public IP address of the RADIUS server
-	Port *int   `json:"port,omitempty"` // UDP port that the RADIUS server listens on for access requests
+	Host                       string `json:"host,omitempty"`                       // Public IP address of the RADIUS server
+	OrganizationRadiusServerID string `json:"organizationRadiusServerId,omitempty"` // Organization wide RADIUS server ID. This value will be empty if this RADIUS server is not an organization wide RADIUS server
+	Port                       *int   `json:"port,omitempty"`                       // UDP port that the RADIUS server listens on for access requests
+	ServerID                   string `json:"serverId,omitempty"`                   // Unique ID of the RADIUS server
 }
 type ResponseSwitchGetNetworkSwitchAccessPolicy struct {
-	AccessPolicyNumber             string                                                               `json:"accessPolicyNumber,omitempty"`             // Access Type of the policy. Automatically 'Hybrid authentication' when hostMode is 'Multi-Domain'.
+	AccessPolicyNumber             string                                                               `json:"accessPolicyNumber,omitempty"`             //
 	AccessPolicyType               string                                                               `json:"accessPolicyType,omitempty"`               // Access Type of the policy. Automatically 'Hybrid authentication' when hostMode is 'Multi-Domain'.
 	Counts                         *ResponseSwitchGetNetworkSwitchAccessPolicyCounts                    `json:"counts,omitempty"`                         // Counts associated with the access policy
 	Dot1X                          *ResponseSwitchGetNetworkSwitchAccessPolicyDot1X                     `json:"dot1x,omitempty"`                          // 802.1x Settings
@@ -661,9 +774,14 @@ type ResponseSwitchGetNetworkSwitchAccessPolicyDot1X struct {
 	ControlDirection string `json:"controlDirection,omitempty"` // Supports either 'both' or 'inbound'. Set to 'inbound' to allow unauthorized egress on the switchport. Set to 'both' to control both traffic directions with authorization. Defaults to 'both'
 }
 type ResponseSwitchGetNetworkSwitchAccessPolicyRadius struct {
+	Cache                    *ResponseSwitchGetNetworkSwitchAccessPolicyRadiusCache        `json:"cache,omitempty"`                    // Object for RADIUS Cache Settings
 	CriticalAuth             *ResponseSwitchGetNetworkSwitchAccessPolicyRadiusCriticalAuth `json:"criticalAuth,omitempty"`             // Critical auth settings for when authentication is rejected by the RADIUS server
 	FailedAuthVLANID         *int                                                          `json:"failedAuthVlanId,omitempty"`         // VLAN that clients will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
 	ReAuthenticationInterval *int                                                          `json:"reAuthenticationInterval,omitempty"` // Re-authentication period in seconds. Will be null if hostMode is Multi-Auth
+}
+type ResponseSwitchGetNetworkSwitchAccessPolicyRadiusCache struct {
+	Enabled *bool `json:"enabled,omitempty"` // Enable to cache authorization and authentication responses on the RADIUS server
+	Timeout *int  `json:"timeout,omitempty"` // If RADIUS caching is enabled, this value dictates how long the cache will remain in the RADIUS server, in hours, to allow network access without authentication
 }
 type ResponseSwitchGetNetworkSwitchAccessPolicyRadiusCriticalAuth struct {
 	DataVLANID        *int  `json:"dataVlanId,omitempty"`        // VLAN that clients who use data will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
@@ -671,12 +789,16 @@ type ResponseSwitchGetNetworkSwitchAccessPolicyRadiusCriticalAuth struct {
 	VoiceVLANID       *int  `json:"voiceVlanId,omitempty"`       // VLAN that clients who use voice will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
 }
 type ResponseSwitchGetNetworkSwitchAccessPolicyRadiusAccountingServers struct {
-	Host string `json:"host,omitempty"` // Public IP address of the RADIUS accounting server
-	Port *int   `json:"port,omitempty"` // UDP port that the RADIUS Accounting server listens on for access requests
+	Host                       string `json:"host,omitempty"`                       // Public IP address of the RADIUS accounting server
+	OrganizationRadiusServerID string `json:"organizationRadiusServerId,omitempty"` // Organization wide RADIUS server ID. This value will be empty if this RADIUS server is not an organization wide RADIUS server
+	Port                       *int   `json:"port,omitempty"`                       // UDP port that the RADIUS Accounting server listens on for access requests
+	ServerID                   string `json:"serverId,omitempty"`                   // Unique ID of the RADIUS accounting server
 }
 type ResponseSwitchGetNetworkSwitchAccessPolicyRadiusServers struct {
-	Host string `json:"host,omitempty"` // Public IP address of the RADIUS server
-	Port *int   `json:"port,omitempty"` // UDP port that the RADIUS server listens on for access requests
+	Host                       string `json:"host,omitempty"`                       // Public IP address of the RADIUS server
+	OrganizationRadiusServerID string `json:"organizationRadiusServerId,omitempty"` // Organization wide RADIUS server ID. This value will be empty if this RADIUS server is not an organization wide RADIUS server
+	Port                       *int   `json:"port,omitempty"`                       // UDP port that the RADIUS server listens on for access requests
+	ServerID                   string `json:"serverId,omitempty"`                   // Unique ID of the RADIUS server
 }
 type ResponseSwitchUpdateNetworkSwitchAccessPolicy struct {
 	AccessPolicyType               string                                                                  `json:"accessPolicyType,omitempty"`               // Access Type of the policy. Automatically 'Hybrid authentication' when hostMode is 'Multi-Domain'.
@@ -685,7 +807,7 @@ type ResponseSwitchUpdateNetworkSwitchAccessPolicy struct {
 	GuestPortBouncing              *bool                                                                   `json:"guestPortBouncing,omitempty"`              // If enabled, Meraki devices will periodically send access-request messages to these RADIUS servers
 	GuestVLANID                    *int                                                                    `json:"guestVlanId,omitempty"`                    // ID for the guest VLAN allow unauthorized devices access to limited network resources
 	HostMode                       string                                                                  `json:"hostMode,omitempty"`                       // Choose the Host Mode for the access policy.
-	IncreaseAccessSpeed            *bool                                                                   `json:"increaseAccessSpeed,omitempty"`            // Enabling this option will make switches execute 802.1X and MAC-bypass authentication simultaneously so that clients authenticate faster. Only required when accessPolicyType is Hybrid Authentication.
+	IncreaseAccessSpeed            *bool                                                                   `json:"increaseAccessSpeed,omitempty"`            // Enabling this option will make switches execute 802.1X and MAC-bypass authentication simultaneously so that clients authenticate faster. Only required when accessPolicyType is 'Hybrid Authentication.
 	Name                           string                                                                  `json:"name,omitempty"`                           // Name of the access policy
 	Radius                         *ResponseSwitchUpdateNetworkSwitchAccessPolicyRadius                    `json:"radius,omitempty"`                         // Object for RADIUS Settings
 	RadiusAccountingEnabled        *bool                                                                   `json:"radiusAccountingEnabled,omitempty"`        // Enable to send start, interim-update and stop messages to a configured RADIUS accounting server for tracking connected clients
@@ -708,9 +830,14 @@ type ResponseSwitchUpdateNetworkSwitchAccessPolicyDot1X struct {
 	ControlDirection string `json:"controlDirection,omitempty"` // Supports either 'both' or 'inbound'. Set to 'inbound' to allow unauthorized egress on the switchport. Set to 'both' to control both traffic directions with authorization. Defaults to 'both'
 }
 type ResponseSwitchUpdateNetworkSwitchAccessPolicyRadius struct {
+	Cache                    *ResponseSwitchUpdateNetworkSwitchAccessPolicyRadiusCache        `json:"cache,omitempty"`                    // Object for RADIUS Cache Settings
 	CriticalAuth             *ResponseSwitchUpdateNetworkSwitchAccessPolicyRadiusCriticalAuth `json:"criticalAuth,omitempty"`             // Critical auth settings for when authentication is rejected by the RADIUS server
 	FailedAuthVLANID         *int                                                             `json:"failedAuthVlanId,omitempty"`         // VLAN that clients will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
 	ReAuthenticationInterval *int                                                             `json:"reAuthenticationInterval,omitempty"` // Re-authentication period in seconds. Will be null if hostMode is Multi-Auth
+}
+type ResponseSwitchUpdateNetworkSwitchAccessPolicyRadiusCache struct {
+	Enabled *bool `json:"enabled,omitempty"` // Enable to cache authorization and authentication responses on the RADIUS server
+	Timeout *int  `json:"timeout,omitempty"` // If RADIUS caching is enabled, this value dictates how long the cache will remain in the RADIUS server, in hours, to allow network access without authentication
 }
 type ResponseSwitchUpdateNetworkSwitchAccessPolicyRadiusCriticalAuth struct {
 	DataVLANID        *int  `json:"dataVlanId,omitempty"`        // VLAN that clients who use data will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
@@ -718,12 +845,16 @@ type ResponseSwitchUpdateNetworkSwitchAccessPolicyRadiusCriticalAuth struct {
 	VoiceVLANID       *int  `json:"voiceVlanId,omitempty"`       // VLAN that clients who use voice will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
 }
 type ResponseSwitchUpdateNetworkSwitchAccessPolicyRadiusAccountingServers struct {
-	Host string `json:"host,omitempty"` // Public IP address of the RADIUS accounting server
-	Port *int   `json:"port,omitempty"` // UDP port that the RADIUS Accounting server listens on for access requests
+	Host                       string `json:"host,omitempty"`                       // Public IP address of the RADIUS accounting server
+	OrganizationRadiusServerID string `json:"organizationRadiusServerId,omitempty"` // Organization wide RADIUS server ID. This value will be empty if this RADIUS server is not an organization wide RADIUS server
+	Port                       *int   `json:"port,omitempty"`                       // UDP port that the RADIUS Accounting server listens on for access requests
+	ServerID                   string `json:"serverId,omitempty"`                   // Unique ID of the RADIUS accounting server
 }
 type ResponseSwitchUpdateNetworkSwitchAccessPolicyRadiusServers struct {
-	Host string `json:"host,omitempty"` // Public IP address of the RADIUS server
-	Port *int   `json:"port,omitempty"` // UDP port that the RADIUS server listens on for access requests
+	Host                       string `json:"host,omitempty"`                       // Public IP address of the RADIUS server
+	OrganizationRadiusServerID string `json:"organizationRadiusServerId,omitempty"` // Organization wide RADIUS server ID. This value will be empty if this RADIUS server is not an organization wide RADIUS server
+	Port                       *int   `json:"port,omitempty"`                       // UDP port that the RADIUS server listens on for access requests
+	ServerID                   string `json:"serverId,omitempty"`                   // Unique ID of the RADIUS server
 }
 type ResponseSwitchGetNetworkSwitchAlternateManagementInterface struct {
 	Enabled   *bool                                                                 `json:"enabled,omitempty"`   // Boolean value to enable or disable AMI configuration. If enabled, VLAN and protocols must be set
@@ -737,7 +868,18 @@ type ResponseSwitchGetNetworkSwitchAlternateManagementInterfaceSwitches struct {
 	Serial                string `json:"serial,omitempty"`                // Switch serial number
 	SubnetMask            string `json:"subnetMask,omitempty"`            // Switch subnet mask must be in IP format. Only and must be specified for Polaris switches
 }
-type ResponseSwitchUpdateNetworkSwitchAlternateManagementInterface interface{}
+type ResponseSwitchUpdateNetworkSwitchAlternateManagementInterface struct {
+	Enabled   *bool                                                                    `json:"enabled,omitempty"`   // Boolean value to enable or disable AMI configuration. If enabled, VLAN and protocols must be set
+	Protocols []string                                                                 `json:"protocols,omitempty"` // Can be one or more of the following values: 'radius', 'snmp' or 'syslog'
+	Switches  *[]ResponseSwitchUpdateNetworkSwitchAlternateManagementInterfaceSwitches `json:"switches,omitempty"`  // Array of switch serial number and IP assignment. If parameter is present, it cannot have empty body. Note: switches parameter is not applicable for template networks, in other words, do not put 'switches' in the body when updating template networks. Also, an empty 'switches' array will remove all previous assignments
+	VLANID    *int                                                                     `json:"vlanId,omitempty"`    // Alternate management VLAN, must be between 1 and 4094
+}
+type ResponseSwitchUpdateNetworkSwitchAlternateManagementInterfaceSwitches struct {
+	AlternateManagementIP string `json:"alternateManagementIp,omitempty"` // Switch alternative management IP. To remove a prior IP setting, provide an empty string
+	Gateway               string `json:"gateway,omitempty"`               // Switch gateway must be in IP format. Only and must be specified for Polaris switches
+	Serial                string `json:"serial,omitempty"`                // Switch serial number
+	SubnetMask            string `json:"subnetMask,omitempty"`            // Switch subnet mask must be in IP format. Only and must be specified for Polaris switches
+}
 type ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen []ResponseItemSwitchGetNetworkSwitchDhcpV4ServersSeen // Array of ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen
 type ResponseItemSwitchGetNetworkSwitchDhcpV4ServersSeen struct {
 	ClientID     string                                                         `json:"clientId,omitempty"`     // Client id of the server if available.
@@ -924,25 +1066,39 @@ type ResponseSwitchGetNetworkSwitchDscpToCosMappingsMappings struct {
 	Dscp  *int   `json:"dscp,omitempty"`  // The Differentiated Services Code Point (DSCP) tag in the IP header that will be mapped to a particular Class-of-Service (CoS) queue. Value can be in the range of 0 to 63 inclusive.
 	Title string `json:"title,omitempty"` // Label for the mapping (optional).
 }
-type ResponseSwitchUpdateNetworkSwitchDscpToCosMappings interface{}
+type ResponseSwitchUpdateNetworkSwitchDscpToCosMappings struct {
+	Mappings *[]ResponseSwitchUpdateNetworkSwitchDscpToCosMappingsMappings `json:"mappings,omitempty"` // An array of DSCP to CoS mappings. An empty array will reset the mappings to default.
+}
+type ResponseSwitchUpdateNetworkSwitchDscpToCosMappingsMappings struct {
+	Cos   *int   `json:"cos,omitempty"`   // The actual layer-2 CoS queue the DSCP value is mapped to. These are not bits set on outgoing frames. Value can be in the range of 0 to 5 inclusive.
+	Dscp  *int   `json:"dscp,omitempty"`  // The Differentiated Services Code Point (DSCP) tag in the IP header that will be mapped to a particular Class-of-Service (CoS) queue. Value can be in the range of 0 to 63 inclusive.
+	Title string `json:"title,omitempty"` // Label for the mapping (optional).
+}
 type ResponseSwitchGetNetworkSwitchLinkAggregations []ResponseItemSwitchGetNetworkSwitchLinkAggregations // Array of ResponseSwitchGetNetworkSwitchLinkAggregations
 type ResponseItemSwitchGetNetworkSwitchLinkAggregations struct {
-	ID          string                                                           `json:"id,omitempty"`          //
-	SwitchPorts *[]ResponseItemSwitchGetNetworkSwitchLinkAggregationsSwitchPorts `json:"switchPorts,omitempty"` //
+	ID          string                                                           `json:"id,omitempty"`          // The ID for the link aggregation.
+	SwitchPorts *[]ResponseItemSwitchGetNetworkSwitchLinkAggregationsSwitchPorts `json:"switchPorts,omitempty"` // The ID for the link aggregation.
 }
 type ResponseItemSwitchGetNetworkSwitchLinkAggregationsSwitchPorts struct {
-	PortID string `json:"portId,omitempty"` //
-	Serial string `json:"serial,omitempty"` //
+	PortID string `json:"portId,omitempty"` // The ID for the switch port.
+	Serial string `json:"serial,omitempty"` // The serial number for the switch port.
 }
 type ResponseSwitchCreateNetworkSwitchLinkAggregation struct {
-	ID          string                                                         `json:"id,omitempty"`          //
-	SwitchPorts *[]ResponseSwitchCreateNetworkSwitchLinkAggregationSwitchPorts `json:"switchPorts,omitempty"` //
+	ID          string                                                         `json:"id,omitempty"`          // The ID for the link aggregation.
+	SwitchPorts *[]ResponseSwitchCreateNetworkSwitchLinkAggregationSwitchPorts `json:"switchPorts,omitempty"` // The ID for the link aggregation.
 }
 type ResponseSwitchCreateNetworkSwitchLinkAggregationSwitchPorts struct {
-	PortID string `json:"portId,omitempty"` //
-	Serial string `json:"serial,omitempty"` //
+	PortID string `json:"portId,omitempty"` // The ID for the switch port.
+	Serial string `json:"serial,omitempty"` // The serial number for the switch port.
 }
-type ResponseSwitchUpdateNetworkSwitchLinkAggregation interface{}
+type ResponseSwitchUpdateNetworkSwitchLinkAggregation struct {
+	ID          string                                                         `json:"id,omitempty"`          // The ID for the link aggregation.
+	SwitchPorts *[]ResponseSwitchUpdateNetworkSwitchLinkAggregationSwitchPorts `json:"switchPorts,omitempty"` // The ID for the link aggregation.
+}
+type ResponseSwitchUpdateNetworkSwitchLinkAggregationSwitchPorts struct {
+	PortID string `json:"portId,omitempty"` // The ID for the switch port.
+	Serial string `json:"serial,omitempty"` // The serial number for the switch port.
+}
 type ResponseSwitchGetNetworkSwitchMtu struct {
 	DefaultMtuSize *int                                          `json:"defaultMtuSize,omitempty"` // MTU size for the entire network. Default value is 9578.
 	Overrides      *[]ResponseSwitchGetNetworkSwitchMtuOverrides `json:"overrides,omitempty"`      // Override MTU size for individual switches or switch templates.       An empty array will clear overrides.
@@ -952,7 +1108,15 @@ type ResponseSwitchGetNetworkSwitchMtuOverrides struct {
 	SwitchProfiles []string `json:"switchProfiles,omitempty"` // List of switch template IDs. Applicable only for template network.
 	Switches       []string `json:"switches,omitempty"`       // List of switch serials. Applicable only for switch network.
 }
-type ResponseSwitchUpdateNetworkSwitchMtu interface{}
+type ResponseSwitchUpdateNetworkSwitchMtu struct {
+	DefaultMtuSize *int                                             `json:"defaultMtuSize,omitempty"` // MTU size for the entire network. Default value is 9578.
+	Overrides      *[]ResponseSwitchUpdateNetworkSwitchMtuOverrides `json:"overrides,omitempty"`      // Override MTU size for individual switches or switch templates.       An empty array will clear overrides.
+}
+type ResponseSwitchUpdateNetworkSwitchMtuOverrides struct {
+	MtuSize        *int     `json:"mtuSize,omitempty"`        // MTU size for the switches or switch templates.
+	SwitchProfiles []string `json:"switchProfiles,omitempty"` // List of switch template IDs. Applicable only for template network.
+	Switches       []string `json:"switches,omitempty"`       // List of switch serials. Applicable only for switch network.
+}
 type ResponseSwitchGetNetworkSwitchPortSchedules []ResponseItemSwitchGetNetworkSwitchPortSchedules // Array of ResponseSwitchGetNetworkSwitchPortSchedules
 type ResponseItemSwitchGetNetworkSwitchPortSchedules struct {
 	ID           string                                                       `json:"id,omitempty"`           // Switch port schedule ID
@@ -1106,31 +1270,7 @@ type ResponseSwitchUpdateNetworkSwitchPortSchedulePortScheduleWednesday struct {
 }
 type ResponseSwitchGetNetworkSwitchQosRules []ResponseItemSwitchGetNetworkSwitchQosRules // Array of ResponseSwitchGetNetworkSwitchQosRules
 type ResponseItemSwitchGetNetworkSwitchQosRules struct {
-	Dscp         *int   `json:"dscp,omitempty"`         //
-	DstPort      *int   `json:"dstPort,omitempty"`      //
-	DstPortRange string `json:"dstPortRange,omitempty"` //
-	ID           string `json:"id,omitempty"`           //
-	Protocol     string `json:"protocol,omitempty"`     //
-	SrcPort      *int   `json:"srcPort,omitempty"`      //
-	SrcPortRange string `json:"srcPortRange,omitempty"` //
-	VLAN         *int   `json:"vlan,omitempty"`         //
-}
-type ResponseSwitchCreateNetworkSwitchQosRule struct {
-	Dscp         *int   `json:"dscp,omitempty"`         //
-	DstPort      *int   `json:"dstPort,omitempty"`      //
-	DstPortRange string `json:"dstPortRange,omitempty"` //
-	ID           string `json:"id,omitempty"`           //
-	Protocol     string `json:"protocol,omitempty"`     //
-	SrcPort      *int   `json:"srcPort,omitempty"`      //
-	SrcPortRange string `json:"srcPortRange,omitempty"` //
-	VLAN         *int   `json:"vlan,omitempty"`         //
-}
-type ResponseSwitchGetNetworkSwitchQosRulesOrder struct {
-	RuleIDs []string `json:"ruleIds,omitempty"` //
-}
-type ResponseSwitchUpdateNetworkSwitchQosRulesOrder interface{}
-type ResponseSwitchGetNetworkSwitchQosRule struct {
-	Dscp         *int   `json:"dscp,omitempty"`         // DSCP tag. Set this to -1 to trust incoming DSCP. Default value is 0
+	Dscp         *int   `json:"dscp,omitempty"`         // DSCP tag for the incoming packet. Set this to -1 to trust incoming DSCP. Default value is 0
 	DstPort      *int   `json:"dstPort,omitempty"`      // The destination port of the incoming packet. Applicable only if protocol is TCP or UDP.
 	DstPortRange string `json:"dstPortRange,omitempty"` // The destination port range of the incoming packet. Applicable only if protocol is set to TCP or UDP. Example: 70-80
 	ID           string `json:"id,omitempty"`           // Qos Rule id
@@ -1139,7 +1279,42 @@ type ResponseSwitchGetNetworkSwitchQosRule struct {
 	SrcPortRange string `json:"srcPortRange,omitempty"` // The source port range of the incoming packet. Applicable only if protocol is set to TCP or UDP. Example: 70-80
 	VLAN         *int   `json:"vlan,omitempty"`         // The VLAN of the incoming packet. A null value will match any VLAN.
 }
-type ResponseSwitchUpdateNetworkSwitchQosRule interface{}
+type ResponseSwitchCreateNetworkSwitchQosRule struct {
+	Dscp         *int   `json:"dscp,omitempty"`         // DSCP tag for the incoming packet. Set this to -1 to trust incoming DSCP. Default value is 0
+	DstPort      *int   `json:"dstPort,omitempty"`      // The destination port of the incoming packet. Applicable only if protocol is TCP or UDP.
+	DstPortRange string `json:"dstPortRange,omitempty"` // The destination port range of the incoming packet. Applicable only if protocol is set to TCP or UDP. Example: 70-80
+	ID           string `json:"id,omitempty"`           // Qos Rule id
+	Protocol     string `json:"protocol,omitempty"`     // The protocol of the incoming packet. Can be one of "ANY", "TCP" or "UDP". Default value is "ANY"
+	SrcPort      *int   `json:"srcPort,omitempty"`      // The source port of the incoming packet. Applicable only if protocol is TCP or UDP.
+	SrcPortRange string `json:"srcPortRange,omitempty"` // The source port range of the incoming packet. Applicable only if protocol is set to TCP or UDP. Example: 70-80
+	VLAN         *int   `json:"vlan,omitempty"`         // The VLAN of the incoming packet. A null value will match any VLAN.
+}
+type ResponseSwitchGetNetworkSwitchQosRulesOrder struct {
+	RuleIDs []string `json:"ruleIds,omitempty"` // Qos Rule ids
+}
+type ResponseSwitchUpdateNetworkSwitchQosRulesOrder struct {
+	RuleIDs []string `json:"ruleIds,omitempty"` // Qos Rule ids
+}
+type ResponseSwitchGetNetworkSwitchQosRule struct {
+	Dscp         *int   `json:"dscp,omitempty"`         // DSCP tag for the incoming packet. Set this to -1 to trust incoming DSCP. Default value is 0
+	DstPort      *int   `json:"dstPort,omitempty"`      // The destination port of the incoming packet. Applicable only if protocol is TCP or UDP.
+	DstPortRange string `json:"dstPortRange,omitempty"` // The destination port range of the incoming packet. Applicable only if protocol is set to TCP or UDP. Example: 70-80
+	ID           string `json:"id,omitempty"`           // Qos Rule id
+	Protocol     string `json:"protocol,omitempty"`     // The protocol of the incoming packet. Can be one of "ANY", "TCP" or "UDP". Default value is "ANY"
+	SrcPort      *int   `json:"srcPort,omitempty"`      // The source port of the incoming packet. Applicable only if protocol is TCP or UDP.
+	SrcPortRange string `json:"srcPortRange,omitempty"` // The source port range of the incoming packet. Applicable only if protocol is set to TCP or UDP. Example: 70-80
+	VLAN         *int   `json:"vlan,omitempty"`         // The VLAN of the incoming packet. A null value will match any VLAN.
+}
+type ResponseSwitchUpdateNetworkSwitchQosRule struct {
+	Dscp         *int   `json:"dscp,omitempty"`         // DSCP tag for the incoming packet. Set this to -1 to trust incoming DSCP. Default value is 0
+	DstPort      *int   `json:"dstPort,omitempty"`      // The destination port of the incoming packet. Applicable only if protocol is TCP or UDP.
+	DstPortRange string `json:"dstPortRange,omitempty"` // The destination port range of the incoming packet. Applicable only if protocol is set to TCP or UDP. Example: 70-80
+	ID           string `json:"id,omitempty"`           // Qos Rule id
+	Protocol     string `json:"protocol,omitempty"`     // The protocol of the incoming packet. Can be one of "ANY", "TCP" or "UDP". Default value is "ANY"
+	SrcPort      *int   `json:"srcPort,omitempty"`      // The source port of the incoming packet. Applicable only if protocol is TCP or UDP.
+	SrcPortRange string `json:"srcPortRange,omitempty"` // The source port range of the incoming packet. Applicable only if protocol is set to TCP or UDP. Example: 70-80
+	VLAN         *int   `json:"vlan,omitempty"`         // The VLAN of the incoming packet. A null value will match any VLAN.
+}
 type ResponseSwitchGetNetworkSwitchRoutingMulticast struct {
 	DefaultSettings *ResponseSwitchGetNetworkSwitchRoutingMulticastDefaultSettings `json:"defaultSettings,omitempty"` // Default multicast setting for entire network. IGMP snooping and Flood unknown       multicast traffic settings are enabled by default.
 	Overrides       *[]ResponseSwitchGetNetworkSwitchRoutingMulticastOverrides     `json:"overrides,omitempty"`       // Array of paired switches/stacks/profiles and corresponding multicast settings.       An empty array will clear the multicast settings.
@@ -1200,35 +1375,63 @@ type ResponseSwitchUpdateNetworkSwitchRoutingMulticastRendezvousPoint struct {
 	Serial            string `json:"serial,omitempty"`            // The serial.
 }
 type ResponseSwitchGetNetworkSwitchRoutingOspf struct {
-	Areas                    *[]ResponseSwitchGetNetworkSwitchRoutingOspfAreas              `json:"areas,omitempty"`                    //
-	DeadTimerInSeconds       *int                                                           `json:"deadTimerInSeconds,omitempty"`       //
-	Enabled                  *bool                                                          `json:"enabled,omitempty"`                  //
-	HelloTimerInSeconds      *int                                                           `json:"helloTimerInSeconds,omitempty"`      //
-	Md5AuthenticationEnabled *bool                                                          `json:"md5AuthenticationEnabled,omitempty"` //
-	Md5AuthenticationKey     *ResponseSwitchGetNetworkSwitchRoutingOspfMd5AuthenticationKey `json:"md5AuthenticationKey,omitempty"`     //
-	V3                       *ResponseSwitchGetNetworkSwitchRoutingOspfV3                   `json:"v3,omitempty"`                       //
+	Areas                    *[]ResponseSwitchGetNetworkSwitchRoutingOspfAreas              `json:"areas,omitempty"`                    // OSPF areas
+	DeadTimerInSeconds       *int                                                           `json:"deadTimerInSeconds,omitempty"`       // Time interval to determine when the peer will be declared inactive/dead. Value must be between 1 and 65535
+	Enabled                  *bool                                                          `json:"enabled,omitempty"`                  // Boolean value to enable or disable OSPF routing. OSPF routing is disabled by default.
+	HelloTimerInSeconds      *int                                                           `json:"helloTimerInSeconds,omitempty"`      // Time interval in seconds at which hello packet will be sent to OSPF neighbors to maintain connectivity. Value must be between 1 and 255. Default is 10 seconds.
+	Md5AuthenticationEnabled *bool                                                          `json:"md5AuthenticationEnabled,omitempty"` // Boolean value to enable or disable MD5 authentication. MD5 authentication is disabled by default.
+	Md5AuthenticationKey     *ResponseSwitchGetNetworkSwitchRoutingOspfMd5AuthenticationKey `json:"md5AuthenticationKey,omitempty"`     // MD5 authentication credentials. This param is only relevant if md5AuthenticationEnabled is true
+	V3                       *ResponseSwitchGetNetworkSwitchRoutingOspfV3                   `json:"v3,omitempty"`                       // OSPF v3 configuration
 }
 type ResponseSwitchGetNetworkSwitchRoutingOspfAreas struct {
-	AreaID   *int   `json:"areaId,omitempty"`   //
-	AreaName string `json:"areaName,omitempty"` //
-	AreaType string `json:"areaType,omitempty"` //
+	AreaID   *int   `json:"areaId,omitempty"`   // OSPF area ID
+	AreaName string `json:"areaName,omitempty"` // Name of the OSPF area
+	AreaType string `json:"areaType,omitempty"` // Area types in OSPF. Must be one of: ["normal", "stub", "nssa"]
 }
 type ResponseSwitchGetNetworkSwitchRoutingOspfMd5AuthenticationKey struct {
-	ID         *int   `json:"id,omitempty"`         //
-	Passphrase string `json:"passphrase,omitempty"` //
+	ID         *int   `json:"id,omitempty"`         // MD5 authentication key index. Key index must be between 1 to 255
+	Passphrase string `json:"passphrase,omitempty"` // MD5 authentication passphrase
 }
 type ResponseSwitchGetNetworkSwitchRoutingOspfV3 struct {
-	Areas               *[]ResponseSwitchGetNetworkSwitchRoutingOspfV3Areas `json:"areas,omitempty"`               //
-	DeadTimerInSeconds  *int                                                `json:"deadTimerInSeconds,omitempty"`  //
-	Enabled             *bool                                               `json:"enabled,omitempty"`             //
-	HelloTimerInSeconds *int                                                `json:"helloTimerInSeconds,omitempty"` //
+	Areas               *[]ResponseSwitchGetNetworkSwitchRoutingOspfV3Areas `json:"areas,omitempty"`               // OSPF v3 areas
+	DeadTimerInSeconds  *int                                                `json:"deadTimerInSeconds,omitempty"`  // Time interval to determine when the peer will be declared inactive/dead. Value must be between 1 and 65535
+	Enabled             *bool                                               `json:"enabled,omitempty"`             // Boolean value to enable or disable V3 OSPF routing. OSPF V3 routing is disabled by default.
+	HelloTimerInSeconds *int                                                `json:"helloTimerInSeconds,omitempty"` // Time interval in seconds at which hello packet will be sent to OSPF neighbors to maintain connectivity. Value must be between 1 and 255. Default is 10 seconds.
 }
 type ResponseSwitchGetNetworkSwitchRoutingOspfV3Areas struct {
-	AreaID   *int   `json:"areaId,omitempty"`   //
-	AreaName string `json:"areaName,omitempty"` //
-	AreaType string `json:"areaType,omitempty"` //
+	AreaID   *int   `json:"areaId,omitempty"`   // OSPF area ID
+	AreaName string `json:"areaName,omitempty"` // Name of the OSPF area
+	AreaType string `json:"areaType,omitempty"` // Area types in OSPF. Must be one of: ["normal", "stub", "nssa"]
 }
-type ResponseSwitchUpdateNetworkSwitchRoutingOspf interface{}
+type ResponseSwitchUpdateNetworkSwitchRoutingOspf struct {
+	Areas                    *[]ResponseSwitchUpdateNetworkSwitchRoutingOspfAreas              `json:"areas,omitempty"`                    // OSPF areas
+	DeadTimerInSeconds       *int                                                              `json:"deadTimerInSeconds,omitempty"`       // Time interval to determine when the peer will be declared inactive/dead. Value must be between 1 and 65535
+	Enabled                  *bool                                                             `json:"enabled,omitempty"`                  // Boolean value to enable or disable OSPF routing. OSPF routing is disabled by default.
+	HelloTimerInSeconds      *int                                                              `json:"helloTimerInSeconds,omitempty"`      // Time interval in seconds at which hello packet will be sent to OSPF neighbors to maintain connectivity. Value must be between 1 and 255. Default is 10 seconds.
+	Md5AuthenticationEnabled *bool                                                             `json:"md5AuthenticationEnabled,omitempty"` // Boolean value to enable or disable MD5 authentication. MD5 authentication is disabled by default.
+	Md5AuthenticationKey     *ResponseSwitchUpdateNetworkSwitchRoutingOspfMd5AuthenticationKey `json:"md5AuthenticationKey,omitempty"`     // MD5 authentication credentials. This param is only relevant if md5AuthenticationEnabled is true
+	V3                       *ResponseSwitchUpdateNetworkSwitchRoutingOspfV3                   `json:"v3,omitempty"`                       // OSPF v3 configuration
+}
+type ResponseSwitchUpdateNetworkSwitchRoutingOspfAreas struct {
+	AreaID   *int   `json:"areaId,omitempty"`   // OSPF area ID
+	AreaName string `json:"areaName,omitempty"` // Name of the OSPF area
+	AreaType string `json:"areaType,omitempty"` // Area types in OSPF. Must be one of: ["normal", "stub", "nssa"]
+}
+type ResponseSwitchUpdateNetworkSwitchRoutingOspfMd5AuthenticationKey struct {
+	ID         *int   `json:"id,omitempty"`         // MD5 authentication key index. Key index must be between 1 to 255
+	Passphrase string `json:"passphrase,omitempty"` // MD5 authentication passphrase
+}
+type ResponseSwitchUpdateNetworkSwitchRoutingOspfV3 struct {
+	Areas               *[]ResponseSwitchUpdateNetworkSwitchRoutingOspfV3Areas `json:"areas,omitempty"`               // OSPF v3 areas
+	DeadTimerInSeconds  *int                                                   `json:"deadTimerInSeconds,omitempty"`  // Time interval to determine when the peer will be declared inactive/dead. Value must be between 1 and 65535
+	Enabled             *bool                                                  `json:"enabled,omitempty"`             // Boolean value to enable or disable V3 OSPF routing. OSPF V3 routing is disabled by default.
+	HelloTimerInSeconds *int                                                   `json:"helloTimerInSeconds,omitempty"` // Time interval in seconds at which hello packet will be sent to OSPF neighbors to maintain connectivity. Value must be between 1 and 255. Default is 10 seconds.
+}
+type ResponseSwitchUpdateNetworkSwitchRoutingOspfV3Areas struct {
+	AreaID   *int   `json:"areaId,omitempty"`   // OSPF area ID
+	AreaName string `json:"areaName,omitempty"` // Name of the OSPF area
+	AreaType string `json:"areaType,omitempty"` // Area types in OSPF. Must be one of: ["normal", "stub", "nssa"]
+}
 type ResponseSwitchGetNetworkSwitchSettings struct {
 	MacBlocklist         *ResponseSwitchGetNetworkSwitchSettingsMacBlocklist         `json:"macBlocklist,omitempty"`         // MAC blocklist
 	PowerExceptions      *[]ResponseSwitchGetNetworkSwitchSettingsPowerExceptions    `json:"powerExceptions,omitempty"`      // Exceptions on a per switch basis to "useCombinedPower"
@@ -1265,29 +1468,74 @@ type ResponseSwitchUpdateNetworkSwitchSettingsUplinkClientSampling struct {
 }
 type ResponseSwitchGetNetworkSwitchStacks []ResponseItemSwitchGetNetworkSwitchStacks // Array of ResponseSwitchGetNetworkSwitchStacks
 type ResponseItemSwitchGetNetworkSwitchStacks struct {
-	ID      string   `json:"id,omitempty"`      // ID of the Switch stack
-	Name    string   `json:"name,omitempty"`    // Name of the Switch stack
-	Serials []string `json:"serials,omitempty"` // Serials of the switches in the switch stack
+	ID            string                                             `json:"id,omitempty"`            // ID of the Switch stack
+	IsMonitorOnly *bool                                              `json:"isMonitorOnly,omitempty"` // Tells if stack is Monitored Stack.
+	Members       *[]ResponseItemSwitchGetNetworkSwitchStacksMembers `json:"members,omitempty"`       // Members of the Stack
+	Name          string                                             `json:"name,omitempty"`          // Name of the Switch stack
+	Serials       []string                                           `json:"serials,omitempty"`       // Serials of the switches in the switch stack
+}
+type ResponseItemSwitchGetNetworkSwitchStacksMembers struct {
+	Mac    string `json:"mac,omitempty"`    // MAC address of the device
+	Model  string `json:"model,omitempty"`  // Model of the device
+	Name   string `json:"name,omitempty"`   // Name of the device
+	Role   string `json:"role,omitempty"`   // Role of the device
+	Serial string `json:"serial,omitempty"` // Serial number of the device
 }
 type ResponseSwitchCreateNetworkSwitchStack struct {
-	ID      string   `json:"id,omitempty"`      // ID of the Switch stack
-	Name    string   `json:"name,omitempty"`    // Name of the Switch stack
-	Serials []string `json:"serials,omitempty"` // Serials of the switches in the switch stack
+	ID            string                                           `json:"id,omitempty"`            // ID of the Switch stack
+	IsMonitorOnly *bool                                            `json:"isMonitorOnly,omitempty"` // Tells if stack is Monitored Stack.
+	Members       *[]ResponseSwitchCreateNetworkSwitchStackMembers `json:"members,omitempty"`       // Members of the Stack
+	Name          string                                           `json:"name,omitempty"`          // Name of the Switch stack
+	Serials       []string                                         `json:"serials,omitempty"`       // Serials of the switches in the switch stack
+}
+type ResponseSwitchCreateNetworkSwitchStackMembers struct {
+	Mac    string `json:"mac,omitempty"`    // MAC address of the device
+	Model  string `json:"model,omitempty"`  // Model of the device
+	Name   string `json:"name,omitempty"`   // Name of the device
+	Role   string `json:"role,omitempty"`   // Role of the device
+	Serial string `json:"serial,omitempty"` // Serial number of the device
 }
 type ResponseSwitchGetNetworkSwitchStack struct {
-	ID      string   `json:"id,omitempty"`      // ID of the Switch stack
-	Name    string   `json:"name,omitempty"`    // Name of the Switch stack
-	Serials []string `json:"serials,omitempty"` // Serials of the switches in the switch stack
+	ID            string                                        `json:"id,omitempty"`            // ID of the Switch stack
+	IsMonitorOnly *bool                                         `json:"isMonitorOnly,omitempty"` // Tells if stack is Monitored Stack.
+	Members       *[]ResponseSwitchGetNetworkSwitchStackMembers `json:"members,omitempty"`       // Members of the Stack
+	Name          string                                        `json:"name,omitempty"`          // Name of the Switch stack
+	Serials       []string                                      `json:"serials,omitempty"`       // Serials of the switches in the switch stack
+}
+type ResponseSwitchGetNetworkSwitchStackMembers struct {
+	Mac    string `json:"mac,omitempty"`    // MAC address of the device
+	Model  string `json:"model,omitempty"`  // Model of the device
+	Name   string `json:"name,omitempty"`   // Name of the device
+	Role   string `json:"role,omitempty"`   // Role of the device
+	Serial string `json:"serial,omitempty"` // Serial number of the device
 }
 type ResponseSwitchAddNetworkSwitchStack struct {
-	ID      string   `json:"id,omitempty"`      // ID of the Switch stack
-	Name    string   `json:"name,omitempty"`    // Name of the Switch stack
-	Serials []string `json:"serials,omitempty"` // Serials of the switches in the switch stack
+	ID            string                                        `json:"id,omitempty"`            // ID of the Switch stack
+	IsMonitorOnly *bool                                         `json:"isMonitorOnly,omitempty"` // Tells if stack is Monitored Stack.
+	Members       *[]ResponseSwitchAddNetworkSwitchStackMembers `json:"members,omitempty"`       // Members of the Stack
+	Name          string                                        `json:"name,omitempty"`          // Name of the Switch stack
+	Serials       []string                                      `json:"serials,omitempty"`       // Serials of the switches in the switch stack
+}
+type ResponseSwitchAddNetworkSwitchStackMembers struct {
+	Mac    string `json:"mac,omitempty"`    // MAC address of the device
+	Model  string `json:"model,omitempty"`  // Model of the device
+	Name   string `json:"name,omitempty"`   // Name of the device
+	Role   string `json:"role,omitempty"`   // Role of the device
+	Serial string `json:"serial,omitempty"` // Serial number of the device
 }
 type ResponseSwitchRemoveNetworkSwitchStack struct {
-	ID      string   `json:"id,omitempty"`      // ID of the Switch stack
-	Name    string   `json:"name,omitempty"`    // Name of the Switch stack
-	Serials []string `json:"serials,omitempty"` // Serials of the switches in the switch stack
+	ID            string                                           `json:"id,omitempty"`            // ID of the Switch stack
+	IsMonitorOnly *bool                                            `json:"isMonitorOnly,omitempty"` // Tells if stack is Monitored Stack.
+	Members       *[]ResponseSwitchRemoveNetworkSwitchStackMembers `json:"members,omitempty"`       // Members of the Stack
+	Name          string                                           `json:"name,omitempty"`          // Name of the Switch stack
+	Serials       []string                                         `json:"serials,omitempty"`       // Serials of the switches in the switch stack
+}
+type ResponseSwitchRemoveNetworkSwitchStackMembers struct {
+	Mac    string `json:"mac,omitempty"`    // MAC address of the device
+	Model  string `json:"model,omitempty"`  // Model of the device
+	Name   string `json:"name,omitempty"`   // Name of the device
+	Role   string `json:"role,omitempty"`   // Role of the device
+	Serial string `json:"serial,omitempty"` // Serial number of the device
 }
 type ResponseSwitchGetNetworkSwitchStackRoutingInterfaces []ResponseItemSwitchGetNetworkSwitchStackRoutingInterfaces // Array of ResponseSwitchGetNetworkSwitchStackRoutingInterfaces
 type ResponseItemSwitchGetNetworkSwitchStackRoutingInterfaces struct {
@@ -1300,6 +1548,8 @@ type ResponseItemSwitchGetNetworkSwitchStackRoutingInterfaces struct {
 	OspfSettings     *ResponseItemSwitchGetNetworkSwitchStackRoutingInterfacesOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseItemSwitchGetNetworkSwitchStackRoutingInterfacesOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                                `json:"subnet,omitempty"`           // IPv4 subnet
+	UplinkV4         *bool                                                                 `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
+	UplinkV6         *bool                                                                 `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
 	VLANID           *int                                                                  `json:"vlanId,omitempty"`           // VLAN id
 }
 type ResponseItemSwitchGetNetworkSwitchStackRoutingInterfacesIPv6 struct {
@@ -1328,6 +1578,8 @@ type ResponseSwitchCreateNetworkSwitchStackRoutingInterface struct {
 	OspfSettings     *ResponseSwitchCreateNetworkSwitchStackRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseSwitchCreateNetworkSwitchStackRoutingInterfaceOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                              `json:"subnet,omitempty"`           // IPv4 subnet
+	UplinkV4         *bool                                                               `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
+	UplinkV6         *bool                                                               `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
 	VLANID           *int                                                                `json:"vlanId,omitempty"`           // VLAN id
 }
 type ResponseSwitchCreateNetworkSwitchStackRoutingInterfaceIPv6 struct {
@@ -1356,6 +1608,8 @@ type ResponseSwitchGetNetworkSwitchStackRoutingInterface struct {
 	OspfSettings     *ResponseSwitchGetNetworkSwitchStackRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseSwitchGetNetworkSwitchStackRoutingInterfaceOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                           `json:"subnet,omitempty"`           // IPv4 subnet
+	UplinkV4         *bool                                                            `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
+	UplinkV6         *bool                                                            `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
 	VLANID           *int                                                             `json:"vlanId,omitempty"`           // VLAN id
 }
 type ResponseSwitchGetNetworkSwitchStackRoutingInterfaceIPv6 struct {
@@ -1383,6 +1637,8 @@ type ResponseSwitchUpdateNetworkSwitchStackRoutingInterface struct {
 	OspfSettings     *ResponseSwitchUpdateNetworkSwitchStackRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseSwitchUpdateNetworkSwitchStackRoutingInterfaceOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                              `json:"subnet,omitempty"`           // IPv4 subnet
+	UplinkV4         *bool                                                               `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
+	UplinkV6         *bool                                                               `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
 	VLANID           *int                                                                `json:"vlanId,omitempty"`           // VLAN id
 }
 type ResponseSwitchUpdateNetworkSwitchStackRoutingInterfaceIPv6 struct {
@@ -1460,55 +1716,72 @@ type ResponseSwitchUpdateNetworkSwitchStackRoutingInterfaceDhcpReservedIPRanges 
 type ResponseSwitchGetNetworkSwitchStackRoutingStaticRoutes []ResponseItemSwitchGetNetworkSwitchStackRoutingStaticRoutes // Array of ResponseSwitchGetNetworkSwitchStackRoutingStaticRoutes
 type ResponseItemSwitchGetNetworkSwitchStackRoutingStaticRoutes struct {
 	AdvertiseViaOspfEnabled     *bool  `json:"advertiseViaOspfEnabled,omitempty"`     // Option to advertise static routes via OSPF
+	ManagementNextHop           string `json:"managementNextHop,omitempty"`           // Optional fallback IP address for management traffic
 	Name                        string `json:"name,omitempty"`                        // The name or description of the layer 3 static route
-	NextHopIP                   string `json:"nextHopIp,omitempty"`                   //  The IP address of the router to which traffic for this destination network should be sent
+	NextHopIP                   string `json:"nextHopIp,omitempty"`                   // The IP address of the router to which traffic for this destination network should be sent
 	PreferOverOspfRoutesEnabled *bool  `json:"preferOverOspfRoutesEnabled,omitempty"` // Option to prefer static routes over OSPF routes
 	StaticRouteID               string `json:"staticRouteId,omitempty"`               // The identifier of a layer 3 static route
 	Subnet                      string `json:"subnet,omitempty"`                      // The IP address of the subnetwork specified in CIDR notation (ex. 1.2.3.0/24)
 }
 type ResponseSwitchCreateNetworkSwitchStackRoutingStaticRoute struct {
 	AdvertiseViaOspfEnabled     *bool  `json:"advertiseViaOspfEnabled,omitempty"`     // Option to advertise static routes via OSPF
+	ManagementNextHop           string `json:"managementNextHop,omitempty"`           // Optional fallback IP address for management traffic
 	Name                        string `json:"name,omitempty"`                        // The name or description of the layer 3 static route
-	NextHopIP                   string `json:"nextHopIp,omitempty"`                   //  The IP address of the router to which traffic for this destination network should be sent
+	NextHopIP                   string `json:"nextHopIp,omitempty"`                   // The IP address of the router to which traffic for this destination network should be sent
 	PreferOverOspfRoutesEnabled *bool  `json:"preferOverOspfRoutesEnabled,omitempty"` // Option to prefer static routes over OSPF routes
 	StaticRouteID               string `json:"staticRouteId,omitempty"`               // The identifier of a layer 3 static route
 	Subnet                      string `json:"subnet,omitempty"`                      // The IP address of the subnetwork specified in CIDR notation (ex. 1.2.3.0/24)
 }
 type ResponseSwitchGetNetworkSwitchStackRoutingStaticRoute struct {
 	AdvertiseViaOspfEnabled     *bool  `json:"advertiseViaOspfEnabled,omitempty"`     // Option to advertise static routes via OSPF
+	ManagementNextHop           string `json:"managementNextHop,omitempty"`           // Optional fallback IP address for management traffic
 	Name                        string `json:"name,omitempty"`                        // The name or description of the layer 3 static route
-	NextHopIP                   string `json:"nextHopIp,omitempty"`                   //  The IP address of the router to which traffic for this destination network should be sent
+	NextHopIP                   string `json:"nextHopIp,omitempty"`                   // The IP address of the router to which traffic for this destination network should be sent
 	PreferOverOspfRoutesEnabled *bool  `json:"preferOverOspfRoutesEnabled,omitempty"` // Option to prefer static routes over OSPF routes
 	StaticRouteID               string `json:"staticRouteId,omitempty"`               // The identifier of a layer 3 static route
 	Subnet                      string `json:"subnet,omitempty"`                      // The IP address of the subnetwork specified in CIDR notation (ex. 1.2.3.0/24)
 }
 type ResponseSwitchUpdateNetworkSwitchStackRoutingStaticRoute struct {
 	AdvertiseViaOspfEnabled     *bool  `json:"advertiseViaOspfEnabled,omitempty"`     // Option to advertise static routes via OSPF
+	ManagementNextHop           string `json:"managementNextHop,omitempty"`           // Optional fallback IP address for management traffic
 	Name                        string `json:"name,omitempty"`                        // The name or description of the layer 3 static route
-	NextHopIP                   string `json:"nextHopIp,omitempty"`                   //  The IP address of the router to which traffic for this destination network should be sent
+	NextHopIP                   string `json:"nextHopIp,omitempty"`                   // The IP address of the router to which traffic for this destination network should be sent
 	PreferOverOspfRoutesEnabled *bool  `json:"preferOverOspfRoutesEnabled,omitempty"` // Option to prefer static routes over OSPF routes
 	StaticRouteID               string `json:"staticRouteId,omitempty"`               // The identifier of a layer 3 static route
 	Subnet                      string `json:"subnet,omitempty"`                      // The IP address of the subnetwork specified in CIDR notation (ex. 1.2.3.0/24)
 }
 type ResponseSwitchGetNetworkSwitchStormControl struct {
-	BroadcastThreshold      *int `json:"broadcastThreshold,omitempty"`      // Broadcast threshold.
-	MulticastThreshold      *int `json:"multicastThreshold,omitempty"`      // Multicast threshold.
-	UnknownUnicastThreshold *int `json:"unknownUnicastThreshold,omitempty"` // Unknown Unicast threshold.
+	BroadcastThreshold                   *int     `json:"broadcastThreshold,omitempty"`                   // Broadcast threshold.
+	MulticastThreshold                   *int     `json:"multicastThreshold,omitempty"`                   // Multicast threshold.
+	TreatTheseTrafficTypesAsOneThreshold []string `json:"treatTheseTrafficTypesAsOneThreshold,omitempty"` // Grouped traffic types
+	UnknownUnicastThreshold              *int     `json:"unknownUnicastThreshold,omitempty"`              // Unknown Unicast threshold.
 }
 type ResponseSwitchUpdateNetworkSwitchStormControl struct {
-	BroadcastThreshold      *int `json:"broadcastThreshold,omitempty"`      // Broadcast threshold.
-	MulticastThreshold      *int `json:"multicastThreshold,omitempty"`      // Multicast threshold.
-	UnknownUnicastThreshold *int `json:"unknownUnicastThreshold,omitempty"` // Unknown Unicast threshold.
+	BroadcastThreshold                   *int     `json:"broadcastThreshold,omitempty"`                   // Broadcast threshold.
+	MulticastThreshold                   *int     `json:"multicastThreshold,omitempty"`                   // Multicast threshold.
+	TreatTheseTrafficTypesAsOneThreshold []string `json:"treatTheseTrafficTypesAsOneThreshold,omitempty"` // Grouped traffic types
+	UnknownUnicastThreshold              *int     `json:"unknownUnicastThreshold,omitempty"`              // Unknown Unicast threshold.
 }
 type ResponseSwitchGetNetworkSwitchStp struct {
-	RstpEnabled       *bool                                                 `json:"rstpEnabled,omitempty"`       //
-	StpBridgePriority *[]ResponseSwitchGetNetworkSwitchStpStpBridgePriority `json:"stpBridgePriority,omitempty"` //
+	RstpEnabled       *bool                                                 `json:"rstpEnabled,omitempty"`       // The spanning tree protocol status in network
+	StpBridgePriority *[]ResponseSwitchGetNetworkSwitchStpStpBridgePriority `json:"stpBridgePriority,omitempty"` // STP bridge priority for switches/stacks or switch templates. An empty array will clear the STP bridge priority settings.
 }
 type ResponseSwitchGetNetworkSwitchStpStpBridgePriority struct {
-	StpPriority *int     `json:"stpPriority,omitempty"` //
-	Switches    []string `json:"switches,omitempty"`    //
+	Stacks         []string `json:"stacks,omitempty"`         // List of stack IDs
+	StpPriority    *int     `json:"stpPriority,omitempty"`    // STP priority for switch, stacks, or switch templates
+	SwitchProfiles []string `json:"switchProfiles,omitempty"` // List of switch template IDs
+	Switches       []string `json:"switches,omitempty"`       // List of switch serial numbers
 }
-type ResponseSwitchUpdateNetworkSwitchStp interface{}
+type ResponseSwitchUpdateNetworkSwitchStp struct {
+	RstpEnabled       *bool                                                    `json:"rstpEnabled,omitempty"`       // The spanning tree protocol status in network
+	StpBridgePriority *[]ResponseSwitchUpdateNetworkSwitchStpStpBridgePriority `json:"stpBridgePriority,omitempty"` // STP bridge priority for switches/stacks or switch templates. An empty array will clear the STP bridge priority settings.
+}
+type ResponseSwitchUpdateNetworkSwitchStpStpBridgePriority struct {
+	Stacks         []string `json:"stacks,omitempty"`         // List of stack IDs
+	StpPriority    *int     `json:"stpPriority,omitempty"`    // STP priority for switch, stacks, or switch templates
+	SwitchProfiles []string `json:"switchProfiles,omitempty"` // List of switch template IDs
+	Switches       []string `json:"switches,omitempty"`       // List of switch serial numbers
+}
 type ResponseSwitchGetOrganizationConfigTemplateSwitchProfiles []ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfiles // Array of ResponseSwitchGetOrganizationConfigTemplateSwitchProfiles
 type ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfiles struct {
 	Model           string `json:"model,omitempty"`           // Switch model
@@ -1517,33 +1790,39 @@ type ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfiles struct {
 }
 type ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePorts []ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePorts // Array of ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePorts
 type ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePorts struct {
-	AccessPolicyNumber          *int                                                                      `json:"accessPolicyNumber,omitempty"`          // The number of a custom access policy to configure on the switch template port. Only applicable when 'accessPolicyType' is 'Custom access policy'.
-	AccessPolicyType            string                                                                    `json:"accessPolicyType,omitempty"`            // The type of the access policy of the switch template port. Only applicable to access ports. Can be one of 'Open', 'Custom access policy', 'MAC allow list' or 'Sticky MAC allow list'.
-	AllowedVLANs                string                                                                    `json:"allowedVlans,omitempty"`                // The VLANs allowed on the switch template port. Only applicable to trunk ports.
-	DaiTrusted                  *bool                                                                     `json:"daiTrusted,omitempty"`                  // If true, ARP packets for this port will be considered trusted, and Dynamic ARP Inspection will allow the traffic.
-	Enabled                     *bool                                                                     `json:"enabled,omitempty"`                     // The status of the switch template port.
-	FlexibleStackingEnabled     *bool                                                                     `json:"flexibleStackingEnabled,omitempty"`     // For supported switches (e.g. MS420/MS425), whether or not the port has flexible stacking enabled.
-	IsolationEnabled            *bool                                                                     `json:"isolationEnabled,omitempty"`            // The isolation status of the switch template port.
-	LinkNegotiation             string                                                                    `json:"linkNegotiation,omitempty"`             // The link speed for the switch template port.
-	LinkNegotiationCapabilities []string                                                                  `json:"linkNegotiationCapabilities,omitempty"` // Available link speeds for the switch template port.
-	MacAllowList                []string                                                                  `json:"macAllowList,omitempty"`                // Only devices with MAC addresses specified in this list will have access to this port. Up to 20 MAC addresses can be defined. Only applicable when 'accessPolicyType' is 'MAC allow list'.
-	Mirror                      *ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePortsMirror  `json:"mirror,omitempty"`                      // Port mirror
-	Module                      *ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePortsModule  `json:"module,omitempty"`                      // Expansion module
-	Name                        string                                                                    `json:"name,omitempty"`                        // The name of the switch template port.
-	PoeEnabled                  *bool                                                                     `json:"poeEnabled,omitempty"`                  // The PoE status of the switch template port.
-	PortID                      string                                                                    `json:"portId,omitempty"`                      // The identifier of the switch template port.
-	PortScheduleID              string                                                                    `json:"portScheduleId,omitempty"`              // The ID of the port schedule. A value of null will clear the port schedule.
-	Profile                     *ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePortsProfile `json:"profile,omitempty"`                     // Profile attributes
-	RstpEnabled                 *bool                                                                     `json:"rstpEnabled,omitempty"`                 // The rapid spanning tree protocol status.
-	StickyMacAllowList          []string                                                                  `json:"stickyMacAllowList,omitempty"`          // The initial list of MAC addresses for sticky Mac allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
-	StickyMacAllowListLimit     *int                                                                      `json:"stickyMacAllowListLimit,omitempty"`     // The maximum number of MAC addresses for sticky MAC allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
-	StormControlEnabled         *bool                                                                     `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch template port.
-	StpGuard                    string                                                                    `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
-	Tags                        []string                                                                  `json:"tags,omitempty"`                        // The list of tags of the switch template port.
-	Type                        string                                                                    `json:"type,omitempty"`                        // The type of the switch template port ('trunk' or 'access').
-	Udld                        string                                                                    `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
-	VLAN                        *int                                                                      `json:"vlan,omitempty"`                        // The VLAN of the switch template port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
-	VoiceVLAN                   *int                                                                      `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch template port. Only applicable to access ports.
+	AccessPolicyNumber          *int                                                                               `json:"accessPolicyNumber,omitempty"`          // The number of a custom access policy to configure on the switch template port. Only applicable when 'accessPolicyType' is 'Custom access policy'.
+	AccessPolicyType            string                                                                             `json:"accessPolicyType,omitempty"`            // The type of the access policy of the switch template port. Only applicable to access ports. Can be one of 'Open', 'Custom access policy', 'MAC allow list' or 'Sticky MAC allow list'.
+	AllowedVLANs                string                                                                             `json:"allowedVlans,omitempty"`                // The VLANs allowed on the switch template port. Only applicable to trunk ports.
+	DaiTrusted                  *bool                                                                              `json:"daiTrusted,omitempty"`                  // If true, ARP packets for this port will be considered trusted, and Dynamic ARP Inspection will allow the traffic.
+	Dot3Az                      *ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePortsDot3Az           `json:"dot3az,omitempty"`                      // dot3az settings for the port
+	Enabled                     *bool                                                                              `json:"enabled,omitempty"`                     // The status of the switch template port.
+	FlexibleStackingEnabled     *bool                                                                              `json:"flexibleStackingEnabled,omitempty"`     // For supported switches (e.g. MS420/MS425), whether or not the port has flexible stacking enabled.
+	IsolationEnabled            *bool                                                                              `json:"isolationEnabled,omitempty"`            // The isolation status of the switch template port.
+	LinkNegotiation             string                                                                             `json:"linkNegotiation,omitempty"`             // The link speed for the switch template port.
+	LinkNegotiationCapabilities []string                                                                           `json:"linkNegotiationCapabilities,omitempty"` // Available link speeds for the switch template port.
+	MacAllowList                []string                                                                           `json:"macAllowList,omitempty"`                // Only devices with MAC addresses specified in this list will have access to this port. Up to 20 MAC addresses can be defined. Only applicable when 'accessPolicyType' is 'MAC allow list'.
+	Mirror                      *ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePortsMirror           `json:"mirror,omitempty"`                      // Port mirror
+	Module                      *ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePortsModule           `json:"module,omitempty"`                      // Expansion module
+	Name                        string                                                                             `json:"name,omitempty"`                        // The name of the switch template port.
+	PoeEnabled                  *bool                                                                              `json:"poeEnabled,omitempty"`                  // The PoE status of the switch template port.
+	PortID                      string                                                                             `json:"portId,omitempty"`                      // The identifier of the switch template port.
+	PortScheduleID              string                                                                             `json:"portScheduleId,omitempty"`              // The ID of the port schedule. A value of null will clear the port schedule.
+	Profile                     *ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePortsProfile          `json:"profile,omitempty"`                     // Profile attributes
+	RstpEnabled                 *bool                                                                              `json:"rstpEnabled,omitempty"`                 // The rapid spanning tree protocol status.
+	Schedule                    *ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePortsSchedule         `json:"schedule,omitempty"`                    // The port schedule data.
+	StackwiseVirtual            *ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePortsStackwiseVirtual `json:"stackwiseVirtual,omitempty"`            // Stackwise Virtual settings for the port
+	StickyMacAllowList          []string                                                                           `json:"stickyMacAllowList,omitempty"`          // The initial list of MAC addresses for sticky Mac allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
+	StickyMacAllowListLimit     *int                                                                               `json:"stickyMacAllowListLimit,omitempty"`     // The maximum number of MAC addresses for sticky MAC allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
+	StormControlEnabled         *bool                                                                              `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch template port.
+	StpGuard                    string                                                                             `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
+	Tags                        []string                                                                           `json:"tags,omitempty"`                        // The list of tags of the switch template port.
+	Type                        string                                                                             `json:"type,omitempty"`                        // The type of the switch template port ('trunk', 'access' or 'stack').
+	Udld                        string                                                                             `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
+	VLAN                        *int                                                                               `json:"vlan,omitempty"`                        // The VLAN of the switch template port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
+	VoiceVLAN                   *int                                                                               `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch template port. Only applicable to access ports.
+}
+type ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePortsDot3Az struct {
+	Enabled *bool `json:"enabled,omitempty"` // The Energy Efficient Ethernet status of the switch template port.
 }
 type ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePortsMirror struct {
 	Mode string `json:"mode,omitempty"` // The port mirror mode. Can be one of ('Destination port', 'Source port' or 'Not mirroring traffic').
@@ -1556,34 +1835,48 @@ type ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePortsProfile st
 	ID      string `json:"id,omitempty"`      // When enabled, the ID of the port profile used to override the port's configuration.
 	Iname   string `json:"iname,omitempty"`   // When enabled, the IName of the profile.
 }
+type ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePortsSchedule struct {
+	ID   string `json:"id,omitempty"`   // The ID of the port schedule.
+	Name string `json:"name,omitempty"` // The name of the port schedule.
+}
+type ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePortsStackwiseVirtual struct {
+	IsDualActiveDetector   *bool `json:"isDualActiveDetector,omitempty"`   // For SVL devices, whether or not the port is used for Dual Active Detection.
+	IsStackWiseVirtualLink *bool `json:"isStackWiseVirtualLink,omitempty"` // For SVL devices, whether or not the port is used for StackWise Virtual Link.
+}
 type ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePort struct {
-	AccessPolicyNumber          *int                                                                 `json:"accessPolicyNumber,omitempty"`          // The number of a custom access policy to configure on the switch template port. Only applicable when 'accessPolicyType' is 'Custom access policy'.
-	AccessPolicyType            string                                                               `json:"accessPolicyType,omitempty"`            // The type of the access policy of the switch template port. Only applicable to access ports. Can be one of 'Open', 'Custom access policy', 'MAC allow list' or 'Sticky MAC allow list'.
-	AllowedVLANs                string                                                               `json:"allowedVlans,omitempty"`                // The VLANs allowed on the switch template port. Only applicable to trunk ports.
-	DaiTrusted                  *bool                                                                `json:"daiTrusted,omitempty"`                  // If true, ARP packets for this port will be considered trusted, and Dynamic ARP Inspection will allow the traffic.
-	Enabled                     *bool                                                                `json:"enabled,omitempty"`                     // The status of the switch template port.
-	FlexibleStackingEnabled     *bool                                                                `json:"flexibleStackingEnabled,omitempty"`     // For supported switches (e.g. MS420/MS425), whether or not the port has flexible stacking enabled.
-	IsolationEnabled            *bool                                                                `json:"isolationEnabled,omitempty"`            // The isolation status of the switch template port.
-	LinkNegotiation             string                                                               `json:"linkNegotiation,omitempty"`             // The link speed for the switch template port.
-	LinkNegotiationCapabilities []string                                                             `json:"linkNegotiationCapabilities,omitempty"` // Available link speeds for the switch template port.
-	MacAllowList                []string                                                             `json:"macAllowList,omitempty"`                // Only devices with MAC addresses specified in this list will have access to this port. Up to 20 MAC addresses can be defined. Only applicable when 'accessPolicyType' is 'MAC allow list'.
-	Mirror                      *ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePortMirror  `json:"mirror,omitempty"`                      // Port mirror
-	Module                      *ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePortModule  `json:"module,omitempty"`                      // Expansion module
-	Name                        string                                                               `json:"name,omitempty"`                        // The name of the switch template port.
-	PoeEnabled                  *bool                                                                `json:"poeEnabled,omitempty"`                  // The PoE status of the switch template port.
-	PortID                      string                                                               `json:"portId,omitempty"`                      // The identifier of the switch template port.
-	PortScheduleID              string                                                               `json:"portScheduleId,omitempty"`              // The ID of the port schedule. A value of null will clear the port schedule.
-	Profile                     *ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePortProfile `json:"profile,omitempty"`                     // Profile attributes
-	RstpEnabled                 *bool                                                                `json:"rstpEnabled,omitempty"`                 // The rapid spanning tree protocol status.
-	StickyMacAllowList          []string                                                             `json:"stickyMacAllowList,omitempty"`          // The initial list of MAC addresses for sticky Mac allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
-	StickyMacAllowListLimit     *int                                                                 `json:"stickyMacAllowListLimit,omitempty"`     // The maximum number of MAC addresses for sticky MAC allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
-	StormControlEnabled         *bool                                                                `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch template port.
-	StpGuard                    string                                                               `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
-	Tags                        []string                                                             `json:"tags,omitempty"`                        // The list of tags of the switch template port.
-	Type                        string                                                               `json:"type,omitempty"`                        // The type of the switch template port ('trunk' or 'access').
-	Udld                        string                                                               `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
-	VLAN                        *int                                                                 `json:"vlan,omitempty"`                        // The VLAN of the switch template port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
-	VoiceVLAN                   *int                                                                 `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch template port. Only applicable to access ports.
+	AccessPolicyNumber          *int                                                                          `json:"accessPolicyNumber,omitempty"`          // The number of a custom access policy to configure on the switch template port. Only applicable when 'accessPolicyType' is 'Custom access policy'.
+	AccessPolicyType            string                                                                        `json:"accessPolicyType,omitempty"`            // The type of the access policy of the switch template port. Only applicable to access ports. Can be one of 'Open', 'Custom access policy', 'MAC allow list' or 'Sticky MAC allow list'.
+	AllowedVLANs                string                                                                        `json:"allowedVlans,omitempty"`                // The VLANs allowed on the switch template port. Only applicable to trunk ports.
+	DaiTrusted                  *bool                                                                         `json:"daiTrusted,omitempty"`                  // If true, ARP packets for this port will be considered trusted, and Dynamic ARP Inspection will allow the traffic.
+	Dot3Az                      *ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePortDot3Az           `json:"dot3az,omitempty"`                      // dot3az settings for the port
+	Enabled                     *bool                                                                         `json:"enabled,omitempty"`                     // The status of the switch template port.
+	FlexibleStackingEnabled     *bool                                                                         `json:"flexibleStackingEnabled,omitempty"`     // For supported switches (e.g. MS420/MS425), whether or not the port has flexible stacking enabled.
+	IsolationEnabled            *bool                                                                         `json:"isolationEnabled,omitempty"`            // The isolation status of the switch template port.
+	LinkNegotiation             string                                                                        `json:"linkNegotiation,omitempty"`             // The link speed for the switch template port.
+	LinkNegotiationCapabilities []string                                                                      `json:"linkNegotiationCapabilities,omitempty"` // Available link speeds for the switch template port.
+	MacAllowList                []string                                                                      `json:"macAllowList,omitempty"`                // Only devices with MAC addresses specified in this list will have access to this port. Up to 20 MAC addresses can be defined. Only applicable when 'accessPolicyType' is 'MAC allow list'.
+	Mirror                      *ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePortMirror           `json:"mirror,omitempty"`                      // Port mirror
+	Module                      *ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePortModule           `json:"module,omitempty"`                      // Expansion module
+	Name                        string                                                                        `json:"name,omitempty"`                        // The name of the switch template port.
+	PoeEnabled                  *bool                                                                         `json:"poeEnabled,omitempty"`                  // The PoE status of the switch template port.
+	PortID                      string                                                                        `json:"portId,omitempty"`                      // The identifier of the switch template port.
+	PortScheduleID              string                                                                        `json:"portScheduleId,omitempty"`              // The ID of the port schedule. A value of null will clear the port schedule.
+	Profile                     *ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePortProfile          `json:"profile,omitempty"`                     // Profile attributes
+	RstpEnabled                 *bool                                                                         `json:"rstpEnabled,omitempty"`                 // The rapid spanning tree protocol status.
+	Schedule                    *ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePortSchedule         `json:"schedule,omitempty"`                    // The port schedule data.
+	StackwiseVirtual            *ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePortStackwiseVirtual `json:"stackwiseVirtual,omitempty"`            // Stackwise Virtual settings for the port
+	StickyMacAllowList          []string                                                                      `json:"stickyMacAllowList,omitempty"`          // The initial list of MAC addresses for sticky Mac allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
+	StickyMacAllowListLimit     *int                                                                          `json:"stickyMacAllowListLimit,omitempty"`     // The maximum number of MAC addresses for sticky MAC allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
+	StormControlEnabled         *bool                                                                         `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch template port.
+	StpGuard                    string                                                                        `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
+	Tags                        []string                                                                      `json:"tags,omitempty"`                        // The list of tags of the switch template port.
+	Type                        string                                                                        `json:"type,omitempty"`                        // The type of the switch template port ('trunk', 'access' or 'stack').
+	Udld                        string                                                                        `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
+	VLAN                        *int                                                                          `json:"vlan,omitempty"`                        // The VLAN of the switch template port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
+	VoiceVLAN                   *int                                                                          `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch template port. Only applicable to access ports.
+}
+type ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePortDot3Az struct {
+	Enabled *bool `json:"enabled,omitempty"` // The Energy Efficient Ethernet status of the switch template port.
 }
 type ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePortMirror struct {
 	Mode string `json:"mode,omitempty"` // The port mirror mode. Can be one of ('Destination port', 'Source port' or 'Not mirroring traffic').
@@ -1596,34 +1889,48 @@ type ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePortProfile struct 
 	ID      string `json:"id,omitempty"`      // When enabled, the ID of the port profile used to override the port's configuration.
 	Iname   string `json:"iname,omitempty"`   // When enabled, the IName of the profile.
 }
+type ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePortSchedule struct {
+	ID   string `json:"id,omitempty"`   // The ID of the port schedule.
+	Name string `json:"name,omitempty"` // The name of the port schedule.
+}
+type ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePortStackwiseVirtual struct {
+	IsDualActiveDetector   *bool `json:"isDualActiveDetector,omitempty"`   // For SVL devices, whether or not the port is used for Dual Active Detection.
+	IsStackWiseVirtualLink *bool `json:"isStackWiseVirtualLink,omitempty"` // For SVL devices, whether or not the port is used for StackWise Virtual Link.
+}
 type ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePort struct {
-	AccessPolicyNumber          *int                                                                    `json:"accessPolicyNumber,omitempty"`          // The number of a custom access policy to configure on the switch template port. Only applicable when 'accessPolicyType' is 'Custom access policy'.
-	AccessPolicyType            string                                                                  `json:"accessPolicyType,omitempty"`            // The type of the access policy of the switch template port. Only applicable to access ports. Can be one of 'Open', 'Custom access policy', 'MAC allow list' or 'Sticky MAC allow list'.
-	AllowedVLANs                string                                                                  `json:"allowedVlans,omitempty"`                // The VLANs allowed on the switch template port. Only applicable to trunk ports.
-	DaiTrusted                  *bool                                                                   `json:"daiTrusted,omitempty"`                  // If true, ARP packets for this port will be considered trusted, and Dynamic ARP Inspection will allow the traffic.
-	Enabled                     *bool                                                                   `json:"enabled,omitempty"`                     // The status of the switch template port.
-	FlexibleStackingEnabled     *bool                                                                   `json:"flexibleStackingEnabled,omitempty"`     // For supported switches (e.g. MS420/MS425), whether or not the port has flexible stacking enabled.
-	IsolationEnabled            *bool                                                                   `json:"isolationEnabled,omitempty"`            // The isolation status of the switch template port.
-	LinkNegotiation             string                                                                  `json:"linkNegotiation,omitempty"`             // The link speed for the switch template port.
-	LinkNegotiationCapabilities []string                                                                `json:"linkNegotiationCapabilities,omitempty"` // Available link speeds for the switch template port.
-	MacAllowList                []string                                                                `json:"macAllowList,omitempty"`                // Only devices with MAC addresses specified in this list will have access to this port. Up to 20 MAC addresses can be defined. Only applicable when 'accessPolicyType' is 'MAC allow list'.
-	Mirror                      *ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePortMirror  `json:"mirror,omitempty"`                      // Port mirror
-	Module                      *ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePortModule  `json:"module,omitempty"`                      // Expansion module
-	Name                        string                                                                  `json:"name,omitempty"`                        // The name of the switch template port.
-	PoeEnabled                  *bool                                                                   `json:"poeEnabled,omitempty"`                  // The PoE status of the switch template port.
-	PortID                      string                                                                  `json:"portId,omitempty"`                      // The identifier of the switch template port.
-	PortScheduleID              string                                                                  `json:"portScheduleId,omitempty"`              // The ID of the port schedule. A value of null will clear the port schedule.
-	Profile                     *ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePortProfile `json:"profile,omitempty"`                     // Profile attributes
-	RstpEnabled                 *bool                                                                   `json:"rstpEnabled,omitempty"`                 // The rapid spanning tree protocol status.
-	StickyMacAllowList          []string                                                                `json:"stickyMacAllowList,omitempty"`          // The initial list of MAC addresses for sticky Mac allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
-	StickyMacAllowListLimit     *int                                                                    `json:"stickyMacAllowListLimit,omitempty"`     // The maximum number of MAC addresses for sticky MAC allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
-	StormControlEnabled         *bool                                                                   `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch template port.
-	StpGuard                    string                                                                  `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
-	Tags                        []string                                                                `json:"tags,omitempty"`                        // The list of tags of the switch template port.
-	Type                        string                                                                  `json:"type,omitempty"`                        // The type of the switch template port ('trunk' or 'access').
-	Udld                        string                                                                  `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
-	VLAN                        *int                                                                    `json:"vlan,omitempty"`                        // The VLAN of the switch template port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
-	VoiceVLAN                   *int                                                                    `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch template port. Only applicable to access ports.
+	AccessPolicyNumber          *int                                                                             `json:"accessPolicyNumber,omitempty"`          // The number of a custom access policy to configure on the switch template port. Only applicable when 'accessPolicyType' is 'Custom access policy'.
+	AccessPolicyType            string                                                                           `json:"accessPolicyType,omitempty"`            // The type of the access policy of the switch template port. Only applicable to access ports. Can be one of 'Open', 'Custom access policy', 'MAC allow list' or 'Sticky MAC allow list'.
+	AllowedVLANs                string                                                                           `json:"allowedVlans,omitempty"`                // The VLANs allowed on the switch template port. Only applicable to trunk ports.
+	DaiTrusted                  *bool                                                                            `json:"daiTrusted,omitempty"`                  // If true, ARP packets for this port will be considered trusted, and Dynamic ARP Inspection will allow the traffic.
+	Dot3Az                      *ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePortDot3Az           `json:"dot3az,omitempty"`                      // dot3az settings for the port
+	Enabled                     *bool                                                                            `json:"enabled,omitempty"`                     // The status of the switch template port.
+	FlexibleStackingEnabled     *bool                                                                            `json:"flexibleStackingEnabled,omitempty"`     // For supported switches (e.g. MS420/MS425), whether or not the port has flexible stacking enabled.
+	IsolationEnabled            *bool                                                                            `json:"isolationEnabled,omitempty"`            // The isolation status of the switch template port.
+	LinkNegotiation             string                                                                           `json:"linkNegotiation,omitempty"`             // The link speed for the switch template port.
+	LinkNegotiationCapabilities []string                                                                         `json:"linkNegotiationCapabilities,omitempty"` // Available link speeds for the switch template port.
+	MacAllowList                []string                                                                         `json:"macAllowList,omitempty"`                // Only devices with MAC addresses specified in this list will have access to this port. Up to 20 MAC addresses can be defined. Only applicable when 'accessPolicyType' is 'MAC allow list'.
+	Mirror                      *ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePortMirror           `json:"mirror,omitempty"`                      // Port mirror
+	Module                      *ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePortModule           `json:"module,omitempty"`                      // Expansion module
+	Name                        string                                                                           `json:"name,omitempty"`                        // The name of the switch template port.
+	PoeEnabled                  *bool                                                                            `json:"poeEnabled,omitempty"`                  // The PoE status of the switch template port.
+	PortID                      string                                                                           `json:"portId,omitempty"`                      // The identifier of the switch template port.
+	PortScheduleID              string                                                                           `json:"portScheduleId,omitempty"`              // The ID of the port schedule. A value of null will clear the port schedule.
+	Profile                     *ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePortProfile          `json:"profile,omitempty"`                     // Profile attributes
+	RstpEnabled                 *bool                                                                            `json:"rstpEnabled,omitempty"`                 // The rapid spanning tree protocol status.
+	Schedule                    *ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePortSchedule         `json:"schedule,omitempty"`                    // The port schedule data.
+	StackwiseVirtual            *ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePortStackwiseVirtual `json:"stackwiseVirtual,omitempty"`            // Stackwise Virtual settings for the port
+	StickyMacAllowList          []string                                                                         `json:"stickyMacAllowList,omitempty"`          // The initial list of MAC addresses for sticky Mac allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
+	StickyMacAllowListLimit     *int                                                                             `json:"stickyMacAllowListLimit,omitempty"`     // The maximum number of MAC addresses for sticky MAC allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
+	StormControlEnabled         *bool                                                                            `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch template port.
+	StpGuard                    string                                                                           `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
+	Tags                        []string                                                                         `json:"tags,omitempty"`                        // The list of tags of the switch template port.
+	Type                        string                                                                           `json:"type,omitempty"`                        // The type of the switch template port ('trunk', 'access' or 'stack').
+	Udld                        string                                                                           `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
+	VLAN                        *int                                                                             `json:"vlan,omitempty"`                        // The VLAN of the switch template port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
+	VoiceVLAN                   *int                                                                             `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch template port. Only applicable to access ports.
+}
+type ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePortDot3Az struct {
+	Enabled *bool `json:"enabled,omitempty"` // The Energy Efficient Ethernet status of the switch template port.
 }
 type ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePortMirror struct {
 	Mode string `json:"mode,omitempty"` // The port mirror mode. Can be one of ('Destination port', 'Source port' or 'Not mirroring traffic').
@@ -1636,26 +1943,36 @@ type ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePortProfile stru
 	ID      string `json:"id,omitempty"`      // When enabled, the ID of the port profile used to override the port's configuration.
 	Iname   string `json:"iname,omitempty"`   // When enabled, the IName of the profile.
 }
+type ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePortSchedule struct {
+	ID   string `json:"id,omitempty"`   // The ID of the port schedule.
+	Name string `json:"name,omitempty"` // The name of the port schedule.
+}
+type ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePortStackwiseVirtual struct {
+	IsDualActiveDetector   *bool `json:"isDualActiveDetector,omitempty"`   // For SVL devices, whether or not the port is used for Dual Active Detection.
+	IsStackWiseVirtualLink *bool `json:"isStackWiseVirtualLink,omitempty"` // For SVL devices, whether or not the port is used for StackWise Virtual Link.
+}
 type ResponseSwitchGetOrganizationSummarySwitchPowerHistory []ResponseItemSwitchGetOrganizationSummarySwitchPowerHistory // Array of ResponseSwitchGetOrganizationSummarySwitchPowerHistory
 type ResponseItemSwitchGetOrganizationSummarySwitchPowerHistory struct {
 	Draw *float64 `json:"draw,omitempty"` // The PoE power draw in watts for all switch ports in the organization for the given interval.
 	Ts   string   `json:"ts,omitempty"`   // Timestamp of the start of the interval.
 }
-type ResponseSwitchCloneOrganizationSwitchDevices interface{}
-type ResponseSwitchGetOrganizationSwitchPortsBySwitch []ResponseItemSwitchGetOrganizationSwitchPortsBySwitch // Array of ResponseSwitchGetOrganizationSwitchPortsBySwitch
-type ResponseItemSwitchGetOrganizationSwitchPortsBySwitch struct {
-	Mac     string                                                       `json:"mac,omitempty"`     // The MAC address of the switch.
-	Model   string                                                       `json:"model,omitempty"`   // The model of the switch.
-	Name    string                                                       `json:"name,omitempty"`    // The name of the switch.
-	Network *ResponseItemSwitchGetOrganizationSwitchPortsBySwitchNetwork `json:"network,omitempty"` // Identifying information of the switch's network.
-	Ports   *[]ResponseItemSwitchGetOrganizationSwitchPortsBySwitchPorts `json:"ports,omitempty"`   // Ports belonging to the switch
-	Serial  string                                                       `json:"serial,omitempty"`  // The serial number of the switch.
+type ResponseSwitchCloneOrganizationSwitchDevices struct {
+	SourceSerial  string   `json:"sourceSerial,omitempty"`  // Serial number of the source switch (must be on a network not bound to a template)
+	TargetSerials []string `json:"targetSerials,omitempty"` // Array of serial numbers of one or more target switches (must be on a network not bound to a template)
 }
-type ResponseItemSwitchGetOrganizationSwitchPortsBySwitchNetwork struct {
+type ResponseSwitchGetOrganizationSwitchPortsBySwitch struct {
+	Mac     string                                                   `json:"mac,omitempty"`     // The MAC address of the switch.
+	Model   string                                                   `json:"model,omitempty"`   // The model of the switch.
+	Name    string                                                   `json:"name,omitempty"`    // The name of the switch.
+	Network *ResponseSwitchGetOrganizationSwitchPortsBySwitchNetwork `json:"network,omitempty"` // Identifying information of the switch's network.
+	Ports   *[]ResponseSwitchGetOrganizationSwitchPortsBySwitchPorts `json:"ports,omitempty"`   // Ports belonging to the switch
+	Serial  string                                                   `json:"serial,omitempty"`  // The serial number of the switch.
+}
+type ResponseSwitchGetOrganizationSwitchPortsBySwitchNetwork struct {
 	ID   string `json:"id,omitempty"`   // The ID of the network.
 	Name string `json:"name,omitempty"` // The name of the network.
 }
-type ResponseItemSwitchGetOrganizationSwitchPortsBySwitchPorts struct {
+type ResponseSwitchGetOrganizationSwitchPortsBySwitchPorts struct {
 	AccessPolicyType        string   `json:"accessPolicyType,omitempty"`        // The type of the access policy of the switch port. Only applicable to access ports. Can be one of 'Open', 'Custom access policy', 'MAC allow list' or 'Sticky MAC allow list'.
 	AllowedVLANs            string   `json:"allowedVlans,omitempty"`            // The VLANs allowed on the switch port. Only applicable to trunk ports.
 	Enabled                 *bool    `json:"enabled,omitempty"`                 // The status of the switch port.
@@ -1668,9 +1985,187 @@ type ResponseItemSwitchGetOrganizationSwitchPortsBySwitchPorts struct {
 	StickyMacAllowListLimit *int     `json:"stickyMacAllowListLimit,omitempty"` // The maximum number of MAC addresses for sticky MAC allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
 	StpGuard                string   `json:"stpGuard,omitempty"`                // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
 	Tags                    []string `json:"tags,omitempty"`                    // The list of tags of the switch port.
-	Type                    string   `json:"type,omitempty"`                    // The type of the switch port ('trunk' or 'access').
+	Type                    string   `json:"type,omitempty"`                    // The type of the switch port ('trunk', 'access' or 'stack').
 	VLAN                    *int     `json:"vlan,omitempty"`                    // The VLAN of the switch port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
 	VoiceVLAN               *int     `json:"voiceVlan,omitempty"`               // The voice VLAN of the switch port. Only applicable to access ports.
+}
+type ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice struct {
+	Items *[]ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceItems `json:"items,omitempty"` // Switches
+	Meta  *ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceItems struct {
+	Mac     string                                                                       `json:"mac,omitempty"`     // The MAC address of the switch.
+	Model   string                                                                       `json:"model,omitempty"`   // The model of the switch.
+	Name    string                                                                       `json:"name,omitempty"`    // The name of the switch.
+	Network *ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceItemsNetwork `json:"network,omitempty"` // Identifying information of the switch's network.
+	Ports   *[]ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceItemsPorts `json:"ports,omitempty"`   // The number of online clients of the ports on the switch.
+	Serial  string                                                                       `json:"serial,omitempty"`  // The serial number of the switch.
+}
+type ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceItemsNetwork struct {
+	ID   string `json:"id,omitempty"`   // The ID of the network.
+	Name string `json:"name,omitempty"` // The name of the network.
+}
+type ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceItemsPorts struct {
+	Counts *ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceItemsPortsCounts `json:"counts,omitempty"` // Number of clients on the port in a given time.
+	PortID string                                                                           `json:"portId,omitempty"` // The string identifier of this port on the switch. This is commonly just the port number but may contain additional identifying information such as the slot and module-type if the port is located on a port module.
+}
+type ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceItemsPortsCounts struct {
+	ByStatus *ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceItemsPortsCountsByStatus `json:"byStatus,omitempty"` // Associated client count on access point by status.
+}
+type ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceItemsPortsCountsByStatus struct {
+	Online *int `json:"online,omitempty"` // Active client count.
+}
+type ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceMeta struct {
+	Counts *ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceMetaCounts struct {
+	Items *ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDeviceMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseSwitchGetOrganizationSwitchPortsOverview struct {
+	Counts *ResponseSwitchGetOrganizationSwitchPortsOverviewCounts `json:"counts,omitempty"` // The count data of all ports
+}
+type ResponseSwitchGetOrganizationSwitchPortsOverviewCounts struct {
+	ByStatus *ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatus `json:"byStatus,omitempty"` // The count data, indexed by active or inactive status
+	Total    *int                                                            `json:"total,omitempty"`    // The total number of ports
+}
+type ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatus struct {
+	Active   *ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusActive   `json:"active,omitempty"`   // The count data for active ports
+	Inactive *ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusInactive `json:"inactive,omitempty"` // The count data for inactive ports
+}
+type ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusActive struct {
+	ByMediaAndLinkSpeed *ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusActiveByMediaAndLinkSpeed `json:"byMediaAndLinkSpeed,omitempty"` // The active count data, indexed by media type (RJ45 or SFP)
+	Total               *int                                                                                     `json:"total,omitempty"`               // The total number of active ports
+}
+type ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusActiveByMediaAndLinkSpeed struct {
+	Rj45 *ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusActiveByMediaAndLinkSpeedRj45 `json:"rj45,omitempty"` // The count data for RJ45 ports, indexed by speed in Mb
+	Sfp  *ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusActiveByMediaAndLinkSpeedSfp  `json:"sfp,omitempty"`  // The count data for SFP ports, indexed by speed in Mb
+}
+type ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusActiveByMediaAndLinkSpeedRj45 struct {
+	Status10    *int `json:"10,omitempty"`    // The number of active 10 Mbps RJ45 ports
+	Status100   *int `json:"100,omitempty"`   // The number of active 100 Mbps RJ45 ports
+	Status1000  *int `json:"1000,omitempty"`  // The number of active 1 Gbps RJ45 ports
+	Status10000 *int `json:"10000,omitempty"` // The number of active 10 Gbps RJ45 ports
+	Status2500  *int `json:"2500,omitempty"`  // The number of active 2 Gbps RJ45 ports
+	Status5000  *int `json:"5000,omitempty"`  // The number of active 5 Gbps RJ45 ports
+	Total       *int `json:"total,omitempty"` // The total number of active RJ45 ports
+}
+type ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusActiveByMediaAndLinkSpeedSfp struct {
+	Status100    *int `json:"100,omitempty"`    // The number of active 100 Mbps SFP ports
+	Status1000   *int `json:"1000,omitempty"`   // The number of active 1 Gbps SFP ports
+	Status10000  *int `json:"10000,omitempty"`  // The number of active 10 Gbps SFP ports
+	Status100000 *int `json:"100000,omitempty"` // The number of active 100 Gbps SFP ports
+	Status20000  *int `json:"20000,omitempty"`  // The number of active 20 Gbps SFP ports
+	Status25000  *int `json:"25000,omitempty"`  // The number of active 25 Gbps SFP ports
+	Status40000  *int `json:"40000,omitempty"`  // The number of active 40 Gbps SFP ports
+	Status50000  *int `json:"50000,omitempty"`  // The number of active 50 Gbps SFP ports
+	Total        *int `json:"total,omitempty"`  // The total number of active SFP ports
+}
+type ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusInactive struct {
+	ByMedia *ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusInactiveByMedia `json:"byMedia,omitempty"` // The inactive count data, indexed by media type (RJ45 or SFP)
+	Total   *int                                                                           `json:"total,omitempty"`   // The total number of inactive ports
+}
+type ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusInactiveByMedia struct {
+	Rj45 *ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusInactiveByMediaRj45 `json:"rj45,omitempty"` // The count data for inactive RJ45 ports
+	Sfp  *ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusInactiveByMediaSfp  `json:"sfp,omitempty"`  // The count data for inactive SFP ports
+}
+type ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusInactiveByMediaRj45 struct {
+	Total *int `json:"total,omitempty"` // The total number of inactive RJ45 ports
+}
+type ResponseSwitchGetOrganizationSwitchPortsOverviewCountsByStatusInactiveByMediaSfp struct {
+	Total *int `json:"total,omitempty"` // The total number of inactive SFP ports
+}
+type ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch struct {
+	Items *[]ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchItems `json:"items,omitempty"` // Switches
+	Meta  *ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchItems struct {
+	Mac     string                                                                `json:"mac,omitempty"`     // The MAC address of the switch.
+	Model   string                                                                `json:"model,omitempty"`   // The model of the switch.
+	Name    string                                                                `json:"name,omitempty"`    // The name of the switch.
+	Network *ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchItemsNetwork `json:"network,omitempty"` // Identifying information of the switch's network.
+	Ports   *[]ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchItemsPorts `json:"ports,omitempty"`   // The statuses of the ports on the switch.
+	Serial  string                                                                `json:"serial,omitempty"`  // The serial number of the switch.
+}
+type ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchItemsNetwork struct {
+	ID   string `json:"id,omitempty"`   // The ID of the network.
+	Name string `json:"name,omitempty"` // The name of the network.
+}
+type ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchItemsPorts struct {
+	Duplex       string                                                                          `json:"duplex,omitempty"`       // The current duplex of a connected port.
+	Enabled      *bool                                                                           `json:"enabled,omitempty"`      // Whether the port is configured to be enabled.
+	Errors       []string                                                                        `json:"errors,omitempty"`       // All errors present on the port.
+	IsUplink     *bool                                                                           `json:"isUplink,omitempty"`     // Whether the port is the switch's uplink.
+	Poe          *ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchItemsPortsPoe          `json:"poe,omitempty"`          // PoE status of the port.
+	PortID       string                                                                          `json:"portId,omitempty"`       // The string identifier of this port on the switch. This is commonly just the port number but may contain additional identifying information such as the slot and module-type if the port is located on a port module.
+	SecurePort   *ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchItemsPortsSecurePort   `json:"securePort,omitempty"`   // The Secure Port status of the port.
+	SpanningTree *ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchItemsPortsSpanningTree `json:"spanningTree,omitempty"` // The Spanning Tree Protocol (STP) information of the connected device.
+	Speed        string                                                                          `json:"speed,omitempty"`        // The current data transfer rate which the port is operating at.
+	Status       string                                                                          `json:"status,omitempty"`       // The current connection status of the port.
+	Warnings     []string                                                                        `json:"warnings,omitempty"`     // All warnings present on the port.
+}
+type ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchItemsPortsPoe struct {
+	IsAllocated *bool `json:"isAllocated,omitempty"` // Whether the port is drawing power
+}
+type ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchItemsPortsSecurePort struct {
+	Active               *bool  `json:"active,omitempty"`               // Whether Secure Port is currently active for this port.
+	AuthenticationStatus string `json:"authenticationStatus,omitempty"` // The current Secure Port status.
+}
+type ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchItemsPortsSpanningTree struct {
+	Statuses []string `json:"statuses,omitempty"` // The current Spanning Tree Protocol statuses of the port.
+}
+type ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchMeta struct {
+	Counts *ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchMetaCounts struct {
+	Items *ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitchMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice struct {
+	Items *[]ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceItems `json:"items,omitempty"` // Switches
+	Meta  *ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceItems struct {
+	Mac     string                                                                         `json:"mac,omitempty"`     // The MAC address of the switch.
+	Model   string                                                                         `json:"model,omitempty"`   // The model of the switch.
+	Name    string                                                                         `json:"name,omitempty"`    // The name of the switch.
+	Network *ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceItemsNetwork `json:"network,omitempty"` // Identifying information of the switch's network.
+	Ports   *[]ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceItemsPorts `json:"ports,omitempty"`   // Ports belonging to the switch with LLDP/CDP discovery info.
+	Serial  string                                                                         `json:"serial,omitempty"`  // The serial number of the switch.
+}
+type ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceItemsNetwork struct {
+	ID   string `json:"id,omitempty"`   // The ID of the network.
+	Name string `json:"name,omitempty"` // The name of the network.
+}
+type ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceItemsPorts struct {
+	Cdp           *[]ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceItemsPortsCdp  `json:"cdp,omitempty"`           // The Cisco Discovery Protocol (CDP) information of the connected device.
+	LastUpdatedAt string                                                                             `json:"lastUpdatedAt,omitempty"` // Timestamp for most recent discovery info on this port.
+	Lldp          *[]ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceItemsPortsLldp `json:"lldp,omitempty"`          // The Link Layer Discovery Protocol (LLDP) information of the connected device.
+	PortID        string                                                                             `json:"portId,omitempty"`        // The string identifier of this port on the switch. This is commonly just the port number but may contain additional identifying information such as the slot and module-type if the port is located on a port module.
+}
+type ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceItemsPortsCdp struct {
+	Name  string `json:"name,omitempty"`  // CDP RFC/official name of TLV
+	Value string `json:"value,omitempty"` // Value of the named TLV.
+}
+type ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceItemsPortsLldp struct {
+	Name  string `json:"name,omitempty"`  // LLDP RFC/official name of TLV
+	Value string `json:"value,omitempty"` // Value of the named TLV.
+}
+type ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceMeta struct {
+	Counts *ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceMetaCounts struct {
+	Items *ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
 }
 type RequestSwitchCycleDeviceSwitchPorts struct {
 	Ports []string `json:"ports,omitempty"` // List of switch ports
@@ -1681,6 +2176,7 @@ type RequestSwitchUpdateDeviceSwitchPort struct {
 	AdaptivePolicyGroupID   string                                      `json:"adaptivePolicyGroupId,omitempty"`   // The adaptive policy group ID that will be used to tag traffic through this switch port. This ID must pre-exist during the configuration, else needs to be created using adaptivePolicy/groups API. Cannot be applied to a port on a switch bound to profile.
 	AllowedVLANs            string                                      `json:"allowedVlans,omitempty"`            // The VLANs allowed on the switch port. Only applicable to trunk ports.
 	DaiTrusted              *bool                                       `json:"daiTrusted,omitempty"`              // If true, ARP packets for this port will be considered trusted, and Dynamic ARP Inspection will allow the traffic.
+	Dot3Az                  *RequestSwitchUpdateDeviceSwitchPortDot3Az  `json:"dot3az,omitempty"`                  // dot3az settings for the port
 	Enabled                 *bool                                       `json:"enabled,omitempty"`                 // The status of the switch port.
 	FlexibleStackingEnabled *bool                                       `json:"flexibleStackingEnabled,omitempty"` // For supported switches (e.g. MS420/MS425), whether or not the port has flexible stacking enabled.
 	IsolationEnabled        *bool                                       `json:"isolationEnabled,omitempty"`        // The isolation status of the switch port.
@@ -1697,10 +2193,13 @@ type RequestSwitchUpdateDeviceSwitchPort struct {
 	StormControlEnabled     *bool                                       `json:"stormControlEnabled,omitempty"`     // The storm control status of the switch port.
 	StpGuard                string                                      `json:"stpGuard,omitempty"`                // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
 	Tags                    []string                                    `json:"tags,omitempty"`                    // The list of tags of the switch port.
-	Type                    string                                      `json:"type,omitempty"`                    // The type of the switch port ('trunk' or 'access').
+	Type                    string                                      `json:"type,omitempty"`                    // The type of the switch port ('trunk', 'access' or 'stack').
 	Udld                    string                                      `json:"udld,omitempty"`                    // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
 	VLAN                    *int                                        `json:"vlan,omitempty"`                    // The VLAN of the switch port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
 	VoiceVLAN               *int                                        `json:"voiceVlan,omitempty"`               // The voice VLAN of the switch port. Only applicable to access ports.
+}
+type RequestSwitchUpdateDeviceSwitchPortDot3Az struct {
+	Enabled *bool `json:"enabled,omitempty"` // The Energy Efficient Ethernet status of the switch port.
 }
 type RequestSwitchUpdateDeviceSwitchPortProfile struct {
 	Enabled *bool  `json:"enabled,omitempty"` // When enabled, override this port's configuration with a port profile.
@@ -1714,7 +2213,6 @@ type RequestSwitchCreateDeviceSwitchRoutingInterface struct {
 	MulticastRouting string                                                       `json:"multicastRouting,omitempty"` // Enable multicast support if, multicast routing between VLANs is required. Options are:         'disabled', 'enabled' or 'IGMP snooping querier'. Default is 'disabled'.
 	Name             string                                                       `json:"name,omitempty"`             // A friendly name or description for the interface or VLAN.
 	OspfSettings     *RequestSwitchCreateDeviceSwitchRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // The OSPF routing settings of the interface.
-	OspfV3           *RequestSwitchCreateDeviceSwitchRoutingInterfaceOspfV3       `json:"ospfV3,omitempty"`           // The OSPFv3 routing settings of the interface.
 	Subnet           string                                                       `json:"subnet,omitempty"`           // The network that this routed interface is on, in CIDR notation (ex. 10.1.1.0/24).
 	VLANID           *int                                                         `json:"vlanId,omitempty"`           // The VLAN this routed interface is on. VLAN must be between 1 and 4094.
 }
@@ -1729,11 +2227,6 @@ type RequestSwitchCreateDeviceSwitchRoutingInterfaceOspfSettings struct {
 	Cost             *int   `json:"cost,omitempty"`             // The path cost for this interface. Defaults to 1, but can be increased up to 65535           to give lower priority.
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // When enabled, OSPF will not run on the interface, but the subnet will still be advertised.
 }
-type RequestSwitchCreateDeviceSwitchRoutingInterfaceOspfV3 struct {
-	Area             string `json:"area,omitempty"`             // The OSPFv3 area to which this interface should belong. Can be either 'disabled' or the identifier of an           existing OSPFv3 area. Defaults to 'disabled'.
-	Cost             *int   `json:"cost,omitempty"`             // The path cost for this interface. Defaults to 1, but can be increased up to 65535           to give lower priority.
-	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // When enabled, OSPFv3 will not run on the interface, but the subnet will still be advertised.
-}
 type RequestSwitchUpdateDeviceSwitchRoutingInterface struct {
 	DefaultGateway   string                                                       `json:"defaultGateway,omitempty"`   // The next hop for any traffic that isn't going to a directly connected subnet or over a static route.         This IP address must exist in a subnet with a routed interface. Required if this is the first IPv4 interface.
 	InterfaceIP      string                                                       `json:"interfaceIp,omitempty"`      // The IP address this switch will use for layer 3 routing on this VLAN or subnet. This cannot be the same         as the switch's management IP.
@@ -1741,7 +2234,6 @@ type RequestSwitchUpdateDeviceSwitchRoutingInterface struct {
 	MulticastRouting string                                                       `json:"multicastRouting,omitempty"` // Enable multicast support if, multicast routing between VLANs is required. Options are:         'disabled', 'enabled' or 'IGMP snooping querier'. Default is 'disabled'.
 	Name             string                                                       `json:"name,omitempty"`             // A friendly name or description for the interface or VLAN.
 	OspfSettings     *RequestSwitchUpdateDeviceSwitchRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // The OSPF routing settings of the interface.
-	OspfV3           *RequestSwitchUpdateDeviceSwitchRoutingInterfaceOspfV3       `json:"ospfV3,omitempty"`           // The OSPFv3 routing settings of the interface.
 	Subnet           string                                                       `json:"subnet,omitempty"`           // The network that this routed interface is on, in CIDR notation (ex. 10.1.1.0/24).
 	VLANID           *int                                                         `json:"vlanId,omitempty"`           // The VLAN this routed interface is on. VLAN must be between 1 and 4094.
 }
@@ -1755,11 +2247,6 @@ type RequestSwitchUpdateDeviceSwitchRoutingInterfaceOspfSettings struct {
 	Area             string `json:"area,omitempty"`             // The OSPF area to which this interface should belong. Can be either 'disabled' or the identifier of an           existing OSPF area. Defaults to 'disabled'.
 	Cost             *int   `json:"cost,omitempty"`             // The path cost for this interface. Defaults to 1, but can be increased up to 65535           to give lower priority.
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // When enabled, OSPF will not run on the interface, but the subnet will still be advertised.
-}
-type RequestSwitchUpdateDeviceSwitchRoutingInterfaceOspfV3 struct {
-	Area             string `json:"area,omitempty"`             // The OSPFv3 area to which this interface should belong. Can be either 'disabled' or the identifier of an           existing OSPFv3 area. Defaults to 'disabled'.
-	Cost             *int   `json:"cost,omitempty"`             // The path cost for this interface. Defaults to 1, but can be increased up to 65535           to give lower priority.
-	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // When enabled, OSPFv3 will not run on the interface, but the subnet will still be advertised.
 }
 type RequestSwitchUpdateDeviceSwitchRoutingInterfaceDhcp struct {
 	BootFileName         string                                                                   `json:"bootFileName,omitempty"`         // The PXE boot server filename for the DHCP server running on the switch interface
@@ -1798,6 +2285,7 @@ type RequestSwitchCreateDeviceSwitchRoutingStaticRoute struct {
 }
 type RequestSwitchUpdateDeviceSwitchRoutingStaticRoute struct {
 	AdvertiseViaOspfEnabled     *bool  `json:"advertiseViaOspfEnabled,omitempty"`     // Option to advertise static route via OSPF
+	ManagementNextHop           string `json:"managementNextHop,omitempty"`           // Optional fallback IP address for management traffic
 	Name                        string `json:"name,omitempty"`                        // Name or description for layer 3 static route
 	NextHopIP                   string `json:"nextHopIp,omitempty"`                   // IP address of the next hop device to which the device sends its traffic for the subnet
 	PreferOverOspfRoutesEnabled *bool  `json:"preferOverOspfRoutesEnabled,omitempty"` // Option to prefer static route over OSPF routes
@@ -1844,9 +2332,14 @@ type RequestSwitchCreateNetworkSwitchAccessPolicyDot1X struct {
 	ControlDirection string `json:"controlDirection,omitempty"` // Supports either 'both' or 'inbound'. Set to 'inbound' to allow unauthorized egress on the switchport. Set to 'both' to control both traffic directions with authorization. Defaults to 'both'
 }
 type RequestSwitchCreateNetworkSwitchAccessPolicyRadius struct {
+	Cache                    *RequestSwitchCreateNetworkSwitchAccessPolicyRadiusCache        `json:"cache,omitempty"`                    // Object for RADIUS Cache Settings
 	CriticalAuth             *RequestSwitchCreateNetworkSwitchAccessPolicyRadiusCriticalAuth `json:"criticalAuth,omitempty"`             // Critical auth settings for when authentication is rejected by the RADIUS server
 	FailedAuthVLANID         *int                                                            `json:"failedAuthVlanId,omitempty"`         // VLAN that clients will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
 	ReAuthenticationInterval *int                                                            `json:"reAuthenticationInterval,omitempty"` // Re-authentication period in seconds. Will be null if hostMode is Multi-Auth
+}
+type RequestSwitchCreateNetworkSwitchAccessPolicyRadiusCache struct {
+	Enabled *bool `json:"enabled,omitempty"` // Enable to cache authorization and authentication responses on the RADIUS server
+	Timeout *int  `json:"timeout,omitempty"` // If RADIUS caching is enabled, this value dictates how long the cache will remain in the RADIUS server, in hours, to allow network access without authentication
 }
 type RequestSwitchCreateNetworkSwitchAccessPolicyRadiusCriticalAuth struct {
 	DataVLANID        *int  `json:"dataVlanId,omitempty"`        // VLAN that clients who use data will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
@@ -1854,14 +2347,16 @@ type RequestSwitchCreateNetworkSwitchAccessPolicyRadiusCriticalAuth struct {
 	VoiceVLANID       *int  `json:"voiceVlanId,omitempty"`       // VLAN that clients who use voice will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
 }
 type RequestSwitchCreateNetworkSwitchAccessPolicyRadiusAccountingServers struct {
-	Host   string `json:"host,omitempty"`   // Public IP address of the RADIUS accounting server
-	Port   *int   `json:"port,omitempty"`   // UDP port that the RADIUS Accounting server listens on for access requests
-	Secret string `json:"secret,omitempty"` // RADIUS client shared secret
+	Host                       string `json:"host,omitempty"`                       // Public IP address of the RADIUS accounting server
+	OrganizationRadiusServerID string `json:"organizationRadiusServerId,omitempty"` // Organization wide RADIUS server ID. If this field is provided, the host, port and secret field will be ignored
+	Port                       *int   `json:"port,omitempty"`                       // UDP port that the RADIUS Accounting server listens on for access requests
+	Secret                     string `json:"secret,omitempty"`                     // RADIUS client shared secret
 }
 type RequestSwitchCreateNetworkSwitchAccessPolicyRadiusServers struct {
-	Host   string `json:"host,omitempty"`   // Public IP address of the RADIUS server
-	Port   *int   `json:"port,omitempty"`   // UDP port that the RADIUS server listens on for access requests
-	Secret string `json:"secret,omitempty"` // RADIUS client shared secret
+	Host                       string `json:"host,omitempty"`                       // Public IP address of the RADIUS server
+	OrganizationRadiusServerID string `json:"organizationRadiusServerId,omitempty"` // Organization wide RADIUS server ID. If this field is provided, the host, port and secret field will be ignored
+	Port                       *int   `json:"port,omitempty"`                       // UDP port that the RADIUS server listens on for access requests
+	Secret                     string `json:"secret,omitempty"`                     // RADIUS client shared secret
 }
 type RequestSwitchUpdateNetworkSwitchAccessPolicy struct {
 	AccessPolicyType               string                                                                 `json:"accessPolicyType,omitempty"`               // Access Type of the policy. Automatically 'Hybrid authentication' when hostMode is 'Multi-Domain'.
@@ -1886,9 +2381,14 @@ type RequestSwitchUpdateNetworkSwitchAccessPolicyDot1X struct {
 	ControlDirection string `json:"controlDirection,omitempty"` // Supports either 'both' or 'inbound'. Set to 'inbound' to allow unauthorized egress on the switchport. Set to 'both' to control both traffic directions with authorization. Defaults to 'both'
 }
 type RequestSwitchUpdateNetworkSwitchAccessPolicyRadius struct {
+	Cache                    *RequestSwitchUpdateNetworkSwitchAccessPolicyRadiusCache        `json:"cache,omitempty"`                    // Object for RADIUS Cache Settings
 	CriticalAuth             *RequestSwitchUpdateNetworkSwitchAccessPolicyRadiusCriticalAuth `json:"criticalAuth,omitempty"`             // Critical auth settings for when authentication is rejected by the RADIUS server
 	FailedAuthVLANID         *int                                                            `json:"failedAuthVlanId,omitempty"`         // VLAN that clients will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
 	ReAuthenticationInterval *int                                                            `json:"reAuthenticationInterval,omitempty"` // Re-authentication period in seconds. Will be null if hostMode is Multi-Auth
+}
+type RequestSwitchUpdateNetworkSwitchAccessPolicyRadiusCache struct {
+	Enabled *bool `json:"enabled,omitempty"` // Enable to cache authorization and authentication responses on the RADIUS server
+	Timeout *int  `json:"timeout,omitempty"` // If RADIUS caching is enabled, this value dictates how long the cache will remain in the RADIUS server, in hours, to allow network access without authentication
 }
 type RequestSwitchUpdateNetworkSwitchAccessPolicyRadiusCriticalAuth struct {
 	DataVLANID        *int  `json:"dataVlanId,omitempty"`        // VLAN that clients who use data will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
@@ -1896,14 +2396,18 @@ type RequestSwitchUpdateNetworkSwitchAccessPolicyRadiusCriticalAuth struct {
 	VoiceVLANID       *int  `json:"voiceVlanId,omitempty"`       // VLAN that clients who use voice will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
 }
 type RequestSwitchUpdateNetworkSwitchAccessPolicyRadiusAccountingServers struct {
-	Host   string `json:"host,omitempty"`   // Public IP address of the RADIUS accounting server
-	Port   *int   `json:"port,omitempty"`   // UDP port that the RADIUS Accounting server listens on for access requests
-	Secret string `json:"secret,omitempty"` // RADIUS client shared secret
+	Host                       string `json:"host,omitempty"`                       // Public IP address of the RADIUS accounting server
+	OrganizationRadiusServerID string `json:"organizationRadiusServerId,omitempty"` // Organization wide RADIUS server ID. If this field is provided, the host, port and secret field will be ignored
+	Port                       *int   `json:"port,omitempty"`                       // UDP port that the RADIUS Accounting server listens on for access requests
+	Secret                     string `json:"secret,omitempty"`                     // RADIUS client shared secret
+	ServerID                   string `json:"serverId,omitempty"`                   // Unique ID of the RADIUS accounting server. When provided, the existing RADIUS server will be updated instead of creating a new one
 }
 type RequestSwitchUpdateNetworkSwitchAccessPolicyRadiusServers struct {
-	Host   string `json:"host,omitempty"`   // Public IP address of the RADIUS server
-	Port   *int   `json:"port,omitempty"`   // UDP port that the RADIUS server listens on for access requests
-	Secret string `json:"secret,omitempty"` // RADIUS client shared secret
+	Host                       string `json:"host,omitempty"`                       // Public IP address of the RADIUS server
+	OrganizationRadiusServerID string `json:"organizationRadiusServerId,omitempty"` // Organization wide RADIUS server ID. If this field is provided, the host, port and secret field will be ignored
+	Port                       *int   `json:"port,omitempty"`                       // UDP port that the RADIUS server listens on for access requests
+	Secret                     string `json:"secret,omitempty"`                     // RADIUS client shared secret
+	ServerID                   string `json:"serverId,omitempty"`                   // Unique ID of the RADIUS server. When provided, the existing RADIUS server will be updated instead of creating a new one
 }
 type RequestSwitchUpdateNetworkSwitchAlternateManagementInterface struct {
 	Enabled   *bool                                                                   `json:"enabled,omitempty"`   // Boolean value to enable or disable AMI configuration. If enabled, VLAN and protocols must be set
@@ -2087,24 +2591,24 @@ type RequestSwitchUpdateNetworkSwitchPortSchedulePortScheduleWednesday struct {
 	To     string `json:"to,omitempty"`     // The time, from '00:00' to '24:00'. Must be greater than the time specified in 'from'. Defaults to '24:00'. Only 30 minute increments are allowed.
 }
 type RequestSwitchCreateNetworkSwitchQosRule struct {
-	Dscp         *int   `json:"dscp,omitempty"`         // DSCP tag. Set this to -1 to trust incoming DSCP. Default value is 0
+	Dscp         *int   `json:"dscp,omitempty"`         // DSCP tag for the incoming packet. Set this to -1 to trust incoming DSCP. Default value is 0
 	DstPort      *int   `json:"dstPort,omitempty"`      // The destination port of the incoming packet. Applicable only if protocol is TCP or UDP.
-	DstPortRange string `json:"dstPortRange,omitempty"` // The destination port range of the incoming packet. Applicable only if protocol is set to TCP or UDP. Example: 70-80
-	Protocol     string `json:"protocol,omitempty"`     // The protocol of the incoming packet. Can be one of "ANY", "TCP" or "UDP". Default value is "ANY"
+	DstPortRange string `json:"dstPortRange,omitempty"` // The destination port range of the incoming packet. Applicable only if protocol is set to TCP or UDP.
+	Protocol     string `json:"protocol,omitempty"`     // The protocol of the incoming packet. Default value is "ANY"
 	SrcPort      *int   `json:"srcPort,omitempty"`      // The source port of the incoming packet. Applicable only if protocol is TCP or UDP.
-	SrcPortRange string `json:"srcPortRange,omitempty"` // The source port range of the incoming packet. Applicable only if protocol is set to TCP or UDP. Example: 70-80
+	SrcPortRange string `json:"srcPortRange,omitempty"` // The source port range of the incoming packet. Applicable only if protocol is set to TCP or UDP.
 	VLAN         *int   `json:"vlan,omitempty"`         // The VLAN of the incoming packet. A null value will match any VLAN.
 }
 type RequestSwitchUpdateNetworkSwitchQosRulesOrder struct {
 	RuleIDs []string `json:"ruleIds,omitempty"` // A list of quality of service rule IDs arranged in order in which they should be processed by the switch.
 }
 type RequestSwitchUpdateNetworkSwitchQosRule struct {
-	Dscp         *int   `json:"dscp,omitempty"`         // DSCP tag that should be assigned to incoming packet. Set this to -1 to trust incoming DSCP. Default value is 0.
+	Dscp         *int   `json:"dscp,omitempty"`         // DSCP tag that should be assigned to incoming packet. Set this to -1 to trust incoming DSCP. Default value is 0
 	DstPort      *int   `json:"dstPort,omitempty"`      // The destination port of the incoming packet. Applicable only if protocol is TCP or UDP.
-	DstPortRange string `json:"dstPortRange,omitempty"` // The destination port range of the incoming packet. Applicable only if protocol is set to TCP or UDP. Example: 70-80
-	Protocol     string `json:"protocol,omitempty"`     // The protocol of the incoming packet. Can be one of "ANY", "TCP" or "UDP". Default value is "ANY".
+	DstPortRange string `json:"dstPortRange,omitempty"` // The destination port range of the incoming packet. Applicable only if protocol is set to TCP or UDP.
+	Protocol     string `json:"protocol,omitempty"`     // The protocol of the incoming packet. Default value is "ANY"
 	SrcPort      *int   `json:"srcPort,omitempty"`      // The source port of the incoming packet. Applicable only if protocol is TCP or UDP.
-	SrcPortRange string `json:"srcPortRange,omitempty"` // The source port range of the incoming packet. Applicable only if protocol is set to TCP or UDP. Example: 70-80
+	SrcPortRange string `json:"srcPortRange,omitempty"` // The source port range of the incoming packet. Applicable only if protocol is set to TCP or UDP.
 	VLAN         *int   `json:"vlan,omitempty"`         // The VLAN of the incoming packet. A null value will match any VLAN.
 }
 type RequestSwitchUpdateNetworkSwitchRoutingMulticast struct {
@@ -2265,15 +2769,17 @@ type RequestSwitchCreateNetworkSwitchStackRoutingStaticRoute struct {
 }
 type RequestSwitchUpdateNetworkSwitchStackRoutingStaticRoute struct {
 	AdvertiseViaOspfEnabled     *bool  `json:"advertiseViaOspfEnabled,omitempty"`     // Option to advertise static route via OSPF
+	ManagementNextHop           string `json:"managementNextHop,omitempty"`           // Optional fallback IP address for management traffic
 	Name                        string `json:"name,omitempty"`                        // Name or description for layer 3 static route
 	NextHopIP                   string `json:"nextHopIp,omitempty"`                   // IP address of the next hop device to which the device sends its traffic for the subnet
 	PreferOverOspfRoutesEnabled *bool  `json:"preferOverOspfRoutesEnabled,omitempty"` // Option to prefer static route over OSPF routes
 	Subnet                      string `json:"subnet,omitempty"`                      // The subnet which is routed via this static route and should be specified in CIDR notation (ex. 1.2.3.0/24)
 }
 type RequestSwitchUpdateNetworkSwitchStormControl struct {
-	BroadcastThreshold      *int `json:"broadcastThreshold,omitempty"`      // Percentage (1 to 99) of total available port bandwidth for broadcast traffic type. Default value 100 percent rate is to clear the configuration.
-	MulticastThreshold      *int `json:"multicastThreshold,omitempty"`      // Percentage (1 to 99) of total available port bandwidth for multicast traffic type. Default value 100 percent rate is to clear the configuration.
-	UnknownUnicastThreshold *int `json:"unknownUnicastThreshold,omitempty"` // Percentage (1 to 99) of total available port bandwidth for unknown unicast (dlf-destination lookup failure) traffic type. Default value 100 percent rate is to clear the configuration.
+	BroadcastThreshold                   *int     `json:"broadcastThreshold,omitempty"`                   // Percentage (1 to 99) of total available port bandwidth for broadcast traffic type. Default value 100 percent rate is to clear the configuration.
+	MulticastThreshold                   *int     `json:"multicastThreshold,omitempty"`                   // Percentage (1 to 99) of total available port bandwidth for multicast traffic type. Default value 100 percent rate is to clear the configuration.
+	TreatTheseTrafficTypesAsOneThreshold []string `json:"treatTheseTrafficTypesAsOneThreshold,omitempty"` // Grouped traffic types
+	UnknownUnicastThreshold              *int     `json:"unknownUnicastThreshold,omitempty"`              // Percentage (1 to 99) of total available port bandwidth for unknown unicast (dlf-destination lookup failure) traffic type. Default value 100 percent rate is to clear the configuration.
 }
 type RequestSwitchUpdateNetworkSwitchStp struct {
 	RstpEnabled       *bool                                                   `json:"rstpEnabled,omitempty"`       // The spanning tree protocol status in network
@@ -2290,6 +2796,7 @@ type RequestSwitchUpdateOrganizationConfigTemplateSwitchProfilePort struct {
 	AccessPolicyType        string                                                                 `json:"accessPolicyType,omitempty"`        // The type of the access policy of the switch template port. Only applicable to access ports. Can be one of 'Open', 'Custom access policy', 'MAC allow list' or 'Sticky MAC allow list'.
 	AllowedVLANs            string                                                                 `json:"allowedVlans,omitempty"`            // The VLANs allowed on the switch template port. Only applicable to trunk ports.
 	DaiTrusted              *bool                                                                  `json:"daiTrusted,omitempty"`              // If true, ARP packets for this port will be considered trusted, and Dynamic ARP Inspection will allow the traffic.
+	Dot3Az                  *RequestSwitchUpdateOrganizationConfigTemplateSwitchProfilePortDot3Az  `json:"dot3az,omitempty"`                  // dot3az settings for the port
 	Enabled                 *bool                                                                  `json:"enabled,omitempty"`                 // The status of the switch template port.
 	FlexibleStackingEnabled *bool                                                                  `json:"flexibleStackingEnabled,omitempty"` // For supported switches (e.g. MS420/MS425), whether or not the port has flexible stacking enabled.
 	IsolationEnabled        *bool                                                                  `json:"isolationEnabled,omitempty"`        // The isolation status of the switch template port.
@@ -2305,10 +2812,13 @@ type RequestSwitchUpdateOrganizationConfigTemplateSwitchProfilePort struct {
 	StormControlEnabled     *bool                                                                  `json:"stormControlEnabled,omitempty"`     // The storm control status of the switch template port.
 	StpGuard                string                                                                 `json:"stpGuard,omitempty"`                // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
 	Tags                    []string                                                               `json:"tags,omitempty"`                    // The list of tags of the switch template port.
-	Type                    string                                                                 `json:"type,omitempty"`                    // The type of the switch template port ('trunk' or 'access').
+	Type                    string                                                                 `json:"type,omitempty"`                    // The type of the switch template port ('trunk', 'access' or 'stack').
 	Udld                    string                                                                 `json:"udld,omitempty"`                    // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
 	VLAN                    *int                                                                   `json:"vlan,omitempty"`                    // The VLAN of the switch template port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
 	VoiceVLAN               *int                                                                   `json:"voiceVlan,omitempty"`               // The voice VLAN of the switch template port. Only applicable to access ports.
+}
+type RequestSwitchUpdateOrganizationConfigTemplateSwitchProfilePortDot3Az struct {
+	Enabled *bool `json:"enabled,omitempty"` // The Energy Efficient Ethernet status of the switch template port.
 }
 type RequestSwitchUpdateOrganizationConfigTemplateSwitchProfilePortProfile struct {
 	Enabled *bool  `json:"enabled,omitempty"` // When enabled, override this port's configuration with a port profile.
@@ -3837,6 +4347,150 @@ func (s *SwitchService) GetOrganizationSwitchPortsBySwitch(organizationID string
 
 }
 
+//GetOrganizationSwitchPortsClientsOverviewByDevice List the number of clients for all switchports with at least one online client in an organization.
+/* List the number of clients for all switchports with at least one online client in an organization.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams Filtering parameter
+
+
+*/
+func (s *SwitchService) GetOrganizationSwitchPortsClientsOverviewByDevice(organizationID string, getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams *GetOrganizationSwitchPortsClientsOverviewByDeviceQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/switch/ports/clients/overview/byDevice"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationSwitchPortsClientsOverviewByDevice")
+	}
+
+	result := response.Result().(*ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice)
+	return result, response, err
+
+}
+
+//GetOrganizationSwitchPortsOverview Returns the counts of all active ports for the requested timespan, grouped by speed
+/* Returns the counts of all active ports for the requested timespan, grouped by speed. An active port is a port that at any point during the timeframe is observed to be connected to a responsive device and isn't configured to be disabled. For a port that is observed at multiple speeds during the timeframe, it will be counted at the highest speed observed. The number of inactive ports, and the total number of ports are also provided. Only ports on switches online during the timeframe will be represented and a port is only guaranteed to be present if its switch was online for at least 6 hours of the timeframe.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationSwitchPortsOverviewQueryParams Filtering parameter
+
+
+*/
+func (s *SwitchService) GetOrganizationSwitchPortsOverview(organizationID string, getOrganizationSwitchPortsOverviewQueryParams *GetOrganizationSwitchPortsOverviewQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsOverview, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/switch/ports/overview"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationSwitchPortsOverviewQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetOrganizationSwitchPortsOverview{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationSwitchPortsOverview")
+	}
+
+	result := response.Result().(*ResponseSwitchGetOrganizationSwitchPortsOverview)
+	return result, response, err
+
+}
+
+//GetOrganizationSwitchPortsStatusesBySwitch List the switchports in an organization
+/* List the switchports in an organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationSwitchPortsStatusesBySwitchQueryParams Filtering parameter
+
+
+*/
+func (s *SwitchService) GetOrganizationSwitchPortsStatusesBySwitch(organizationID string, getOrganizationSwitchPortsStatusesBySwitchQueryParams *GetOrganizationSwitchPortsStatusesBySwitchQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/switch/ports/statuses/bySwitch"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationSwitchPortsStatusesBySwitchQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationSwitchPortsStatusesBySwitch")
+	}
+
+	result := response.Result().(*ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch)
+	return result, response, err
+
+}
+
+//GetOrganizationSwitchPortsTopologyDiscoveryByDevice List most recently seen LLDP/CDP discovery and topology information per switch port in an organization.
+/* List most recently seen LLDP/CDP discovery and topology information per switch port in an organization.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams Filtering parameter
+
+
+*/
+func (s *SwitchService) GetOrganizationSwitchPortsTopologyDiscoveryByDevice(organizationID string, getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams *GetOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/switch/ports/topology/discovery/byDevice"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationSwitchPortsTopologyDiscoveryByDevice")
+	}
+
+	result := response.Result().(*ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice)
+	return result, response, err
+
+}
+
 //CycleDeviceSwitchPorts Cycle a set of switch ports
 /* Cycle a set of switch ports
 
@@ -4041,6 +4695,7 @@ func (s *SwitchService) CreateNetworkSwitchLinkAggregation(networkID string, req
 	if response.IsError() {
 		return nil, response, fmt.Errorf("error with operation CreateNetworkSwitchLinkAggregation")
 	}
+
 	result := response.Result().(*ResponseSwitchCreateNetworkSwitchLinkAggregation)
 	return result, response, err
 
@@ -4342,7 +4997,7 @@ func (s *SwitchService) CreateNetworkSwitchStackRoutingStaticRoute(networkID str
 
 */
 
-func (s *SwitchService) CloneOrganizationSwitchDevices(organizationID string, requestSwitchCloneOrganizationSwitchDevices *RequestSwitchCloneOrganizationSwitchDevices) (*resty.Response, error) {
+func (s *SwitchService) CloneOrganizationSwitchDevices(organizationID string, requestSwitchCloneOrganizationSwitchDevices *RequestSwitchCloneOrganizationSwitchDevices) (*ResponseSwitchCloneOrganizationSwitchDevices, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/switch/devices/clone"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -4351,20 +5006,21 @@ func (s *SwitchService) CloneOrganizationSwitchDevices(organizationID string, re
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestSwitchCloneOrganizationSwitchDevices).
-		// SetResult(&ResponseSwitchCloneOrganizationSwitchDevices{}).
+		SetResult(&ResponseSwitchCloneOrganizationSwitchDevices{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CloneOrganizationSwitchDevices")
+		return nil, response, fmt.Errorf("error with operation CloneOrganizationSwitchDevices")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseSwitchCloneOrganizationSwitchDevices)
+	return result, response, err
 
 }
 
@@ -4607,7 +5263,7 @@ func (s *SwitchService) UpdateNetworkSwitchAccessPolicy(networkID string, access
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *SwitchService) UpdateNetworkSwitchAlternateManagementInterface(networkID string, requestSwitchUpdateNetworkSwitchAlternateManagementInterface *RequestSwitchUpdateNetworkSwitchAlternateManagementInterface) (*resty.Response, error) {
+func (s *SwitchService) UpdateNetworkSwitchAlternateManagementInterface(networkID string, requestSwitchUpdateNetworkSwitchAlternateManagementInterface *RequestSwitchUpdateNetworkSwitchAlternateManagementInterface) (*ResponseSwitchUpdateNetworkSwitchAlternateManagementInterface, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/alternateManagementInterface"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4616,19 +5272,21 @@ func (s *SwitchService) UpdateNetworkSwitchAlternateManagementInterface(networkI
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestSwitchUpdateNetworkSwitchAlternateManagementInterface).
+		SetResult(&ResponseSwitchUpdateNetworkSwitchAlternateManagementInterface{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkSwitchAlternateManagementInterface")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchAlternateManagementInterface")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchAlternateManagementInterface)
+	return result, response, err
 
 }
 
@@ -4703,7 +5361,7 @@ func (s *SwitchService) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedS
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *SwitchService) UpdateNetworkSwitchDscpToCosMappings(networkID string, requestSwitchUpdateNetworkSwitchDscpToCosMappings *RequestSwitchUpdateNetworkSwitchDscpToCosMappings) (*resty.Response, error) {
+func (s *SwitchService) UpdateNetworkSwitchDscpToCosMappings(networkID string, requestSwitchUpdateNetworkSwitchDscpToCosMappings *RequestSwitchUpdateNetworkSwitchDscpToCosMappings) (*ResponseSwitchUpdateNetworkSwitchDscpToCosMappings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dscpToCosMappings"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4712,19 +5370,21 @@ func (s *SwitchService) UpdateNetworkSwitchDscpToCosMappings(networkID string, r
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestSwitchUpdateNetworkSwitchDscpToCosMappings).
+		SetResult(&ResponseSwitchUpdateNetworkSwitchDscpToCosMappings{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkSwitchDscpToCosMappings")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchDscpToCosMappings")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchDscpToCosMappings)
+	return result, response, err
 
 }
 
@@ -4734,7 +5394,7 @@ func (s *SwitchService) UpdateNetworkSwitchDscpToCosMappings(networkID string, r
 @param networkID networkId path parameter. Network ID
 @param linkAggregationID linkAggregationId path parameter. Link aggregation ID
 */
-func (s *SwitchService) UpdateNetworkSwitchLinkAggregation(networkID string, linkAggregationID string, requestSwitchUpdateNetworkSwitchLinkAggregation *RequestSwitchUpdateNetworkSwitchLinkAggregation) (*resty.Response, error) {
+func (s *SwitchService) UpdateNetworkSwitchLinkAggregation(networkID string, linkAggregationID string, requestSwitchUpdateNetworkSwitchLinkAggregation *RequestSwitchUpdateNetworkSwitchLinkAggregation) (*ResponseSwitchUpdateNetworkSwitchLinkAggregation, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/linkAggregations/{linkAggregationId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4744,19 +5404,21 @@ func (s *SwitchService) UpdateNetworkSwitchLinkAggregation(networkID string, lin
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestSwitchUpdateNetworkSwitchLinkAggregation).
+		SetResult(&ResponseSwitchUpdateNetworkSwitchLinkAggregation{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkSwitchLinkAggregation")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchLinkAggregation")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchLinkAggregation)
+	return result, response, err
 
 }
 
@@ -4765,7 +5427,7 @@ func (s *SwitchService) UpdateNetworkSwitchLinkAggregation(networkID string, lin
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *SwitchService) UpdateNetworkSwitchMtu(networkID string, requestSwitchUpdateNetworkSwitchMtu *RequestSwitchUpdateNetworkSwitchMtu) (*resty.Response, error) {
+func (s *SwitchService) UpdateNetworkSwitchMtu(networkID string, requestSwitchUpdateNetworkSwitchMtu *RequestSwitchUpdateNetworkSwitchMtu) (*ResponseSwitchUpdateNetworkSwitchMtu, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/mtu"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4774,19 +5436,21 @@ func (s *SwitchService) UpdateNetworkSwitchMtu(networkID string, requestSwitchUp
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestSwitchUpdateNetworkSwitchMtu).
+		SetResult(&ResponseSwitchUpdateNetworkSwitchMtu{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkSwitchMtu")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchMtu")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchMtu)
+	return result, response, err
 
 }
 
@@ -4829,7 +5493,7 @@ func (s *SwitchService) UpdateNetworkSwitchPortSchedule(networkID string, portSc
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *SwitchService) UpdateNetworkSwitchQosRulesOrder(networkID string, requestSwitchUpdateNetworkSwitchQosRulesOrder *RequestSwitchUpdateNetworkSwitchQosRulesOrder) (*resty.Response, error) {
+func (s *SwitchService) UpdateNetworkSwitchQosRulesOrder(networkID string, requestSwitchUpdateNetworkSwitchQosRulesOrder *RequestSwitchUpdateNetworkSwitchQosRulesOrder) (*ResponseSwitchUpdateNetworkSwitchQosRulesOrder, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/qosRules/order"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4838,19 +5502,21 @@ func (s *SwitchService) UpdateNetworkSwitchQosRulesOrder(networkID string, reque
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestSwitchUpdateNetworkSwitchQosRulesOrder).
+		SetResult(&ResponseSwitchUpdateNetworkSwitchQosRulesOrder{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkSwitchQosRulesOrder")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchQosRulesOrder")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchQosRulesOrder)
+	return result, response, err
 
 }
 
@@ -4860,7 +5526,7 @@ func (s *SwitchService) UpdateNetworkSwitchQosRulesOrder(networkID string, reque
 @param networkID networkId path parameter. Network ID
 @param qosRuleID qosRuleId path parameter. Qos rule ID
 */
-func (s *SwitchService) UpdateNetworkSwitchQosRule(networkID string, qosRuleID string, requestSwitchUpdateNetworkSwitchQosRule *RequestSwitchUpdateNetworkSwitchQosRule) (*resty.Response, error) {
+func (s *SwitchService) UpdateNetworkSwitchQosRule(networkID string, qosRuleID string, requestSwitchUpdateNetworkSwitchQosRule *RequestSwitchUpdateNetworkSwitchQosRule) (*ResponseSwitchUpdateNetworkSwitchQosRule, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/qosRules/{qosRuleId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4870,19 +5536,21 @@ func (s *SwitchService) UpdateNetworkSwitchQosRule(networkID string, qosRuleID s
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestSwitchUpdateNetworkSwitchQosRule).
+		SetResult(&ResponseSwitchUpdateNetworkSwitchQosRule{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkSwitchQosRule")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchQosRule")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchQosRule)
+	return result, response, err
 
 }
 
@@ -4957,7 +5625,7 @@ func (s *SwitchService) UpdateNetworkSwitchRoutingMulticastRendezvousPoint(netwo
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *SwitchService) UpdateNetworkSwitchRoutingOspf(networkID string, requestSwitchUpdateNetworkSwitchRoutingOspf *RequestSwitchUpdateNetworkSwitchRoutingOspf) (*resty.Response, error) {
+func (s *SwitchService) UpdateNetworkSwitchRoutingOspf(networkID string, requestSwitchUpdateNetworkSwitchRoutingOspf *RequestSwitchUpdateNetworkSwitchRoutingOspf) (*ResponseSwitchUpdateNetworkSwitchRoutingOspf, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/routing/ospf"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -4966,19 +5634,21 @@ func (s *SwitchService) UpdateNetworkSwitchRoutingOspf(networkID string, request
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestSwitchUpdateNetworkSwitchRoutingOspf).
+		SetResult(&ResponseSwitchUpdateNetworkSwitchRoutingOspf{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkSwitchRoutingOspf")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchRoutingOspf")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchRoutingOspf)
+	return result, response, err
 
 }
 
@@ -5159,7 +5829,7 @@ func (s *SwitchService) UpdateNetworkSwitchStormControl(networkID string, reques
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *SwitchService) UpdateNetworkSwitchStp(networkID string, requestSwitchUpdateNetworkSwitchStp *RequestSwitchUpdateNetworkSwitchStp) (*resty.Response, error) {
+func (s *SwitchService) UpdateNetworkSwitchStp(networkID string, requestSwitchUpdateNetworkSwitchStp *RequestSwitchUpdateNetworkSwitchStp) (*ResponseSwitchUpdateNetworkSwitchStp, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stp"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -5168,19 +5838,21 @@ func (s *SwitchService) UpdateNetworkSwitchStp(networkID string, requestSwitchUp
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestSwitchUpdateNetworkSwitchStp).
+		SetResult(&ResponseSwitchUpdateNetworkSwitchStp{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkSwitchStp")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchStp")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchStp)
+	return result, response, err
 
 }
 

@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0] - 2025-01-20
+### Changed
+- dashboard-api-go supports now v1.53.0 of Meraki Dashboard API.
+- update appliance.go, added new query parameters for GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork.
+- update appliance.go, added new query parameters for GetOrganizationApplianceUplinkStatuses.
+
 ## [3.0.10] - 2024-11-27
 ### Changed
 - update networks.go, GetOrganizationPolicyObjectsGroups returns an array.
@@ -278,6 +284,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - model_create_network_switch_link_aggregation_request_switch_profile_ports_inner service
 - model_create_network_switch_port_schedule_request service
 - model_create_network_switch_port_schedule_request_port_schedule service
+- model_create_network_switch_port_schedule_request_port_schedule_friday service
+- model_create_network_switch_port_schedule_request_port_schedule_monday service
+- model_create_network_switch_port_schedule_request_port_schedule_saturday service
+- model_create_network_switch_port_schedule_request_port_schedule_sunday service
+- model_create_network_switch_port_schedule_request_port_schedule_thursday service
+- model_create_network_switch_port_schedule_request_port_schedule_tuesday service
+- model_create_network_switch_port_schedule_request_port_schedule_wednesday service
 - model_create_network_switch_qos_rule_request service
 - model_create_network_switch_routing_multicast_rendezvous_point_request service
 - model_create_network_switch_stack_request service
@@ -1399,4 +1412,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.0.7]: https://github.com/meraki/dashboard-api-go/compare/v3.0.6...3.0.7
 [3.0.8]: https://github.com/meraki/dashboard-api-go/compare/v3.0.7...3.0.8
 [3.0.9]: https://github.com/meraki/dashboard-api-go/compare/v3.0.8...3.0.9
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v3.0.9...main
+[4.0.0]: https://github.com/meraki/dashboard-api-go/compare/v3.0.10...4.0.0
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v4.0.0...main

@@ -84,8 +84,11 @@ type GetNetworkClientTrafficHistoryQueryParams struct {
 	StartingAfter string `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	EndingBefore  string `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 }
+type ClaimNetworkDevicesQueryParams struct {
+	AddAtomically bool `url:"addAtomically,omitempty"` //Whether to claim devices atomically. If true, all devices will be claimed or none will be claimed. Default is true.
+}
 type GetNetworkEventsQueryParams struct {
-	ProductType        string   `url:"productType,omitempty"`          //The product type to fetch events for. This parameter is required for networks with multiple device types. Valid types are wireless, appliance, switch, systemsManager, camera, and cellularGateway
+	ProductType        string   `url:"productType,omitempty"`          //The product type to fetch events for. This parameter is required for networks with multiple device types. Valid types are wireless, appliance, switch, systemsManager, camera, cellularGateway, wirelessController, and secureConnect
 	IncludedEventTypes []string `url:"includedEventTypes[],omitempty"` //A list of event types. The returned events will be filtered to only include events with these types.
 	ExcludedEventTypes []string `url:"excludedEventTypes[],omitempty"` //A list of event types. The returned events will be filtered to exclude events with these types.
 	DeviceMac          string   `url:"deviceMac,omitempty"`            //The MAC address of the Meraki device which the list of events will be filtered with
@@ -96,9 +99,15 @@ type GetNetworkEventsQueryParams struct {
 	ClientName         string   `url:"clientName,omitempty"`           //The name, or partial name, of the client which the list of events will be filtered with
 	SmDeviceMac        string   `url:"smDeviceMac,omitempty"`          //The MAC address of the Systems Manager device which the list of events will be filtered with
 	SmDeviceName       string   `url:"smDeviceName,omitempty"`         //The name of the Systems Manager device which the list of events will be filtered with
+	EventDetails       string   `url:"eventDetails,omitempty"`         //The details of the event(Catalyst device only) which the list of events will be filtered with
+	EventSeverity      string   `url:"eventSeverity,omitempty"`        //The severity of the event(Catalyst device only) which the list of events will be filtered with
+	IsCatalyst         bool     `url:"isCatalyst,omitempty"`           //Boolean indicating that whether it is a Catalyst device. For Catalyst device, eventDetails and eventSeverity can be used to filter events.
 	PerPage            int      `url:"perPage,omitempty"`              //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 10.
 	StartingAfter      string   `url:"startingAfter,omitempty"`        //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	EndingBefore       string   `url:"endingBefore,omitempty"`         //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+}
+type DeleteNetworkGroupPolicyQueryParams struct {
+	Force bool `url:"force,omitempty"` //If true, the system deletes the GP even if there are active clients using the GP. After deletion, active clients that were assigned to that Group Policy will be left without any policy applied. Default is false.
 }
 type DeleteNetworkMerakiAuthUserQueryParams struct {
 	Delete bool `url:"delete,omitempty"` //If the ID supplied is for a splash guest or client VPN user, and that user is not authorized for any other networks in the organization, then also delete the user. 802.1X RADIUS users are always deleted regardless of this optional attribute.
@@ -161,6 +170,7 @@ type GetNetworkVLANProfilesAssignmentsByDeviceQueryParams struct {
 	ProductTypes  []string `url:"productTypes[],omitempty"` //Optional parameter to filter devices by product types.
 	StackIDs      []string `url:"stackIds[],omitempty"`     //Optional parameter to filter devices by Switch Stack ids.
 }
+
 type ResponseNetworksGetNetwork struct {
 	EnrollmentString        string   `json:"enrollmentString,omitempty"`        // Enrollment string for the network
 	ID                      string   `json:"id,omitempty"`                      // Network ID
@@ -217,31 +227,111 @@ type ResponseItemNetworksGetNetworkAlertsHistoryDevice struct {
 	Serial string `json:"serial,omitempty"` // device serial
 }
 type ResponseNetworksGetNetworkAlertsSettings struct {
-	Alerts              *[]ResponseNetworksGetNetworkAlertsSettingsAlerts            `json:"alerts,omitempty"`              //
-	DefaultDestinations *ResponseNetworksGetNetworkAlertsSettingsDefaultDestinations `json:"defaultDestinations,omitempty"` //
+	Alerts              *[]ResponseNetworksGetNetworkAlertsSettingsAlerts            `json:"alerts,omitempty"`              // Alert-specific configuration for each type. Only alerts that pertain to the network can be updated.
+	DefaultDestinations *ResponseNetworksGetNetworkAlertsSettingsDefaultDestinations `json:"defaultDestinations,omitempty"` // The network-wide destinations for all alerts on the network.
+	Muting              *ResponseNetworksGetNetworkAlertsSettingsMuting              `json:"muting,omitempty"`              // Mute alerts under certain conditions
 }
 type ResponseNetworksGetNetworkAlertsSettingsAlerts struct {
-	AlertDestinations *ResponseNetworksGetNetworkAlertsSettingsAlertsAlertDestinations `json:"alertDestinations,omitempty"` //
-	Enabled           *bool                                                            `json:"enabled,omitempty"`           //
-	Filters           *ResponseNetworksGetNetworkAlertsSettingsAlertsFilters           `json:"filters,omitempty"`           //
-	Type              string                                                           `json:"type,omitempty"`              //
+	AlertDestinations *ResponseNetworksGetNetworkAlertsSettingsAlertsAlertDestinations `json:"alertDestinations,omitempty"` // A hash of destinations for this specific alert
+	Enabled           *bool                                                            `json:"enabled,omitempty"`           // A boolean depicting if the alert is turned on or off
+	Filters           *ResponseNetworksGetNetworkAlertsSettingsAlertsFilters           `json:"filters,omitempty"`           // A hash of specific configuration data for the alert. Only filters specific to the alert will be updated.
+	Type              string                                                           `json:"type,omitempty"`              // The type of alert
 }
 type ResponseNetworksGetNetworkAlertsSettingsAlertsAlertDestinations struct {
-	AllAdmins     *bool    `json:"allAdmins,omitempty"`     //
-	Emails        []string `json:"emails,omitempty"`        //
-	HTTPServerIDs []string `json:"httpServerIds,omitempty"` //
-	SNMP          *bool    `json:"snmp,omitempty"`          //
+	AllAdmins     *bool    `json:"allAdmins,omitempty"`     // If true, then all network admins will receive emails for this alert
+	Emails        []string `json:"emails,omitempty"`        // A list of emails that will receive information about the alert
+	HTTPServerIDs []string `json:"httpServerIds,omitempty"` // A list of HTTP server IDs to send a Webhook to for this alert
+	SmsNumbers    []string `json:"smsNumbers,omitempty"`    // A list of phone numbers that will receive text messages about the alert. Only available for sensors status alerts.
+	SNMP          *bool    `json:"snmp,omitempty"`          // If true, then an SNMP trap will be sent for this alert if there is an SNMP trap server configured for this network
 }
 type ResponseNetworksGetNetworkAlertsSettingsAlertsFilters struct {
-	Timeout *int `json:"timeout,omitempty"` //
+	Conditions     *[]ResponseNetworksGetNetworkAlertsSettingsAlertsFiltersConditions `json:"conditions,omitempty"`     // Conditions
+	FailureType    string                                                             `json:"failureType,omitempty"`    // Failure Type
+	LookbackWindow *int                                                               `json:"lookbackWindow,omitempty"` // Loopback Window (in sec)
+	MinDuration    *int                                                               `json:"minDuration,omitempty"`    // Min Duration
+	Name           string                                                             `json:"name,omitempty"`           // Name
+	Period         *int                                                               `json:"period,omitempty"`         // Period
+	Priority       string                                                             `json:"priority,omitempty"`       // Priority
+	Regex          string                                                             `json:"regex,omitempty"`          // Regex
+	Selector       string                                                             `json:"selector,omitempty"`       // Selector
+	Serials        []string                                                           `json:"serials,omitempty"`        // Serials
+	SSIDNum        *int                                                               `json:"ssidNum,omitempty"`        // SSID Number
+	Tag            string                                                             `json:"tag,omitempty"`            // Tag
+	Threshold      *int                                                               `json:"threshold,omitempty"`      // Threshold
+	Timeout        *int                                                               `json:"timeout,omitempty"`        // Timeout
+}
+type ResponseNetworksGetNetworkAlertsSettingsAlertsFiltersConditions struct {
+	Direction string   `json:"direction,omitempty"` // Direction
+	Duration  *int     `json:"duration,omitempty"`  // Duration
+	Threshold *float64 `json:"threshold,omitempty"` // Threshold
+	Type      string   `json:"type,omitempty"`      // Type of condition
+	Unit      string   `json:"unit,omitempty"`      // Unit
 }
 type ResponseNetworksGetNetworkAlertsSettingsDefaultDestinations struct {
-	AllAdmins     *bool    `json:"allAdmins,omitempty"`     //
-	Emails        []string `json:"emails,omitempty"`        //
-	HTTPServerIDs []string `json:"httpServerIds,omitempty"` //
-	SNMP          *bool    `json:"snmp,omitempty"`          //
+	AllAdmins     *bool    `json:"allAdmins,omitempty"`     // If true, then all network admins will receive emails.
+	Emails        []string `json:"emails,omitempty"`        // A list of emails that will receive the alert(s).
+	HTTPServerIDs []string `json:"httpServerIds,omitempty"` // A list of HTTP server IDs to send a Webhook to
+	SNMP          *bool    `json:"snmp,omitempty"`          // If true, then an SNMP trap will be sent if there is an SNMP trap server configured for this network.
 }
-type ResponseNetworksUpdateNetworkAlertsSettings interface{}
+type ResponseNetworksGetNetworkAlertsSettingsMuting struct {
+	ByPortSchedules *ResponseNetworksGetNetworkAlertsSettingsMutingByPortSchedules `json:"byPortSchedules,omitempty"` // Mute wireless unreachable alerts based on switch port schedules
+}
+type ResponseNetworksGetNetworkAlertsSettingsMutingByPortSchedules struct {
+	Enabled *bool `json:"enabled,omitempty"` // If true, then wireless unreachable alerts will be muted when caused by a port schedule
+}
+type ResponseNetworksUpdateNetworkAlertsSettings struct {
+	Alerts              *[]ResponseNetworksUpdateNetworkAlertsSettingsAlerts            `json:"alerts,omitempty"`              // Alert-specific configuration for each type. Only alerts that pertain to the network can be updated.
+	DefaultDestinations *ResponseNetworksUpdateNetworkAlertsSettingsDefaultDestinations `json:"defaultDestinations,omitempty"` // The network-wide destinations for all alerts on the network.
+	Muting              *ResponseNetworksUpdateNetworkAlertsSettingsMuting              `json:"muting,omitempty"`              // Mute alerts under certain conditions
+}
+type ResponseNetworksUpdateNetworkAlertsSettingsAlerts struct {
+	AlertDestinations *ResponseNetworksUpdateNetworkAlertsSettingsAlertsAlertDestinations `json:"alertDestinations,omitempty"` // A hash of destinations for this specific alert
+	Enabled           *bool                                                               `json:"enabled,omitempty"`           // A boolean depicting if the alert is turned on or off
+	Filters           *ResponseNetworksUpdateNetworkAlertsSettingsAlertsFilters           `json:"filters,omitempty"`           // A hash of specific configuration data for the alert. Only filters specific to the alert will be updated.
+	Type              string                                                              `json:"type,omitempty"`              // The type of alert
+}
+type ResponseNetworksUpdateNetworkAlertsSettingsAlertsAlertDestinations struct {
+	AllAdmins     *bool    `json:"allAdmins,omitempty"`     // If true, then all network admins will receive emails for this alert
+	Emails        []string `json:"emails,omitempty"`        // A list of emails that will receive information about the alert
+	HTTPServerIDs []string `json:"httpServerIds,omitempty"` // A list of HTTP server IDs to send a Webhook to for this alert
+	SmsNumbers    []string `json:"smsNumbers,omitempty"`    // A list of phone numbers that will receive text messages about the alert. Only available for sensors status alerts.
+	SNMP          *bool    `json:"snmp,omitempty"`          // If true, then an SNMP trap will be sent for this alert if there is an SNMP trap server configured for this network
+}
+type ResponseNetworksUpdateNetworkAlertsSettingsAlertsFilters struct {
+	Conditions     *[]ResponseNetworksUpdateNetworkAlertsSettingsAlertsFiltersConditions `json:"conditions,omitempty"`     // Conditions
+	FailureType    string                                                                `json:"failureType,omitempty"`    // Failure Type
+	LookbackWindow *int                                                                  `json:"lookbackWindow,omitempty"` // Loopback Window (in sec)
+	MinDuration    *int                                                                  `json:"minDuration,omitempty"`    // Min Duration
+	Name           string                                                                `json:"name,omitempty"`           // Name
+	Period         *int                                                                  `json:"period,omitempty"`         // Period
+	Priority       string                                                                `json:"priority,omitempty"`       // Priority
+	Regex          string                                                                `json:"regex,omitempty"`          // Regex
+	Selector       string                                                                `json:"selector,omitempty"`       // Selector
+	Serials        []string                                                              `json:"serials,omitempty"`        // Serials
+	SSIDNum        *int                                                                  `json:"ssidNum,omitempty"`        // SSID Number
+	Tag            string                                                                `json:"tag,omitempty"`            // Tag
+	Threshold      *int                                                                  `json:"threshold,omitempty"`      // Threshold
+	Timeout        *int                                                                  `json:"timeout,omitempty"`        // Timeout
+}
+type ResponseNetworksUpdateNetworkAlertsSettingsAlertsFiltersConditions struct {
+	Direction string   `json:"direction,omitempty"` // Direction
+	Duration  *int     `json:"duration,omitempty"`  // Duration
+	Threshold *float64 `json:"threshold,omitempty"` // Threshold
+	Type      string   `json:"type,omitempty"`      // Type of condition
+	Unit      string   `json:"unit,omitempty"`      // Unit
+}
+type ResponseNetworksUpdateNetworkAlertsSettingsDefaultDestinations struct {
+	AllAdmins     *bool    `json:"allAdmins,omitempty"`     // If true, then all network admins will receive emails.
+	Emails        []string `json:"emails,omitempty"`        // A list of emails that will receive the alert(s).
+	HTTPServerIDs []string `json:"httpServerIds,omitempty"` // A list of HTTP server IDs to send a Webhook to
+	SNMP          *bool    `json:"snmp,omitempty"`          // If true, then an SNMP trap will be sent if there is an SNMP trap server configured for this network.
+}
+type ResponseNetworksUpdateNetworkAlertsSettingsMuting struct {
+	ByPortSchedules *ResponseNetworksUpdateNetworkAlertsSettingsMutingByPortSchedules `json:"byPortSchedules,omitempty"` // Mute wireless unreachable alerts based on switch port schedules
+}
+type ResponseNetworksUpdateNetworkAlertsSettingsMutingByPortSchedules struct {
+	Enabled *bool `json:"enabled,omitempty"` // If true, then wireless unreachable alerts will be muted when caused by a port schedule
+}
 type ResponseNetworksBindNetwork struct {
 	ConfigTemplateID        string   `json:"configTemplateId,omitempty"`        // ID of the config template the network is being bound to
 	EnrollmentString        string   `json:"enrollmentString,omitempty"`        // Enrollment string for the network
@@ -257,62 +347,63 @@ type ResponseNetworksBindNetwork struct {
 }
 type ResponseNetworksGetNetworkBluetoothClients []ResponseItemNetworksGetNetworkBluetoothClients // Array of ResponseNetworksGetNetworkBluetoothClients
 type ResponseItemNetworksGetNetworkBluetoothClients struct {
-	DeviceName      string   `json:"deviceName,omitempty"`      //
-	ID              string   `json:"id,omitempty"`              //
-	InSightAlert    *bool    `json:"inSightAlert,omitempty"`    //
-	LastSeen        *int     `json:"lastSeen,omitempty"`        //
-	Mac             string   `json:"mac,omitempty"`             //
-	Manufacturer    string   `json:"manufacturer,omitempty"`    //
-	Name            string   `json:"name,omitempty"`            //
-	NetworkID       string   `json:"networkId,omitempty"`       //
-	OutOfSightAlert *bool    `json:"outOfSightAlert,omitempty"` //
-	SeenByDeviceMac string   `json:"seenByDeviceMac,omitempty"` //
-	Tags            []string `json:"tags,omitempty"`            //
+	DeviceName      string   `json:"deviceName,omitempty"`      // Bluetooth device name
+	ID              string   `json:"id,omitempty"`              // ID of the client
+	InSightAlert    *bool    `json:"inSightAlert,omitempty"`    // Device in sight alert
+	LastSeen        *int     `json:"lastSeen,omitempty"`        // Epoch timestamp of the device's last appearance
+	Mac             string   `json:"mac,omitempty"`             // MAC address of the client
+	Manufacturer    string   `json:"manufacturer,omitempty"`    // Name of the manufacturer
+	Name            string   `json:"name,omitempty"`            // Name of the client
+	NetworkID       string   `json:"networkId,omitempty"`       // Network ID
+	OutOfSightAlert *bool    `json:"outOfSightAlert,omitempty"` // Device out of sight alert
+	SeenByDeviceMac string   `json:"seenByDeviceMac,omitempty"` // Seen by device MAC
+	Tags            []string `json:"tags,omitempty"`            // A list of tags applied to the device
 }
 type ResponseNetworksGetNetworkBluetoothClient struct {
-	DeviceName      string   `json:"deviceName,omitempty"`      //
-	ID              string   `json:"id,omitempty"`              //
-	InSightAlert    *bool    `json:"inSightAlert,omitempty"`    //
-	LastSeen        *int     `json:"lastSeen,omitempty"`        //
-	Mac             string   `json:"mac,omitempty"`             //
-	Manufacturer    string   `json:"manufacturer,omitempty"`    //
-	Name            string   `json:"name,omitempty"`            //
-	NetworkID       string   `json:"networkId,omitempty"`       //
-	OutOfSightAlert *bool    `json:"outOfSightAlert,omitempty"` //
-	SeenByDeviceMac string   `json:"seenByDeviceMac,omitempty"` //
-	Tags            []string `json:"tags,omitempty"`            //
+	DeviceName      string   `json:"deviceName,omitempty"`      // Bluetooth device name
+	ID              string   `json:"id,omitempty"`              // ID of the client
+	InSightAlert    *bool    `json:"inSightAlert,omitempty"`    // Device in sight alert
+	LastSeen        *int     `json:"lastSeen,omitempty"`        // Epoch timestamp of the device's last appearance
+	Mac             string   `json:"mac,omitempty"`             // MAC address of the client
+	Manufacturer    string   `json:"manufacturer,omitempty"`    // Name of the manufacturer
+	Name            string   `json:"name,omitempty"`            // Name of the client
+	NetworkID       string   `json:"networkId,omitempty"`       // Network ID
+	OutOfSightAlert *bool    `json:"outOfSightAlert,omitempty"` // Device out of sight alert
+	SeenByDeviceMac string   `json:"seenByDeviceMac,omitempty"` // Seen by device MAC
+	Tags            []string `json:"tags,omitempty"`            // A list of tags applied to the device
 }
-type ResponseNetworksGetNetworkClients struct {
-	AdaptivePolicyGroup    string                                  `json:"adaptivePolicyGroup,omitempty"`    // The adaptive policy group of the client
-	Description            string                                  `json:"description,omitempty"`            // Short description of the client
-	DeviceTypePrediction   string                                  `json:"deviceTypePrediction,omitempty"`   // Prediction of the client's device type
-	FirstSeen              *int                                    `json:"firstSeen,omitempty"`              // Timestamp client was first seen in the network
-	GroupPolicy8021X       string                                  `json:"groupPolicy8021x,omitempty"`       // 802.1x group policy of the client
-	ID                     string                                  `json:"id,omitempty"`                     // The ID of the client
-	IP                     string                                  `json:"ip,omitempty"`                     // The IP address of the client
-	IP6                    string                                  `json:"ip6,omitempty"`                    // The IPv6 address of the client
-	IP6Local               string                                  `json:"ip6Local,omitempty"`               // Local IPv6 address of the client
-	LastSeen               *int                                    `json:"lastSeen,omitempty"`               // Timestamp client was last seen in the network
-	Mac                    string                                  `json:"mac,omitempty"`                    // The MAC address of the client
-	Manufacturer           string                                  `json:"manufacturer,omitempty"`           // Manufacturer of the client
-	NamedVLAN              string                                  `json:"namedVlan,omitempty"`              // Named VLAN of the client
-	Notes                  string                                  `json:"notes,omitempty"`                  // Notes on the client
-	Os                     string                                  `json:"os,omitempty"`                     // The operating system of the client
-	PskGroup               string                                  `json:"pskGroup,omitempty"`               // iPSK name of the client
-	RecentDeviceConnection string                                  `json:"recentDeviceConnection,omitempty"` // Client's most recent connection type
-	RecentDeviceMac        string                                  `json:"recentDeviceMac,omitempty"`        // The MAC address of the node that the device was last connected to
-	RecentDeviceName       string                                  `json:"recentDeviceName,omitempty"`       // The name of the node the device was last connected to
-	RecentDeviceSerial     string                                  `json:"recentDeviceSerial,omitempty"`     // The serial of the node the device was last connected to
-	SmInstalled            *bool                                   `json:"smInstalled,omitempty"`            // Status of SM for the client
-	SSID                   string                                  `json:"ssid,omitempty"`                   // The name of the SSID that the client is connected to
-	Status                 string                                  `json:"status,omitempty"`                 // The connection status of the client
-	Switchport             string                                  `json:"switchport,omitempty"`             // The switch port that the client is connected to
-	Usage                  *ResponseNetworksGetNetworkClientsUsage `json:"usage,omitempty"`                  // Usage, sent and received
-	User                   string                                  `json:"user,omitempty"`                   // The username of the user of the client
-	VLAN                   string                                  `json:"vlan,omitempty"`                   // The name of the VLAN that the client is connected to
-	WirelessCapabilities   string                                  `json:"wirelessCapabilities,omitempty"`   // Wireless capabilities of the client
+type ResponseNetworksGetNetworkClients []ResponseItemNetworksGetNetworkClients // Array of ResponseNetworksGetNetworkClients
+type ResponseItemNetworksGetNetworkClients struct {
+	AdaptivePolicyGroup    string                                      `json:"adaptivePolicyGroup,omitempty"`    // The adaptive policy group of the client
+	Description            string                                      `json:"description,omitempty"`            // Short description of the client
+	DeviceTypePrediction   string                                      `json:"deviceTypePrediction,omitempty"`   // Prediction of the client's device type
+	FirstSeen              *int                                        `json:"firstSeen,omitempty"`              // Timestamp client was first seen in the network
+	GroupPolicy8021X       string                                      `json:"groupPolicy8021x,omitempty"`       // 802.1x group policy of the client
+	ID                     string                                      `json:"id,omitempty"`                     // The ID of the client
+	IP                     string                                      `json:"ip,omitempty"`                     // The IP address of the client
+	IP6                    string                                      `json:"ip6,omitempty"`                    // The IPv6 address of the client
+	IP6Local               string                                      `json:"ip6Local,omitempty"`               // Local IPv6 address of the client
+	LastSeen               *int                                        `json:"lastSeen,omitempty"`               // Timestamp client was last seen in the network
+	Mac                    string                                      `json:"mac,omitempty"`                    // The MAC address of the client
+	Manufacturer           string                                      `json:"manufacturer,omitempty"`           // Manufacturer of the client
+	NamedVLAN              string                                      `json:"namedVlan,omitempty"`              // Named VLAN of the client
+	Notes                  string                                      `json:"notes,omitempty"`                  // Notes on the client
+	Os                     string                                      `json:"os,omitempty"`                     // The operating system of the client
+	PskGroup               string                                      `json:"pskGroup,omitempty"`               // iPSK name of the client
+	RecentDeviceConnection string                                      `json:"recentDeviceConnection,omitempty"` // Client's most recent connection type
+	RecentDeviceMac        string                                      `json:"recentDeviceMac,omitempty"`        // The MAC address of the node that the device was last connected to
+	RecentDeviceName       string                                      `json:"recentDeviceName,omitempty"`       // The name of the node the device was last connected to
+	RecentDeviceSerial     string                                      `json:"recentDeviceSerial,omitempty"`     // The serial of the node the device was last connected to
+	SmInstalled            *bool                                       `json:"smInstalled,omitempty"`            // Status of SM for the client
+	SSID                   string                                      `json:"ssid,omitempty"`                   // The name of the SSID that the client is connected to
+	Status                 string                                      `json:"status,omitempty"`                 // The connection status of the client
+	Switchport             string                                      `json:"switchport,omitempty"`             // The switch port that the client is connected to
+	Usage                  *ResponseItemNetworksGetNetworkClientsUsage `json:"usage,omitempty"`                  // Usage, sent and received
+	User                   string                                      `json:"user,omitempty"`                   // The username of the user of the client
+	VLAN                   string                                      `json:"vlan,omitempty"`                   // The name of the VLAN that the client is connected to
+	WirelessCapabilities   string                                      `json:"wirelessCapabilities,omitempty"`   // Wireless capabilities of the client
 }
-type ResponseNetworksGetNetworkClientsUsage struct {
+type ResponseItemNetworksGetNetworkClientsUsage struct {
 	Recv *float64 `json:"recv,omitempty"` // Usage received by the client
 	Sent *float64 `json:"sent,omitempty"` // Usage sent by the client
 }
@@ -371,26 +462,28 @@ type ResponseItemNetworksGetNetworkClientsUsageHistoriesUsageHistory struct {
 	Ts   string `json:"ts,omitempty"`   //
 }
 type ResponseNetworksGetNetworkClient struct {
-	Cdp                  *[][]string                                             `json:"cdp,omitempty"`                  // The Cisco discover protocol settings for the client
-	ClientVpnConnections *[]ResponseNetworksGetNetworkClientClientVpnConnections `json:"clientVpnConnections,omitempty"` // VPN connections associated with the client
-	Description          string                                                  `json:"description,omitempty"`          // Short description of the client
-	FirstSeen            *int                                                    `json:"firstSeen,omitempty"`            // Timestamp client was first seen in the network
-	ID                   string                                                  `json:"id,omitempty"`                   // The ID of the client
-	IP                   string                                                  `json:"ip,omitempty"`                   // The IP address of the client
-	IP6                  string                                                  `json:"ip6,omitempty"`                  // The IPv6 address of the client
-	LastSeen             *int                                                    `json:"lastSeen,omitempty"`             // Timestamp client was last seen in the network
-	Lldp                 *[][]string                                             `json:"lldp,omitempty"`                 // The link layer discover protocol settings for the client
-	Mac                  string                                                  `json:"mac,omitempty"`                  // The MAC address of the client
-	Manufacturer         string                                                  `json:"manufacturer,omitempty"`         // Manufacturer of the client
-	Os                   string                                                  `json:"os,omitempty"`                   // The operating system of the client
-	RecentDeviceMac      string                                                  `json:"recentDeviceMac,omitempty"`      // The MAC address of the node that the device was last connected to
-	SmInstalled          *bool                                                   `json:"smInstalled,omitempty"`          // Status of SM for the client
-	SSID                 string                                                  `json:"ssid,omitempty"`                 // The name of the SSID that the client is connected to
-	Status               string                                                  `json:"status,omitempty"`               // The connection status of the client
-	Switchport           string                                                  `json:"switchport,omitempty"`           // The switch port that the client is connected to
-	User                 string                                                  `json:"user,omitempty"`                 // The username of the user of the client
-	VLAN                 string                                                  `json:"vlan,omitempty"`                 // The name of the VLAN that the client is connected to
-	WirelessCapabilities string                                                  `json:"wirelessCapabilities,omitempty"` // Wireless capabilities of the client
+	Cdp                    *[][]string                                             `json:"cdp,omitempty"`                    // The Cisco discover protocol settings for the client
+	ClientVpnConnections   *[]ResponseNetworksGetNetworkClientClientVpnConnections `json:"clientVpnConnections,omitempty"`   // VPN connections associated with the client
+	Description            string                                                  `json:"description,omitempty"`            // Short description of the client
+	FirstSeen              *int                                                    `json:"firstSeen,omitempty"`              // Timestamp client was first seen in the network
+	ID                     string                                                  `json:"id,omitempty"`                     // The ID of the client
+	IP                     string                                                  `json:"ip,omitempty"`                     // The IP address of the client
+	IP6                    string                                                  `json:"ip6,omitempty"`                    // The IPv6 address of the client
+	LastSeen               *int                                                    `json:"lastSeen,omitempty"`               // Timestamp client was last seen in the network
+	Lldp                   *[][]string                                             `json:"lldp,omitempty"`                   // The link layer discover protocol settings for the client
+	Mac                    string                                                  `json:"mac,omitempty"`                    // The MAC address of the client
+	Manufacturer           string                                                  `json:"manufacturer,omitempty"`           // Manufacturer of the client
+	Notes                  string                                                  `json:"notes,omitempty"`                  // The notes associated with the client
+	Os                     string                                                  `json:"os,omitempty"`                     // The operating system of the client
+	RecentDeviceConnection string                                                  `json:"recentDeviceConnection,omitempty"` // Client's most recent connection type
+	RecentDeviceMac        string                                                  `json:"recentDeviceMac,omitempty"`        // The MAC address of the node that the device was last connected to
+	SmInstalled            *bool                                                   `json:"smInstalled,omitempty"`            // Status of SM for the client
+	SSID                   string                                                  `json:"ssid,omitempty"`                   // The name of the SSID that the client is connected to
+	Status                 string                                                  `json:"status,omitempty"`                 // The connection status of the client
+	Switchport             string                                                  `json:"switchport,omitempty"`             // The switch port that the client is connected to
+	User                   string                                                  `json:"user,omitempty"`                   // The username of the user of the client
+	VLAN                   string                                                  `json:"vlan,omitempty"`                   // The name of the VLAN that the client is connected to
+	WirelessCapabilities   string                                                  `json:"wirelessCapabilities,omitempty"`   // Wireless capabilities of the client
 }
 type ResponseNetworksGetNetworkClientClientVpnConnections struct {
 	ConnectedAt    *int   `json:"connectedAt,omitempty"`    // The time the client last connected to the VPN
@@ -412,15 +505,11 @@ type ResponseNetworksGetNetworkClientSplashAuthorizationStatus struct {
 }
 type ResponseNetworksGetNetworkClientSplashAuthorizationStatusSSIDs struct {
 	Status0 *ResponseNetworksGetNetworkClientSplashAuthorizationStatusSSIDs0 `json:"0,omitempty"` //
-	Status2 *ResponseNetworksGetNetworkClientSplashAuthorizationStatusSSIDs2 `json:"2,omitempty"` //
 }
 type ResponseNetworksGetNetworkClientSplashAuthorizationStatusSSIDs0 struct {
 	AuthorizedAt string `json:"authorizedAt,omitempty"` //
 	ExpiresAt    string `json:"expiresAt,omitempty"`    //
 	IsAuthorized *bool  `json:"isAuthorized,omitempty"` //
-}
-type ResponseNetworksGetNetworkClientSplashAuthorizationStatusSSIDs2 struct {
-	IsAuthorized *bool `json:"isAuthorized,omitempty"` //
 }
 type ResponseNetworksUpdateNetworkClientSplashAuthorizationStatus interface{}
 type ResponseNetworksGetNetworkClientTrafficHistory []ResponseItemNetworksGetNetworkClientTrafficHistory // Array of ResponseNetworksGetNetworkClientTrafficHistory
@@ -433,7 +522,7 @@ type ResponseItemNetworksGetNetworkClientTrafficHistory struct {
 	Protocol      string   `json:"protocol,omitempty"`      // The client protocol
 	Recv          *float64 `json:"recv,omitempty"`          // Usage received by the client
 	Sent          *float64 `json:"sent,omitempty"`          // Usage sent by the client
-	Ts            string   `json:"ts,omitempty"`            // The timestamp of when the client was connected to an application
+	Ts            string   `json:"ts,omitempty"`            // The start time from which daily traffic data was collected
 }
 type ResponseNetworksGetNetworkClientUsageHistory []ResponseItemNetworksGetNetworkClientUsageHistory // Array of ResponseNetworksGetNetworkClientUsageHistory
 type ResponseItemNetworksGetNetworkClientUsageHistory struct {
@@ -443,28 +532,38 @@ type ResponseItemNetworksGetNetworkClientUsageHistory struct {
 }
 type ResponseNetworksGetNetworkDevices []ResponseItemNetworksGetNetworkDevices // Array of ResponseNetworksGetNetworkDevices
 type ResponseItemNetworksGetNetworkDevices struct {
-	Address     string                                          `json:"address,omitempty"`     // Physical address of the device
-	Details     *[]ResponseItemNetworksGetNetworkDevicesDetails `json:"details,omitempty"`     // Additional device information
-	Firmware    string                                          `json:"firmware,omitempty"`    // Firmware version of the device
-	Imei        string                                          `json:"imei,omitempty"`        // IMEI of the device, if applicable
-	LanIP       string                                          `json:"lanIp,omitempty"`       // LAN IP address of the device
-	Lat         *float64                                        `json:"lat,omitempty"`         // Latitude of the device
-	Lng         *float64                                        `json:"lng,omitempty"`         // Longitude of the device
-	Mac         string                                          `json:"mac,omitempty"`         // MAC address of the device
-	Model       string                                          `json:"model,omitempty"`       // Model of the device
-	Name        string                                          `json:"name,omitempty"`        // Name of the device
-	NetworkID   string                                          `json:"networkId,omitempty"`   // ID of the network the device belongs to
-	Notes       string                                          `json:"notes,omitempty"`       // Notes for the device, limited to 255 characters
-	ProductType string                                          `json:"productType,omitempty"` // Product type of the device
-	Serial      string                                          `json:"serial,omitempty"`      // Serial number of the device
-	Tags        []string                                        `json:"tags,omitempty"`        // List of tags assigned to the device
+	Address        string                                               `json:"address,omitempty"`        // Physical address of the device
+	BeaconIDParams *ResponseItemNetworksGetNetworkDevicesBeaconIDParams `json:"beaconIdParams,omitempty"` // Beacon Id parameters with an identifier and major and minor versions
+	Details        *[]ResponseItemNetworksGetNetworkDevicesDetails      `json:"details,omitempty"`        // Additional device information
+	Firmware       string                                               `json:"firmware,omitempty"`       // Firmware version of the device
+	FloorPlanID    string                                               `json:"floorPlanId,omitempty"`    // The floor plan to associate to this device. null disassociates the device from the floorplan.
+	LanIP          string                                               `json:"lanIp,omitempty"`          // LAN IP address of the device
+	Lat            *float64                                             `json:"lat,omitempty"`            // Latitude of the device
+	Lng            *float64                                             `json:"lng,omitempty"`            // Longitude of the device
+	Mac            string                                               `json:"mac,omitempty"`            // MAC address of the device
+	Model          string                                               `json:"model,omitempty"`          // Model of the device
+	Name           string                                               `json:"name,omitempty"`           // Name of the device
+	NetworkID      string                                               `json:"networkId,omitempty"`      // ID of the network the device belongs to
+	Notes          string                                               `json:"notes,omitempty"`          // Notes for the device, limited to 255 characters
+	Serial         string                                               `json:"serial,omitempty"`         // Serial number of the device
+	Tags           []string                                             `json:"tags,omitempty"`           // List of tags assigned to the device
+}
+type ResponseItemNetworksGetNetworkDevicesBeaconIDParams struct {
+	Major *int   `json:"major,omitempty"` // The major number to be used in the beacon identifier
+	Minor *int   `json:"minor,omitempty"` // The minor number to be used in the beacon identifier
+	UUID  string `json:"uuid,omitempty"`  // The UUID to be used in the beacon identifier
 }
 type ResponseItemNetworksGetNetworkDevicesDetails struct {
 	Name  string `json:"name,omitempty"`  // Additional property name
 	Value string `json:"value,omitempty"` // Additional property value
 }
 type ResponseNetworksClaimNetworkDevices struct {
-	Serials []string `json:"serials,omitempty"` // The serials of the devices
+	Errors  *[]ResponseNetworksClaimNetworkDevicesErrors `json:"errors,omitempty"`  // Errors for devices that were not added
+	Serials []string                                     `json:"serials,omitempty"` // The serials of the devices
+}
+type ResponseNetworksClaimNetworkDevicesErrors struct {
+	Errors []string `json:"errors,omitempty"` // The errors for the device
+	Serial string   `json:"serial,omitempty"` // The serial of the device
 }
 type ResponseNetworksVmxNetworkDevicesClaim struct {
 	Address     string                                           `json:"address,omitempty"`     // Physical address of the device
@@ -528,12 +627,14 @@ type ResponseNetworksGetNetworkFirmwareUpgrades struct {
 	UpgradeWindow *ResponseNetworksGetNetworkFirmwareUpgradesUpgradeWindow `json:"upgradeWindow,omitempty"` // Upgrade window for devices in network
 }
 type ResponseNetworksGetNetworkFirmwareUpgradesProducts struct {
-	Appliance       *ResponseNetworksGetNetworkFirmwareUpgradesProductsAppliance       `json:"appliance,omitempty"`       // The network device to be updated
-	Camera          *ResponseNetworksGetNetworkFirmwareUpgradesProductsCamera          `json:"camera,omitempty"`          // The network device to be updated
-	CellularGateway *ResponseNetworksGetNetworkFirmwareUpgradesProductsCellularGateway `json:"cellularGateway,omitempty"` // The network device to be updated
-	Sensor          *ResponseNetworksGetNetworkFirmwareUpgradesProductsSensor          `json:"sensor,omitempty"`          // The network device to be updated
-	Switch          *ResponseNetworksGetNetworkFirmwareUpgradesProductsSwitch          `json:"switch,omitempty"`          // The network device to be updated
-	Wireless        *ResponseNetworksGetNetworkFirmwareUpgradesProductsWireless        `json:"wireless,omitempty"`        // The network device to be updated
+	Appliance          *ResponseNetworksGetNetworkFirmwareUpgradesProductsAppliance          `json:"appliance,omitempty"`          // The network device to be updated
+	Camera             *ResponseNetworksGetNetworkFirmwareUpgradesProductsCamera             `json:"camera,omitempty"`             // The network device to be updated
+	CellularGateway    *ResponseNetworksGetNetworkFirmwareUpgradesProductsCellularGateway    `json:"cellularGateway,omitempty"`    // The network device to be updated
+	SecureConnect      *ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnect      `json:"secureConnect,omitempty"`      // The network device to be updated
+	Sensor             *ResponseNetworksGetNetworkFirmwareUpgradesProductsSensor             `json:"sensor,omitempty"`             // The network device to be updated
+	Switch             *ResponseNetworksGetNetworkFirmwareUpgradesProductsSwitch             `json:"switch,omitempty"`             // The network device to be updated
+	Wireless           *ResponseNetworksGetNetworkFirmwareUpgradesProductsWireless           `json:"wireless,omitempty"`           // The network device to be updated
+	WirelessController *ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessController `json:"wirelessController,omitempty"` // The network device to be updated
 }
 type ResponseNetworksGetNetworkFirmwareUpgradesProductsAppliance struct {
 	AvailableVersions            *[]ResponseNetworksGetNetworkFirmwareUpgradesProductsApplianceAvailableVersions `json:"availableVersions,omitempty"`            // Firmware versions available for upgrade
@@ -682,6 +783,57 @@ type ResponseNetworksGetNetworkFirmwareUpgradesProductsCellularGatewayNextUpgrad
 	ToVersion *ResponseNetworksGetNetworkFirmwareUpgradesProductsCellularGatewayNextUpgradeToVersion `json:"toVersion,omitempty"` // Details of the version the device will upgrade to if it exists
 }
 type ResponseNetworksGetNetworkFirmwareUpgradesProductsCellularGatewayNextUpgradeToVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnect struct {
+	AvailableVersions            *[]ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnectAvailableVersions `json:"availableVersions,omitempty"`            // Firmware versions available for upgrade
+	CurrentVersion               *ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnectCurrentVersion      `json:"currentVersion,omitempty"`               // Details of the current version on the device
+	LastUpgrade                  *ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnectLastUpgrade         `json:"lastUpgrade,omitempty"`                  // Details of the last firmware upgrade on the device
+	NextUpgrade                  *ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnectNextUpgrade         `json:"nextUpgrade,omitempty"`                  // Details of the next firmware upgrade on the device
+	ParticipateInNextBetaRelease *bool                                                                               `json:"participateInNextBetaRelease,omitempty"` // Whether or not the network wants beta firmware
+}
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnectAvailableVersions struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnectCurrentVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnectLastUpgrade struct {
+	FromVersion *ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnectLastUpgradeFromVersion `json:"fromVersion,omitempty"` // Details of the version the device upgraded from
+	Time        string                                                                                 `json:"time,omitempty"`        // Timestamp of the last successful firmware upgrade
+	ToVersion   *ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnectLastUpgradeToVersion   `json:"toVersion,omitempty"`   // Details of the version the device upgraded to
+}
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnectLastUpgradeFromVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnectLastUpgradeToVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnectNextUpgrade struct {
+	Time      string                                                                               `json:"time,omitempty"`      // Timestamp of the next scheduled firmware upgrade
+	ToVersion *ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnectNextUpgradeToVersion `json:"toVersion,omitempty"` // Details of the version the device will upgrade to if it exists
+}
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsSecureConnectNextUpgradeToVersion struct {
 	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
 	ID          string `json:"id,omitempty"`          // Firmware version identifier
 	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
@@ -841,6 +993,57 @@ type ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessNextUpgradeToVers
 	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
 	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
 }
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessController struct {
+	AvailableVersions            *[]ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessControllerAvailableVersions `json:"availableVersions,omitempty"`            // Firmware versions available for upgrade
+	CurrentVersion               *ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessControllerCurrentVersion      `json:"currentVersion,omitempty"`               // Details of the current version on the device
+	LastUpgrade                  *ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessControllerLastUpgrade         `json:"lastUpgrade,omitempty"`                  // Details of the last firmware upgrade on the device
+	NextUpgrade                  *ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessControllerNextUpgrade         `json:"nextUpgrade,omitempty"`                  // Details of the next firmware upgrade on the device
+	ParticipateInNextBetaRelease *bool                                                                                    `json:"participateInNextBetaRelease,omitempty"` // Whether or not the network wants beta firmware
+}
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessControllerAvailableVersions struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessControllerCurrentVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessControllerLastUpgrade struct {
+	FromVersion *ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessControllerLastUpgradeFromVersion `json:"fromVersion,omitempty"` // Details of the version the device upgraded from
+	Time        string                                                                                      `json:"time,omitempty"`        // Timestamp of the last successful firmware upgrade
+	ToVersion   *ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessControllerLastUpgradeToVersion   `json:"toVersion,omitempty"`   // Details of the version the device upgraded to
+}
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessControllerLastUpgradeFromVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessControllerLastUpgradeToVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessControllerNextUpgrade struct {
+	Time      string                                                                                    `json:"time,omitempty"`      // Timestamp of the next scheduled firmware upgrade
+	ToVersion *ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessControllerNextUpgradeToVersion `json:"toVersion,omitempty"` // Details of the version the device will upgrade to if it exists
+}
+type ResponseNetworksGetNetworkFirmwareUpgradesProductsWirelessControllerNextUpgradeToVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
 type ResponseNetworksGetNetworkFirmwareUpgradesUpgradeWindow struct {
 	DayOfWeek string `json:"dayOfWeek,omitempty"` // Day of the week
 	HourOfDay string `json:"hourOfDay,omitempty"` // Hour of the day
@@ -851,12 +1054,14 @@ type ResponseNetworksUpdateNetworkFirmwareUpgrades struct {
 	UpgradeWindow *ResponseNetworksUpdateNetworkFirmwareUpgradesUpgradeWindow `json:"upgradeWindow,omitempty"` // Upgrade window for devices in network
 }
 type ResponseNetworksUpdateNetworkFirmwareUpgradesProducts struct {
-	Appliance       *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsAppliance       `json:"appliance,omitempty"`       // The network device to be updated
-	Camera          *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsCamera          `json:"camera,omitempty"`          // The network device to be updated
-	CellularGateway *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsCellularGateway `json:"cellularGateway,omitempty"` // The network device to be updated
-	Sensor          *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSensor          `json:"sensor,omitempty"`          // The network device to be updated
-	Switch          *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSwitch          `json:"switch,omitempty"`          // The network device to be updated
-	Wireless        *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWireless        `json:"wireless,omitempty"`        // The network device to be updated
+	Appliance          *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsAppliance          `json:"appliance,omitempty"`          // The network device to be updated
+	Camera             *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsCamera             `json:"camera,omitempty"`             // The network device to be updated
+	CellularGateway    *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsCellularGateway    `json:"cellularGateway,omitempty"`    // The network device to be updated
+	SecureConnect      *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnect      `json:"secureConnect,omitempty"`      // The network device to be updated
+	Sensor             *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSensor             `json:"sensor,omitempty"`             // The network device to be updated
+	Switch             *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSwitch             `json:"switch,omitempty"`             // The network device to be updated
+	Wireless           *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWireless           `json:"wireless,omitempty"`           // The network device to be updated
+	WirelessController *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessController `json:"wirelessController,omitempty"` // The network device to be updated
 }
 type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsAppliance struct {
 	AvailableVersions            *[]ResponseNetworksUpdateNetworkFirmwareUpgradesProductsApplianceAvailableVersions `json:"availableVersions,omitempty"`            // Firmware versions available for upgrade
@@ -1011,6 +1216,57 @@ type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsCellularGatewayNextUpg
 	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
 	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
 }
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnect struct {
+	AvailableVersions            *[]ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectAvailableVersions `json:"availableVersions,omitempty"`            // Firmware versions available for upgrade
+	CurrentVersion               *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectCurrentVersion      `json:"currentVersion,omitempty"`               // Details of the current version on the device
+	LastUpgrade                  *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectLastUpgrade         `json:"lastUpgrade,omitempty"`                  // Details of the last firmware upgrade on the device
+	NextUpgrade                  *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectNextUpgrade         `json:"nextUpgrade,omitempty"`                  // Details of the next firmware upgrade on the device
+	ParticipateInNextBetaRelease *bool                                                                                  `json:"participateInNextBetaRelease,omitempty"` // Whether or not the network wants beta firmware
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectAvailableVersions struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectCurrentVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectLastUpgrade struct {
+	FromVersion *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectLastUpgradeFromVersion `json:"fromVersion,omitempty"` // Details of the version the device upgraded from
+	Time        string                                                                                    `json:"time,omitempty"`        // Timestamp of the last successful firmware upgrade
+	ToVersion   *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectLastUpgradeToVersion   `json:"toVersion,omitempty"`   // Details of the version the device upgraded to
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectLastUpgradeFromVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectLastUpgradeToVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectNextUpgrade struct {
+	Time      string                                                                                  `json:"time,omitempty"`      // Timestamp of the next scheduled firmware upgrade
+	ToVersion *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectNextUpgradeToVersion `json:"toVersion,omitempty"` // Details of the version the device will upgrade to if it exists
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectNextUpgradeToVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
 type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSensor struct {
 	AvailableVersions            *[]ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSensorAvailableVersions `json:"availableVersions,omitempty"`            // Firmware versions available for upgrade
 	CurrentVersion               *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsSensorCurrentVersion      `json:"currentVersion,omitempty"`               // Details of the current version on the device
@@ -1158,6 +1414,57 @@ type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessNextUpgrade st
 	ToVersion *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessNextUpgradeToVersion `json:"toVersion,omitempty"` // Details of the version the device will upgrade to if it exists
 }
 type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessNextUpgradeToVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessController struct {
+	AvailableVersions            *[]ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerAvailableVersions `json:"availableVersions,omitempty"`            // Firmware versions available for upgrade
+	CurrentVersion               *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerCurrentVersion      `json:"currentVersion,omitempty"`               // Details of the current version on the device
+	LastUpgrade                  *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerLastUpgrade         `json:"lastUpgrade,omitempty"`                  // Details of the last firmware upgrade on the device
+	NextUpgrade                  *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerNextUpgrade         `json:"nextUpgrade,omitempty"`                  // Details of the next firmware upgrade on the device
+	ParticipateInNextBetaRelease *bool                                                                                       `json:"participateInNextBetaRelease,omitempty"` // Whether or not the network wants beta firmware
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerAvailableVersions struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerCurrentVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerLastUpgrade struct {
+	FromVersion *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerLastUpgradeFromVersion `json:"fromVersion,omitempty"` // Details of the version the device upgraded from
+	Time        string                                                                                         `json:"time,omitempty"`        // Timestamp of the last successful firmware upgrade
+	ToVersion   *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerLastUpgradeToVersion   `json:"toVersion,omitempty"`   // Details of the version the device upgraded to
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerLastUpgradeFromVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerLastUpgradeToVersion struct {
+	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
+	ID          string `json:"id,omitempty"`          // Firmware version identifier
+	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
+	ReleaseType string `json:"releaseType,omitempty"` // Release type of the firmware version
+	ShortName   string `json:"shortName,omitempty"`   // Firmware version short name
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerNextUpgrade struct {
+	Time      string                                                                                       `json:"time,omitempty"`      // Timestamp of the next scheduled firmware upgrade
+	ToVersion *ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerNextUpgradeToVersion `json:"toVersion,omitempty"` // Details of the version the device will upgrade to if it exists
+}
+type ResponseNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerNextUpgradeToVersion struct {
 	Firmware    string `json:"firmware,omitempty"`    // Name of the firmware version
 	ID          string `json:"id,omitempty"`          // Firmware version identifier
 	ReleaseDate string `json:"releaseDate,omitempty"` // Release date of the firmware version
@@ -1587,6 +1894,50 @@ type ResponseNetworksCreateNetworkFloorPlanTopRightCorner struct {
 	Lat *float64 `json:"lat,omitempty"` // Latitude
 	Lng *float64 `json:"lng,omitempty"` // Longitude
 }
+type ResponseNetworksBatchNetworkFloorPlansAutoLocateJobs struct {
+	Jobs *[]ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobs `json:"jobs,omitempty"` // The newly created jobs
+}
+type ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobs struct {
+	Completed   *ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsCompleted `json:"completed,omitempty"`   // Auto locate job progress information
+	Errors      *[]ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsErrors  `json:"errors,omitempty"`      // List of errors that occurred during a failed run of auto locate
+	FloorPlanID string                                                             `json:"floorPlanId,omitempty"` // Floor plan ID
+	Gnss        *ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsGnss      `json:"gnss,omitempty"`        // GNSS (e.g. GPS) status and progress information
+	ID          string                                                             `json:"id,omitempty"`          // Auto locate job ID
+	NetworkID   string                                                             `json:"networkId,omitempty"`   // Network ID
+	Ranging     *ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsRanging   `json:"ranging,omitempty"`     // Ranging status and progress information
+	ScheduledAt string                                                             `json:"scheduledAt,omitempty"` // Scheduled start time for auto locate job
+	Status      string                                                             `json:"status,omitempty"`      // Auto locate job status. Possible values: 'scheduled', 'in progress', 'canceling', 'error', 'finished', 'published', 'canceled'
+}
+type ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsCompleted struct {
+	Percentage *int `json:"percentage,omitempty"` // Approximate auto locate job completion percentage
+}
+type ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsErrors struct {
+	Source string `json:"source,omitempty"` // The step of the auto locate process when the error occurred. Possible values: 'gnss', 'ranging', 'positioning'
+	Type   string `json:"type,omitempty"`   // The type of error that occurred. Possible values: 'failure', 'no neighbors', 'missing anchors', 'wrong anchors', 'calculation failure', 'scheduling failure'
+}
+type ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsGnss struct {
+	Completed *ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsGnssCompleted `json:"completed,omitempty"` // Progress information for the GNSS acquisition process
+	Status    string                                                                 `json:"status,omitempty"`    // GNSS status. Possible values: 'scheduled', 'in progress', 'error', 'finished', 'not applicable', 'canceled'
+}
+type ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsGnssCompleted struct {
+	Percentage *int `json:"percentage,omitempty"` // Completion percentage of the GNSS acquisition process
+}
+type ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsRanging struct {
+	Completed *ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsRangingCompleted `json:"completed,omitempty"` // Progress information for the ranging process
+	Status    string                                                                    `json:"status,omitempty"`    // Ranging status. Possible values: 'scheduled', 'in progress', 'error', 'finished', 'no neighbors'
+}
+type ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsRangingCompleted struct {
+	Percentage *int `json:"percentage,omitempty"` // Completion percentage of the ranging process
+}
+type ResponseNetworksPublishNetworkFloorPlansAutoLocateJob struct {
+	Success *bool `json:"success,omitempty"` // Status of attempt to publish auto locate job
+}
+type ResponseNetworksRecalculateNetworkFloorPlansAutoLocateJob struct {
+	Success *bool `json:"success,omitempty"` // Status of attempt to trigger auto locate recalculation
+}
+type ResponseNetworksBatchNetworkFloorPlansDevicesUpdate struct {
+	Success *bool `json:"success,omitempty"` // Status of attempt to update device floorplan assignments
+}
 type ResponseNetworksDeleteNetworkFloorPlan struct {
 	BottomLeftCorner  *ResponseNetworksDeleteNetworkFloorPlanBottomLeftCorner  `json:"bottomLeftCorner,omitempty"`  // The longitude and latitude of the bottom left corner of your floor plan.
 	BottomRightCorner *ResponseNetworksDeleteNetworkFloorPlanBottomRightCorner `json:"bottomRightCorner,omitempty"` // The longitude and latitude of the bottom right corner of your floor plan.
@@ -1768,7 +2119,7 @@ type ResponseItemNetworksGetNetworkGroupPolicies struct {
 	Scheduling                *ResponseItemNetworksGetNetworkGroupPoliciesScheduling                `json:"scheduling,omitempty"`                //     The schedule for the group policy. Schedules are applied to days of the week.
 	SplashAuthSettings        string                                                                `json:"splashAuthSettings,omitempty"`        // Whether clients bound to your policy will bypass splash authorization or behave according to the network's rules. Can be one of 'network default' or 'bypass'. Only available if your network has a wireless configuration.
 	VLANTagging               *ResponseItemNetworksGetNetworkGroupPoliciesVLANTagging               `json:"vlanTagging,omitempty"`               // The VLAN tagging settings for your group policy. Only available if your network has a wireless configuration.
-	Name                      string                                                                `json:"name,omitempty"`                      // The VLAN tagging settings for your group policy. Only available if your network has a wireless configuration.
+	Name                      string                                                                `json:"name,omitempty"`                      // The name of the group policy
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesBandwidth struct {
 	BandwidthLimits *ResponseItemNetworksGetNetworkGroupPoliciesBandwidthBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth limits object, specifying upload and download speed for clients bound to the group policy. These are only enforced if 'settings' is set to 'custom'.
@@ -1784,7 +2135,7 @@ type ResponseItemNetworksGetNetworkGroupPoliciesBonjourForwarding struct {
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesBonjourForwardingRules struct {
 	Description string   `json:"description,omitempty"` // A description for your Bonjour forwarding rule. Optional.
-	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AirPlay', 'AFP', 'BitTorrent', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners' and 'SSH'
+	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AFP', 'AirPlay', 'Apple screen share', 'BitTorrent', 'Chromecast', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners', 'Spotify' and 'SSH'
 	VLANID      string   `json:"vlanId,omitempty"`      // The ID of the service VLAN. Required.
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesContentFiltering struct {
@@ -1914,7 +2265,7 @@ type ResponseNetworksCreateNetworkGroupPolicyBonjourForwarding struct {
 }
 type ResponseNetworksCreateNetworkGroupPolicyBonjourForwardingRules struct {
 	Description string   `json:"description,omitempty"` // A description for your Bonjour forwarding rule. Optional.
-	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AirPlay', 'AFP', 'BitTorrent', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners' and 'SSH'
+	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AFP', 'AirPlay', 'Apple screen share', 'BitTorrent', 'Chromecast', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners', 'Spotify' and 'SSH'
 	VLANID      string   `json:"vlanId,omitempty"`      // The ID of the service VLAN. Required.
 }
 type ResponseNetworksCreateNetworkGroupPolicyContentFiltering struct {
@@ -2026,7 +2377,6 @@ type ResponseNetworksGetNetworkGroupPolicy struct {
 	ContentFiltering          *ResponseNetworksGetNetworkGroupPolicyContentFiltering          `json:"contentFiltering,omitempty"`          // The content filtering settings for your group policy
 	FirewallAndTrafficShaping *ResponseNetworksGetNetworkGroupPolicyFirewallAndTrafficShaping `json:"firewallAndTrafficShaping,omitempty"` //     The firewall and traffic shaping rules and settings for your policy.
 	GroupPolicyID             string                                                          `json:"groupPolicyId,omitempty"`             // The ID of the group policy
-	Name                      string                                                          `json:"name,omitempty"`                      // The ID of the group policy
 	Scheduling                *ResponseNetworksGetNetworkGroupPolicyScheduling                `json:"scheduling,omitempty"`                //     The schedule for the group policy. Schedules are applied to days of the week.
 	SplashAuthSettings        string                                                          `json:"splashAuthSettings,omitempty"`        // Whether clients bound to your policy will bypass splash authorization or behave according to the network's rules. Can be one of 'network default' or 'bypass'. Only available if your network has a wireless configuration.
 	VLANTagging               *ResponseNetworksGetNetworkGroupPolicyVLANTagging               `json:"vlanTagging,omitempty"`               // The VLAN tagging settings for your group policy. Only available if your network has a wireless configuration.
@@ -2045,7 +2395,7 @@ type ResponseNetworksGetNetworkGroupPolicyBonjourForwarding struct {
 }
 type ResponseNetworksGetNetworkGroupPolicyBonjourForwardingRules struct {
 	Description string   `json:"description,omitempty"` // A description for your Bonjour forwarding rule. Optional.
-	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AirPlay', 'AFP', 'BitTorrent', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners' and 'SSH'
+	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AFP', 'AirPlay', 'Apple screen share', 'BitTorrent', 'Chromecast', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners', 'Spotify' and 'SSH'
 	VLANID      string   `json:"vlanId,omitempty"`      // The ID of the service VLAN. Required.
 }
 type ResponseNetworksGetNetworkGroupPolicyContentFiltering struct {
@@ -2175,7 +2525,7 @@ type ResponseNetworksUpdateNetworkGroupPolicyBonjourForwarding struct {
 }
 type ResponseNetworksUpdateNetworkGroupPolicyBonjourForwardingRules struct {
 	Description string   `json:"description,omitempty"` // A description for your Bonjour forwarding rule. Optional.
-	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AirPlay', 'AFP', 'BitTorrent', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners' and 'SSH'
+	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AFP', 'AirPlay', 'Apple screen share', 'BitTorrent', 'Chromecast', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners', 'Spotify' and 'SSH'
 	VLANID      string   `json:"vlanId,omitempty"`      // The ID of the service VLAN. Required.
 }
 type ResponseNetworksUpdateNetworkGroupPolicyContentFiltering struct {
@@ -2727,15 +3077,15 @@ type ResponseNetworksGetNetworkTopologyLinkLayerNodesDiscoveredLldp struct {
 }
 type ResponseNetworksGetNetworkTraffic []ResponseItemNetworksGetNetworkTraffic // Array of ResponseNetworksGetNetworkTraffic
 type ResponseItemNetworksGetNetworkTraffic struct {
-	ActiveTime  *int     `json:"activeTime,omitempty"`  //
-	Application string   `json:"application,omitempty"` //
-	Destination string   `json:"destination,omitempty"` //
-	Flows       *int     `json:"flows,omitempty"`       //
-	NumClients  *int     `json:"numClients,omitempty"`  //
-	Port        *int     `json:"port,omitempty"`        //
-	Protocol    string   `json:"protocol,omitempty"`    //
-	Recv        *float64 `json:"recv,omitempty"`        //
-	Sent        *float64 `json:"sent,omitempty"`        //
+	ActiveTime  *int     `json:"activeTime,omitempty"`  // Active time with traffic
+	Application string   `json:"application,omitempty"` // Traffic application
+	Destination string   `json:"destination,omitempty"` // Traffic destination
+	Flows       *int     `json:"flows,omitempty"`       // Number of traffic flows
+	NumClients  *int     `json:"numClients,omitempty"`  // Number of clients with traffic
+	Port        *int     `json:"port,omitempty"`        // Traffic port
+	Protocol    string   `json:"protocol,omitempty"`    // Traffic protocol
+	Recv        *float64 `json:"recv,omitempty"`        // Traffic received in kb
+	Sent        *float64 `json:"sent,omitempty"`        // Traffic sent in kb
 }
 type ResponseNetworksGetNetworkTrafficAnalysis struct {
 	CustomPieChartItems *[]ResponseNetworksGetNetworkTrafficAnalysisCustomPieChartItems `json:"customPieChartItems,omitempty"` // The list of items that make up the custom pie chart for traffic reporting.
@@ -3019,21 +3369,7 @@ type ResponseNetworksGetNetworkWebhooksWebhookTest struct {
 	Status string `json:"status,omitempty"` // Current status of the webhook delivery
 	URL    string `json:"url,omitempty"`    // URL where the webhook was delivered
 }
-type ResponseNetworksCombineOrganizationNetworks struct {
-	ResultingNetwork *ResponseNetworksCombineOrganizationNetworksResultingNetwork `json:"resultingNetwork,omitempty"` // Network after the combination
-}
-type ResponseNetworksCombineOrganizationNetworksResultingNetwork struct {
-	EnrollmentString        string   `json:"enrollmentString,omitempty"`        // Enrollment string for the network
-	ID                      string   `json:"id,omitempty"`                      // Network ID
-	IsBoundToConfigTemplate *bool    `json:"isBoundToConfigTemplate,omitempty"` // If the network is bound to a config template
-	Name                    string   `json:"name,omitempty"`                    // Network name
-	Notes                   string   `json:"notes,omitempty"`                   // Notes for the network
-	OrganizationID          string   `json:"organizationId,omitempty"`          // Organization ID
-	ProductTypes            []string `json:"productTypes,omitempty"`            // List of the product types that the network supports
-	Tags                    []string `json:"tags,omitempty"`                    // Network tags
-	TimeZone                string   `json:"timeZone,omitempty"`                // Timezone of the network
-	URL                     string   `json:"url,omitempty"`                     // URL to the network Dashboard UI
-}
+
 type RequestNetworksUpdateNetwork struct {
 	EnrollmentString string   `json:"enrollmentString,omitempty"` // A unique identifier which can be used for device enrollment or easy access through the Meraki SM Registration page or the Self Service Portal. Please note that changing this field may cause existing bookmarks to break.
 	Name             string   `json:"name,omitempty"`             // The name of the network
@@ -3056,12 +3392,31 @@ type RequestNetworksUpdateNetworkAlertsSettingsAlertsAlertDestinations struct {
 	AllAdmins     *bool    `json:"allAdmins,omitempty"`     // If true, then all network admins will receive emails for this alert
 	Emails        []string `json:"emails,omitempty"`        // A list of emails that will receive information about the alert
 	HTTPServerIDs []string `json:"httpServerIds,omitempty"` // A list of HTTP server IDs to send a Webhook to for this alert
+	SmsNumbers    []string `json:"smsNumbers,omitempty"`    // A list of phone numbers that will receive text messages about the alert. Only available for sensors status alerts.
 	SNMP          *bool    `json:"snmp,omitempty"`          // If true, then an SNMP trap will be sent for this alert if there is an SNMP trap server configured for this network
 }
 type RequestNetworksUpdateNetworkAlertsSettingsAlertsFilters struct {
-	Timeout   *int `json:"timeout,omitempty"`
-	Threshold *int `json:"threshold,omitempty"`
-	Period    *int `json:"period,omitempty"`
+	Conditions     *[]RequestNetworksUpdateNetworkAlertsSettingsAlertsFiltersConditions `json:"conditions,omitempty"`     // Conditions
+	FailureType    string                                                               `json:"failureType,omitempty"`    // Failure Type
+	LookbackWindow *int                                                                 `json:"lookbackWindow,omitempty"` // Loopback Window (in sec)
+	MinDuration    *int                                                                 `json:"minDuration,omitempty"`    // Min Duration
+	Name           string                                                               `json:"name,omitempty"`           // Name
+	Period         *int                                                                 `json:"period,omitempty"`         // Period
+	Priority       string                                                               `json:"priority,omitempty"`       // Priority
+	Regex          string                                                               `json:"regex,omitempty"`          // Regex
+	Selector       string                                                               `json:"selector,omitempty"`       // Selector
+	Serials        []string                                                             `json:"serials,omitempty"`        // Serials
+	SSIDNum        *int                                                                 `json:"ssidNum,omitempty"`        // SSID Number
+	Tag            string                                                               `json:"tag,omitempty"`            // Tag
+	Threshold      *int                                                                 `json:"threshold,omitempty"`      // Threshold
+	Timeout        *int                                                                 `json:"timeout,omitempty"`        // Timeout
+}
+type RequestNetworksUpdateNetworkAlertsSettingsAlertsFiltersConditions struct {
+	Direction string   `json:"direction,omitempty"` // Direction
+	Duration  *int     `json:"duration,omitempty"`  // Duration
+	Threshold *float64 `json:"threshold,omitempty"` // Threshold
+	Type      string   `json:"type,omitempty"`      // Type of condition
+	Unit      string   `json:"unit,omitempty"`      // Unit
 }
 type RequestNetworksUpdateNetworkAlertsSettingsDefaultDestinations struct {
 	AllAdmins     *bool    `json:"allAdmins,omitempty"`     // If true, then all network admins will receive emails.
@@ -3240,7 +3595,7 @@ type RequestNetworksUpdateNetworkClientSplashAuthorizationStatusSSIDs9 struct {
 	IsAuthorized *bool `json:"isAuthorized,omitempty"` // New authorization status for the SSID (true, false).
 }
 type RequestNetworksClaimNetworkDevices struct {
-	Serials []string `json:"serials"` // A list of serials of devices to claim
+	Serials []string `json:"serials,omitempty"` // A list of serials of devices to claim
 }
 type RequestNetworksVmxNetworkDevicesClaim struct {
 	Size string `json:"size,omitempty"` // The size of the vMX you claim. It can be one of: small, medium, large, xlarge, 100
@@ -3254,13 +3609,15 @@ type RequestNetworksUpdateNetworkFirmwareUpgrades struct {
 	UpgradeWindow *RequestNetworksUpdateNetworkFirmwareUpgradesUpgradeWindow `json:"upgradeWindow,omitempty"` // Upgrade window for devices in network
 }
 type RequestNetworksUpdateNetworkFirmwareUpgradesProducts struct {
-	Appliance       *RequestNetworksUpdateNetworkFirmwareUpgradesProductsAppliance       `json:"appliance,omitempty"`       // The network device to be updated
-	Camera          *RequestNetworksUpdateNetworkFirmwareUpgradesProductsCamera          `json:"camera,omitempty"`          // The network device to be updated
-	CellularGateway *RequestNetworksUpdateNetworkFirmwareUpgradesProductsCellularGateway `json:"cellularGateway,omitempty"` // The network device to be updated
-	Sensor          *RequestNetworksUpdateNetworkFirmwareUpgradesProductsSensor          `json:"sensor,omitempty"`          // The network device to be updated
-	Switch          *RequestNetworksUpdateNetworkFirmwareUpgradesProductsSwitch          `json:"switch,omitempty"`          // The network device to be updated
-	SwitchCatalyst  *RequestNetworksUpdateNetworkFirmwareUpgradesProductsSwitchCatalyst  `json:"switchCatalyst,omitempty"`  // The network device to be updated
-	Wireless        *RequestNetworksUpdateNetworkFirmwareUpgradesProductsWireless        `json:"wireless,omitempty"`        // The network device to be updated
+	Appliance          *RequestNetworksUpdateNetworkFirmwareUpgradesProductsAppliance          `json:"appliance,omitempty"`          // The network device to be updated
+	Camera             *RequestNetworksUpdateNetworkFirmwareUpgradesProductsCamera             `json:"camera,omitempty"`             // The network device to be updated
+	CellularGateway    *RequestNetworksUpdateNetworkFirmwareUpgradesProductsCellularGateway    `json:"cellularGateway,omitempty"`    // The network device to be updated
+	SecureConnect      *RequestNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnect      `json:"secureConnect,omitempty"`      // The network device to be updated
+	Sensor             *RequestNetworksUpdateNetworkFirmwareUpgradesProductsSensor             `json:"sensor,omitempty"`             // The network device to be updated
+	Switch             *RequestNetworksUpdateNetworkFirmwareUpgradesProductsSwitch             `json:"switch,omitempty"`             // The network device to be updated
+	SwitchCatalyst     *RequestNetworksUpdateNetworkFirmwareUpgradesProductsSwitchCatalyst     `json:"switchCatalyst,omitempty"`     // The network device to be updated
+	Wireless           *RequestNetworksUpdateNetworkFirmwareUpgradesProductsWireless           `json:"wireless,omitempty"`           // The network device to be updated
+	WirelessController *RequestNetworksUpdateNetworkFirmwareUpgradesProductsWirelessController `json:"wirelessController,omitempty"` // The network device to be updated
 }
 type RequestNetworksUpdateNetworkFirmwareUpgradesProductsAppliance struct {
 	NextUpgrade                  *RequestNetworksUpdateNetworkFirmwareUpgradesProductsApplianceNextUpgrade `json:"nextUpgrade,omitempty"`                  // The pending firmware upgrade if it exists
@@ -3293,6 +3650,17 @@ type RequestNetworksUpdateNetworkFirmwareUpgradesProductsCellularGatewayNextUpgr
 	ToVersion *RequestNetworksUpdateNetworkFirmwareUpgradesProductsCellularGatewayNextUpgradeToVersion `json:"toVersion,omitempty"` // The version to be updated to
 }
 type RequestNetworksUpdateNetworkFirmwareUpgradesProductsCellularGatewayNextUpgradeToVersion struct {
+	ID string `json:"id,omitempty"` // The version ID
+}
+type RequestNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnect struct {
+	NextUpgrade                  *RequestNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectNextUpgrade `json:"nextUpgrade,omitempty"`                  // The pending firmware upgrade if it exists
+	ParticipateInNextBetaRelease *bool                                                                         `json:"participateInNextBetaRelease,omitempty"` // Whether or not the network wants beta firmware
+}
+type RequestNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectNextUpgrade struct {
+	Time      string                                                                                 `json:"time,omitempty"`      // The time of the last successful upgrade
+	ToVersion *RequestNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectNextUpgradeToVersion `json:"toVersion,omitempty"` // The version to be updated to
+}
+type RequestNetworksUpdateNetworkFirmwareUpgradesProductsSecureConnectNextUpgradeToVersion struct {
 	ID string `json:"id,omitempty"` // The version ID
 }
 type RequestNetworksUpdateNetworkFirmwareUpgradesProductsSensor struct {
@@ -3337,6 +3705,17 @@ type RequestNetworksUpdateNetworkFirmwareUpgradesProductsWirelessNextUpgrade str
 	ToVersion *RequestNetworksUpdateNetworkFirmwareUpgradesProductsWirelessNextUpgradeToVersion `json:"toVersion,omitempty"` // The version to be updated to
 }
 type RequestNetworksUpdateNetworkFirmwareUpgradesProductsWirelessNextUpgradeToVersion struct {
+	ID string `json:"id,omitempty"` // The version ID
+}
+type RequestNetworksUpdateNetworkFirmwareUpgradesProductsWirelessController struct {
+	NextUpgrade                  *RequestNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerNextUpgrade `json:"nextUpgrade,omitempty"`                  // The pending firmware upgrade if it exists
+	ParticipateInNextBetaRelease *bool                                                                              `json:"participateInNextBetaRelease,omitempty"` // Whether or not the network wants beta firmware
+}
+type RequestNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerNextUpgrade struct {
+	Time      string                                                                                      `json:"time,omitempty"`      // The time of the last successful upgrade
+	ToVersion *RequestNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerNextUpgradeToVersion `json:"toVersion,omitempty"` // The version to be updated to
+}
+type RequestNetworksUpdateNetworkFirmwareUpgradesProductsWirelessControllerNextUpgradeToVersion struct {
 	ID string `json:"id,omitempty"` // The version ID
 }
 type RequestNetworksUpdateNetworkFirmwareUpgradesUpgradeWindow struct {
@@ -3497,6 +3876,48 @@ type RequestNetworksCreateNetworkFloorPlanTopRightCorner struct {
 	Lat *float64 `json:"lat,omitempty"` // Latitude
 	Lng *float64 `json:"lng,omitempty"` // Longitude
 }
+type RequestNetworksBatchNetworkFloorPlansAutoLocateJobs struct {
+	Jobs *[]RequestNetworksBatchNetworkFloorPlansAutoLocateJobsJobs `json:"jobs,omitempty"` // The list of auto locate jobs to be scheduled. Up to 100 jobs can be provided in a request.
+}
+type RequestNetworksBatchNetworkFloorPlansAutoLocateJobsJobs struct {
+	FloorPlanID string   `json:"floorPlanId,omitempty"` // The ID of the floor plan to run auto locate for
+	Refresh     []string `json:"refresh,omitempty"`     // The types of location data that should be refreshed for this job. The list must either contain both 'gnss' and 'ranging' or be empty, as we currently only support refreshing both 'gnss' and 'ranging', or neither.
+	ScheduledAt string   `json:"scheduledAt,omitempty"` // Timestamp in ISO8601 format which indicates when the auto locate job should be run. If omitted, the auto locate job will start immediately.
+}
+type RequestNetworksPublishNetworkFloorPlansAutoLocateJob struct {
+	Devices *[]RequestNetworksPublishNetworkFloorPlansAutoLocateJobDevices `json:"devices,omitempty"` // The list of devices to publish positions for
+}
+type RequestNetworksPublishNetworkFloorPlansAutoLocateJobDevices struct {
+	AutoLocate *RequestNetworksPublishNetworkFloorPlansAutoLocateJobDevicesAutoLocate `json:"autoLocate,omitempty"` // The auto locate position for this device
+	Lat        *float64                                                               `json:"lat,omitempty"`        // Latitude
+	Lng        *float64                                                               `json:"lng,omitempty"`        // Longitude
+	Serial     string                                                                 `json:"serial,omitempty"`     // Serial for device to publish position for
+}
+type RequestNetworksPublishNetworkFloorPlansAutoLocateJobDevicesAutoLocate struct {
+	IsAnchor *bool `json:"isAnchor,omitempty"` // Whether or not this device's location should be saved as a user-defined anchor
+}
+type RequestNetworksRecalculateNetworkFloorPlansAutoLocateJob struct {
+	Devices *[]RequestNetworksRecalculateNetworkFloorPlansAutoLocateJobDevices `json:"devices,omitempty"` // The list of devices to update anchor positions for
+}
+type RequestNetworksRecalculateNetworkFloorPlansAutoLocateJobDevices struct {
+	AutoLocate *RequestNetworksRecalculateNetworkFloorPlansAutoLocateJobDevicesAutoLocate `json:"autoLocate,omitempty"` // The auto locate position for this device
+	Serial     string                                                                     `json:"serial,omitempty"`     // Serial for device to update
+}
+type RequestNetworksRecalculateNetworkFloorPlansAutoLocateJobDevicesAutoLocate struct {
+	IsAnchor *bool    `json:"isAnchor,omitempty"` // Whether or not this location should be saved as a user-defined anchor
+	Lat      *float64 `json:"lat,omitempty"`      // Latitude
+	Lng      *float64 `json:"lng,omitempty"`      // Longitude
+}
+type RequestNetworksBatchNetworkFloorPlansDevicesUpdate struct {
+	Assignments *[]RequestNetworksBatchNetworkFloorPlansDevicesUpdateAssignments `json:"assignments,omitempty"` // List of floorplan assignments to update. Up to 100 floor plan assignments can be provided in a request.
+}
+type RequestNetworksBatchNetworkFloorPlansDevicesUpdateAssignments struct {
+	FloorPlan *RequestNetworksBatchNetworkFloorPlansDevicesUpdateAssignmentsFloorPlan `json:"floorPlan,omitempty"` // Floorplan to be assigned or unassigned
+	Serial    string                                                                  `json:"serial,omitempty"`    // Serial of the device to change the floor plan assignment for
+}
+type RequestNetworksBatchNetworkFloorPlansDevicesUpdateAssignmentsFloorPlan struct {
+	ID string `json:"id,omitempty"` // The ID of the floor plan to assign the device to, or null to unassign the device from its floor plan
+}
 type RequestNetworksUpdateNetworkFloorPlan struct {
 	BottomLeftCorner  *RequestNetworksUpdateNetworkFloorPlanBottomLeftCorner  `json:"bottomLeftCorner,omitempty"`  // The longitude and latitude of the bottom left corner of your floor plan.
 	BottomRightCorner *RequestNetworksUpdateNetworkFloorPlanBottomRightCorner `json:"bottomRightCorner,omitempty"` // The longitude and latitude of the bottom right corner of your floor plan.
@@ -3550,7 +3971,7 @@ type RequestNetworksCreateNetworkGroupPolicyBonjourForwarding struct {
 }
 type RequestNetworksCreateNetworkGroupPolicyBonjourForwardingRules struct {
 	Description string   `json:"description,omitempty"` // A description for your Bonjour forwarding rule. Optional.
-	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AirPlay', 'AFP', 'BitTorrent', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners' and 'SSH'
+	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AFP', 'AirPlay', 'Apple screen share', 'BitTorrent', 'Chromecast', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners', 'Spotify' and 'SSH'
 	VLANID      string   `json:"vlanId,omitempty"`      // The ID of the service VLAN. Required.
 }
 type RequestNetworksCreateNetworkGroupPolicyContentFiltering struct {
@@ -3680,7 +4101,7 @@ type RequestNetworksUpdateNetworkGroupPolicyBonjourForwarding struct {
 }
 type RequestNetworksUpdateNetworkGroupPolicyBonjourForwardingRules struct {
 	Description string   `json:"description,omitempty"` // A description for your Bonjour forwarding rule. Optional.
-	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AirPlay', 'AFP', 'BitTorrent', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners' and 'SSH'
+	Services    []string `json:"services,omitempty"`    // A list of Bonjour services. At least one service must be specified. Available services are 'All Services', 'AFP', 'AirPlay', 'Apple screen share', 'BitTorrent', 'Chromecast', 'FTP', 'iChat', 'iTunes', 'Printers', 'Samba', 'Scanners', 'Spotify' and 'SSH'
 	VLANID      string   `json:"vlanId,omitempty"`      // The ID of the service VLAN. Required.
 }
 type RequestNetworksUpdateNetworkGroupPolicyContentFiltering struct {
@@ -3975,9 +4396,9 @@ type RequestNetworksUpdateNetworkWebhooksHTTPServerPayloadTemplate struct {
 }
 type RequestNetworksCreateNetworkWebhooksPayloadTemplate struct {
 	Body        string                                                        `json:"body,omitempty"`        // The liquid template used for the body of the webhook message. Either `body` or `bodyFile` must be specified.
-	BodyFile    string                                                        `json:"bodyFile,omitempty"`    // A file containing liquid template used for the body of the webhook message. Either `body` or `bodyFile` must be specified.
+	BodyFile    string                                                        `json:"bodyFile,omitempty"`    // A Base64 encoded file containing liquid template used for the body of the webhook message. Either `body` or `bodyFile` must be specified.
 	Headers     *[]RequestNetworksCreateNetworkWebhooksPayloadTemplateHeaders `json:"headers,omitempty"`     // The liquid template used with the webhook headers.
-	HeadersFile string                                                        `json:"headersFile,omitempty"` // A file containing the liquid template used with the webhook headers.
+	HeadersFile string                                                        `json:"headersFile,omitempty"` // A Base64 encoded file containing the liquid template used with the webhook headers.
 	Name        string                                                        `json:"name,omitempty"`        // The name of the new template
 }
 type RequestNetworksCreateNetworkWebhooksPayloadTemplateHeaders struct {
@@ -4001,11 +4422,6 @@ type RequestNetworksCreateNetworkWebhooksWebhookTest struct {
 	PayloadTemplateName string `json:"payloadTemplateName,omitempty"` // The name of the payload template.
 	SharedSecret        string `json:"sharedSecret,omitempty"`        // The shared secret the test webhook will send. Optional. Defaults to an empty string.
 	URL                 string `json:"url,omitempty"`                 // The URL where the test webhook will be sent
-}
-type RequestNetworksCombineOrganizationNetworks struct {
-	EnrollmentString string   `json:"enrollmentString,omitempty"` // A unique identifier which can be used for device enrollment or easy access through the Meraki SM Registration page or the Self Service Portal. Please note that changing this field may cause existing bookmarks to break. All networks that are part of this combined network will have their enrollment string appended by '-network_type'. If left empty, all exisitng enrollment strings will be deleted.
-	Name             string   `json:"name,omitempty"`             // The name of the combined network
-	NetworkIDs       []string `json:"networkIds,omitempty"`       // A list of the network IDs that will be combined. If an ID of a combined network is included in this list, the other networks in the list will be grouped into that network
 }
 
 //GetNetwork Return a network
@@ -4980,8 +5396,8 @@ func (s *NetworksService) GetNetworkHealthAlerts(networkID string) (*ResponseNet
 
 }
 
-//GetNetworkMerakiAuthUsers List the users configured under Meraki Authentication for a network (splash guest or RADIUS users for a wireless network, or client VPN users for a MX network)
-/* List the users configured under Meraki Authentication for a network (splash guest or RADIUS users for a wireless network, or client VPN users for a MX network)
+//GetNetworkMerakiAuthUsers List the authorized users configured under Meraki Authentication for a network (splash guest or RADIUS users for a wireless network, or client VPN users for a MX network)
+/* List the authorized users configured under Meraki Authentication for a network (splash guest or RADIUS users for a wireless network, or client VPN users for a MX network)
 
 @param networkID networkId path parameter. Network ID
 
@@ -6114,19 +6530,22 @@ func (s *NetworksService) ProvisionNetworkClients(networkID string, requestNetwo
 /* Claim devices into a network. (Note: for recently claimed devices, it may take a few minutes for API requests against that device to succeed). This operation can be used up to ten times within a single five minute window.
 
 @param networkID networkId path parameter. Network ID
+@param claimNetworkDevicesQueryParams Filtering parameter
 
 
 */
 
-func (s *NetworksService) ClaimNetworkDevices(networkID string, requestNetworksClaimNetworkDevices *RequestNetworksClaimNetworkDevices) (*ResponseNetworksClaimNetworkDevices, *resty.Response, error) {
+func (s *NetworksService) ClaimNetworkDevices(networkID string, requestNetworksClaimNetworkDevices *RequestNetworksClaimNetworkDevices, claimNetworkDevicesQueryParams *ClaimNetworkDevicesQueryParams) (*ResponseNetworksClaimNetworkDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/devices/claim"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
+	queryString, _ := query.Values(claimNetworkDevicesQueryParams)
+
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksClaimNetworkDevices).
+		SetQueryString(queryString.Encode()).SetBody(requestNetworksClaimNetworkDevices).
 		SetResult(&ResponseNetworksClaimNetworkDevices{}).
 		SetError(&Error).
 		Post(path)
@@ -6418,6 +6837,184 @@ func (s *NetworksService) CreateNetworkFloorPlan(networkID string, requestNetwor
 	}
 
 	result := response.Result().(*ResponseNetworksCreateNetworkFloorPlan)
+	return result, response, err
+
+}
+
+//BatchNetworkFloorPlansAutoLocateJobs Schedule auto locate jobs for one or more floor plans in a network
+/* Schedule auto locate jobs for one or more floor plans in a network
+
+@param networkID networkId path parameter. Network ID
+
+
+*/
+
+func (s *NetworksService) BatchNetworkFloorPlansAutoLocateJobs(networkID string, requestNetworksBatchNetworkFloorPlansAutoLocateJobs *RequestNetworksBatchNetworkFloorPlansAutoLocateJobs) (*ResponseNetworksBatchNetworkFloorPlansAutoLocateJobs, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/floorPlans/autoLocate/jobs/batch"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworksBatchNetworkFloorPlansAutoLocateJobs).
+		SetResult(&ResponseNetworksBatchNetworkFloorPlansAutoLocateJobs{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation BatchNetworkFloorPlansAutoLocateJobs")
+	}
+
+	result := response.Result().(*ResponseNetworksBatchNetworkFloorPlansAutoLocateJobs)
+	return result, response, err
+
+}
+
+//CancelNetworkFloorPlansAutoLocateJob Cancel a scheduled or running auto locate job
+/* Cancel a scheduled or running auto locate job
+
+@param networkID networkId path parameter. Network ID
+@param jobID jobId path parameter. Job ID
+
+
+*/
+
+func (s *NetworksService) CancelNetworkFloorPlansAutoLocateJob(networkID string, jobID string) (*resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/floorPlans/autoLocate/jobs/{jobId}/cancel"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+	path = strings.Replace(path, "{jobId}", fmt.Sprintf("%v", jobID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation CancelNetworkFloorPlansAutoLocateJob")
+	}
+
+	return response, err
+
+}
+
+//PublishNetworkFloorPlansAutoLocateJob Update the status of a finished auto locate job to be published, and update device locations
+/* Update the status of a finished auto locate job to be published, and update device locations
+
+@param networkID networkId path parameter. Network ID
+@param jobID jobId path parameter. Job ID
+
+
+*/
+
+func (s *NetworksService) PublishNetworkFloorPlansAutoLocateJob(networkID string, jobID string, requestNetworksPublishNetworkFloorPlansAutoLocateJob *RequestNetworksPublishNetworkFloorPlansAutoLocateJob) (*ResponseNetworksPublishNetworkFloorPlansAutoLocateJob, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/floorPlans/autoLocate/jobs/{jobId}/publish"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+	path = strings.Replace(path, "{jobId}", fmt.Sprintf("%v", jobID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworksPublishNetworkFloorPlansAutoLocateJob).
+		SetResult(&ResponseNetworksPublishNetworkFloorPlansAutoLocateJob{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation PublishNetworkFloorPlansAutoLocateJob")
+	}
+
+	result := response.Result().(*ResponseNetworksPublishNetworkFloorPlansAutoLocateJob)
+	return result, response, err
+
+}
+
+//RecalculateNetworkFloorPlansAutoLocateJob Trigger auto locate recalculation for a job, and optionally set anchors
+/* Trigger auto locate recalculation for a job, and optionally set anchors
+
+@param networkID networkId path parameter. Network ID
+@param jobID jobId path parameter. Job ID
+
+
+*/
+
+func (s *NetworksService) RecalculateNetworkFloorPlansAutoLocateJob(networkID string, jobID string, requestNetworksRecalculateNetworkFloorPlansAutoLocateJob *RequestNetworksRecalculateNetworkFloorPlansAutoLocateJob) (*ResponseNetworksRecalculateNetworkFloorPlansAutoLocateJob, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/floorPlans/autoLocate/jobs/{jobId}/recalculate"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+	path = strings.Replace(path, "{jobId}", fmt.Sprintf("%v", jobID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworksRecalculateNetworkFloorPlansAutoLocateJob).
+		SetResult(&ResponseNetworksRecalculateNetworkFloorPlansAutoLocateJob{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation RecalculateNetworkFloorPlansAutoLocateJob")
+	}
+
+	result := response.Result().(*ResponseNetworksRecalculateNetworkFloorPlansAutoLocateJob)
+	return result, response, err
+
+}
+
+//BatchNetworkFloorPlansDevicesUpdate Update floorplan assignments for a batch of devices
+/* Update floorplan assignments for a batch of devices
+
+@param networkID networkId path parameter. Network ID
+
+
+*/
+
+func (s *NetworksService) BatchNetworkFloorPlansDevicesUpdate(networkID string, requestNetworksBatchNetworkFloorPlansDevicesUpdate *RequestNetworksBatchNetworkFloorPlansDevicesUpdate) (*ResponseNetworksBatchNetworkFloorPlansDevicesUpdate, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/floorPlans/devices/batchUpdate"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworksBatchNetworkFloorPlansDevicesUpdate).
+		SetResult(&ResponseNetworksBatchNetworkFloorPlansDevicesUpdate{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation BatchNetworkFloorPlansDevicesUpdate")
+	}
+
+	result := response.Result().(*ResponseNetworksBatchNetworkFloorPlansDevicesUpdate)
 	return result, response, err
 
 }
@@ -6881,7 +7478,7 @@ func (s *NetworksService) UpdateNetwork(networkID string, requestNetworksUpdateN
 
 @param networkID networkId path parameter. Network ID
 */
-func (s *NetworksService) UpdateNetworkAlertsSettings(networkID string, requestNetworksUpdateNetworkAlertsSettings *RequestNetworksUpdateNetworkAlertsSettings) (*resty.Response, error) {
+func (s *NetworksService) UpdateNetworkAlertsSettings(networkID string, requestNetworksUpdateNetworkAlertsSettings *RequestNetworksUpdateNetworkAlertsSettings) (*ResponseNetworksUpdateNetworkAlertsSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/alerts/settings"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
@@ -6890,19 +7487,21 @@ func (s *NetworksService) UpdateNetworkAlertsSettings(networkID string, requestN
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestNetworksUpdateNetworkAlertsSettings).
+		SetResult(&ResponseNetworksUpdateNetworkAlertsSettings{}).
 		SetError(&Error).
 		Put(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkAlertsSettings")
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkAlertsSettings")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseNetworksUpdateNetworkAlertsSettings)
+	return result, response, err
 
 }
 
@@ -7607,19 +8206,23 @@ func (s *NetworksService) DeleteNetworkFloorPlan(networkID string, floorPlanID s
 
 @param networkID networkId path parameter. Network ID
 @param groupPolicyID groupPolicyId path parameter. Group policy ID
+@param deleteNetworkGroupPolicyQueryParams Filtering parameter
 
 
 */
-func (s *NetworksService) DeleteNetworkGroupPolicy(networkID string, groupPolicyID string) (*resty.Response, error) {
-	//networkID string,groupPolicyID string
+func (s *NetworksService) DeleteNetworkGroupPolicy(networkID string, groupPolicyID string, deleteNetworkGroupPolicyQueryParams *DeleteNetworkGroupPolicyQueryParams) (*resty.Response, error) {
+	//networkID string,groupPolicyID string,deleteNetworkGroupPolicyQueryParams *DeleteNetworkGroupPolicyQueryParams
 	path := "/api/v1/networks/{networkId}/groupPolicies/{groupPolicyId}"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{groupPolicyId}", fmt.Sprintf("%v", groupPolicyID), -1)
 
+	queryString, _ := query.Values(deleteNetworkGroupPolicyQueryParams)
+
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
 		SetError(&Error).
 		Delete(path)
 
