@@ -25,7 +25,7 @@ type result struct{}
 
 // testClient returns a new Client for testing.
 func testClient(t *testing.T) *Client {
-	err := SetOptions(TEST_MERAKI_BASE_URL, TEST_MERAKI_DASHBOARD_API_KEY, TEST_MERAKI_DEBUG, "Test Cloverhound")
+	err := SetOptions(TEST_MERAKI_BASE_URL, TEST_MERAKI_DASHBOARD_API_KEY, TEST_MERAKI_DEBUG, "Test Cloverhound TEST")
 	assert.Equal(t, err, nil)
 	client, err := NewClient()
 	assert.Equal(t, err, nil)
@@ -37,7 +37,7 @@ func testClient(t *testing.T) *Client {
 
 // TestSetOptions tests the Client.SetOptions method.
 func TestSetOptions(t *testing.T) {
-	err := SetOptions(TEST_MERAKI_BASE_URL, TEST_MERAKI_DASHBOARD_API_KEY, TEST_MERAKI_DEBUG, "Test Cloverhound")
+	err := SetOptions(TEST_MERAKI_BASE_URL, TEST_MERAKI_DASHBOARD_API_KEY, TEST_MERAKI_DEBUG, "Test Cloverhound TEST")
 	assert.Equal(t, err, nil)
 	assert.Equal(t, os.Getenv(MERAKI_BASE_URL), TEST_MERAKI_BASE_URL)
 	assert.Equal(t, os.Getenv(MERAKI_DASHBOARD_API_KEY), TEST_MERAKI_DASHBOARD_API_KEY)
@@ -46,7 +46,7 @@ func TestSetOptions(t *testing.T) {
 
 // TestSetOptions tests the Client.SetOptionsWithRequests method.
 func TestSetOptionsWithRequests(t *testing.T) {
-	err := SetOptionsWithRequests(TEST_MERAKI_BASE_URL, TEST_MERAKI_DASHBOARD_API_KEY, TEST_MERAKI_DEBUG, "Test Cloverhound", TEST_MERAKI_REQUESTS_PER_SECOND)
+	err := SetOptionsWithRequests(TEST_MERAKI_BASE_URL, TEST_MERAKI_DASHBOARD_API_KEY, TEST_MERAKI_DEBUG, "Test Cloverhound TEST", TEST_MERAKI_REQUESTS_PER_SECOND)
 	assert.Equal(t, err, nil)
 	assert.Equal(t, os.Getenv(MERAKI_BASE_URL), TEST_MERAKI_BASE_URL)
 	assert.Equal(t, os.Getenv(MERAKI_DASHBOARD_API_KEY), TEST_MERAKI_DASHBOARD_API_KEY)
@@ -68,7 +68,7 @@ func TestNewClientWithOptions(t *testing.T) {
 	url := "url"
 	key := "key"
 	debug := false
-	client, err := NewClientWithOptions(url, key, strconv.FormatBool(debug), "Test Cloverhound")
+	client, err := NewClientWithOptions(url, key, strconv.FormatBool(debug), "Test Cloverhound TEST")
 	assert.Equal(t, err, nil)
 	assert.NotEqual(t, client, nil)
 	assert.Equal(t, client.common.client.HostURL, url)
@@ -82,7 +82,7 @@ func TestNewClientWithOptionsAndRequests(t *testing.T) {
 	key := "key"
 	debug := false
 	requests := 6
-	client, err := NewClientWithOptionsAndRequests(url, key, strconv.FormatBool(debug), "Test Cloverhound", requests)
+	client, err := NewClientWithOptionsAndRequests(url, key, strconv.FormatBool(debug), "Test Cloverhound TEST", requests)
 	assert.Equal(t, err, nil)
 	assert.NotEqual(t, client, nil)
 	assert.Equal(t, client.common.client.HostURL, url)
