@@ -623,15 +623,72 @@ type ResponseItemWirelessGetNetworkWirelessDevicesLatencyStats struct {
 }
 type ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStats struct {
 	BackgroundTraffic *ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsBackgroundTraffic `json:"backgroundTraffic,omitempty"` //
-	BestEffortTraffic string                                                                                  `json:"bestEffortTraffic,omitempty"` //
-	VideoTraffic      string                                                                                  `json:"videoTraffic,omitempty"`      //
-	VoiceTraffic      string                                                                                  `json:"voiceTraffic,omitempty"`      //
+	BestEffortTraffic *ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsBestEffortTraffic `json:"bestEffortTraffic,omitempty"` //
+	VideoTraffic      *ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsVideoTraffic      `json:"videoTraffic,omitempty"`      //
+	VoiceTraffic      *ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsVoiceTraffic      `json:"voiceTraffic,omitempty"`      //
 }
 type ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsBackgroundTraffic struct {
 	Avg             *float64                                                                                               `json:"avg,omitempty"`             //
 	RawDistribution *ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsBackgroundTrafficRawDistribution `json:"rawDistribution,omitempty"` //
 }
 type ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsBackgroundTrafficRawDistribution struct {
+	Status0    *int `json:"0,omitempty"`    //
+	Status1    *int `json:"1,omitempty"`    //
+	Status1024 *int `json:"1024,omitempty"` //
+	Status128  *int `json:"128,omitempty"`  //
+	Status16   *int `json:"16,omitempty"`   //
+	Status2    *int `json:"2,omitempty"`    //
+	Status2048 *int `json:"2048,omitempty"` //
+	Status256  *int `json:"256,omitempty"`  //
+	Status32   *int `json:"32,omitempty"`   //
+	Status4    *int `json:"4,omitempty"`    //
+	Status512  *int `json:"512,omitempty"`  //
+	Status64   *int `json:"64,omitempty"`   //
+	Status8    *int `json:"8,omitempty"`    //
+}
+type ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsBestEffortTraffic struct {
+	Avg             *float64                                                                                               `json:"avg,omitempty"`             //
+	RawDistribution *ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsBestEffortTrafficRawDistribution `json:"rawDistribution,omitempty"` //
+}
+type ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsBestEffortTrafficRawDistribution struct {
+	Status0    *int `json:"0,omitempty"`    //
+	Status1    *int `json:"1,omitempty"`    //
+	Status1024 *int `json:"1024,omitempty"` //
+	Status128  *int `json:"128,omitempty"`  //
+	Status16   *int `json:"16,omitempty"`   //
+	Status2    *int `json:"2,omitempty"`    //
+	Status2048 *int `json:"2048,omitempty"` //
+	Status256  *int `json:"256,omitempty"`  //
+	Status32   *int `json:"32,omitempty"`   //
+	Status4    *int `json:"4,omitempty"`    //
+	Status512  *int `json:"512,omitempty"`  //
+	Status64   *int `json:"64,omitempty"`   //
+	Status8    *int `json:"8,omitempty"`    //
+}
+type ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsVideoTraffic struct {
+	Avg             *float64 `json:"avg,omitempty"` //
+	RawDistribution *ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsVideoTrafficRawDistribution
+}
+type ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsVideoTrafficRawDistribution struct {
+	Status0    *int `json:"0,omitempty"`    //
+	Status1    *int `json:"1,omitempty"`    //
+	Status1024 *int `json:"1024,omitempty"` //
+	Status128  *int `json:"128,omitempty"`  //
+	Status16   *int `json:"16,omitempty"`   //
+	Status2    *int `json:"2,omitempty"`    //
+	Status2048 *int `json:"2048,omitempty"` //
+	Status256  *int `json:"256,omitempty"`  //
+	Status32   *int `json:"32,omitempty"`   //
+	Status4    *int `json:"4,omitempty"`    //
+	Status512  *int `json:"512,omitempty"`  //
+	Status64   *int `json:"64,omitempty"`   //
+	Status8    *int `json:"8,omitempty"`    //
+}
+type ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsVoiceTraffic struct {
+	Avg             *float64                                                                                          `json:"avg,omitempty"`             //
+	RawDistribution *ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsVoiceTrafficRawDistribution `json:"rawDistribution,omitempty"` //
+}
+type ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsVoiceTrafficRawDistribution struct {
 	Status0    *int `json:"0,omitempty"`    //
 	Status1    *int `json:"1,omitempty"`    //
 	Status1024 *int `json:"1024,omitempty"` //
