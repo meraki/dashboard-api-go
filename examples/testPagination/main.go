@@ -20,9 +20,7 @@ func simpleCmp(a, b interface{}) bool {
 func main() {
 	var err error
 	fmt.Println("Authenticating")
-	client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
-		"12f2eb53588c75e28d89e108a05ea0c2487b08cf",
-		"true", "AplicationName VendorName")
+	client, err = meraki.NewClient()
 	if err != nil {
 		fmt.Println(err)
 		return
