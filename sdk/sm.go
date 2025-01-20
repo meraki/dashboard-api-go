@@ -207,6 +207,7 @@ type ResponseItemSmGetNetworkSmDeviceDeviceProfiles struct {
 	ProfileIDentifier string `json:"profileIdentifier,omitempty"` // The identifier of the profile.
 	Version           string `json:"version,omitempty"`           // The verison of the profile.
 }
+type ResponseSmInstallNetworkSmDeviceApps interface{}
 type ResponseSmGetNetworkSmDeviceNetworkAdapters []ResponseItemSmGetNetworkSmDeviceNetworkAdapters // Array of ResponseSmGetNetworkSmDeviceNetworkAdapters
 type ResponseItemSmGetNetworkSmDeviceNetworkAdapters struct {
 	DhcpServer string `json:"dhcpServer,omitempty"` // The IP address of the DCHP Server.
@@ -238,17 +239,15 @@ type ResponseItemSmGetNetworkSmDevicePerformanceHistoryDiskUsageC struct {
 	Space *int `json:"space,omitempty"` // The available disk space.
 	Used  *int `json:"used,omitempty"`  // The used disk space.
 }
-type ResponseSmGetNetworkSmDeviceRestrictions []ResponseItemSmGetNetworkSmDeviceRestrictions // Array of ResponseSmGetNetworkSmDeviceRestrictions
-type ResponseItemSmGetNetworkSmDeviceRestrictions struct {
-	Profile      string                                                    `json:"profile,omitempty"`      //
-	Restrictions *ResponseItemSmGetNetworkSmDeviceRestrictionsRestrictions `json:"restrictions,omitempty"` //
+type ResponseSmRefreshNetworkSmDeviceDetails interface{}
+type ResponseSmGetNetworkSmDeviceRestrictions struct {
+	Restrictions *[]ResponseSmGetNetworkSmDeviceRestrictionsRestrictions `json:"restrictions,omitempty"` // The list of restrictions for the device
 }
-type ResponseItemSmGetNetworkSmDeviceRestrictionsRestrictions struct {
-	MyRestriction *ResponseItemSmGetNetworkSmDeviceRestrictionsRestrictionsMyRestriction `json:"myRestriction,omitempty"` //
+type ResponseSmGetNetworkSmDeviceRestrictionsRestrictions struct {
+	Profile      string                                                            `json:"profile,omitempty"`      // The profile identifier.
+	Restrictions *ResponseSmGetNetworkSmDeviceRestrictionsRestrictionsRestrictions `json:"restrictions,omitempty"` // The restrictions for the profile.
 }
-type ResponseItemSmGetNetworkSmDeviceRestrictionsRestrictionsMyRestriction struct {
-	Value *bool `json:"value,omitempty"` //
-}
+type ResponseSmGetNetworkSmDeviceRestrictionsRestrictionsRestrictions interface{}
 type ResponseSmGetNetworkSmDeviceSecurityCenters []ResponseItemSmGetNetworkSmDeviceSecurityCenters // Array of ResponseSmGetNetworkSmDeviceSecurityCenters
 type ResponseItemSmGetNetworkSmDeviceSecurityCenters struct {
 	AntiVirusName        string `json:"antiVirusName,omitempty"`        // The name of the Antivirus.
@@ -291,6 +290,7 @@ type ResponseItemSmGetNetworkSmDeviceSoftwares struct {
 type ResponseSmUnenrollNetworkSmDevice struct {
 	Success *bool `json:"success,omitempty"` // Boolean indicating whether the operation was completed successfully.
 }
+type ResponseSmUninstallNetworkSmDeviceApps interface{}
 type ResponseSmGetNetworkSmDeviceWLANLists []ResponseItemSmGetNetworkSmDeviceWLANLists // Array of ResponseSmGetNetworkSmDeviceWlanLists
 type ResponseItemSmGetNetworkSmDeviceWLANLists struct {
 	CreatedAt string `json:"createdAt,omitempty"` // When the Meraki record for the wlanList was created.
@@ -1952,6 +1952,7 @@ func (s *SmService) InstallNetworkSmDeviceApps(networkID string, deviceID string
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestSmInstallNetworkSmDeviceApps).
+		// SetResult(&ResponseSmInstallNetworkSmDeviceApps{}).
 		SetError(&Error).
 		Post(path)
 
@@ -1986,6 +1987,8 @@ func (s *SmService) RefreshNetworkSmDeviceDetails(networkID string, deviceID str
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
+
+		// SetResult(&ResponseSmRefreshNetworkSmDeviceDetails{}).
 		SetError(&Error).
 		Post(path)
 
@@ -2057,6 +2060,7 @@ func (s *SmService) UninstallNetworkSmDeviceApps(networkID string, deviceID stri
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestSmUninstallNetworkSmDeviceApps).
+		// SetResult(&ResponseSmUninstallNetworkSmDeviceApps{}).
 		SetError(&Error).
 		Post(path)
 
