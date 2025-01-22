@@ -33,7 +33,7 @@ The client could be generated with the following parameters:
 ```go
 client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
 		"MerakiKey",
-		"true", "AplicationName VendorName")
+		"true", "AplicationName VendorName Client")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -52,7 +52,7 @@ The client can be configured with the following environment variables:
 - `MERAKI_BASE_URL`: The base URL, FQDN or IP, of the MERAKI instance.
 - `MERAKI_DASHBOARD_API_KEY`: The meraki_key for access to API.
 - `MERAKI_DEBUG`: Boolean to enable debugging
-- `MERAKI_USER_AGENT`: String, set the User-Agent Format (AplicationName VendorName).
+- `MERAKI_USER_AGENT`: String, set the User-Agent Format (AplicationName VendorName Client).
 
 ```go
 Client, err = meraki.NewClient()
@@ -66,7 +66,7 @@ Here is an example of how we can generate a client, get a device count and then 
 ```go
 client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
 		"MerakiKey",
-		"true", "AplicationName VendorName")
+		"true", "AplicationName VendorName Client")
 	if err != nil {
 		fmt.Println(err)
 		return
