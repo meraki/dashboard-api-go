@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.3] - 2025-02-07
+### Fixed
+- Updating PAGINATION_PER_PAGE const.
+
 ## [4.0.2] - 2025-02-07
 ### Fixed
 - Documentation issues.
@@ -1432,4 +1436,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.0.9]: https://github.com/meraki/dashboard-api-go/compare/v3.0.8...3.0.9
 [4.0.0]: https://github.com/meraki/dashboard-api-go/compare/v3.0.10...4.0.0
 [4.0.1]: https://github.com/meraki/dashboard-api-go/compare/v4.0.0...4.0.1
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v4.0.1...main
+[4.0.2]: https://github.com/meraki/dashboard-api-go/compare/v4.0.1...4.0.2
+[4.0.3]: https://github.com/meraki/dashboard-api-go/compare/v4.0.2...4.0.3
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v4.0.3...main

@@ -24,7 +24,7 @@ const (
 	MERAKI_REQUESTS_PER_SECOND  = "MERAKI_REQUESTS_PER_SECOND"
 	DEFAULT_USER_AGENT          = "go-meraki/1.53.0"
 	DEFAULT_REQUESTS_PER_SECOND = 10
-	PAGINATION_PER_PAGE         = 5
+	PAGINATION_PER_PAGE         = 1000
 )
 
 // Client manages communication with the Cisco Meraki API
