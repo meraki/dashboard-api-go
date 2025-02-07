@@ -424,7 +424,35 @@ type ResponseDevicesGetDeviceLldpCdp struct {
 	Ports     *ResponseDevicesGetDeviceLldpCdpPorts `json:"ports,omitempty"`     // Mapping of ports to lldp and/or cdp information
 	SourceMac string                                `json:"sourceMac,omitempty"` // Source MAC address
 }
-type ResponseDevicesGetDeviceLldpCdpPorts interface{}
+type ResponseDevicesGetDeviceLldpCdpPorts struct {
+	Status12 *ResponseDevicesGetDeviceLldpCdpPorts12 `json:"12,omitempty"` //
+	Status8  *ResponseDevicesGetDeviceLldpCdpPorts8  `json:"8,omitempty"`  //
+}
+type ResponseDevicesGetDeviceLldpCdpPorts12 struct {
+	Cdp  *ResponseDevicesGetDeviceLldpCdpPorts12Cdp  `json:"cdp,omitempty"`  //
+	Lldp *ResponseDevicesGetDeviceLldpCdpPorts12Lldp `json:"lldp,omitempty"` //
+}
+type ResponseDevicesGetDeviceLldpCdpPorts12Cdp struct {
+	Address    string `json:"address,omitempty"`    //
+	DeviceID   string `json:"deviceId,omitempty"`   //
+	PortID     string `json:"portId,omitempty"`     //
+	SourcePort string `json:"sourcePort,omitempty"` //
+}
+type ResponseDevicesGetDeviceLldpCdpPorts12Lldp struct {
+	ManagementAddress string `json:"managementAddress,omitempty"` //
+	PortID            string `json:"portId,omitempty"`            //
+	SourcePort        string `json:"sourcePort,omitempty"`        //
+	SystemName        string `json:"systemName,omitempty"`        //
+}
+type ResponseDevicesGetDeviceLldpCdpPorts8 struct {
+	Cdp *ResponseDevicesGetDeviceLldpCdpPorts8Cdp `json:"cdp,omitempty"` //
+}
+type ResponseDevicesGetDeviceLldpCdpPorts8Cdp struct {
+	Address    string `json:"address,omitempty"`    //
+	DeviceID   string `json:"deviceId,omitempty"`   //
+	PortID     string `json:"portId,omitempty"`     //
+	SourcePort string `json:"sourcePort,omitempty"` //
+}
 type ResponseDevicesGetDeviceLossAndLatencyHistory []ResponseItemDevicesGetDeviceLossAndLatencyHistory // Array of ResponseDevicesGetDeviceLossAndLatencyHistory
 type ResponseItemDevicesGetDeviceLossAndLatencyHistory struct {
 	EndTime     string   `json:"endTime,omitempty"`     // End time of the sample

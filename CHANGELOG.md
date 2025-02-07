@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [4.0.1] - 2025-01-20
+## [4.0.2] - 2025-02-07
+### Fixed
+- Documentation issues.
+
+## [4.0.1] - 2025-02-07
 ### Added
 - **Support for fetching all items with `perpage=-1`**  
   A new feature has been added to the endpoint where if the `perpage` parameter is set to `-1`, it will return all available items for that endpoint. This eliminates the need for multiple paginated requests when retrieving the full set of data.
