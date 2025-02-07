@@ -1,6 +1,7 @@
 package meraki
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 
@@ -69,7 +70,7 @@ type ResponseCellularGatewayGetDeviceCellularGatewayPortForwardingRules struct {
 	Rules *[]ResponseCellularGatewayGetDeviceCellularGatewayPortForwardingRulesRules `json:"rules,omitempty"` // An array of port forwarding params
 }
 type ResponseCellularGatewayGetDeviceCellularGatewayPortForwardingRulesRules struct {
-	Access     string   `json:"access,omitempty"`     // `any` or `restricted`. Specify the right to make inbound connections on the specified ports or port ranges. If `restricted`, a list of allowed IPs is mandatory.
+	Access     string   `json:"access,omitempty"`     // *any* or *restricted*. Specify the right to make inbound connections on the specified ports or port ranges. If *restricted*, a list of allowed IPs is mandatory.
 	AllowedIPs []string `json:"allowedIps,omitempty"` // An array of ranges of WAN IP addresses that are allowed to make inbound connections on the specified ports or port ranges.
 	LanIP      string   `json:"lanIp,omitempty"`      // The IP address of the server or device that hosts the internal resource that you wish to make available on the WAN
 	LocalPort  string   `json:"localPort,omitempty"`  // A port or port ranges that will receive the forwarded traffic from the WAN
@@ -81,7 +82,7 @@ type ResponseCellularGatewayUpdateDeviceCellularGatewayPortForwardingRules struc
 	Rules *[]ResponseCellularGatewayUpdateDeviceCellularGatewayPortForwardingRulesRules `json:"rules,omitempty"` // An array of port forwarding params
 }
 type ResponseCellularGatewayUpdateDeviceCellularGatewayPortForwardingRulesRules struct {
-	Access     string   `json:"access,omitempty"`     // `any` or `restricted`. Specify the right to make inbound connections on the specified ports or port ranges. If `restricted`, a list of allowed IPs is mandatory.
+	Access     string   `json:"access,omitempty"`     // *any* or *restricted*. Specify the right to make inbound connections on the specified ports or port ranges. If *restricted*, a list of allowed IPs is mandatory.
 	AllowedIPs []string `json:"allowedIps,omitempty"` // An array of ranges of WAN IP addresses that are allowed to make inbound connections on the specified ports or port ranges.
 	LanIP      string   `json:"lanIp,omitempty"`      // The IP address of the server or device that hosts the internal resource that you wish to make available on the WAN
 	LocalPort  string   `json:"localPort,omitempty"`  // A port or port ranges that will receive the forwarded traffic from the WAN
@@ -259,7 +260,7 @@ type ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersM
 	Remaining *int `json:"remaining,omitempty"` // Remaining number of Service Providers
 	Total     *int `json:"total,omitempty"`     // Total number of Service Providers
 }
-type ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts // Array of ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts
+type ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts []ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts // Array of ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts
 type ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts struct {
 	Items *[]ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccountsItems `json:"items,omitempty"` // IList of Cellular Service Provider Accounts
 	Meta  *ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccountsMeta    `json:"meta,omitempty"`  // Meta details about the result
@@ -412,7 +413,7 @@ type RequestCellularGatewayUpdateDeviceCellularGatewayPortForwardingRules struct
 	Rules *[]RequestCellularGatewayUpdateDeviceCellularGatewayPortForwardingRulesRules `json:"rules,omitempty"` // An array of port forwarding params
 }
 type RequestCellularGatewayUpdateDeviceCellularGatewayPortForwardingRulesRules struct {
-	Access     string   `json:"access,omitempty"`     // `any` or `restricted`. Specify the right to make inbound connections on the specified ports or port ranges. If `restricted`, a list of allowed IPs is mandatory.
+	Access     string   `json:"access,omitempty"`     // *any* or *restricted*. Specify the right to make inbound connections on the specified ports or port ranges. If *restricted*, a list of allowed IPs is mandatory.
 	AllowedIPs []string `json:"allowedIps,omitempty"` // An array of ranges of WAN IP addresses that are allowed to make inbound connections on the specified ports or port ranges.
 	LanIP      string   `json:"lanIp,omitempty"`      // The IP address of the server or device that hosts the internal resource that you wish to make available on the WAN
 	LocalPort  string   `json:"localPort,omitempty"`  // A port or port ranges that will receive the forwarded traffic from the WAN
@@ -481,6 +482,7 @@ type RequestCellularGatewayCreateOrganizationCellularGatewayEsimsSwapSwapsTarget
 
 
 */
+
 func (s *CellularGatewayService) GetDeviceCellularGatewayLan(serial string) (*ResponseCellularGatewayGetDeviceCellularGatewayLan, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/cellularGateway/lan"
 	s.rateLimiterBucket.Wait(1)
@@ -514,6 +516,7 @@ func (s *CellularGatewayService) GetDeviceCellularGatewayLan(serial string) (*Re
 
 
 */
+
 func (s *CellularGatewayService) GetDeviceCellularGatewayPortForwardingRules(serial string) (*ResponseCellularGatewayGetDeviceCellularGatewayPortForwardingRules, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/cellularGateway/portForwardingRules"
 	s.rateLimiterBucket.Wait(1)
@@ -547,6 +550,7 @@ func (s *CellularGatewayService) GetDeviceCellularGatewayPortForwardingRules(ser
 
 
 */
+
 func (s *CellularGatewayService) GetNetworkCellularGatewayConnectivityMonitoringDestinations(networkID string) (*ResponseCellularGatewayGetNetworkCellularGatewayConnectivityMonitoringDestinations, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/connectivityMonitoringDestinations"
 	s.rateLimiterBucket.Wait(1)
@@ -580,6 +584,7 @@ func (s *CellularGatewayService) GetNetworkCellularGatewayConnectivityMonitoring
 
 
 */
+
 func (s *CellularGatewayService) GetNetworkCellularGatewayDhcp(networkID string) (*ResponseCellularGatewayGetNetworkCellularGatewayDhcp, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/dhcp"
 	s.rateLimiterBucket.Wait(1)
@@ -613,6 +618,7 @@ func (s *CellularGatewayService) GetNetworkCellularGatewayDhcp(networkID string)
 
 
 */
+
 func (s *CellularGatewayService) GetNetworkCellularGatewaySubnetPool(networkID string) (*ResponseCellularGatewayGetNetworkCellularGatewaySubnetPool, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/subnetPool"
 	s.rateLimiterBucket.Wait(1)
@@ -646,6 +652,7 @@ func (s *CellularGatewayService) GetNetworkCellularGatewaySubnetPool(networkID s
 
 
 */
+
 func (s *CellularGatewayService) GetNetworkCellularGatewayUplink(networkID string) (*ResponseCellularGatewayGetNetworkCellularGatewayUplink, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/cellularGateway/uplink"
 	s.rateLimiterBucket.Wait(1)
@@ -680,6 +687,7 @@ func (s *CellularGatewayService) GetNetworkCellularGatewayUplink(networkID strin
 
 
 */
+
 func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsInventory(organizationID string, getOrganizationCellularGatewayEsimsInventoryQueryParams *GetOrganizationCellularGatewayEsimsInventoryQueryParams) (*ResponseCellularGatewayGetOrganizationCellularGatewayEsimsInventory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/cellularGateway/esims/inventory"
 	s.rateLimiterBucket.Wait(1)
@@ -715,6 +723,7 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsInventory(or
 
 
 */
+
 func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProviders(organizationID string) (*ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProviders, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/cellularGateway/esims/serviceProviders"
 	s.rateLimiterBucket.Wait(1)
@@ -749,6 +758,7 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvi
 
 
 */
+
 func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvidersAccounts(organizationID string, getOrganizationCellularGatewayEsimsServiceProvidersAccountsQueryParams *GetOrganizationCellularGatewayEsimsServiceProvidersAccountsQueryParams) (*ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/cellularGateway/esims/serviceProviders/accounts"
 	s.rateLimiterBucket.Wait(1)
@@ -785,6 +795,7 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvi
 
 
 */
+
 func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvidersAccountsCommunicationPlans(organizationID string, getOrganizationCellularGatewayEsimsServiceProvidersAccountsCommunicationPlansQueryParams *GetOrganizationCellularGatewayEsimsServiceProvidersAccountsCommunicationPlansQueryParams) (*ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccountsCommunicationPlans, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/cellularGateway/esims/serviceProviders/accounts/communicationPlans"
 	s.rateLimiterBucket.Wait(1)
@@ -821,6 +832,7 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvi
 
 
 */
+
 func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvidersAccountsRatePlans(organizationID string, getOrganizationCellularGatewayEsimsServiceProvidersAccountsRatePlansQueryParams *GetOrganizationCellularGatewayEsimsServiceProvidersAccountsRatePlansQueryParams) (*ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccountsRatePlans, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/cellularGateway/esims/serviceProviders/accounts/ratePlans"
 	s.rateLimiterBucket.Wait(1)
@@ -857,9 +869,40 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvi
 
 
 */
+
 func (s *CellularGatewayService) GetOrganizationCellularGatewayUplinkStatuses(organizationID string, getOrganizationCellularGatewayUplinkStatusesQueryParams *GetOrganizationCellularGatewayUplinkStatusesQueryParams) (*ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/cellularGateway/uplink/statuses"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationCellularGatewayUplinkStatusesQueryParams != nil && getOrganizationCellularGatewayUplinkStatusesQueryParams.PerPage == -1 {
+		var result *ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses
+		println("Paginate")
+		getOrganizationCellularGatewayUplinkStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationCellularGatewayUplinkStatusesPaginate, organizationID, "", getOrganizationCellularGatewayUplinkStatusesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationCellularGatewayUplinkStatusesQueryParams)
@@ -883,6 +926,11 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayUplinkStatuses(or
 	result := response.Result().(*ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses)
 	return result, response, err
 
+}
+func (s *CellularGatewayService) GetOrganizationCellularGatewayUplinkStatusesPaginate(organizationID string, getOrganizationCellularGatewayUplinkStatusesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationCellularGatewayUplinkStatusesQueryParamsConverted := getOrganizationCellularGatewayUplinkStatusesQueryParams.(*GetOrganizationCellularGatewayUplinkStatusesQueryParams)
+
+	return s.GetOrganizationCellularGatewayUplinkStatuses(organizationID, getOrganizationCellularGatewayUplinkStatusesQueryParamsConverted)
 }
 
 //CreateOrganizationCellularGatewayEsimsServiceProvidersAccount Add a service provider account.

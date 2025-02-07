@@ -6,6 +6,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.1] - 2025-01-20
+### Added
+- **Support for fetching all items with `perpage=-1`**  
+  A new feature has been added to the endpoint where if the `perpage` parameter is set to `-1`, it will return all available items for that endpoint. This eliminates the need for multiple paginated requests when retrieving the full set of data.
+
+**Behavior:**
+- When `perpage` is set to `-1`, all items will be returned.
+- For positive values of `perpage`, the traditional pagination logic will be applied.
+
+**Benefits:**
+- Simplifies fetching all data in a single request.
+- Reduces the need for multiple API calls to retrieve the full dataset.
+
+
 ## [4.0.0] - 2025-01-20
 ### Changed
 - dashboard-api-go supports now v1.53.0 of Meraki Dashboard API.
@@ -1413,4 +1427,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.0.8]: https://github.com/meraki/dashboard-api-go/compare/v3.0.7...3.0.8
 [3.0.9]: https://github.com/meraki/dashboard-api-go/compare/v3.0.8...3.0.9
 [4.0.0]: https://github.com/meraki/dashboard-api-go/compare/v3.0.10...4.0.0
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v4.0.0...main
+[4.0.1]: https://github.com/meraki/dashboard-api-go/compare/v4.0.0...4.0.1
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v4.0.1...main

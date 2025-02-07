@@ -45,6 +45,48 @@ nResponse, _, err := client.Administered.GetAdministeredIDentitiesMe()
 	}
 ```
 
+### Fetch All Items of an Endpoint with Pagination
+
+- **Support for fetching all items with `perpage=-1`**  
+  A new feature has been introduced to the API endpoints, enabling clients to fetch all available items in a single request by setting the `perpage` parameter to `-1`. This enhancement allows you to retrieve the full dataset without needing to make multiple paginated requests.
+
+### Behavior
+
+- When `perpage` is set to `-1`, the server will return **all available items** for that endpoint, bypassing the pagination logic.
+- If a positive integer is passed for `perpage`, the endpoint will continue using traditional pagination and return only the number of items specified by `perpage`.
+
+### Example Usage
+```go
+func main() {
+	var err error
+	fmt.Println("Authenticating")
+	client, err = meraki.NewClient()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	nResponse, _, err := client.Organizations.GetOrganizationDevices("828099381482762270", &meraki.GetOrganizationDevicesQueryParams{
+		PerPage:        -1,
+		TagsFilterType: "withAnyTags",
+	})
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	if nResponse != nil {
+		fmt.Println("\n <Count>: ", len(*nResponse))
+		fmt.Printf("%v", *nResponse)
+		return
+	}
+
+	fmt.Println("There's no data on response")
+```
+
+#### Fetch All Items
+To retrieve all items from the endpoint, set the `perpage` parameter to `-1`:
+
+
 ### Using environment variables
 
 The client can be configured with the following environment variables:

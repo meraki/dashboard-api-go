@@ -1,6 +1,7 @@
 package meraki
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 
@@ -3676,9 +3677,40 @@ type RequestOrganizationsCreateOrganizationSplashThemeAsset struct {
 
 
 */
+
 func (s *OrganizationsService) GetOrganizations(getOrganizationsQueryParams *GetOrganizationsQueryParams) (*ResponseOrganizationsGetOrganizations, *resty.Response, error) {
 	path := "/api/v1/organizations"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationsQueryParams != nil && getOrganizationsQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizations
+		println("Paginate")
+		getOrganizationsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationsPaginate, "", "", getOrganizationsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizations
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 
 	queryString, _ := query.Values(getOrganizationsQueryParams)
 
@@ -3702,6 +3734,11 @@ func (s *OrganizationsService) GetOrganizations(getOrganizationsQueryParams *Get
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationsPaginate(getOrganizationsQueryParams any) (any, *resty.Response, error) {
+	getOrganizationsQueryParamsConverted := getOrganizationsQueryParams.(*GetOrganizationsQueryParams)
+
+	return s.GetOrganizations(getOrganizationsQueryParamsConverted)
+}
 
 //GetOrganization Return an organization
 /* Return an organization
@@ -3710,6 +3747,7 @@ func (s *OrganizationsService) GetOrganizations(getOrganizationsQueryParams *Get
 
 
 */
+
 func (s *OrganizationsService) GetOrganization(organizationID string) (*ResponseOrganizationsGetOrganization, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}"
 	s.rateLimiterBucket.Wait(1)
@@ -3744,6 +3782,7 @@ func (s *OrganizationsService) GetOrganization(organizationID string) (*Response
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationActionBatches(organizationID string, getOrganizationActionBatchesQueryParams *GetOrganizationActionBatchesQueryParams) (*ResponseOrganizationsGetOrganizationActionBatches, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/actionBatches"
 	s.rateLimiterBucket.Wait(1)
@@ -3780,6 +3819,7 @@ func (s *OrganizationsService) GetOrganizationActionBatches(organizationID strin
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationActionBatch(organizationID string, actionBatchID string) (*ResponseOrganizationsGetOrganizationActionBatch, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/actionBatches/{actionBatchId}"
 	s.rateLimiterBucket.Wait(1)
@@ -3814,6 +3854,7 @@ func (s *OrganizationsService) GetOrganizationActionBatch(organizationID string,
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAdaptivePolicyACLs(organizationID string) (*ResponseOrganizationsGetOrganizationAdaptivePolicyACLs, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/acls"
 	s.rateLimiterBucket.Wait(1)
@@ -3848,6 +3889,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyACLs(organizationID 
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAdaptivePolicyACL(organizationID string, aclID string) (*ResponseOrganizationsGetOrganizationAdaptivePolicyACL, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/acls/{aclId}"
 	s.rateLimiterBucket.Wait(1)
@@ -3882,6 +3924,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyACL(organizationID s
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAdaptivePolicyGroups(organizationID string) (*ResponseOrganizationsGetOrganizationAdaptivePolicyGroups, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/groups"
 	s.rateLimiterBucket.Wait(1)
@@ -3916,6 +3959,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyGroups(organizationI
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAdaptivePolicyGroup(organizationID string, id string) (*ResponseOrganizationsGetOrganizationAdaptivePolicyGroup, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/groups/{id}"
 	s.rateLimiterBucket.Wait(1)
@@ -3950,6 +3994,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyGroup(organizationID
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAdaptivePolicyOverview(organizationID string) (*ResponseOrganizationsGetOrganizationAdaptivePolicyOverview, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/overview"
 	s.rateLimiterBucket.Wait(1)
@@ -3983,6 +4028,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyOverview(organizatio
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAdaptivePolicyPolicies(organizationID string) (*ResponseOrganizationsGetOrganizationAdaptivePolicyPolicies, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/policies"
 	s.rateLimiterBucket.Wait(1)
@@ -4017,6 +4063,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyPolicies(organizatio
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAdaptivePolicyPolicy(organizationID string, id string) (*ResponseOrganizationsGetOrganizationAdaptivePolicyPolicy, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/policies/{id}"
 	s.rateLimiterBucket.Wait(1)
@@ -4051,6 +4098,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyPolicy(organizationI
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAdaptivePolicySettings(organizationID string) (*ResponseOrganizationsGetOrganizationAdaptivePolicySettings, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/adaptivePolicy/settings"
 	s.rateLimiterBucket.Wait(1)
@@ -4085,6 +4133,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicySettings(organizatio
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAdmins(organizationID string, getOrganizationAdminsQueryParams *GetOrganizationAdminsQueryParams) (*ResponseOrganizationsGetOrganizationAdmins, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/admins"
 	s.rateLimiterBucket.Wait(1)
@@ -4120,6 +4169,7 @@ func (s *OrganizationsService) GetOrganizationAdmins(organizationID string, getO
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAlertsProfiles(organizationID string) (*ResponseOrganizationsGetOrganizationAlertsProfiles, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/alerts/profiles"
 	s.rateLimiterBucket.Wait(1)
@@ -4154,9 +4204,40 @@ func (s *OrganizationsService) GetOrganizationAlertsProfiles(organizationID stri
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAPIRequests(organizationID string, getOrganizationApiRequestsQueryParams *GetOrganizationAPIRequestsQueryParams) (*ResponseOrganizationsGetOrganizationAPIRequests, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/apiRequests"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationApiRequestsQueryParams != nil && getOrganizationApiRequestsQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationAPIRequests
+		println("Paginate")
+		getOrganizationApiRequestsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationAPIRequestsPaginate, organizationID, "", getOrganizationApiRequestsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationAPIRequests
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationApiRequestsQueryParams)
@@ -4181,6 +4262,11 @@ func (s *OrganizationsService) GetOrganizationAPIRequests(organizationID string,
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationAPIRequestsPaginate(organizationID string, getOrganizationApiRequestsQueryParams any) (any, *resty.Response, error) {
+	getOrganizationApiRequestsQueryParamsConverted := getOrganizationApiRequestsQueryParams.(*GetOrganizationAPIRequestsQueryParams)
+
+	return s.GetOrganizationAPIRequests(organizationID, getOrganizationApiRequestsQueryParamsConverted)
+}
 
 //GetOrganizationAPIRequestsOverview Return an aggregated overview of API requests data
 /* Return an aggregated overview of API requests data
@@ -4190,6 +4276,7 @@ func (s *OrganizationsService) GetOrganizationAPIRequests(organizationID string,
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAPIRequestsOverview(organizationID string, getOrganizationApiRequestsOverviewQueryParams *GetOrganizationAPIRequestsOverviewQueryParams) (*ResponseOrganizationsGetOrganizationAPIRequestsOverview, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/apiRequests/overview"
 	s.rateLimiterBucket.Wait(1)
@@ -4226,6 +4313,7 @@ func (s *OrganizationsService) GetOrganizationAPIRequestsOverview(organizationID
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAPIRequestsOverviewResponseCodesByInterval(organizationID string, getOrganizationApiRequestsOverviewResponseCodesByIntervalQueryParams *GetOrganizationAPIRequestsOverviewResponseCodesByIntervalQueryParams) (*ResponseOrganizationsGetOrganizationAPIRequestsOverviewResponseCodesByInterval, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/apiRequests/overview/responseCodes/byInterval"
 	s.rateLimiterBucket.Wait(1)
@@ -4262,9 +4350,40 @@ func (s *OrganizationsService) GetOrganizationAPIRequestsOverviewResponseCodesBy
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAssuranceAlerts(organizationID string, getOrganizationAssuranceAlertsQueryParams *GetOrganizationAssuranceAlertsQueryParams) (*ResponseOrganizationsGetOrganizationAssuranceAlerts, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/assurance/alerts"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationAssuranceAlertsQueryParams != nil && getOrganizationAssuranceAlertsQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationAssuranceAlerts
+		println("Paginate")
+		getOrganizationAssuranceAlertsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationAssuranceAlertsPaginate, organizationID, "", getOrganizationAssuranceAlertsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationAssuranceAlerts
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationAssuranceAlertsQueryParams)
@@ -4289,6 +4408,11 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlerts(organizationID str
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationAssuranceAlertsPaginate(organizationID string, getOrganizationAssuranceAlertsQueryParams any) (any, *resty.Response, error) {
+	getOrganizationAssuranceAlertsQueryParamsConverted := getOrganizationAssuranceAlertsQueryParams.(*GetOrganizationAssuranceAlertsQueryParams)
+
+	return s.GetOrganizationAssuranceAlerts(organizationID, getOrganizationAssuranceAlertsQueryParamsConverted)
+}
 
 //GetOrganizationAssuranceAlertsOverview Return overview of active health alerts for an organization
 /* Return overview of active health alerts for an organization
@@ -4298,6 +4422,7 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlerts(organizationID str
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverview(organizationID string, getOrganizationAssuranceAlertsOverviewQueryParams *GetOrganizationAssuranceAlertsOverviewQueryParams) (*ResponseOrganizationsGetOrganizationAssuranceAlertsOverview, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/assurance/alerts/overview"
 	s.rateLimiterBucket.Wait(1)
@@ -4334,9 +4459,40 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverview(organizati
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewByNetwork(organizationID string, getOrganizationAssuranceAlertsOverviewByNetworkQueryParams *GetOrganizationAssuranceAlertsOverviewByNetworkQueryParams) (*ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByNetwork, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/assurance/alerts/overview/byNetwork"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationAssuranceAlertsOverviewByNetworkQueryParams != nil && getOrganizationAssuranceAlertsOverviewByNetworkQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByNetwork
+		println("Paginate")
+		getOrganizationAssuranceAlertsOverviewByNetworkQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationAssuranceAlertsOverviewByNetworkPaginate, organizationID, "", getOrganizationAssuranceAlertsOverviewByNetworkQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByNetwork
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationAssuranceAlertsOverviewByNetworkQueryParams)
@@ -4361,6 +4517,11 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewByNetwork(o
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewByNetworkPaginate(organizationID string, getOrganizationAssuranceAlertsOverviewByNetworkQueryParams any) (any, *resty.Response, error) {
+	getOrganizationAssuranceAlertsOverviewByNetworkQueryParamsConverted := getOrganizationAssuranceAlertsOverviewByNetworkQueryParams.(*GetOrganizationAssuranceAlertsOverviewByNetworkQueryParams)
+
+	return s.GetOrganizationAssuranceAlertsOverviewByNetwork(organizationID, getOrganizationAssuranceAlertsOverviewByNetworkQueryParamsConverted)
+}
 
 //GetOrganizationAssuranceAlertsOverviewByType Return a Summary of Alerts grouped by type and severity
 /* Return a Summary of Alerts grouped by type and severity
@@ -4370,9 +4531,40 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewByNetwork(o
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewByType(organizationID string, getOrganizationAssuranceAlertsOverviewByTypeQueryParams *GetOrganizationAssuranceAlertsOverviewByTypeQueryParams) (*ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByType, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/assurance/alerts/overview/byType"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationAssuranceAlertsOverviewByTypeQueryParams != nil && getOrganizationAssuranceAlertsOverviewByTypeQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByType
+		println("Paginate")
+		getOrganizationAssuranceAlertsOverviewByTypeQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationAssuranceAlertsOverviewByTypePaginate, organizationID, "", getOrganizationAssuranceAlertsOverviewByTypeQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByType
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationAssuranceAlertsOverviewByTypeQueryParams)
@@ -4397,6 +4589,11 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewByType(orga
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewByTypePaginate(organizationID string, getOrganizationAssuranceAlertsOverviewByTypeQueryParams any) (any, *resty.Response, error) {
+	getOrganizationAssuranceAlertsOverviewByTypeQueryParamsConverted := getOrganizationAssuranceAlertsOverviewByTypeQueryParams.(*GetOrganizationAssuranceAlertsOverviewByTypeQueryParams)
+
+	return s.GetOrganizationAssuranceAlertsOverviewByType(organizationID, getOrganizationAssuranceAlertsOverviewByTypeQueryParamsConverted)
+}
 
 //GetOrganizationAssuranceAlertsOverviewHistorical Returns historical health alert overviews
 /* Returns historical health alert overviews
@@ -4406,6 +4603,7 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewByType(orga
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewHistorical(organizationID string, getOrganizationAssuranceAlertsOverviewHistoricalQueryParams *GetOrganizationAssuranceAlertsOverviewHistoricalQueryParams) (*ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewHistorical, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/assurance/alerts/overview/historical"
 	s.rateLimiterBucket.Wait(1)
@@ -4442,6 +4640,7 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewHistorical(
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationAssuranceAlert(organizationID string, id string) (*ResponseOrganizationsGetOrganizationAssuranceAlert, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/assurance/alerts/{id}"
 	s.rateLimiterBucket.Wait(1)
@@ -4476,6 +4675,7 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlert(organizationID stri
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationBrandingPolicies(organizationID string) (*ResponseOrganizationsGetOrganizationBrandingPolicies, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/brandingPolicies"
 	s.rateLimiterBucket.Wait(1)
@@ -4509,6 +4709,7 @@ func (s *OrganizationsService) GetOrganizationBrandingPolicies(organizationID st
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationBrandingPoliciesPriorities(organizationID string) (*ResponseOrganizationsGetOrganizationBrandingPoliciesPriorities, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/brandingPolicies/priorities"
 	s.rateLimiterBucket.Wait(1)
@@ -4543,6 +4744,7 @@ func (s *OrganizationsService) GetOrganizationBrandingPoliciesPriorities(organiz
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationBrandingPolicy(organizationID string, brandingPolicyID string) (*ResponseOrganizationsGetOrganizationBrandingPolicy, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/brandingPolicies/{brandingPolicyId}"
 	s.rateLimiterBucket.Wait(1)
@@ -4578,6 +4780,7 @@ func (s *OrganizationsService) GetOrganizationBrandingPolicy(organizationID stri
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationClientsBandwidthUsageHistory(organizationID string, getOrganizationClientsBandwidthUsageHistoryQueryParams *GetOrganizationClientsBandwidthUsageHistoryQueryParams) (*ResponseOrganizationsGetOrganizationClientsBandwidthUsageHistory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/clients/bandwidthUsageHistory"
 	s.rateLimiterBucket.Wait(1)
@@ -4614,6 +4817,7 @@ func (s *OrganizationsService) GetOrganizationClientsBandwidthUsageHistory(organ
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationClientsOverview(organizationID string, getOrganizationClientsOverviewQueryParams *GetOrganizationClientsOverviewQueryParams) (*ResponseOrganizationsGetOrganizationClientsOverview, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/clients/overview"
 	s.rateLimiterBucket.Wait(1)
@@ -4650,9 +4854,40 @@ func (s *OrganizationsService) GetOrganizationClientsOverview(organizationID str
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationClientsSearch(organizationID string, getOrganizationClientsSearchQueryParams *GetOrganizationClientsSearchQueryParams) (*ResponseOrganizationsGetOrganizationClientsSearch, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/clients/search"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationClientsSearchQueryParams != nil && getOrganizationClientsSearchQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationClientsSearch
+		println("Paginate")
+		getOrganizationClientsSearchQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationClientsSearchPaginate, organizationID, "", getOrganizationClientsSearchQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationClientsSearch
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Records = append(*result.Records, *resultTmp.Records...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationClientsSearchQueryParams)
@@ -4677,6 +4912,11 @@ func (s *OrganizationsService) GetOrganizationClientsSearch(organizationID strin
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationClientsSearchPaginate(organizationID string, getOrganizationClientsSearchQueryParams any) (any, *resty.Response, error) {
+	getOrganizationClientsSearchQueryParamsConverted := getOrganizationClientsSearchQueryParams.(*GetOrganizationClientsSearchQueryParams)
+
+	return s.GetOrganizationClientsSearch(organizationID, getOrganizationClientsSearchQueryParamsConverted)
+}
 
 //GetOrganizationConfigTemplates List the configuration templates for this organization
 /* List the configuration templates for this organization
@@ -4685,6 +4925,7 @@ func (s *OrganizationsService) GetOrganizationClientsSearch(organizationID strin
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationConfigTemplates(organizationID string) (*ResponseOrganizationsGetOrganizationConfigTemplates, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configTemplates"
 	s.rateLimiterBucket.Wait(1)
@@ -4719,6 +4960,7 @@ func (s *OrganizationsService) GetOrganizationConfigTemplates(organizationID str
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationConfigTemplate(organizationID string, configTemplateID string) (*ResponseOrganizationsGetOrganizationConfigTemplate, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configTemplates/{configTemplateId}"
 	s.rateLimiterBucket.Wait(1)
@@ -4754,9 +4996,40 @@ func (s *OrganizationsService) GetOrganizationConfigTemplate(organizationID stri
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationConfigurationChanges(organizationID string, getOrganizationConfigurationChangesQueryParams *GetOrganizationConfigurationChangesQueryParams) (*ResponseOrganizationsGetOrganizationConfigurationChanges, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configurationChanges"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationConfigurationChangesQueryParams != nil && getOrganizationConfigurationChangesQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationConfigurationChanges
+		println("Paginate")
+		getOrganizationConfigurationChangesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationConfigurationChangesPaginate, organizationID, "", getOrganizationConfigurationChangesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationConfigurationChanges
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationConfigurationChangesQueryParams)
@@ -4781,6 +5054,11 @@ func (s *OrganizationsService) GetOrganizationConfigurationChanges(organizationI
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationConfigurationChangesPaginate(organizationID string, getOrganizationConfigurationChangesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationConfigurationChangesQueryParamsConverted := getOrganizationConfigurationChangesQueryParams.(*GetOrganizationConfigurationChangesQueryParams)
+
+	return s.GetOrganizationConfigurationChanges(organizationID, getOrganizationConfigurationChangesQueryParamsConverted)
+}
 
 //GetOrganizationDevices List the devices in an organization that have been assigned to a network.
 /* List the devices in an organization that have been assigned to a network.
@@ -4790,9 +5068,40 @@ func (s *OrganizationsService) GetOrganizationConfigurationChanges(organizationI
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationDevices(organizationID string, getOrganizationDevicesQueryParams *GetOrganizationDevicesQueryParams) (*ResponseOrganizationsGetOrganizationDevices, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationDevicesQueryParams != nil && getOrganizationDevicesQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationDevices
+		println("Paginate")
+		getOrganizationDevicesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationDevicesPaginate, organizationID, "", getOrganizationDevicesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationDevices
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationDevicesQueryParams)
@@ -4817,6 +5126,11 @@ func (s *OrganizationsService) GetOrganizationDevices(organizationID string, get
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationDevicesPaginate(organizationID string, getOrganizationDevicesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationDevicesQueryParamsConverted := getOrganizationDevicesQueryParams.(*GetOrganizationDevicesQueryParams)
+
+	return s.GetOrganizationDevices(organizationID, getOrganizationDevicesQueryParamsConverted)
+}
 
 //GetOrganizationDevicesAvailabilities List the availability information for devices in an organization
 /* List the availability information for devices in an organization. The data returned by this endpoint is updated every 5 minutes.
@@ -4826,9 +5140,40 @@ func (s *OrganizationsService) GetOrganizationDevices(organizationID string, get
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationDevicesAvailabilities(organizationID string, getOrganizationDevicesAvailabilitiesQueryParams *GetOrganizationDevicesAvailabilitiesQueryParams) (*ResponseOrganizationsGetOrganizationDevicesAvailabilities, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/availabilities"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationDevicesAvailabilitiesQueryParams != nil && getOrganizationDevicesAvailabilitiesQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationDevicesAvailabilities
+		println("Paginate")
+		getOrganizationDevicesAvailabilitiesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationDevicesAvailabilitiesPaginate, organizationID, "", getOrganizationDevicesAvailabilitiesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationDevicesAvailabilities
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationDevicesAvailabilitiesQueryParams)
@@ -4853,6 +5198,11 @@ func (s *OrganizationsService) GetOrganizationDevicesAvailabilities(organization
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationDevicesAvailabilitiesPaginate(organizationID string, getOrganizationDevicesAvailabilitiesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationDevicesAvailabilitiesQueryParamsConverted := getOrganizationDevicesAvailabilitiesQueryParams.(*GetOrganizationDevicesAvailabilitiesQueryParams)
+
+	return s.GetOrganizationDevicesAvailabilities(organizationID, getOrganizationDevicesAvailabilitiesQueryParamsConverted)
+}
 
 //GetOrganizationDevicesAvailabilitiesChangeHistory List the availability history information for devices in an organization.
 /* List the availability history information for devices in an organization.
@@ -4862,9 +5212,40 @@ func (s *OrganizationsService) GetOrganizationDevicesAvailabilities(organization
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationDevicesAvailabilitiesChangeHistory(organizationID string, getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams *GetOrganizationDevicesAvailabilitiesChangeHistoryQueryParams) (*ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/availabilities/changeHistory"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams != nil && getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory
+		println("Paginate")
+		getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationDevicesAvailabilitiesChangeHistoryPaginate, organizationID, "", getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams)
@@ -4889,6 +5270,11 @@ func (s *OrganizationsService) GetOrganizationDevicesAvailabilitiesChangeHistory
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationDevicesAvailabilitiesChangeHistoryPaginate(organizationID string, getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams any) (any, *resty.Response, error) {
+	getOrganizationDevicesAvailabilitiesChangeHistoryQueryParamsConverted := getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams.(*GetOrganizationDevicesAvailabilitiesChangeHistoryQueryParams)
+
+	return s.GetOrganizationDevicesAvailabilitiesChangeHistory(organizationID, getOrganizationDevicesAvailabilitiesChangeHistoryQueryParamsConverted)
+}
 
 //GetOrganizationDevicesOverviewByModel Lists the count for each device model
 /* Lists the count for each device model
@@ -4898,6 +5284,7 @@ func (s *OrganizationsService) GetOrganizationDevicesAvailabilitiesChangeHistory
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationDevicesOverviewByModel(organizationID string, getOrganizationDevicesOverviewByModelQueryParams *GetOrganizationDevicesOverviewByModelQueryParams) (*ResponseOrganizationsGetOrganizationDevicesOverviewByModel, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/overview/byModel"
 	s.rateLimiterBucket.Wait(1)
@@ -4934,9 +5321,40 @@ func (s *OrganizationsService) GetOrganizationDevicesOverviewByModel(organizatio
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationDevicesPowerModulesStatusesByDevice(organizationID string, getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams *GetOrganizationDevicesPowerModulesStatusesByDeviceQueryParams) (*ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/powerModules/statuses/byDevice"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams != nil && getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice
+		println("Paginate")
+		getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationDevicesPowerModulesStatusesByDevicePaginate, organizationID, "", getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams)
@@ -4961,6 +5379,11 @@ func (s *OrganizationsService) GetOrganizationDevicesPowerModulesStatusesByDevic
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationDevicesPowerModulesStatusesByDevicePaginate(organizationID string, getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams any) (any, *resty.Response, error) {
+	getOrganizationDevicesPowerModulesStatusesByDeviceQueryParamsConverted := getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams.(*GetOrganizationDevicesPowerModulesStatusesByDeviceQueryParams)
+
+	return s.GetOrganizationDevicesPowerModulesStatusesByDevice(organizationID, getOrganizationDevicesPowerModulesStatusesByDeviceQueryParamsConverted)
+}
 
 //GetOrganizationDevicesProvisioningStatuses List the provisioning statuses information for devices in an organization.
 /* List the provisioning statuses information for devices in an organization.
@@ -4970,9 +5393,40 @@ func (s *OrganizationsService) GetOrganizationDevicesPowerModulesStatusesByDevic
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationDevicesProvisioningStatuses(organizationID string, getOrganizationDevicesProvisioningStatusesQueryParams *GetOrganizationDevicesProvisioningStatusesQueryParams) (*ResponseOrganizationsGetOrganizationDevicesProvisioningStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/provisioning/statuses"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationDevicesProvisioningStatusesQueryParams != nil && getOrganizationDevicesProvisioningStatusesQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationDevicesProvisioningStatuses
+		println("Paginate")
+		getOrganizationDevicesProvisioningStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationDevicesProvisioningStatusesPaginate, organizationID, "", getOrganizationDevicesProvisioningStatusesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationDevicesProvisioningStatuses
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationDevicesProvisioningStatusesQueryParams)
@@ -4997,6 +5451,11 @@ func (s *OrganizationsService) GetOrganizationDevicesProvisioningStatuses(organi
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationDevicesProvisioningStatusesPaginate(organizationID string, getOrganizationDevicesProvisioningStatusesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationDevicesProvisioningStatusesQueryParamsConverted := getOrganizationDevicesProvisioningStatusesQueryParams.(*GetOrganizationDevicesProvisioningStatusesQueryParams)
+
+	return s.GetOrganizationDevicesProvisioningStatuses(organizationID, getOrganizationDevicesProvisioningStatusesQueryParamsConverted)
+}
 
 //GetOrganizationDevicesStatuses List the status of every Meraki device in the organization
 /* List the status of every Meraki device in the organization
@@ -5006,9 +5465,40 @@ func (s *OrganizationsService) GetOrganizationDevicesProvisioningStatuses(organi
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationDevicesStatuses(organizationID string, getOrganizationDevicesStatusesQueryParams *GetOrganizationDevicesStatusesQueryParams) (*ResponseOrganizationsGetOrganizationDevicesStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/statuses"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationDevicesStatusesQueryParams != nil && getOrganizationDevicesStatusesQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationDevicesStatuses
+		println("Paginate")
+		getOrganizationDevicesStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationDevicesStatusesPaginate, organizationID, "", getOrganizationDevicesStatusesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationDevicesStatuses
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationDevicesStatusesQueryParams)
@@ -5033,6 +5523,11 @@ func (s *OrganizationsService) GetOrganizationDevicesStatuses(organizationID str
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationDevicesStatusesPaginate(organizationID string, getOrganizationDevicesStatusesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationDevicesStatusesQueryParamsConverted := getOrganizationDevicesStatusesQueryParams.(*GetOrganizationDevicesStatusesQueryParams)
+
+	return s.GetOrganizationDevicesStatuses(organizationID, getOrganizationDevicesStatusesQueryParamsConverted)
+}
 
 //GetOrganizationDevicesStatusesOverview Return an overview of current device statuses
 /* Return an overview of current device statuses
@@ -5042,6 +5537,7 @@ func (s *OrganizationsService) GetOrganizationDevicesStatuses(organizationID str
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationDevicesStatusesOverview(organizationID string, getOrganizationDevicesStatusesOverviewQueryParams *GetOrganizationDevicesStatusesOverviewQueryParams) (*ResponseOrganizationsGetOrganizationDevicesStatusesOverview, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/statuses/overview"
 	s.rateLimiterBucket.Wait(1)
@@ -5078,9 +5574,40 @@ func (s *OrganizationsService) GetOrganizationDevicesStatusesOverview(organizati
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationDevicesUplinksAddressesByDevice(organizationID string, getOrganizationDevicesUplinksAddressesByDeviceQueryParams *GetOrganizationDevicesUplinksAddressesByDeviceQueryParams) (*ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/uplinks/addresses/byDevice"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationDevicesUplinksAddressesByDeviceQueryParams != nil && getOrganizationDevicesUplinksAddressesByDeviceQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice
+		println("Paginate")
+		getOrganizationDevicesUplinksAddressesByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationDevicesUplinksAddressesByDevicePaginate, organizationID, "", getOrganizationDevicesUplinksAddressesByDeviceQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationDevicesUplinksAddressesByDeviceQueryParams)
@@ -5105,6 +5632,11 @@ func (s *OrganizationsService) GetOrganizationDevicesUplinksAddressesByDevice(or
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationDevicesUplinksAddressesByDevicePaginate(organizationID string, getOrganizationDevicesUplinksAddressesByDeviceQueryParams any) (any, *resty.Response, error) {
+	getOrganizationDevicesUplinksAddressesByDeviceQueryParamsConverted := getOrganizationDevicesUplinksAddressesByDeviceQueryParams.(*GetOrganizationDevicesUplinksAddressesByDeviceQueryParams)
+
+	return s.GetOrganizationDevicesUplinksAddressesByDevice(organizationID, getOrganizationDevicesUplinksAddressesByDeviceQueryParamsConverted)
+}
 
 //GetOrganizationDevicesUplinksLossAndLatency Return the uplink loss and latency for every MX in the organization from at latest 2 minutes ago
 /* Return the uplink loss and latency for every MX in the organization from at latest 2 minutes ago
@@ -5114,6 +5646,7 @@ func (s *OrganizationsService) GetOrganizationDevicesUplinksAddressesByDevice(or
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationDevicesUplinksLossAndLatency(organizationID string, getOrganizationDevicesUplinksLossAndLatencyQueryParams *GetOrganizationDevicesUplinksLossAndLatencyQueryParams) (*ResponseOrganizationsGetOrganizationDevicesUplinksLossAndLatency, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/uplinksLossAndLatency"
 	s.rateLimiterBucket.Wait(1)
@@ -5149,6 +5682,7 @@ func (s *OrganizationsService) GetOrganizationDevicesUplinksLossAndLatency(organ
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationEarlyAccessFeatures(organizationID string) (*ResponseOrganizationsGetOrganizationEarlyAccessFeatures, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/earlyAccess/features"
 	s.rateLimiterBucket.Wait(1)
@@ -5182,6 +5716,7 @@ func (s *OrganizationsService) GetOrganizationEarlyAccessFeatures(organizationID
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationEarlyAccessFeaturesOptIns(organizationID string) (*ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptIns, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/earlyAccess/features/optIns"
 	s.rateLimiterBucket.Wait(1)
@@ -5216,6 +5751,7 @@ func (s *OrganizationsService) GetOrganizationEarlyAccessFeaturesOptIns(organiza
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationEarlyAccessFeaturesOptIn(organizationID string, optInID string) (*ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptIn, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}"
 	s.rateLimiterBucket.Wait(1)
@@ -5251,9 +5787,40 @@ func (s *OrganizationsService) GetOrganizationEarlyAccessFeaturesOptIn(organizat
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationFirmwareUpgrades(organizationID string, getOrganizationFirmwareUpgradesQueryParams *GetOrganizationFirmwareUpgradesQueryParams) (*ResponseOrganizationsGetOrganizationFirmwareUpgrades, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/firmware/upgrades"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationFirmwareUpgradesQueryParams != nil && getOrganizationFirmwareUpgradesQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationFirmwareUpgrades
+		println("Paginate")
+		getOrganizationFirmwareUpgradesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationFirmwareUpgradesPaginate, organizationID, "", getOrganizationFirmwareUpgradesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationFirmwareUpgrades
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationFirmwareUpgradesQueryParams)
@@ -5278,6 +5845,11 @@ func (s *OrganizationsService) GetOrganizationFirmwareUpgrades(organizationID st
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationFirmwareUpgradesPaginate(organizationID string, getOrganizationFirmwareUpgradesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationFirmwareUpgradesQueryParamsConverted := getOrganizationFirmwareUpgradesQueryParams.(*GetOrganizationFirmwareUpgradesQueryParams)
+
+	return s.GetOrganizationFirmwareUpgrades(organizationID, getOrganizationFirmwareUpgradesQueryParamsConverted)
+}
 
 //GetOrganizationFirmwareUpgradesByDevice Get firmware upgrade status for the filtered devices
 /* Get firmware upgrade status for the filtered devices. This endpoint currently only supports Meraki switches.
@@ -5287,9 +5859,40 @@ func (s *OrganizationsService) GetOrganizationFirmwareUpgrades(organizationID st
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationFirmwareUpgradesByDevice(organizationID string, getOrganizationFirmwareUpgradesByDeviceQueryParams *GetOrganizationFirmwareUpgradesByDeviceQueryParams) (*ResponseOrganizationsGetOrganizationFirmwareUpgradesByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/firmware/upgrades/byDevice"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationFirmwareUpgradesByDeviceQueryParams != nil && getOrganizationFirmwareUpgradesByDeviceQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationFirmwareUpgradesByDevice
+		println("Paginate")
+		getOrganizationFirmwareUpgradesByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationFirmwareUpgradesByDevicePaginate, organizationID, "", getOrganizationFirmwareUpgradesByDeviceQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationFirmwareUpgradesByDevice
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationFirmwareUpgradesByDeviceQueryParams)
@@ -5314,6 +5917,11 @@ func (s *OrganizationsService) GetOrganizationFirmwareUpgradesByDevice(organizat
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationFirmwareUpgradesByDevicePaginate(organizationID string, getOrganizationFirmwareUpgradesByDeviceQueryParams any) (any, *resty.Response, error) {
+	getOrganizationFirmwareUpgradesByDeviceQueryParamsConverted := getOrganizationFirmwareUpgradesByDeviceQueryParams.(*GetOrganizationFirmwareUpgradesByDeviceQueryParams)
+
+	return s.GetOrganizationFirmwareUpgradesByDevice(organizationID, getOrganizationFirmwareUpgradesByDeviceQueryParamsConverted)
+}
 
 //GetOrganizationFloorPlansAutoLocateDevices List auto locate details for each device in your organization
 /* List auto locate details for each device in your organization
@@ -5323,9 +5931,40 @@ func (s *OrganizationsService) GetOrganizationFirmwareUpgradesByDevice(organizat
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateDevices(organizationID string, getOrganizationFloorPlansAutoLocateDevicesQueryParams *GetOrganizationFloorPlansAutoLocateDevicesQueryParams) (*ResponseOrganizationsGetOrganizationFloorPlansAutoLocateDevices, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/floorPlans/autoLocate/devices"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationFloorPlansAutoLocateDevicesQueryParams != nil && getOrganizationFloorPlansAutoLocateDevicesQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationFloorPlansAutoLocateDevices
+		println("Paginate")
+		getOrganizationFloorPlansAutoLocateDevicesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationFloorPlansAutoLocateDevicesPaginate, organizationID, "", getOrganizationFloorPlansAutoLocateDevicesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationFloorPlansAutoLocateDevices
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationFloorPlansAutoLocateDevicesQueryParams)
@@ -5350,6 +5989,11 @@ func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateDevices(organi
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateDevicesPaginate(organizationID string, getOrganizationFloorPlansAutoLocateDevicesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationFloorPlansAutoLocateDevicesQueryParamsConverted := getOrganizationFloorPlansAutoLocateDevicesQueryParams.(*GetOrganizationFloorPlansAutoLocateDevicesQueryParams)
+
+	return s.GetOrganizationFloorPlansAutoLocateDevices(organizationID, getOrganizationFloorPlansAutoLocateDevicesQueryParamsConverted)
+}
 
 //GetOrganizationFloorPlansAutoLocateStatuses List the status of auto locate for each floorplan in your organization
 /* List the status of auto locate for each floorplan in your organization
@@ -5359,9 +6003,40 @@ func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateDevices(organi
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateStatuses(organizationID string, getOrganizationFloorPlansAutoLocateStatusesQueryParams *GetOrganizationFloorPlansAutoLocateStatusesQueryParams) (*ResponseOrganizationsGetOrganizationFloorPlansAutoLocateStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/floorPlans/autoLocate/statuses"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationFloorPlansAutoLocateStatusesQueryParams != nil && getOrganizationFloorPlansAutoLocateStatusesQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationFloorPlansAutoLocateStatuses
+		println("Paginate")
+		getOrganizationFloorPlansAutoLocateStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationFloorPlansAutoLocateStatusesPaginate, organizationID, "", getOrganizationFloorPlansAutoLocateStatusesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationFloorPlansAutoLocateStatuses
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationFloorPlansAutoLocateStatusesQueryParams)
@@ -5386,6 +6061,11 @@ func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateStatuses(organ
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateStatusesPaginate(organizationID string, getOrganizationFloorPlansAutoLocateStatusesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationFloorPlansAutoLocateStatusesQueryParamsConverted := getOrganizationFloorPlansAutoLocateStatusesQueryParams.(*GetOrganizationFloorPlansAutoLocateStatusesQueryParams)
+
+	return s.GetOrganizationFloorPlansAutoLocateStatuses(organizationID, getOrganizationFloorPlansAutoLocateStatusesQueryParamsConverted)
+}
 
 //GetOrganizationInventoryDevices Return the device inventory for an organization
 /* Return the device inventory for an organization
@@ -5395,9 +6075,40 @@ func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateStatuses(organ
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationInventoryDevices(organizationID string, getOrganizationInventoryDevicesQueryParams *GetOrganizationInventoryDevicesQueryParams) (*ResponseOrganizationsGetOrganizationInventoryDevices, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/devices"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationInventoryDevicesQueryParams != nil && getOrganizationInventoryDevicesQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationInventoryDevices
+		println("Paginate")
+		getOrganizationInventoryDevicesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationInventoryDevicesPaginate, organizationID, "", getOrganizationInventoryDevicesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationInventoryDevices
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationInventoryDevicesQueryParams)
@@ -5422,6 +6133,11 @@ func (s *OrganizationsService) GetOrganizationInventoryDevices(organizationID st
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationInventoryDevicesPaginate(organizationID string, getOrganizationInventoryDevicesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationInventoryDevicesQueryParamsConverted := getOrganizationInventoryDevicesQueryParams.(*GetOrganizationInventoryDevicesQueryParams)
+
+	return s.GetOrganizationInventoryDevices(organizationID, getOrganizationInventoryDevicesQueryParamsConverted)
+}
 
 //GetOrganizationInventoryDevicesSwapsBulk List of device swaps for a given request ID ({id}).
 /* List of device swaps for a given request ID ({id}).
@@ -5431,6 +6147,7 @@ func (s *OrganizationsService) GetOrganizationInventoryDevices(organizationID st
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationInventoryDevicesSwapsBulk(organizationID string, id string) (*ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulk, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/devices/swaps/bulk/{id}"
 	s.rateLimiterBucket.Wait(1)
@@ -5466,6 +6183,7 @@ func (s *OrganizationsService) GetOrganizationInventoryDevicesSwapsBulk(organiza
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationInventoryDevice(organizationID string, serial string) (*ResponseOrganizationsGetOrganizationInventoryDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/devices/{serial}"
 	s.rateLimiterBucket.Wait(1)
@@ -5501,6 +6219,7 @@ func (s *OrganizationsService) GetOrganizationInventoryDevice(organizationID str
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationInventoryOnboardingCloudMonitoringImports(organizationID string, getOrganizationInventoryOnboardingCloudMonitoringImportsQueryParams *GetOrganizationInventoryOnboardingCloudMonitoringImportsQueryParams) (*ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringImports, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/imports"
 	s.rateLimiterBucket.Wait(1)
@@ -5537,9 +6256,40 @@ func (s *OrganizationsService) GetOrganizationInventoryOnboardingCloudMonitoring
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationInventoryOnboardingCloudMonitoringNetworks(organizationID string, getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams *GetOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams) (*ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringNetworks, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/networks"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams != nil && getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringNetworks
+		println("Paginate")
+		getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationInventoryOnboardingCloudMonitoringNetworksPaginate, organizationID, "", getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringNetworks
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams)
@@ -5564,6 +6314,11 @@ func (s *OrganizationsService) GetOrganizationInventoryOnboardingCloudMonitoring
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationInventoryOnboardingCloudMonitoringNetworksPaginate(organizationID string, getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams any) (any, *resty.Response, error) {
+	getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParamsConverted := getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams.(*GetOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams)
+
+	return s.GetOrganizationInventoryOnboardingCloudMonitoringNetworks(organizationID, getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParamsConverted)
+}
 
 //GetOrganizationLicenses List the licenses for an organization
 /* List the licenses for an organization
@@ -5573,9 +6328,40 @@ func (s *OrganizationsService) GetOrganizationInventoryOnboardingCloudMonitoring
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationLicenses(organizationID string, getOrganizationLicensesQueryParams *GetOrganizationLicensesQueryParams) (*ResponseOrganizationsGetOrganizationLicenses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licenses"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationLicensesQueryParams != nil && getOrganizationLicensesQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationLicenses
+		println("Paginate")
+		getOrganizationLicensesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationLicensesPaginate, organizationID, "", getOrganizationLicensesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationLicenses
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationLicensesQueryParams)
@@ -5600,6 +6386,11 @@ func (s *OrganizationsService) GetOrganizationLicenses(organizationID string, ge
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationLicensesPaginate(organizationID string, getOrganizationLicensesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationLicensesQueryParamsConverted := getOrganizationLicensesQueryParams.(*GetOrganizationLicensesQueryParams)
+
+	return s.GetOrganizationLicenses(organizationID, getOrganizationLicensesQueryParamsConverted)
+}
 
 //GetOrganizationLicensesOverview Return an overview of the license state for an organization
 /* Return an overview of the license state for an organization
@@ -5608,6 +6399,7 @@ func (s *OrganizationsService) GetOrganizationLicenses(organizationID string, ge
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationLicensesOverview(organizationID string) (*ResponseOrganizationsGetOrganizationLicensesOverview, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licenses/overview"
 	s.rateLimiterBucket.Wait(1)
@@ -5642,6 +6434,7 @@ func (s *OrganizationsService) GetOrganizationLicensesOverview(organizationID st
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationLicense(organizationID string, licenseID string) (*ResponseOrganizationsGetOrganizationLicense, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licenses/{licenseId}"
 	s.rateLimiterBucket.Wait(1)
@@ -5676,6 +6469,7 @@ func (s *OrganizationsService) GetOrganizationLicense(organizationID string, lic
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationLoginSecurity(organizationID string) (*ResponseOrganizationsGetOrganizationLoginSecurity, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/loginSecurity"
 	s.rateLimiterBucket.Wait(1)
@@ -5710,9 +6504,40 @@ func (s *OrganizationsService) GetOrganizationLoginSecurity(organizationID strin
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationNetworks(organizationID string, getOrganizationNetworksQueryParams *GetOrganizationNetworksQueryParams) (*ResponseOrganizationsGetOrganizationNetworks, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/networks"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationNetworksQueryParams != nil && getOrganizationNetworksQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationNetworks
+		println("Paginate")
+		getOrganizationNetworksQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationNetworksPaginate, organizationID, "", getOrganizationNetworksQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationNetworks
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationNetworksQueryParams)
@@ -5737,6 +6562,11 @@ func (s *OrganizationsService) GetOrganizationNetworks(organizationID string, ge
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationNetworksPaginate(organizationID string, getOrganizationNetworksQueryParams any) (any, *resty.Response, error) {
+	getOrganizationNetworksQueryParamsConverted := getOrganizationNetworksQueryParams.(*GetOrganizationNetworksQueryParams)
+
+	return s.GetOrganizationNetworks(organizationID, getOrganizationNetworksQueryParamsConverted)
+}
 
 //GetOrganizationOpenapiSpec Return the OpenAPI Specification of the organization's API documentation in JSON
 /* Return the OpenAPI Specification of the organization's API documentation in JSON
@@ -5746,6 +6576,7 @@ func (s *OrganizationsService) GetOrganizationNetworks(organizationID string, ge
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationOpenapiSpec(organizationID string, getOrganizationOpenapiSpecQueryParams *GetOrganizationOpenapiSpecQueryParams) (*ResponseOrganizationsGetOrganizationOpenapiSpec, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/openapiSpec"
 	s.rateLimiterBucket.Wait(1)
@@ -5782,9 +6613,40 @@ func (s *OrganizationsService) GetOrganizationOpenapiSpec(organizationID string,
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationPolicyObjects(organizationID string, getOrganizationPolicyObjectsQueryParams *GetOrganizationPolicyObjectsQueryParams) (*ResponseOrganizationsGetOrganizationPolicyObjects, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationPolicyObjectsQueryParams != nil && getOrganizationPolicyObjectsQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationPolicyObjects
+		println("Paginate")
+		getOrganizationPolicyObjectsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationPolicyObjectsPaginate, organizationID, "", getOrganizationPolicyObjectsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationPolicyObjects
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationPolicyObjectsQueryParams)
@@ -5809,6 +6671,11 @@ func (s *OrganizationsService) GetOrganizationPolicyObjects(organizationID strin
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationPolicyObjectsPaginate(organizationID string, getOrganizationPolicyObjectsQueryParams any) (any, *resty.Response, error) {
+	getOrganizationPolicyObjectsQueryParamsConverted := getOrganizationPolicyObjectsQueryParams.(*GetOrganizationPolicyObjectsQueryParams)
+
+	return s.GetOrganizationPolicyObjects(organizationID, getOrganizationPolicyObjectsQueryParamsConverted)
+}
 
 //GetOrganizationPolicyObjectsGroups Lists Policy Object Groups belonging to the organization.
 /* Lists Policy Object Groups belonging to the organization.
@@ -5818,9 +6685,40 @@ func (s *OrganizationsService) GetOrganizationPolicyObjects(organizationID strin
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationPolicyObjectsGroups(organizationID string, getOrganizationPolicyObjectsGroupsQueryParams *GetOrganizationPolicyObjectsGroupsQueryParams) (*ResponseOrganizationsGetOrganizationPolicyObjectsGroups, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects/groups"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationPolicyObjectsGroupsQueryParams != nil && getOrganizationPolicyObjectsGroupsQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationPolicyObjectsGroups
+		println("Paginate")
+		getOrganizationPolicyObjectsGroupsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationPolicyObjectsGroupsPaginate, organizationID, "", getOrganizationPolicyObjectsGroupsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationPolicyObjectsGroups
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.ObjectIDs = append(*result.ObjectIDs, *resultTmp.ObjectIDs...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationPolicyObjectsGroupsQueryParams)
@@ -5845,6 +6743,11 @@ func (s *OrganizationsService) GetOrganizationPolicyObjectsGroups(organizationID
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationPolicyObjectsGroupsPaginate(organizationID string, getOrganizationPolicyObjectsGroupsQueryParams any) (any, *resty.Response, error) {
+	getOrganizationPolicyObjectsGroupsQueryParamsConverted := getOrganizationPolicyObjectsGroupsQueryParams.(*GetOrganizationPolicyObjectsGroupsQueryParams)
+
+	return s.GetOrganizationPolicyObjectsGroups(organizationID, getOrganizationPolicyObjectsGroupsQueryParamsConverted)
+}
 
 //GetOrganizationPolicyObjectsGroup Shows details of a Policy Object Group.
 /* Shows details of a Policy Object Group.
@@ -5854,6 +6757,7 @@ func (s *OrganizationsService) GetOrganizationPolicyObjectsGroups(organizationID
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationPolicyObjectsGroup(organizationID string, policyObjectGroupID string) (*ResponseOrganizationsGetOrganizationPolicyObjectsGroup, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}"
 	s.rateLimiterBucket.Wait(1)
@@ -5889,6 +6793,7 @@ func (s *OrganizationsService) GetOrganizationPolicyObjectsGroup(organizationID 
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationPolicyObject(organizationID string, policyObjectID string) (*ResponseOrganizationsGetOrganizationPolicyObject, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects/{policyObjectId}"
 	s.rateLimiterBucket.Wait(1)
@@ -5923,6 +6828,7 @@ func (s *OrganizationsService) GetOrganizationPolicyObject(organizationID string
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSaml(organizationID string) (*ResponseOrganizationsGetOrganizationSaml, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/saml"
 	s.rateLimiterBucket.Wait(1)
@@ -5956,6 +6862,7 @@ func (s *OrganizationsService) GetOrganizationSaml(organizationID string) (*Resp
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSamlIDps(organizationID string) (*ResponseOrganizationsGetOrganizationSamlIDps, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/saml/idps"
 	s.rateLimiterBucket.Wait(1)
@@ -5990,6 +6897,7 @@ func (s *OrganizationsService) GetOrganizationSamlIDps(organizationID string) (*
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSamlIDp(organizationID string, idpID string) (*ResponseOrganizationsGetOrganizationSamlIDp, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/saml/idps/{idpId}"
 	s.rateLimiterBucket.Wait(1)
@@ -6024,6 +6932,7 @@ func (s *OrganizationsService) GetOrganizationSamlIDp(organizationID string, idp
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSamlRoles(organizationID string) (*ResponseOrganizationsGetOrganizationSamlRoles, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/samlRoles"
 	s.rateLimiterBucket.Wait(1)
@@ -6058,6 +6967,7 @@ func (s *OrganizationsService) GetOrganizationSamlRoles(organizationID string) (
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSamlRole(organizationID string, samlRoleID string) (*ResponseOrganizationsGetOrganizationSamlRole, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/samlRoles/{samlRoleId}"
 	s.rateLimiterBucket.Wait(1)
@@ -6092,6 +7002,7 @@ func (s *OrganizationsService) GetOrganizationSamlRole(organizationID string, sa
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSNMP(organizationID string) (*ResponseOrganizationsGetOrganizationSNMP, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/snmp"
 	s.rateLimiterBucket.Wait(1)
@@ -6126,6 +7037,7 @@ func (s *OrganizationsService) GetOrganizationSNMP(organizationID string) (*Resp
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSplashAsset(organizationID string, id string) (*ResponseOrganizationsGetOrganizationSplashAsset, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/splash/assets/{id}"
 	s.rateLimiterBucket.Wait(1)
@@ -6160,6 +7072,7 @@ func (s *OrganizationsService) GetOrganizationSplashAsset(organizationID string,
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSplashThemes(organizationID string) (*ResponseOrganizationsGetOrganizationSplashThemes, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/splash/themes"
 	s.rateLimiterBucket.Wait(1)
@@ -6194,6 +7107,7 @@ func (s *OrganizationsService) GetOrganizationSplashThemes(organizationID string
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSummaryTopAppliancesByUtilization(organizationID string, getOrganizationSummaryTopAppliancesByUtilizationQueryParams *GetOrganizationSummaryTopAppliancesByUtilizationQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopAppliancesByUtilization, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/appliances/byUtilization"
 	s.rateLimiterBucket.Wait(1)
@@ -6230,6 +7144,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopAppliancesByUtilization(
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSummaryTopApplicationsByUsage(organizationID string, getOrganizationSummaryTopApplicationsByUsageQueryParams *GetOrganizationSummaryTopApplicationsByUsageQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopApplicationsByUsage, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/applications/byUsage"
 	s.rateLimiterBucket.Wait(1)
@@ -6266,6 +7181,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopApplicationsByUsage(orga
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSummaryTopApplicationsCategoriesByUsage(organizationID string, getOrganizationSummaryTopApplicationsCategoriesByUsageQueryParams *GetOrganizationSummaryTopApplicationsCategoriesByUsageQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopApplicationsCategoriesByUsage, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/applications/categories/byUsage"
 	s.rateLimiterBucket.Wait(1)
@@ -6302,6 +7218,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopApplicationsCategoriesBy
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSummaryTopClientsByUsage(organizationID string, getOrganizationSummaryTopClientsByUsageQueryParams *GetOrganizationSummaryTopClientsByUsageQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopClientsByUsage, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/clients/byUsage"
 	s.rateLimiterBucket.Wait(1)
@@ -6338,6 +7255,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopClientsByUsage(organizat
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSummaryTopClientsManufacturersByUsage(organizationID string, getOrganizationSummaryTopClientsManufacturersByUsageQueryParams *GetOrganizationSummaryTopClientsManufacturersByUsageQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopClientsManufacturersByUsage, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/clients/manufacturers/byUsage"
 	s.rateLimiterBucket.Wait(1)
@@ -6374,6 +7292,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopClientsManufacturersByUs
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSummaryTopDevicesByUsage(organizationID string, getOrganizationSummaryTopDevicesByUsageQueryParams *GetOrganizationSummaryTopDevicesByUsageQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopDevicesByUsage, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/devices/byUsage"
 	s.rateLimiterBucket.Wait(1)
@@ -6410,6 +7329,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopDevicesByUsage(organizat
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSummaryTopDevicesModelsByUsage(organizationID string, getOrganizationSummaryTopDevicesModelsByUsageQueryParams *GetOrganizationSummaryTopDevicesModelsByUsageQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopDevicesModelsByUsage, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/devices/models/byUsage"
 	s.rateLimiterBucket.Wait(1)
@@ -6446,9 +7366,40 @@ func (s *OrganizationsService) GetOrganizationSummaryTopDevicesModelsByUsage(org
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSummaryTopNetworksByStatus(organizationID string, getOrganizationSummaryTopNetworksByStatusQueryParams *GetOrganizationSummaryTopNetworksByStatusQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/networks/byStatus"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationSummaryTopNetworksByStatusQueryParams != nil && getOrganizationSummaryTopNetworksByStatusQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus
+		println("Paginate")
+		getOrganizationSummaryTopNetworksByStatusQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationSummaryTopNetworksByStatusPaginate, organizationID, "", getOrganizationSummaryTopNetworksByStatusQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSummaryTopNetworksByStatusQueryParams)
@@ -6473,6 +7424,11 @@ func (s *OrganizationsService) GetOrganizationSummaryTopNetworksByStatus(organiz
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationSummaryTopNetworksByStatusPaginate(organizationID string, getOrganizationSummaryTopNetworksByStatusQueryParams any) (any, *resty.Response, error) {
+	getOrganizationSummaryTopNetworksByStatusQueryParamsConverted := getOrganizationSummaryTopNetworksByStatusQueryParams.(*GetOrganizationSummaryTopNetworksByStatusQueryParams)
+
+	return s.GetOrganizationSummaryTopNetworksByStatus(organizationID, getOrganizationSummaryTopNetworksByStatusQueryParamsConverted)
+}
 
 //GetOrganizationSummaryTopSSIDsByUsage Return metrics for organization's top 10 ssids by data usage over given time range
 /* Return metrics for organization's top 10 ssids by data usage over given time range. Default unit is megabytes.
@@ -6482,6 +7438,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopNetworksByStatus(organiz
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSummaryTopSSIDsByUsage(organizationID string, getOrganizationSummaryTopSsidsByUsageQueryParams *GetOrganizationSummaryTopSSIDsByUsageQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopSSIDsByUsage, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/ssids/byUsage"
 	s.rateLimiterBucket.Wait(1)
@@ -6518,6 +7475,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopSSIDsByUsage(organizatio
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationSummaryTopSwitchesByEnergyUsage(organizationID string, getOrganizationSummaryTopSwitchesByEnergyUsageQueryParams *GetOrganizationSummaryTopSwitchesByEnergyUsageQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopSwitchesByEnergyUsage, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/switches/byEnergyUsage"
 	s.rateLimiterBucket.Wait(1)
@@ -6554,9 +7512,40 @@ func (s *OrganizationsService) GetOrganizationSummaryTopSwitchesByEnergyUsage(or
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationUplinksStatuses(organizationID string, getOrganizationUplinksStatusesQueryParams *GetOrganizationUplinksStatusesQueryParams) (*ResponseOrganizationsGetOrganizationUplinksStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/uplinks/statuses"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationUplinksStatusesQueryParams != nil && getOrganizationUplinksStatusesQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationUplinksStatuses
+		println("Paginate")
+		getOrganizationUplinksStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationUplinksStatusesPaginate, organizationID, "", getOrganizationUplinksStatusesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationUplinksStatuses
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationUplinksStatusesQueryParams)
@@ -6581,6 +7570,11 @@ func (s *OrganizationsService) GetOrganizationUplinksStatuses(organizationID str
 	return result, response, err
 
 }
+func (s *OrganizationsService) GetOrganizationUplinksStatusesPaginate(organizationID string, getOrganizationUplinksStatusesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationUplinksStatusesQueryParamsConverted := getOrganizationUplinksStatusesQueryParams.(*GetOrganizationUplinksStatusesQueryParams)
+
+	return s.GetOrganizationUplinksStatuses(organizationID, getOrganizationUplinksStatusesQueryParamsConverted)
+}
 
 //GetOrganizationWebhooksAlertTypes Return a list of alert types to be used with managing webhook alerts
 /* Return a list of alert types to be used with managing webhook alerts
@@ -6590,6 +7584,7 @@ func (s *OrganizationsService) GetOrganizationUplinksStatuses(organizationID str
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationWebhooksAlertTypes(organizationID string, getOrganizationWebhooksAlertTypesQueryParams *GetOrganizationWebhooksAlertTypesQueryParams) (*ResponseOrganizationsGetOrganizationWebhooksAlertTypes, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/webhooks/alertTypes"
 	s.rateLimiterBucket.Wait(1)
@@ -6626,6 +7621,7 @@ func (s *OrganizationsService) GetOrganizationWebhooksAlertTypes(organizationID 
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationWebhooksCallbacksStatus(organizationID string, callbackID string) (*ResponseOrganizationsGetOrganizationWebhooksCallbacksStatus, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/webhooks/callbacks/statuses/{callbackId}"
 	s.rateLimiterBucket.Wait(1)
@@ -6661,9 +7657,40 @@ func (s *OrganizationsService) GetOrganizationWebhooksCallbacksStatus(organizati
 
 
 */
+
 func (s *OrganizationsService) GetOrganizationWebhooksLogs(organizationID string, getOrganizationWebhooksLogsQueryParams *GetOrganizationWebhooksLogsQueryParams) (*ResponseOrganizationsGetOrganizationWebhooksLogs, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/webhooks/logs"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWebhooksLogsQueryParams != nil && getOrganizationWebhooksLogsQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationWebhooksLogs
+		println("Paginate")
+		getOrganizationWebhooksLogsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWebhooksLogsPaginate, organizationID, "", getOrganizationWebhooksLogsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationWebhooksLogs
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWebhooksLogsQueryParams)
@@ -6687,6 +7714,11 @@ func (s *OrganizationsService) GetOrganizationWebhooksLogs(organizationID string
 	result := response.Result().(*ResponseOrganizationsGetOrganizationWebhooksLogs)
 	return result, response, err
 
+}
+func (s *OrganizationsService) GetOrganizationWebhooksLogsPaginate(organizationID string, getOrganizationWebhooksLogsQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWebhooksLogsQueryParamsConverted := getOrganizationWebhooksLogsQueryParams.(*GetOrganizationWebhooksLogsQueryParams)
+
+	return s.GetOrganizationWebhooksLogs(organizationID, getOrganizationWebhooksLogsQueryParamsConverted)
 }
 
 //CreateOrganization Create a new organization

@@ -1,6 +1,7 @@
 package meraki
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 
@@ -663,6 +664,7 @@ type RequestSmUpdateOrganizationSmSentryPoliciesAssignmentsItemsPolicies struct 
 
 
 */
+
 func (s *SmService) GetNetworkSmBypassActivationLockAttempt(networkID string, attemptID string) (*ResponseSmGetNetworkSmBypassActivationLockAttempt, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/bypassActivationLockAttempts/{attemptId}"
 	s.rateLimiterBucket.Wait(1)
@@ -698,9 +700,40 @@ func (s *SmService) GetNetworkSmBypassActivationLockAttempt(networkID string, at
 
 
 */
+
 func (s *SmService) GetNetworkSmDevices(networkID string, getNetworkSmDevicesQueryParams *GetNetworkSmDevicesQueryParams) (*ResponseSmGetNetworkSmDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkSmDevicesQueryParams != nil && getNetworkSmDevicesQueryParams.PerPage == -1 {
+		var result *ResponseSmGetNetworkSmDevices
+		println("Paginate")
+		getNetworkSmDevicesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkSmDevicesPaginate, networkID, "", getNetworkSmDevicesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSmGetNetworkSmDevices
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSmDevicesQueryParams)
@@ -725,6 +758,11 @@ func (s *SmService) GetNetworkSmDevices(networkID string, getNetworkSmDevicesQue
 	return result, response, err
 
 }
+func (s *SmService) GetNetworkSmDevicesPaginate(networkID string, getNetworkSmDevicesQueryParams any) (any, *resty.Response, error) {
+	getNetworkSmDevicesQueryParamsConverted := getNetworkSmDevicesQueryParams.(*GetNetworkSmDevicesQueryParams)
+
+	return s.GetNetworkSmDevices(networkID, getNetworkSmDevicesQueryParamsConverted)
+}
 
 //GetNetworkSmDeviceCellularUsageHistory Return the client's daily cellular data usage history
 /* Return the client's daily cellular data usage history. Usage data is in kilobytes.
@@ -734,6 +772,7 @@ func (s *SmService) GetNetworkSmDevices(networkID string, getNetworkSmDevicesQue
 
 
 */
+
 func (s *SmService) GetNetworkSmDeviceCellularUsageHistory(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceCellularUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/cellularUsageHistory"
 	s.rateLimiterBucket.Wait(1)
@@ -769,6 +808,7 @@ func (s *SmService) GetNetworkSmDeviceCellularUsageHistory(networkID string, dev
 
 
 */
+
 func (s *SmService) GetNetworkSmDeviceCerts(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceCerts, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/certs"
 	s.rateLimiterBucket.Wait(1)
@@ -805,9 +845,40 @@ func (s *SmService) GetNetworkSmDeviceCerts(networkID string, deviceID string) (
 
 
 */
+
 func (s *SmService) GetNetworkSmDeviceConnectivity(networkID string, deviceID string, getNetworkSmDeviceConnectivityQueryParams *GetNetworkSmDeviceConnectivityQueryParams) (*ResponseSmGetNetworkSmDeviceConnectivity, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/connectivity"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkSmDeviceConnectivityQueryParams != nil && getNetworkSmDeviceConnectivityQueryParams.PerPage == -1 {
+		var result *ResponseSmGetNetworkSmDeviceConnectivity
+		println("Paginate")
+		getNetworkSmDeviceConnectivityQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkSmDeviceConnectivityPaginate, networkID, deviceID, getNetworkSmDeviceConnectivityQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSmGetNetworkSmDeviceConnectivity
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -833,6 +904,11 @@ func (s *SmService) GetNetworkSmDeviceConnectivity(networkID string, deviceID st
 	return result, response, err
 
 }
+func (s *SmService) GetNetworkSmDeviceConnectivityPaginate(networkID string, deviceID string, getNetworkSmDeviceConnectivityQueryParams any) (any, *resty.Response, error) {
+	getNetworkSmDeviceConnectivityQueryParamsConverted := getNetworkSmDeviceConnectivityQueryParams.(*GetNetworkSmDeviceConnectivityQueryParams)
+
+	return s.GetNetworkSmDeviceConnectivity(networkID, deviceID, getNetworkSmDeviceConnectivityQueryParamsConverted)
+}
 
 //GetNetworkSmDeviceDesktopLogs Return historical records of various Systems Manager network connection details for desktop devices.
 /* Return historical records of various Systems Manager network connection details for desktop devices.
@@ -843,9 +919,40 @@ func (s *SmService) GetNetworkSmDeviceConnectivity(networkID string, deviceID st
 
 
 */
+
 func (s *SmService) GetNetworkSmDeviceDesktopLogs(networkID string, deviceID string, getNetworkSmDeviceDesktopLogsQueryParams *GetNetworkSmDeviceDesktopLogsQueryParams) (*ResponseSmGetNetworkSmDeviceDesktopLogs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/desktopLogs"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkSmDeviceDesktopLogsQueryParams != nil && getNetworkSmDeviceDesktopLogsQueryParams.PerPage == -1 {
+		var result *ResponseSmGetNetworkSmDeviceDesktopLogs
+		println("Paginate")
+		getNetworkSmDeviceDesktopLogsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkSmDeviceDesktopLogsPaginate, networkID, deviceID, getNetworkSmDeviceDesktopLogsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSmGetNetworkSmDeviceDesktopLogs
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -871,6 +978,11 @@ func (s *SmService) GetNetworkSmDeviceDesktopLogs(networkID string, deviceID str
 	return result, response, err
 
 }
+func (s *SmService) GetNetworkSmDeviceDesktopLogsPaginate(networkID string, deviceID string, getNetworkSmDeviceDesktopLogsQueryParams any) (any, *resty.Response, error) {
+	getNetworkSmDeviceDesktopLogsQueryParamsConverted := getNetworkSmDeviceDesktopLogsQueryParams.(*GetNetworkSmDeviceDesktopLogsQueryParams)
+
+	return s.GetNetworkSmDeviceDesktopLogs(networkID, deviceID, getNetworkSmDeviceDesktopLogsQueryParamsConverted)
+}
 
 //GetNetworkSmDeviceDeviceCommandLogs Return historical records of commands sent to Systems Manager devices
 /* Return historical records of commands sent to Systems Manager devices. Note that this will include the name of the Dashboard user who initiated the command if it was generated by a Dashboard admin rather than the automatic behavior of the system; you may wish to filter this out of any reports.
@@ -881,9 +993,40 @@ func (s *SmService) GetNetworkSmDeviceDesktopLogs(networkID string, deviceID str
 
 
 */
+
 func (s *SmService) GetNetworkSmDeviceDeviceCommandLogs(networkID string, deviceID string, getNetworkSmDeviceDeviceCommandLogsQueryParams *GetNetworkSmDeviceDeviceCommandLogsQueryParams) (*ResponseSmGetNetworkSmDeviceDeviceCommandLogs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/deviceCommandLogs"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkSmDeviceDeviceCommandLogsQueryParams != nil && getNetworkSmDeviceDeviceCommandLogsQueryParams.PerPage == -1 {
+		var result *ResponseSmGetNetworkSmDeviceDeviceCommandLogs
+		println("Paginate")
+		getNetworkSmDeviceDeviceCommandLogsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkSmDeviceDeviceCommandLogsPaginate, networkID, deviceID, getNetworkSmDeviceDeviceCommandLogsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSmGetNetworkSmDeviceDeviceCommandLogs
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -909,6 +1052,11 @@ func (s *SmService) GetNetworkSmDeviceDeviceCommandLogs(networkID string, device
 	return result, response, err
 
 }
+func (s *SmService) GetNetworkSmDeviceDeviceCommandLogsPaginate(networkID string, deviceID string, getNetworkSmDeviceDeviceCommandLogsQueryParams any) (any, *resty.Response, error) {
+	getNetworkSmDeviceDeviceCommandLogsQueryParamsConverted := getNetworkSmDeviceDeviceCommandLogsQueryParams.(*GetNetworkSmDeviceDeviceCommandLogsQueryParams)
+
+	return s.GetNetworkSmDeviceDeviceCommandLogs(networkID, deviceID, getNetworkSmDeviceDeviceCommandLogsQueryParamsConverted)
+}
 
 //GetNetworkSmDeviceDeviceProfiles Get the installed profiles associated with a device
 /* Get the installed profiles associated with a device
@@ -918,6 +1066,7 @@ func (s *SmService) GetNetworkSmDeviceDeviceCommandLogs(networkID string, device
 
 
 */
+
 func (s *SmService) GetNetworkSmDeviceDeviceProfiles(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceDeviceProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/deviceProfiles"
 	s.rateLimiterBucket.Wait(1)
@@ -953,6 +1102,7 @@ func (s *SmService) GetNetworkSmDeviceDeviceProfiles(networkID string, deviceID 
 
 
 */
+
 func (s *SmService) GetNetworkSmDeviceNetworkAdapters(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceNetworkAdapters, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/networkAdapters"
 	s.rateLimiterBucket.Wait(1)
@@ -989,9 +1139,40 @@ func (s *SmService) GetNetworkSmDeviceNetworkAdapters(networkID string, deviceID
 
 
 */
+
 func (s *SmService) GetNetworkSmDevicePerformanceHistory(networkID string, deviceID string, getNetworkSmDevicePerformanceHistoryQueryParams *GetNetworkSmDevicePerformanceHistoryQueryParams) (*ResponseSmGetNetworkSmDevicePerformanceHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/performanceHistory"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkSmDevicePerformanceHistoryQueryParams != nil && getNetworkSmDevicePerformanceHistoryQueryParams.PerPage == -1 {
+		var result *ResponseSmGetNetworkSmDevicePerformanceHistory
+		println("Paginate")
+		getNetworkSmDevicePerformanceHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkSmDevicePerformanceHistoryPaginate, networkID, deviceID, getNetworkSmDevicePerformanceHistoryQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSmGetNetworkSmDevicePerformanceHistory
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -1017,6 +1198,11 @@ func (s *SmService) GetNetworkSmDevicePerformanceHistory(networkID string, devic
 	return result, response, err
 
 }
+func (s *SmService) GetNetworkSmDevicePerformanceHistoryPaginate(networkID string, deviceID string, getNetworkSmDevicePerformanceHistoryQueryParams any) (any, *resty.Response, error) {
+	getNetworkSmDevicePerformanceHistoryQueryParamsConverted := getNetworkSmDevicePerformanceHistoryQueryParams.(*GetNetworkSmDevicePerformanceHistoryQueryParams)
+
+	return s.GetNetworkSmDevicePerformanceHistory(networkID, deviceID, getNetworkSmDevicePerformanceHistoryQueryParamsConverted)
+}
 
 //GetNetworkSmDeviceRestrictions List the restrictions on a device
 /* List the restrictions on a device
@@ -1026,6 +1212,7 @@ func (s *SmService) GetNetworkSmDevicePerformanceHistory(networkID string, devic
 
 
 */
+
 func (s *SmService) GetNetworkSmDeviceRestrictions(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceRestrictions, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/restrictions"
 	s.rateLimiterBucket.Wait(1)
@@ -1061,6 +1248,7 @@ func (s *SmService) GetNetworkSmDeviceRestrictions(networkID string, deviceID st
 
 
 */
+
 func (s *SmService) GetNetworkSmDeviceSecurityCenters(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceSecurityCenters, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/securityCenters"
 	s.rateLimiterBucket.Wait(1)
@@ -1096,6 +1284,7 @@ func (s *SmService) GetNetworkSmDeviceSecurityCenters(networkID string, deviceID
 
 
 */
+
 func (s *SmService) GetNetworkSmDeviceSoftwares(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceSoftwares, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/softwares"
 	s.rateLimiterBucket.Wait(1)
@@ -1131,6 +1320,7 @@ func (s *SmService) GetNetworkSmDeviceSoftwares(networkID string, deviceID strin
 
 
 */
+
 func (s *SmService) GetNetworkSmDeviceWLANLists(networkID string, deviceID string) (*ResponseSmGetNetworkSmDeviceWLANLists, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/wlanLists"
 	s.rateLimiterBucket.Wait(1)
@@ -1166,6 +1356,7 @@ func (s *SmService) GetNetworkSmDeviceWLANLists(networkID string, deviceID strin
 
 
 */
+
 func (s *SmService) GetNetworkSmProfiles(networkID string, getNetworkSmProfilesQueryParams *GetNetworkSmProfilesQueryParams) (*ResponseSmGetNetworkSmProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/profiles"
 	s.rateLimiterBucket.Wait(1)
@@ -1202,6 +1393,7 @@ func (s *SmService) GetNetworkSmProfiles(networkID string, getNetworkSmProfilesQ
 
 
 */
+
 func (s *SmService) GetNetworkSmTargetGroups(networkID string, getNetworkSmTargetGroupsQueryParams *GetNetworkSmTargetGroupsQueryParams) (*ResponseSmGetNetworkSmTargetGroups, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/targetGroups"
 	s.rateLimiterBucket.Wait(1)
@@ -1239,6 +1431,7 @@ func (s *SmService) GetNetworkSmTargetGroups(networkID string, getNetworkSmTarge
 
 
 */
+
 func (s *SmService) GetNetworkSmTargetGroup(networkID string, targetGroupID string, getNetworkSmTargetGroupQueryParams *GetNetworkSmTargetGroupQueryParams) (*ResponseSmGetNetworkSmTargetGroup, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/targetGroups/{targetGroupId}"
 	s.rateLimiterBucket.Wait(1)
@@ -1276,9 +1469,40 @@ func (s *SmService) GetNetworkSmTargetGroup(networkID string, targetGroupID stri
 
 
 */
+
 func (s *SmService) GetNetworkSmTrustedAccessConfigs(networkID string, getNetworkSmTrustedAccessConfigsQueryParams *GetNetworkSmTrustedAccessConfigsQueryParams) (*ResponseSmGetNetworkSmTrustedAccessConfigs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/trustedAccessConfigs"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkSmTrustedAccessConfigsQueryParams != nil && getNetworkSmTrustedAccessConfigsQueryParams.PerPage == -1 {
+		var result *ResponseSmGetNetworkSmTrustedAccessConfigs
+		println("Paginate")
+		getNetworkSmTrustedAccessConfigsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkSmTrustedAccessConfigsPaginate, networkID, "", getNetworkSmTrustedAccessConfigsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSmGetNetworkSmTrustedAccessConfigs
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSmTrustedAccessConfigsQueryParams)
@@ -1303,6 +1527,11 @@ func (s *SmService) GetNetworkSmTrustedAccessConfigs(networkID string, getNetwor
 	return result, response, err
 
 }
+func (s *SmService) GetNetworkSmTrustedAccessConfigsPaginate(networkID string, getNetworkSmTrustedAccessConfigsQueryParams any) (any, *resty.Response, error) {
+	getNetworkSmTrustedAccessConfigsQueryParamsConverted := getNetworkSmTrustedAccessConfigsQueryParams.(*GetNetworkSmTrustedAccessConfigsQueryParams)
+
+	return s.GetNetworkSmTrustedAccessConfigs(networkID, getNetworkSmTrustedAccessConfigsQueryParamsConverted)
+}
 
 //GetNetworkSmUserAccessDevices List User Access Devices and its Trusted Access Connections
 /* List User Access Devices and its Trusted Access Connections
@@ -1312,9 +1541,40 @@ func (s *SmService) GetNetworkSmTrustedAccessConfigs(networkID string, getNetwor
 
 
 */
+
 func (s *SmService) GetNetworkSmUserAccessDevices(networkID string, getNetworkSmUserAccessDevicesQueryParams *GetNetworkSmUserAccessDevicesQueryParams) (*ResponseSmGetNetworkSmUserAccessDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/userAccessDevices"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkSmUserAccessDevicesQueryParams != nil && getNetworkSmUserAccessDevicesQueryParams.PerPage == -1 {
+		var result *ResponseSmGetNetworkSmUserAccessDevices
+		println("Paginate")
+		getNetworkSmUserAccessDevicesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkSmUserAccessDevicesPaginate, networkID, "", getNetworkSmUserAccessDevicesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSmGetNetworkSmUserAccessDevices
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSmUserAccessDevicesQueryParams)
@@ -1339,6 +1599,11 @@ func (s *SmService) GetNetworkSmUserAccessDevices(networkID string, getNetworkSm
 	return result, response, err
 
 }
+func (s *SmService) GetNetworkSmUserAccessDevicesPaginate(networkID string, getNetworkSmUserAccessDevicesQueryParams any) (any, *resty.Response, error) {
+	getNetworkSmUserAccessDevicesQueryParamsConverted := getNetworkSmUserAccessDevicesQueryParams.(*GetNetworkSmUserAccessDevicesQueryParams)
+
+	return s.GetNetworkSmUserAccessDevices(networkID, getNetworkSmUserAccessDevicesQueryParamsConverted)
+}
 
 //GetNetworkSmUsers List the owners in an SM network with various specified fields and filters
 /* List the owners in an SM network with various specified fields and filters
@@ -1348,6 +1613,7 @@ func (s *SmService) GetNetworkSmUserAccessDevices(networkID string, getNetworkSm
 
 
 */
+
 func (s *SmService) GetNetworkSmUsers(networkID string, getNetworkSmUsersQueryParams *GetNetworkSmUsersQueryParams) (*ResponseSmGetNetworkSmUsers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/users"
 	s.rateLimiterBucket.Wait(1)
@@ -1384,6 +1650,7 @@ func (s *SmService) GetNetworkSmUsers(networkID string, getNetworkSmUsersQueryPa
 
 
 */
+
 func (s *SmService) GetNetworkSmUserDeviceProfiles(networkID string, userID string) (*ResponseSmGetNetworkSmUserDeviceProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/users/{userId}/deviceProfiles"
 	s.rateLimiterBucket.Wait(1)
@@ -1419,6 +1686,7 @@ func (s *SmService) GetNetworkSmUserDeviceProfiles(networkID string, userID stri
 
 
 */
+
 func (s *SmService) GetNetworkSmUserSoftwares(networkID string, userID string) (*ResponseSmGetNetworkSmUserSoftwares, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/users/{userId}/softwares"
 	s.rateLimiterBucket.Wait(1)
@@ -1454,9 +1722,40 @@ func (s *SmService) GetNetworkSmUserSoftwares(networkID string, userID string) (
 
 
 */
+
 func (s *SmService) GetOrganizationSmAdminsRoles(organizationID string, getOrganizationSmAdminsRolesQueryParams *GetOrganizationSmAdminsRolesQueryParams) (*ResponseSmGetOrganizationSmAdminsRoles, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sm/admins/roles"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationSmAdminsRolesQueryParams != nil && getOrganizationSmAdminsRolesQueryParams.PerPage == -1 {
+		var result *ResponseSmGetOrganizationSmAdminsRoles
+		println("Paginate")
+		getOrganizationSmAdminsRolesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationSmAdminsRolesPaginate, organizationID, "", getOrganizationSmAdminsRolesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSmGetOrganizationSmAdminsRoles
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSmAdminsRolesQueryParams)
@@ -1481,6 +1780,11 @@ func (s *SmService) GetOrganizationSmAdminsRoles(organizationID string, getOrgan
 	return result, response, err
 
 }
+func (s *SmService) GetOrganizationSmAdminsRolesPaginate(organizationID string, getOrganizationSmAdminsRolesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationSmAdminsRolesQueryParamsConverted := getOrganizationSmAdminsRolesQueryParams.(*GetOrganizationSmAdminsRolesQueryParams)
+
+	return s.GetOrganizationSmAdminsRoles(organizationID, getOrganizationSmAdminsRolesQueryParamsConverted)
+}
 
 //GetOrganizationSmAdminsRole Return a Limited Access Role
 /* Return a Limited Access Role
@@ -1490,6 +1794,7 @@ func (s *SmService) GetOrganizationSmAdminsRoles(organizationID string, getOrgan
 
 
 */
+
 func (s *SmService) GetOrganizationSmAdminsRole(organizationID string, roleID string) (*ResponseSmGetOrganizationSmAdminsRole, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sm/admins/roles/{roleId}"
 	s.rateLimiterBucket.Wait(1)
@@ -1524,6 +1829,7 @@ func (s *SmService) GetOrganizationSmAdminsRole(organizationID string, roleID st
 
 
 */
+
 func (s *SmService) GetOrganizationSmApnsCert(organizationID string) (*ResponseSmGetOrganizationSmApnsCert, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sm/apnsCert"
 	s.rateLimiterBucket.Wait(1)
@@ -1558,9 +1864,40 @@ func (s *SmService) GetOrganizationSmApnsCert(organizationID string) (*ResponseS
 
 
 */
+
 func (s *SmService) GetOrganizationSmSentryPoliciesAssignmentsByNetwork(organizationID string, getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams *GetOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams) (*ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sm/sentry/policies/assignments/byNetwork"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams != nil && getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams.PerPage == -1 {
+		var result *ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork
+		println("Paginate")
+		getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationSmSentryPoliciesAssignmentsByNetworkPaginate, organizationID, "", getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams)
@@ -1585,6 +1922,11 @@ func (s *SmService) GetOrganizationSmSentryPoliciesAssignmentsByNetwork(organiza
 	return result, response, err
 
 }
+func (s *SmService) GetOrganizationSmSentryPoliciesAssignmentsByNetworkPaginate(organizationID string, getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams any) (any, *resty.Response, error) {
+	getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParamsConverted := getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams.(*GetOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams)
+
+	return s.GetOrganizationSmSentryPoliciesAssignmentsByNetwork(organizationID, getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParamsConverted)
+}
 
 //GetOrganizationSmVppAccounts List the VPP accounts in the organization
 /* List the VPP accounts in the organization
@@ -1593,6 +1935,7 @@ func (s *SmService) GetOrganizationSmSentryPoliciesAssignmentsByNetwork(organiza
 
 
 */
+
 func (s *SmService) GetOrganizationSmVppAccounts(organizationID string) (*ResponseSmGetOrganizationSmVppAccounts, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sm/vppAccounts"
 	s.rateLimiterBucket.Wait(1)
@@ -1627,6 +1970,7 @@ func (s *SmService) GetOrganizationSmVppAccounts(organizationID string) (*Respon
 
 
 */
+
 func (s *SmService) GetOrganizationSmVppAccount(organizationID string, vppAccountID string) (*ResponseSmGetOrganizationSmVppAccount, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sm/vppAccounts/{vppAccountId}"
 	s.rateLimiterBucket.Wait(1)

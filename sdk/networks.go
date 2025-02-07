@@ -1,6 +1,7 @@
 package meraki
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 
@@ -4431,6 +4432,7 @@ type RequestNetworksCreateNetworkWebhooksWebhookTest struct {
 
 
 */
+
 func (s *NetworksService) GetNetwork(networkID string) (*ResponseNetworksGetNetwork, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}"
 	s.rateLimiterBucket.Wait(1)
@@ -4465,9 +4467,40 @@ func (s *NetworksService) GetNetwork(networkID string) (*ResponseNetworksGetNetw
 
 
 */
+
 func (s *NetworksService) GetNetworkAlertsHistory(networkID string, getNetworkAlertsHistoryQueryParams *GetNetworkAlertsHistoryQueryParams) (*ResponseNetworksGetNetworkAlertsHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/alerts/history"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkAlertsHistoryQueryParams != nil && getNetworkAlertsHistoryQueryParams.PerPage == -1 {
+		var result *ResponseNetworksGetNetworkAlertsHistory
+		println("Paginate")
+		getNetworkAlertsHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkAlertsHistoryPaginate, networkID, "", getNetworkAlertsHistoryQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseNetworksGetNetworkAlertsHistory
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkAlertsHistoryQueryParams)
@@ -4492,6 +4525,11 @@ func (s *NetworksService) GetNetworkAlertsHistory(networkID string, getNetworkAl
 	return result, response, err
 
 }
+func (s *NetworksService) GetNetworkAlertsHistoryPaginate(networkID string, getNetworkAlertsHistoryQueryParams any) (any, *resty.Response, error) {
+	getNetworkAlertsHistoryQueryParamsConverted := getNetworkAlertsHistoryQueryParams.(*GetNetworkAlertsHistoryQueryParams)
+
+	return s.GetNetworkAlertsHistory(networkID, getNetworkAlertsHistoryQueryParamsConverted)
+}
 
 //GetNetworkAlertsSettings Return the alert configuration for this network
 /* Return the alert configuration for this network
@@ -4500,6 +4538,7 @@ func (s *NetworksService) GetNetworkAlertsHistory(networkID string, getNetworkAl
 
 
 */
+
 func (s *NetworksService) GetNetworkAlertsSettings(networkID string) (*ResponseNetworksGetNetworkAlertsSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/alerts/settings"
 	s.rateLimiterBucket.Wait(1)
@@ -4534,9 +4573,40 @@ func (s *NetworksService) GetNetworkAlertsSettings(networkID string) (*ResponseN
 
 
 */
+
 func (s *NetworksService) GetNetworkBluetoothClients(networkID string, getNetworkBluetoothClientsQueryParams *GetNetworkBluetoothClientsQueryParams) (*ResponseNetworksGetNetworkBluetoothClients, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/bluetoothClients"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkBluetoothClientsQueryParams != nil && getNetworkBluetoothClientsQueryParams.PerPage == -1 {
+		var result *ResponseNetworksGetNetworkBluetoothClients
+		println("Paginate")
+		getNetworkBluetoothClientsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkBluetoothClientsPaginate, networkID, "", getNetworkBluetoothClientsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseNetworksGetNetworkBluetoothClients
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkBluetoothClientsQueryParams)
@@ -4561,6 +4631,11 @@ func (s *NetworksService) GetNetworkBluetoothClients(networkID string, getNetwor
 	return result, response, err
 
 }
+func (s *NetworksService) GetNetworkBluetoothClientsPaginate(networkID string, getNetworkBluetoothClientsQueryParams any) (any, *resty.Response, error) {
+	getNetworkBluetoothClientsQueryParamsConverted := getNetworkBluetoothClientsQueryParams.(*GetNetworkBluetoothClientsQueryParams)
+
+	return s.GetNetworkBluetoothClients(networkID, getNetworkBluetoothClientsQueryParamsConverted)
+}
 
 //GetNetworkBluetoothClient Return a Bluetooth client
 /* Return a Bluetooth client. Bluetooth clients can be identified by their ID or their MAC.
@@ -4571,6 +4646,7 @@ func (s *NetworksService) GetNetworkBluetoothClients(networkID string, getNetwor
 
 
 */
+
 func (s *NetworksService) GetNetworkBluetoothClient(networkID string, bluetoothClientID string, getNetworkBluetoothClientQueryParams *GetNetworkBluetoothClientQueryParams) (*ResponseNetworksGetNetworkBluetoothClient, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/bluetoothClients/{bluetoothClientId}"
 	s.rateLimiterBucket.Wait(1)
@@ -4608,9 +4684,40 @@ func (s *NetworksService) GetNetworkBluetoothClient(networkID string, bluetoothC
 
 
 */
+
 func (s *NetworksService) GetNetworkClients(networkID string, getNetworkClientsQueryParams *GetNetworkClientsQueryParams) (*ResponseNetworksGetNetworkClients, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkClientsQueryParams != nil && getNetworkClientsQueryParams.PerPage == -1 {
+		var result *ResponseNetworksGetNetworkClients
+		println("Paginate")
+		getNetworkClientsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkClientsPaginate, networkID, "", getNetworkClientsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseNetworksGetNetworkClients
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkClientsQueryParams)
@@ -4635,6 +4742,11 @@ func (s *NetworksService) GetNetworkClients(networkID string, getNetworkClientsQ
 	return result, response, err
 
 }
+func (s *NetworksService) GetNetworkClientsPaginate(networkID string, getNetworkClientsQueryParams any) (any, *resty.Response, error) {
+	getNetworkClientsQueryParamsConverted := getNetworkClientsQueryParams.(*GetNetworkClientsQueryParams)
+
+	return s.GetNetworkClients(networkID, getNetworkClientsQueryParamsConverted)
+}
 
 //GetNetworkClientsApplicationUsage Return the application usage data for clients
 /* Return the application usage data for clients. Usage data is in kilobytes. Clients can be identified by client keys or either the MACs or IPs depending on whether the network uses Track-by-IP.
@@ -4644,9 +4756,40 @@ func (s *NetworksService) GetNetworkClients(networkID string, getNetworkClientsQ
 
 
 */
+
 func (s *NetworksService) GetNetworkClientsApplicationUsage(networkID string, getNetworkClientsApplicationUsageQueryParams *GetNetworkClientsApplicationUsageQueryParams) (*ResponseNetworksGetNetworkClientsApplicationUsage, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/applicationUsage"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkClientsApplicationUsageQueryParams != nil && getNetworkClientsApplicationUsageQueryParams.PerPage == -1 {
+		var result *ResponseNetworksGetNetworkClientsApplicationUsage
+		println("Paginate")
+		getNetworkClientsApplicationUsageQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkClientsApplicationUsagePaginate, networkID, "", getNetworkClientsApplicationUsageQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseNetworksGetNetworkClientsApplicationUsage
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkClientsApplicationUsageQueryParams)
@@ -4671,6 +4814,11 @@ func (s *NetworksService) GetNetworkClientsApplicationUsage(networkID string, ge
 	return result, response, err
 
 }
+func (s *NetworksService) GetNetworkClientsApplicationUsagePaginate(networkID string, getNetworkClientsApplicationUsageQueryParams any) (any, *resty.Response, error) {
+	getNetworkClientsApplicationUsageQueryParamsConverted := getNetworkClientsApplicationUsageQueryParams.(*GetNetworkClientsApplicationUsageQueryParams)
+
+	return s.GetNetworkClientsApplicationUsage(networkID, getNetworkClientsApplicationUsageQueryParamsConverted)
+}
 
 //GetNetworkClientsBandwidthUsageHistory Returns a timeseries of total traffic consumption rates for all clients on a network within a given timespan, in megabits per second.
 /* Returns a timeseries of total traffic consumption rates for all clients on a network within a given timespan, in megabits per second.
@@ -4680,9 +4828,40 @@ func (s *NetworksService) GetNetworkClientsApplicationUsage(networkID string, ge
 
 
 */
+
 func (s *NetworksService) GetNetworkClientsBandwidthUsageHistory(networkID string, getNetworkClientsBandwidthUsageHistoryQueryParams *GetNetworkClientsBandwidthUsageHistoryQueryParams) (*ResponseNetworksGetNetworkClientsBandwidthUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/bandwidthUsageHistory"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkClientsBandwidthUsageHistoryQueryParams != nil && getNetworkClientsBandwidthUsageHistoryQueryParams.PerPage == -1 {
+		var result *ResponseNetworksGetNetworkClientsBandwidthUsageHistory
+		println("Paginate")
+		getNetworkClientsBandwidthUsageHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkClientsBandwidthUsageHistoryPaginate, networkID, "", getNetworkClientsBandwidthUsageHistoryQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseNetworksGetNetworkClientsBandwidthUsageHistory
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkClientsBandwidthUsageHistoryQueryParams)
@@ -4707,6 +4886,11 @@ func (s *NetworksService) GetNetworkClientsBandwidthUsageHistory(networkID strin
 	return result, response, err
 
 }
+func (s *NetworksService) GetNetworkClientsBandwidthUsageHistoryPaginate(networkID string, getNetworkClientsBandwidthUsageHistoryQueryParams any) (any, *resty.Response, error) {
+	getNetworkClientsBandwidthUsageHistoryQueryParamsConverted := getNetworkClientsBandwidthUsageHistoryQueryParams.(*GetNetworkClientsBandwidthUsageHistoryQueryParams)
+
+	return s.GetNetworkClientsBandwidthUsageHistory(networkID, getNetworkClientsBandwidthUsageHistoryQueryParamsConverted)
+}
 
 //GetNetworkClientsOverview Return overview statistics for network clients
 /* Return overview statistics for network clients
@@ -4716,6 +4900,7 @@ func (s *NetworksService) GetNetworkClientsBandwidthUsageHistory(networkID strin
 
 
 */
+
 func (s *NetworksService) GetNetworkClientsOverview(networkID string, getNetworkClientsOverviewQueryParams *GetNetworkClientsOverviewQueryParams) (*ResponseNetworksGetNetworkClientsOverview, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/overview"
 	s.rateLimiterBucket.Wait(1)
@@ -4752,9 +4937,40 @@ func (s *NetworksService) GetNetworkClientsOverview(networkID string, getNetwork
 
 
 */
+
 func (s *NetworksService) GetNetworkClientsUsageHistories(networkID string, getNetworkClientsUsageHistoriesQueryParams *GetNetworkClientsUsageHistoriesQueryParams) (*ResponseNetworksGetNetworkClientsUsageHistories, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/usageHistories"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkClientsUsageHistoriesQueryParams != nil && getNetworkClientsUsageHistoriesQueryParams.PerPage == -1 {
+		var result *ResponseNetworksGetNetworkClientsUsageHistories
+		println("Paginate")
+		getNetworkClientsUsageHistoriesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkClientsUsageHistoriesPaginate, networkID, "", getNetworkClientsUsageHistoriesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseNetworksGetNetworkClientsUsageHistories
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkClientsUsageHistoriesQueryParams)
@@ -4779,6 +4995,11 @@ func (s *NetworksService) GetNetworkClientsUsageHistories(networkID string, getN
 	return result, response, err
 
 }
+func (s *NetworksService) GetNetworkClientsUsageHistoriesPaginate(networkID string, getNetworkClientsUsageHistoriesQueryParams any) (any, *resty.Response, error) {
+	getNetworkClientsUsageHistoriesQueryParamsConverted := getNetworkClientsUsageHistoriesQueryParams.(*GetNetworkClientsUsageHistoriesQueryParams)
+
+	return s.GetNetworkClientsUsageHistories(networkID, getNetworkClientsUsageHistoriesQueryParamsConverted)
+}
 
 //GetNetworkClient Return the client associated with the given identifier
 /* Return the client associated with the given identifier. Clients can be identified by a client key or either the MAC or IP depending on whether the network uses Track-by-IP.
@@ -4788,6 +5009,7 @@ func (s *NetworksService) GetNetworkClientsUsageHistories(networkID string, getN
 
 
 */
+
 func (s *NetworksService) GetNetworkClient(networkID string, clientID string) (*ResponseNetworksGetNetworkClient, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}"
 	s.rateLimiterBucket.Wait(1)
@@ -4823,6 +5045,7 @@ func (s *NetworksService) GetNetworkClient(networkID string, clientID string) (*
 
 
 */
+
 func (s *NetworksService) GetNetworkClientPolicy(networkID string, clientID string) (*ResponseNetworksGetNetworkClientPolicy, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/policy"
 	s.rateLimiterBucket.Wait(1)
@@ -4858,6 +5081,7 @@ func (s *NetworksService) GetNetworkClientPolicy(networkID string, clientID stri
 
 
 */
+
 func (s *NetworksService) GetNetworkClientSplashAuthorizationStatus(networkID string, clientID string) (*ResponseNetworksGetNetworkClientSplashAuthorizationStatus, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/splashAuthorizationStatus"
 	s.rateLimiterBucket.Wait(1)
@@ -4894,9 +5118,40 @@ func (s *NetworksService) GetNetworkClientSplashAuthorizationStatus(networkID st
 
 
 */
+
 func (s *NetworksService) GetNetworkClientTrafficHistory(networkID string, clientID string, getNetworkClientTrafficHistoryQueryParams *GetNetworkClientTrafficHistoryQueryParams) (*ResponseNetworksGetNetworkClientTrafficHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/trafficHistory"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkClientTrafficHistoryQueryParams != nil && getNetworkClientTrafficHistoryQueryParams.PerPage == -1 {
+		var result *ResponseNetworksGetNetworkClientTrafficHistory
+		println("Paginate")
+		getNetworkClientTrafficHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkClientTrafficHistoryPaginate, networkID, clientID, getNetworkClientTrafficHistoryQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseNetworksGetNetworkClientTrafficHistory
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
@@ -4922,6 +5177,11 @@ func (s *NetworksService) GetNetworkClientTrafficHistory(networkID string, clien
 	return result, response, err
 
 }
+func (s *NetworksService) GetNetworkClientTrafficHistoryPaginate(networkID string, clientID string, getNetworkClientTrafficHistoryQueryParams any) (any, *resty.Response, error) {
+	getNetworkClientTrafficHistoryQueryParamsConverted := getNetworkClientTrafficHistoryQueryParams.(*GetNetworkClientTrafficHistoryQueryParams)
+
+	return s.GetNetworkClientTrafficHistory(networkID, clientID, getNetworkClientTrafficHistoryQueryParamsConverted)
+}
 
 //GetNetworkClientUsageHistory Return the client's daily usage history
 /* Return the client's daily usage history. Usage data is in kilobytes. Clients can be identified by a client key or either the MAC or IP depending on whether the network uses Track-by-IP.
@@ -4931,6 +5191,7 @@ func (s *NetworksService) GetNetworkClientTrafficHistory(networkID string, clien
 
 
 */
+
 func (s *NetworksService) GetNetworkClientUsageHistory(networkID string, clientID string) (*ResponseNetworksGetNetworkClientUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/usageHistory"
 	s.rateLimiterBucket.Wait(1)
@@ -4965,6 +5226,7 @@ func (s *NetworksService) GetNetworkClientUsageHistory(networkID string, clientI
 
 
 */
+
 func (s *NetworksService) GetNetworkDevices(networkID string) (*ResponseNetworksGetNetworkDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/devices"
 	s.rateLimiterBucket.Wait(1)
@@ -4999,9 +5261,40 @@ func (s *NetworksService) GetNetworkDevices(networkID string) (*ResponseNetworks
 
 
 */
+
 func (s *NetworksService) GetNetworkEvents(networkID string, getNetworkEventsQueryParams *GetNetworkEventsQueryParams) (*ResponseNetworksGetNetworkEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/events"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkEventsQueryParams != nil && getNetworkEventsQueryParams.PerPage == -1 {
+		var result *ResponseNetworksGetNetworkEvents
+		println("Paginate")
+		getNetworkEventsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkEventsPaginate, networkID, "", getNetworkEventsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseNetworksGetNetworkEvents
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Events = append(*result.Events, *resultTmp.Events...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkEventsQueryParams)
@@ -5026,6 +5319,11 @@ func (s *NetworksService) GetNetworkEvents(networkID string, getNetworkEventsQue
 	return result, response, err
 
 }
+func (s *NetworksService) GetNetworkEventsPaginate(networkID string, getNetworkEventsQueryParams any) (any, *resty.Response, error) {
+	getNetworkEventsQueryParamsConverted := getNetworkEventsQueryParams.(*GetNetworkEventsQueryParams)
+
+	return s.GetNetworkEvents(networkID, getNetworkEventsQueryParamsConverted)
+}
 
 //GetNetworkEventsEventTypes List the event type to human-readable description
 /* List the event type to human-readable description
@@ -5034,6 +5332,7 @@ func (s *NetworksService) GetNetworkEvents(networkID string, getNetworkEventsQue
 
 
 */
+
 func (s *NetworksService) GetNetworkEventsEventTypes(networkID string) (*ResponseNetworksGetNetworkEventsEventTypes, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/events/eventTypes"
 	s.rateLimiterBucket.Wait(1)
@@ -5067,6 +5366,7 @@ func (s *NetworksService) GetNetworkEventsEventTypes(networkID string) (*Respons
 
 
 */
+
 func (s *NetworksService) GetNetworkFirmwareUpgrades(networkID string) (*ResponseNetworksGetNetworkFirmwareUpgrades, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades"
 	s.rateLimiterBucket.Wait(1)
@@ -5100,6 +5400,7 @@ func (s *NetworksService) GetNetworkFirmwareUpgrades(networkID string) (*Respons
 
 
 */
+
 func (s *NetworksService) GetNetworkFirmwareUpgradesStagedEvents(networkID string) (*ResponseNetworksGetNetworkFirmwareUpgradesStagedEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/events"
 	s.rateLimiterBucket.Wait(1)
@@ -5133,6 +5434,7 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedEvents(networkID strin
 
 
 */
+
 func (s *NetworksService) GetNetworkFirmwareUpgradesStagedGroups(networkID string) (*ResponseNetworksGetNetworkFirmwareUpgradesStagedGroups, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/groups"
 	s.rateLimiterBucket.Wait(1)
@@ -5167,6 +5469,7 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedGroups(networkID strin
 
 
 */
+
 func (s *NetworksService) GetNetworkFirmwareUpgradesStagedGroup(networkID string, groupID string) (*ResponseNetworksGetNetworkFirmwareUpgradesStagedGroup, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/groups/{groupId}"
 	s.rateLimiterBucket.Wait(1)
@@ -5201,6 +5504,7 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedGroup(networkID string
 
 
 */
+
 func (s *NetworksService) GetNetworkFirmwareUpgradesStagedStages(networkID string) (*ResponseNetworksGetNetworkFirmwareUpgradesStagedStages, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/firmwareUpgrades/staged/stages"
 	s.rateLimiterBucket.Wait(1)
@@ -5234,6 +5538,7 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedStages(networkID strin
 
 
 */
+
 func (s *NetworksService) GetNetworkFloorPlans(networkID string) (*ResponseNetworksGetNetworkFloorPlans, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/floorPlans"
 	s.rateLimiterBucket.Wait(1)
@@ -5268,6 +5573,7 @@ func (s *NetworksService) GetNetworkFloorPlans(networkID string) (*ResponseNetwo
 
 
 */
+
 func (s *NetworksService) GetNetworkFloorPlan(networkID string, floorPlanID string) (*ResponseNetworksGetNetworkFloorPlan, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/floorPlans/{floorPlanId}"
 	s.rateLimiterBucket.Wait(1)
@@ -5302,6 +5608,7 @@ func (s *NetworksService) GetNetworkFloorPlan(networkID string, floorPlanID stri
 
 
 */
+
 func (s *NetworksService) GetNetworkGroupPolicies(networkID string) (*ResponseNetworksGetNetworkGroupPolicies, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/groupPolicies"
 	s.rateLimiterBucket.Wait(1)
@@ -5336,6 +5643,7 @@ func (s *NetworksService) GetNetworkGroupPolicies(networkID string) (*ResponseNe
 
 
 */
+
 func (s *NetworksService) GetNetworkGroupPolicy(networkID string, groupPolicyID string) (*ResponseNetworksGetNetworkGroupPolicy, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/groupPolicies/{groupPolicyId}"
 	s.rateLimiterBucket.Wait(1)
@@ -5370,6 +5678,7 @@ func (s *NetworksService) GetNetworkGroupPolicy(networkID string, groupPolicyID 
 
 
 */
+
 func (s *NetworksService) GetNetworkHealthAlerts(networkID string) (*ResponseNetworksGetNetworkHealthAlerts, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/health/alerts"
 	s.rateLimiterBucket.Wait(1)
@@ -5403,6 +5712,7 @@ func (s *NetworksService) GetNetworkHealthAlerts(networkID string) (*ResponseNet
 
 
 */
+
 func (s *NetworksService) GetNetworkMerakiAuthUsers(networkID string) (*ResponseNetworksGetNetworkMerakiAuthUsers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/merakiAuthUsers"
 	s.rateLimiterBucket.Wait(1)
@@ -5437,6 +5747,7 @@ func (s *NetworksService) GetNetworkMerakiAuthUsers(networkID string) (*Response
 
 
 */
+
 func (s *NetworksService) GetNetworkMerakiAuthUser(networkID string, merakiAuthUserID string) (*ResponseNetworksGetNetworkMerakiAuthUser, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/merakiAuthUsers/{merakiAuthUserId}"
 	s.rateLimiterBucket.Wait(1)
@@ -5471,6 +5782,7 @@ func (s *NetworksService) GetNetworkMerakiAuthUser(networkID string, merakiAuthU
 
 
 */
+
 func (s *NetworksService) GetNetworkMqttBrokers(networkID string) (*ResponseNetworksGetNetworkMqttBrokers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/mqttBrokers"
 	s.rateLimiterBucket.Wait(1)
@@ -5505,6 +5817,7 @@ func (s *NetworksService) GetNetworkMqttBrokers(networkID string) (*ResponseNetw
 
 
 */
+
 func (s *NetworksService) GetNetworkMqttBroker(networkID string, mqttBrokerID string) (*ResponseNetworksGetNetworkMqttBroker, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/mqttBrokers/{mqttBrokerId}"
 	s.rateLimiterBucket.Wait(1)
@@ -5539,6 +5852,7 @@ func (s *NetworksService) GetNetworkMqttBroker(networkID string, mqttBrokerID st
 
 
 */
+
 func (s *NetworksService) GetNetworkNetflow(networkID string) (*ResponseNetworksGetNetworkNetflow, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/netflow"
 	s.rateLimiterBucket.Wait(1)
@@ -5573,9 +5887,40 @@ func (s *NetworksService) GetNetworkNetflow(networkID string) (*ResponseNetworks
 
 
 */
+
 func (s *NetworksService) GetNetworkNetworkHealthChannelUtilization(networkID string, getNetworkNetworkHealthChannelUtilizationQueryParams *GetNetworkNetworkHealthChannelUtilizationQueryParams) (*ResponseNetworksGetNetworkNetworkHealthChannelUtilization, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/networkHealth/channelUtilization"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkNetworkHealthChannelUtilizationQueryParams != nil && getNetworkNetworkHealthChannelUtilizationQueryParams.PerPage == -1 {
+		var result *ResponseNetworksGetNetworkNetworkHealthChannelUtilization
+		println("Paginate")
+		getNetworkNetworkHealthChannelUtilizationQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkNetworkHealthChannelUtilizationPaginate, networkID, "", getNetworkNetworkHealthChannelUtilizationQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseNetworksGetNetworkNetworkHealthChannelUtilization
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkNetworkHealthChannelUtilizationQueryParams)
@@ -5600,21 +5945,27 @@ func (s *NetworksService) GetNetworkNetworkHealthChannelUtilization(networkID st
 	return result, response, err
 
 }
+func (s *NetworksService) GetNetworkNetworkHealthChannelUtilizationPaginate(networkID string, getNetworkNetworkHealthChannelUtilizationQueryParams any) (any, *resty.Response, error) {
+	getNetworkNetworkHealthChannelUtilizationQueryParamsConverted := getNetworkNetworkHealthChannelUtilizationQueryParams.(*GetNetworkNetworkHealthChannelUtilizationQueryParams)
+
+	return s.GetNetworkNetworkHealthChannelUtilization(networkID, getNetworkNetworkHealthChannelUtilizationQueryParamsConverted)
+}
 
 //GetNetworkPiiPiiKeys List the keys required to access Personally Identifiable Information (PII) for a given identifier
 /* List the keys required to access Personally Identifiable Information (PII) for a given identifier. Exactly one identifier will be accepted. If the organization contains org-wide Systems Manager users matching the key provided then there will be an entry with the key "0" containing the applicable keys.
 
 ## ALTERNATE PATH
 
-```
+***
 /organizations/{organizationId}/pii/piiKeys
-```
+***
 
 @param networkID networkId path parameter. Network ID
 @param getNetworkPiiPiiKeysQueryParams Filtering parameter
 
 
 */
+
 func (s *NetworksService) GetNetworkPiiPiiKeys(networkID string, getNetworkPiiPiiKeysQueryParams *GetNetworkPiiPiiKeysQueryParams) (*ResponseNetworksGetNetworkPiiPiiKeys, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/piiKeys"
 	s.rateLimiterBucket.Wait(1)
@@ -5648,14 +5999,15 @@ func (s *NetworksService) GetNetworkPiiPiiKeys(networkID string, getNetworkPiiPi
 
 ## ALTERNATE PATH
 
-```
+***
 /organizations/{organizationId}/pii/requests
-```
+***
 
 @param networkID networkId path parameter. Network ID
 
 
 */
+
 func (s *NetworksService) GetNetworkPiiRequests(networkID string) (*ResponseNetworksGetNetworkPiiRequests, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/requests"
 	s.rateLimiterBucket.Wait(1)
@@ -5687,15 +6039,16 @@ func (s *NetworksService) GetNetworkPiiRequests(networkID string) (*ResponseNetw
 
 ## ALTERNATE PATH
 
-```
+***
 /organizations/{organizationId}/pii/requests/{requestId}
-```
+***
 
 @param networkID networkId path parameter. Network ID
 @param requestID requestId path parameter. Request ID
 
 
 */
+
 func (s *NetworksService) GetNetworkPiiRequest(networkID string, requestID string) (*ResponseNetworksGetNetworkPiiRequest, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/requests/{requestId}"
 	s.rateLimiterBucket.Wait(1)
@@ -5728,15 +6081,16 @@ func (s *NetworksService) GetNetworkPiiRequest(networkID string, requestID strin
 
 ## ALTERNATE PATH
 
-```
+***
 /organizations/{organizationId}/pii/smDevicesForKey
-```
+***
 
 @param networkID networkId path parameter. Network ID
 @param getNetworkPiiSmDevicesForKeyQueryParams Filtering parameter
 
 
 */
+
 func (s *NetworksService) GetNetworkPiiSmDevicesForKey(networkID string, getNetworkPiiSmDevicesForKeyQueryParams *GetNetworkPiiSmDevicesForKeyQueryParams) (*ResponseNetworksGetNetworkPiiSmDevicesForKey, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/smDevicesForKey"
 	s.rateLimiterBucket.Wait(1)
@@ -5770,15 +6124,16 @@ func (s *NetworksService) GetNetworkPiiSmDevicesForKey(networkID string, getNetw
 
 ## ALTERNATE PATH
 
-```
+***
 /organizations/{organizationId}/pii/smOwnersForKey
-```
+***
 
 @param networkID networkId path parameter. Network ID
 @param getNetworkPiiSmOwnersForKeyQueryParams Filtering parameter
 
 
 */
+
 func (s *NetworksService) GetNetworkPiiSmOwnersForKey(networkID string, getNetworkPiiSmOwnersForKeyQueryParams *GetNetworkPiiSmOwnersForKeyQueryParams) (*ResponseNetworksGetNetworkPiiSmOwnersForKey, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/pii/smOwnersForKey"
 	s.rateLimiterBucket.Wait(1)
@@ -5815,9 +6170,40 @@ func (s *NetworksService) GetNetworkPiiSmOwnersForKey(networkID string, getNetwo
 
 
 */
+
 func (s *NetworksService) GetNetworkPoliciesByClient(networkID string, getNetworkPoliciesByClientQueryParams *GetNetworkPoliciesByClientQueryParams) (*ResponseNetworksGetNetworkPoliciesByClient, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/policies/byClient"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkPoliciesByClientQueryParams != nil && getNetworkPoliciesByClientQueryParams.PerPage == -1 {
+		var result *ResponseNetworksGetNetworkPoliciesByClient
+		println("Paginate")
+		getNetworkPoliciesByClientQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkPoliciesByClientPaginate, networkID, "", getNetworkPoliciesByClientQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseNetworksGetNetworkPoliciesByClient
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkPoliciesByClientQueryParams)
@@ -5842,6 +6228,11 @@ func (s *NetworksService) GetNetworkPoliciesByClient(networkID string, getNetwor
 	return result, response, err
 
 }
+func (s *NetworksService) GetNetworkPoliciesByClientPaginate(networkID string, getNetworkPoliciesByClientQueryParams any) (any, *resty.Response, error) {
+	getNetworkPoliciesByClientQueryParamsConverted := getNetworkPoliciesByClientQueryParams.(*GetNetworkPoliciesByClientQueryParams)
+
+	return s.GetNetworkPoliciesByClient(networkID, getNetworkPoliciesByClientQueryParamsConverted)
+}
 
 //GetNetworkSettings Return the settings for a network
 /* Return the settings for a network
@@ -5850,6 +6241,7 @@ func (s *NetworksService) GetNetworkPoliciesByClient(networkID string, getNetwor
 
 
 */
+
 func (s *NetworksService) GetNetworkSettings(networkID string) (*ResponseNetworksGetNetworkSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/settings"
 	s.rateLimiterBucket.Wait(1)
@@ -5883,6 +6275,7 @@ func (s *NetworksService) GetNetworkSettings(networkID string) (*ResponseNetwork
 
 
 */
+
 func (s *NetworksService) GetNetworkSNMP(networkID string) (*ResponseNetworksGetNetworkSNMP, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/snmp"
 	s.rateLimiterBucket.Wait(1)
@@ -5917,6 +6310,7 @@ func (s *NetworksService) GetNetworkSNMP(networkID string) (*ResponseNetworksGet
 
 
 */
+
 func (s *NetworksService) GetNetworkSplashLoginAttempts(networkID string, getNetworkSplashLoginAttemptsQueryParams *GetNetworkSplashLoginAttemptsQueryParams) (*ResponseNetworksGetNetworkSplashLoginAttempts, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/splashLoginAttempts"
 	s.rateLimiterBucket.Wait(1)
@@ -5952,6 +6346,7 @@ func (s *NetworksService) GetNetworkSplashLoginAttempts(networkID string, getNet
 
 
 */
+
 func (s *NetworksService) GetNetworkSyslogServers(networkID string) (*ResponseNetworksGetNetworkSyslogServers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/syslogServers"
 	s.rateLimiterBucket.Wait(1)
@@ -5985,6 +6380,7 @@ func (s *NetworksService) GetNetworkSyslogServers(networkID string) (*ResponseNe
 
 
 */
+
 func (s *NetworksService) GetNetworkTopologyLinkLayer(networkID string) (*ResponseNetworksGetNetworkTopologyLinkLayer, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/topology/linkLayer"
 	s.rateLimiterBucket.Wait(1)
@@ -6019,6 +6415,7 @@ func (s *NetworksService) GetNetworkTopologyLinkLayer(networkID string) (*Respon
 
 
 */
+
 func (s *NetworksService) GetNetworkTraffic(networkID string, getNetworkTrafficQueryParams *GetNetworkTrafficQueryParams) (*ResponseNetworksGetNetworkTraffic, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/traffic"
 	s.rateLimiterBucket.Wait(1)
@@ -6054,6 +6451,7 @@ func (s *NetworksService) GetNetworkTraffic(networkID string, getNetworkTrafficQ
 
 
 */
+
 func (s *NetworksService) GetNetworkTrafficAnalysis(networkID string) (*ResponseNetworksGetNetworkTrafficAnalysis, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/trafficAnalysis"
 	s.rateLimiterBucket.Wait(1)
@@ -6087,6 +6485,7 @@ func (s *NetworksService) GetNetworkTrafficAnalysis(networkID string) (*Response
 
 
 */
+
 func (s *NetworksService) GetNetworkTrafficShapingApplicationCategories(networkID string) (*ResponseNetworksGetNetworkTrafficShapingApplicationCategories, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/trafficShaping/applicationCategories"
 	s.rateLimiterBucket.Wait(1)
@@ -6120,6 +6519,7 @@ func (s *NetworksService) GetNetworkTrafficShapingApplicationCategories(networkI
 
 
 */
+
 func (s *NetworksService) GetNetworkTrafficShapingDscpTaggingOptions(networkID string) (*ResponseNetworksGetNetworkTrafficShapingDscpTaggingOptions, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/trafficShaping/dscpTaggingOptions"
 	s.rateLimiterBucket.Wait(1)
@@ -6153,6 +6553,7 @@ func (s *NetworksService) GetNetworkTrafficShapingDscpTaggingOptions(networkID s
 
 
 */
+
 func (s *NetworksService) GetNetworkVLANProfiles(networkID string) (*ResponseNetworksGetNetworkVLANProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/vlanProfiles"
 	s.rateLimiterBucket.Wait(1)
@@ -6187,9 +6588,40 @@ func (s *NetworksService) GetNetworkVLANProfiles(networkID string) (*ResponseNet
 
 
 */
+
 func (s *NetworksService) GetNetworkVLANProfilesAssignmentsByDevice(networkID string, getNetworkVlanProfilesAssignmentsByDeviceQueryParams *GetNetworkVLANProfilesAssignmentsByDeviceQueryParams) (*ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/vlanProfiles/assignments/byDevice"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkVlanProfilesAssignmentsByDeviceQueryParams != nil && getNetworkVlanProfilesAssignmentsByDeviceQueryParams.PerPage == -1 {
+		var result *ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice
+		println("Paginate")
+		getNetworkVlanProfilesAssignmentsByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkVLANProfilesAssignmentsByDevicePaginate, networkID, "", getNetworkVlanProfilesAssignmentsByDeviceQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkVlanProfilesAssignmentsByDeviceQueryParams)
@@ -6214,6 +6646,11 @@ func (s *NetworksService) GetNetworkVLANProfilesAssignmentsByDevice(networkID st
 	return result, response, err
 
 }
+func (s *NetworksService) GetNetworkVLANProfilesAssignmentsByDevicePaginate(networkID string, getNetworkVlanProfilesAssignmentsByDeviceQueryParams any) (any, *resty.Response, error) {
+	getNetworkVlanProfilesAssignmentsByDeviceQueryParamsConverted := getNetworkVlanProfilesAssignmentsByDeviceQueryParams.(*GetNetworkVLANProfilesAssignmentsByDeviceQueryParams)
+
+	return s.GetNetworkVLANProfilesAssignmentsByDevice(networkID, getNetworkVlanProfilesAssignmentsByDeviceQueryParamsConverted)
+}
 
 //GetNetworkVLANProfile Get an existing VLAN profile of a network
 /* Get an existing VLAN profile of a network
@@ -6223,6 +6660,7 @@ func (s *NetworksService) GetNetworkVLANProfilesAssignmentsByDevice(networkID st
 
 
 */
+
 func (s *NetworksService) GetNetworkVLANProfile(networkID string, iname string) (*ResponseNetworksGetNetworkVLANProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/vlanProfiles/{iname}"
 	s.rateLimiterBucket.Wait(1)
@@ -6257,6 +6695,7 @@ func (s *NetworksService) GetNetworkVLANProfile(networkID string, iname string) 
 
 
 */
+
 func (s *NetworksService) GetNetworkWebhooksHTTPServers(networkID string) (*ResponseNetworksGetNetworkWebhooksHTTPServers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/httpServers"
 	s.rateLimiterBucket.Wait(1)
@@ -6291,6 +6730,7 @@ func (s *NetworksService) GetNetworkWebhooksHTTPServers(networkID string) (*Resp
 
 
 */
+
 func (s *NetworksService) GetNetworkWebhooksHTTPServer(networkID string, httpServerID string) (*ResponseNetworksGetNetworkWebhooksHTTPServer, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/httpServers/{httpServerId}"
 	s.rateLimiterBucket.Wait(1)
@@ -6325,6 +6765,7 @@ func (s *NetworksService) GetNetworkWebhooksHTTPServer(networkID string, httpSer
 
 
 */
+
 func (s *NetworksService) GetNetworkWebhooksPayloadTemplates(networkID string) (*ResponseNetworksGetNetworkWebhooksPayloadTemplates, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/payloadTemplates"
 	s.rateLimiterBucket.Wait(1)
@@ -6359,6 +6800,7 @@ func (s *NetworksService) GetNetworkWebhooksPayloadTemplates(networkID string) (
 
 
 */
+
 func (s *NetworksService) GetNetworkWebhooksPayloadTemplate(networkID string, payloadTemplateID string) (*ResponseNetworksGetNetworkWebhooksPayloadTemplate, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/payloadTemplates/{payloadTemplateId}"
 	s.rateLimiterBucket.Wait(1)
@@ -6394,6 +6836,7 @@ func (s *NetworksService) GetNetworkWebhooksPayloadTemplate(networkID string, pa
 
 
 */
+
 func (s *NetworksService) GetNetworkWebhooksWebhookTest(networkID string, webhookTestID string) (*ResponseNetworksGetNetworkWebhooksWebhookTest, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/webhooks/webhookTests/{webhookTestId}"
 	s.rateLimiterBucket.Wait(1)
@@ -6429,6 +6872,7 @@ func (s *NetworksService) GetNetworkWebhooksWebhookTest(networkID string, webhoo
 
 
 */
+
 func (s *NetworksService) GetOrganizationSummaryTopNetworksByStatus(organizationID string, getOrganizationSummaryTopNetworksByStatusQueryParams *GetOrganizationSummaryTopNetworksByStatusQueryParams) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/networks/byStatus"
 	s.rateLimiterBucket.Wait(1)
@@ -7129,9 +7573,9 @@ func (s *NetworksService) CreateNetworkMqttBroker(networkID string, requestNetwo
 
 ## ALTERNATE PATH
 
-```
+***
 /organizations/{organizationId}/pii/requests
-```
+***
 
 @param networkID networkId path parameter. Network ID
 
@@ -8316,9 +8760,9 @@ func (s *NetworksService) DeleteNetworkMqttBroker(networkID string, mqttBrokerID
 
 ## ALTERNATE PATH
 
-```
+***
 /organizations/{organizationId}/pii/requests/{requestId}
-```
+***
 
 @param networkID networkId path parameter. Network ID
 @param requestID requestId path parameter. Request ID
