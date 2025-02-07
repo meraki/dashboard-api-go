@@ -260,7 +260,7 @@ type ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersM
 	Remaining *int `json:"remaining,omitempty"` // Remaining number of Service Providers
 	Total     *int `json:"total,omitempty"`     // Total number of Service Providers
 }
-type ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts []ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts // Array of ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts
+type ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts // Array of ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts
 type ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts struct {
 	Items *[]ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccountsItems `json:"items,omitempty"` // IList of Cellular Service Provider Accounts
 	Meta  *ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccountsMeta    `json:"meta,omitempty"`  // Meta details about the result

@@ -5090,7 +5090,7 @@ func (s *ApplianceService) GetOrganizationApplianceVpnStatusesPaginate(organizat
 
 */
 
-func (s *ApplianceService) GetOrganizationApplianceVpnThirdPartyVpnpeers(organizationID string) (*resty.Response, error) {
+func (s *ApplianceService) GetOrganizationApplianceVpnThirdPartyVpnpeers(organizationID string) (*ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeers, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -5098,19 +5098,21 @@ func (s *ApplianceService) GetOrganizationApplianceVpnThirdPartyVpnpeers(organiz
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
+		SetResult(&ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeers{}).
 		SetError(&Error).
 		Get(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation GetOrganizationApplianceVpnThirdPartyVpnpeers")
+		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceVpnThirdPartyVpnpeers")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeers)
+	return result, response, err
 
 }
 
@@ -6539,7 +6541,7 @@ func (s *ApplianceService) UpdateOrganizationApplianceSecurityIntrusion(organiza
 
 @param organizationID organizationId path parameter. Organization ID
 */
-func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(organizationID string) (*resty.Response, error) {
+func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(organizationID string, requestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers *RequestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -6547,6 +6549,7 @@ func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(orga
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers).
 		SetError(&Error).
 		Put(path)
 

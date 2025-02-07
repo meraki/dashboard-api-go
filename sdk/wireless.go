@@ -978,7 +978,10 @@ type ResponseItemWirelessGetNetworkWirelessMeshStatusesLatestMeshPerformance str
 	Metric          *int   `json:"metric,omitempty"`          // Represents the quality of the entire route from the repeater access point to its gateway access point.
 	UsagePercentage string `json:"usagePercentage,omitempty"` // Mesh utilization as a percentage.
 }
-type ResponseWirelessGetNetworkWirelessRfProfiles struct {
+
+type ResponseWirelessGetNetworkWirelessRfProfiles []ResponseItemWirelessGetNetworkWirelessRfProfiles
+
+type ResponseItemWirelessGetNetworkWirelessRfProfiles struct {
 	ApBandSettings         *ResponseWirelessGetNetworkWirelessRfProfilesApBandSettings     `json:"apBandSettings,omitempty"`         // Settings that will be enabled if selectionType is set to 'ap'.
 	BandSelectionType      string                                                          `json:"bandSelectionType,omitempty"`      // Band selection can be set to either 'ssid' or 'ap'. This param is required on creation.
 	ClientBalancingEnabled *bool                                                           `json:"clientBalancingEnabled,omitempty"` // Steers client to best available access point. Can be either true or false. Defaults to true.
@@ -2108,6 +2111,7 @@ type ResponseWirelessGetNetworkWirelessSSIDFirewallL3FirewallRulesRules struct {
 	DestPort string `json:"destPort,omitempty"` // Comma-separated list of destination port(s) (integer in the range 1-65535), or 'any'
 	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
 	Protocol string `json:"protocol,omitempty"` // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
+	IpVer    string `json:"ipVer,omitempty"`    //
 }
 type ResponseWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRules struct {
 	AllowLanAccess *bool                                                                    `json:"allowLanAccess,omitempty"` // Allows wireless client access to local LAN (boolean value - true allows access and false denies access)
@@ -2124,18 +2128,86 @@ type ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRules struct {
 	Rules *[]ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRulesRules `json:"rules,omitempty"` // An ordered array of the firewall rules for this SSID (not including the local LAN access rule or the default rule).
 }
 type ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRulesRules struct {
-	Policy string `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
-	Type   string `json:"type,omitempty"`   // Type of the L7 firewall rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
-	Value  string `json:"value,omitempty"`  // The value of what needs to get blocked. Format of the value varies depending on type of the firewall rule selected.
+	Policy    string                                                                    `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
+	Type      string                                                                    `json:"type,omitempty"`   // Type of the L7 firewall rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
+	Value     *string                                                                   //
+	ValueObj  *ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj //
+	ValueList *[]string                                                                 //
 }
 type ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRules struct {
 	Rules *[]ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRules `json:"rules,omitempty"` // An ordered array of the firewall rules for this SSID (not including the local LAN access rule or the default rule).
 }
 type ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRules struct {
-	Policy string `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
-	Type   string `json:"type,omitempty"`   // Type of the L7 firewall rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
-	Value  string `json:"value,omitempty"`  // The value of what needs to get blocked. Format of the value varies depending on type of the firewall rule selected.
+	Policy    string                                                                    `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
+	Type      string                                                                    `json:"type,omitempty"`   // Type of the L7 firewall rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
+	Value     *string                                                                   //
+	ValueObj  *ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj //
+	ValueList *[]string                                                                 //
 }
+type ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRulesValueObj struct {
+	ID   string `json:"id,omitempty"`   //
+	Name string `json:"name,omitempty"` //
+}
+
+func (r *ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRules) UnmarshalJSON(data []byte) error {
+	type Alias ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRules
+	aux := &struct {
+		Value interface{} `json:"value"`
+		*Alias
+	}{
+		Alias: (*Alias)(r),
+	}
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+	switch v := aux.Value.(type) {
+	case string:
+		r.Value = &v
+	case []interface{}:
+		strList := make([]string, len(v))
+		for i, item := range v {
+			strList[i] = item.(string)
+		}
+		r.ValueList = &strList
+	case map[string]interface{}:
+		valueObj := &ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj{
+			ID:   v["id"].(string),
+			Name: v["name"].(string),
+		}
+		r.ValueObj = valueObj
+	}
+	return nil
+}
+func (r *ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRulesRules) UnmarshalJSON(data []byte) error {
+	type Alias ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRulesRules
+	aux := &struct {
+		Value interface{} `json:"value"`
+		*Alias
+	}{
+		Alias: (*Alias)(r),
+	}
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+	switch v := aux.Value.(type) {
+	case string:
+		r.Value = &v
+	case []interface{}:
+		strList := make([]string, len(v))
+		for i, item := range v {
+			strList[i] = item.(string)
+		}
+		r.ValueList = &strList
+	case map[string]interface{}:
+		valueObj := &ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj{
+			ID:   v["id"].(string),
+			Name: v["name"].(string),
+		}
+		r.ValueObj = valueObj
+	}
+	return nil
+}
+
 type ResponseWirelessGetNetworkWirelessSSIDHotspot20 struct {
 	Domains           []string                                                    `json:"domains,omitempty"`           //
 	Enabled           *bool                                                       `json:"enabled,omitempty"`           //
@@ -3623,14 +3695,20 @@ type RequestWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRulesRules struct
 	DestPort string `json:"destPort,omitempty"` // Comma-separated list of destination port(s) (integer in the range 1-65535), or 'any'
 	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
 	Protocol string `json:"protocol,omitempty"` // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
+	IpVer    string `json:"ipVer,omitempty"`    //
 }
 type RequestWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRules struct {
 	Rules *[]RequestWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRules `json:"rules,omitempty"` // An array of L7 firewall rules for this SSID. Rules will get applied in the same order user has specified in request. Empty array will clear the L7 firewall rule configuration.
 }
 type RequestWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRules struct {
-	Policy string `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
-	Type   string `json:"type,omitempty"`   // Type of the L7 firewall rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
-	Value  string `json:"value,omitempty"`  // The value of what needs to get blocked. Format of the value varies depending on type of the firewall rule selected.
+	Policy string      `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
+	Type   string      `json:"type,omitempty"`   // Type of the L7 firewall rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
+	Value  interface{} `json:"value,omitempty"`  // The 'value' of what you want to block. Format of 'value' varies depending on type of the rule. The application categories and application ids can be retrieved from the the 'MX L7 application categories' endpoint. The countries follow the two-letter ISO 3166-1 alpha-2 format.
+}
+
+type RequestWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRulesValue struct {
+	ID   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 }
 type RequestWirelessUpdateNetworkWirelessSSIDHotspot20 struct {
 	Domains           []string                                                      `json:"domains,omitempty"`           // An array of domain names
