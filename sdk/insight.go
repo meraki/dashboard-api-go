@@ -92,6 +92,7 @@ type RequestInsightUpdateOrganizationInsightMonitoredMediaServer struct {
 
 
 */
+
 func (s *InsightService) GetNetworkInsightApplicationHealthByTime(networkID string, applicationID string, getNetworkInsightApplicationHealthByTimeQueryParams *GetNetworkInsightApplicationHealthByTimeQueryParams) (*ResponseInsightGetNetworkInsightApplicationHealthByTime, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/insight/applications/{applicationId}/healthByTime"
 	s.rateLimiterBucket.Wait(1)
@@ -128,6 +129,7 @@ func (s *InsightService) GetNetworkInsightApplicationHealthByTime(networkID stri
 
 
 */
+
 func (s *InsightService) GetOrganizationInsightApplications(organizationID string) (*ResponseInsightGetOrganizationInsightApplications, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/applications"
 	s.rateLimiterBucket.Wait(1)
@@ -161,6 +163,7 @@ func (s *InsightService) GetOrganizationInsightApplications(organizationID strin
 
 
 */
+
 func (s *InsightService) GetOrganizationInsightMonitoredMediaServers(organizationID string) (*ResponseInsightGetOrganizationInsightMonitoredMediaServers, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers"
 	s.rateLimiterBucket.Wait(1)
@@ -195,6 +198,7 @@ func (s *InsightService) GetOrganizationInsightMonitoredMediaServers(organizatio
 
 
 */
+
 func (s *InsightService) GetOrganizationInsightMonitoredMediaServer(organizationID string, monitoredMediaServerID string) (*ResponseInsightGetOrganizationInsightMonitoredMediaServer, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/insight/monitoredMediaServers/{monitoredMediaServerId}"
 	s.rateLimiterBucket.Wait(1)

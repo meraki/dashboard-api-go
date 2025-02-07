@@ -241,11 +241,91 @@ type GetOrganizationWirelessClientsOverviewByDeviceQueryParams struct {
 	StartingAfter           string   `url:"startingAfter,omitempty"`             //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	EndingBefore            string   `url:"endingBefore,omitempty"`              //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 }
+type GetOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams struct {
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Filter results by network.
+	Serials       []string `url:"serials[],omitempty"`     //Filter results by device.
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	T0            string   `url:"t0,omitempty"`            //The beginning of the timespan for the data. The maximum lookback period is 90 days from today.
+	T1            string   `url:"t1,omitempty"`            //The end of the timespan for the data. t1 can be a maximum of 90 days after t0.
+	Timespan      float64  `url:"timespan,omitempty"`      //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 90 days. The default is 7 days.
+	Interval      int      `url:"interval,omitempty"`      //The time interval in seconds for returned data. The valid intervals are: 300, 600, 3600, 7200, 14400, 21600. The default is 3600.
+}
+type GetOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams struct {
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Filter results by network.
+	Serials       []string `url:"serials[],omitempty"`     //Filter results by device.
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	T0            string   `url:"t0,omitempty"`            //The beginning of the timespan for the data. The maximum lookback period is 90 days from today.
+	T1            string   `url:"t1,omitempty"`            //The end of the timespan for the data. t1 can be a maximum of 90 days after t0.
+	Timespan      float64  `url:"timespan,omitempty"`      //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 90 days. The default is 7 days.
+	Interval      int      `url:"interval,omitempty"`      //The time interval in seconds for returned data. The valid intervals are: 300, 600, 3600, 7200, 14400, 21600. The default is 3600.
+}
+type GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams struct {
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Filter results by network.
+	Serials       []string `url:"serials[],omitempty"`     //Filter results by device.
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	T0            string   `url:"t0,omitempty"`            //The beginning of the timespan for the data. The maximum lookback period is 31 days from today.
+	T1            string   `url:"t1,omitempty"`            //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
+	Timespan      float64  `url:"timespan,omitempty"`      //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 7 days.
+	Interval      int      `url:"interval,omitempty"`      //The time interval in seconds for returned data. The valid intervals are: 300, 600, 3600, 7200, 14400, 21600. The default is 3600.
+}
+type GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams struct {
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Filter results by network.
+	Serials       []string `url:"serials[],omitempty"`     //Filter results by device.
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	T0            string   `url:"t0,omitempty"`            //The beginning of the timespan for the data. The maximum lookback period is 31 days from today.
+	T1            string   `url:"t1,omitempty"`            //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
+	Timespan      float64  `url:"timespan,omitempty"`      //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 7 days.
+	Interval      int      `url:"interval,omitempty"`      //The time interval in seconds for returned data. The valid intervals are: 300, 600, 3600, 7200, 14400, 21600. The default is 3600.
+}
 type GetOrganizationWirelessDevicesEthernetStatusesQueryParams struct {
 	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 100.
 	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	NetworkIDs    []string `url:"networkIds[],omitempty"`  //A list of Meraki network IDs to filter results to contain only specified networks. E.g.: networkIds[]=N_12345678&networkIds[]=L_3456
+}
+type GetOrganizationWirelessDevicesPacketLossByClientQueryParams struct {
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Filter results by network.
+	SSIDs         []string `url:"ssids[],omitempty"`       //Filter results by SSID number.
+	Bands         []string `url:"bands[],omitempty"`       //Filter results by band. Valid bands are: 2.4, 5, and 6.
+	Macs          []string `url:"macs[],omitempty"`        //Filter results by client mac address(es).
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	T0            string   `url:"t0,omitempty"`            //The beginning of the timespan for the data. The maximum lookback period is 90 days from today.
+	T1            string   `url:"t1,omitempty"`            //The end of the timespan for the data. t1 can be a maximum of 90 days after t0.
+	Timespan      float64  `url:"timespan,omitempty"`      //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be greater than or equal to 5 minutes and be less than or equal to 90 days. The default is 7 days.
+}
+type GetOrganizationWirelessDevicesPacketLossByDeviceQueryParams struct {
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Filter results by network.
+	Serials       []string `url:"serials[],omitempty"`     //Filter results by device.
+	SSIDs         []string `url:"ssids[],omitempty"`       //Filter results by SSID number.
+	Bands         []string `url:"bands[],omitempty"`       //Filter results by band. Valid bands are: 2.4, 5, and 6.
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	T0            string   `url:"t0,omitempty"`            //The beginning of the timespan for the data. The maximum lookback period is 90 days from today.
+	T1            string   `url:"t1,omitempty"`            //The end of the timespan for the data. t1 can be a maximum of 90 days after t0.
+	Timespan      float64  `url:"timespan,omitempty"`      //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be greater than or equal to 5 minutes and be less than or equal to 90 days. The default is 7 days.
+}
+type GetOrganizationWirelessDevicesPacketLossByNetworkQueryParams struct {
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Filter results by network.
+	Serials       []string `url:"serials[],omitempty"`     //Filter results by device.
+	SSIDs         []string `url:"ssids[],omitempty"`       //Filter results by SSID number.
+	Bands         []string `url:"bands[],omitempty"`       //Filter results by band. Valid bands are: 2.4, 5, and 6.
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	T0            string   `url:"t0,omitempty"`            //The beginning of the timespan for the data. The maximum lookback period is 90 days from today.
+	T1            string   `url:"t1,omitempty"`            //The end of the timespan for the data. t1 can be a maximum of 90 days after t0.
+	Timespan      float64  `url:"timespan,omitempty"`      //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be greater than or equal to 5 minutes and be less than or equal to 90 days. The default is 7 days.
 }
 type GetOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams struct {
 	NetworkIDs        []string `url:"networkIds[],omitempty"`        //Optional parameter to filter access points by network ID. This filter uses multiple exact matches.
@@ -898,10 +978,7 @@ type ResponseItemWirelessGetNetworkWirelessMeshStatusesLatestMeshPerformance str
 	Metric          *int   `json:"metric,omitempty"`          // Represents the quality of the entire route from the repeater access point to its gateway access point.
 	UsagePercentage string `json:"usagePercentage,omitempty"` // Mesh utilization as a percentage.
 }
-
-type ResponseWirelessGetNetworkWirelessRfProfiles []ResponseItemWirelessGetNetworkWirelessRfProfiles
-
-type ResponseItemWirelessGetNetworkWirelessRfProfiles struct {
+type ResponseWirelessGetNetworkWirelessRfProfiles struct {
 	ApBandSettings         *ResponseWirelessGetNetworkWirelessRfProfilesApBandSettings     `json:"apBandSettings,omitempty"`         // Settings that will be enabled if selectionType is set to 'ap'.
 	BandSelectionType      string                                                          `json:"bandSelectionType,omitempty"`      // Band selection can be set to either 'ssid' or 'ap'. This param is required on creation.
 	ClientBalancingEnabled *bool                                                           `json:"clientBalancingEnabled,omitempty"` // Steers client to best available access point. Can be either true or false. Defaults to true.
@@ -2031,7 +2108,6 @@ type ResponseWirelessGetNetworkWirelessSSIDFirewallL3FirewallRulesRules struct {
 	DestPort string `json:"destPort,omitempty"` // Comma-separated list of destination port(s) (integer in the range 1-65535), or 'any'
 	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
 	Protocol string `json:"protocol,omitempty"` // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
-	IpVer    string `json:"ipVer,omitempty"`    //
 }
 type ResponseWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRules struct {
 	AllowLanAccess *bool                                                                    `json:"allowLanAccess,omitempty"` // Allows wireless client access to local LAN (boolean value - true allows access and false denies access)
@@ -2048,86 +2124,18 @@ type ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRules struct {
 	Rules *[]ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRulesRules `json:"rules,omitempty"` // An ordered array of the firewall rules for this SSID (not including the local LAN access rule or the default rule).
 }
 type ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRulesRules struct {
-	Policy    string                                                                    `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
-	Type      string                                                                    `json:"type,omitempty"`   // Type of the L7 firewall rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
-	Value     *string                                                                   //
-	ValueObj  *ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj //
-	ValueList *[]string                                                                 //
+	Policy string `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
+	Type   string `json:"type,omitempty"`   // Type of the L7 firewall rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
+	Value  string `json:"value,omitempty"`  // The value of what needs to get blocked. Format of the value varies depending on type of the firewall rule selected.
 }
 type ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRules struct {
 	Rules *[]ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRules `json:"rules,omitempty"` // An ordered array of the firewall rules for this SSID (not including the local LAN access rule or the default rule).
 }
 type ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRules struct {
-	Policy    string                                                                    `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
-	Type      string                                                                    `json:"type,omitempty"`   // Type of the L7 firewall rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
-	Value     *string                                                                   //
-	ValueObj  *ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj //
-	ValueList *[]string                                                                 //
+	Policy string `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
+	Type   string `json:"type,omitempty"`   // Type of the L7 firewall rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
+	Value  string `json:"value,omitempty"`  // The value of what needs to get blocked. Format of the value varies depending on type of the firewall rule selected.
 }
-type ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRulesValueObj struct {
-	ID   string `json:"id,omitempty"`   //
-	Name string `json:"name,omitempty"` //
-}
-
-func (r *ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRules) UnmarshalJSON(data []byte) error {
-	type Alias ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRules
-	aux := &struct {
-		Value interface{} `json:"value"`
-		*Alias
-	}{
-		Alias: (*Alias)(r),
-	}
-	if err := json.Unmarshal(data, &aux); err != nil {
-		return err
-	}
-	switch v := aux.Value.(type) {
-	case string:
-		r.Value = &v
-	case []interface{}:
-		strList := make([]string, len(v))
-		for i, item := range v {
-			strList[i] = item.(string)
-		}
-		r.ValueList = &strList
-	case map[string]interface{}:
-		valueObj := &ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj{
-			ID:   v["id"].(string),
-			Name: v["name"].(string),
-		}
-		r.ValueObj = valueObj
-	}
-	return nil
-}
-func (r *ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRulesRules) UnmarshalJSON(data []byte) error {
-	type Alias ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRulesRules
-	aux := &struct {
-		Value interface{} `json:"value"`
-		*Alias
-	}{
-		Alias: (*Alias)(r),
-	}
-	if err := json.Unmarshal(data, &aux); err != nil {
-		return err
-	}
-	switch v := aux.Value.(type) {
-	case string:
-		r.Value = &v
-	case []interface{}:
-		strList := make([]string, len(v))
-		for i, item := range v {
-			strList[i] = item.(string)
-		}
-		r.ValueList = &strList
-	case map[string]interface{}:
-		valueObj := &ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesRulesValueObj{
-			ID:   v["id"].(string),
-			Name: v["name"].(string),
-		}
-		r.ValueObj = valueObj
-	}
-	return nil
-}
-
 type ResponseWirelessGetNetworkWirelessSSIDHotspot20 struct {
 	Domains           []string                                                    `json:"domains,omitempty"`           //
 	Enabled           *bool                                                       `json:"enabled,omitempty"`           //
@@ -3615,20 +3623,14 @@ type RequestWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRulesRules struct
 	DestPort string `json:"destPort,omitempty"` // Comma-separated list of destination port(s) (integer in the range 1-65535), or 'any'
 	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
 	Protocol string `json:"protocol,omitempty"` // The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6' or 'any')
-	IpVer    string `json:"ipVer,omitempty"`    //
 }
 type RequestWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRules struct {
 	Rules *[]RequestWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRules `json:"rules,omitempty"` // An array of L7 firewall rules for this SSID. Rules will get applied in the same order user has specified in request. Empty array will clear the L7 firewall rule configuration.
 }
 type RequestWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRules struct {
-	Policy string      `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
-	Type   string      `json:"type,omitempty"`   // Type of the L7 firewall rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
-	Value  interface{} `json:"value,omitempty"`  // The 'value' of what you want to block. Format of 'value' varies depending on type of the rule. The application categories and application ids can be retrieved from the the 'MX L7 application categories' endpoint. The countries follow the two-letter ISO 3166-1 alpha-2 format.
-}
-
-type RequestWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRulesRulesValue struct {
-	ID   string `json:"id,omitempty"`
-	Name string `json:"name,omitempty"`
+	Policy string `json:"policy,omitempty"` // 'Deny' traffic specified by this rule
+	Type   string `json:"type,omitempty"`   // Type of the L7 firewall rule. One of: 'application', 'applicationCategory', 'host', 'port', 'ipRange'
+	Value  string `json:"value,omitempty"`  // The value of what needs to get blocked. Format of the value varies depending on type of the firewall rule selected.
 }
 type RequestWirelessUpdateNetworkWirelessSSIDHotspot20 struct {
 	Domains           []string                                                      `json:"domains,omitempty"`           // An array of domain names
@@ -3813,6 +3815,7 @@ type RequestWirelessRecalculateOrganizationWirelessRadioAutoRfChannels struct {
 
 
 */
+
 func (s *WirelessService) GetDeviceWirelessBluetoothSettings(serial string) (*ResponseWirelessGetDeviceWirelessBluetoothSettings, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/bluetooth/settings"
 	s.rateLimiterBucket.Wait(1)
@@ -3847,6 +3850,7 @@ func (s *WirelessService) GetDeviceWirelessBluetoothSettings(serial string) (*Re
 
 
 */
+
 func (s *WirelessService) GetDeviceWirelessConnectionStats(serial string, getDeviceWirelessConnectionStatsQueryParams *GetDeviceWirelessConnectionStatsQueryParams) (*ResponseWirelessGetDeviceWirelessConnectionStats, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/connectionStats"
 	s.rateLimiterBucket.Wait(1)
@@ -3882,6 +3886,7 @@ func (s *WirelessService) GetDeviceWirelessConnectionStats(serial string, getDev
 
 
 */
+
 func (s *WirelessService) GetDeviceWirelessElectronicShelfLabel(serial string) (*ResponseWirelessGetDeviceWirelessElectronicShelfLabel, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/electronicShelfLabel"
 	s.rateLimiterBucket.Wait(1)
@@ -3916,6 +3921,7 @@ func (s *WirelessService) GetDeviceWirelessElectronicShelfLabel(serial string) (
 
 
 */
+
 func (s *WirelessService) GetDeviceWirelessLatencyStats(serial string, getDeviceWirelessLatencyStatsQueryParams *GetDeviceWirelessLatencyStatsQueryParams) (*ResponseWirelessGetDeviceWirelessLatencyStats, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/latencyStats"
 	s.rateLimiterBucket.Wait(1)
@@ -3951,6 +3957,7 @@ func (s *WirelessService) GetDeviceWirelessLatencyStats(serial string, getDevice
 
 
 */
+
 func (s *WirelessService) GetDeviceWirelessRadioSettings(serial string) (*ResponseWirelessGetDeviceWirelessRadioSettings, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/radio/settings"
 	s.rateLimiterBucket.Wait(1)
@@ -3984,6 +3991,7 @@ func (s *WirelessService) GetDeviceWirelessRadioSettings(serial string) (*Respon
 
 
 */
+
 func (s *WirelessService) GetDeviceWirelessStatus(serial string) (*ResponseWirelessGetDeviceWirelessStatus, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/wireless/status"
 	s.rateLimiterBucket.Wait(1)
@@ -4018,6 +4026,7 @@ func (s *WirelessService) GetDeviceWirelessStatus(serial string) (*ResponseWirel
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessAirMarshal(networkID string, getNetworkWirelessAirMarshalQueryParams *GetNetworkWirelessAirMarshalQueryParams) (*ResponseWirelessGetNetworkWirelessAirMarshal, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/airMarshal"
 	s.rateLimiterBucket.Wait(1)
@@ -4053,6 +4062,7 @@ func (s *WirelessService) GetNetworkWirelessAirMarshal(networkID string, getNetw
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessAlternateManagementInterface(networkID string) (*ResponseWirelessGetNetworkWirelessAlternateManagementInterface, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/alternateManagementInterface"
 	s.rateLimiterBucket.Wait(1)
@@ -4086,6 +4096,7 @@ func (s *WirelessService) GetNetworkWirelessAlternateManagementInterface(network
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessBilling(networkID string) (*ResponseWirelessGetNetworkWirelessBilling, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/billing"
 	s.rateLimiterBucket.Wait(1)
@@ -4121,6 +4132,7 @@ Bluetooth settings
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessBluetoothSettings(networkID string) (*ResponseWirelessGetNetworkWirelessBluetoothSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/bluetooth/settings"
 	s.rateLimiterBucket.Wait(1)
@@ -4155,6 +4167,7 @@ func (s *WirelessService) GetNetworkWirelessBluetoothSettings(networkID string) 
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessChannelUtilizationHistory(networkID string, getNetworkWirelessChannelUtilizationHistoryQueryParams *GetNetworkWirelessChannelUtilizationHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessChannelUtilizationHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/channelUtilizationHistory"
 	s.rateLimiterBucket.Wait(1)
@@ -4191,6 +4204,7 @@ func (s *WirelessService) GetNetworkWirelessChannelUtilizationHistory(networkID 
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessClientCountHistory(networkID string, getNetworkWirelessClientCountHistoryQueryParams *GetNetworkWirelessClientCountHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessClientCountHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clientCountHistory"
 	s.rateLimiterBucket.Wait(1)
@@ -4227,6 +4241,7 @@ func (s *WirelessService) GetNetworkWirelessClientCountHistory(networkID string,
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessClientsConnectionStats(networkID string, getNetworkWirelessClientsConnectionStatsQueryParams *GetNetworkWirelessClientsConnectionStatsQueryParams) (*ResponseWirelessGetNetworkWirelessClientsConnectionStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/connectionStats"
 	s.rateLimiterBucket.Wait(1)
@@ -4263,6 +4278,7 @@ func (s *WirelessService) GetNetworkWirelessClientsConnectionStats(networkID str
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessClientsLatencyStats(networkID string, getNetworkWirelessClientsLatencyStatsQueryParams *GetNetworkWirelessClientsLatencyStatsQueryParams) (*ResponseWirelessGetNetworkWirelessClientsLatencyStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/latencyStats"
 	s.rateLimiterBucket.Wait(1)
@@ -4300,6 +4316,7 @@ func (s *WirelessService) GetNetworkWirelessClientsLatencyStats(networkID string
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessClientConnectionStats(networkID string, clientID string, getNetworkWirelessClientConnectionStatsQueryParams *GetNetworkWirelessClientConnectionStatsQueryParams) (*ResponseWirelessGetNetworkWirelessClientConnectionStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/{clientId}/connectionStats"
 	s.rateLimiterBucket.Wait(1)
@@ -4338,9 +4355,40 @@ func (s *WirelessService) GetNetworkWirelessClientConnectionStats(networkID stri
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessClientConnectivityEvents(networkID string, clientID string, getNetworkWirelessClientConnectivityEventsQueryParams *GetNetworkWirelessClientConnectivityEventsQueryParams) (*ResponseWirelessGetNetworkWirelessClientConnectivityEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/{clientId}/connectivityEvents"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkWirelessClientConnectivityEventsQueryParams != nil && getNetworkWirelessClientConnectivityEventsQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetNetworkWirelessClientConnectivityEvents
+		println("Paginate")
+		getNetworkWirelessClientConnectivityEventsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkWirelessClientConnectivityEventsPaginate, networkID, clientID, getNetworkWirelessClientConnectivityEventsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetNetworkWirelessClientConnectivityEvents
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
@@ -4366,6 +4414,11 @@ func (s *WirelessService) GetNetworkWirelessClientConnectivityEvents(networkID s
 	return result, response, err
 
 }
+func (s *WirelessService) GetNetworkWirelessClientConnectivityEventsPaginate(networkID string, clientID string, getNetworkWirelessClientConnectivityEventsQueryParams any) (any, *resty.Response, error) {
+	getNetworkWirelessClientConnectivityEventsQueryParamsConverted := getNetworkWirelessClientConnectivityEventsQueryParams.(*GetNetworkWirelessClientConnectivityEventsQueryParams)
+
+	return s.GetNetworkWirelessClientConnectivityEvents(networkID, clientID, getNetworkWirelessClientConnectivityEventsQueryParamsConverted)
+}
 
 //GetNetworkWirelessClientLatencyHistory Return the latency history for a client
 /* Return the latency history for a client. Clients can be identified by a client key or either the MAC or IP depending on whether the network uses Track-by-IP. The latency data is from a sample of 2% of packets and is grouped into 4 traffic categories: background, best effort, video, voice. Within these categories the sampled packet counters are bucketed by latency in milliseconds.
@@ -4376,6 +4429,7 @@ func (s *WirelessService) GetNetworkWirelessClientConnectivityEvents(networkID s
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessClientLatencyHistory(networkID string, clientID string, getNetworkWirelessClientLatencyHistoryQueryParams *GetNetworkWirelessClientLatencyHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessClientLatencyHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/{clientId}/latencyHistory"
 	s.rateLimiterBucket.Wait(1)
@@ -4414,6 +4468,7 @@ func (s *WirelessService) GetNetworkWirelessClientLatencyHistory(networkID strin
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessClientLatencyStats(networkID string, clientID string, getNetworkWirelessClientLatencyStatsQueryParams *GetNetworkWirelessClientLatencyStatsQueryParams) (*ResponseWirelessGetNetworkWirelessClientLatencyStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/{clientId}/latencyStats"
 	s.rateLimiterBucket.Wait(1)
@@ -4451,6 +4506,7 @@ func (s *WirelessService) GetNetworkWirelessClientLatencyStats(networkID string,
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessConnectionStats(networkID string, getNetworkWirelessConnectionStatsQueryParams *GetNetworkWirelessConnectionStatsQueryParams) (*ResponseWirelessGetNetworkWirelessConnectionStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/connectionStats"
 	s.rateLimiterBucket.Wait(1)
@@ -4487,6 +4543,7 @@ func (s *WirelessService) GetNetworkWirelessConnectionStats(networkID string, ge
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessDataRateHistory(networkID string, getNetworkWirelessDataRateHistoryQueryParams *GetNetworkWirelessDataRateHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessDataRateHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/dataRateHistory"
 	s.rateLimiterBucket.Wait(1)
@@ -4523,6 +4580,7 @@ func (s *WirelessService) GetNetworkWirelessDataRateHistory(networkID string, ge
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessDevicesConnectionStats(networkID string, getNetworkWirelessDevicesConnectionStatsQueryParams *GetNetworkWirelessDevicesConnectionStatsQueryParams) (*ResponseWirelessGetNetworkWirelessDevicesConnectionStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/devices/connectionStats"
 	s.rateLimiterBucket.Wait(1)
@@ -4559,6 +4617,7 @@ func (s *WirelessService) GetNetworkWirelessDevicesConnectionStats(networkID str
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessDevicesLatencyStats(networkID string, getNetworkWirelessDevicesLatencyStatsQueryParams *GetNetworkWirelessDevicesLatencyStatsQueryParams) (*ResponseWirelessGetNetworkWirelessDevicesLatencyStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/devices/latencyStats"
 	s.rateLimiterBucket.Wait(1)
@@ -4594,6 +4653,7 @@ func (s *WirelessService) GetNetworkWirelessDevicesLatencyStats(networkID string
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessElectronicShelfLabel(networkID string) (*ResponseWirelessGetNetworkWirelessElectronicShelfLabel, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/electronicShelfLabel"
 	s.rateLimiterBucket.Wait(1)
@@ -4627,6 +4687,7 @@ func (s *WirelessService) GetNetworkWirelessElectronicShelfLabel(networkID strin
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessElectronicShelfLabelConfiguredDevices(networkID string) (*ResponseWirelessGetNetworkWirelessElectronicShelfLabelConfiguredDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/electronicShelfLabel/configuredDevices"
 	s.rateLimiterBucket.Wait(1)
@@ -4660,6 +4721,7 @@ func (s *WirelessService) GetNetworkWirelessElectronicShelfLabelConfiguredDevice
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessEthernetPortsProfiles(networkID string) (*ResponseWirelessGetNetworkWirelessEthernetPortsProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ethernet/ports/profiles"
 	s.rateLimiterBucket.Wait(1)
@@ -4694,6 +4756,7 @@ func (s *WirelessService) GetNetworkWirelessEthernetPortsProfiles(networkID stri
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessEthernetPortsProfile(networkID string, profileID string) (*ResponseWirelessGetNetworkWirelessEthernetPortsProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}"
 	s.rateLimiterBucket.Wait(1)
@@ -4729,6 +4792,7 @@ func (s *WirelessService) GetNetworkWirelessEthernetPortsProfile(networkID strin
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessFailedConnections(networkID string, getNetworkWirelessFailedConnectionsQueryParams *GetNetworkWirelessFailedConnectionsQueryParams) (*ResponseWirelessGetNetworkWirelessFailedConnections, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/failedConnections"
 	s.rateLimiterBucket.Wait(1)
@@ -4765,6 +4829,7 @@ func (s *WirelessService) GetNetworkWirelessFailedConnections(networkID string, 
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessLatencyHistory(networkID string, getNetworkWirelessLatencyHistoryQueryParams *GetNetworkWirelessLatencyHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessLatencyHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/latencyHistory"
 	s.rateLimiterBucket.Wait(1)
@@ -4801,6 +4866,7 @@ func (s *WirelessService) GetNetworkWirelessLatencyHistory(networkID string, get
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessLatencyStats(networkID string, getNetworkWirelessLatencyStatsQueryParams *GetNetworkWirelessLatencyStatsQueryParams) (*ResponseWirelessGetNetworkWirelessLatencyStats, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/latencyStats"
 	s.rateLimiterBucket.Wait(1)
@@ -4837,9 +4903,40 @@ func (s *WirelessService) GetNetworkWirelessLatencyStats(networkID string, getNe
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessMeshStatuses(networkID string, getNetworkWirelessMeshStatusesQueryParams *GetNetworkWirelessMeshStatusesQueryParams) (*ResponseWirelessGetNetworkWirelessMeshStatuses, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/meshStatuses"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkWirelessMeshStatusesQueryParams != nil && getNetworkWirelessMeshStatusesQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetNetworkWirelessMeshStatuses
+		println("Paginate")
+		getNetworkWirelessMeshStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkWirelessMeshStatusesPaginate, networkID, "", getNetworkWirelessMeshStatusesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetNetworkWirelessMeshStatuses
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkWirelessMeshStatusesQueryParams)
@@ -4864,6 +4961,11 @@ func (s *WirelessService) GetNetworkWirelessMeshStatuses(networkID string, getNe
 	return result, response, err
 
 }
+func (s *WirelessService) GetNetworkWirelessMeshStatusesPaginate(networkID string, getNetworkWirelessMeshStatusesQueryParams any) (any, *resty.Response, error) {
+	getNetworkWirelessMeshStatusesQueryParamsConverted := getNetworkWirelessMeshStatusesQueryParams.(*GetNetworkWirelessMeshStatusesQueryParams)
+
+	return s.GetNetworkWirelessMeshStatuses(networkID, getNetworkWirelessMeshStatusesQueryParamsConverted)
+}
 
 //GetNetworkWirelessRfProfiles List RF profiles for this network
 /* List RF profiles for this network
@@ -4873,6 +4975,7 @@ func (s *WirelessService) GetNetworkWirelessMeshStatuses(networkID string, getNe
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessRfProfiles(networkID string, getNetworkWirelessRfProfilesQueryParams *GetNetworkWirelessRfProfilesQueryParams) (*ResponseWirelessGetNetworkWirelessRfProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/rfProfiles"
 	s.rateLimiterBucket.Wait(1)
@@ -4909,6 +5012,7 @@ func (s *WirelessService) GetNetworkWirelessRfProfiles(networkID string, getNetw
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessRfProfile(networkID string, rfProfileID string) (*ResponseWirelessGetNetworkWirelessRfProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/rfProfiles/{rfProfileId}"
 	s.rateLimiterBucket.Wait(1)
@@ -4943,6 +5047,7 @@ func (s *WirelessService) GetNetworkWirelessRfProfile(networkID string, rfProfil
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSettings(networkID string) (*ResponseWirelessGetNetworkWirelessSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/settings"
 	s.rateLimiterBucket.Wait(1)
@@ -4977,6 +5082,7 @@ func (s *WirelessService) GetNetworkWirelessSettings(networkID string) (*Respons
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSignalQualityHistory(networkID string, getNetworkWirelessSignalQualityHistoryQueryParams *GetNetworkWirelessSignalQualityHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessSignalQualityHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/signalQualityHistory"
 	s.rateLimiterBucket.Wait(1)
@@ -5012,6 +5118,7 @@ func (s *WirelessService) GetNetworkWirelessSignalQualityHistory(networkID strin
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSSIDs(networkID string) (*ResponseWirelessGetNetworkWirelessSSIDs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids"
 	s.rateLimiterBucket.Wait(1)
@@ -5046,6 +5153,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDs(networkID string) (*ResponseWi
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSSID(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSID, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}"
 	s.rateLimiterBucket.Wait(1)
@@ -5081,6 +5189,7 @@ func (s *WirelessService) GetNetworkWirelessSSID(networkID string, number string
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSSIDBonjourForwarding(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDBonjourForwarding, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/bonjourForwarding"
 	s.rateLimiterBucket.Wait(1)
@@ -5116,6 +5225,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDBonjourForwarding(networkID stri
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSSIDDeviceTypeGroupPolicies(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDDeviceTypeGroupPolicies, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/deviceTypeGroupPolicies"
 	s.rateLimiterBucket.Wait(1)
@@ -5151,6 +5261,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDDeviceTypeGroupPolicies(networkI
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSSIDEapOverride(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDEapOverride, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/eapOverride"
 	s.rateLimiterBucket.Wait(1)
@@ -5186,6 +5297,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDEapOverride(networkID string, nu
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSSIDFirewallL3FirewallRules(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDFirewallL3FirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/firewall/l3FirewallRules"
 	s.rateLimiterBucket.Wait(1)
@@ -5221,6 +5333,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDFirewallL3FirewallRules(networkI
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSSIDFirewallL7FirewallRules(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/firewall/l7FirewallRules"
 	s.rateLimiterBucket.Wait(1)
@@ -5256,6 +5369,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDFirewallL7FirewallRules(networkI
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSSIDHotspot20(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDHotspot20, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/hotspot20"
 	s.rateLimiterBucket.Wait(1)
@@ -5291,6 +5405,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDHotspot20(networkID string, numb
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsks(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDIDentityPsks, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/identityPsks"
 	s.rateLimiterBucket.Wait(1)
@@ -5327,6 +5442,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsks(networkID string, n
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsk(networkID string, number string, identityPskID string) (*ResponseWirelessGetNetworkWirelessSSIDIDentityPsk, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/identityPsks/{identityPskId}"
 	s.rateLimiterBucket.Wait(1)
@@ -5363,6 +5479,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsk(networkID string, nu
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSSIDSchedules(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDSchedules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/schedules"
 	s.rateLimiterBucket.Wait(1)
@@ -5398,6 +5515,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDSchedules(networkID string, numb
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSSIDSplashSettings(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDSplashSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/splash/settings"
 	s.rateLimiterBucket.Wait(1)
@@ -5433,6 +5551,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDSplashSettings(networkID string,
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSSIDTrafficShapingRules(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/trafficShaping/rules"
 	s.rateLimiterBucket.Wait(1)
@@ -5468,6 +5587,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDTrafficShapingRules(networkID st
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessSSIDVpn(networkID string, number string) (*ResponseWirelessGetNetworkWirelessSSIDVpn, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/ssids/{number}/vpn"
 	s.rateLimiterBucket.Wait(1)
@@ -5503,6 +5623,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDVpn(networkID string, number str
 
 
 */
+
 func (s *WirelessService) GetNetworkWirelessUsageHistory(networkID string, getNetworkWirelessUsageHistoryQueryParams *GetNetworkWirelessUsageHistoryQueryParams) (*ResponseWirelessGetNetworkWirelessUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/usageHistory"
 	s.rateLimiterBucket.Wait(1)
@@ -5539,9 +5660,40 @@ func (s *WirelessService) GetNetworkWirelessUsageHistory(networkID string, getNe
 
 
 */
+
 func (s *WirelessService) GetOrganizationWirelessAirMarshalRules(organizationID string, getOrganizationWirelessAirMarshalRulesQueryParams *GetOrganizationWirelessAirMarshalRulesQueryParams) (*ResponseWirelessGetOrganizationWirelessAirMarshalRules, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/airMarshal/rules"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessAirMarshalRulesQueryParams != nil && getOrganizationWirelessAirMarshalRulesQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessAirMarshalRules
+		println("Paginate")
+		getOrganizationWirelessAirMarshalRulesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessAirMarshalRulesPaginate, organizationID, "", getOrganizationWirelessAirMarshalRulesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessAirMarshalRules
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWirelessAirMarshalRulesQueryParams)
@@ -5566,6 +5718,11 @@ func (s *WirelessService) GetOrganizationWirelessAirMarshalRules(organizationID 
 	return result, response, err
 
 }
+func (s *WirelessService) GetOrganizationWirelessAirMarshalRulesPaginate(organizationID string, getOrganizationWirelessAirMarshalRulesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessAirMarshalRulesQueryParamsConverted := getOrganizationWirelessAirMarshalRulesQueryParams.(*GetOrganizationWirelessAirMarshalRulesQueryParams)
+
+	return s.GetOrganizationWirelessAirMarshalRules(organizationID, getOrganizationWirelessAirMarshalRulesQueryParamsConverted)
+}
 
 //GetOrganizationWirelessAirMarshalSettingsByNetwork Returns the current Air Marshal settings for this network
 /* Returns the current Air Marshal settings for this network
@@ -5575,9 +5732,40 @@ func (s *WirelessService) GetOrganizationWirelessAirMarshalRules(organizationID 
 
 
 */
+
 func (s *WirelessService) GetOrganizationWirelessAirMarshalSettingsByNetwork(organizationID string, getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams *GetOrganizationWirelessAirMarshalSettingsByNetworkQueryParams) (*ResponseWirelessGetOrganizationWirelessAirMarshalSettingsByNetwork, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/airMarshal/settings/byNetwork"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams != nil && getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessAirMarshalSettingsByNetwork
+		println("Paginate")
+		getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessAirMarshalSettingsByNetworkPaginate, organizationID, "", getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessAirMarshalSettingsByNetwork
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams)
@@ -5602,6 +5790,11 @@ func (s *WirelessService) GetOrganizationWirelessAirMarshalSettingsByNetwork(org
 	return result, response, err
 
 }
+func (s *WirelessService) GetOrganizationWirelessAirMarshalSettingsByNetworkPaginate(organizationID string, getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessAirMarshalSettingsByNetworkQueryParamsConverted := getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams.(*GetOrganizationWirelessAirMarshalSettingsByNetworkQueryParams)
+
+	return s.GetOrganizationWirelessAirMarshalSettingsByNetwork(organizationID, getOrganizationWirelessAirMarshalSettingsByNetworkQueryParamsConverted)
+}
 
 //GetOrganizationWirelessClientsOverviewByDevice List access point client count at the moment in an organization
 /* List access point client count at the moment in an organization
@@ -5611,9 +5804,40 @@ func (s *WirelessService) GetOrganizationWirelessAirMarshalSettingsByNetwork(org
 
 
 */
+
 func (s *WirelessService) GetOrganizationWirelessClientsOverviewByDevice(organizationID string, getOrganizationWirelessClientsOverviewByDeviceQueryParams *GetOrganizationWirelessClientsOverviewByDeviceQueryParams) (*ResponseWirelessGetOrganizationWirelessClientsOverviewByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/clients/overview/byDevice"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessClientsOverviewByDeviceQueryParams != nil && getOrganizationWirelessClientsOverviewByDeviceQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessClientsOverviewByDevice
+		println("Paginate")
+		getOrganizationWirelessClientsOverviewByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessClientsOverviewByDevicePaginate, organizationID, "", getOrganizationWirelessClientsOverviewByDeviceQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessClientsOverviewByDevice
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWirelessClientsOverviewByDeviceQueryParams)
@@ -5638,6 +5862,11 @@ func (s *WirelessService) GetOrganizationWirelessClientsOverviewByDevice(organiz
 	return result, response, err
 
 }
+func (s *WirelessService) GetOrganizationWirelessClientsOverviewByDevicePaginate(organizationID string, getOrganizationWirelessClientsOverviewByDeviceQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessClientsOverviewByDeviceQueryParamsConverted := getOrganizationWirelessClientsOverviewByDeviceQueryParams.(*GetOrganizationWirelessClientsOverviewByDeviceQueryParams)
+
+	return s.GetOrganizationWirelessClientsOverviewByDevice(organizationID, getOrganizationWirelessClientsOverviewByDeviceQueryParamsConverted)
+}
 
 //GetOrganizationWirelessDevicesChannelUtilizationByDevice Get average channel utilization for all bands in a network, split by AP
 /* Get average channel utilization for all bands in a network, split by AP
@@ -5647,9 +5876,40 @@ func (s *WirelessService) GetOrganizationWirelessClientsOverviewByDevice(organiz
 
 
 */
+
 func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByDevice(organizationID string, getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams *GetOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/byDevice"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams != nil && getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice
+		println("Paginate")
+		getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesChannelUtilizationByDevicePaginate, organizationID, "", getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams)
@@ -5674,6 +5934,11 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByDevi
 	return result, response, err
 
 }
+func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByDevicePaginate(organizationID string, getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParamsConverted := getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams.(*GetOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams)
+
+	return s.GetOrganizationWirelessDevicesChannelUtilizationByDevice(organizationID, getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParamsConverted)
+}
 
 //GetOrganizationWirelessDevicesChannelUtilizationByNetwork Get average channel utilization across all bands for all networks in the organization
 /* Get average channel utilization across all bands for all networks in the organization
@@ -5683,9 +5948,40 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByDevi
 
 
 */
+
 func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByNetwork(organizationID string, getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams *GetOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/byNetwork"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams != nil && getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork
+		println("Paginate")
+		getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesChannelUtilizationByNetworkPaginate, organizationID, "", getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams)
@@ -5710,6 +6006,11 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByNetw
 	return result, response, err
 
 }
+func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByNetworkPaginate(organizationID string, getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParamsConverted := getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams.(*GetOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams)
+
+	return s.GetOrganizationWirelessDevicesChannelUtilizationByNetwork(organizationID, getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParamsConverted)
+}
 
 //GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval Get a time-series of average channel utilization for all bands, segmented by device.
 /* Get a time-series of average channel utilization for all bands, segmented by device.
@@ -5719,9 +6020,40 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByNetw
 
 
 */
+
 func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval(organizationID string, getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams *GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/history/byDevice/byInterval"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams != nil && getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval
+		println("Paginate")
+		getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalPaginate, organizationID, "", getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams)
@@ -5746,6 +6078,11 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistor
 	return result, response, err
 
 }
+func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalPaginate(organizationID string, getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParamsConverted := getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams.(*GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams)
+
+	return s.GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval(organizationID, getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParamsConverted)
+}
 
 //GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval Get a time-series of average channel utilization for all bands
 /* Get a time-series of average channel utilization for all bands
@@ -5755,9 +6092,40 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistor
 
 
 */
+
 func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval(organizationID string, getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/history/byNetwork/byInterval"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams != nil && getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval
+		println("Paginate")
+		getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalPaginate, organizationID, "", getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams)
@@ -5782,6 +6150,11 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistor
 	return result, response, err
 
 }
+func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalPaginate(organizationID string, getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParamsConverted := getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams.(*GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams)
+
+	return s.GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval(organizationID, getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParamsConverted)
+}
 
 //GetOrganizationWirelessDevicesEthernetStatuses List the most recent Ethernet link speed, duplex, aggregation and power mode and status information for wireless devices.
 /* List the most recent Ethernet link speed, duplex, aggregation and power mode and status information for wireless devices.
@@ -5791,9 +6164,40 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistor
 
 
 */
+
 func (s *WirelessService) GetOrganizationWirelessDevicesEthernetStatuses(organizationID string, getOrganizationWirelessDevicesEthernetStatusesQueryParams *GetOrganizationWirelessDevicesEthernetStatusesQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/ethernet/statuses"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessDevicesEthernetStatusesQueryParams != nil && getOrganizationWirelessDevicesEthernetStatusesQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses
+		println("Paginate")
+		getOrganizationWirelessDevicesEthernetStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesEthernetStatusesPaginate, organizationID, "", getOrganizationWirelessDevicesEthernetStatusesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWirelessDevicesEthernetStatusesQueryParams)
@@ -5818,6 +6222,11 @@ func (s *WirelessService) GetOrganizationWirelessDevicesEthernetStatuses(organiz
 	return result, response, err
 
 }
+func (s *WirelessService) GetOrganizationWirelessDevicesEthernetStatusesPaginate(organizationID string, getOrganizationWirelessDevicesEthernetStatusesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessDevicesEthernetStatusesQueryParamsConverted := getOrganizationWirelessDevicesEthernetStatusesQueryParams.(*GetOrganizationWirelessDevicesEthernetStatusesQueryParams)
+
+	return s.GetOrganizationWirelessDevicesEthernetStatuses(organizationID, getOrganizationWirelessDevicesEthernetStatusesQueryParamsConverted)
+}
 
 //GetOrganizationWirelessDevicesPacketLossByClient Get average packet loss for the given timespan for all clients in the organization.
 /* Get average packet loss for the given timespan for all clients in the organization.
@@ -5827,9 +6236,40 @@ func (s *WirelessService) GetOrganizationWirelessDevicesEthernetStatuses(organiz
 
 
 */
+
 func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByClient(organizationID string, getOrganizationWirelessDevicesPacketLossByClientQueryParams *GetOrganizationWirelessDevicesPacketLossByClientQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/packetLoss/byClient"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessDevicesPacketLossByClientQueryParams != nil && getOrganizationWirelessDevicesPacketLossByClientQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient
+		println("Paginate")
+		getOrganizationWirelessDevicesPacketLossByClientQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesPacketLossByClientPaginate, organizationID, "", getOrganizationWirelessDevicesPacketLossByClientQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWirelessDevicesPacketLossByClientQueryParams)
@@ -5854,6 +6294,11 @@ func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByClient(organ
 	return result, response, err
 
 }
+func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByClientPaginate(organizationID string, getOrganizationWirelessDevicesPacketLossByClientQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessDevicesPacketLossByClientQueryParamsConverted := getOrganizationWirelessDevicesPacketLossByClientQueryParams.(*GetOrganizationWirelessDevicesPacketLossByClientQueryParams)
+
+	return s.GetOrganizationWirelessDevicesPacketLossByClient(organizationID, getOrganizationWirelessDevicesPacketLossByClientQueryParamsConverted)
+}
 
 //GetOrganizationWirelessDevicesPacketLossByDevice Get average packet loss for the given timespan for all devices in the organization
 /* Get average packet loss for the given timespan for all devices in the organization. Does not include device's own traffic.
@@ -5863,9 +6308,40 @@ func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByClient(organ
 
 
 */
+
 func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByDevice(organizationID string, getOrganizationWirelessDevicesPacketLossByDeviceQueryParams *GetOrganizationWirelessDevicesPacketLossByDeviceQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/packetLoss/byDevice"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessDevicesPacketLossByDeviceQueryParams != nil && getOrganizationWirelessDevicesPacketLossByDeviceQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice
+		println("Paginate")
+		getOrganizationWirelessDevicesPacketLossByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesPacketLossByDevicePaginate, organizationID, "", getOrganizationWirelessDevicesPacketLossByDeviceQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWirelessDevicesPacketLossByDeviceQueryParams)
@@ -5890,6 +6366,11 @@ func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByDevice(organ
 	return result, response, err
 
 }
+func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByDevicePaginate(organizationID string, getOrganizationWirelessDevicesPacketLossByDeviceQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessDevicesPacketLossByDeviceQueryParamsConverted := getOrganizationWirelessDevicesPacketLossByDeviceQueryParams.(*GetOrganizationWirelessDevicesPacketLossByDeviceQueryParams)
+
+	return s.GetOrganizationWirelessDevicesPacketLossByDevice(organizationID, getOrganizationWirelessDevicesPacketLossByDeviceQueryParamsConverted)
+}
 
 //GetOrganizationWirelessDevicesPacketLossByNetwork Get average packet loss for the given timespan for all networks in the organization.
 /* Get average packet loss for the given timespan for all networks in the organization.
@@ -5899,9 +6380,40 @@ func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByDevice(organ
 
 
 */
+
 func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByNetwork(organizationID string, getOrganizationWirelessDevicesPacketLossByNetworkQueryParams *GetOrganizationWirelessDevicesPacketLossByNetworkQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/packetLoss/byNetwork"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessDevicesPacketLossByNetworkQueryParams != nil && getOrganizationWirelessDevicesPacketLossByNetworkQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork
+		println("Paginate")
+		getOrganizationWirelessDevicesPacketLossByNetworkQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesPacketLossByNetworkPaginate, organizationID, "", getOrganizationWirelessDevicesPacketLossByNetworkQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWirelessDevicesPacketLossByNetworkQueryParams)
@@ -5926,6 +6438,11 @@ func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByNetwork(orga
 	return result, response, err
 
 }
+func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByNetworkPaginate(organizationID string, getOrganizationWirelessDevicesPacketLossByNetworkQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessDevicesPacketLossByNetworkQueryParamsConverted := getOrganizationWirelessDevicesPacketLossByNetworkQueryParams.(*GetOrganizationWirelessDevicesPacketLossByNetworkQueryParams)
+
+	return s.GetOrganizationWirelessDevicesPacketLossByNetwork(organizationID, getOrganizationWirelessDevicesPacketLossByNetworkQueryParamsConverted)
+}
 
 //GetOrganizationWirelessDevicesWirelessControllersByDevice List of Catalyst access points information
 /* List of Catalyst access points information
@@ -5935,9 +6452,40 @@ func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByNetwork(orga
 
 
 */
+
 func (s *WirelessService) GetOrganizationWirelessDevicesWirelessControllersByDevice(organizationID string, getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams *GetOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/wirelessControllers/byDevice"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams != nil && getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDevice
+		println("Paginate")
+		getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesWirelessControllersByDevicePaginate, organizationID, "", getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDevice
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams)
@@ -5962,6 +6510,11 @@ func (s *WirelessService) GetOrganizationWirelessDevicesWirelessControllersByDev
 	return result, response, err
 
 }
+func (s *WirelessService) GetOrganizationWirelessDevicesWirelessControllersByDevicePaginate(organizationID string, getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParamsConverted := getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams.(*GetOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams)
+
+	return s.GetOrganizationWirelessDevicesWirelessControllersByDevice(organizationID, getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParamsConverted)
+}
 
 //GetOrganizationWirelessRfProfilesAssignmentsByDevice List the RF profiles of an organization by device
 /* List the RF profiles of an organization by device
@@ -5971,9 +6524,40 @@ func (s *WirelessService) GetOrganizationWirelessDevicesWirelessControllersByDev
 
 
 */
+
 func (s *WirelessService) GetOrganizationWirelessRfProfilesAssignmentsByDevice(organizationID string, getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams *GetOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams) (*ResponseWirelessGetOrganizationWirelessRfProfilesAssignmentsByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/rfProfiles/assignments/byDevice"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams != nil && getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessRfProfilesAssignmentsByDevice
+		println("Paginate")
+		getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessRfProfilesAssignmentsByDevicePaginate, organizationID, "", getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessRfProfilesAssignmentsByDevice
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams)
@@ -5998,6 +6582,11 @@ func (s *WirelessService) GetOrganizationWirelessRfProfilesAssignmentsByDevice(o
 	return result, response, err
 
 }
+func (s *WirelessService) GetOrganizationWirelessRfProfilesAssignmentsByDevicePaginate(organizationID string, getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParamsConverted := getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams.(*GetOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams)
+
+	return s.GetOrganizationWirelessRfProfilesAssignmentsByDevice(organizationID, getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParamsConverted)
+}
 
 //GetOrganizationWirelessSSIDsStatusesByDevice List status information of all BSSIDs in your organization
 /* List status information of all BSSIDs in your organization
@@ -6007,9 +6596,40 @@ func (s *WirelessService) GetOrganizationWirelessRfProfilesAssignmentsByDevice(o
 
 
 */
+
 func (s *WirelessService) GetOrganizationWirelessSSIDsStatusesByDevice(organizationID string, getOrganizationWirelessSsidsStatusesByDeviceQueryParams *GetOrganizationWirelessSSIDsStatusesByDeviceQueryParams) (*ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/ssids/statuses/byDevice"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessSsidsStatusesByDeviceQueryParams != nil && getOrganizationWirelessSsidsStatusesByDeviceQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDevice
+		println("Paginate")
+		getOrganizationWirelessSsidsStatusesByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessSSIDsStatusesByDevicePaginate, organizationID, "", getOrganizationWirelessSsidsStatusesByDeviceQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDevice
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationWirelessSsidsStatusesByDeviceQueryParams)
@@ -6033,6 +6653,11 @@ func (s *WirelessService) GetOrganizationWirelessSSIDsStatusesByDevice(organizat
 	result := response.Result().(*ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDevice)
 	return result, response, err
 
+}
+func (s *WirelessService) GetOrganizationWirelessSSIDsStatusesByDevicePaginate(organizationID string, getOrganizationWirelessSsidsStatusesByDeviceQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessSsidsStatusesByDeviceQueryParamsConverted := getOrganizationWirelessSsidsStatusesByDeviceQueryParams.(*GetOrganizationWirelessSSIDsStatusesByDeviceQueryParams)
+
+	return s.GetOrganizationWirelessSSIDsStatusesByDevice(organizationID, getOrganizationWirelessSsidsStatusesByDeviceQueryParamsConverted)
 }
 
 //CreateNetworkWirelessAirMarshalRule Creates a new rule

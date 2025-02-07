@@ -1,6 +1,7 @@
 package meraki
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 
@@ -2837,6 +2838,7 @@ type RequestSwitchCloneOrganizationSwitchDevices struct {
 
 
 */
+
 func (s *SwitchService) GetDeviceSwitchPorts(serial string) (*ResponseSwitchGetDeviceSwitchPorts, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/ports"
 	s.rateLimiterBucket.Wait(1)
@@ -2871,6 +2873,7 @@ func (s *SwitchService) GetDeviceSwitchPorts(serial string) (*ResponseSwitchGetD
 
 
 */
+
 func (s *SwitchService) GetDeviceSwitchPortsStatuses(serial string, getDeviceSwitchPortsStatusesQueryParams *GetDeviceSwitchPortsStatusesQueryParams) (*ResponseSwitchGetDeviceSwitchPortsStatuses, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/ports/statuses"
 	s.rateLimiterBucket.Wait(1)
@@ -2907,6 +2910,7 @@ func (s *SwitchService) GetDeviceSwitchPortsStatuses(serial string, getDeviceSwi
 
 
 */
+
 func (s *SwitchService) GetDeviceSwitchPortsStatusesPackets(serial string, getDeviceSwitchPortsStatusesPacketsQueryParams *GetDeviceSwitchPortsStatusesPacketsQueryParams) (*ResponseSwitchGetDeviceSwitchPortsStatusesPackets, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/ports/statuses/packets"
 	s.rateLimiterBucket.Wait(1)
@@ -2943,6 +2947,7 @@ func (s *SwitchService) GetDeviceSwitchPortsStatusesPackets(serial string, getDe
 
 
 */
+
 func (s *SwitchService) GetDeviceSwitchPort(serial string, portID string) (*ResponseSwitchGetDeviceSwitchPort, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/ports/{portId}"
 	s.rateLimiterBucket.Wait(1)
@@ -2977,6 +2982,7 @@ func (s *SwitchService) GetDeviceSwitchPort(serial string, portID string) (*Resp
 
 
 */
+
 func (s *SwitchService) GetDeviceSwitchRoutingInterfaces(serial string) (*ResponseSwitchGetDeviceSwitchRoutingInterfaces, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/interfaces"
 	s.rateLimiterBucket.Wait(1)
@@ -3011,6 +3017,7 @@ func (s *SwitchService) GetDeviceSwitchRoutingInterfaces(serial string) (*Respon
 
 
 */
+
 func (s *SwitchService) GetDeviceSwitchRoutingInterface(serial string, interfaceID string) (*ResponseSwitchGetDeviceSwitchRoutingInterface, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/interfaces/{interfaceId}"
 	s.rateLimiterBucket.Wait(1)
@@ -3046,6 +3053,7 @@ func (s *SwitchService) GetDeviceSwitchRoutingInterface(serial string, interface
 
 
 */
+
 func (s *SwitchService) GetDeviceSwitchRoutingInterfaceDhcp(serial string, interfaceID string) (*ResponseSwitchGetDeviceSwitchRoutingInterfaceDhcp, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/interfaces/{interfaceId}/dhcp"
 	s.rateLimiterBucket.Wait(1)
@@ -3080,6 +3088,7 @@ func (s *SwitchService) GetDeviceSwitchRoutingInterfaceDhcp(serial string, inter
 
 
 */
+
 func (s *SwitchService) GetDeviceSwitchRoutingStaticRoutes(serial string) (*ResponseSwitchGetDeviceSwitchRoutingStaticRoutes, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/staticRoutes"
 	s.rateLimiterBucket.Wait(1)
@@ -3114,6 +3123,7 @@ func (s *SwitchService) GetDeviceSwitchRoutingStaticRoutes(serial string) (*Resp
 
 
 */
+
 func (s *SwitchService) GetDeviceSwitchRoutingStaticRoute(serial string, staticRouteID string) (*ResponseSwitchGetDeviceSwitchRoutingStaticRoute, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/staticRoutes/{staticRouteId}"
 	s.rateLimiterBucket.Wait(1)
@@ -3148,6 +3158,7 @@ func (s *SwitchService) GetDeviceSwitchRoutingStaticRoute(serial string, staticR
 
 
 */
+
 func (s *SwitchService) GetDeviceSwitchWarmSpare(serial string) (*ResponseSwitchGetDeviceSwitchWarmSpare, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/warmSpare"
 	s.rateLimiterBucket.Wait(1)
@@ -3181,6 +3192,7 @@ func (s *SwitchService) GetDeviceSwitchWarmSpare(serial string) (*ResponseSwitch
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchAccessControlLists(networkID string) (*ResponseSwitchGetNetworkSwitchAccessControlLists, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/accessControlLists"
 	s.rateLimiterBucket.Wait(1)
@@ -3214,6 +3226,7 @@ func (s *SwitchService) GetNetworkSwitchAccessControlLists(networkID string) (*R
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchAccessPolicies(networkID string) (*ResponseSwitchGetNetworkSwitchAccessPolicies, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/accessPolicies"
 	s.rateLimiterBucket.Wait(1)
@@ -3248,6 +3261,7 @@ func (s *SwitchService) GetNetworkSwitchAccessPolicies(networkID string) (*Respo
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchAccessPolicy(networkID string, accessPolicyNumber string) (*ResponseSwitchGetNetworkSwitchAccessPolicy, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/accessPolicies/{accessPolicyNumber}"
 	s.rateLimiterBucket.Wait(1)
@@ -3282,6 +3296,7 @@ func (s *SwitchService) GetNetworkSwitchAccessPolicy(networkID string, accessPol
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchAlternateManagementInterface(networkID string) (*ResponseSwitchGetNetworkSwitchAlternateManagementInterface, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/alternateManagementInterface"
 	s.rateLimiterBucket.Wait(1)
@@ -3316,9 +3331,40 @@ func (s *SwitchService) GetNetworkSwitchAlternateManagementInterface(networkID s
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchDhcpV4ServersSeen(networkID string, getNetworkSwitchDhcpV4ServersSeenQueryParams *GetNetworkSwitchDhcpV4ServersSeenQueryParams) (*ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dhcp/v4/servers/seen"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkSwitchDhcpV4ServersSeenQueryParams != nil && getNetworkSwitchDhcpV4ServersSeenQueryParams.PerPage == -1 {
+		var result *ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen
+		println("Paginate")
+		getNetworkSwitchDhcpV4ServersSeenQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkSwitchDhcpV4ServersSeenPaginate, networkID, "", getNetworkSwitchDhcpV4ServersSeenQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSwitchDhcpV4ServersSeenQueryParams)
@@ -3343,6 +3389,11 @@ func (s *SwitchService) GetNetworkSwitchDhcpV4ServersSeen(networkID string, getN
 	return result, response, err
 
 }
+func (s *SwitchService) GetNetworkSwitchDhcpV4ServersSeenPaginate(networkID string, getNetworkSwitchDhcpV4ServersSeenQueryParams any) (any, *resty.Response, error) {
+	getNetworkSwitchDhcpV4ServersSeenQueryParamsConverted := getNetworkSwitchDhcpV4ServersSeenQueryParams.(*GetNetworkSwitchDhcpV4ServersSeenQueryParams)
+
+	return s.GetNetworkSwitchDhcpV4ServersSeen(networkID, getNetworkSwitchDhcpV4ServersSeenQueryParamsConverted)
+}
 
 //GetNetworkSwitchDhcpServerPolicy Return the DHCP server settings
 /* Return the DHCP server settings. Blocked/allowed servers are only applied when default policy is allow/block, respectively
@@ -3351,6 +3402,7 @@ func (s *SwitchService) GetNetworkSwitchDhcpV4ServersSeen(networkID string, getN
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchDhcpServerPolicy(networkID string) (*ResponseSwitchGetNetworkSwitchDhcpServerPolicy, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dhcpServerPolicy"
 	s.rateLimiterBucket.Wait(1)
@@ -3385,9 +3437,40 @@ func (s *SwitchService) GetNetworkSwitchDhcpServerPolicy(networkID string) (*Res
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers(networkID string, getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams *GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams) (*ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dhcpServerPolicy/arpInspection/trustedServers"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams != nil && getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams.PerPage == -1 {
+		var result *ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers
+		println("Paginate")
+		getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersPaginate, networkID, "", getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams)
@@ -3412,6 +3495,11 @@ func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServ
 	return result, response, err
 
 }
+func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersPaginate(networkID string, getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams any) (any, *resty.Response, error) {
+	getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParamsConverted := getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams.(*GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams)
+
+	return s.GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers(networkID, getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParamsConverted)
+}
 
 //GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice Return the devices that have a Dynamic ARP Inspection warning and their warnings
 /* Return the devices that have a Dynamic ARP Inspection warning and their warnings
@@ -3421,9 +3509,40 @@ func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServ
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice(networkID string, getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams) (*ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dhcpServerPolicy/arpInspection/warnings/byDevice"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams != nil && getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams.PerPage == -1 {
+		var result *ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice
+		println("Paginate")
+		getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevicePaginate, networkID, "", getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams)
@@ -3448,6 +3567,11 @@ func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByD
 	return result, response, err
 
 }
+func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevicePaginate(networkID string, getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams any) (any, *resty.Response, error) {
+	getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParamsConverted := getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams.(*GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams)
+
+	return s.GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice(networkID, getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParamsConverted)
+}
 
 //GetNetworkSwitchDscpToCosMappings Return the DSCP to CoS mappings
 /* Return the DSCP to CoS mappings
@@ -3456,6 +3580,7 @@ func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByD
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchDscpToCosMappings(networkID string) (*ResponseSwitchGetNetworkSwitchDscpToCosMappings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dscpToCosMappings"
 	s.rateLimiterBucket.Wait(1)
@@ -3489,6 +3614,7 @@ func (s *SwitchService) GetNetworkSwitchDscpToCosMappings(networkID string) (*Re
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchLinkAggregations(networkID string) (*ResponseSwitchGetNetworkSwitchLinkAggregations, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/linkAggregations"
 	s.rateLimiterBucket.Wait(1)
@@ -3522,6 +3648,7 @@ func (s *SwitchService) GetNetworkSwitchLinkAggregations(networkID string) (*Res
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchMtu(networkID string) (*ResponseSwitchGetNetworkSwitchMtu, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/mtu"
 	s.rateLimiterBucket.Wait(1)
@@ -3555,6 +3682,7 @@ func (s *SwitchService) GetNetworkSwitchMtu(networkID string) (*ResponseSwitchGe
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchPortSchedules(networkID string) (*ResponseSwitchGetNetworkSwitchPortSchedules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/portSchedules"
 	s.rateLimiterBucket.Wait(1)
@@ -3588,6 +3716,7 @@ func (s *SwitchService) GetNetworkSwitchPortSchedules(networkID string) (*Respon
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchQosRules(networkID string) (*ResponseSwitchGetNetworkSwitchQosRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/qosRules"
 	s.rateLimiterBucket.Wait(1)
@@ -3621,6 +3750,7 @@ func (s *SwitchService) GetNetworkSwitchQosRules(networkID string) (*ResponseSwi
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchQosRulesOrder(networkID string) (*ResponseSwitchGetNetworkSwitchQosRulesOrder, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/qosRules/order"
 	s.rateLimiterBucket.Wait(1)
@@ -3655,6 +3785,7 @@ func (s *SwitchService) GetNetworkSwitchQosRulesOrder(networkID string) (*Respon
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchQosRule(networkID string, qosRuleID string) (*ResponseSwitchGetNetworkSwitchQosRule, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/qosRules/{qosRuleId}"
 	s.rateLimiterBucket.Wait(1)
@@ -3689,6 +3820,7 @@ func (s *SwitchService) GetNetworkSwitchQosRule(networkID string, qosRuleID stri
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchRoutingMulticast(networkID string) (*ResponseSwitchGetNetworkSwitchRoutingMulticast, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/routing/multicast"
 	s.rateLimiterBucket.Wait(1)
@@ -3722,6 +3854,7 @@ func (s *SwitchService) GetNetworkSwitchRoutingMulticast(networkID string) (*Res
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchRoutingMulticastRendezvousPoints(networkID string) (*ResponseSwitchGetNetworkSwitchRoutingMulticastRendezvousPoints, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/routing/multicast/rendezvousPoints"
 	s.rateLimiterBucket.Wait(1)
@@ -3756,6 +3889,7 @@ func (s *SwitchService) GetNetworkSwitchRoutingMulticastRendezvousPoints(network
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchRoutingMulticastRendezvousPoint(networkID string, rendezvousPointID string) (*ResponseSwitchGetNetworkSwitchRoutingMulticastRendezvousPoint, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/routing/multicast/rendezvousPoints/{rendezvousPointId}"
 	s.rateLimiterBucket.Wait(1)
@@ -3790,6 +3924,7 @@ func (s *SwitchService) GetNetworkSwitchRoutingMulticastRendezvousPoint(networkI
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchRoutingOspf(networkID string) (*ResponseSwitchGetNetworkSwitchRoutingOspf, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/routing/ospf"
 	s.rateLimiterBucket.Wait(1)
@@ -3823,6 +3958,7 @@ func (s *SwitchService) GetNetworkSwitchRoutingOspf(networkID string) (*Response
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchSettings(networkID string) (*ResponseSwitchGetNetworkSwitchSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/settings"
 	s.rateLimiterBucket.Wait(1)
@@ -3856,6 +3992,7 @@ func (s *SwitchService) GetNetworkSwitchSettings(networkID string) (*ResponseSwi
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchStacks(networkID string) (*ResponseSwitchGetNetworkSwitchStacks, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks"
 	s.rateLimiterBucket.Wait(1)
@@ -3890,6 +4027,7 @@ func (s *SwitchService) GetNetworkSwitchStacks(networkID string) (*ResponseSwitc
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchStack(networkID string, switchStackID string) (*ResponseSwitchGetNetworkSwitchStack, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}"
 	s.rateLimiterBucket.Wait(1)
@@ -3925,6 +4063,7 @@ func (s *SwitchService) GetNetworkSwitchStack(networkID string, switchStackID st
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchStackRoutingInterfaces(networkID string, switchStackID string) (*ResponseSwitchGetNetworkSwitchStackRoutingInterfaces, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces"
 	s.rateLimiterBucket.Wait(1)
@@ -3961,6 +4100,7 @@ func (s *SwitchService) GetNetworkSwitchStackRoutingInterfaces(networkID string,
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchStackRoutingInterface(networkID string, switchStackID string, interfaceID string) (*ResponseSwitchGetNetworkSwitchStackRoutingInterface, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}"
 	s.rateLimiterBucket.Wait(1)
@@ -3998,6 +4138,7 @@ func (s *SwitchService) GetNetworkSwitchStackRoutingInterface(networkID string, 
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchStackRoutingInterfaceDhcp(networkID string, switchStackID string, interfaceID string) (*ResponseSwitchGetNetworkSwitchStackRoutingInterfaceDhcp, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}/dhcp"
 	s.rateLimiterBucket.Wait(1)
@@ -4034,6 +4175,7 @@ func (s *SwitchService) GetNetworkSwitchStackRoutingInterfaceDhcp(networkID stri
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchStackRoutingStaticRoutes(networkID string, switchStackID string) (*ResponseSwitchGetNetworkSwitchStackRoutingStaticRoutes, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/staticRoutes"
 	s.rateLimiterBucket.Wait(1)
@@ -4070,6 +4212,7 @@ func (s *SwitchService) GetNetworkSwitchStackRoutingStaticRoutes(networkID strin
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchStackRoutingStaticRoute(networkID string, switchStackID string, staticRouteID string) (*ResponseSwitchGetNetworkSwitchStackRoutingStaticRoute, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/staticRoutes/{staticRouteId}"
 	s.rateLimiterBucket.Wait(1)
@@ -4105,6 +4248,7 @@ func (s *SwitchService) GetNetworkSwitchStackRoutingStaticRoute(networkID string
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchStormControl(networkID string) (*ResponseSwitchGetNetworkSwitchStormControl, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stormControl"
 	s.rateLimiterBucket.Wait(1)
@@ -4138,6 +4282,7 @@ func (s *SwitchService) GetNetworkSwitchStormControl(networkID string) (*Respons
 
 
 */
+
 func (s *SwitchService) GetNetworkSwitchStp(networkID string) (*ResponseSwitchGetNetworkSwitchStp, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stp"
 	s.rateLimiterBucket.Wait(1)
@@ -4172,6 +4317,7 @@ func (s *SwitchService) GetNetworkSwitchStp(networkID string) (*ResponseSwitchGe
 
 
 */
+
 func (s *SwitchService) GetOrganizationConfigTemplateSwitchProfiles(organizationID string, configTemplateID string) (*ResponseSwitchGetOrganizationConfigTemplateSwitchProfiles, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles"
 	s.rateLimiterBucket.Wait(1)
@@ -4208,6 +4354,7 @@ func (s *SwitchService) GetOrganizationConfigTemplateSwitchProfiles(organization
 
 
 */
+
 func (s *SwitchService) GetOrganizationConfigTemplateSwitchProfilePorts(organizationID string, configTemplateID string, profileID string) (*ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePorts, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles/{profileId}/ports"
 	s.rateLimiterBucket.Wait(1)
@@ -4246,6 +4393,7 @@ func (s *SwitchService) GetOrganizationConfigTemplateSwitchProfilePorts(organiza
 
 
 */
+
 func (s *SwitchService) GetOrganizationConfigTemplateSwitchProfilePort(organizationID string, configTemplateID string, profileID string, portID string) (*ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePort, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles/{profileId}/ports/{portId}"
 	s.rateLimiterBucket.Wait(1)
@@ -4283,6 +4431,7 @@ func (s *SwitchService) GetOrganizationConfigTemplateSwitchProfilePort(organizat
 
 
 */
+
 func (s *SwitchService) GetOrganizationSummarySwitchPowerHistory(organizationID string, getOrganizationSummarySwitchPowerHistoryQueryParams *GetOrganizationSummarySwitchPowerHistoryQueryParams) (*ResponseSwitchGetOrganizationSummarySwitchPowerHistory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/switch/power/history"
 	s.rateLimiterBucket.Wait(1)
@@ -4319,9 +4468,40 @@ func (s *SwitchService) GetOrganizationSummarySwitchPowerHistory(organizationID 
 
 
 */
+
 func (s *SwitchService) GetOrganizationSwitchPortsBySwitch(organizationID string, getOrganizationSwitchPortsBySwitchQueryParams *GetOrganizationSwitchPortsBySwitchQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsBySwitch, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/switch/ports/bySwitch"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationSwitchPortsBySwitchQueryParams != nil && getOrganizationSwitchPortsBySwitchQueryParams.PerPage == -1 {
+		var result *ResponseSwitchGetOrganizationSwitchPortsBySwitch
+		println("Paginate")
+		getOrganizationSwitchPortsBySwitchQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationSwitchPortsBySwitchPaginate, organizationID, "", getOrganizationSwitchPortsBySwitchQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSwitchGetOrganizationSwitchPortsBySwitch
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Ports = append(*result.Ports, *resultTmp.Ports...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSwitchPortsBySwitchQueryParams)
@@ -4346,6 +4526,11 @@ func (s *SwitchService) GetOrganizationSwitchPortsBySwitch(organizationID string
 	return result, response, err
 
 }
+func (s *SwitchService) GetOrganizationSwitchPortsBySwitchPaginate(organizationID string, getOrganizationSwitchPortsBySwitchQueryParams any) (any, *resty.Response, error) {
+	getOrganizationSwitchPortsBySwitchQueryParamsConverted := getOrganizationSwitchPortsBySwitchQueryParams.(*GetOrganizationSwitchPortsBySwitchQueryParams)
+
+	return s.GetOrganizationSwitchPortsBySwitch(organizationID, getOrganizationSwitchPortsBySwitchQueryParamsConverted)
+}
 
 //GetOrganizationSwitchPortsClientsOverviewByDevice List the number of clients for all switchports with at least one online client in an organization.
 /* List the number of clients for all switchports with at least one online client in an organization.
@@ -4355,9 +4540,40 @@ func (s *SwitchService) GetOrganizationSwitchPortsBySwitch(organizationID string
 
 
 */
+
 func (s *SwitchService) GetOrganizationSwitchPortsClientsOverviewByDevice(organizationID string, getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams *GetOrganizationSwitchPortsClientsOverviewByDeviceQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/switch/ports/clients/overview/byDevice"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams != nil && getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams.PerPage == -1 {
+		var result *ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice
+		println("Paginate")
+		getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationSwitchPortsClientsOverviewByDevicePaginate, organizationID, "", getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams)
@@ -4382,6 +4598,11 @@ func (s *SwitchService) GetOrganizationSwitchPortsClientsOverviewByDevice(organi
 	return result, response, err
 
 }
+func (s *SwitchService) GetOrganizationSwitchPortsClientsOverviewByDevicePaginate(organizationID string, getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams any) (any, *resty.Response, error) {
+	getOrganizationSwitchPortsClientsOverviewByDeviceQueryParamsConverted := getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams.(*GetOrganizationSwitchPortsClientsOverviewByDeviceQueryParams)
+
+	return s.GetOrganizationSwitchPortsClientsOverviewByDevice(organizationID, getOrganizationSwitchPortsClientsOverviewByDeviceQueryParamsConverted)
+}
 
 //GetOrganizationSwitchPortsOverview Returns the counts of all active ports for the requested timespan, grouped by speed
 /* Returns the counts of all active ports for the requested timespan, grouped by speed. An active port is a port that at any point during the timeframe is observed to be connected to a responsive device and isn't configured to be disabled. For a port that is observed at multiple speeds during the timeframe, it will be counted at the highest speed observed. The number of inactive ports, and the total number of ports are also provided. Only ports on switches online during the timeframe will be represented and a port is only guaranteed to be present if its switch was online for at least 6 hours of the timeframe.
@@ -4391,6 +4612,7 @@ func (s *SwitchService) GetOrganizationSwitchPortsClientsOverviewByDevice(organi
 
 
 */
+
 func (s *SwitchService) GetOrganizationSwitchPortsOverview(organizationID string, getOrganizationSwitchPortsOverviewQueryParams *GetOrganizationSwitchPortsOverviewQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsOverview, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/switch/ports/overview"
 	s.rateLimiterBucket.Wait(1)
@@ -4427,9 +4649,40 @@ func (s *SwitchService) GetOrganizationSwitchPortsOverview(organizationID string
 
 
 */
+
 func (s *SwitchService) GetOrganizationSwitchPortsStatusesBySwitch(organizationID string, getOrganizationSwitchPortsStatusesBySwitchQueryParams *GetOrganizationSwitchPortsStatusesBySwitchQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/switch/ports/statuses/bySwitch"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationSwitchPortsStatusesBySwitchQueryParams != nil && getOrganizationSwitchPortsStatusesBySwitchQueryParams.PerPage == -1 {
+		var result *ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch
+		println("Paginate")
+		getOrganizationSwitchPortsStatusesBySwitchQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationSwitchPortsStatusesBySwitchPaginate, organizationID, "", getOrganizationSwitchPortsStatusesBySwitchQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSwitchPortsStatusesBySwitchQueryParams)
@@ -4454,6 +4707,11 @@ func (s *SwitchService) GetOrganizationSwitchPortsStatusesBySwitch(organizationI
 	return result, response, err
 
 }
+func (s *SwitchService) GetOrganizationSwitchPortsStatusesBySwitchPaginate(organizationID string, getOrganizationSwitchPortsStatusesBySwitchQueryParams any) (any, *resty.Response, error) {
+	getOrganizationSwitchPortsStatusesBySwitchQueryParamsConverted := getOrganizationSwitchPortsStatusesBySwitchQueryParams.(*GetOrganizationSwitchPortsStatusesBySwitchQueryParams)
+
+	return s.GetOrganizationSwitchPortsStatusesBySwitch(organizationID, getOrganizationSwitchPortsStatusesBySwitchQueryParamsConverted)
+}
 
 //GetOrganizationSwitchPortsTopologyDiscoveryByDevice List most recently seen LLDP/CDP discovery and topology information per switch port in an organization.
 /* List most recently seen LLDP/CDP discovery and topology information per switch port in an organization.
@@ -4463,9 +4721,40 @@ func (s *SwitchService) GetOrganizationSwitchPortsStatusesBySwitch(organizationI
 
 
 */
+
 func (s *SwitchService) GetOrganizationSwitchPortsTopologyDiscoveryByDevice(organizationID string, getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams *GetOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/switch/ports/topology/discovery/byDevice"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams != nil && getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams.PerPage == -1 {
+		var result *ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice
+		println("Paginate")
+		getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationSwitchPortsTopologyDiscoveryByDevicePaginate, organizationID, "", getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams)
@@ -4489,6 +4778,11 @@ func (s *SwitchService) GetOrganizationSwitchPortsTopologyDiscoveryByDevice(orga
 	result := response.Result().(*ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice)
 	return result, response, err
 
+}
+func (s *SwitchService) GetOrganizationSwitchPortsTopologyDiscoveryByDevicePaginate(organizationID string, getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams any) (any, *resty.Response, error) {
+	getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParamsConverted := getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams.(*GetOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams)
+
+	return s.GetOrganizationSwitchPortsTopologyDiscoveryByDevice(organizationID, getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParamsConverted)
 }
 
 //CycleDeviceSwitchPorts Cycle a set of switch ports

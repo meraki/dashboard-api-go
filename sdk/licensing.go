@@ -1,6 +1,7 @@
 package meraki
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 
@@ -342,6 +343,7 @@ type RequestLicensingMoveOrganizationLicensingCotermLicensesLicensesCounts struc
 
 
 */
+
 func (s *LicensingService) GetAdministeredLicensingSubscriptionEntitlements(getAdministeredLicensingSubscriptionEntitlementsQueryParams *GetAdministeredLicensingSubscriptionEntitlementsQueryParams) (*ResponseLicensingGetAdministeredLicensingSubscriptionEntitlements, *resty.Response, error) {
 	path := "/api/v1/administered/licensing/subscription/entitlements"
 	s.rateLimiterBucket.Wait(1)
@@ -376,9 +378,40 @@ func (s *LicensingService) GetAdministeredLicensingSubscriptionEntitlements(getA
 
 
 */
+
 func (s *LicensingService) GetAdministeredLicensingSubscriptionSubscriptions(getAdministeredLicensingSubscriptionSubscriptionsQueryParams *GetAdministeredLicensingSubscriptionSubscriptionsQueryParams) (*ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptions, *resty.Response, error) {
 	path := "/api/v1/administered/licensing/subscription/subscriptions"
 	s.rateLimiterBucket.Wait(1)
+
+	if getAdministeredLicensingSubscriptionSubscriptionsQueryParams != nil && getAdministeredLicensingSubscriptionSubscriptionsQueryParams.PerPage == -1 {
+		var result *ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptions
+		println("Paginate")
+		getAdministeredLicensingSubscriptionSubscriptionsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetAdministeredLicensingSubscriptionSubscriptionsPaginate, "", "", getAdministeredLicensingSubscriptionSubscriptionsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptions
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 
 	queryString, _ := query.Values(getAdministeredLicensingSubscriptionSubscriptionsQueryParams)
 
@@ -402,6 +435,11 @@ func (s *LicensingService) GetAdministeredLicensingSubscriptionSubscriptions(get
 	return result, response, err
 
 }
+func (s *LicensingService) GetAdministeredLicensingSubscriptionSubscriptionsPaginate(getAdministeredLicensingSubscriptionSubscriptionsQueryParams any) (any, *resty.Response, error) {
+	getAdministeredLicensingSubscriptionSubscriptionsQueryParamsConverted := getAdministeredLicensingSubscriptionSubscriptionsQueryParams.(*GetAdministeredLicensingSubscriptionSubscriptionsQueryParams)
+
+	return s.GetAdministeredLicensingSubscriptionSubscriptions(getAdministeredLicensingSubscriptionSubscriptionsQueryParamsConverted)
+}
 
 //GetAdministeredLicensingSubscriptionSubscriptionsComplianceStatuses Get compliance status for requested subscriptions
 /* Get compliance status for requested subscriptions
@@ -410,6 +448,7 @@ func (s *LicensingService) GetAdministeredLicensingSubscriptionSubscriptions(get
 
 
 */
+
 func (s *LicensingService) GetAdministeredLicensingSubscriptionSubscriptionsComplianceStatuses(getAdministeredLicensingSubscriptionSubscriptionsComplianceStatusesQueryParams *GetAdministeredLicensingSubscriptionSubscriptionsComplianceStatusesQueryParams) (*ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptionsComplianceStatuses, *resty.Response, error) {
 	path := "/api/v1/administered/licensing/subscription/subscriptions/compliance/statuses"
 	s.rateLimiterBucket.Wait(1)
@@ -445,9 +484,40 @@ func (s *LicensingService) GetAdministeredLicensingSubscriptionSubscriptionsComp
 
 
 */
+
 func (s *LicensingService) GetOrganizationLicensingCotermLicenses(organizationID string, getOrganizationLicensingCotermLicensesQueryParams *GetOrganizationLicensingCotermLicensesQueryParams) (*ResponseLicensingGetOrganizationLicensingCotermLicenses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licensing/coterm/licenses"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationLicensingCotermLicensesQueryParams != nil && getOrganizationLicensingCotermLicensesQueryParams.PerPage == -1 {
+		var result *ResponseLicensingGetOrganizationLicensingCotermLicenses
+		println("Paginate")
+		getOrganizationLicensingCotermLicensesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationLicensingCotermLicensesPaginate, organizationID, "", getOrganizationLicensingCotermLicensesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseLicensingGetOrganizationLicensingCotermLicenses
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationLicensingCotermLicensesQueryParams)
@@ -471,6 +541,11 @@ func (s *LicensingService) GetOrganizationLicensingCotermLicenses(organizationID
 	result := response.Result().(*ResponseLicensingGetOrganizationLicensingCotermLicenses)
 	return result, response, err
 
+}
+func (s *LicensingService) GetOrganizationLicensingCotermLicensesPaginate(organizationID string, getOrganizationLicensingCotermLicensesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationLicensingCotermLicensesQueryParamsConverted := getOrganizationLicensingCotermLicensesQueryParams.(*GetOrganizationLicensingCotermLicensesQueryParams)
+
+	return s.GetOrganizationLicensingCotermLicenses(organizationID, getOrganizationLicensingCotermLicensesQueryParamsConverted)
 }
 
 //ClaimAdministeredLicensingSubscriptionSubscriptions Claim a subscription into an organization.

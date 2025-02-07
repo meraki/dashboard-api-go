@@ -4,9 +4,12 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"net/url"
 	"os"
+	"reflect"
 	"regexp"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/go-resty/resty/v2"
@@ -21,6 +24,7 @@ const (
 	MERAKI_REQUESTS_PER_SECOND  = "MERAKI_REQUESTS_PER_SECOND"
 	DEFAULT_USER_AGENT          = "go-meraki/1.53.0"
 	DEFAULT_REQUESTS_PER_SECOND = 10
+	PAGINATION_PER_PAGE         = 5
 )
 
 // Client manages communication with the Cisco Meraki API
@@ -106,7 +110,7 @@ func NewClient() (*Client, error) {
 	client.SetLogger(&CustomLogger{})
 	client.SetRetryCount(2)
 	client.SetRetryWaitTime(time.Second)
-	client.SetRetryMaxWaitTime(5 * time.Second)
+	client.SetRetryMaxWaitTime(1 * time.Minute)
 	// Respect "Retry-After" header in response
 	client.SetRetryAfter(func(client *resty.Client, resp *resty.Response) (time.Duration, error) {
 		retryHeader := resp.Header().Get("Retry-After")
@@ -136,6 +140,7 @@ func NewClient() (*Client, error) {
 	c.Sm = (*SmService)(&c.common)
 	c.Switch = (*SwitchService)(&c.common)
 	c.Wireless = (*WirelessService)(&c.common)
+	c.WirelessController = (*WirelessControllerService)(&c.common)
 	c.CustomCall = (*CustomCallService)(&c.common)
 
 	return c, nil
@@ -292,18 +297,133 @@ func Delete(client *resty.Client, rateLimiterBucket *ratelimit.Bucket, path stri
 	return response, err
 }
 
-func convertToString(i interface{}) string {
-	switch v := i.(type) {
-	case float64:
-		return strconv.Itoa(int(v))
-	case string:
-		return v
-	default:
-		return ""
-	}
-}
+// func convertToString(i interface{}) string {
+// 	switch v := i.(type) {
+// 	case float64:
+// 		return strconv.Itoa(int(v))
+// 	case string:
+// 		return v
+// 	default:
+// 		return ""
+// 	}
+// }
 
 func validateUserAgent(ua string) bool {
 	regex := regexp.MustCompile(`^\S+ \S+ \S+$`)
 	return regex.MatchString(ua)
+}
+
+func Paginate(fn any, id string, secondId string, params interface{}) (interface{}, *resty.Response, error) {
+	var result []interface{}
+	var result2 interface{}
+	var response *resty.Response
+	var err error
+
+	if id != "" && secondId == "" {
+		if f, ok := fn.(func(string, interface{}) (interface{}, *resty.Response, error)); ok {
+			a := params
+			for {
+				result2, response, err = f(id, a)
+				if err != nil {
+					return nil, response, err
+				}
+				result = append(result, result2)
+				startingAfter, err := getStartingAfter(*response)
+				if err == nil {
+					a = changeParams(a, startingAfter)
+				}
+
+				if err != nil {
+					break
+				}
+			}
+		}
+	} else if id != "" && secondId != "" {
+
+		if f, ok := fn.(func(string, string, interface{}) (interface{}, *resty.Response, error)); ok {
+			a := params
+			for {
+				result2, response, err = f(id, secondId, a)
+				if err != nil {
+					return nil, response, err
+				}
+				result = append(result, result2)
+				startingAfter, err := getStartingAfter(*response)
+				if err == nil {
+					a = changeParams(a, startingAfter)
+				}
+
+				if err != nil {
+					break
+				}
+			}
+		}
+	} else if id == "" && secondId == "" {
+		if f, ok := fn.(func(interface{}) (interface{}, *resty.Response, error)); ok {
+			a := params
+			for {
+				result2, response, err = f(a)
+				if err != nil {
+					return nil, response, err
+				}
+				result = append(result, result2)
+				startingAfter, err := getStartingAfter(*response)
+				if err == nil {
+					a = changeParams(a, startingAfter)
+				}
+
+				if err != nil {
+					break
+				}
+			}
+		}
+	} else {
+		return nil, nil, fmt.Errorf("invalid function type")
+	}
+	return result, response, err
+}
+
+func changeParams(params interface{}, newValue string) interface{} {
+	valueA := reflect.ValueOf(params)
+	var perPage int64
+	perPage = PAGINATION_PER_PAGE
+	valueA = valueA.Elem()
+	newParams := reflect.New(valueA.Type()).Elem()
+	newParams.FieldByName("PerPage").SetInt(perPage)
+	newParams.FieldByName(("StartingAfter")).SetString(newValue)
+	// copiar los demas valores en newParams
+	for i := 0; i < valueA.NumField(); i++ {
+		if valueA.Type().Field(i).Name != "PerPage" && valueA.Type().Field(i).Name != "StartingAfter" {
+			newParams.Field(i).Set(valueA.Field(i))
+		}
+	}
+	//
+
+	fmt.Println("New Params: ", newParams)
+	// Devolver el nuevo objeto como interface{}
+	return newParams.Addr().Interface()
+}
+
+func getStartingAfter(r2 resty.Response) (string, error) {
+	links := strings.Split(r2.Header().Get("Link"), ",")
+	var link string
+
+	for linkIndex := range links {
+		if linkIndex != 0 {
+			if strings.Contains(links[linkIndex], "startingAfter") {
+				link = strings.ReplaceAll(strings.ReplaceAll(strings.ReplaceAll(strings.Split(links[linkIndex], ";")[0], ">", ""), "<", ""), MERAKI_BASE_URL, "")
+				break
+			}
+		}
+	}
+	// link =
+
+	link = strings.TrimSpace(link)
+
+	myUrl, _ := url.Parse(link)
+	params, _ := url.ParseQuery(myUrl.RawQuery)
+	if params["startingAfter"] == nil {
+		return "", fmt.Errorf("StartingAfter absent")
+	}
+	return params["startingAfter"][0], nil
 }

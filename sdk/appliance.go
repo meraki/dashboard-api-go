@@ -2824,6 +2824,7 @@ type RequestApplianceUpdateOrganizationApplianceVpnVpnFirewallRulesRules struct 
 
 
 */
+
 func (s *ApplianceService) GetDeviceApplianceDhcpSubnets(serial string) (*ResponseApplianceGetDeviceApplianceDhcpSubnets, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/dhcp/subnets"
 	s.rateLimiterBucket.Wait(1)
@@ -2858,6 +2859,7 @@ func (s *ApplianceService) GetDeviceApplianceDhcpSubnets(serial string) (*Respon
 
 
 */
+
 func (s *ApplianceService) GetDeviceAppliancePerformance(serial string, getDeviceAppliancePerformanceQueryParams *GetDeviceAppliancePerformanceQueryParams) (*ResponseApplianceGetDeviceAppliancePerformance, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/performance"
 	s.rateLimiterBucket.Wait(1)
@@ -2893,6 +2895,7 @@ func (s *ApplianceService) GetDeviceAppliancePerformance(serial string, getDevic
 
 
 */
+
 func (s *ApplianceService) GetDeviceAppliancePrefixesDelegated(serial string) (*ResponseApplianceGetDeviceAppliancePrefixesDelegated, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/prefixes/delegated"
 	s.rateLimiterBucket.Wait(1)
@@ -2926,6 +2929,7 @@ func (s *ApplianceService) GetDeviceAppliancePrefixesDelegated(serial string) (*
 
 
 */
+
 func (s *ApplianceService) GetDeviceAppliancePrefixesDelegatedVLANAssignments(serial string) (*ResponseApplianceGetDeviceAppliancePrefixesDelegatedVLANAssignments, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/prefixes/delegated/vlanAssignments"
 	s.rateLimiterBucket.Wait(1)
@@ -2959,6 +2963,7 @@ func (s *ApplianceService) GetDeviceAppliancePrefixesDelegatedVLANAssignments(se
 
 
 */
+
 func (s *ApplianceService) GetDeviceApplianceRadioSettings(serial string) (*ResponseApplianceGetDeviceApplianceRadioSettings, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/radio/settings"
 	s.rateLimiterBucket.Wait(1)
@@ -2992,6 +2997,7 @@ func (s *ApplianceService) GetDeviceApplianceRadioSettings(serial string) (*Resp
 
 
 */
+
 func (s *ApplianceService) GetDeviceApplianceUplinksSettings(serial string) (*ResponseApplianceGetDeviceApplianceUplinksSettings, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/appliance/uplinks/settings"
 	s.rateLimiterBucket.Wait(1)
@@ -3027,9 +3033,40 @@ func (s *ApplianceService) GetDeviceApplianceUplinksSettings(serial string) (*Re
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceClientSecurityEvents(networkID string, clientID string, getNetworkApplianceClientSecurityEventsQueryParams *GetNetworkApplianceClientSecurityEventsQueryParams) (*ResponseApplianceGetNetworkApplianceClientSecurityEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/clients/{clientId}/security/events"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkApplianceClientSecurityEventsQueryParams != nil && getNetworkApplianceClientSecurityEventsQueryParams.PerPage == -1 {
+		var result *ResponseApplianceGetNetworkApplianceClientSecurityEvents
+		println("Paginate")
+		getNetworkApplianceClientSecurityEventsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkApplianceClientSecurityEventsPaginate, networkID, clientID, getNetworkApplianceClientSecurityEventsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseApplianceGetNetworkApplianceClientSecurityEvents
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
@@ -3055,6 +3092,11 @@ func (s *ApplianceService) GetNetworkApplianceClientSecurityEvents(networkID str
 	return result, response, err
 
 }
+func (s *ApplianceService) GetNetworkApplianceClientSecurityEventsPaginate(networkID string, clientID string, getNetworkApplianceClientSecurityEventsQueryParams any) (any, *resty.Response, error) {
+	getNetworkApplianceClientSecurityEventsQueryParamsConverted := getNetworkApplianceClientSecurityEventsQueryParams.(*GetNetworkApplianceClientSecurityEventsQueryParams)
+
+	return s.GetNetworkApplianceClientSecurityEvents(networkID, clientID, getNetworkApplianceClientSecurityEventsQueryParamsConverted)
+}
 
 //GetNetworkApplianceConnectivityMonitoringDestinations Return the connectivity testing destinations for an MX network
 /* Return the connectivity testing destinations for an MX network
@@ -3063,6 +3105,7 @@ func (s *ApplianceService) GetNetworkApplianceClientSecurityEvents(networkID str
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceConnectivityMonitoringDestinations(networkID string) (*ResponseApplianceGetNetworkApplianceConnectivityMonitoringDestinations, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/connectivityMonitoringDestinations"
 	s.rateLimiterBucket.Wait(1)
@@ -3096,6 +3139,7 @@ func (s *ApplianceService) GetNetworkApplianceConnectivityMonitoringDestinations
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceContentFiltering(networkID string) (*ResponseApplianceGetNetworkApplianceContentFiltering, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/contentFiltering"
 	s.rateLimiterBucket.Wait(1)
@@ -3129,6 +3173,7 @@ func (s *ApplianceService) GetNetworkApplianceContentFiltering(networkID string)
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceContentFilteringCategories(networkID string) (*ResponseApplianceGetNetworkApplianceContentFilteringCategories, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/contentFiltering/categories"
 	s.rateLimiterBucket.Wait(1)
@@ -3162,6 +3207,7 @@ func (s *ApplianceService) GetNetworkApplianceContentFilteringCategories(network
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceFirewallCellularFirewallRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallCellularFirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/cellularFirewallRules"
 	s.rateLimiterBucket.Wait(1)
@@ -3195,6 +3241,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallCellularFirewallRules(netw
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledServices(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallFirewalledServices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/firewalledServices"
 	s.rateLimiterBucket.Wait(1)
@@ -3229,6 +3276,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledServices(network
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledService(networkID string, service string) (*ResponseApplianceGetNetworkApplianceFirewallFirewalledService, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/firewalledServices/{service}"
 	s.rateLimiterBucket.Wait(1)
@@ -3263,6 +3311,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledService(networkI
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceFirewallInboundCellularFirewallRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallInboundCellularFirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/inboundCellularFirewallRules"
 	s.rateLimiterBucket.Wait(1)
@@ -3296,6 +3345,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallInboundCellularFirewallRul
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceFirewallInboundFirewallRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallInboundFirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/inboundFirewallRules"
 	s.rateLimiterBucket.Wait(1)
@@ -3329,6 +3379,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallInboundFirewallRules(netwo
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceFirewallL3FirewallRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallL3FirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/l3FirewallRules"
 	s.rateLimiterBucket.Wait(1)
@@ -3362,6 +3413,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallL3FirewallRules(networkID 
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallL7FirewallRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/l7FirewallRules"
 	s.rateLimiterBucket.Wait(1)
@@ -3395,6 +3447,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRules(networkID 
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategories, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/l7FirewallRules/applicationCategories"
 	s.rateLimiterBucket.Wait(1)
@@ -3428,6 +3481,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRulesApplication
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceFirewallOneToManyNatRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallOneToManyNatRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/oneToManyNatRules"
 	s.rateLimiterBucket.Wait(1)
@@ -3461,6 +3515,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallOneToManyNatRules(networkI
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceFirewallOneToOneNatRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallOneToOneNatRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/oneToOneNatRules"
 	s.rateLimiterBucket.Wait(1)
@@ -3494,6 +3549,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallOneToOneNatRules(networkID
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceFirewallPortForwardingRules(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallPortForwardingRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/portForwardingRules"
 	s.rateLimiterBucket.Wait(1)
@@ -3527,6 +3583,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallPortForwardingRules(networ
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceFirewallSettings(networkID string) (*ResponseApplianceGetNetworkApplianceFirewallSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/firewall/settings"
 	s.rateLimiterBucket.Wait(1)
@@ -3560,6 +3617,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallSettings(networkID string)
 
 
 */
+
 func (s *ApplianceService) GetNetworkAppliancePorts(networkID string) (*ResponseApplianceGetNetworkAppliancePorts, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/ports"
 	s.rateLimiterBucket.Wait(1)
@@ -3594,6 +3652,7 @@ func (s *ApplianceService) GetNetworkAppliancePorts(networkID string) (*Response
 
 
 */
+
 func (s *ApplianceService) GetNetworkAppliancePort(networkID string, portID string) (*ResponseApplianceGetNetworkAppliancePort, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/ports/{portId}"
 	s.rateLimiterBucket.Wait(1)
@@ -3628,6 +3687,7 @@ func (s *ApplianceService) GetNetworkAppliancePort(networkID string, portID stri
 
 
 */
+
 func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatics(networkID string) (*ResponseApplianceGetNetworkAppliancePrefixesDelegatedStatics, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/prefixes/delegated/statics"
 	s.rateLimiterBucket.Wait(1)
@@ -3662,6 +3722,7 @@ func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatics(networkID
 
 
 */
+
 func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatic(networkID string, staticDelegatedPrefixID string) (*ResponseApplianceGetNetworkAppliancePrefixesDelegatedStatic, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}"
 	s.rateLimiterBucket.Wait(1)
@@ -3696,6 +3757,7 @@ func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatic(networkID 
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceRfProfiles(networkID string) (*ResponseApplianceGetNetworkApplianceRfProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/rfProfiles"
 	s.rateLimiterBucket.Wait(1)
@@ -3730,6 +3792,7 @@ func (s *ApplianceService) GetNetworkApplianceRfProfiles(networkID string) (*Res
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceRfProfile(networkID string, rfProfileID string) (*ResponseApplianceGetNetworkApplianceRfProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/rfProfiles/{rfProfileId}"
 	s.rateLimiterBucket.Wait(1)
@@ -3765,9 +3828,40 @@ func (s *ApplianceService) GetNetworkApplianceRfProfile(networkID string, rfProf
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceSecurityEvents(networkID string, getNetworkApplianceSecurityEventsQueryParams *GetNetworkApplianceSecurityEventsQueryParams) (*ResponseApplianceGetNetworkApplianceSecurityEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/security/events"
 	s.rateLimiterBucket.Wait(1)
+
+	if getNetworkApplianceSecurityEventsQueryParams != nil && getNetworkApplianceSecurityEventsQueryParams.PerPage == -1 {
+		var result *ResponseApplianceGetNetworkApplianceSecurityEvents
+		println("Paginate")
+		getNetworkApplianceSecurityEventsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetNetworkApplianceSecurityEventsPaginate, networkID, "", getNetworkApplianceSecurityEventsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseApplianceGetNetworkApplianceSecurityEvents
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
 	queryString, _ := query.Values(getNetworkApplianceSecurityEventsQueryParams)
@@ -3792,6 +3886,11 @@ func (s *ApplianceService) GetNetworkApplianceSecurityEvents(networkID string, g
 	return result, response, err
 
 }
+func (s *ApplianceService) GetNetworkApplianceSecurityEventsPaginate(networkID string, getNetworkApplianceSecurityEventsQueryParams any) (any, *resty.Response, error) {
+	getNetworkApplianceSecurityEventsQueryParamsConverted := getNetworkApplianceSecurityEventsQueryParams.(*GetNetworkApplianceSecurityEventsQueryParams)
+
+	return s.GetNetworkApplianceSecurityEvents(networkID, getNetworkApplianceSecurityEventsQueryParamsConverted)
+}
 
 //GetNetworkApplianceSecurityIntrusion Returns all supported intrusion settings for an MX network
 /* Returns all supported intrusion settings for an MX network
@@ -3800,6 +3899,7 @@ func (s *ApplianceService) GetNetworkApplianceSecurityEvents(networkID string, g
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceSecurityIntrusion(networkID string) (*ResponseApplianceGetNetworkApplianceSecurityIntrusion, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/security/intrusion"
 	s.rateLimiterBucket.Wait(1)
@@ -3833,6 +3933,7 @@ func (s *ApplianceService) GetNetworkApplianceSecurityIntrusion(networkID string
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceSecurityMalware(networkID string) (*ResponseApplianceGetNetworkApplianceSecurityMalware, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/security/malware"
 	s.rateLimiterBucket.Wait(1)
@@ -3866,6 +3967,7 @@ func (s *ApplianceService) GetNetworkApplianceSecurityMalware(networkID string) 
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceSettings(networkID string) (*ResponseApplianceGetNetworkApplianceSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/settings"
 	s.rateLimiterBucket.Wait(1)
@@ -3899,6 +4001,7 @@ func (s *ApplianceService) GetNetworkApplianceSettings(networkID string) (*Respo
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceSingleLan(networkID string) (*ResponseApplianceGetNetworkApplianceSingleLan, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/singleLan"
 	s.rateLimiterBucket.Wait(1)
@@ -3932,6 +4035,7 @@ func (s *ApplianceService) GetNetworkApplianceSingleLan(networkID string) (*Resp
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceSSIDs(networkID string) (*ResponseApplianceGetNetworkApplianceSSIDs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/ssids"
 	s.rateLimiterBucket.Wait(1)
@@ -3966,6 +4070,7 @@ func (s *ApplianceService) GetNetworkApplianceSSIDs(networkID string) (*Response
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceSSID(networkID string, number string) (*ResponseApplianceGetNetworkApplianceSSID, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/ssids/{number}"
 	s.rateLimiterBucket.Wait(1)
@@ -4000,6 +4105,7 @@ func (s *ApplianceService) GetNetworkApplianceSSID(networkID string, number stri
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceStaticRoutes(networkID string) (*ResponseApplianceGetNetworkApplianceStaticRoutes, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/staticRoutes"
 	s.rateLimiterBucket.Wait(1)
@@ -4034,6 +4140,7 @@ func (s *ApplianceService) GetNetworkApplianceStaticRoutes(networkID string) (*R
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceStaticRoute(networkID string, staticRouteID string) (*ResponseApplianceGetNetworkApplianceStaticRoute, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/staticRoutes/{staticRouteId}"
 	s.rateLimiterBucket.Wait(1)
@@ -4068,6 +4175,7 @@ func (s *ApplianceService) GetNetworkApplianceStaticRoute(networkID string, stat
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceTrafficShaping(networkID string) (*ResponseApplianceGetNetworkApplianceTrafficShaping, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping"
 	s.rateLimiterBucket.Wait(1)
@@ -4101,6 +4209,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShaping(networkID string) (
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceClasses(networkID string) (*ResponseApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClasses, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses"
 	s.rateLimiterBucket.Wait(1)
@@ -4135,6 +4244,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceCla
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceClass(networkID string, customPerformanceClassID string) (*ResponseApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClass, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses/{customPerformanceClassId}"
 	s.rateLimiterBucket.Wait(1)
@@ -4169,6 +4279,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceCla
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceTrafficShapingRules(networkID string) (*ResponseApplianceGetNetworkApplianceTrafficShapingRules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/rules"
 	s.rateLimiterBucket.Wait(1)
@@ -4202,6 +4313,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingRules(networkID stri
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkBandwidth(networkID string) (*ResponseApplianceGetNetworkApplianceTrafficShapingUplinkBandwidth, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/uplinkBandwidth"
 	s.rateLimiterBucket.Wait(1)
@@ -4235,6 +4347,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkBandwidth(netw
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkSelection(networkID string) (*ResponseApplianceGetNetworkApplianceTrafficShapingUplinkSelection, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/trafficShaping/uplinkSelection"
 	s.rateLimiterBucket.Wait(1)
@@ -4269,6 +4382,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkSelection(netw
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceUplinksUsageHistory(networkID string, getNetworkApplianceUplinksUsageHistoryQueryParams *GetNetworkApplianceUplinksUsageHistoryQueryParams) (*ResponseApplianceGetNetworkApplianceUplinksUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/uplinks/usageHistory"
 	s.rateLimiterBucket.Wait(1)
@@ -4304,6 +4418,7 @@ func (s *ApplianceService) GetNetworkApplianceUplinksUsageHistory(networkID stri
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceVLANs(networkID string) (*ResponseApplianceGetNetworkApplianceVLANs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vlans"
 	s.rateLimiterBucket.Wait(1)
@@ -4337,6 +4452,7 @@ func (s *ApplianceService) GetNetworkApplianceVLANs(networkID string) (*Response
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceVLANsSettings(networkID string) (*ResponseApplianceGetNetworkApplianceVLANsSettings, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vlans/settings"
 	s.rateLimiterBucket.Wait(1)
@@ -4371,6 +4487,7 @@ func (s *ApplianceService) GetNetworkApplianceVLANsSettings(networkID string) (*
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceVLAN(networkID string, vlanID string) (*ResponseApplianceGetNetworkApplianceVLAN, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vlans/{vlanId}"
 	s.rateLimiterBucket.Wait(1)
@@ -4405,6 +4522,7 @@ func (s *ApplianceService) GetNetworkApplianceVLAN(networkID string, vlanID stri
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceVpnBgp(networkID string) (*ResponseApplianceGetNetworkApplianceVpnBgp, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vpn/bgp"
 	s.rateLimiterBucket.Wait(1)
@@ -4438,6 +4556,7 @@ func (s *ApplianceService) GetNetworkApplianceVpnBgp(networkID string) (*Respons
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceVpnSiteToSiteVpn(networkID string) (*ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpn, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/vpn/siteToSiteVpn"
 	s.rateLimiterBucket.Wait(1)
@@ -4471,6 +4590,7 @@ func (s *ApplianceService) GetNetworkApplianceVpnSiteToSiteVpn(networkID string)
 
 
 */
+
 func (s *ApplianceService) GetNetworkApplianceWarmSpare(networkID string) (*ResponseApplianceGetNetworkApplianceWarmSpare, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/warmSpare"
 	s.rateLimiterBucket.Wait(1)
@@ -4505,9 +4625,40 @@ func (s *ApplianceService) GetNetworkApplianceWarmSpare(networkID string) (*Resp
 
 
 */
+
 func (s *ApplianceService) GetOrganizationApplianceSecurityEvents(organizationID string, getOrganizationApplianceSecurityEventsQueryParams *GetOrganizationApplianceSecurityEventsQueryParams) (*ResponseApplianceGetOrganizationApplianceSecurityEvents, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/security/events"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationApplianceSecurityEventsQueryParams != nil && getOrganizationApplianceSecurityEventsQueryParams.PerPage == -1 {
+		var result *ResponseApplianceGetOrganizationApplianceSecurityEvents
+		println("Paginate")
+		getOrganizationApplianceSecurityEventsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationApplianceSecurityEventsPaginate, organizationID, "", getOrganizationApplianceSecurityEventsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseApplianceGetOrganizationApplianceSecurityEvents
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationApplianceSecurityEventsQueryParams)
@@ -4532,6 +4683,11 @@ func (s *ApplianceService) GetOrganizationApplianceSecurityEvents(organizationID
 	return result, response, err
 
 }
+func (s *ApplianceService) GetOrganizationApplianceSecurityEventsPaginate(organizationID string, getOrganizationApplianceSecurityEventsQueryParams any) (any, *resty.Response, error) {
+	getOrganizationApplianceSecurityEventsQueryParamsConverted := getOrganizationApplianceSecurityEventsQueryParams.(*GetOrganizationApplianceSecurityEventsQueryParams)
+
+	return s.GetOrganizationApplianceSecurityEvents(organizationID, getOrganizationApplianceSecurityEventsQueryParamsConverted)
+}
 
 //GetOrganizationApplianceSecurityIntrusion Returns all supported intrusion settings for an organization
 /* Returns all supported intrusion settings for an organization
@@ -4540,6 +4696,7 @@ func (s *ApplianceService) GetOrganizationApplianceSecurityEvents(organizationID
 
 
 */
+
 func (s *ApplianceService) GetOrganizationApplianceSecurityIntrusion(organizationID string) (*ResponseApplianceGetOrganizationApplianceSecurityIntrusion, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/security/intrusion"
 	s.rateLimiterBucket.Wait(1)
@@ -4574,9 +4731,40 @@ func (s *ApplianceService) GetOrganizationApplianceSecurityIntrusion(organizatio
 
 
 */
+
 func (s *ApplianceService) GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork(organizationID string, getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams *GetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams) (*ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/trafficShaping/vpnExclusions/byNetwork"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams != nil && getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams.PerPage == -1 {
+		var result *ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork
+		println("Paginate")
+		getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkPaginate, organizationID, "", getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams)
@@ -4601,6 +4789,11 @@ func (s *ApplianceService) GetOrganizationApplianceTrafficShapingVpnExclusionsBy
 	return result, response, err
 
 }
+func (s *ApplianceService) GetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkPaginate(organizationID string, getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams any) (any, *resty.Response, error) {
+	getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParamsConverted := getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams.(*GetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams)
+
+	return s.GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork(organizationID, getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParamsConverted)
+}
 
 //GetOrganizationApplianceUplinkStatuses List the uplink status of every Meraki MX and Z series appliances in the organization
 /* List the uplink status of every Meraki MX and Z series appliances in the organization
@@ -4610,9 +4803,40 @@ func (s *ApplianceService) GetOrganizationApplianceTrafficShapingVpnExclusionsBy
 
 
 */
+
 func (s *ApplianceService) GetOrganizationApplianceUplinkStatuses(organizationID string, getOrganizationApplianceUplinkStatusesQueryParams *GetOrganizationApplianceUplinkStatusesQueryParams) (*ResponseApplianceGetOrganizationApplianceUplinkStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/uplink/statuses"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationApplianceUplinkStatusesQueryParams != nil && getOrganizationApplianceUplinkStatusesQueryParams.PerPage == -1 {
+		var result *ResponseApplianceGetOrganizationApplianceUplinkStatuses
+		println("Paginate")
+		getOrganizationApplianceUplinkStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationApplianceUplinkStatusesPaginate, organizationID, "", getOrganizationApplianceUplinkStatusesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseApplianceGetOrganizationApplianceUplinkStatuses
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationApplianceUplinkStatusesQueryParams)
@@ -4637,6 +4861,11 @@ func (s *ApplianceService) GetOrganizationApplianceUplinkStatuses(organizationID
 	return result, response, err
 
 }
+func (s *ApplianceService) GetOrganizationApplianceUplinkStatusesPaginate(organizationID string, getOrganizationApplianceUplinkStatusesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationApplianceUplinkStatusesQueryParamsConverted := getOrganizationApplianceUplinkStatusesQueryParams.(*GetOrganizationApplianceUplinkStatusesQueryParams)
+
+	return s.GetOrganizationApplianceUplinkStatuses(organizationID, getOrganizationApplianceUplinkStatusesQueryParamsConverted)
+}
 
 //GetOrganizationApplianceUplinksStatusesOverview Returns an overview of uplink statuses
 /* Returns an overview of uplink statuses
@@ -4645,6 +4874,7 @@ func (s *ApplianceService) GetOrganizationApplianceUplinkStatuses(organizationID
 
 
 */
+
 func (s *ApplianceService) GetOrganizationApplianceUplinksStatusesOverview(organizationID string) (*ResponseApplianceGetOrganizationApplianceUplinksStatusesOverview, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/uplinks/statuses/overview"
 	s.rateLimiterBucket.Wait(1)
@@ -4679,6 +4909,7 @@ func (s *ApplianceService) GetOrganizationApplianceUplinksStatusesOverview(organ
 
 
 */
+
 func (s *ApplianceService) GetOrganizationApplianceUplinksUsageByNetwork(organizationID string, getOrganizationApplianceUplinksUsageByNetworkQueryParams *GetOrganizationApplianceUplinksUsageByNetworkQueryParams) (*ResponseApplianceGetOrganizationApplianceUplinksUsageByNetwork, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/uplinks/usage/byNetwork"
 	s.rateLimiterBucket.Wait(1)
@@ -4715,9 +4946,40 @@ func (s *ApplianceService) GetOrganizationApplianceUplinksUsageByNetwork(organiz
 
 
 */
+
 func (s *ApplianceService) GetOrganizationApplianceVpnStats(organizationID string, getOrganizationApplianceVpnStatsQueryParams *GetOrganizationApplianceVpnStatsQueryParams) (*ResponseApplianceGetOrganizationApplianceVpnStats, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/stats"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationApplianceVpnStatsQueryParams != nil && getOrganizationApplianceVpnStatsQueryParams.PerPage == -1 {
+		var result *ResponseApplianceGetOrganizationApplianceVpnStats
+		println("Paginate")
+		getOrganizationApplianceVpnStatsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationApplianceVpnStatsPaginate, organizationID, "", getOrganizationApplianceVpnStatsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseApplianceGetOrganizationApplianceVpnStats
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationApplianceVpnStatsQueryParams)
@@ -4742,6 +5004,11 @@ func (s *ApplianceService) GetOrganizationApplianceVpnStats(organizationID strin
 	return result, response, err
 
 }
+func (s *ApplianceService) GetOrganizationApplianceVpnStatsPaginate(organizationID string, getOrganizationApplianceVpnStatsQueryParams any) (any, *resty.Response, error) {
+	getOrganizationApplianceVpnStatsQueryParamsConverted := getOrganizationApplianceVpnStatsQueryParams.(*GetOrganizationApplianceVpnStatsQueryParams)
+
+	return s.GetOrganizationApplianceVpnStats(organizationID, getOrganizationApplianceVpnStatsQueryParamsConverted)
+}
 
 //GetOrganizationApplianceVpnStatuses Show VPN status for networks in an organization
 /* Show VPN status for networks in an organization
@@ -4751,9 +5018,40 @@ func (s *ApplianceService) GetOrganizationApplianceVpnStats(organizationID strin
 
 
 */
+
 func (s *ApplianceService) GetOrganizationApplianceVpnStatuses(organizationID string, getOrganizationApplianceVpnStatusesQueryParams *GetOrganizationApplianceVpnStatusesQueryParams) (*ResponseApplianceGetOrganizationApplianceVpnStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/statuses"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationApplianceVpnStatusesQueryParams != nil && getOrganizationApplianceVpnStatusesQueryParams.PerPage == -1 {
+		var result *ResponseApplianceGetOrganizationApplianceVpnStatuses
+		println("Paginate")
+		getOrganizationApplianceVpnStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationApplianceVpnStatusesPaginate, organizationID, "", getOrganizationApplianceVpnStatusesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseApplianceGetOrganizationApplianceVpnStatuses
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Vpnstatusentities = append(*result.Vpnstatusentities, *resultTmp.Vpnstatusentities...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationApplianceVpnStatusesQueryParams)
@@ -4778,6 +5076,11 @@ func (s *ApplianceService) GetOrganizationApplianceVpnStatuses(organizationID st
 	return result, response, err
 
 }
+func (s *ApplianceService) GetOrganizationApplianceVpnStatusesPaginate(organizationID string, getOrganizationApplianceVpnStatusesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationApplianceVpnStatusesQueryParamsConverted := getOrganizationApplianceVpnStatusesQueryParams.(*GetOrganizationApplianceVpnStatusesQueryParams)
+
+	return s.GetOrganizationApplianceVpnStatuses(organizationID, getOrganizationApplianceVpnStatusesQueryParamsConverted)
+}
 
 //GetOrganizationApplianceVpnThirdPartyVpnpeers Return the third party VPN peers for an organization
 /* Return the third party VPN peers for an organization
@@ -4786,7 +5089,8 @@ func (s *ApplianceService) GetOrganizationApplianceVpnStatuses(organizationID st
 
 
 */
-func (s *ApplianceService) GetOrganizationApplianceVpnThirdPartyVpnpeers(organizationID string) (*ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeers, *resty.Response, error) {
+
+func (s *ApplianceService) GetOrganizationApplianceVpnThirdPartyVpnpeers(organizationID string) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -4794,21 +5098,19 @@ func (s *ApplianceService) GetOrganizationApplianceVpnThirdPartyVpnpeers(organiz
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeers{}).
 		SetError(&Error).
 		Get(path)
 
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceVpnThirdPartyVpnpeers")
+		return response, fmt.Errorf("error with operation GetOrganizationApplianceVpnThirdPartyVpnpeers")
 	}
 
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeers)
-	return result, response, err
+	return response, err
 
 }
 
@@ -4819,6 +5121,7 @@ func (s *ApplianceService) GetOrganizationApplianceVpnThirdPartyVpnpeers(organiz
 
 
 */
+
 func (s *ApplianceService) GetOrganizationApplianceVpnVpnFirewallRules(organizationID string) (*ResponseApplianceGetOrganizationApplianceVpnVpnFirewallRules, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/vpnFirewallRules"
 	s.rateLimiterBucket.Wait(1)
@@ -6236,7 +6539,7 @@ func (s *ApplianceService) UpdateOrganizationApplianceSecurityIntrusion(organiza
 
 @param organizationID organizationId path parameter. Organization ID
 */
-func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(organizationID string, requestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers *RequestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers) (*resty.Response, error) {
+func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(organizationID string) (*resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -6244,7 +6547,6 @@ func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(orga
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers).
 		SetError(&Error).
 		Put(path)
 

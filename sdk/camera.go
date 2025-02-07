@@ -857,6 +857,7 @@ type RequestCameraUpdateOrganizationCameraRoleAppliedOrgWide struct {
 
 
 */
+
 func (s *CameraService) GetDeviceCameraAnalyticsLive(serial string) (*ResponseCameraGetDeviceCameraAnalyticsLive, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/analytics/live"
 	s.rateLimiterBucket.Wait(1)
@@ -891,6 +892,7 @@ func (s *CameraService) GetDeviceCameraAnalyticsLive(serial string) (*ResponseCa
 
 
 */
+
 func (s *CameraService) GetDeviceCameraAnalyticsOverview(serial string, getDeviceCameraAnalyticsOverviewQueryParams *GetDeviceCameraAnalyticsOverviewQueryParams) (*ResponseCameraGetDeviceCameraAnalyticsOverview, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/analytics/overview"
 	s.rateLimiterBucket.Wait(1)
@@ -927,6 +929,7 @@ func (s *CameraService) GetDeviceCameraAnalyticsOverview(serial string, getDevic
 
 
 */
+
 func (s *CameraService) GetDeviceCameraAnalyticsRecent(serial string, getDeviceCameraAnalyticsRecentQueryParams *GetDeviceCameraAnalyticsRecentQueryParams) (*ResponseCameraGetDeviceCameraAnalyticsRecent, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/analytics/recent"
 	s.rateLimiterBucket.Wait(1)
@@ -962,6 +965,7 @@ func (s *CameraService) GetDeviceCameraAnalyticsRecent(serial string, getDeviceC
 
 
 */
+
 func (s *CameraService) GetDeviceCameraAnalyticsZones(serial string) (*ResponseCameraGetDeviceCameraAnalyticsZones, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/analytics/zones"
 	s.rateLimiterBucket.Wait(1)
@@ -997,6 +1001,7 @@ func (s *CameraService) GetDeviceCameraAnalyticsZones(serial string) (*ResponseC
 
 
 */
+
 func (s *CameraService) GetDeviceCameraAnalyticsZoneHistory(serial string, zoneID string, getDeviceCameraAnalyticsZoneHistoryQueryParams *GetDeviceCameraAnalyticsZoneHistoryQueryParams) (*ResponseCameraGetDeviceCameraAnalyticsZoneHistory, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/analytics/zones/{zoneId}/history"
 	s.rateLimiterBucket.Wait(1)
@@ -1033,6 +1038,7 @@ func (s *CameraService) GetDeviceCameraAnalyticsZoneHistory(serial string, zoneI
 
 
 */
+
 func (s *CameraService) GetDeviceCameraCustomAnalytics(serial string) (*ResponseCameraGetDeviceCameraCustomAnalytics, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/customAnalytics"
 	s.rateLimiterBucket.Wait(1)
@@ -1066,6 +1072,7 @@ func (s *CameraService) GetDeviceCameraCustomAnalytics(serial string) (*Response
 
 
 */
+
 func (s *CameraService) GetDeviceCameraQualityAndRetention(serial string) (*ResponseCameraGetDeviceCameraQualityAndRetention, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/qualityAndRetention"
 	s.rateLimiterBucket.Wait(1)
@@ -1099,6 +1106,7 @@ func (s *CameraService) GetDeviceCameraQualityAndRetention(serial string) (*Resp
 
 
 */
+
 func (s *CameraService) GetDeviceCameraSense(serial string) (*ResponseCameraGetDeviceCameraSense, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/sense"
 	s.rateLimiterBucket.Wait(1)
@@ -1132,6 +1140,7 @@ func (s *CameraService) GetDeviceCameraSense(serial string) (*ResponseCameraGetD
 
 
 */
+
 func (s *CameraService) GetDeviceCameraSenseObjectDetectionModels(serial string) (*ResponseCameraGetDeviceCameraSenseObjectDetectionModels, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/sense/objectDetectionModels"
 	s.rateLimiterBucket.Wait(1)
@@ -1165,6 +1174,7 @@ func (s *CameraService) GetDeviceCameraSenseObjectDetectionModels(serial string)
 
 
 */
+
 func (s *CameraService) GetDeviceCameraVideoSettings(serial string) (*ResponseCameraGetDeviceCameraVideoSettings, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/video/settings"
 	s.rateLimiterBucket.Wait(1)
@@ -1199,6 +1209,7 @@ func (s *CameraService) GetDeviceCameraVideoSettings(serial string) (*ResponseCa
 
 
 */
+
 func (s *CameraService) GetDeviceCameraVideoLink(serial string, getDeviceCameraVideoLinkQueryParams *GetDeviceCameraVideoLinkQueryParams) (*ResponseCameraGetDeviceCameraVideoLink, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/videoLink"
 	s.rateLimiterBucket.Wait(1)
@@ -1234,6 +1245,7 @@ func (s *CameraService) GetDeviceCameraVideoLink(serial string, getDeviceCameraV
 
 
 */
+
 func (s *CameraService) GetDeviceCameraWirelessProfiles(serial string) (*ResponseCameraGetDeviceCameraWirelessProfiles, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/wirelessProfiles"
 	s.rateLimiterBucket.Wait(1)
@@ -1267,6 +1279,7 @@ func (s *CameraService) GetDeviceCameraWirelessProfiles(serial string) (*Respons
 
 
 */
+
 func (s *CameraService) GetNetworkCameraQualityRetentionProfiles(networkID string) (*ResponseCameraGetNetworkCameraQualityRetentionProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/qualityRetentionProfiles"
 	s.rateLimiterBucket.Wait(1)
@@ -1301,6 +1314,7 @@ func (s *CameraService) GetNetworkCameraQualityRetentionProfiles(networkID strin
 
 
 */
+
 func (s *CameraService) GetNetworkCameraQualityRetentionProfile(networkID string, qualityRetentionProfileID string) (*ResponseCameraGetNetworkCameraQualityRetentionProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/qualityRetentionProfiles/{qualityRetentionProfileId}"
 	s.rateLimiterBucket.Wait(1)
@@ -1335,6 +1349,7 @@ func (s *CameraService) GetNetworkCameraQualityRetentionProfile(networkID string
 
 
 */
+
 func (s *CameraService) GetNetworkCameraSchedules(networkID string) (*ResponseCameraGetNetworkCameraSchedules, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/schedules"
 	s.rateLimiterBucket.Wait(1)
@@ -1368,6 +1383,7 @@ func (s *CameraService) GetNetworkCameraSchedules(networkID string) (*ResponseCa
 
 
 */
+
 func (s *CameraService) GetNetworkCameraWirelessProfiles(networkID string) (*ResponseCameraGetNetworkCameraWirelessProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/wirelessProfiles"
 	s.rateLimiterBucket.Wait(1)
@@ -1402,6 +1418,7 @@ func (s *CameraService) GetNetworkCameraWirelessProfiles(networkID string) (*Res
 
 
 */
+
 func (s *CameraService) GetNetworkCameraWirelessProfile(networkID string, wirelessProfileID string) (*ResponseCameraGetNetworkCameraWirelessProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/camera/wirelessProfiles/{wirelessProfileId}"
 	s.rateLimiterBucket.Wait(1)
@@ -1437,6 +1454,7 @@ func (s *CameraService) GetNetworkCameraWirelessProfile(networkID string, wirele
 
 
 */
+
 func (s *CameraService) GetOrganizationCameraBoundariesAreasByDevice(organizationID string, getOrganizationCameraBoundariesAreasByDeviceQueryParams *GetOrganizationCameraBoundariesAreasByDeviceQueryParams) (*ResponseCameraGetOrganizationCameraBoundariesAreasByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/boundaries/areas/byDevice"
 	s.rateLimiterBucket.Wait(1)
@@ -1473,6 +1491,7 @@ func (s *CameraService) GetOrganizationCameraBoundariesAreasByDevice(organizatio
 
 
 */
+
 func (s *CameraService) GetOrganizationCameraBoundariesLinesByDevice(organizationID string, getOrganizationCameraBoundariesLinesByDeviceQueryParams *GetOrganizationCameraBoundariesLinesByDeviceQueryParams) (*ResponseCameraGetOrganizationCameraBoundariesLinesByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/boundaries/lines/byDevice"
 	s.rateLimiterBucket.Wait(1)
@@ -1508,6 +1527,7 @@ func (s *CameraService) GetOrganizationCameraBoundariesLinesByDevice(organizatio
 
 
 */
+
 func (s *CameraService) GetOrganizationCameraCustomAnalyticsArtifacts(organizationID string) (*ResponseCameraGetOrganizationCameraCustomAnalyticsArtifacts, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/customAnalytics/artifacts"
 	s.rateLimiterBucket.Wait(1)
@@ -1542,6 +1562,7 @@ func (s *CameraService) GetOrganizationCameraCustomAnalyticsArtifacts(organizati
 
 
 */
+
 func (s *CameraService) GetOrganizationCameraCustomAnalyticsArtifact(organizationID string, artifactID string) (*ResponseCameraGetOrganizationCameraCustomAnalyticsArtifact, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/customAnalytics/artifacts/{artifactId}"
 	s.rateLimiterBucket.Wait(1)
@@ -1577,6 +1598,7 @@ func (s *CameraService) GetOrganizationCameraCustomAnalyticsArtifact(organizatio
 
 
 */
+
 func (s *CameraService) GetOrganizationCameraDetectionsHistoryByBoundaryByInterval(organizationID string, getOrganizationCameraDetectionsHistoryByBoundaryByIntervalQueryParams *GetOrganizationCameraDetectionsHistoryByBoundaryByIntervalQueryParams) (*ResponseCameraGetOrganizationCameraDetectionsHistoryByBoundaryByInterval, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/detections/history/byBoundary/byInterval"
 	s.rateLimiterBucket.Wait(1)
@@ -1613,6 +1635,7 @@ func (s *CameraService) GetOrganizationCameraDetectionsHistoryByBoundaryByInterv
 
 
 */
+
 func (s *CameraService) GetOrganizationCameraOnboardingStatuses(organizationID string, getOrganizationCameraOnboardingStatusesQueryParams *GetOrganizationCameraOnboardingStatusesQueryParams) (*ResponseCameraGetOrganizationCameraOnboardingStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/onboarding/statuses"
 	s.rateLimiterBucket.Wait(1)
@@ -1648,6 +1671,7 @@ func (s *CameraService) GetOrganizationCameraOnboardingStatuses(organizationID s
 
 
 */
+
 func (s *CameraService) GetOrganizationCameraPermissions(organizationID string) (*ResponseCameraGetOrganizationCameraPermissions, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/permissions"
 	s.rateLimiterBucket.Wait(1)
@@ -1682,6 +1706,7 @@ func (s *CameraService) GetOrganizationCameraPermissions(organizationID string) 
 
 
 */
+
 func (s *CameraService) GetOrganizationCameraPermission(organizationID string, permissionScopeID string) (*ResponseCameraGetOrganizationCameraPermission, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/permissions/{permissionScopeId}"
 	s.rateLimiterBucket.Wait(1)
@@ -1716,6 +1741,7 @@ func (s *CameraService) GetOrganizationCameraPermission(organizationID string, p
 
 
 */
+
 func (s *CameraService) GetOrganizationCameraRoles(organizationID string) (*ResponseCameraGetOrganizationCameraRoles, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/roles"
 	s.rateLimiterBucket.Wait(1)
@@ -1750,6 +1776,7 @@ func (s *CameraService) GetOrganizationCameraRoles(organizationID string) (*Resp
 
 
 */
+
 func (s *CameraService) GetOrganizationCameraRole(organizationID string, roleID string) (*ResponseCameraGetOrganizationCameraRole, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/camera/roles/{roleId}"
 	s.rateLimiterBucket.Wait(1)

@@ -1,6 +1,7 @@
 package meraki
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 
@@ -1000,9 +1001,40 @@ type RequestSensorUpdateNetworkSensorMqttBroker struct {
 
 
 */
+
 func (s *SensorService) GetDeviceSensorCommands(serial string, getDeviceSensorCommandsQueryParams *GetDeviceSensorCommandsQueryParams) (*ResponseSensorGetDeviceSensorCommands, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/sensor/commands"
 	s.rateLimiterBucket.Wait(1)
+
+	if getDeviceSensorCommandsQueryParams != nil && getDeviceSensorCommandsQueryParams.PerPage == -1 {
+		var result *ResponseSensorGetDeviceSensorCommands
+		println("Paginate")
+		getDeviceSensorCommandsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetDeviceSensorCommandsPaginate, serial, "", getDeviceSensorCommandsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSensorGetDeviceSensorCommands
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
 	queryString, _ := query.Values(getDeviceSensorCommandsQueryParams)
@@ -1027,6 +1059,11 @@ func (s *SensorService) GetDeviceSensorCommands(serial string, getDeviceSensorCo
 	return result, response, err
 
 }
+func (s *SensorService) GetDeviceSensorCommandsPaginate(serial string, getDeviceSensorCommandsQueryParams any) (any, *resty.Response, error) {
+	getDeviceSensorCommandsQueryParamsConverted := getDeviceSensorCommandsQueryParams.(*GetDeviceSensorCommandsQueryParams)
+
+	return s.GetDeviceSensorCommands(serial, getDeviceSensorCommandsQueryParamsConverted)
+}
 
 //GetDeviceSensorCommand Returns information about the command's execution, including the status
 /* Returns information about the command's execution, including the status
@@ -1036,6 +1073,7 @@ func (s *SensorService) GetDeviceSensorCommands(serial string, getDeviceSensorCo
 
 
 */
+
 func (s *SensorService) GetDeviceSensorCommand(serial string, commandID string) (*ResponseSensorGetDeviceSensorCommand, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/sensor/commands/{commandId}"
 	s.rateLimiterBucket.Wait(1)
@@ -1070,6 +1108,7 @@ func (s *SensorService) GetDeviceSensorCommand(serial string, commandID string) 
 
 
 */
+
 func (s *SensorService) GetDeviceSensorRelationships(serial string) (*ResponseSensorGetDeviceSensorRelationships, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/sensor/relationships"
 	s.rateLimiterBucket.Wait(1)
@@ -1103,6 +1142,7 @@ func (s *SensorService) GetDeviceSensorRelationships(serial string) (*ResponseSe
 
 
 */
+
 func (s *SensorService) GetNetworkSensorAlertsCurrentOverviewByMetric(networkID string) (*ResponseSensorGetNetworkSensorAlertsCurrentOverviewByMetric, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/alerts/current/overview/byMetric"
 	s.rateLimiterBucket.Wait(1)
@@ -1137,6 +1177,7 @@ func (s *SensorService) GetNetworkSensorAlertsCurrentOverviewByMetric(networkID 
 
 
 */
+
 func (s *SensorService) GetNetworkSensorAlertsOverviewByMetric(networkID string, getNetworkSensorAlertsOverviewByMetricQueryParams *GetNetworkSensorAlertsOverviewByMetricQueryParams) (*ResponseSensorGetNetworkSensorAlertsOverviewByMetric, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/alerts/overview/byMetric"
 	s.rateLimiterBucket.Wait(1)
@@ -1172,6 +1213,7 @@ func (s *SensorService) GetNetworkSensorAlertsOverviewByMetric(networkID string,
 
 
 */
+
 func (s *SensorService) GetNetworkSensorAlertsProfiles(networkID string) (*ResponseSensorGetNetworkSensorAlertsProfiles, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/alerts/profiles"
 	s.rateLimiterBucket.Wait(1)
@@ -1206,6 +1248,7 @@ func (s *SensorService) GetNetworkSensorAlertsProfiles(networkID string) (*Respo
 
 
 */
+
 func (s *SensorService) GetNetworkSensorAlertsProfile(networkID string, id string) (*ResponseSensorGetNetworkSensorAlertsProfile, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/alerts/profiles/{id}"
 	s.rateLimiterBucket.Wait(1)
@@ -1240,6 +1283,7 @@ func (s *SensorService) GetNetworkSensorAlertsProfile(networkID string, id strin
 
 
 */
+
 func (s *SensorService) GetNetworkSensorMqttBrokers(networkID string) (*ResponseSensorGetNetworkSensorMqttBrokers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/mqttBrokers"
 	s.rateLimiterBucket.Wait(1)
@@ -1274,6 +1318,7 @@ func (s *SensorService) GetNetworkSensorMqttBrokers(networkID string) (*Response
 
 
 */
+
 func (s *SensorService) GetNetworkSensorMqttBroker(networkID string, mqttBrokerID string) (*ResponseSensorGetNetworkSensorMqttBroker, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/mqttBrokers/{mqttBrokerId}"
 	s.rateLimiterBucket.Wait(1)
@@ -1308,6 +1353,7 @@ func (s *SensorService) GetNetworkSensorMqttBroker(networkID string, mqttBrokerI
 
 
 */
+
 func (s *SensorService) GetNetworkSensorRelationships(networkID string) (*ResponseSensorGetNetworkSensorRelationships, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sensor/relationships"
 	s.rateLimiterBucket.Wait(1)
@@ -1342,9 +1388,40 @@ func (s *SensorService) GetNetworkSensorRelationships(networkID string) (*Respon
 
 
 */
+
 func (s *SensorService) GetOrganizationSensorReadingsHistory(organizationID string, getOrganizationSensorReadingsHistoryQueryParams *GetOrganizationSensorReadingsHistoryQueryParams) (*ResponseSensorGetOrganizationSensorReadingsHistory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sensor/readings/history"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationSensorReadingsHistoryQueryParams != nil && getOrganizationSensorReadingsHistoryQueryParams.PerPage == -1 {
+		var result *ResponseSensorGetOrganizationSensorReadingsHistory
+		println("Paginate")
+		getOrganizationSensorReadingsHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationSensorReadingsHistoryPaginate, organizationID, "", getOrganizationSensorReadingsHistoryQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSensorGetOrganizationSensorReadingsHistory
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSensorReadingsHistoryQueryParams)
@@ -1369,6 +1446,11 @@ func (s *SensorService) GetOrganizationSensorReadingsHistory(organizationID stri
 	return result, response, err
 
 }
+func (s *SensorService) GetOrganizationSensorReadingsHistoryPaginate(organizationID string, getOrganizationSensorReadingsHistoryQueryParams any) (any, *resty.Response, error) {
+	getOrganizationSensorReadingsHistoryQueryParamsConverted := getOrganizationSensorReadingsHistoryQueryParams.(*GetOrganizationSensorReadingsHistoryQueryParams)
+
+	return s.GetOrganizationSensorReadingsHistory(organizationID, getOrganizationSensorReadingsHistoryQueryParamsConverted)
+}
 
 //GetOrganizationSensorReadingsLatest Return the latest available reading for each metric from each sensor, sorted by sensor serial
 /* Return the latest available reading for each metric from each sensor, sorted by sensor serial
@@ -1378,9 +1460,40 @@ func (s *SensorService) GetOrganizationSensorReadingsHistory(organizationID stri
 
 
 */
+
 func (s *SensorService) GetOrganizationSensorReadingsLatest(organizationID string, getOrganizationSensorReadingsLatestQueryParams *GetOrganizationSensorReadingsLatestQueryParams) (*ResponseSensorGetOrganizationSensorReadingsLatest, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sensor/readings/latest"
 	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationSensorReadingsLatestQueryParams != nil && getOrganizationSensorReadingsLatestQueryParams.PerPage == -1 {
+		var result *ResponseSensorGetOrganizationSensorReadingsLatest
+		println("Paginate")
+		getOrganizationSensorReadingsLatestQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationSensorReadingsLatestPaginate, organizationID, "", getOrganizationSensorReadingsLatestQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSensorGetOrganizationSensorReadingsLatest
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(getOrganizationSensorReadingsLatestQueryParams)
@@ -1404,6 +1517,11 @@ func (s *SensorService) GetOrganizationSensorReadingsLatest(organizationID strin
 	result := response.Result().(*ResponseSensorGetOrganizationSensorReadingsLatest)
 	return result, response, err
 
+}
+func (s *SensorService) GetOrganizationSensorReadingsLatestPaginate(organizationID string, getOrganizationSensorReadingsLatestQueryParams any) (any, *resty.Response, error) {
+	getOrganizationSensorReadingsLatestQueryParamsConverted := getOrganizationSensorReadingsLatestQueryParams.(*GetOrganizationSensorReadingsLatestQueryParams)
+
+	return s.GetOrganizationSensorReadingsLatest(organizationID, getOrganizationSensorReadingsLatestQueryParamsConverted)
 }
 
 //CreateDeviceSensorCommand Sends a command to a sensor

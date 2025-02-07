@@ -48,6 +48,7 @@ type ResponseAdministeredGenerateAdministeredIDentitiesMeAPIKeys struct {
 
 
  */
+
 func (s *AdministeredService) GetAdministeredIDentitiesMe() (*ResponseAdministeredGetAdministeredIDentitiesMe, *resty.Response, error) {
 	path := "/api/v1/administered/identities/me"
 	s.rateLimiterBucket.Wait(1)
@@ -79,6 +80,7 @@ func (s *AdministeredService) GetAdministeredIDentitiesMe() (*ResponseAdminister
 
 
  */
+
 func (s *AdministeredService) GetAdministeredIDentitiesMeAPIKeys() (*ResponseAdministeredGetAdministeredIDentitiesMeAPIKeys, *resty.Response, error) {
 	path := "/api/v1/administered/identities/me/api/keys"
 	s.rateLimiterBucket.Wait(1)
