@@ -142,7 +142,7 @@ type ResponseItemDevicesGetDeviceClients struct {
 	Switchport          string                                    `json:"switchport,omitempty"`          // The name of the switchport with clients on it, if the device is a switch
 	Usage               *ResponseItemDevicesGetDeviceClientsUsage `json:"usage,omitempty"`               // Client usage data for sent and received
 	User                string                                    `json:"user,omitempty"`                // The client user's name
-	VLAN                string                                    `json:"vlan,omitempty"`                // The client-assigned name of the VLAN the client is connected to
+	VLAN                *int                                      `json:"vlan,omitempty"`                // The client-assigned name of the VLAN the client is connected to
 }
 type ResponseItemDevicesGetDeviceClientsUsage struct {
 	Recv *float64 `json:"recv,omitempty"` // Usage received by the client
