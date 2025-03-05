@@ -2678,8 +2678,9 @@ type ResponseItemOrganizationsGetOrganizationSamlIDps struct {
 	SloLogoutURL            string `json:"sloLogoutUrl,omitempty"`            // Dashboard will redirect users to this URL when they sign out.
 	X509CertSha1Fingerprint string `json:"x509certSha1Fingerprint,omitempty"` // Fingerprint (SHA1) of the SAML certificate provided by your Identity Provider (IdP). This will be used for encryption / validation.
 }
-type ResponseOrganizationsCreateOrganizationSamlIDp []ResponseItemOrganizationsCreateOrganizationSamlIDp // Array of ResponseOrganizationsCreateOrganizationSamlIdp
-type ResponseItemOrganizationsCreateOrganizationSamlIDp struct {
+
+// type ResponseOrganizationsCreateOrganizationSamlIDp []ResponseItemOrganizationsCreateOrganizationSamlIDp // Array of ResponseOrganizationsCreateOrganizationSamlIdp #ISSUE
+type ResponseOrganizationsCreateOrganizationSamlIDp struct {
 	ConsumerURL             string `json:"consumerUrl,omitempty"`             // URL that is consuming SAML Identity Provider (IdP)
 	IDpID                   string `json:"idpId,omitempty"`                   // ID associated with the SAML Identity Provider (IdP)
 	SloLogoutURL            string `json:"sloLogoutUrl,omitempty"`            // Dashboard will redirect users to this URL when they sign out.

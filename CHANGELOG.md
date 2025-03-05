@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.5] - 2025-03-05
+### Fixed
+- Organization.CreateOrganizationSamlIDp fails unmarshalling, object, not array.
+
 ## [4.0.4] - 2025-02-17
 ### Fixed
 - Devices.GetDeviceClients fails unmarshalling VLAN field #36.
@@ -1443,4 +1447,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [4.0.2]: https://github.com/meraki/dashboard-api-go/compare/v4.0.1...4.0.2
 [4.0.3]: https://github.com/meraki/dashboard-api-go/compare/v4.0.2...4.0.3
 [4.0.4]: https://github.com/meraki/dashboard-api-go/compare/v4.0.3...4.0.4
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v4.0.3...main
+[4.0.5]: https://github.com/meraki/dashboard-api-go/compare/v4.0.4...4.0.5
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v4.0.5...main
