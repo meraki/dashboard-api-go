@@ -378,13 +378,13 @@ type ResponseItemNetworksGetNetworkClients struct {
 	AdaptivePolicyGroup    string                                      `json:"adaptivePolicyGroup,omitempty"`    // The adaptive policy group of the client
 	Description            string                                      `json:"description,omitempty"`            // Short description of the client
 	DeviceTypePrediction   string                                      `json:"deviceTypePrediction,omitempty"`   // Prediction of the client's device type
-	FirstSeen              *int                                        `json:"firstSeen,omitempty"`              // Timestamp client was first seen in the network
+	FirstSeen              string                                      `json:"firstSeen,omitempty"`              // Timestamp client was first seen in the network
 	GroupPolicy8021X       string                                      `json:"groupPolicy8021x,omitempty"`       // 802.1x group policy of the client
 	ID                     string                                      `json:"id,omitempty"`                     // The ID of the client
 	IP                     string                                      `json:"ip,omitempty"`                     // The IP address of the client
 	IP6                    string                                      `json:"ip6,omitempty"`                    // The IPv6 address of the client
 	IP6Local               string                                      `json:"ip6Local,omitempty"`               // Local IPv6 address of the client
-	LastSeen               *int                                        `json:"lastSeen,omitempty"`               // Timestamp client was last seen in the network
+	LastSeen               string                                      `json:"lastSeen,omitempty"`               // Timestamp client was last seen in the network
 	Mac                    string                                      `json:"mac,omitempty"`                    // The MAC address of the client
 	Manufacturer           string                                      `json:"manufacturer,omitempty"`           // Manufacturer of the client
 	NamedVLAN              string                                      `json:"namedVlan,omitempty"`              // Named VLAN of the client
