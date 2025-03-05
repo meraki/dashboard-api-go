@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [4.0.5] - 2025-03-05
 ### Fixed
-- Organization.CreateOrganizationSamlIDp fails unmarshalling, object, not array.
+- Organization.CreateOrganizationSamlIDp fails unmarshalling, `object`, not `array`.
+- Networks.GetNetworkClients fails unmarshalling, LastSeen and FirstSeen turns from `*int` to `string`
 
 ## [4.0.4] - 2025-02-17
 ### Fixed
