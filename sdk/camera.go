@@ -421,6 +421,7 @@ type ResponseCameraGetOrganizationCameraPermission struct {
 }
 type ResponseCameraGetOrganizationCameraRoles []ResponseItemCameraGetOrganizationCameraRoles // Array of ResponseCameraGetOrganizationCameraRoles
 type ResponseItemCameraGetOrganizationCameraRoles struct {
+	ID                string                                                           `json:"id,omitempty"`                //
 	AppliedOnDevices  *[]ResponseItemCameraGetOrganizationCameraRolesAppliedOnDevices  `json:"appliedOnDevices,omitempty"`  //
 	AppliedOnNetworks *[]ResponseItemCameraGetOrganizationCameraRolesAppliedOnNetworks `json:"appliedOnNetworks,omitempty"` //
 	AppliedOrgWide    *[]ResponseItemCameraGetOrganizationCameraRolesAppliedOrgWide    `json:"appliedOrgWide,omitempty"`    //
@@ -452,6 +453,7 @@ type ResponseCameraGetOrganizationCameraRole struct {
 	AppliedOnNetworks *[]ResponseCameraGetOrganizationCameraRoleAppliedOnNetworks `json:"appliedOnNetworks,omitempty"` //
 	AppliedOrgWide    *[]ResponseCameraGetOrganizationCameraRoleAppliedOrgWide    `json:"appliedOrgWide,omitempty"`    //
 	Name              string                                                      `json:"name,omitempty"`              //
+	ID                string                                                      `json:"id,omitempty"`                //
 }
 type ResponseCameraGetOrganizationCameraRoleAppliedOnDevices struct {
 	ID                string `json:"id,omitempty"`                //
