@@ -427,3 +427,33 @@ func getStartingAfter(r2 resty.Response) (string, error) {
 	}
 	return params["startingAfter"][0], nil
 }
+
+// Helper function to parse Link header and get next URL, this is used in cases where the responses are not a list and we need to paginate
+// the results using the Link header in the response
+func getNextPageURL(linkHeader string) string {
+	if linkHeader == "" {
+		return ""
+	}
+
+	links := strings.Split(linkHeader, ",")
+	for _, link := range links {
+		parts := strings.Split(strings.TrimSpace(link), ";")
+		if len(parts) < 2 {
+			continue
+		}
+
+		urlPart := strings.TrimSpace(parts[0])
+		if !strings.HasPrefix(urlPart, "<") || !strings.HasSuffix(urlPart, ">") {
+			continue
+		}
+
+		url := urlPart[1 : len(urlPart)-1]
+
+		relPart := strings.TrimSpace(parts[1])
+		if strings.Contains(relPart, "rel=\"next\"") || strings.Contains(relPart, "rel=next") {
+			return url
+		}
+	}
+
+	return ""
+}
