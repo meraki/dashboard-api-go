@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -101,6 +102,24 @@ type GetOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams struct {
 	PortProfileIDs            []string `url:"portProfileIds[],omitempty"`          //Optional parameter to filter items to switches that contain switchports belonging to one of the specified port profiles.
 	Serial                    string   `url:"serial,omitempty"`                    //Optional parameter to filter items to switches with serial number that contains the search term or are an exact match.
 	Serials                   []string `url:"serials[],omitempty"`                 //Optional parameter to filter items to switches that have one of the provided serials.
+}
+
+type GetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams struct {
+	T0                       string   `url:"t0,omitempty"`                        //The beginning of the timespan for the data. The maximum lookback period is 31 days from today.
+	T1                       string   `url:"t1,omitempty"`                        //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
+	Timespan                 float64  `url:"timespan,omitempty"`                  //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 1 day. If interval is provided, the timespan will be autocalculated. maximum = 2678400
+	Interval                 int      `url:"interval,omitempty"`                  //The time interval in seconds for returned data. The valid intervals are: 300, 1200, 14400, 86400. The default is 1200. Interval is calculated if time params are provided.
+	PerPage                  int      `url:"perPage,omitempty"`                   //The number of entries per page returned. Acceptable range is 3 - 50. Default is 10
+	StartingAfter            string   `url:"startingAfter,omitempty"`             //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore             string   `url:"endingBefore,omitempty"`              //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	ConfigurationUpdateAfter string   `url:"configurationUpdatedAfter,omitempty"` //Optional parameter to filter items to switches where the configuration has been updated after the given timestamp.
+	Mac                      string   `url:"mac,omitempty"`                       //Optional parameter to filter items to switches with MAC addresses that contain the search term or are an exact match.
+	Macs                     []string `url:"macs[],omitempty"`                    //Optional parameter to filter items to switches that have one of the provided MAC addresses.
+	Name                     string   `url:"name,omitempty"`                      //Optional parameter to filter items to switches with names that contain the search term or are an exact match.
+	NetworkIds               []string `url:"networkIds[],omitempty"`              //Optional parameter to filter items to switches in one of the provided networks.
+	PortProfileIds           []string `url:"portProfileIds[],omitempty"`          //Optional parameter to filter items to switches that contain switchports belonging to one of the specified port profiles.
+	Serial                   string   `url:"serial,omitempty"`                    //Optional parameter to filter items to switches with serial number that contains the search term or are an exact match.
+	Serials                  []string `url:"serials[],omitempty"`                 //Optional parameter to filter items to switches that have one of the provided serials.
 }
 
 type ResponseSwitchGetDeviceSwitchPorts []ResponseItemSwitchGetDeviceSwitchPorts // Array of ResponseSwitchGetDeviceSwitchPorts
@@ -2168,6 +2187,59 @@ type ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceMetaCounts
 	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
 	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
 }
+
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval struct {
+	Items *[]ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItems `json:"items,omitempty"` // Switches
+	Meta  *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalMeta struct {
+	Counts *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalMetaCounts struct {
+	Items *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItems struct {
+	Name    string                                                                              `json:"name,omitempty"`    // The name of the switch.
+	Serial  string                                                                              `json:"serial,omitempty"`  // The serial number of the switch.
+	Mac     string                                                                              `json:"mac,omitempty"`     // The MAC address of the switch.
+	Network *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsNetwork `json:"network,omitempty"` // Identifying information of the switch's network.
+	Model   string                                                                              `json:"model,omitempty"`   // The model of the switch.
+	Ports   *[]ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPorts `json:"ports,omitempty"`   // Ports belonging to the switch
+}
+
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsNetwork struct {
+	ID   string `json:"id,omitempty"`   // The ID of the network.
+	Name string `json:"name,omitempty"` // The name of the network.
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPorts struct {
+	PortID    string                                                                                       `json:"portId,omitempty"`    // The string identifier of this port on the switch. This is commonly just the port number but may contain additional identifying information such as the slot and module-type if the port is located on a port module.
+	Intervals *[]ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervals `json:"intervals,omitempty"` // The usage data for the port in a given time interval.
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervals struct {
+	StartTs time.Time `json:"startTs,omitempty"` // Timestamp of the start of the interval.
+	EndTs   time.Time `json:"endTs,omitempty"`   // Timestamp of the end of the interval.
+	Data    struct {
+		Usage *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsUsage `json:"usage,omitempty"` // Usage data for the port in a given time interval.
+	} `json:"data,omitempty"` // Usage data for the port in a given time interval.
+	Bandwidth struct {
+		Usage *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsUsage `json:"usage,omitempty"` // Bandwidth usage data for the port in a given time interval.
+	} `json:"bandwidth,omitempty"` // Bandwidth usage data for the port in a given time interval.
+	Energy struct {
+		Usage *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsUsage `json:"usage,omitempty"` // Energy usage data for the port in a given time interval.
+	} `json:"energy,omitempty"` // Energy usage data for the port in a given time interval.
+}
+
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsUsage struct {
+	Total      float64 `json:"total,omitempty"`      // Total usage in bytes for the given time interval.
+	Upstream   float64 `json:"upstream,omitempty"`   // Upstream usage in bytes for the given time interval.
+	Downstream float64 `json:"downstream,omitempty"` // Downstream usage in bytes for the given time interval.
+}
+
 type RequestSwitchCycleDeviceSwitchPorts struct {
 	Ports []string `json:"ports,omitempty"` // List of switch ports
 }
@@ -4654,49 +4726,70 @@ func (s *SwitchService) GetOrganizationSwitchPortsStatusesBySwitch(organizationI
 	path := "/api/v1/organizations/{organizationId}/switch/ports/statuses/bySwitch"
 	s.rateLimiterBucket.Wait(1)
 
+	// Handle pagination case where PerPage is -1 and we need to fetch all records
 	if getOrganizationSwitchPortsStatusesBySwitchQueryParams != nil && getOrganizationSwitchPortsStatusesBySwitchQueryParams.PerPage == -1 {
-		var result *ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch
+		// we set the perPage to 20 because thats the max we can get in one request. In this way when we are trying to get all records we make as few requests as possible
+		getOrganizationSwitchPortsStatusesBySwitchQueryParams.PerPage = 20
 		println("Paginate")
-		getOrganizationSwitchPortsStatusesBySwitchQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationSwitchPortsStatusesBySwitchPaginate, organizationID, "", getOrganizationSwitchPortsStatusesBySwitchQueryParams)
+
+		// Initial request
+		firstResult, response, err := s.makeSwitchPortStatusRequest(path, organizationID, getOrganizationSwitchPortsStatusesBySwitchQueryParams)
 		if err != nil {
 			return nil, nil, err
 		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
+
+		// Process Link header for pagination
+		combinedResult := firstResult
+		nextURL := getNextPageURL(response.Header().Get("Link"))
+
+		for nextURL != "" {
+			// Make request to next URL
+			nextResponse, err := s.client.R().
+				SetHeader("Content-Type", "application/json").
+				SetHeader("Accept", "application/json").
+				SetError(&Error).
+				Get(nextURL)
+
+			if err != nil {
+				return combinedResult, response, err
 			}
+
+			if nextResponse.IsError() {
+				return combinedResult, nextResponse, fmt.Errorf("error with paginated operation GetOrganizationSwitchPortsStatusesBySwitch")
+			}
+
+			// Append items to combined result
+			currentResult := nextResponse.Result().(*ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch)
+			*combinedResult.Items = append(*combinedResult.Items, *currentResult.Items...)
+
+			// Update next URL
+			nextURL = getNextPageURL(nextResponse.Header().Get("Link"))
+			response = nextResponse // Keep track of the latest response
 		}
-		return result, response, err
+
+		return combinedResult, response, nil
 	}
+
+	// Non-pagination case
+	return s.makeSwitchPortStatusRequest(path, organizationID, getOrganizationSwitchPortsStatusesBySwitchQueryParams)
+}
+
+// Helper function to make the actual request
+func (s *SwitchService) makeSwitchPortStatusRequest(path, organizationID string, params *GetOrganizationSwitchPortsStatusesBySwitchQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch, *resty.Response, error) {
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSwitchPortsStatusesBySwitchQueryParams)
+	queryString, _ := query.Values(params)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch{}).
+		SetQueryString(queryString.Encode()).
+		SetResult(&ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch{}).
 		SetError(&Error).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
-
 	}
 
 	if response.IsError() {
@@ -4704,9 +4797,9 @@ func (s *SwitchService) GetOrganizationSwitchPortsStatusesBySwitch(organizationI
 	}
 
 	result := response.Result().(*ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch)
-	return result, response, err
-
+	return result, response, nil
 }
+
 func (s *SwitchService) GetOrganizationSwitchPortsStatusesBySwitchPaginate(organizationID string, getOrganizationSwitchPortsStatusesBySwitchQueryParams any) (any, *resty.Response, error) {
 	getOrganizationSwitchPortsStatusesBySwitchQueryParamsConverted := getOrganizationSwitchPortsStatusesBySwitchQueryParams.(*GetOrganizationSwitchPortsStatusesBySwitchQueryParams)
 
@@ -4783,6 +4876,92 @@ func (s *SwitchService) GetOrganizationSwitchPortsTopologyDiscoveryByDevicePagin
 	getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParamsConverted := getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams.(*GetOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams)
 
 	return s.GetOrganizationSwitchPortsTopologyDiscoveryByDevice(organizationID, getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParamsConverted)
+}
+
+//GetOrganizationSwitchPortsUsageHistoryByDeviceByInterval Returns the usage history for all switch ports in an organization over the requested timespan (by default the last 24 hours)
+/* Returns the usage history for all switch ports in an organization over the requested timespan (by default the last 24 hours). The returned array is a newest-first list of intervals. The time between intervals depends on the requested timespan with 20 minute intervals used for timespans up to 1 day, 4 hour intervals used for timespans up to 2 weeks, and 1 day intervals for timespans larger than 2 weeks.
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams Filtering parameter
+*/
+func (s *SwitchService) GetOrganizationSwitchPortsUsageHistoryByDeviceByInterval(organizationID string, getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams *GetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/switch/ports/usage/history/byDevice/byInterval"
+	s.rateLimiterBucket.Wait(1)
+	// Handle pagination case where PerPage is -1 and we need to fetch all records
+	if getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams != nil && getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams.PerPage == -1 {
+		// we set the perPage to 20 because thats the max we can get in one request. In this way when we are trying to get all records we make as few requests as possible
+		getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams.PerPage = 10
+		println("Paginate")
+
+		// Initial request
+		firstResult, response, err := s.makeSwitchPortsUsageHistoryByDeviceByIntervalRequest(path, organizationID, getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+
+		// Process Link header for pagination
+		combinedResult := firstResult
+		nextURL := getNextPageURL(response.Header().Get("Link"))
+
+		for nextURL != "" {
+			// Make request to next URL
+			var currentResult ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval
+			nextResponse, err := s.client.R().
+				SetHeader("Content-Type", "application/json").
+				SetHeader("Accept", "application/json").
+				SetResult(&currentResult).
+				SetError(&Error).
+				Get(nextURL)
+
+			if err != nil {
+				return combinedResult, response, err
+			}
+
+			if nextResponse.IsError() {
+				return combinedResult, nextResponse, fmt.Errorf("error with paginated operation GetOrganizationSwitchPortsStatusesBySwitch")
+			}
+
+			// Append items to combined result
+			if currentResult.Items != nil {
+				*combinedResult.Items = append(*combinedResult.Items, *currentResult.Items...)
+			}
+
+			// Update next URL
+			nextURL = getNextPageURL(nextResponse.Header().Get("Link"))
+			response = nextResponse // Keep track of the latest response
+		}
+
+		return combinedResult, response, nil
+	}
+
+	// Non-pagination case
+	return s.makeSwitchPortsUsageHistoryByDeviceByIntervalRequest(path, organizationID, getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams)
+
+}
+
+// Helper function to make the actual request for GetOrganizationSwitchPortsUsageHistoryByDeviceByInterval
+func (s *SwitchService) makeSwitchPortsUsageHistoryByDeviceByIntervalRequest(path, organizationID string, params *GetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval, *resty.Response, error) {
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(params)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetResult(&ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationSwitchPortsStatusesBySwitch")
+	}
+
+	result := response.Result().(*ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval)
+	return result, response, nil
 }
 
 //CycleDeviceSwitchPorts Cycle a set of switch ports
