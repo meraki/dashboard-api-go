@@ -211,6 +211,14 @@ type GetOrganizationDevicesAvailabilitiesChangeHistoryQueryParams struct {
 	NetworkIDs    []string `url:"networkIds[],omitempty"`   //Optional parameter to filter device availabilities history by network IDs
 	Statuses      []string `url:"statuses[],omitempty"`     //Optional parameter to filter device availabilities history by device statuses
 }
+type GetOrganizationDevicesControllerMigrationsQueryParams struct {
+	Serials       []string `url:"serials[],omitempty"`     //A list of Meraki Serials for which to retrieve migrations
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Filter device migrations by network IDs
+	Target        string   `url:"target,omitempty"`        //Filter device migrations by target destination
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 100.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+}
 type GetOrganizationDevicesOverviewByModelQueryParams struct {
 	Models       []string `url:"models[],omitempty"`       //Optional parameter to filter devices by one or more models. All returned devices will have a model that is an exact match.
 	NetworkIDs   []string `url:"networkIds[],omitempty"`   //Optional parameter to filter devices by networkId.
@@ -252,6 +260,18 @@ type GetOrganizationDevicesStatusesQueryParams struct {
 type GetOrganizationDevicesStatusesOverviewQueryParams struct {
 	ProductTypes []string `url:"productTypes[],omitempty"` //An optional parameter to filter device statuses by product type. Valid types are wireless, appliance, switch, systemsManager, camera, cellularGateway, sensor, wirelessController, and secureConnect.
 	NetworkIDs   []string `url:"networkIds[],omitempty"`   //An optional parameter to filter device statuses by network.
+}
+type GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams struct {
+	PerPage       int      `url:"perPage,omitempty"`        //The number of entries per page returned. Acceptable range is 3 - 20. Default is 10.
+	StartingAfter string   `url:"startingAfter,omitempty"`  //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`   //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	T0            string   `url:"t0,omitempty"`             //The beginning of the timespan for the data. The maximum lookback period is 31 days from today.
+	T1            string   `url:"t1,omitempty"`             //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
+	Timespan      float64  `url:"timespan,omitempty"`       //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 2 hours. If interval is provided, the timespan will be autocalculated.
+	Interval      int      `url:"interval,omitempty"`       //The time interval in seconds for returned data. The valid intervals are: 300, 1200, 3600, 14400. The default is 300. Interval is calculated if time params are provided.
+	NetworkIDs    []string `url:"networkIds[],omitempty"`   //Optional parameter to filter the result set by the included set of network IDs
+	Serials       []string `url:"serials[],omitempty"`      //Optional parameter to filter device availabilities history by device serial numbers
+	ProductTypes  []string `url:"productTypes[],omitempty"` //Optional parameter to filter device statuses by product type. Valid types are wireless, appliance, switch, systemsManager, camera, cellularGateway, sensor, wirelessController, and secureConnect.
 }
 type GetOrganizationDevicesUplinksAddressesByDeviceQueryParams struct {
 	PerPage        int      `url:"perPage,omitempty"`        //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
@@ -301,6 +321,12 @@ type GetOrganizationFloorPlansAutoLocateStatusesQueryParams struct {
 	EndingBefore  string   `url:"endingBefore,omitempty"`   //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	NetworkIDs    []string `url:"networkIds[],omitempty"`   //Optional parameter to filter floorplans by one or more network IDs
 	FloorPlanIDs  []string `url:"floorPlanIds[],omitempty"` //Optional parameter to filter floorplans by one or more floorplan IDs
+}
+type GetOrganizationIntegrationsXdrNetworksQueryParams struct {
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Optional parameter to filter the results by network IDs
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 100. Default is 20.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 }
 type GetOrganizationInventoryDevicesQueryParams struct {
 	PerPage        int      `url:"perPage,omitempty"`        //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
@@ -730,10 +756,12 @@ type ResponseItemOrganizationsGetOrganizationAdaptivePolicyACLs struct {
 	UpdatedAt   string                                                             `json:"updatedAt,omitempty"`   // When the adaptive policy ACL was last updated
 }
 type ResponseItemOrganizationsGetOrganizationAdaptivePolicyACLsRules struct {
-	DstPort  string `json:"dstPort,omitempty"`  // Destination port
-	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
-	Protocol string `json:"protocol,omitempty"` // The type of protocol
-	SrcPort  string `json:"srcPort,omitempty"`  // Source port
+	DstPort        string `json:"dstPort,omitempty"`        // Destination port
+	Log            *bool  `json:"log,omitempty"`            // If enabled, when this rule is hit an entry will be logged to the event log
+	Policy         string `json:"policy,omitempty"`         // 'allow' or 'deny' traffic specified by this rule
+	Protocol       string `json:"protocol,omitempty"`       // The type of protocol
+	SrcPort        string `json:"srcPort,omitempty"`        // Source port
+	TCPEstablished *bool  `json:"tcpEstablished,omitempty"` // If enabled, means TCP connection with this node must be established.
 }
 type ResponseOrganizationsCreateOrganizationAdaptivePolicyACL struct {
 	ACLID       string                                                           `json:"aclId,omitempty"`       // ID of the adaptive policy ACL
@@ -745,10 +773,12 @@ type ResponseOrganizationsCreateOrganizationAdaptivePolicyACL struct {
 	UpdatedAt   string                                                           `json:"updatedAt,omitempty"`   // When the adaptive policy ACL was last updated
 }
 type ResponseOrganizationsCreateOrganizationAdaptivePolicyACLRules struct {
-	DstPort  string `json:"dstPort,omitempty"`  // Destination port
-	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
-	Protocol string `json:"protocol,omitempty"` // The type of protocol
-	SrcPort  string `json:"srcPort,omitempty"`  // Source port
+	DstPort        string `json:"dstPort,omitempty"`        // Destination port
+	Log            *bool  `json:"log,omitempty"`            // If enabled, when this rule is hit an entry will be logged to the event log
+	Policy         string `json:"policy,omitempty"`         // 'allow' or 'deny' traffic specified by this rule
+	Protocol       string `json:"protocol,omitempty"`       // The type of protocol
+	SrcPort        string `json:"srcPort,omitempty"`        // Source port
+	TCPEstablished *bool  `json:"tcpEstablished,omitempty"` // If enabled, means TCP connection with this node must be established.
 }
 type ResponseOrganizationsGetOrganizationAdaptivePolicyACL struct {
 	ACLID       string                                                        `json:"aclId,omitempty"`       // ID of the adaptive policy ACL
@@ -760,10 +790,12 @@ type ResponseOrganizationsGetOrganizationAdaptivePolicyACL struct {
 	UpdatedAt   string                                                        `json:"updatedAt,omitempty"`   // When the adaptive policy ACL was last updated
 }
 type ResponseOrganizationsGetOrganizationAdaptivePolicyACLRules struct {
-	DstPort  string `json:"dstPort,omitempty"`  // Destination port
-	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
-	Protocol string `json:"protocol,omitempty"` // The type of protocol
-	SrcPort  string `json:"srcPort,omitempty"`  // Source port
+	DstPort        string `json:"dstPort,omitempty"`        // Destination port
+	Log            *bool  `json:"log,omitempty"`            // If enabled, when this rule is hit an entry will be logged to the event log
+	Policy         string `json:"policy,omitempty"`         // 'allow' or 'deny' traffic specified by this rule
+	Protocol       string `json:"protocol,omitempty"`       // The type of protocol
+	SrcPort        string `json:"srcPort,omitempty"`        // Source port
+	TCPEstablished *bool  `json:"tcpEstablished,omitempty"` // If enabled, means TCP connection with this node must be established.
 }
 type ResponseOrganizationsUpdateOrganizationAdaptivePolicyACL struct {
 	ACLID       string                                                           `json:"aclId,omitempty"`       // ID of the adaptive policy ACL
@@ -775,10 +807,12 @@ type ResponseOrganizationsUpdateOrganizationAdaptivePolicyACL struct {
 	UpdatedAt   string                                                           `json:"updatedAt,omitempty"`   // When the adaptive policy ACL was last updated
 }
 type ResponseOrganizationsUpdateOrganizationAdaptivePolicyACLRules struct {
-	DstPort  string `json:"dstPort,omitempty"`  // Destination port
-	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule
-	Protocol string `json:"protocol,omitempty"` // The type of protocol
-	SrcPort  string `json:"srcPort,omitempty"`  // Source port
+	DstPort        string `json:"dstPort,omitempty"`        // Destination port
+	Log            *bool  `json:"log,omitempty"`            // If enabled, when this rule is hit an entry will be logged to the event log
+	Policy         string `json:"policy,omitempty"`         // 'allow' or 'deny' traffic specified by this rule
+	Protocol       string `json:"protocol,omitempty"`       // The type of protocol
+	SrcPort        string `json:"srcPort,omitempty"`        // Source port
+	TCPEstablished *bool  `json:"tcpEstablished,omitempty"` // If enabled, means TCP connection with this node must be established.
 }
 type ResponseOrganizationsGetOrganizationAdaptivePolicyGroups []ResponseItemOrganizationsGetOrganizationAdaptivePolicyGroups // Array of ResponseOrganizationsGetOrganizationAdaptivePolicyGroups
 type ResponseItemOrganizationsGetOrganizationAdaptivePolicyGroups struct {
@@ -1083,17 +1117,22 @@ type ResponseOrganizationsUpdateOrganizationAlertsProfileRecipients struct {
 }
 type ResponseOrganizationsGetOrganizationAPIRequests []ResponseItemOrganizationsGetOrganizationAPIRequests // Array of ResponseOrganizationsGetOrganizationApiRequests
 type ResponseItemOrganizationsGetOrganizationAPIRequests struct {
-	AdminID      string `json:"adminId,omitempty"`      // Database ID for the admin user who made the API request.
-	Host         string `json:"host,omitempty"`         // The host which the API request was directed at.
-	Method       string `json:"method,omitempty"`       // HTTP method used in the API request.
-	OperationID  string `json:"operationId,omitempty"`  // Operation ID for the endpoint.
-	Path         string `json:"path,omitempty"`         // The API request path.
-	QueryString  string `json:"queryString,omitempty"`  // The query string sent with the API request.
-	ResponseCode *int   `json:"responseCode,omitempty"` // API request response code.
-	SourceIP     string `json:"sourceIp,omitempty"`     // Public IP address from which the API request was made.
-	Ts           string `json:"ts,omitempty"`           // Timestamp, in iso8601 format, indicating when the API request was made.
-	UserAgent    string `json:"userAgent,omitempty"`    // The API request user agent.
-	Version      *int   `json:"version,omitempty"`      // API version of the endpoint.
+	AdminID      string                                                     `json:"adminId,omitempty"`      // Database ID for the admin user who made the API request.
+	Client       *ResponseItemOrganizationsGetOrganizationAPIRequestsClient `json:"client,omitempty"`       // Client information
+	Host         string                                                     `json:"host,omitempty"`         // The host which the API request was directed at.
+	Method       string                                                     `json:"method,omitempty"`       // HTTP method used in the API request.
+	OperationID  string                                                     `json:"operationId,omitempty"`  // Operation ID for the endpoint.
+	Path         string                                                     `json:"path,omitempty"`         // The API request path.
+	QueryString  string                                                     `json:"queryString,omitempty"`  // The query string sent with the API request.
+	ResponseCode *int                                                       `json:"responseCode,omitempty"` // API request response code.
+	SourceIP     string                                                     `json:"sourceIp,omitempty"`     // Public IP address from which the API request was made.
+	Ts           string                                                     `json:"ts,omitempty"`           // Timestamp, in iso8601 format, indicating when the API request was made.
+	UserAgent    string                                                     `json:"userAgent,omitempty"`    // The API request user agent.
+	Version      *int                                                       `json:"version,omitempty"`      // API version of the endpoint.
+}
+type ResponseItemOrganizationsGetOrganizationAPIRequestsClient struct {
+	ID   string `json:"id,omitempty"`   // ID for the client which made the request, if applicable.
+	Type string `json:"type,omitempty"` // Type of client which made the request, if applicable. Available options are: oauth, api_key
 }
 type ResponseOrganizationsGetOrganizationAPIRequestsOverview struct {
 	ResponseCodeCounts *ResponseOrganizationsGetOrganizationAPIRequestsOverviewResponseCodeCounts `json:"responseCodeCounts,omitempty"` // object of all supported HTTP response code
@@ -1610,26 +1649,31 @@ type ResponseOrganizationsUpdateOrganizationConfigTemplate struct {
 }
 type ResponseOrganizationsGetOrganizationConfigurationChanges []ResponseItemOrganizationsGetOrganizationConfigurationChanges // Array of ResponseOrganizationsGetOrganizationConfigurationChanges
 type ResponseItemOrganizationsGetOrganizationConfigurationChanges struct {
-	AdminEmail  string `json:"adminEmail,omitempty"`  // The email address of the admin who made the configuration change. This attribute may be null.
-	AdminID     string `json:"adminId,omitempty"`     // The ID of the admin who made the configuration change. This attribute may be null.
-	AdminName   string `json:"adminName,omitempty"`   // The name of the admin who made the configuration change.
-	Label       string `json:"label,omitempty"`       // Description of the configuration change.
-	NetworkID   string `json:"networkId,omitempty"`   // The ID of the network that the configuration change was applied to. This attribute may be null.
-	NetworkName string `json:"networkName,omitempty"` // The name of the network that the configuration change was applied to. This attribute may be null.
-	NetworkURL  string `json:"networkUrl,omitempty"`  // The url of the network that the configuration change was applied to. This attribute may be null.
-	NewValue    string `json:"newValue,omitempty"`    // The value of the configuration, after the change was applied.
-	OldValue    string `json:"oldValue,omitempty"`    // The value of the configuration, before the change was applied.
-	Page        string `json:"page,omitempty"`        // The name of the Meraki Dashboard page on which the configuration change was made.
-	SSIDName    string `json:"ssidName,omitempty"`    // The name of the ssid that the configuration change was applied to, if applicable. This attribute may be null.
-	SSIDNumber  *int   `json:"ssidNumber,omitempty"`  // The ssid number that the configuration change was applied to, if applicable. This attribute may be null.
-	Ts          string `json:"ts,omitempty"`          // Time, in ISO8601 format, when the configuration change was made.
+	AdminEmail  string                                                              `json:"adminEmail,omitempty"`  // The email address of the admin who made the configuration change. This attribute may be null.
+	AdminID     string                                                              `json:"adminId,omitempty"`     // The ID of the admin who made the configuration change. This attribute may be null.
+	AdminName   string                                                              `json:"adminName,omitempty"`   // The name of the admin who made the configuration change.
+	Client      *ResponseItemOrganizationsGetOrganizationConfigurationChangesClient `json:"client,omitempty"`      // Client information
+	Label       string                                                              `json:"label,omitempty"`       // Description of the configuration change.
+	NetworkID   string                                                              `json:"networkId,omitempty"`   // The ID of the network that the configuration change was applied to. This attribute may be null.
+	NetworkName string                                                              `json:"networkName,omitempty"` // The name of the network that the configuration change was applied to. This attribute may be null.
+	NetworkURL  string                                                              `json:"networkUrl,omitempty"`  // The url of the network that the configuration change was applied to. This attribute may be null.
+	NewValue    string                                                              `json:"newValue,omitempty"`    // The value of the configuration, after the change was applied.
+	OldValue    string                                                              `json:"oldValue,omitempty"`    // The value of the configuration, before the change was applied.
+	Page        string                                                              `json:"page,omitempty"`        // The name of the Meraki Dashboard page on which the configuration change was made.
+	SSIDName    string                                                              `json:"ssidName,omitempty"`    // The name of the ssid that the configuration change was applied to, if applicable. This attribute may be null.
+	SSIDNumber  *int                                                                `json:"ssidNumber,omitempty"`  // The ssid number that the configuration change was applied to, if applicable. This attribute may be null.
+	Ts          string                                                              `json:"ts,omitempty"`          // Time, in ISO8601 format, when the configuration change was made.
+}
+type ResponseItemOrganizationsGetOrganizationConfigurationChangesClient struct {
+	ID   string `json:"id,omitempty"`   // ID for the client which made the change, if applicable.
+	Type string `json:"type,omitempty"` // Type of client which made the change, if applicable. Available options are: oauth
 }
 type ResponseOrganizationsGetOrganizationDevices []ResponseItemOrganizationsGetOrganizationDevices // Array of ResponseOrganizationsGetOrganizationDevices
 type ResponseItemOrganizationsGetOrganizationDevices struct {
 	Address     string                                                    `json:"address,omitempty"`     // Physical address of the device
 	Details     *[]ResponseItemOrganizationsGetOrganizationDevicesDetails `json:"details,omitempty"`     // Additional device information
 	Firmware    string                                                    `json:"firmware,omitempty"`    // Firmware version of the device
-	Imei        *float64                                                  `json:"imei,omitempty"`        // IMEI of the device, if applicable
+	Imei        string                                                    `json:"imei,omitempty"`        // IMEI of the device, if applicable
 	LanIP       string                                                    `json:"lanIp,omitempty"`       // LAN IP address of the device
 	Lat         *float64                                                  `json:"lat,omitempty"`         // Latitude of the device
 	Lng         *float64                                                  `json:"lng,omitempty"`         // Longitude of the device
@@ -1689,6 +1733,33 @@ type ResponseItemOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistoryN
 	Name string   `json:"name,omitempty"` // Network name
 	Tags []string `json:"tags,omitempty"` // Network tags
 	URL  string   `json:"url,omitempty"`  // Network dashboard url
+}
+type ResponseOrganizationsGetOrganizationDevicesControllerMigrations struct {
+	Items *[]ResponseOrganizationsGetOrganizationDevicesControllerMigrationsItems `json:"items,omitempty"` // List of migrations for the specified devices
+	Meta  *ResponseOrganizationsGetOrganizationDevicesControllerMigrationsMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationDevicesControllerMigrationsItems struct {
+	CreatedAt  string `json:"createdAt,omitempty"`  // The time at which a migration was created
+	MigratedAt string `json:"migratedAt,omitempty"` // The time at which the device initiated migration
+	Serial     string `json:"serial,omitempty"`     // The device serial
+	Target     string `json:"target,omitempty"`     // The migration target destination
+}
+type ResponseOrganizationsGetOrganizationDevicesControllerMigrationsMeta struct {
+	Counts *ResponseOrganizationsGetOrganizationDevicesControllerMigrationsMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationDevicesControllerMigrationsMetaCounts struct {
+	Items *ResponseOrganizationsGetOrganizationDevicesControllerMigrationsMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseOrganizationsGetOrganizationDevicesControllerMigrationsMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseOrganizationsCreateOrganizationDevicesControllerMigration []ResponseItemOrganizationsCreateOrganizationDevicesControllerMigration // Array of ResponseOrganizationsCreateOrganizationDevicesControllerMigration
+type ResponseItemOrganizationsCreateOrganizationDevicesControllerMigration struct {
+	CreatedAt  string `json:"createdAt,omitempty"`  // The time at which a migration was created
+	MigratedAt string `json:"migratedAt,omitempty"` // The time at which the device initiated migration
+	Serial     string `json:"serial,omitempty"`     // The device serial
+	Target     string `json:"target,omitempty"`     // The migration target destination
 }
 type ResponseOrganizationsBulkUpdateOrganizationDevicesDetails struct {
 	Serials []string `json:"serials,omitempty"` // A list of serials of devices updated
@@ -1776,6 +1847,66 @@ type ResponseOrganizationsGetOrganizationDevicesStatusesOverviewCountsByStatus s
 	Dormant  *int `json:"dormant,omitempty"`  // dormant count
 	Offline  *int `json:"offline,omitempty"`  // offline count
 	Online   *int `json:"online,omitempty"`   // online count
+}
+type ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval struct {
+	Items *[]ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItems `json:"items,omitempty"` // The top-level property containing all memory utilization data.
+	Meta  *ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMeta    `json:"meta,omitempty"`  // Other metadata related to this result set.
+}
+type ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItems struct {
+	Free        *ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsFree        `json:"free,omitempty"`        // Information regarding memory availability on the device over the entire timespan
+	Intervals   *[]ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervals `json:"intervals,omitempty"`   // Time interval snapshots of system memory utilization on the device with the most recent snapshot first
+	Mac         string                                                                                         `json:"mac,omitempty"`         // MAC address of the device
+	Model       string                                                                                         `json:"model,omitempty"`       // Model of the device
+	Name        string                                                                                         `json:"name,omitempty"`        // Name of the device
+	Network     *ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsNetwork     `json:"network,omitempty"`     // Information regarding the network the device belongs to
+	Provisioned *int                                                                                           `json:"provisioned,omitempty"` // The total RAM size provisioned on the device, in kB
+	Serial      string                                                                                         `json:"serial,omitempty"`      // Unique serial number for the device
+	Tags        []string                                                                                       `json:"tags,omitempty"`        // List of custom tags for the device
+	Used        *ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsUsed        `json:"used,omitempty"`        // Information regarding memory usage on the device over the entire timespan
+}
+type ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsFree struct {
+	Median *int `json:"median,omitempty"` // Median memory in kB free on the device over the entire timespan rounded up to nearest integer
+}
+type ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervals struct {
+	EndTs   string                                                                                             `json:"endTs,omitempty"`   // Timestamp for the end of the historical snapshot, inclusive.
+	Memory  *ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemory `json:"memory,omitempty"`  // Information regarding memory usage and availability on the device
+	StartTs string                                                                                             `json:"startTs,omitempty"` // Timestamp for the beginning of the historical snapshot, exclusive.
+}
+type ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemory struct {
+	Free *ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemoryFree `json:"free,omitempty"` // Information regarding memory availability on the device over the interval
+	Used *ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemoryUsed `json:"used,omitempty"` // Information regarding memory usage on the device over the interval
+}
+type ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemoryFree struct {
+	Maximum *int `json:"maximum,omitempty"` // Maximum memory in kB free on the device over the interval
+	Median  *int `json:"median,omitempty"`  // Median memory in kB free on the device over the interval rounded up to nearest integer
+	Minimum *int `json:"minimum,omitempty"` // Minimum memory in kB free on the device over the interval
+}
+type ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemoryUsed struct {
+	Maximum     *int                                                                                                              `json:"maximum,omitempty"`     // Maximum memory in kB used on the device over the interval
+	Median      *int                                                                                                              `json:"median,omitempty"`      // Median memory in kB used on the device over the interval rounded up to nearest integer
+	Minimum     *int                                                                                                              `json:"minimum,omitempty"`     // Minimum memory in kB used on the device over the interval
+	Percentages *ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemoryUsedPercentages `json:"percentages,omitempty"` // Memory utilization percentages on the device over the interval
+}
+type ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemoryUsedPercentages struct {
+	Maximum *int `json:"maximum,omitempty"` // Maximum memory utilization percentage on the device over the interval
+}
+type ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsNetwork struct {
+	ID   string   `json:"id,omitempty"`   // The network ID
+	Name string   `json:"name,omitempty"` // The name of the network
+	Tags []string `json:"tags,omitempty"` // List of custom tags for the network
+}
+type ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsUsed struct {
+	Median *int `json:"median,omitempty"` // Median memory in kB used on the device over the entire timespan rounded up to nearest integer
+}
+type ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMeta struct {
+	Counts *ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCounts `json:"counts,omitempty"` // Count metadata related to this result set.
+}
+type ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCounts struct {
+	Items *ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCountsItems `json:"items,omitempty"` // The count metadata.
+}
+type ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of serials remaining based on current pagination location within the dataset.
+	Total     *int `json:"total,omitempty"`     // The total number of serials.
 }
 type ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice []ResponseItemOrganizationsGetOrganizationDevicesUplinksAddressesByDevice // Array of ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice
 type ResponseItemOrganizationsGetOrganizationDevicesUplinksAddressesByDevice struct {
@@ -2056,7 +2187,7 @@ type ResponseItemOrganizationsGetOrganizationFloorPlansAutoLocateStatusesItemsJo
 }
 type ResponseItemOrganizationsGetOrganizationFloorPlansAutoLocateStatusesItemsJobsErrors struct {
 	Source string `json:"source,omitempty"` // The step of the auto locate process when the error occurred. Possible values: 'gnss', 'ranging', 'positioning'
-	Type   string `json:"type,omitempty"`   // The type of error that occurred. Possible values: 'failure', 'no neighbors', 'missing anchors', 'wrong anchors', 'calculation failure', 'scheduling failure'
+	Type   string `json:"type,omitempty"`   // The type of error that occurred. Possible values: 'failure', 'no neighbors', 'missing anchors', 'wrong anchors', 'missing ranging data', 'calculation failure', 'scheduling failure'
 }
 type ResponseItemOrganizationsGetOrganizationFloorPlansAutoLocateStatusesItemsJobsGnss struct {
 	Completed *ResponseItemOrganizationsGetOrganizationFloorPlansAutoLocateStatusesItemsJobsGnssCompleted `json:"completed,omitempty"` // Progress information for the GNSS acquisition process
@@ -2084,6 +2215,47 @@ type ResponseItemOrganizationsGetOrganizationFloorPlansAutoLocateStatusesMetaCou
 type ResponseItemOrganizationsGetOrganizationFloorPlansAutoLocateStatusesMetaCountsItems struct {
 	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
 	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks struct {
+	Items *[]ResponseOrganizationsGetOrganizationIntegrationsXdrNetworksItems `json:"items,omitempty"` // List of networks with XDR enabled
+	Meta  *ResponseOrganizationsGetOrganizationIntegrationsXdrNetworksMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationIntegrationsXdrNetworksItems struct {
+	Enabled      *bool    `json:"enabled,omitempty"`      // Represents whether XDR is enabled for the network
+	IsEligible   *bool    `json:"isEligible,omitempty"`   // Represents whether the network is eligible for XDR
+	Name         string   `json:"name,omitempty"`         // The name of the network
+	NetworkID    string   `json:"networkId,omitempty"`    // Network ID
+	ProductTypes []string `json:"productTypes,omitempty"` // List of products that have XDR enabled
+}
+type ResponseOrganizationsGetOrganizationIntegrationsXdrNetworksMeta struct {
+	Counts *ResponseOrganizationsGetOrganizationIntegrationsXdrNetworksMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseOrganizationsGetOrganizationIntegrationsXdrNetworksMetaCounts struct {
+	Items *ResponseOrganizationsGetOrganizationIntegrationsXdrNetworksMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated networks
+}
+type ResponseOrganizationsGetOrganizationIntegrationsXdrNetworksMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of networks in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of networks in the dataset
+}
+type ResponseOrganizationsDisableOrganizationIntegrationsXdrNetworks struct {
+	Networks *[]ResponseOrganizationsDisableOrganizationIntegrationsXdrNetworksNetworks `json:"networks,omitempty"` // List of networks that have XDR disabled
+}
+type ResponseOrganizationsDisableOrganizationIntegrationsXdrNetworksNetworks struct {
+	Enabled      *bool    `json:"enabled,omitempty"`      // Represents whether XDR is enabled for the network
+	IsEligible   *bool    `json:"isEligible,omitempty"`   // Represents whether the network is eligible for XDR
+	Name         string   `json:"name,omitempty"`         // The name of the network
+	NetworkID    string   `json:"networkId,omitempty"`    // Network ID
+	ProductTypes []string `json:"productTypes,omitempty"` // List of products that have XDR disabled
+}
+type ResponseOrganizationsEnableOrganizationIntegrationsXdrNetworks struct {
+	Networks *[]ResponseOrganizationsEnableOrganizationIntegrationsXdrNetworksNetworks `json:"networks,omitempty"` // List of networks that have XDR enabled
+}
+type ResponseOrganizationsEnableOrganizationIntegrationsXdrNetworksNetworks struct {
+	Enabled      *bool    `json:"enabled,omitempty"`      // Represents whether XDR is enabled for the network
+	IsEligible   *bool    `json:"isEligible,omitempty"`   // Represents whether the network is eligible for XDR
+	Name         string   `json:"name,omitempty"`         // The name of the network
+	NetworkID    string   `json:"networkId,omitempty"`    // Network ID
+	ProductTypes []string `json:"productTypes,omitempty"` // List of products that have XDR enabled
 }
 type ResponseOrganizationsClaimIntoOrganizationInventory struct {
 	Licenses *[]ResponseOrganizationsClaimIntoOrganizationInventoryLicenses `json:"licenses,omitempty"` // The licenses claimed
@@ -2470,10 +2642,11 @@ type ResponseOrganizationsGetOrganizationLoginSecurity struct {
 	EnforceIDleTimeout        *bool                                                               `json:"enforceIdleTimeout,omitempty"`        // Boolean indicating whether users will be logged out after being idle for the specified number of minutes.
 	EnforceLoginIPRanges      *bool                                                               `json:"enforceLoginIpRanges,omitempty"`      // Boolean indicating whether organization will restrict access to Dashboard (including the API) from certain IP addresses.
 	EnforcePasswordExpiration *bool                                                               `json:"enforcePasswordExpiration,omitempty"` // Boolean indicating whether users are forced to change their password every X number of days.
-	EnforceStrongPasswords    *bool                                                               `json:"enforceStrongPasswords,omitempty"`    // Boolean indicating whether users will be forced to choose strong passwords for their accounts. Strong passwords are at least 8 characters that contain 3 of the following: number, uppercase letter, lowercase letter, and symbol
+	EnforceStrongPasswords    *bool                                                               `json:"enforceStrongPasswords,omitempty"`    // Deprecated. This will always be 'true'.
 	EnforceTwoFactorAuth      *bool                                                               `json:"enforceTwoFactorAuth,omitempty"`      // Boolean indicating whether users in this organization will be required to use an extra verification code when logging in to Dashboard. This code will be sent to their mobile phone via SMS, or can be generated by the authenticator application.
 	IDleTimeoutMinutes        *int                                                                `json:"idleTimeoutMinutes,omitempty"`        // Number of minutes users can remain idle before being logged out of their accounts.
 	LoginIPRanges             []string                                                            `json:"loginIpRanges,omitempty"`             // List of acceptable IP ranges. Entries can be single IP addresses, IP address ranges, and CIDR subnets.
+	MinimumPasswordLength     *int                                                                `json:"minimumPasswordLength,omitempty"`     // The minimum number of characters required in admins' passwords.
 	NumDifferentPasswords     *int                                                                `json:"numDifferentPasswords,omitempty"`     // Number of recent passwords that new password must be distinct from.
 	PasswordExpirationDays    *int                                                                `json:"passwordExpirationDays,omitempty"`    // Number of days after which users will be forced to change their password.
 }
@@ -2492,10 +2665,11 @@ type ResponseOrganizationsUpdateOrganizationLoginSecurity struct {
 	EnforceIDleTimeout        *bool                                                                  `json:"enforceIdleTimeout,omitempty"`        // Boolean indicating whether users will be logged out after being idle for the specified number of minutes.
 	EnforceLoginIPRanges      *bool                                                                  `json:"enforceLoginIpRanges,omitempty"`      // Boolean indicating whether organization will restrict access to Dashboard (including the API) from certain IP addresses.
 	EnforcePasswordExpiration *bool                                                                  `json:"enforcePasswordExpiration,omitempty"` // Boolean indicating whether users are forced to change their password every X number of days.
-	EnforceStrongPasswords    *bool                                                                  `json:"enforceStrongPasswords,omitempty"`    // Boolean indicating whether users will be forced to choose strong passwords for their accounts. Strong passwords are at least 8 characters that contain 3 of the following: number, uppercase letter, lowercase letter, and symbol
+	EnforceStrongPasswords    *bool                                                                  `json:"enforceStrongPasswords,omitempty"`    // Deprecated. This will always be 'true'.
 	EnforceTwoFactorAuth      *bool                                                                  `json:"enforceTwoFactorAuth,omitempty"`      // Boolean indicating whether users in this organization will be required to use an extra verification code when logging in to Dashboard. This code will be sent to their mobile phone via SMS, or can be generated by the authenticator application.
 	IDleTimeoutMinutes        *int                                                                   `json:"idleTimeoutMinutes,omitempty"`        // Number of minutes users can remain idle before being logged out of their accounts.
 	LoginIPRanges             []string                                                               `json:"loginIpRanges,omitempty"`             // List of acceptable IP ranges. Entries can be single IP addresses, IP address ranges, and CIDR subnets.
+	MinimumPasswordLength     *int                                                                   `json:"minimumPasswordLength,omitempty"`     // The minimum number of characters required in admins' passwords.
 	NumDifferentPasswords     *int                                                                   `json:"numDifferentPasswords,omitempty"`     // Number of recent passwords that new password must be distinct from.
 	PasswordExpirationDays    *int                                                                   `json:"passwordExpirationDays,omitempty"`    // Number of days after which users will be forced to change their password.
 }
@@ -2626,13 +2800,13 @@ type ResponseOrganizationsCreateOrganizationPolicyObjectsGroup struct {
 	UpdatedAt  string    `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
 }
 type ResponseOrganizationsGetOrganizationPolicyObjectsGroup struct {
-	Category   string   `json:"category,omitempty"`   // Type of object groups. (NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
-	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
-	ID         string   `json:"id,omitempty"`         // Policy object ID
-	Name       string   `json:"name,omitempty"`       // Name of the Policy object group.
-	NetworkIDs []string `json:"networkIds,omitempty"` // Network ID's associated with the policy objects.
-	ObjectIDs  *[]int   `json:"objectIds,omitempty"`  // Policy objects associated with Network Object Group or Port Object Group
-	UpdatedAt  string   `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
+	Category   string    `json:"category,omitempty"`   // Type of object groups. (NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
+	CreatedAt  string    `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
+	ID         string    `json:"id,omitempty"`         // Policy object ID
+	Name       string    `json:"name,omitempty"`       // Name of the Policy object group.
+	NetworkIDs []string  `json:"networkIds,omitempty"` // Network ID's associated with the policy objects.
+	ObjectIDs  *[]string `json:"objectIds,omitempty"`  // Policy objects associated with Network Object Group or Port Object Group
+	UpdatedAt  string    `json:"updatedAt,omitempty"`  // Time Stamp of policy object updation.
 }
 type ResponseOrganizationsUpdateOrganizationPolicyObjectsGroup struct {
 	Category   string    `json:"category,omitempty"`   // Type of object groups. (NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup)
@@ -3032,16 +3206,25 @@ type ResponseItemOrganizationsGetOrganizationUplinksStatusesUplinks struct {
 	DNS2           string                                                                    `json:"dns2,omitempty"`           // Secondary DNS IP
 	Gateway        string                                                                    `json:"gateway,omitempty"`        // Gateway IP
 	Iccid          string                                                                    `json:"iccid,omitempty"`          // Integrated Circuit Card Identification Number
+	Imsi           string                                                                    `json:"imsi,omitempty"`           // International Mobile Subscriber Identity
 	Interface      string                                                                    `json:"interface,omitempty"`      // Uplink interface
 	IP             string                                                                    `json:"ip,omitempty"`             // Uplink IP
 	IPAssignedBy   string                                                                    `json:"ipAssignedBy,omitempty"`   // The way in which the IP is assigned
+	Mcc            string                                                                    `json:"mcc,omitempty"`            // Mobile Country Code
+	Mnc            string                                                                    `json:"mnc,omitempty"`            // Mobile Network Code
+	Msisdn         string                                                                    `json:"msisdn,omitempty"`         // Mobile Station Integrated Services Digital Network
+	Mtu            *int                                                                      `json:"mtu,omitempty"`            // Maximum Transmission Unit
 	PrimaryDNS     string                                                                    `json:"primaryDns,omitempty"`     // Primary DNS IP
 	Provider       string                                                                    `json:"provider,omitempty"`       // Network Provider
 	PublicIP       string                                                                    `json:"publicIp,omitempty"`       // Public IP
+	Roaming        *ResponseItemOrganizationsGetOrganizationUplinksStatusesUplinksRoaming    `json:"roaming,omitempty"`        // Roaming Status
 	SecondaryDNS   string                                                                    `json:"secondaryDns,omitempty"`   // Secondary DNS IP
 	SignalStat     *ResponseItemOrganizationsGetOrganizationUplinksStatusesUplinksSignalStat `json:"signalStat,omitempty"`     // Tower Signal Status
 	SignalType     string                                                                    `json:"signalType,omitempty"`     // Signal Type
 	Status         string                                                                    `json:"status,omitempty"`         // Uplink status
+}
+type ResponseItemOrganizationsGetOrganizationUplinksStatusesUplinksRoaming struct {
+	Status string `json:"status,omitempty"` // Roaming Status
 }
 type ResponseItemOrganizationsGetOrganizationUplinksStatusesUplinksSignalStat struct {
 	Rsrp string `json:"rsrp,omitempty"` // Reference Signal Received Power
@@ -3172,10 +3355,12 @@ type RequestOrganizationsCreateOrganizationAdaptivePolicyACL struct {
 	Rules       *[]RequestOrganizationsCreateOrganizationAdaptivePolicyACLRules `json:"rules,omitempty"`       // An ordered array of the adaptive policy ACL rules.
 }
 type RequestOrganizationsCreateOrganizationAdaptivePolicyACLRules struct {
-	DstPort  string `json:"dstPort,omitempty"`  // Destination port. Must be in the format of single port: '1', port list: '1,2' or port range: '1-10', and in the range of 1-65535, or 'any'. Default is 'any'.
-	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule.
-	Protocol string `json:"protocol,omitempty"` // The type of protocol (must be 'tcp', 'udp', 'icmp' or 'any').
-	SrcPort  string `json:"srcPort,omitempty"`  // Source port. Must be in the format of single port: '1', port list: '1,2' or port range: '1-10', and in the range of 1-65535, or 'any'. Default is 'any'.
+	DstPort        string `json:"dstPort,omitempty"`        // Destination port. Must be in the format of single port: '1', port list: '1,2' or port range: '1-10', and in the range of 1-65535, or 'any'. Default is 'any'.
+	Log            *bool  `json:"log,omitempty"`            // If enabled, when this rule is hit an entry will be logged to the event log
+	Policy         string `json:"policy,omitempty"`         // 'allow' or 'deny' traffic specified by this rule.
+	Protocol       string `json:"protocol,omitempty"`       // The type of protocol (must be 'tcp', 'udp', 'icmp' or 'any').
+	SrcPort        string `json:"srcPort,omitempty"`        // Source port. Must be in the format of single port: '1', port list: '1,2' or port range: '1-10', and in the range of 1-65535, or 'any'. Default is 'any'.
+	TCPEstablished *bool  `json:"tcpEstablished,omitempty"` // If enabled, means TCP connection with this node must be established.
 }
 type RequestOrganizationsUpdateOrganizationAdaptivePolicyACL struct {
 	Description string                                                          `json:"description,omitempty"` // Description of the adaptive policy ACL
@@ -3184,10 +3369,12 @@ type RequestOrganizationsUpdateOrganizationAdaptivePolicyACL struct {
 	Rules       *[]RequestOrganizationsUpdateOrganizationAdaptivePolicyACLRules `json:"rules,omitempty"`       // An ordered array of the adaptive policy ACL rules. An empty array will clear the rules.
 }
 type RequestOrganizationsUpdateOrganizationAdaptivePolicyACLRules struct {
-	DstPort  string `json:"dstPort,omitempty"`  // Destination port. Must be in the format of single port: '1', port list: '1,2' or port range: '1-10', and in the range of 1-65535, or 'any'. Default is 'any'.
-	Policy   string `json:"policy,omitempty"`   // 'allow' or 'deny' traffic specified by this rule.
-	Protocol string `json:"protocol,omitempty"` // The type of protocol (must be 'tcp', 'udp', 'icmp' or 'any').
-	SrcPort  string `json:"srcPort,omitempty"`  // Source port. Must be in the format of single port: '1', port list: '1,2' or port range: '1-10', and in the range of 1-65535, or 'any'. Default is 'any'.
+	DstPort        string `json:"dstPort,omitempty"`        // Destination port. Must be in the format of single port: '1', port list: '1,2' or port range: '1-10', and in the range of 1-65535, or 'any'. Default is 'any'.
+	Log            *bool  `json:"log,omitempty"`            // If enabled, when this rule is hit an entry will be logged to the event log
+	Policy         string `json:"policy,omitempty"`         // 'allow' or 'deny' traffic specified by this rule.
+	Protocol       string `json:"protocol,omitempty"`       // The type of protocol (must be 'tcp', 'udp', 'icmp' or 'any').
+	SrcPort        string `json:"srcPort,omitempty"`        // Source port. Must be in the format of single port: '1', port list: '1,2' or port range: '1-10', and in the range of 1-65535, or 'any'. Default is 'any'.
+	TCPEstablished *bool  `json:"tcpEstablished,omitempty"` // If enabled, means TCP connection with this node must be established.
 }
 type RequestOrganizationsCreateOrganizationAdaptivePolicyGroup struct {
 	Description   string                                                                    `json:"description,omitempty"`   // Description of the group (default: "")
@@ -3427,6 +3614,10 @@ type RequestOrganizationsUpdateOrganizationConfigTemplate struct {
 	Name     string `json:"name,omitempty"`     // The name of the configuration template
 	TimeZone string `json:"timeZone,omitempty"` // The timezone of the configuration template. For a list of allowed timezones, please see the 'TZ' column in the table in <a target='_blank' href='https://en.wikipedia.org/wiki/List_of_tz_database_time_zones'>this article.</a>
 }
+type RequestOrganizationsCreateOrganizationDevicesControllerMigration struct {
+	Serials []string `json:"serials,omitempty"` // A list of Meraki Serials to migrate
+	Target  string   `json:"target,omitempty"`  // The controller or management mode to which the devices will be migrated
+}
 type RequestOrganizationsBulkUpdateOrganizationDevicesDetails struct {
 	Details *[]RequestOrganizationsBulkUpdateOrganizationDevicesDetailsDetails `json:"details,omitempty"` // An array of details
 	Serials []string                                                           `json:"serials,omitempty"` // A list of serials of devices to update
@@ -3441,6 +3632,20 @@ type RequestOrganizationsCreateOrganizationEarlyAccessFeaturesOptIn struct {
 }
 type RequestOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn struct {
 	LimitScopeToNetworks []string `json:"limitScopeToNetworks,omitempty"` // A list of network IDs to apply the opt-in to
+}
+type RequestOrganizationsDisableOrganizationIntegrationsXdrNetworks struct {
+	Networks *[]RequestOrganizationsDisableOrganizationIntegrationsXdrNetworksNetworks `json:"networks,omitempty"` // List containing the network ID and the product type to disable XDR on
+}
+type RequestOrganizationsDisableOrganizationIntegrationsXdrNetworksNetworks struct {
+	NetworkID    string   `json:"networkId,omitempty"`    // Network ID
+	ProductTypes []string `json:"productTypes,omitempty"` // List of products for which to disable XDR
+}
+type RequestOrganizationsEnableOrganizationIntegrationsXdrNetworks struct {
+	Networks *[]RequestOrganizationsEnableOrganizationIntegrationsXdrNetworksNetworks `json:"networks,omitempty"` // List containing the network ID and the product type to enable XDR on
+}
+type RequestOrganizationsEnableOrganizationIntegrationsXdrNetworksNetworks struct {
+	NetworkID    string   `json:"networkId,omitempty"`    // Network ID
+	ProductTypes []string `json:"productTypes,omitempty"` // List of products for which to enable XDR
 }
 type RequestOrganizationsClaimIntoOrganizationInventory struct {
 	Licenses *[]RequestOrganizationsClaimIntoOrganizationInventoryLicenses `json:"licenses,omitempty"` // The licenses that should be claimed
@@ -3560,10 +3765,11 @@ type RequestOrganizationsUpdateOrganizationLoginSecurity struct {
 	EnforceIDleTimeout        *bool                                                                 `json:"enforceIdleTimeout,omitempty"`        // Boolean indicating whether users will be logged out after being idle for the specified number of minutes.
 	EnforceLoginIPRanges      *bool                                                                 `json:"enforceLoginIpRanges,omitempty"`      // Boolean indicating whether organization will restrict access to Dashboard (including the API) from certain IP addresses.
 	EnforcePasswordExpiration *bool                                                                 `json:"enforcePasswordExpiration,omitempty"` // Boolean indicating whether users are forced to change their password every X number of days.
-	EnforceStrongPasswords    *bool                                                                 `json:"enforceStrongPasswords,omitempty"`    // Boolean indicating whether users will be forced to choose strong passwords for their accounts. Strong passwords are at least 8 characters that contain 3 of the following: number, uppercase letter, lowercase letter, and symbol
+	EnforceStrongPasswords    *bool                                                                 `json:"enforceStrongPasswords,omitempty"`    // Deprecated. Values of 'false' are always ignored.
 	EnforceTwoFactorAuth      *bool                                                                 `json:"enforceTwoFactorAuth,omitempty"`      // Boolean indicating whether users in this organization will be required to use an extra verification code when logging in to Dashboard. This code will be sent to their mobile phone via SMS, or can be generated by the authenticator application.
 	IDleTimeoutMinutes        *int                                                                  `json:"idleTimeoutMinutes,omitempty"`        // Number of minutes users can remain idle before being logged out of their accounts.
 	LoginIPRanges             []string                                                              `json:"loginIpRanges,omitempty"`             // List of acceptable IP ranges. Entries can be single IP addresses, IP address ranges, and CIDR subnets.
+	MinimumPasswordLength     *int                                                                  `json:"minimumPasswordLength,omitempty"`     // Minimum number of characters required in admins' passwords.
 	NumDifferentPasswords     *int                                                                  `json:"numDifferentPasswords,omitempty"`     // Number of recent passwords that new password must be distinct from.
 	PasswordExpirationDays    *int                                                                  `json:"passwordExpirationDays,omitempty"`    // Number of days after which users will be forced to change their password.
 }
@@ -5277,6 +5483,78 @@ func (s *OrganizationsService) GetOrganizationDevicesAvailabilitiesChangeHistory
 	return s.GetOrganizationDevicesAvailabilitiesChangeHistory(organizationID, getOrganizationDevicesAvailabilitiesChangeHistoryQueryParamsConverted)
 }
 
+//GetOrganizationDevicesControllerMigrations Retrieve device migration statuses in an organization
+/* Retrieve device migration statuses in an organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationDevicesControllerMigrationsQueryParams Filtering parameter
+
+
+*/
+
+func (s *OrganizationsService) GetOrganizationDevicesControllerMigrations(organizationID string, getOrganizationDevicesControllerMigrationsQueryParams *GetOrganizationDevicesControllerMigrationsQueryParams) (*ResponseOrganizationsGetOrganizationDevicesControllerMigrations, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/devices/controller/migrations"
+	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationDevicesControllerMigrationsQueryParams != nil && getOrganizationDevicesControllerMigrationsQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationDevicesControllerMigrations
+		println("Paginate")
+		getOrganizationDevicesControllerMigrationsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationDevicesControllerMigrationsPaginate, organizationID, "", getOrganizationDevicesControllerMigrationsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationDevicesControllerMigrations
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationDevicesControllerMigrationsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevicesControllerMigrations{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesControllerMigrations")
+	}
+
+	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesControllerMigrations)
+	return result, response, err
+
+}
+func (s *OrganizationsService) GetOrganizationDevicesControllerMigrationsPaginate(organizationID string, getOrganizationDevicesControllerMigrationsQueryParams any) (any, *resty.Response, error) {
+	getOrganizationDevicesControllerMigrationsQueryParamsConverted := getOrganizationDevicesControllerMigrationsQueryParams.(*GetOrganizationDevicesControllerMigrationsQueryParams)
+
+	return s.GetOrganizationDevicesControllerMigrations(organizationID, getOrganizationDevicesControllerMigrationsQueryParamsConverted)
+}
+
 //GetOrganizationDevicesOverviewByModel Lists the count for each device model
 /* Lists the count for each device model
 
@@ -5565,6 +5843,78 @@ func (s *OrganizationsService) GetOrganizationDevicesStatusesOverview(organizati
 	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesStatusesOverview)
 	return result, response, err
 
+}
+
+//GetOrganizationDevicesSystemMemoryUsageHistoryByInterval Return the memory utilization history in kB for devices in the organization.
+/* Return the memory utilization history in kB for devices in the organization.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams Filtering parameter
+
+
+*/
+
+func (s *OrganizationsService) GetOrganizationDevicesSystemMemoryUsageHistoryByInterval(organizationID string, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams *GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams) (*ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/devices/system/memory/usage/history/byInterval"
+	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams != nil && getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval
+		println("Paginate")
+		getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalPaginate, organizationID, "", getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesSystemMemoryUsageHistoryByInterval")
+	}
+
+	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval)
+	return result, response, err
+
+}
+func (s *OrganizationsService) GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalPaginate(organizationID string, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams any) (any, *resty.Response, error) {
+	getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParamsConverted := getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams.(*GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams)
+
+	return s.GetOrganizationDevicesSystemMemoryUsageHistoryByInterval(organizationID, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParamsConverted)
 }
 
 //GetOrganizationDevicesUplinksAddressesByDevice List the current uplink addresses for devices in an organization.
@@ -6066,6 +6416,78 @@ func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateStatusesPagina
 	getOrganizationFloorPlansAutoLocateStatusesQueryParamsConverted := getOrganizationFloorPlansAutoLocateStatusesQueryParams.(*GetOrganizationFloorPlansAutoLocateStatusesQueryParams)
 
 	return s.GetOrganizationFloorPlansAutoLocateStatuses(organizationID, getOrganizationFloorPlansAutoLocateStatusesQueryParamsConverted)
+}
+
+//GetOrganizationIntegrationsXdrNetworks Returns the networks in the organization that have XDR enabled
+/* Returns the networks in the organization that have XDR enabled
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationIntegrationsXdrNetworksQueryParams Filtering parameter
+
+
+*/
+
+func (s *OrganizationsService) GetOrganizationIntegrationsXdrNetworks(organizationID string, getOrganizationIntegrationsXdrNetworksQueryParams *GetOrganizationIntegrationsXdrNetworksQueryParams) (*ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/integrations/xdr/networks"
+	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationIntegrationsXdrNetworksQueryParams != nil && getOrganizationIntegrationsXdrNetworksQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks
+		println("Paginate")
+		getOrganizationIntegrationsXdrNetworksQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationIntegrationsXdrNetworksPaginate, organizationID, "", getOrganizationIntegrationsXdrNetworksQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationIntegrationsXdrNetworksQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationIntegrationsXdrNetworks")
+	}
+
+	result := response.Result().(*ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks)
+	return result, response, err
+
+}
+func (s *OrganizationsService) GetOrganizationIntegrationsXdrNetworksPaginate(organizationID string, getOrganizationIntegrationsXdrNetworksQueryParams any) (any, *resty.Response, error) {
+	getOrganizationIntegrationsXdrNetworksQueryParamsConverted := getOrganizationIntegrationsXdrNetworksQueryParams.(*GetOrganizationIntegrationsXdrNetworksQueryParams)
+
+	return s.GetOrganizationIntegrationsXdrNetworks(organizationID, getOrganizationIntegrationsXdrNetworksQueryParamsConverted)
 }
 
 //GetOrganizationInventoryDevices Return the device inventory for an organization
@@ -6687,12 +7109,12 @@ func (s *OrganizationsService) GetOrganizationPolicyObjectsPaginate(organization
 
 */
 
-func (s *OrganizationsService) GetOrganizationPolicyObjectsGroups(organizationID string, getOrganizationPolicyObjectsGroupsQueryParams *GetOrganizationPolicyObjectsGroupsQueryParams) (*ResponseOrganizationsGetOrganizationPolicyObjectsGroups, *resty.Response, error) {
+func (s *OrganizationsService) GetOrganizationPolicyObjectsGroups(organizationID string, getOrganizationPolicyObjectsGroupsQueryParams *GetOrganizationPolicyObjectsGroupsQueryParams) (*ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects/groups"
 	s.rateLimiterBucket.Wait(1)
 
 	if getOrganizationPolicyObjectsGroupsQueryParams != nil && getOrganizationPolicyObjectsGroupsQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationPolicyObjectsGroups
+		var result *ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray
 		println("Paginate")
 		getOrganizationPolicyObjectsGroupsQueryParams.PerPage = PAGINATION_PER_PAGE
 		result2, response, err := Paginate(s.GetOrganizationPolicyObjectsGroupsPaginate, organizationID, "", getOrganizationPolicyObjectsGroupsQueryParams)
@@ -6708,14 +7130,14 @@ func (s *OrganizationsService) GetOrganizationPolicyObjectsGroups(organizationID
 		err = json.Unmarshal(jsonResult, &paginatedResponse)
 		// for para recorrer "paginatedResponse"
 		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationPolicyObjectsGroups
+			var resultTmp *ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray
 			jsonResult2, _ := json.Marshal(paginatedResponse[i])
 			err = json.Unmarshal(jsonResult2, &resultTmp)
 			// Verificar si result es nil, si lo es inicialiarlo
 			if result == nil {
 				result = resultTmp
 			} else {
-				*result.ObjectIDs = append(*result.ObjectIDs, *resultTmp.ObjectIDs...)
+				*result = append(*result, *resultTmp...)
 			}
 		}
 		return result, response, err
@@ -6727,7 +7149,7 @@ func (s *OrganizationsService) GetOrganizationPolicyObjectsGroups(organizationID
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationPolicyObjectsGroups{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray{}).
 		SetError(&Error).
 		Get(path)
 
@@ -6740,7 +7162,7 @@ func (s *OrganizationsService) GetOrganizationPolicyObjectsGroups(organizationID
 		return nil, response, fmt.Errorf("error with operation GetOrganizationPolicyObjectsGroups")
 	}
 
-	result := response.Result().(*ResponseOrganizationsGetOrganizationPolicyObjectsGroups)
+	result := response.Result().(*ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray)
 	return result, response, err
 
 }
@@ -8171,6 +8593,41 @@ func (s *OrganizationsService) CreateOrganizationConfigTemplate(organizationID s
 
 }
 
+//CreateOrganizationDevicesControllerMigration Migrate devices to another controller or management mode
+/* Migrate devices to another controller or management mode
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *OrganizationsService) CreateOrganizationDevicesControllerMigration(organizationID string, requestOrganizationsCreateOrganizationDevicesControllerMigration *RequestOrganizationsCreateOrganizationDevicesControllerMigration) (*ResponseOrganizationsCreateOrganizationDevicesControllerMigration, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/devices/controller/migrations"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestOrganizationsCreateOrganizationDevicesControllerMigration).
+		SetResult(&ResponseOrganizationsCreateOrganizationDevicesControllerMigration{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationDevicesControllerMigration")
+	}
+
+	result := response.Result().(*ResponseOrganizationsCreateOrganizationDevicesControllerMigration)
+	return result, response, err
+
+}
+
 //BulkUpdateOrganizationDevicesDetails Updating device details (currently only used for Catalyst devices)
 /* Updating device details (currently only used for Catalyst devices)
 
@@ -8237,6 +8694,76 @@ func (s *OrganizationsService) CreateOrganizationEarlyAccessFeaturesOptIn(organi
 	}
 
 	result := response.Result().(*ResponseOrganizationsCreateOrganizationEarlyAccessFeaturesOptIn)
+	return result, response, err
+
+}
+
+//DisableOrganizationIntegrationsXdrNetworks Disable XDR on networks
+/* Disable XDR on networks
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *OrganizationsService) DisableOrganizationIntegrationsXdrNetworks(organizationID string, requestOrganizationsDisableOrganizationIntegrationsXdrNetworks *RequestOrganizationsDisableOrganizationIntegrationsXdrNetworks) (*ResponseOrganizationsDisableOrganizationIntegrationsXdrNetworks, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/integrations/xdr/networks/disable"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestOrganizationsDisableOrganizationIntegrationsXdrNetworks).
+		SetResult(&ResponseOrganizationsDisableOrganizationIntegrationsXdrNetworks{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation DisableOrganizationIntegrationsXdrNetworks")
+	}
+
+	result := response.Result().(*ResponseOrganizationsDisableOrganizationIntegrationsXdrNetworks)
+	return result, response, err
+
+}
+
+//EnableOrganizationIntegrationsXdrNetworks Enable XDR on networks
+/* Enable XDR on networks
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *OrganizationsService) EnableOrganizationIntegrationsXdrNetworks(organizationID string, requestOrganizationsEnableOrganizationIntegrationsXdrNetworks *RequestOrganizationsEnableOrganizationIntegrationsXdrNetworks) (*ResponseOrganizationsEnableOrganizationIntegrationsXdrNetworks, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/integrations/xdr/networks/enable"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestOrganizationsEnableOrganizationIntegrationsXdrNetworks).
+		SetResult(&ResponseOrganizationsEnableOrganizationIntegrationsXdrNetworks{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation EnableOrganizationIntegrationsXdrNetworks")
+	}
+
+	result := response.Result().(*ResponseOrganizationsEnableOrganizationIntegrationsXdrNetworks)
 	return result, response, err
 
 }

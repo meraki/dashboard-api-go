@@ -39,6 +39,7 @@ type ResponseDevicesGetDevice struct {
 	NetworkID      string                                  `json:"networkId,omitempty"`      // ID of the network the device belongs to
 	Notes          string                                  `json:"notes,omitempty"`          // Notes for the device, limited to 255 characters
 	Serial         string                                  `json:"serial,omitempty"`         // Serial number of the device
+	ProductType    string                                  `json:"productType,omitempty"`    // Product type of the device
 	Tags           []string                                `json:"tags,omitempty"`           // List of tags assigned to the device
 }
 type ResponseDevicesGetDeviceBeaconIDParams struct {
@@ -743,6 +744,33 @@ type ResponseItemDevicesGetOrganizationDevicesAvailabilitiesChangeHistoryNetwork
 	Tags []string `json:"tags,omitempty"` // Network tags
 	URL  string   `json:"url,omitempty"`  // Network dashboard url
 }
+type ResponseDevicesGetOrganizationDevicesControllerMigrations struct {
+	Items *[]ResponseDevicesGetOrganizationDevicesControllerMigrationsItems `json:"items,omitempty"` // List of migrations for the specified devices
+	Meta  *ResponseDevicesGetOrganizationDevicesControllerMigrationsMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseDevicesGetOrganizationDevicesControllerMigrationsItems struct {
+	CreatedAt  string `json:"createdAt,omitempty"`  // The time at which a migration was created
+	MigratedAt string `json:"migratedAt,omitempty"` // The time at which the device initiated migration
+	Serial     string `json:"serial,omitempty"`     // The device serial
+	Target     string `json:"target,omitempty"`     // The migration target destination
+}
+type ResponseDevicesGetOrganizationDevicesControllerMigrationsMeta struct {
+	Counts *ResponseDevicesGetOrganizationDevicesControllerMigrationsMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseDevicesGetOrganizationDevicesControllerMigrationsMetaCounts struct {
+	Items *ResponseDevicesGetOrganizationDevicesControllerMigrationsMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseDevicesGetOrganizationDevicesControllerMigrationsMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseDevicesCreateOrganizationDevicesControllerMigration []ResponseItemDevicesCreateOrganizationDevicesControllerMigration // Array of ResponseDevicesCreateOrganizationDevicesControllerMigration
+type ResponseItemDevicesCreateOrganizationDevicesControllerMigration struct {
+	CreatedAt  string `json:"createdAt,omitempty"`  // The time at which a migration was created
+	MigratedAt string `json:"migratedAt,omitempty"` // The time at which the device initiated migration
+	Serial     string `json:"serial,omitempty"`     // The device serial
+	Target     string `json:"target,omitempty"`     // The migration target destination
+}
 type ResponseDevicesBulkUpdateOrganizationDevicesDetails struct {
 	Serials []string `json:"serials,omitempty"` // A list of serials of devices updated
 }
@@ -752,6 +780,66 @@ type ResponseDevicesGetOrganizationDevicesOverviewByModel struct {
 type ResponseDevicesGetOrganizationDevicesOverviewByModelCounts struct {
 	Model string `json:"model,omitempty"` // Device model
 	Total *int   `json:"total,omitempty"` // Total number of devices for the model
+}
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval struct {
+	Items *[]ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItems `json:"items,omitempty"` // The top-level property containing all memory utilization data.
+	Meta  *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMeta    `json:"meta,omitempty"`  // Other metadata related to this result set.
+}
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItems struct {
+	Free        *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsFree        `json:"free,omitempty"`        // Information regarding memory availability on the device over the entire timespan
+	Intervals   *[]ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervals `json:"intervals,omitempty"`   // Time interval snapshots of system memory utilization on the device with the most recent snapshot first
+	Mac         string                                                                                   `json:"mac,omitempty"`         // MAC address of the device
+	Model       string                                                                                   `json:"model,omitempty"`       // Model of the device
+	Name        string                                                                                   `json:"name,omitempty"`        // Name of the device
+	Network     *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsNetwork     `json:"network,omitempty"`     // Information regarding the network the device belongs to
+	Provisioned *int                                                                                     `json:"provisioned,omitempty"` // The total RAM size provisioned on the device, in kB
+	Serial      string                                                                                   `json:"serial,omitempty"`      // Unique serial number for the device
+	Tags        []string                                                                                 `json:"tags,omitempty"`        // List of custom tags for the device
+	Used        *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsUsed        `json:"used,omitempty"`        // Information regarding memory usage on the device over the entire timespan
+}
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsFree struct {
+	Median *int `json:"median,omitempty"` // Median memory in kB free on the device over the entire timespan rounded up to nearest integer
+}
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervals struct {
+	EndTs   string                                                                                       `json:"endTs,omitempty"`   // Timestamp for the end of the historical snapshot, inclusive.
+	Memory  *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemory `json:"memory,omitempty"`  // Information regarding memory usage and availability on the device
+	StartTs string                                                                                       `json:"startTs,omitempty"` // Timestamp for the beginning of the historical snapshot, exclusive.
+}
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemory struct {
+	Free *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemoryFree `json:"free,omitempty"` // Information regarding memory availability on the device over the interval
+	Used *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemoryUsed `json:"used,omitempty"` // Information regarding memory usage on the device over the interval
+}
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemoryFree struct {
+	Maximum *int `json:"maximum,omitempty"` // Maximum memory in kB free on the device over the interval
+	Median  *int `json:"median,omitempty"`  // Median memory in kB free on the device over the interval rounded up to nearest integer
+	Minimum *int `json:"minimum,omitempty"` // Minimum memory in kB free on the device over the interval
+}
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemoryUsed struct {
+	Maximum     *int                                                                                                        `json:"maximum,omitempty"`     // Maximum memory in kB used on the device over the interval
+	Median      *int                                                                                                        `json:"median,omitempty"`      // Median memory in kB used on the device over the interval rounded up to nearest integer
+	Minimum     *int                                                                                                        `json:"minimum,omitempty"`     // Minimum memory in kB used on the device over the interval
+	Percentages *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemoryUsedPercentages `json:"percentages,omitempty"` // Memory utilization percentages on the device over the interval
+}
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalsMemoryUsedPercentages struct {
+	Maximum *int `json:"maximum,omitempty"` // Maximum memory utilization percentage on the device over the interval
+}
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsNetwork struct {
+	ID   string   `json:"id,omitempty"`   // The network ID
+	Name string   `json:"name,omitempty"` // The name of the network
+	Tags []string `json:"tags,omitempty"` // List of custom tags for the network
+}
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsUsed struct {
+	Median *int `json:"median,omitempty"` // Median memory in kB used on the device over the entire timespan rounded up to nearest integer
+}
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMeta struct {
+	Counts *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCounts `json:"counts,omitempty"` // Count metadata related to this result set.
+}
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCounts struct {
+	Items *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCountsItems `json:"items,omitempty"` // The count metadata.
+}
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of serials remaining based on current pagination location within the dataset.
+	Total     *int `json:"total,omitempty"`     // The total number of serials.
 }
 type ResponseDevicesGetOrganizationFloorPlansAutoLocateDevices []ResponseItemDevicesGetOrganizationFloorPlansAutoLocateDevices // Array of ResponseDevicesGetOrganizationFloorPlansAutoLocateDevices
 type ResponseItemDevicesGetOrganizationFloorPlansAutoLocateDevices struct {
@@ -1044,6 +1132,49 @@ type ResponseItemDevicesGetOrganizationWirelessDevicesPacketLossByNetworkUpstrea
 	LossPercentage *float64 `json:"lossPercentage,omitempty"` // Percentage of lost packets.
 	Lost           *int     `json:"lost,omitempty"`           // Total packets sent by a client and did not reach the AP.
 	Total          *int     `json:"total,omitempty"`          // Total packets sent by a client to an AP.
+}
+type ResponseDevicesGetOrganizationWirelessDevicesPowerModeHistory struct {
+	Items *[]ResponseDevicesGetOrganizationWirelessDevicesPowerModeHistoryItems `json:"items,omitempty"` // The top-level property containing all power mode data.
+}
+type ResponseDevicesGetOrganizationWirelessDevicesPowerModeHistoryItems struct {
+	Events  *[]ResponseDevicesGetOrganizationWirelessDevicesPowerModeHistoryItemsEvents `json:"events,omitempty"`  // Events indicating power mode changes for the device
+	Mac     string                                                                      `json:"mac,omitempty"`     // MAC address of the device
+	Model   string                                                                      `json:"model,omitempty"`   // Model of the device
+	Name    string                                                                      `json:"name,omitempty"`    // Name of the device
+	Network *ResponseDevicesGetOrganizationWirelessDevicesPowerModeHistoryItemsNetwork  `json:"network,omitempty"` // Information regarding the network the device belongs to
+	Serial  string                                                                      `json:"serial,omitempty"`  // Unique serial number for the device
+	Tags    []string                                                                    `json:"tags,omitempty"`    // List of custom tags for the device
+}
+type ResponseDevicesGetOrganizationWirelessDevicesPowerModeHistoryItemsEvents struct {
+	PowerMode string `json:"powerMode,omitempty"` // The power mode of the device
+	Ts        string `json:"ts,omitempty"`        // Timestamp of the event
+}
+type ResponseDevicesGetOrganizationWirelessDevicesPowerModeHistoryItemsNetwork struct {
+	ID   string   `json:"id,omitempty"`   // The network ID
+	Name string   `json:"name,omitempty"` // The name of the network
+	Tags []string `json:"tags,omitempty"` // List of custom tags for the network
+}
+type ResponseDevicesGetOrganizationWirelessDevicesSystemCPULoadHistory struct {
+	Items *[]ResponseDevicesGetOrganizationWirelessDevicesSystemCPULoadHistoryItems `json:"items,omitempty"` // The top-level property containing all cpu load data.
+}
+type ResponseDevicesGetOrganizationWirelessDevicesSystemCPULoadHistoryItems struct {
+	CPUCount *int                                                                            `json:"cpuCount,omitempty"` // Number of CPU cores on the device
+	Mac      string                                                                          `json:"mac,omitempty"`      // MAC address of the device
+	Model    string                                                                          `json:"model,omitempty"`    // Model of the device
+	Name     string                                                                          `json:"name,omitempty"`     // Name of the device
+	Network  *ResponseDevicesGetOrganizationWirelessDevicesSystemCPULoadHistoryItemsNetwork  `json:"network,omitempty"`  // Information regarding the network the device belongs to
+	Serial   string                                                                          `json:"serial,omitempty"`   // Unique serial number for the device
+	Series   *[]ResponseDevicesGetOrganizationWirelessDevicesSystemCPULoadHistoryItemsSeries `json:"series,omitempty"`   // Series of cpu load average measurements on the device
+	Tags     []string                                                                        `json:"tags,omitempty"`     // List of custom tags for the device
+}
+type ResponseDevicesGetOrganizationWirelessDevicesSystemCPULoadHistoryItemsNetwork struct {
+	ID   string   `json:"id,omitempty"`   // The network ID
+	Name string   `json:"name,omitempty"` // The name of the network
+	Tags []string `json:"tags,omitempty"` // List of custom tags for the network
+}
+type ResponseDevicesGetOrganizationWirelessDevicesSystemCPULoadHistoryItemsSeries struct {
+	CPULoad5 *int   `json:"cpuLoad5,omitempty"` // The 5 minutes cpu load average of the device
+	Ts       string `json:"ts,omitempty"`       // Timestamp of the cpu load measurement
 }
 type ResponseDevicesGetOrganizationWirelessDevicesWirelessControllersByDevice struct {
 	Items *[]ResponseDevicesGetOrganizationWirelessDevicesWirelessControllersByDeviceItems `json:"items,omitempty"` // List of Catalyst access points information
@@ -1716,6 +1847,10 @@ type RequestDevicesInstallNetworkSmDeviceApps struct {
 }
 type RequestDevicesUninstallNetworkSmDeviceApps struct {
 	AppIDs []string `json:"appIds,omitempty"` // ids of applications to be uninstalled
+}
+type RequestDevicesCreateOrganizationDevicesControllerMigration struct {
+	Serials []string `json:"serials,omitempty"` // A list of Meraki Serials to migrate
+	Target  string   `json:"target,omitempty"`  // The controller or management mode to which the devices will be migrated
 }
 type RequestDevicesBulkUpdateOrganizationDevicesDetails struct {
 	Details *[]RequestDevicesBulkUpdateOrganizationDevicesDetailsDetails `json:"details,omitempty"` // An array of details
@@ -2597,6 +2732,78 @@ func (s *DevicesService) GetOrganizationDevicesAvailabilitiesChangeHistoryPagina
 	return s.GetOrganizationDevicesAvailabilitiesChangeHistory(organizationID, getOrganizationDevicesAvailabilitiesChangeHistoryQueryParamsConverted)
 }
 
+//GetOrganizationDevicesControllerMigrations Retrieve device migration statuses in an organization
+/* Retrieve device migration statuses in an organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationDevicesControllerMigrationsQueryParams Filtering parameter
+
+
+*/
+
+func (s *DevicesService) GetOrganizationDevicesControllerMigrations(organizationID string, getOrganizationDevicesControllerMigrationsQueryParams *GetOrganizationDevicesControllerMigrationsQueryParams) (*ResponseDevicesGetOrganizationDevicesControllerMigrations, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/devices/controller/migrations"
+	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationDevicesControllerMigrationsQueryParams != nil && getOrganizationDevicesControllerMigrationsQueryParams.PerPage == -1 {
+		var result *ResponseDevicesGetOrganizationDevicesControllerMigrations
+		println("Paginate")
+		getOrganizationDevicesControllerMigrationsQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationDevicesControllerMigrationsPaginate, organizationID, "", getOrganizationDevicesControllerMigrationsQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseDevicesGetOrganizationDevicesControllerMigrations
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationDevicesControllerMigrationsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetOrganizationDevicesControllerMigrations{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesControllerMigrations")
+	}
+
+	result := response.Result().(*ResponseDevicesGetOrganizationDevicesControllerMigrations)
+	return result, response, err
+
+}
+func (s *DevicesService) GetOrganizationDevicesControllerMigrationsPaginate(organizationID string, getOrganizationDevicesControllerMigrationsQueryParams any) (any, *resty.Response, error) {
+	getOrganizationDevicesControllerMigrationsQueryParamsConverted := getOrganizationDevicesControllerMigrationsQueryParams.(*GetOrganizationDevicesControllerMigrationsQueryParams)
+
+	return s.GetOrganizationDevicesControllerMigrations(organizationID, getOrganizationDevicesControllerMigrationsQueryParamsConverted)
+}
+
 //GetOrganizationDevicesOverviewByModel Lists the count for each device model
 /* Lists the count for each device model
 
@@ -2632,6 +2839,78 @@ func (s *DevicesService) GetOrganizationDevicesOverviewByModel(organizationID st
 	result := response.Result().(*ResponseDevicesGetOrganizationDevicesOverviewByModel)
 	return result, response, err
 
+}
+
+//GetOrganizationDevicesSystemMemoryUsageHistoryByInterval Return the memory utilization history in kB for devices in the organization.
+/* Return the memory utilization history in kB for devices in the organization.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams Filtering parameter
+
+
+*/
+
+func (s *DevicesService) GetOrganizationDevicesSystemMemoryUsageHistoryByInterval(organizationID string, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams *GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams) (*ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/devices/system/memory/usage/history/byInterval"
+	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams != nil && getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams.PerPage == -1 {
+		var result *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval
+		println("Paginate")
+		getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalPaginate, organizationID, "", getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesSystemMemoryUsageHistoryByInterval")
+	}
+
+	result := response.Result().(*ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval)
+	return result, response, err
+
+}
+func (s *DevicesService) GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalPaginate(organizationID string, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams any) (any, *resty.Response, error) {
+	getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParamsConverted := getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams.(*GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams)
+
+	return s.GetOrganizationDevicesSystemMemoryUsageHistoryByInterval(organizationID, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParamsConverted)
 }
 
 //GetOrganizationFloorPlansAutoLocateDevices List auto locate details for each device in your organization
@@ -3280,6 +3559,150 @@ func (s *DevicesService) GetOrganizationWirelessDevicesPacketLossByNetworkPagina
 	getOrganizationWirelessDevicesPacketLossByNetworkQueryParamsConverted := getOrganizationWirelessDevicesPacketLossByNetworkQueryParams.(*GetOrganizationWirelessDevicesPacketLossByNetworkQueryParams)
 
 	return s.GetOrganizationWirelessDevicesPacketLossByNetwork(organizationID, getOrganizationWirelessDevicesPacketLossByNetworkQueryParamsConverted)
+}
+
+//GetOrganizationWirelessDevicesPowerModeHistory Return a record of power mode changes for wireless devices in the organization
+/* Return a record of power mode changes for wireless devices in the organization. For each device, it provides a series of events with timestamps indicating when a power mode change occurred and the new mode. The events are ordered by timestamp.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessDevicesPowerModeHistoryQueryParams Filtering parameter
+
+
+*/
+
+func (s *DevicesService) GetOrganizationWirelessDevicesPowerModeHistory(organizationID string, getOrganizationWirelessDevicesPowerModeHistoryQueryParams *GetOrganizationWirelessDevicesPowerModeHistoryQueryParams) (*ResponseDevicesGetOrganizationWirelessDevicesPowerModeHistory, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/devices/power/mode/history"
+	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessDevicesPowerModeHistoryQueryParams != nil && getOrganizationWirelessDevicesPowerModeHistoryQueryParams.PerPage == -1 {
+		var result *ResponseDevicesGetOrganizationWirelessDevicesPowerModeHistory
+		println("Paginate")
+		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesPowerModeHistoryPaginate, organizationID, "", &GetOrganizationWirelessDevicesPowerModeHistoryQueryParams{
+			PerPage: PAGINATION_PER_PAGE,
+		})
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseDevicesGetOrganizationWirelessDevicesPowerModeHistory
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessDevicesPowerModeHistoryQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetOrganizationWirelessDevicesPowerModeHistory{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesPowerModeHistory")
+	}
+
+	result := response.Result().(*ResponseDevicesGetOrganizationWirelessDevicesPowerModeHistory)
+	return result, response, err
+
+}
+func (s *DevicesService) GetOrganizationWirelessDevicesPowerModeHistoryPaginate(organizationID string, getOrganizationWirelessDevicesPowerModeHistoryQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessDevicesPowerModeHistoryQueryParamsConverted := getOrganizationWirelessDevicesPowerModeHistoryQueryParams.(*GetOrganizationWirelessDevicesPowerModeHistoryQueryParams)
+
+	return s.GetOrganizationWirelessDevicesPowerModeHistory(organizationID, getOrganizationWirelessDevicesPowerModeHistoryQueryParamsConverted)
+}
+
+//GetOrganizationWirelessDevicesSystemCPULoadHistory Return the CPU Load history for a list of wireless devices in the organization.
+/* Return the CPU Load history for a list of wireless devices in the organization.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams Filtering parameter
+
+
+*/
+
+func (s *DevicesService) GetOrganizationWirelessDevicesSystemCPULoadHistory(organizationID string, getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams *GetOrganizationWirelessDevicesSystemCPULoadHistoryQueryParams) (*ResponseDevicesGetOrganizationWirelessDevicesSystemCPULoadHistory, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/devices/system/cpu/load/history"
+	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams != nil && getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams.PerPage == -1 {
+		var result *ResponseDevicesGetOrganizationWirelessDevicesSystemCPULoadHistory
+		getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesSystemCPULoadHistoryPaginate, organizationID, "", getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseDevicesGetOrganizationWirelessDevicesSystemCPULoadHistory
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetOrganizationWirelessDevicesSystemCPULoadHistory{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesSystemCpuLoadHistory")
+	}
+
+	result := response.Result().(*ResponseDevicesGetOrganizationWirelessDevicesSystemCPULoadHistory)
+	return result, response, err
+
+}
+func (s *DevicesService) GetOrganizationWirelessDevicesSystemCPULoadHistoryPaginate(organizationID string, getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParamsConverted := getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams.(*GetOrganizationWirelessDevicesSystemCPULoadHistoryQueryParams)
+
+	return s.GetOrganizationWirelessDevicesSystemCPULoadHistory(organizationID, getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParamsConverted)
 }
 
 //GetOrganizationWirelessDevicesWirelessControllersByDevice List of Catalyst access points information
@@ -4990,6 +5413,41 @@ func (s *DevicesService) UninstallNetworkSmDeviceApps(networkID string, deviceID
 
 }
 
+//CreateOrganizationDevicesControllerMigration Migrate devices to another controller or management mode
+/* Migrate devices to another controller or management mode
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *DevicesService) CreateOrganizationDevicesControllerMigration(organizationID string, requestDevicesCreateOrganizationDevicesControllerMigration *RequestDevicesCreateOrganizationDevicesControllerMigration) (*ResponseDevicesCreateOrganizationDevicesControllerMigration, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/devices/controller/migrations"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesCreateOrganizationDevicesControllerMigration).
+		SetResult(&ResponseDevicesCreateOrganizationDevicesControllerMigration{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationDevicesControllerMigration")
+	}
+
+	result := response.Result().(*ResponseDevicesCreateOrganizationDevicesControllerMigration)
+	return result, response, err
+
+}
+
 //BulkUpdateOrganizationDevicesDetails Updating device details (currently only used for Catalyst devices)
 /* Updating device details (currently only used for Catalyst devices)
 
@@ -4998,7 +5456,7 @@ func (s *DevicesService) UninstallNetworkSmDeviceApps(networkID string, deviceID
 
 */
 
-func (s *DevicesService) BulkUpdateOrganizationDevicesDetails(organizationID string) (*resty.Response, error) {
+func (s *DevicesService) BulkUpdateOrganizationDevicesDetails(organizationID string, requestDevicesBulkUpdateOrganizationDevicesDetails *RequestDevicesBulkUpdateOrganizationDevicesDetails) (*ResponseDevicesBulkUpdateOrganizationDevicesDetails, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/details/bulkUpdate"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -5006,19 +5464,22 @@ func (s *DevicesService) BulkUpdateOrganizationDevicesDetails(organizationID str
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesBulkUpdateOrganizationDevicesDetails).
+		SetResult(&ResponseDevicesBulkUpdateOrganizationDevicesDetails{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation BulkUpdateOrganizationDevicesDetails")
+		return nil, response, fmt.Errorf("error with operation BulkUpdateOrganizationDevicesDetails")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseDevicesBulkUpdateOrganizationDevicesDetails)
+	return result, response, err
 
 }
 
@@ -5030,7 +5491,7 @@ func (s *DevicesService) BulkUpdateOrganizationDevicesDetails(organizationID str
 
 */
 
-func (s *DevicesService) CreateOrganizationInventoryDevicesSwapsBulk(organizationID string) (*resty.Response, error) {
+func (s *DevicesService) CreateOrganizationInventoryDevicesSwapsBulk(organizationID string, requestDevicesCreateOrganizationInventoryDevicesSwapsBulk *RequestDevicesCreateOrganizationInventoryDevicesSwapsBulk) (*ResponseDevicesCreateOrganizationInventoryDevicesSwapsBulk, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/devices/swaps/bulk"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -5038,19 +5499,22 @@ func (s *DevicesService) CreateOrganizationInventoryDevicesSwapsBulk(organizatio
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesCreateOrganizationInventoryDevicesSwapsBulk).
+		SetResult(&ResponseDevicesCreateOrganizationInventoryDevicesSwapsBulk{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateOrganizationInventoryDevicesSwapsBulk")
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationInventoryDevicesSwapsBulk")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseDevicesCreateOrganizationInventoryDevicesSwapsBulk)
+	return result, response, err
 
 }
 
@@ -5062,7 +5526,7 @@ func (s *DevicesService) CreateOrganizationInventoryDevicesSwapsBulk(organizatio
 
 */
 
-func (s *DevicesService) CloneOrganizationSwitchDevices(organizationID string) (*resty.Response, error) {
+func (s *DevicesService) CloneOrganizationSwitchDevices(organizationID string, requestDevicesCloneOrganizationSwitchDevices *RequestDevicesCloneOrganizationSwitchDevices) (*ResponseDevicesCloneOrganizationSwitchDevices, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/switch/devices/clone"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
@@ -5070,19 +5534,22 @@ func (s *DevicesService) CloneOrganizationSwitchDevices(organizationID string) (
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesCloneOrganizationSwitchDevices).
+		SetResult(&ResponseDevicesCloneOrganizationSwitchDevices{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation CloneOrganizationSwitchDevices")
+		return nil, response, fmt.Errorf("error with operation CloneOrganizationSwitchDevices")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseDevicesCloneOrganizationSwitchDevices)
+	return result, response, err
 
 }
 

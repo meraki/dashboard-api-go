@@ -494,7 +494,7 @@ type RequestCameraUpdateDeviceCameraQualityAndRetention struct {
 	MotionBasedRetentionEnabled    *bool  `json:"motionBasedRetentionEnabled,omitempty"`    // Boolean indicating if motion-based retention is enabled(true) or disabled(false) on the camera.
 	MotionDetectorVersion          *int   `json:"motionDetectorVersion,omitempty"`          // The version of the motion detector that will be used by the camera. Only applies to Gen 2 cameras. Defaults to v2.
 	ProfileID                      string `json:"profileId,omitempty"`                      // The ID of a quality and retention profile to assign to the camera. The profile's settings will override all of the per-camera quality and retention settings. If the value of this parameter is null, any existing profile will be unassigned from the camera.
-	Quality                        string `json:"quality,omitempty"`                        // Quality of the camera. Can be one of 'Standard', 'High' or 'Enhanced'. Not all qualities are supported by every camera model.
+	Quality                        string `json:"quality,omitempty"`                        // Quality of the camera. Can be one of 'Standard', 'High', 'Enhanced' or 'Ultra'. Not all qualities are supported by every camera model.
 	Resolution                     string `json:"resolution,omitempty"`                     // Resolution of the camera. Can be one of '1280x720', '1920x1080', '1080x1080', '2112x2112', '2880x2880', '2688x1512' or '3840x2160'.Not all resolutions are supported by every camera model.
 	RestrictedBandwidthModeEnabled *bool  `json:"restrictedBandwidthModeEnabled,omitempty"` // Boolean indicating if restricted bandwidth is enabled(true) or disabled(false) on the camera. This setting does not apply to MV2 cameras.
 }
@@ -547,12 +547,14 @@ type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettings struct
 	MV33         *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV33         `json:"MV33,omitempty"`           // Quality and resolution for MV33 camera models.
 	MV33M        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV33M        `json:"MV33M,omitempty"`          // Quality and resolution for MV33M camera models.
 	MV52         *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV52         `json:"MV52,omitempty"`           // Quality and resolution for MV52 camera models.
+	MV53X        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV53X        `json:"MV53X,omitempty"`          // Quality and resolution for MV53X camera models.
 	MV63         *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV63         `json:"MV63,omitempty"`           // Quality and resolution for MV63 camera models.
 	MV63M        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV63M        `json:"MV63M,omitempty"`          // Quality and resolution for MV63M camera models.
 	MV63X        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV63X        `json:"MV63X,omitempty"`          // Quality and resolution for MV63X camera models.
 	MV73         *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV73         `json:"MV73,omitempty"`           // Quality and resolution for MV73 camera models.
 	MV73M        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV73M        `json:"MV73M,omitempty"`          // Quality and resolution for MV73M camera models.
 	MV73X        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV73X        `json:"MV73X,omitempty"`          // Quality and resolution for MV73X camera models.
+	MV84X        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV84X        `json:"MV84X,omitempty"`          // Quality and resolution for MV84X camera models.
 	MV93         *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV93         `json:"MV93,omitempty"`           // Quality and resolution for MV93 camera models.
 	MV93M        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV93M        `json:"MV93M,omitempty"`          // Quality and resolution for MV93M camera models.
 	MV93X        *RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV93X        `json:"MV93X,omitempty"`          // Quality and resolution for MV93X camera models.
@@ -609,6 +611,10 @@ type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV52 st
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1280x720', '1920x1080', '2688x1512' or '3840x2160'.
 }
+type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV53X struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV63 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
@@ -632,6 +638,10 @@ type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV73M s
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV73X struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
+type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV84X struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard' or 'Enhanced'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1440x1080' or '2560x1920'.
 }
 type RequestCameraCreateNetworkCameraQualityRetentionProfileVideoSettingsMV93 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
@@ -674,12 +684,14 @@ type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettings struct
 	MV33         *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV33         `json:"MV33,omitempty"`           // Quality and resolution for MV33 camera models.
 	MV33M        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV33M        `json:"MV33M,omitempty"`          // Quality and resolution for MV33M camera models.
 	MV52         *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV52         `json:"MV52,omitempty"`           // Quality and resolution for MV52 camera models.
+	MV53X        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV53X        `json:"MV53X,omitempty"`          // Quality and resolution for MV53X camera models.
 	MV63         *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV63         `json:"MV63,omitempty"`           // Quality and resolution for MV63 camera models.
 	MV63M        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV63M        `json:"MV63M,omitempty"`          // Quality and resolution for MV63M camera models.
 	MV63X        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV63X        `json:"MV63X,omitempty"`          // Quality and resolution for MV63X camera models.
 	MV73         *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV73         `json:"MV73,omitempty"`           // Quality and resolution for MV73 camera models.
 	MV73M        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV73M        `json:"MV73M,omitempty"`          // Quality and resolution for MV73M camera models.
 	MV73X        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV73X        `json:"MV73X,omitempty"`          // Quality and resolution for MV73X camera models.
+	MV84X        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV84X        `json:"MV84X,omitempty"`          // Quality and resolution for MV84X camera models.
 	MV93         *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV93         `json:"MV93,omitempty"`           // Quality and resolution for MV93 camera models.
 	MV93M        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV93M        `json:"MV93M,omitempty"`          // Quality and resolution for MV93M camera models.
 	MV93X        *RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV93X        `json:"MV93X,omitempty"`          // Quality and resolution for MV93X camera models.
@@ -736,6 +748,10 @@ type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV52 st
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1280x720', '1920x1080', '2688x1512' or '3840x2160'.
 }
+type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV53X struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV63 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
@@ -759,6 +775,10 @@ type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV73M s
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV73X struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
 	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1920x1080', '2688x1512' or '3840x2160'.
+}
+type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV84X struct {
+	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard' or 'Enhanced'.
+	Resolution string `json:"resolution,omitempty"` // Resolution of the camera. Can be one of '1440x1080' or '2560x1920'.
 }
 type RequestCameraUpdateNetworkCameraQualityRetentionProfileVideoSettingsMV93 struct {
 	Quality    string `json:"quality,omitempty"`    // Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.

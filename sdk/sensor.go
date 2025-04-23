@@ -36,7 +36,7 @@ type GetOrganizationSensorReadingsHistoryQueryParams struct {
 	Timespan      float64  `url:"timespan,omitempty"`      //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 7 days. The default is 2 hours.
 	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Optional parameter to filter readings by network.
 	Serials       []string `url:"serials[],omitempty"`     //Optional parameter to filter readings by sensor.
-	Metrics       []string `url:"metrics[],omitempty"`     //Types of sensor readings to retrieve. If no metrics are supplied, all available types of readings will be retrieved. Allowed values are apparentPower, battery, button, co2, current, door, downstreamPower, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, remoteLockoutSwitch, temperature, tvoc, voltage, and water.
+	Metrics       []string `url:"metrics[],omitempty"`     //Types of sensor readings to retrieve. If no metrics are supplied, all available types of readings will be retrieved.
 }
 type GetOrganizationSensorReadingsLatestQueryParams struct {
 	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
@@ -44,7 +44,7 @@ type GetOrganizationSensorReadingsLatestQueryParams struct {
 	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Optional parameter to filter readings by network.
 	Serials       []string `url:"serials[],omitempty"`     //Optional parameter to filter readings by sensor.
-	Metrics       []string `url:"metrics[],omitempty"`     //Types of sensor readings to retrieve. If no metrics are supplied, all available types of readings will be retrieved. Allowed values are apparentPower, battery, button, co2, current, door, downstreamPower, frequency, humidity, indoorAirQuality, noise, pm25, powerFactor, realPower, remoteLockoutSwitch, temperature, tvoc, voltage, and water.
+	Metrics       []string `url:"metrics[],omitempty"`     //Types of sensor readings to retrieve. If no metrics are supplied, all available types of readings will be retrieved.
 }
 
 type ResponseSensorGetDeviceSensorCommands []ResponseItemSensorGetDeviceSensorCommands // Array of ResponseSensorGetDeviceSensorCommands
@@ -164,12 +164,14 @@ type ResponseItemSensorGetNetworkSensorAlertsOverviewByMetricCountsNoise struct 
 }
 type ResponseSensorGetNetworkSensorAlertsProfiles []ResponseItemSensorGetNetworkSensorAlertsProfiles // Array of ResponseSensorGetNetworkSensorAlertsProfiles
 type ResponseItemSensorGetNetworkSensorAlertsProfiles struct {
-	Conditions *[]ResponseItemSensorGetNetworkSensorAlertsProfilesConditions `json:"conditions,omitempty"` // List of conditions that will cause the profile to send an alert.
-	Name       string                                                        `json:"name,omitempty"`       // Name of the sensor alert profile.
-	ProfileID  string                                                        `json:"profileId,omitempty"`  // ID of the sensor alert profile.
-	Recipients *ResponseItemSensorGetNetworkSensorAlertsProfilesRecipients   `json:"recipients,omitempty"` // List of recipients that will receive the alert.
-	Schedule   *ResponseItemSensorGetNetworkSensorAlertsProfilesSchedule     `json:"schedule,omitempty"`   // The sensor schedule to use with the alert profile.
-	Serials    []string                                                      `json:"serials,omitempty"`    // List of device serials assigned to this sensor alert profile.
+	Conditions       *[]ResponseItemSensorGetNetworkSensorAlertsProfilesConditions `json:"conditions,omitempty"`       // List of conditions that will cause the profile to send an alert.
+	IncludesensorURL *bool                                                         `json:"includeSensorUrl,omitempty"` // Include dashboard link to sensor in messages (default: true).
+	Message          string                                                        `json:"message,omitempty"`          // A custom message that will appear in email and text message alerts.
+	Name             string                                                        `json:"name,omitempty"`             // Name of the sensor alert profile.
+	ProfileID        string                                                        `json:"profileId,omitempty"`        // ID of the sensor alert profile.
+	Recipients       *ResponseItemSensorGetNetworkSensorAlertsProfilesRecipients   `json:"recipients,omitempty"`       // List of recipients that will receive the alert.
+	Schedule         *ResponseItemSensorGetNetworkSensorAlertsProfilesSchedule     `json:"schedule,omitempty"`         // The sensor schedule to use with the alert profile.
+	Serials          []string                                                      `json:"serials,omitempty"`          // List of device serials assigned to this sensor alert profile.
 }
 type ResponseItemSensorGetNetworkSensorAlertsProfilesConditions struct {
 	Direction string                                                               `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
@@ -264,12 +266,14 @@ type ResponseItemSensorGetNetworkSensorAlertsProfilesSchedule struct {
 	Name string `json:"name,omitempty"` // Name of the sensor schedule to use with the alert profile.
 }
 type ResponseSensorCreateNetworkSensorAlertsProfile struct {
-	Conditions *[]ResponseSensorCreateNetworkSensorAlertsProfileConditions `json:"conditions,omitempty"` // List of conditions that will cause the profile to send an alert.
-	Name       string                                                      `json:"name,omitempty"`       // Name of the sensor alert profile.
-	ProfileID  string                                                      `json:"profileId,omitempty"`  // ID of the sensor alert profile.
-	Recipients *ResponseSensorCreateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"` // List of recipients that will receive the alert.
-	Schedule   *ResponseSensorCreateNetworkSensorAlertsProfileSchedule     `json:"schedule,omitempty"`   // The sensor schedule to use with the alert profile.
-	Serials    []string                                                    `json:"serials,omitempty"`    // List of device serials assigned to this sensor alert profile.
+	Conditions       *[]ResponseSensorCreateNetworkSensorAlertsProfileConditions `json:"conditions,omitempty"`       // List of conditions that will cause the profile to send an alert.
+	IncludesensorURL *bool                                                       `json:"includeSensorUrl,omitempty"` // Include dashboard link to sensor in messages (default: true).
+	Message          string                                                      `json:"message,omitempty"`          // A custom message that will appear in email and text message alerts.
+	Name             string                                                      `json:"name,omitempty"`             // Name of the sensor alert profile.
+	ProfileID        string                                                      `json:"profileId,omitempty"`        // ID of the sensor alert profile.
+	Recipients       *ResponseSensorCreateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"`       // List of recipients that will receive the alert.
+	Schedule         *ResponseSensorCreateNetworkSensorAlertsProfileSchedule     `json:"schedule,omitempty"`         // The sensor schedule to use with the alert profile.
+	Serials          []string                                                    `json:"serials,omitempty"`          // List of device serials assigned to this sensor alert profile.
 }
 type ResponseSensorCreateNetworkSensorAlertsProfileConditions struct {
 	Direction string                                                             `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
@@ -364,12 +368,14 @@ type ResponseSensorCreateNetworkSensorAlertsProfileSchedule struct {
 	Name string `json:"name,omitempty"` // Name of the sensor schedule to use with the alert profile.
 }
 type ResponseSensorGetNetworkSensorAlertsProfile struct {
-	Conditions *[]ResponseSensorGetNetworkSensorAlertsProfileConditions `json:"conditions,omitempty"` // List of conditions that will cause the profile to send an alert.
-	Name       string                                                   `json:"name,omitempty"`       // Name of the sensor alert profile.
-	ProfileID  string                                                   `json:"profileId,omitempty"`  // ID of the sensor alert profile.
-	Recipients *ResponseSensorGetNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"` // List of recipients that will receive the alert.
-	Schedule   *ResponseSensorGetNetworkSensorAlertsProfileSchedule     `json:"schedule,omitempty"`   // The sensor schedule to use with the alert profile.
-	Serials    []string                                                 `json:"serials,omitempty"`    // List of device serials assigned to this sensor alert profile.
+	Conditions       *[]ResponseSensorGetNetworkSensorAlertsProfileConditions `json:"conditions,omitempty"`       // List of conditions that will cause the profile to send an alert.
+	IncludesensorURL *bool                                                    `json:"includeSensorUrl,omitempty"` // Include dashboard link to sensor in messages (default: true).
+	Message          string                                                   `json:"message,omitempty"`          // A custom message that will appear in email and text message alerts.
+	Name             string                                                   `json:"name,omitempty"`             // Name of the sensor alert profile.
+	ProfileID        string                                                   `json:"profileId,omitempty"`        // ID of the sensor alert profile.
+	Recipients       *ResponseSensorGetNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"`       // List of recipients that will receive the alert.
+	Schedule         *ResponseSensorGetNetworkSensorAlertsProfileSchedule     `json:"schedule,omitempty"`         // The sensor schedule to use with the alert profile.
+	Serials          []string                                                 `json:"serials,omitempty"`          // List of device serials assigned to this sensor alert profile.
 }
 type ResponseSensorGetNetworkSensorAlertsProfileConditions struct {
 	Direction string                                                          `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
@@ -464,12 +470,14 @@ type ResponseSensorGetNetworkSensorAlertsProfileSchedule struct {
 	Name string `json:"name,omitempty"` // Name of the sensor schedule to use with the alert profile.
 }
 type ResponseSensorUpdateNetworkSensorAlertsProfile struct {
-	Conditions *[]ResponseSensorUpdateNetworkSensorAlertsProfileConditions `json:"conditions,omitempty"` // List of conditions that will cause the profile to send an alert.
-	Name       string                                                      `json:"name,omitempty"`       // Name of the sensor alert profile.
-	ProfileID  string                                                      `json:"profileId,omitempty"`  // ID of the sensor alert profile.
-	Recipients *ResponseSensorUpdateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"` // List of recipients that will receive the alert.
-	Schedule   *ResponseSensorUpdateNetworkSensorAlertsProfileSchedule     `json:"schedule,omitempty"`   // The sensor schedule to use with the alert profile.
-	Serials    []string                                                    `json:"serials,omitempty"`    // List of device serials assigned to this sensor alert profile.
+	Conditions       *[]ResponseSensorUpdateNetworkSensorAlertsProfileConditions `json:"conditions,omitempty"`       // List of conditions that will cause the profile to send an alert.
+	IncludesensorURL *bool                                                       `json:"includeSensorUrl,omitempty"` // Include dashboard link to sensor in messages (default: true).
+	Message          string                                                      `json:"message,omitempty"`          // A custom message that will appear in email and text message alerts.
+	Name             string                                                      `json:"name,omitempty"`             // Name of the sensor alert profile.
+	ProfileID        string                                                      `json:"profileId,omitempty"`        // ID of the sensor alert profile.
+	Recipients       *ResponseSensorUpdateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"`       // List of recipients that will receive the alert.
+	Schedule         *ResponseSensorUpdateNetworkSensorAlertsProfileSchedule     `json:"schedule,omitempty"`         // The sensor schedule to use with the alert profile.
+	Serials          []string                                                    `json:"serials,omitempty"`          // List of device serials assigned to this sensor alert profile.
 }
 type ResponseSensorUpdateNetworkSensorAlertsProfileConditions struct {
 	Direction string                                                             `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
@@ -794,11 +802,13 @@ type RequestSensorUpdateDeviceSensorRelationshipsLivestreamRelatedDevices struct
 	Serial string `json:"serial,omitempty"` // The serial of the related device
 }
 type RequestSensorCreateNetworkSensorAlertsProfile struct {
-	Conditions *[]RequestSensorCreateNetworkSensorAlertsProfileConditions `json:"conditions,omitempty"` // List of conditions that will cause the profile to send an alert.
-	Name       string                                                     `json:"name,omitempty"`       // Name of the sensor alert profile.
-	Recipients *RequestSensorCreateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"` // List of recipients that will receive the alert.
-	Schedule   *RequestSensorCreateNetworkSensorAlertsProfileSchedule     `json:"schedule,omitempty"`   // The sensor schedule to use with the alert profile.
-	Serials    []string                                                   `json:"serials,omitempty"`    // List of device serials assigned to this sensor alert profile.
+	Conditions       *[]RequestSensorCreateNetworkSensorAlertsProfileConditions `json:"conditions,omitempty"`       // List of conditions that will cause the profile to send an alert.
+	IncludesensorURL *bool                                                      `json:"includeSensorUrl,omitempty"` // Include dashboard link to sensor in messages (default: true).
+	Message          string                                                     `json:"message,omitempty"`          // A custom message that will appear in email and text message alerts.
+	Name             string                                                     `json:"name,omitempty"`             // Name of the sensor alert profile.
+	Recipients       *RequestSensorCreateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"`       // List of recipients that will receive the alert.
+	Schedule         *RequestSensorCreateNetworkSensorAlertsProfileSchedule     `json:"schedule,omitempty"`         // The sensor schedule to use with the alert profile.
+	Serials          []string                                                   `json:"serials,omitempty"`          // List of device serials assigned to this sensor alert profile.
 }
 type RequestSensorCreateNetworkSensorAlertsProfileConditions struct {
 	Direction string                                                            `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
@@ -892,11 +902,13 @@ type RequestSensorCreateNetworkSensorAlertsProfileSchedule struct {
 	ID string `json:"id,omitempty"` // ID of the sensor schedule to use with the alert profile. If not defined, the alert profile will be active at all times.
 }
 type RequestSensorUpdateNetworkSensorAlertsProfile struct {
-	Conditions *[]RequestSensorUpdateNetworkSensorAlertsProfileConditions `json:"conditions,omitempty"` // List of conditions that will cause the profile to send an alert.
-	Name       string                                                     `json:"name,omitempty"`       // Name of the sensor alert profile.
-	Recipients *RequestSensorUpdateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"` // List of recipients that will receive the alert.
-	Schedule   *RequestSensorUpdateNetworkSensorAlertsProfileSchedule     `json:"schedule,omitempty"`   // The sensor schedule to use with the alert profile.
-	Serials    []string                                                   `json:"serials,omitempty"`    // List of device serials assigned to this sensor alert profile.
+	Conditions       *[]RequestSensorUpdateNetworkSensorAlertsProfileConditions `json:"conditions,omitempty"`       // List of conditions that will cause the profile to send an alert.
+	IncludesensorURL *bool                                                      `json:"includeSensorUrl,omitempty"` // Include dashboard link to sensor in messages (default: true).
+	Message          string                                                     `json:"message,omitempty"`          // A custom message that will appear in email and text message alerts.
+	Name             string                                                     `json:"name,omitempty"`             // Name of the sensor alert profile.
+	Recipients       *RequestSensorUpdateNetworkSensorAlertsProfileRecipients   `json:"recipients,omitempty"`       // List of recipients that will receive the alert.
+	Schedule         *RequestSensorUpdateNetworkSensorAlertsProfileSchedule     `json:"schedule,omitempty"`         // The sensor schedule to use with the alert profile.
+	Serials          []string                                                   `json:"serials,omitempty"`          // List of device serials assigned to this sensor alert profile.
 }
 type RequestSensorUpdateNetworkSensorAlertsProfileConditions struct {
 	Direction string                                                            `json:"direction,omitempty"` // If 'above', an alert will be sent when a sensor reads above the threshold. If 'below', an alert will be sent when a sensor reads below the threshold. Only applicable for temperature, humidity, realPower, apparentPower, powerFactor, voltage, current, and frequency thresholds.
@@ -1009,8 +1021,9 @@ func (s *SensorService) GetDeviceSensorCommands(serial string, getDeviceSensorCo
 	if getDeviceSensorCommandsQueryParams != nil && getDeviceSensorCommandsQueryParams.PerPage == -1 {
 		var result *ResponseSensorGetDeviceSensorCommands
 		println("Paginate")
-		getDeviceSensorCommandsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetDeviceSensorCommandsPaginate, serial, "", getDeviceSensorCommandsQueryParams)
+		result2, response, err := Paginate(s.GetDeviceSensorCommandsPaginate, serial, "", &GetDeviceSensorCommandsQueryParams{
+			PerPage: PAGINATION_PER_PAGE,
+		})
 		if err != nil {
 			return nil, nil, err
 		}
@@ -1396,8 +1409,9 @@ func (s *SensorService) GetOrganizationSensorReadingsHistory(organizationID stri
 	if getOrganizationSensorReadingsHistoryQueryParams != nil && getOrganizationSensorReadingsHistoryQueryParams.PerPage == -1 {
 		var result *ResponseSensorGetOrganizationSensorReadingsHistory
 		println("Paginate")
-		getOrganizationSensorReadingsHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationSensorReadingsHistoryPaginate, organizationID, "", getOrganizationSensorReadingsHistoryQueryParams)
+		result2, response, err := Paginate(s.GetOrganizationSensorReadingsHistoryPaginate, organizationID, "", &GetOrganizationSensorReadingsHistoryQueryParams{
+			PerPage: PAGINATION_PER_PAGE,
+		})
 		if err != nil {
 			return nil, nil, err
 		}
@@ -1468,8 +1482,9 @@ func (s *SensorService) GetOrganizationSensorReadingsLatest(organizationID strin
 	if getOrganizationSensorReadingsLatestQueryParams != nil && getOrganizationSensorReadingsLatestQueryParams.PerPage == -1 {
 		var result *ResponseSensorGetOrganizationSensorReadingsLatest
 		println("Paginate")
-		getOrganizationSensorReadingsLatestQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationSensorReadingsLatestPaginate, organizationID, "", getOrganizationSensorReadingsLatestQueryParams)
+		result2, response, err := Paginate(s.GetOrganizationSensorReadingsLatestPaginate, organizationID, "", &GetOrganizationSensorReadingsLatestQueryParams{
+			PerPage: PAGINATION_PER_PAGE,
+		})
 		if err != nil {
 			return nil, nil, err
 		}
