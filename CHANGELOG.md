@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.0] - 2025-01-20
+### Changed
+- dashboard-api-go supports now v1.57.0 of Meraki Dashboard API.
+
 ## [4.0.6] - 2025-03-10
 ### Fixed
 - Include `ID` to `ResponseCameraGetOrganizationCameraRole` and `ResponseItemCameraGetOrganizationCameraRoles`.

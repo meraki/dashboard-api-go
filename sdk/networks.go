@@ -238,6 +238,7 @@ type ResponseNetworksGetNetworkAlertsSettingsAlerts struct {
 	Filters           *ResponseNetworksGetNetworkAlertsSettingsAlertsFilters           `json:"filters,omitempty"`           // A hash of specific configuration data for the alert. Only filters specific to the alert will be updated.
 	Type              string                                                           `json:"type,omitempty"`              // The type of alert
 }
+
 type ResponseNetworksGetNetworkAlertsSettingsAlertsAlertDestinations struct {
 	AllAdmins     *bool    `json:"allAdmins,omitempty"`     // If true, then all network admins will receive emails for this alert
 	Emails        []string `json:"emails,omitempty"`        // A list of emails that will receive information about the alert
@@ -436,8 +437,8 @@ type ResponseNetworksGetNetworkClientsOverviewCounts struct {
 	WithHeavyUsage *int `json:"withHeavyUsage,omitempty"` // The total number of clients with heavy usage on a network
 }
 type ResponseNetworksGetNetworkClientsOverviewUsages struct {
-	Average               *int `json:"average,omitempty"`               // The average usage of all clients on a network
-	WithHeavyUsageAverage *int `json:"withHeavyUsageAverage,omitempty"` // The average usage of all clients with heavy usage on a network
+	Average               *int `json:"average,omitempty"`               // The average usage of all clients on a network in kilobytes
+	WithHeavyUsageAverage *int `json:"withHeavyUsageAverage,omitempty"` // The average usage of all clients with heavy usage on a network in kilobytes
 }
 type ResponseNetworksProvisionNetworkClients struct {
 	Clients       *[]ResponseNetworksProvisionNetworkClientsClients `json:"clients,omitempty"`       // The list of clients to provision
@@ -478,6 +479,8 @@ type ResponseNetworksGetNetworkClient struct {
 	Os                     string                                                  `json:"os,omitempty"`                     // The operating system of the client
 	RecentDeviceConnection string                                                  `json:"recentDeviceConnection,omitempty"` // Client's most recent connection type
 	RecentDeviceMac        string                                                  `json:"recentDeviceMac,omitempty"`        // The MAC address of the node that the device was last connected to
+	RecentDeviceName       string                                                  `json:"recentDeviceName,omitempty"`       // The name of the node that the device was last connected to
+	RecentDeviceSerial     string                                                  `json:"recentDeviceSerial,omitempty"`     // The serial of the node that the device was last connected to
 	SmInstalled            *bool                                                   `json:"smInstalled,omitempty"`            // Status of SM for the client
 	SSID                   string                                                  `json:"ssid,omitempty"`                   // The name of the SSID that the client is connected to
 	Status                 string                                                  `json:"status,omitempty"`                 // The connection status of the client
@@ -1786,6 +1789,7 @@ type ResponseItemNetworksGetNetworkFloorPlans struct {
 	BottomRightCorner *ResponseItemNetworksGetNetworkFloorPlansBottomRightCorner `json:"bottomRightCorner,omitempty"` // The longitude and latitude of the bottom right corner of your floor plan.
 	Center            *ResponseItemNetworksGetNetworkFloorPlansCenter            `json:"center,omitempty"`            // The longitude and latitude of the center of your floor plan. The 'center' or two adjacent corners (e.g. 'topLeftCorner' and 'bottomLeftCorner') must be specified. If 'center' is specified, the floor plan is placed over that point with no rotation. If two adjacent corners are specified, the floor plan is rotated to line up with the two specified points. The aspect ratio of the floor plan's image is preserved regardless of which corners/center are specified. (This means if that more than two corners are specified, only two corners may be used to preserve the floor plan's aspect ratio.). No two points can have the same latitude, longitude pair.
 	Devices           *[]ResponseItemNetworksGetNetworkFloorPlansDevices         `json:"devices,omitempty"`           // List of devices for the floorplan
+	FloorNumber       *float64                                                   `json:"floorNumber,omitempty"`       // The floor number of the floor within the building.
 	FloorPlanID       string                                                     `json:"floorPlanId,omitempty"`       // Floor plan ID
 	Height            *float64                                                   `json:"height,omitempty"`            // The height of your floor plan.
 	ImageExtension    string                                                     `json:"imageExtension,omitempty"`    // The format type of the image.
@@ -1843,6 +1847,7 @@ type ResponseNetworksCreateNetworkFloorPlan struct {
 	BottomRightCorner *ResponseNetworksCreateNetworkFloorPlanBottomRightCorner `json:"bottomRightCorner,omitempty"` // The longitude and latitude of the bottom right corner of your floor plan.
 	Center            *ResponseNetworksCreateNetworkFloorPlanCenter            `json:"center,omitempty"`            // The longitude and latitude of the center of your floor plan. The 'center' or two adjacent corners (e.g. 'topLeftCorner' and 'bottomLeftCorner') must be specified. If 'center' is specified, the floor plan is placed over that point with no rotation. If two adjacent corners are specified, the floor plan is rotated to line up with the two specified points. The aspect ratio of the floor plan's image is preserved regardless of which corners/center are specified. (This means if that more than two corners are specified, only two corners may be used to preserve the floor plan's aspect ratio.). No two points can have the same latitude, longitude pair.
 	Devices           *[]ResponseNetworksCreateNetworkFloorPlanDevices         `json:"devices,omitempty"`           // List of devices for the floorplan
+	FloorNumber       *float64                                                 `json:"floorNumber,omitempty"`       // The floor number of the floor within the building.
 	FloorPlanID       string                                                   `json:"floorPlanId,omitempty"`       // Floor plan ID
 	Height            *float64                                                 `json:"height,omitempty"`            // The height of your floor plan.
 	ImageExtension    string                                                   `json:"imageExtension,omitempty"`    // The format type of the image.
@@ -1914,7 +1919,7 @@ type ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsCompleted struct {
 }
 type ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsErrors struct {
 	Source string `json:"source,omitempty"` // The step of the auto locate process when the error occurred. Possible values: 'gnss', 'ranging', 'positioning'
-	Type   string `json:"type,omitempty"`   // The type of error that occurred. Possible values: 'failure', 'no neighbors', 'missing anchors', 'wrong anchors', 'calculation failure', 'scheduling failure'
+	Type   string `json:"type,omitempty"`   // The type of error that occurred. Possible values: 'failure', 'no neighbors', 'missing anchors', 'wrong anchors', 'missing ranging data', 'calculation failure', 'scheduling failure'
 }
 type ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsGnss struct {
 	Completed *ResponseNetworksBatchNetworkFloorPlansAutoLocateJobsJobsGnssCompleted `json:"completed,omitempty"` // Progress information for the GNSS acquisition process
@@ -1944,6 +1949,7 @@ type ResponseNetworksDeleteNetworkFloorPlan struct {
 	BottomRightCorner *ResponseNetworksDeleteNetworkFloorPlanBottomRightCorner `json:"bottomRightCorner,omitempty"` // The longitude and latitude of the bottom right corner of your floor plan.
 	Center            *ResponseNetworksDeleteNetworkFloorPlanCenter            `json:"center,omitempty"`            // The longitude and latitude of the center of your floor plan. The 'center' or two adjacent corners (e.g. 'topLeftCorner' and 'bottomLeftCorner') must be specified. If 'center' is specified, the floor plan is placed over that point with no rotation. If two adjacent corners are specified, the floor plan is rotated to line up with the two specified points. The aspect ratio of the floor plan's image is preserved regardless of which corners/center are specified. (This means if that more than two corners are specified, only two corners may be used to preserve the floor plan's aspect ratio.). No two points can have the same latitude, longitude pair.
 	Devices           *[]ResponseNetworksDeleteNetworkFloorPlanDevices         `json:"devices,omitempty"`           // List of devices for the floorplan
+	FloorNumber       *float64                                                 `json:"floorNumber,omitempty"`       // The floor number of the floor within the building.
 	FloorPlanID       string                                                   `json:"floorPlanId,omitempty"`       // Floor plan ID
 	Height            *float64                                                 `json:"height,omitempty"`            // The height of your floor plan.
 	ImageExtension    string                                                   `json:"imageExtension,omitempty"`    // The format type of the image.
@@ -2001,6 +2007,7 @@ type ResponseNetworksGetNetworkFloorPlan struct {
 	BottomRightCorner *ResponseNetworksGetNetworkFloorPlanBottomRightCorner `json:"bottomRightCorner,omitempty"` // The longitude and latitude of the bottom right corner of your floor plan.
 	Center            *ResponseNetworksGetNetworkFloorPlanCenter            `json:"center,omitempty"`            // The longitude and latitude of the center of your floor plan. The 'center' or two adjacent corners (e.g. 'topLeftCorner' and 'bottomLeftCorner') must be specified. If 'center' is specified, the floor plan is placed over that point with no rotation. If two adjacent corners are specified, the floor plan is rotated to line up with the two specified points. The aspect ratio of the floor plan's image is preserved regardless of which corners/center are specified. (This means if that more than two corners are specified, only two corners may be used to preserve the floor plan's aspect ratio.). No two points can have the same latitude, longitude pair.
 	Devices           *[]ResponseNetworksGetNetworkFloorPlanDevices         `json:"devices,omitempty"`           // List of devices for the floorplan
+	FloorNumber       *float64                                              `json:"floorNumber,omitempty"`       // The floor number of the floor within the building.
 	FloorPlanID       string                                                `json:"floorPlanId,omitempty"`       // Floor plan ID
 	Height            *float64                                              `json:"height,omitempty"`            // The height of your floor plan.
 	ImageExtension    string                                                `json:"imageExtension,omitempty"`    // The format type of the image.
@@ -2058,6 +2065,7 @@ type ResponseNetworksUpdateNetworkFloorPlan struct {
 	BottomRightCorner *ResponseNetworksUpdateNetworkFloorPlanBottomRightCorner `json:"bottomRightCorner,omitempty"` // The longitude and latitude of the bottom right corner of your floor plan.
 	Center            *ResponseNetworksUpdateNetworkFloorPlanCenter            `json:"center,omitempty"`            // The longitude and latitude of the center of your floor plan. The 'center' or two adjacent corners (e.g. 'topLeftCorner' and 'bottomLeftCorner') must be specified. If 'center' is specified, the floor plan is placed over that point with no rotation. If two adjacent corners are specified, the floor plan is rotated to line up with the two specified points. The aspect ratio of the floor plan's image is preserved regardless of which corners/center are specified. (This means if that more than two corners are specified, only two corners may be used to preserve the floor plan's aspect ratio.). No two points can have the same latitude, longitude pair.
 	Devices           *[]ResponseNetworksUpdateNetworkFloorPlanDevices         `json:"devices,omitempty"`           // List of devices for the floorplan
+	FloorNumber       *float64                                                 `json:"floorNumber,omitempty"`       // The floor number of the floor within the building.
 	FloorPlanID       string                                                   `json:"floorPlanId,omitempty"`       // Floor plan ID
 	Height            *float64                                                 `json:"height,omitempty"`            // The height of your floor plan.
 	ImageExtension    string                                                   `json:"imageExtension,omitempty"`    // The format type of the image.
@@ -3852,6 +3860,7 @@ type RequestNetworksCreateNetworkFloorPlan struct {
 	BottomLeftCorner  *RequestNetworksCreateNetworkFloorPlanBottomLeftCorner  `json:"bottomLeftCorner,omitempty"`  // The longitude and latitude of the bottom left corner of your floor plan.
 	BottomRightCorner *RequestNetworksCreateNetworkFloorPlanBottomRightCorner `json:"bottomRightCorner,omitempty"` // The longitude and latitude of the bottom right corner of your floor plan.
 	Center            *RequestNetworksCreateNetworkFloorPlanCenter            `json:"center,omitempty"`            // The longitude and latitude of the center of your floor plan. The 'center' or two adjacent corners (e.g. 'topLeftCorner' and 'bottomLeftCorner') must be specified. If 'center' is specified, the floor plan is placed over that point with no rotation. If two adjacent corners are specified, the floor plan is rotated to line up with the two specified points. The aspect ratio of the floor plan's image is preserved regardless of which corners/center are specified. (This means if that more than two corners are specified, only two corners may be used to preserve the floor plan's aspect ratio.). No two points can have the same latitude, longitude pair.
+	FloorNumber       *float64                                                `json:"floorNumber,omitempty"`       // The floor number of the floors within the building
 	ImageContents     string                                                  `json:"imageContents,omitempty"`     // The file contents (a base 64 encoded string) of your image. Supported formats are PNG, GIF, and JPG. Note that all images are saved as PNG files, regardless of the format they are uploaded in.
 	Name              string                                                  `json:"name,omitempty"`              // The name of your floor plan.
 	TopLeftCorner     *RequestNetworksCreateNetworkFloorPlanTopLeftCorner     `json:"topLeftCorner,omitempty"`     // The longitude and latitude of the top left corner of your floor plan.
@@ -3923,6 +3932,7 @@ type RequestNetworksUpdateNetworkFloorPlan struct {
 	BottomLeftCorner  *RequestNetworksUpdateNetworkFloorPlanBottomLeftCorner  `json:"bottomLeftCorner,omitempty"`  // The longitude and latitude of the bottom left corner of your floor plan.
 	BottomRightCorner *RequestNetworksUpdateNetworkFloorPlanBottomRightCorner `json:"bottomRightCorner,omitempty"` // The longitude and latitude of the bottom right corner of your floor plan.
 	Center            *RequestNetworksUpdateNetworkFloorPlanCenter            `json:"center,omitempty"`            // The longitude and latitude of the center of your floor plan. If you want to change the geolocation data of your floor plan, either the 'center' or two adjacent corners (e.g. 'topLeftCorner' and 'bottomLeftCorner') must be specified. If 'center' is specified, the floor plan is placed over that point with no rotation. If two adjacent corners are specified, the floor plan is rotated to line up with the two specified points. The aspect ratio of the floor plan's image is preserved regardless of which corners/center are specified. (This means if that more than two corners are specified, only two corners may be used to preserve the floor plan's aspect ratio.). No two points can have the same latitude, longitude pair.
+	FloorNumber       *float64                                                `json:"floorNumber,omitempty"`       // The floor number of the floors within the building
 	ImageContents     string                                                  `json:"imageContents,omitempty"`     // The file contents (a base 64 encoded string) of your new image. Supported formats are PNG, GIF, and JPG. Note that all images are saved as PNG files, regardless of the format they are uploaded in. If you upload a new image, and you do NOT specify any new geolocation fields ('center, 'topLeftCorner', etc), the floor plan will be recentered with no rotation in order to maintain the aspect ratio of your new image.
 	Name              string                                                  `json:"name,omitempty"`              // The name of your floor plan.
 	TopLeftCorner     *RequestNetworksUpdateNetworkFloorPlanTopLeftCorner     `json:"topLeftCorner,omitempty"`     // The longitude and latitude of the top left corner of your floor plan.
@@ -4298,6 +4308,7 @@ type RequestNetworksUpdateNetworkSettingsLocalStatusPage struct {
 type RequestNetworksUpdateNetworkSettingsLocalStatusPageAuthentication struct {
 	Enabled  *bool  `json:"enabled,omitempty"`  // Enables / disables the authentication on Local Status page(s).
 	Password string `json:"password,omitempty"` // The password used for Local Status Page(s). Set this to null to clear the password.
+	Username string `json:"username,omitempty"` // The username used for Local Status Page(s).
 }
 type RequestNetworksUpdateNetworkSettingsNamedVLANs struct {
 	Enabled *bool `json:"enabled,omitempty"` // Enables / disables Named VLANs on the Network.
@@ -4318,7 +4329,7 @@ type RequestNetworksUpdateNetworkSyslogServers struct {
 	Servers *[]RequestNetworksUpdateNetworkSyslogServersServers `json:"servers,omitempty"` // A list of the syslog servers for this network
 }
 type RequestNetworksUpdateNetworkSyslogServersServers struct {
-	Host  string   `json:"host,omitempty"`  // The IP address of the syslog server
+	Host  string   `json:"host,omitempty"`  // The IP address or FQDN of the syslog server
 	Port  *int     `json:"port,omitempty"`  // The port of the syslog server
 	Roles []string `json:"roles,omitempty"` // A list of roles for the syslog server. Options (case-insensitive): 'Wireless event log', 'Appliance event log', 'Switch event log', 'Air Marshal events', 'Flows', 'URLs', 'IDS alerts', 'Security events'
 }
@@ -6864,21 +6875,22 @@ func (s *NetworksService) GetNetworkWebhooksWebhookTest(networkID string, webhoo
 
 }
 
-//GetOrganizationSummaryTopNetworksByStatus List the client and status overview information for the networks in an organization
-/* List the client and status overview information for the networks in an organization. Usage is measured in kilobytes and from the last seven days.
+//GetOrganizationIntegrationsXdrNetworks Returns the networks in the organization that have XDR enabled
+/* Returns the networks in the organization that have XDR enabled
 
 @param organizationID organizationId path parameter. Organization ID
-@param getOrganizationSummaryTopNetworksByStatusQueryParams Filtering parameter
+@param getOrganizationIntegrationsXdrNetworksQueryParams Filtering parameter
 
 
 */
 
-func (s *NetworksService) GetOrganizationSummaryTopNetworksByStatus(organizationID string, getOrganizationSummaryTopNetworksByStatusQueryParams *GetOrganizationSummaryTopNetworksByStatusQueryParams) (*resty.Response, error) {
-	path := "/api/v1/organizations/{organizationId}/summary/top/networks/byStatus"
+func (s *NetworksService) GetOrganizationIntegrationsXdrNetworks(organizationID string, getOrganizationIntegrationsXdrNetworksQueryParams *GetOrganizationIntegrationsXdrNetworksQueryParams) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/integrations/xdr/networks"
 	s.rateLimiterBucket.Wait(1)
+
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSummaryTopNetworksByStatusQueryParams)
+	queryString, _ := query.Values(getOrganizationIntegrationsXdrNetworksQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -6893,11 +6905,83 @@ func (s *NetworksService) GetOrganizationSummaryTopNetworksByStatus(organization
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation GetOrganizationSummaryTopNetworksByStatus")
+		return response, fmt.Errorf("error with operation GetOrganizationIntegrationsXdrNetworks")
 	}
 
 	return response, err
 
+}
+
+//GetOrganizationSummaryTopNetworksByStatus List the client and status overview information for the networks in an organization
+/* List the client and status overview information for the networks in an organization. Usage is measured in kilobytes and from the last seven days.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationSummaryTopNetworksByStatusQueryParams Filtering parameter
+
+
+*/
+
+func (s *NetworksService) GetOrganizationSummaryTopNetworksByStatus(organizationID string, getOrganizationSummaryTopNetworksByStatusQueryParams *GetOrganizationSummaryTopNetworksByStatusQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/summary/top/networks/byStatus"
+	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationSummaryTopNetworksByStatusQueryParams != nil && getOrganizationSummaryTopNetworksByStatusQueryParams.PerPage == -1 {
+		var result *ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus
+		println("Paginate")
+		getOrganizationSummaryTopNetworksByStatusQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationSummaryTopNetworksByStatusPaginate, organizationID, "", getOrganizationSummaryTopNetworksByStatusQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result = append(*result, *resultTmp...)
+			}
+		}
+		return result, response, err
+	}
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationSummaryTopNetworksByStatusQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationSummaryTopNetworksByStatus")
+	}
+
+	result := response.Result().(*ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus)
+	return result, response, err
+
+}
+func (s *NetworksService) GetOrganizationSummaryTopNetworksByStatusPaginate(organizationID string, getOrganizationSummaryTopNetworksByStatusQueryParams any) (any, *resty.Response, error) {
+	getOrganizationSummaryTopNetworksByStatusQueryParamsConverted := getOrganizationSummaryTopNetworksByStatusQueryParams.(*GetOrganizationSummaryTopNetworksByStatusQueryParams)
+
+	return s.GetOrganizationSummaryTopNetworksByStatus(organizationID, getOrganizationSummaryTopNetworksByStatusQueryParamsConverted)
 }
 
 //BindNetwork Bind a network to a template.
@@ -7850,6 +7934,70 @@ func (s *NetworksService) CreateNetworkWebhooksWebhookTest(networkID string, req
 
 	result := response.Result().(*ResponseNetworksCreateNetworkWebhooksWebhookTest)
 	return result, response, err
+
+}
+
+//DisableOrganizationIntegrationsXdrNetworks Disable XDR on networks
+/* Disable XDR on networks
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *NetworksService) DisableOrganizationIntegrationsXdrNetworks(organizationID string) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/integrations/xdr/networks/disable"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation DisableOrganizationIntegrationsXdrNetworks")
+	}
+
+	return response, err
+
+}
+
+//EnableOrganizationIntegrationsXdrNetworks Enable XDR on networks
+/* Enable XDR on networks
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *NetworksService) EnableOrganizationIntegrationsXdrNetworks(organizationID string) (*resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/integrations/xdr/networks/enable"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation EnableOrganizationIntegrationsXdrNetworks")
+	}
+
+	return response, err
 
 }
 

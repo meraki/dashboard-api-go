@@ -19,6 +19,9 @@ type GetDeviceSwitchPortsStatusesPacketsQueryParams struct {
 	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data. The maximum lookback period is 1 day from today.
 	Timespan float64 `url:"timespan,omitempty"` //The timespan for which the information will be fetched. If specifying timespan, do not specify parameter t0. The value must be in seconds and be less than or equal to 1 day. The default is 1 day.
 }
+type GetDeviceSwitchRoutingInterfacesQueryParams struct {
+	Protocol string `url:"protocol,omitempty"` //Optional parameter to filter L3 interfaces by protocol.
+}
 type GetNetworkSwitchDhcpV4ServersSeenQueryParams struct {
 	T0            string  `url:"t0,omitempty"`            //The beginning of the timespan for the data. The maximum lookback period is 31 days from today.
 	Timespan      float64 `url:"timespan,omitempty"`      //The timespan for which the information will be fetched. If specifying timespan, do not specify parameter t0. The value must be in seconds and be less than or equal to 31 days. The default is 1 day.
@@ -35,6 +38,9 @@ type GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams st
 	PerPage       int    `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
 	StartingAfter string `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 	EndingBefore  string `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+}
+type GetNetworkSwitchStackRoutingInterfacesQueryParams struct {
+	Protocol string `url:"protocol,omitempty"` //Optional parameter to filter L3 interfaces by protocol.
 }
 type GetOrganizationSummarySwitchPowerHistoryQueryParams struct {
 	T0       string  `url:"t0,omitempty"`       //The beginning of the timespan for the data.
@@ -102,6 +108,23 @@ type GetOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams struct {
 	Serial                    string   `url:"serial,omitempty"`                    //Optional parameter to filter items to switches with serial number that contains the search term or are an exact match.
 	Serials                   []string `url:"serials[],omitempty"`                 //Optional parameter to filter items to switches that have one of the provided serials.
 }
+type GetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams struct {
+	T0                        string   `url:"t0,omitempty"`                        //The beginning of the timespan for the data. The maximum lookback period is 31 days from today.
+	T1                        string   `url:"t1,omitempty"`                        //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
+	Timespan                  float64  `url:"timespan,omitempty"`                  //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 1 day. If interval is provided, the timespan will be autocalculated.
+	Interval                  int      `url:"interval,omitempty"`                  //The time interval in seconds for returned data. The valid intervals are: 300, 1200, 14400, 86400. The default is 1200. Interval is calculated if time params are provided.
+	PerPage                   int      `url:"perPage,omitempty"`                   //The number of entries per page returned. Acceptable range is 3 - 50. Default is 10.
+	StartingAfter             string   `url:"startingAfter,omitempty"`             //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore              string   `url:"endingBefore,omitempty"`              //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	ConfigurationUpdatedAfter string   `url:"configurationUpdatedAfter,omitempty"` //Optional parameter to filter items to switches where the configuration has been updated after the given timestamp.
+	Mac                       string   `url:"mac,omitempty"`                       //Optional parameter to filter items to switches with MAC addresses that contain the search term or are an exact match.
+	Macs                      []string `url:"macs[],omitempty"`                    //Optional parameter to filter items to switches that have one of the provided MAC addresses.
+	Name                      string   `url:"name,omitempty"`                      //Optional parameter to filter items to switches with names that contain the search term or are an exact match.
+	NetworkIDs                []string `url:"networkIds[],omitempty"`              //Optional parameter to filter items to switches in one of the provided networks.
+	PortProfileIDs            []string `url:"portProfileIds[],omitempty"`          //Optional parameter to filter items to switches that contain switchports belonging to one of the specified port profiles.
+	Serial                    string   `url:"serial,omitempty"`                    //Optional parameter to filter items to switches with serial number that contains the search term or are an exact match.
+	Serials                   []string `url:"serials[],omitempty"`                 //Optional parameter to filter items to switches that have one of the provided serials.
+}
 
 type ResponseSwitchGetDeviceSwitchPorts []ResponseItemSwitchGetDeviceSwitchPorts // Array of ResponseSwitchGetDeviceSwitchPorts
 type ResponseItemSwitchGetDeviceSwitchPorts struct {
@@ -134,7 +157,7 @@ type ResponseItemSwitchGetDeviceSwitchPorts struct {
 	StormControlEnabled         *bool                                                      `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch port.
 	StpGuard                    string                                                     `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
 	Tags                        []string                                                   `json:"tags,omitempty"`                        // The list of tags of the switch port.
-	Type                        string                                                     `json:"type,omitempty"`                        // The type of the switch port ('trunk', 'access' or 'stack').
+	Type                        string                                                     `json:"type,omitempty"`                        // The type of the switch port ('trunk', 'access', 'stack' or 'routed').
 	Udld                        string                                                     `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
 	VLAN                        *int                                                       `json:"vlan,omitempty"`                        // The VLAN of the switch port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
 	VoiceVLAN                   *int                                                       `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch port. Only applicable to access ports.
@@ -222,7 +245,7 @@ type ResponseItemSwitchGetDeviceSwitchPortsStatusesSecurePort struct {
 }
 type ResponseItemSwitchGetDeviceSwitchPortsStatusesSecurePortConfigOverrides struct {
 	AllowedVLANs string `json:"allowedVlans,omitempty"` // The VLANs allowed on the . Only applicable to trunk ports.
-	Type         string `json:"type,omitempty"`         // The type of the  ('trunk', 'access' or 'stack').
+	Type         string `json:"type,omitempty"`         // The type of the  ('trunk', 'access', 'stack' or 'routed').
 	VLAN         *int   `json:"vlan,omitempty"`         // The VLAN of the . For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
 	VoiceVLAN    *int   `json:"voiceVlan,omitempty"`    // The voice VLAN of the . Only applicable to access ports.
 }
@@ -286,7 +309,7 @@ type ResponseSwitchGetDeviceSwitchPort struct {
 	StormControlEnabled         *bool                                                 `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch port.
 	StpGuard                    string                                                `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
 	Tags                        []string                                              `json:"tags,omitempty"`                        // The list of tags of the switch port.
-	Type                        string                                                `json:"type,omitempty"`                        // The type of the switch port ('trunk', 'access' or 'stack').
+	Type                        string                                                `json:"type,omitempty"`                        // The type of the switch port ('trunk', 'access', 'stack' or 'routed').
 	Udld                        string                                                `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
 	VLAN                        *int                                                  `json:"vlan,omitempty"`                        // The VLAN of the switch port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
 	VoiceVLAN                   *int                                                  `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch port. Only applicable to access ports.
@@ -347,7 +370,7 @@ type ResponseSwitchUpdateDeviceSwitchPort struct {
 	StormControlEnabled         *bool                                                    `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch port.
 	StpGuard                    string                                                   `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
 	Tags                        []string                                                 `json:"tags,omitempty"`                        // The list of tags of the switch port.
-	Type                        string                                                   `json:"type,omitempty"`                        // The type of the switch port ('trunk', 'access' or 'stack').
+	Type                        string                                                   `json:"type,omitempty"`                        // The type of the switch port ('trunk', 'access', 'stack' or 'routed').
 	Udld                        string                                                   `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
 	VLAN                        *int                                                     `json:"vlan,omitempty"`                        // The VLAN of the switch port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
 	VoiceVLAN                   *int                                                     `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch port. Only applicable to access ports.
@@ -381,7 +404,7 @@ type ResponseSwitchUpdateDeviceSwitchPortStackwiseVirtual struct {
 type ResponseSwitchGetDeviceSwitchRoutingInterfaces []ResponseItemSwitchGetDeviceSwitchRoutingInterfaces // Array of ResponseSwitchGetDeviceSwitchRoutingInterfaces
 type ResponseItemSwitchGetDeviceSwitchRoutingInterfaces struct {
 	DefaultGateway   string                                                          `json:"defaultGateway,omitempty"`   // IPv4 default gateway
-	InterfaceID      string                                                          `json:"interfaceId,omitempty"`      // The id
+	InterfaceID      string                                                          `json:"interfaceId,omitempty"`      // The ID
 	InterfaceIP      string                                                          `json:"interfaceIp,omitempty"`      // IPv4 address
 	IPv6             *ResponseItemSwitchGetDeviceSwitchRoutingInterfacesIPv6         `json:"ipv6,omitempty"`             // IPv6 addressing
 	MulticastRouting string                                                          `json:"multicastRouting,omitempty"` // Multicast routing status
@@ -389,9 +412,9 @@ type ResponseItemSwitchGetDeviceSwitchRoutingInterfaces struct {
 	OspfSettings     *ResponseItemSwitchGetDeviceSwitchRoutingInterfacesOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseItemSwitchGetDeviceSwitchRoutingInterfacesOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                          `json:"subnet,omitempty"`           // IPv4 subnet
-	UplinkV4         *bool                                                           `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
-	UplinkV6         *bool                                                           `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
-	VLANID           *int                                                            `json:"vlanId,omitempty"`           // VLAN id
+	UplinkV4         *bool                                                           `json:"uplinkV4,omitempty"`         // When true, this interface is used as static IPv4 uplink
+	UplinkV6         *bool                                                           `json:"uplinkV6,omitempty"`         // When true, this interface is used as static IPv6 uplink
+	VLANID           *int                                                            `json:"vlanId,omitempty"`           // VLAN ID
 }
 type ResponseItemSwitchGetDeviceSwitchRoutingInterfacesIPv6 struct {
 	Address        string `json:"address,omitempty"`        // IPv6 address
@@ -400,18 +423,18 @@ type ResponseItemSwitchGetDeviceSwitchRoutingInterfacesIPv6 struct {
 	Prefix         string `json:"prefix,omitempty"`         // IPv6 subnet
 }
 type ResponseItemSwitchGetDeviceSwitchRoutingInterfacesOspfSettings struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv4 area
 }
 type ResponseItemSwitchGetDeviceSwitchRoutingInterfacesOspfV3 struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv6 area
 }
 type ResponseSwitchCreateDeviceSwitchRoutingInterface struct {
 	DefaultGateway   string                                                        `json:"defaultGateway,omitempty"`   // IPv4 default gateway
-	InterfaceID      string                                                        `json:"interfaceId,omitempty"`      // The id
+	InterfaceID      string                                                        `json:"interfaceId,omitempty"`      // The ID
 	InterfaceIP      string                                                        `json:"interfaceIp,omitempty"`      // IPv4 address
 	IPv6             *ResponseSwitchCreateDeviceSwitchRoutingInterfaceIPv6         `json:"ipv6,omitempty"`             // IPv6 addressing
 	MulticastRouting string                                                        `json:"multicastRouting,omitempty"` // Multicast routing status
@@ -419,9 +442,9 @@ type ResponseSwitchCreateDeviceSwitchRoutingInterface struct {
 	OspfSettings     *ResponseSwitchCreateDeviceSwitchRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseSwitchCreateDeviceSwitchRoutingInterfaceOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                        `json:"subnet,omitempty"`           // IPv4 subnet
-	UplinkV4         *bool                                                         `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
-	UplinkV6         *bool                                                         `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
-	VLANID           *int                                                          `json:"vlanId,omitempty"`           // VLAN id
+	UplinkV4         *bool                                                         `json:"uplinkV4,omitempty"`         // When true, this interface is used as static IPv4 uplink
+	UplinkV6         *bool                                                         `json:"uplinkV6,omitempty"`         // When true, this interface is used as static IPv6 uplink
+	VLANID           *int                                                          `json:"vlanId,omitempty"`           // VLAN ID
 }
 type ResponseSwitchCreateDeviceSwitchRoutingInterfaceIPv6 struct {
 	Address        string `json:"address,omitempty"`        // IPv6 address
@@ -430,18 +453,18 @@ type ResponseSwitchCreateDeviceSwitchRoutingInterfaceIPv6 struct {
 	Prefix         string `json:"prefix,omitempty"`         // IPv6 subnet
 }
 type ResponseSwitchCreateDeviceSwitchRoutingInterfaceOspfSettings struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv4 area
 }
 type ResponseSwitchCreateDeviceSwitchRoutingInterfaceOspfV3 struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv6 area
 }
 type ResponseSwitchGetDeviceSwitchRoutingInterface struct {
 	DefaultGateway   string                                                     `json:"defaultGateway,omitempty"`   // IPv4 default gateway
-	InterfaceID      string                                                     `json:"interfaceId,omitempty"`      // The id
+	InterfaceID      string                                                     `json:"interfaceId,omitempty"`      // The ID
 	InterfaceIP      string                                                     `json:"interfaceIp,omitempty"`      // IPv4 address
 	IPv6             *ResponseSwitchGetDeviceSwitchRoutingInterfaceIPv6         `json:"ipv6,omitempty"`             // IPv6 addressing
 	MulticastRouting string                                                     `json:"multicastRouting,omitempty"` // Multicast routing status
@@ -449,9 +472,9 @@ type ResponseSwitchGetDeviceSwitchRoutingInterface struct {
 	OspfSettings     *ResponseSwitchGetDeviceSwitchRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseSwitchGetDeviceSwitchRoutingInterfaceOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                     `json:"subnet,omitempty"`           // IPv4 subnet
-	UplinkV4         *bool                                                      `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
-	UplinkV6         *bool                                                      `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
-	VLANID           *int                                                       `json:"vlanId,omitempty"`           // VLAN id
+	UplinkV4         *bool                                                      `json:"uplinkV4,omitempty"`         // When true, this interface is used as static IPv4 uplink
+	UplinkV6         *bool                                                      `json:"uplinkV6,omitempty"`         // When true, this interface is used as static IPv6 uplink
+	VLANID           *int                                                       `json:"vlanId,omitempty"`           // VLAN ID
 }
 type ResponseSwitchGetDeviceSwitchRoutingInterfaceIPv6 struct {
 	Address        string `json:"address,omitempty"`        // IPv6 address
@@ -460,18 +483,18 @@ type ResponseSwitchGetDeviceSwitchRoutingInterfaceIPv6 struct {
 	Prefix         string `json:"prefix,omitempty"`         // IPv6 subnet
 }
 type ResponseSwitchGetDeviceSwitchRoutingInterfaceOspfSettings struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv4 area
 }
 type ResponseSwitchGetDeviceSwitchRoutingInterfaceOspfV3 struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv6 area
 }
 type ResponseSwitchUpdateDeviceSwitchRoutingInterface struct {
 	DefaultGateway   string                                                        `json:"defaultGateway,omitempty"`   // IPv4 default gateway
-	InterfaceID      string                                                        `json:"interfaceId,omitempty"`      // The id
+	InterfaceID      string                                                        `json:"interfaceId,omitempty"`      // The ID
 	InterfaceIP      string                                                        `json:"interfaceIp,omitempty"`      // IPv4 address
 	IPv6             *ResponseSwitchUpdateDeviceSwitchRoutingInterfaceIPv6         `json:"ipv6,omitempty"`             // IPv6 addressing
 	MulticastRouting string                                                        `json:"multicastRouting,omitempty"` // Multicast routing status
@@ -479,9 +502,9 @@ type ResponseSwitchUpdateDeviceSwitchRoutingInterface struct {
 	OspfSettings     *ResponseSwitchUpdateDeviceSwitchRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseSwitchUpdateDeviceSwitchRoutingInterfaceOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                        `json:"subnet,omitempty"`           // IPv4 subnet
-	UplinkV4         *bool                                                         `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
-	UplinkV6         *bool                                                         `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
-	VLANID           *int                                                          `json:"vlanId,omitempty"`           // VLAN id
+	UplinkV4         *bool                                                         `json:"uplinkV4,omitempty"`         // When true, this interface is used as static IPv4 uplink
+	UplinkV6         *bool                                                         `json:"uplinkV6,omitempty"`         // When true, this interface is used as static IPv6 uplink
+	VLANID           *int                                                          `json:"vlanId,omitempty"`           // VLAN ID
 }
 type ResponseSwitchUpdateDeviceSwitchRoutingInterfaceIPv6 struct {
 	Address        string `json:"address,omitempty"`        // IPv6 address
@@ -490,12 +513,12 @@ type ResponseSwitchUpdateDeviceSwitchRoutingInterfaceIPv6 struct {
 	Prefix         string `json:"prefix,omitempty"`         // IPv6 subnet
 }
 type ResponseSwitchUpdateDeviceSwitchRoutingInterfaceOspfSettings struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv4 area
 }
 type ResponseSwitchUpdateDeviceSwitchRoutingInterfaceOspfV3 struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv6 area
 }
@@ -945,7 +968,7 @@ type ResponseItemSwitchGetNetworkSwitchDhcpV4ServersSeenLastPacketFields struct 
 	Giaddr      string                                                                        `json:"giaddr,omitempty"`      // Gateway IP address of the packet.
 	Hlen        *int                                                                          `json:"hlen,omitempty"`        // Hardware length of the packet.
 	Hops        *int                                                                          `json:"hops,omitempty"`        // Number of hops the packet took.
-	Htype       *int                                                                          `json:"htype,omitempty"`       // Hardware type code of the packet.
+	HtypeR      *int                                                                          `json:"htype,omitempty"`       // Hardware type code of the packet.
 	MagicCookie string                                                                        `json:"magicCookie,omitempty"` // Magic cookie of the packet.
 	Op          *int                                                                          `json:"op,omitempty"`          // Operation code of the packet.
 	Options     *[]ResponseItemSwitchGetNetworkSwitchDhcpV4ServersSeenLastPacketFieldsOptions `json:"options,omitempty"`     // Additional DHCP options of the packet.
@@ -1348,28 +1371,28 @@ type ResponseSwitchUpdateNetworkSwitchRoutingMulticastOverrides struct {
 }
 type ResponseSwitchGetNetworkSwitchRoutingMulticastRendezvousPoints []ResponseItemSwitchGetNetworkSwitchRoutingMulticastRendezvousPoints // Array of ResponseSwitchGetNetworkSwitchRoutingMulticastRendezvousPoints
 type ResponseItemSwitchGetNetworkSwitchRoutingMulticastRendezvousPoints struct {
-	InterfaceIP       string `json:"interfaceIp,omitempty"`       // The IP address of the interface to use.
+	InterfaceIP       string `json:"interfaceIp,omitempty"`       // The IP address of the interface to use.
 	InterfaceName     string `json:"interfaceName,omitempty"`     // The name of the interface to use.
 	MulticastGroup    string `json:"multicastGroup,omitempty"`    // 'Any', or the IP address of a multicast group.
 	RendezvousPointID string `json:"rendezvousPointId,omitempty"` // The id.
 	Serial            string `json:"serial,omitempty"`            // The serial.
 }
 type ResponseSwitchCreateNetworkSwitchRoutingMulticastRendezvousPoint struct {
-	InterfaceIP       string `json:"interfaceIp,omitempty"`       // The IP address of the interface to use.
+	InterfaceIP       string `json:"interfaceIp,omitempty"`       // The IP address of the interface to use.
 	InterfaceName     string `json:"interfaceName,omitempty"`     // The name of the interface to use.
 	MulticastGroup    string `json:"multicastGroup,omitempty"`    // 'Any', or the IP address of a multicast group.
 	RendezvousPointID string `json:"rendezvousPointId,omitempty"` // The id.
 	Serial            string `json:"serial,omitempty"`            // The serial.
 }
 type ResponseSwitchGetNetworkSwitchRoutingMulticastRendezvousPoint struct {
-	InterfaceIP       string `json:"interfaceIp,omitempty"`       // The IP address of the interface to use.
+	InterfaceIP       string `json:"interfaceIp,omitempty"`       // The IP address of the interface to use.
 	InterfaceName     string `json:"interfaceName,omitempty"`     // The name of the interface to use.
 	MulticastGroup    string `json:"multicastGroup,omitempty"`    // 'Any', or the IP address of a multicast group.
 	RendezvousPointID string `json:"rendezvousPointId,omitempty"` // The id.
 	Serial            string `json:"serial,omitempty"`            // The serial.
 }
 type ResponseSwitchUpdateNetworkSwitchRoutingMulticastRendezvousPoint struct {
-	InterfaceIP       string `json:"interfaceIp,omitempty"`       // The IP address of the interface to use.
+	InterfaceIP       string `json:"interfaceIp,omitempty"`       // The IP address of the interface to use.
 	InterfaceName     string `json:"interfaceName,omitempty"`     // The name of the interface to use.
 	MulticastGroup    string `json:"multicastGroup,omitempty"`    // 'Any', or the IP address of a multicast group.
 	RendezvousPointID string `json:"rendezvousPointId,omitempty"` // The id.
@@ -1541,7 +1564,7 @@ type ResponseSwitchRemoveNetworkSwitchStackMembers struct {
 type ResponseSwitchGetNetworkSwitchStackRoutingInterfaces []ResponseItemSwitchGetNetworkSwitchStackRoutingInterfaces // Array of ResponseSwitchGetNetworkSwitchStackRoutingInterfaces
 type ResponseItemSwitchGetNetworkSwitchStackRoutingInterfaces struct {
 	DefaultGateway   string                                                                `json:"defaultGateway,omitempty"`   // IPv4 default gateway
-	InterfaceID      string                                                                `json:"interfaceId,omitempty"`      // The id
+	InterfaceID      string                                                                `json:"interfaceId,omitempty"`      // The ID
 	InterfaceIP      string                                                                `json:"interfaceIp,omitempty"`      // IPv4 address
 	IPv6             *ResponseItemSwitchGetNetworkSwitchStackRoutingInterfacesIPv6         `json:"ipv6,omitempty"`             // IPv6 addressing
 	MulticastRouting string                                                                `json:"multicastRouting,omitempty"` // Multicast routing status
@@ -1549,9 +1572,9 @@ type ResponseItemSwitchGetNetworkSwitchStackRoutingInterfaces struct {
 	OspfSettings     *ResponseItemSwitchGetNetworkSwitchStackRoutingInterfacesOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseItemSwitchGetNetworkSwitchStackRoutingInterfacesOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                                `json:"subnet,omitempty"`           // IPv4 subnet
-	UplinkV4         *bool                                                                 `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
-	UplinkV6         *bool                                                                 `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
-	VLANID           *int                                                                  `json:"vlanId,omitempty"`           // VLAN id
+	UplinkV4         *bool                                                                 `json:"uplinkV4,omitempty"`         // When true, this interface is used as static IPv4 uplink
+	UplinkV6         *bool                                                                 `json:"uplinkV6,omitempty"`         // When true, this interface is used as static IPv6 uplink
+	VLANID           *int                                                                  `json:"vlanId,omitempty"`           // VLAN ID
 }
 type ResponseItemSwitchGetNetworkSwitchStackRoutingInterfacesIPv6 struct {
 	Address        string `json:"address,omitempty"`        // IPv6 address
@@ -1560,18 +1583,18 @@ type ResponseItemSwitchGetNetworkSwitchStackRoutingInterfacesIPv6 struct {
 	Prefix         string `json:"prefix,omitempty"`         // IPv6 subnet
 }
 type ResponseItemSwitchGetNetworkSwitchStackRoutingInterfacesOspfSettings struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv4 area
 }
 type ResponseItemSwitchGetNetworkSwitchStackRoutingInterfacesOspfV3 struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv6 area
 }
 type ResponseSwitchCreateNetworkSwitchStackRoutingInterface struct {
 	DefaultGateway   string                                                              `json:"defaultGateway,omitempty"`   // IPv4 default gateway
-	InterfaceID      string                                                              `json:"interfaceId,omitempty"`      // The id
+	InterfaceID      string                                                              `json:"interfaceId,omitempty"`      // The ID
 	InterfaceIP      string                                                              `json:"interfaceIp,omitempty"`      // IPv4 address
 	IPv6             *ResponseSwitchCreateNetworkSwitchStackRoutingInterfaceIPv6         `json:"ipv6,omitempty"`             // IPv6 addressing
 	MulticastRouting string                                                              `json:"multicastRouting,omitempty"` // Multicast routing status
@@ -1579,9 +1602,9 @@ type ResponseSwitchCreateNetworkSwitchStackRoutingInterface struct {
 	OspfSettings     *ResponseSwitchCreateNetworkSwitchStackRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseSwitchCreateNetworkSwitchStackRoutingInterfaceOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                              `json:"subnet,omitempty"`           // IPv4 subnet
-	UplinkV4         *bool                                                               `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
-	UplinkV6         *bool                                                               `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
-	VLANID           *int                                                                `json:"vlanId,omitempty"`           // VLAN id
+	UplinkV4         *bool                                                               `json:"uplinkV4,omitempty"`         // When true, this interface is used as static IPv4 uplink
+	UplinkV6         *bool                                                               `json:"uplinkV6,omitempty"`         // When true, this interface is used as static IPv6 uplink
+	VLANID           *int                                                                `json:"vlanId,omitempty"`           // VLAN ID
 }
 type ResponseSwitchCreateNetworkSwitchStackRoutingInterfaceIPv6 struct {
 	Address        string `json:"address,omitempty"`        // IPv6 address
@@ -1590,18 +1613,18 @@ type ResponseSwitchCreateNetworkSwitchStackRoutingInterfaceIPv6 struct {
 	Prefix         string `json:"prefix,omitempty"`         // IPv6 subnet
 }
 type ResponseSwitchCreateNetworkSwitchStackRoutingInterfaceOspfSettings struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv4 area
 }
 type ResponseSwitchCreateNetworkSwitchStackRoutingInterfaceOspfV3 struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv6 area
 }
 type ResponseSwitchGetNetworkSwitchStackRoutingInterface struct {
 	DefaultGateway   string                                                           `json:"defaultGateway,omitempty"`   // IPv4 default gateway
-	InterfaceID      string                                                           `json:"interfaceId,omitempty"`      // The id
+	InterfaceID      string                                                           `json:"interfaceId,omitempty"`      // The ID
 	InterfaceIP      string                                                           `json:"interfaceIp,omitempty"`      // IPv4 address
 	IPv6             *ResponseSwitchGetNetworkSwitchStackRoutingInterfaceIPv6         `json:"ipv6,omitempty"`             // IPv6 addressing
 	MulticastRouting string                                                           `json:"multicastRouting,omitempty"` // Multicast routing status
@@ -1609,9 +1632,9 @@ type ResponseSwitchGetNetworkSwitchStackRoutingInterface struct {
 	OspfSettings     *ResponseSwitchGetNetworkSwitchStackRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseSwitchGetNetworkSwitchStackRoutingInterfaceOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                           `json:"subnet,omitempty"`           // IPv4 subnet
-	UplinkV4         *bool                                                            `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
-	UplinkV6         *bool                                                            `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
-	VLANID           *int                                                             `json:"vlanId,omitempty"`           // VLAN id
+	UplinkV4         *bool                                                            `json:"uplinkV4,omitempty"`         // When true, this interface is used as static IPv4 uplink
+	UplinkV6         *bool                                                            `json:"uplinkV6,omitempty"`         // When true, this interface is used as static IPv6 uplink
+	VLANID           *int                                                             `json:"vlanId,omitempty"`           // VLAN ID
 }
 type ResponseSwitchGetNetworkSwitchStackRoutingInterfaceIPv6 struct {
 	Address        string `json:"address,omitempty"`        // IPv6 address
@@ -1620,17 +1643,17 @@ type ResponseSwitchGetNetworkSwitchStackRoutingInterfaceIPv6 struct {
 	Prefix         string `json:"prefix,omitempty"`         // IPv6 subnet
 }
 type ResponseSwitchGetNetworkSwitchStackRoutingInterfaceOspfSettings struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv4 area
 }
 type ResponseSwitchGetNetworkSwitchStackRoutingInterfaceOspfV3 struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv6 area
 }
 type ResponseSwitchUpdateNetworkSwitchStackRoutingInterface struct {
-	InterfaceID      string                                                              `json:"interfaceId,omitempty"`      // The id
+	InterfaceID      string                                                              `json:"interfaceId,omitempty"`      // The ID
 	InterfaceIP      string                                                              `json:"interfaceIp,omitempty"`      // IPv4 address
 	IPv6             *ResponseSwitchUpdateNetworkSwitchStackRoutingInterfaceIPv6         `json:"ipv6,omitempty"`             // IPv6 addressing
 	MulticastRouting string                                                              `json:"multicastRouting,omitempty"` // Multicast routing status
@@ -1638,9 +1661,9 @@ type ResponseSwitchUpdateNetworkSwitchStackRoutingInterface struct {
 	OspfSettings     *ResponseSwitchUpdateNetworkSwitchStackRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // IPv4 OSPF Settings
 	OspfV3           *ResponseSwitchUpdateNetworkSwitchStackRoutingInterfaceOspfV3       `json:"ospfV3,omitempty"`           // IPv6 OSPF Settings
 	Subnet           string                                                              `json:"subnet,omitempty"`           // IPv4 subnet
-	UplinkV4         *bool                                                               `json:"uplinkV4,omitempty"`         // Whether this is the switch's IPv4 uplink
-	UplinkV6         *bool                                                               `json:"uplinkV6,omitempty"`         // Whether this is the switch's IPv6 uplink
-	VLANID           *int                                                                `json:"vlanId,omitempty"`           // VLAN id
+	UplinkV4         *bool                                                               `json:"uplinkV4,omitempty"`         // When true, this interface is used as static IPv4 uplink
+	UplinkV6         *bool                                                               `json:"uplinkV6,omitempty"`         // When true, this interface is used as static IPv6 uplink
+	VLANID           *int                                                                `json:"vlanId,omitempty"`           // VLAN ID
 }
 type ResponseSwitchUpdateNetworkSwitchStackRoutingInterfaceIPv6 struct {
 	Address        string `json:"address,omitempty"`        // IPv6 address
@@ -1649,12 +1672,12 @@ type ResponseSwitchUpdateNetworkSwitchStackRoutingInterfaceIPv6 struct {
 	Prefix         string `json:"prefix,omitempty"`         // IPv6 subnet
 }
 type ResponseSwitchUpdateNetworkSwitchStackRoutingInterfaceOspfSettings struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv4 area
 }
 type ResponseSwitchUpdateNetworkSwitchStackRoutingInterfaceOspfV3 struct {
-	Area             string `json:"area,omitempty"`             // Area id
+	Area             string `json:"area,omitempty"`             // Area ID
 	Cost             *int   `json:"cost,omitempty"`             // OSPF Cost
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // Disable sending Hello packets on this interface's IPv6 area
 }
@@ -1817,7 +1840,7 @@ type ResponseItemSwitchGetOrganizationConfigTemplateSwitchProfilePorts struct {
 	StormControlEnabled         *bool                                                                              `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch template port.
 	StpGuard                    string                                                                             `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
 	Tags                        []string                                                                           `json:"tags,omitempty"`                        // The list of tags of the switch template port.
-	Type                        string                                                                             `json:"type,omitempty"`                        // The type of the switch template port ('trunk', 'access' or 'stack').
+	Type                        string                                                                             `json:"type,omitempty"`                        // The type of the switch template port ('trunk', 'access', 'stack' or 'routed').
 	Udld                        string                                                                             `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
 	VLAN                        *int                                                                               `json:"vlan,omitempty"`                        // The VLAN of the switch template port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
 	VoiceVLAN                   *int                                                                               `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch template port. Only applicable to access ports.
@@ -1871,7 +1894,7 @@ type ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePort struct {
 	StormControlEnabled         *bool                                                                         `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch template port.
 	StpGuard                    string                                                                        `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
 	Tags                        []string                                                                      `json:"tags,omitempty"`                        // The list of tags of the switch template port.
-	Type                        string                                                                        `json:"type,omitempty"`                        // The type of the switch template port ('trunk', 'access' or 'stack').
+	Type                        string                                                                        `json:"type,omitempty"`                        // The type of the switch template port ('trunk', 'access', 'stack' or 'routed').
 	Udld                        string                                                                        `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
 	VLAN                        *int                                                                          `json:"vlan,omitempty"`                        // The VLAN of the switch template port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
 	VoiceVLAN                   *int                                                                          `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch template port. Only applicable to access ports.
@@ -1925,7 +1948,7 @@ type ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePort struct {
 	StormControlEnabled         *bool                                                                            `json:"stormControlEnabled,omitempty"`         // The storm control status of the switch template port.
 	StpGuard                    string                                                                           `json:"stpGuard,omitempty"`                    // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
 	Tags                        []string                                                                         `json:"tags,omitempty"`                        // The list of tags of the switch template port.
-	Type                        string                                                                           `json:"type,omitempty"`                        // The type of the switch template port ('trunk', 'access' or 'stack').
+	Type                        string                                                                           `json:"type,omitempty"`                        // The type of the switch template port ('trunk', 'access', 'stack' or 'routed').
 	Udld                        string                                                                           `json:"udld,omitempty"`                        // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
 	VLAN                        *int                                                                             `json:"vlan,omitempty"`                        // The VLAN of the switch template port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
 	VoiceVLAN                   *int                                                                             `json:"voiceVlan,omitempty"`                   // The voice VLAN of the switch template port. Only applicable to access ports.
@@ -1986,7 +2009,7 @@ type ResponseSwitchGetOrganizationSwitchPortsBySwitchPorts struct {
 	StickyMacAllowListLimit *int     `json:"stickyMacAllowListLimit,omitempty"` // The maximum number of MAC addresses for sticky MAC allow list. Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
 	StpGuard                string   `json:"stpGuard,omitempty"`                // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
 	Tags                    []string `json:"tags,omitempty"`                    // The list of tags of the switch port.
-	Type                    string   `json:"type,omitempty"`                    // The type of the switch port ('trunk', 'access' or 'stack').
+	Type                    string   `json:"type,omitempty"`                    // The type of the switch port ('trunk', 'access', 'stack' or 'routed').
 	VLAN                    *int     `json:"vlan,omitempty"`                    // The VLAN of the switch port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
 	VoiceVLAN               *int     `json:"voiceVlan,omitempty"`               // The voice VLAN of the switch port. Only applicable to access ports.
 }
@@ -2168,6 +2191,65 @@ type ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDeviceMetaCounts
 	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
 	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
 }
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval struct {
+	Items *[]ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItems `json:"items,omitempty"` // Switches
+	Meta  *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItems struct {
+	Mac     string                                                                              `json:"mac,omitempty"`     // The MAC address of the switch.
+	Model   string                                                                              `json:"model,omitempty"`   // The model of the switch.
+	Name    string                                                                              `json:"name,omitempty"`    // The name of the switch.
+	Network *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsNetwork `json:"network,omitempty"` // Identifying information of the switch's network.
+	Ports   *[]ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPorts `json:"ports,omitempty"`   // The number of ports on the switch with usage data.
+	Serial  string                                                                              `json:"serial,omitempty"`  // The serial number of the switch.
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsNetwork struct {
+	ID   string `json:"id,omitempty"`   // The ID of the network.
+	Name string `json:"name,omitempty"` // The name of the network.
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPorts struct {
+	Intervals *[]ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervals `json:"intervals,omitempty"` // An array of intervals for a port with bandwidth, traffic, and power usage data.
+	PortID    string                                                                                       `json:"portId,omitempty"`    // The string identifier of this port on the switch. This is commonly just the port number but may contain additional identifying information such as the slot and module-type if the port is located on a port module.
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervals struct {
+	Bandwidth *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsBandwidth `json:"bandwidth,omitempty"` // A breakdown of the average speed of data that has passed through this port during the interval.
+	Data      *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsData      `json:"data,omitempty"`      // A breakdown of how many kilobytes have passed through this port during the interval timespan.
+	EndTs     string                                                                                              `json:"endTs,omitempty"`     // The end timestamp of the given interval.
+	Energy    *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsEnergy    `json:"energy,omitempty"`    // How much energy (in watt-hours) has been delivered by this port during the interval.
+	StartTs   string                                                                                              `json:"startTs,omitempty"`   // The starting timestamp of the given interval.
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsBandwidth struct {
+	Usage *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsBandwidthUsage `json:"usage,omitempty"` // Bandwidth usage data for the given interval.
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsBandwidthUsage struct {
+	Downstream *float64 `json:"downstream,omitempty"` // The average speed of the data received (in kilobits-per-second).
+	Total      *float64 `json:"total,omitempty"`      // The average speed of the data sent and received (in kilobits-per-second).
+	Upstream   *float64 `json:"upstream,omitempty"`   // The average speed of the data sent (in kilobits-per-second).
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsData struct {
+	Usage *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsDataUsage `json:"usage,omitempty"` // Usage data for the given interval.
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsDataUsage struct {
+	Downstream *int `json:"downstream,omitempty"` // The amount of data received (in kilobytes).
+	Total      *int `json:"total,omitempty"`      // The total amount of data sent and received (in kilobytes).
+	Upstream   *int `json:"upstream,omitempty"`   // The amount of data sent (in kilobytes).
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsEnergy struct {
+	Usage *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsEnergyUsage `json:"usage,omitempty"` // Energy data for the given interval.
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsEnergyUsage struct {
+	Total *float64 `json:"total,omitempty"` // The total energy in watt-hours delivered by this port during the interval
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalMeta struct {
+	Counts *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalMetaCounts struct {
+	Items *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
 type RequestSwitchCycleDeviceSwitchPorts struct {
 	Ports []string `json:"ports,omitempty"` // List of switch ports
 }
@@ -2194,7 +2276,7 @@ type RequestSwitchUpdateDeviceSwitchPort struct {
 	StormControlEnabled     *bool                                       `json:"stormControlEnabled,omitempty"`     // The storm control status of the switch port.
 	StpGuard                string                                      `json:"stpGuard,omitempty"`                // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
 	Tags                    []string                                    `json:"tags,omitempty"`                    // The list of tags of the switch port.
-	Type                    string                                      `json:"type,omitempty"`                    // The type of the switch port ('trunk', 'access' or 'stack').
+	Type                    string                                      `json:"type,omitempty"`                    // The type of the switch port ('trunk', 'access', 'stack' or 'routed').
 	Udld                    string                                      `json:"udld,omitempty"`                    // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
 	VLAN                    *int                                        `json:"vlan,omitempty"`                    // The VLAN of the switch port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
 	VoiceVLAN               *int                                        `json:"voiceVlan,omitempty"`               // The voice VLAN of the switch port. Only applicable to access ports.
@@ -2208,19 +2290,19 @@ type RequestSwitchUpdateDeviceSwitchPortProfile struct {
 	Iname   string `json:"iname,omitempty"`   // When enabled, the IName of the profile.
 }
 type RequestSwitchCreateDeviceSwitchRoutingInterface struct {
-	DefaultGateway   string                                                       `json:"defaultGateway,omitempty"`   // The next hop for any traffic that isn't going to a directly connected subnet or over a static route.         This IP address must exist in a subnet with a routed interface. Required if this is the first IPv4 interface.
-	InterfaceIP      string                                                       `json:"interfaceIp,omitempty"`      // The IP address this switch will use for layer 3 routing on this VLAN or subnet. This cannot be the same         as the switch's management IP.
+	DefaultGateway   string                                                       `json:"defaultGateway,omitempty"`   // The next hop for any traffic that isn't going to a directly connected subnet or over a static route.         This IP address must exist in a subnet with a L3 interface. Required if this is the first IPv4 interface.
+	InterfaceIP      string                                                       `json:"interfaceIp,omitempty"`      // The IP address that will be used for Layer 3 routing on this VLAN or subnet. This cannot be the same         as the device management IP.
 	IPv6             *RequestSwitchCreateDeviceSwitchRoutingInterfaceIPv6         `json:"ipv6,omitempty"`             // The IPv6 settings of the interface.
 	MulticastRouting string                                                       `json:"multicastRouting,omitempty"` // Enable multicast support if, multicast routing between VLANs is required. Options are:         'disabled', 'enabled' or 'IGMP snooping querier'. Default is 'disabled'.
 	Name             string                                                       `json:"name,omitempty"`             // A friendly name or description for the interface or VLAN.
 	OspfSettings     *RequestSwitchCreateDeviceSwitchRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // The OSPF routing settings of the interface.
-	Subnet           string                                                       `json:"subnet,omitempty"`           // The network that this routed interface is on, in CIDR notation (ex. 10.1.1.0/24).
-	VLANID           *int                                                         `json:"vlanId,omitempty"`           // The VLAN this routed interface is on. VLAN must be between 1 and 4094.
+	Subnet           string                                                       `json:"subnet,omitempty"`           // The network that this L3 interface is on, in CIDR notation (ex. 10.1.1.0/24).
+	VLANID           *int                                                         `json:"vlanId,omitempty"`           // The VLAN this L3 interface is on. VLAN must be between 1 and 4094.
 }
 type RequestSwitchCreateDeviceSwitchRoutingInterfaceIPv6 struct {
 	Address        string `json:"address,omitempty"`        // The IPv6 address of the interface. Required if assignmentMode is 'static'. Must not be included if           assignmentMode is 'eui-64'.
 	AssignmentMode string `json:"assignmentMode,omitempty"` // The IPv6 assignment mode for the interface. Can be either 'eui-64' or 'static'.
-	Gateway        string `json:"gateway,omitempty"`        // The IPv6 default gateway of the interface. Required if prefix is defined and this is the first           interface with IPv6 configured for the switch.
+	Gateway        string `json:"gateway,omitempty"`        // The IPv6 default gateway of the interface. Required if prefix is defined and this is the first           interface with IPv6 configured.
 	Prefix         string `json:"prefix,omitempty"`         // The IPv6 prefix of the interface. Required if IPv6 object is included.
 }
 type RequestSwitchCreateDeviceSwitchRoutingInterfaceOspfSettings struct {
@@ -2229,19 +2311,19 @@ type RequestSwitchCreateDeviceSwitchRoutingInterfaceOspfSettings struct {
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // When enabled, OSPF will not run on the interface, but the subnet will still be advertised.
 }
 type RequestSwitchUpdateDeviceSwitchRoutingInterface struct {
-	DefaultGateway   string                                                       `json:"defaultGateway,omitempty"`   // The next hop for any traffic that isn't going to a directly connected subnet or over a static route.         This IP address must exist in a subnet with a routed interface. Required if this is the first IPv4 interface.
-	InterfaceIP      string                                                       `json:"interfaceIp,omitempty"`      // The IP address this switch will use for layer 3 routing on this VLAN or subnet. This cannot be the same         as the switch's management IP.
+	DefaultGateway   string                                                       `json:"defaultGateway,omitempty"`   // The next hop for any traffic that isn't going to a directly connected subnet or over a static route.         This IP address must exist in a subnet with a L3 interface. Required if this is the first IPv4 interface.
+	InterfaceIP      string                                                       `json:"interfaceIp,omitempty"`      // The IP address that will be used for Layer 3 routing on this VLAN or subnet. This cannot be the same         as the device management IP.
 	IPv6             *RequestSwitchUpdateDeviceSwitchRoutingInterfaceIPv6         `json:"ipv6,omitempty"`             // The IPv6 settings of the interface.
 	MulticastRouting string                                                       `json:"multicastRouting,omitempty"` // Enable multicast support if, multicast routing between VLANs is required. Options are:         'disabled', 'enabled' or 'IGMP snooping querier'. Default is 'disabled'.
 	Name             string                                                       `json:"name,omitempty"`             // A friendly name or description for the interface or VLAN.
 	OspfSettings     *RequestSwitchUpdateDeviceSwitchRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // The OSPF routing settings of the interface.
-	Subnet           string                                                       `json:"subnet,omitempty"`           // The network that this routed interface is on, in CIDR notation (ex. 10.1.1.0/24).
-	VLANID           *int                                                         `json:"vlanId,omitempty"`           // The VLAN this routed interface is on. VLAN must be between 1 and 4094.
+	Subnet           string                                                       `json:"subnet,omitempty"`           // The network that this L3 interface is on, in CIDR notation (ex. 10.1.1.0/24).
+	VLANID           *int                                                         `json:"vlanId,omitempty"`           // The VLAN this L3 interface is on. VLAN must be between 1 and 4094.
 }
 type RequestSwitchUpdateDeviceSwitchRoutingInterfaceIPv6 struct {
 	Address        string `json:"address,omitempty"`        // The IPv6 address of the interface. Required if assignmentMode is 'static'. Must not be included if           assignmentMode is 'eui-64'.
 	AssignmentMode string `json:"assignmentMode,omitempty"` // The IPv6 assignment mode for the interface. Can be either 'eui-64' or 'static'.
-	Gateway        string `json:"gateway,omitempty"`        // The IPv6 default gateway of the interface. Required if prefix is defined and this is the first           interface with IPv6 configured for the switch.
+	Gateway        string `json:"gateway,omitempty"`        // The IPv6 default gateway of the interface. Required if prefix is defined and this is the first           interface with IPv6 configured.
 	Prefix         string `json:"prefix,omitempty"`         // The IPv6 prefix of the interface. Required if IPv6 object is included.
 }
 type RequestSwitchUpdateDeviceSwitchRoutingInterfaceOspfSettings struct {
@@ -2628,11 +2710,11 @@ type RequestSwitchUpdateNetworkSwitchRoutingMulticastOverrides struct {
 	Switches                            []string `json:"switches,omitempty"`                            // List of switch serials for non-template network
 }
 type RequestSwitchCreateNetworkSwitchRoutingMulticastRendezvousPoint struct {
-	InterfaceIP    string `json:"interfaceIp,omitempty"`    // The IP address of the interface where the RP needs to be created.
+	InterfaceIP    string `json:"interfaceIp,omitempty"`    // The IP address of the interface where the RP needs to be created.
 	MulticastGroup string `json:"multicastGroup,omitempty"` // 'Any', or the IP address of a multicast group
 }
 type RequestSwitchUpdateNetworkSwitchRoutingMulticastRendezvousPoint struct {
-	InterfaceIP    string `json:"interfaceIp,omitempty"`    // The IP address of the interface where the RP needs to be created.
+	InterfaceIP    string `json:"interfaceIp,omitempty"`    // The IP address of the interface where the RP needs to be created.
 	MulticastGroup string `json:"multicastGroup,omitempty"` // 'Any', or the IP address of a multicast group
 }
 type RequestSwitchUpdateNetworkSwitchRoutingOspf struct {
@@ -2692,45 +2774,45 @@ type RequestSwitchRemoveNetworkSwitchStack struct {
 	Serial string `json:"serial,omitempty"` // The serial of the switch to be removed
 }
 type RequestSwitchCreateNetworkSwitchStackRoutingInterface struct {
-	DefaultGateway   string                                                             `json:"defaultGateway,omitempty"`   // The next hop for any traffic that isn't going to a directly connected subnet or over a static route. This IP address must exist in a subnet with a routed interface.
-	InterfaceIP      string                                                             `json:"interfaceIp,omitempty"`      // The IP address this switch stack will use for layer 3 routing on this VLAN or subnet. This cannot be the same as the switch's management IP.
+	DefaultGateway   string                                                             `json:"defaultGateway,omitempty"`   // The next hop for any traffic that isn't going to a directly connected subnet or over a static route.         This IP address must exist in a subnet with a L3 interface. Required if this is the first IPv4 interface.
+	InterfaceIP      string                                                             `json:"interfaceIp,omitempty"`      // The IP address that will be used for Layer 3 routing on this VLAN or subnet. This cannot be the same         as the device management IP.
 	IPv6             *RequestSwitchCreateNetworkSwitchStackRoutingInterfaceIPv6         `json:"ipv6,omitempty"`             // The IPv6 settings of the interface.
-	MulticastRouting string                                                             `json:"multicastRouting,omitempty"` // Enable multicast support if, multicast routing between VLANs is required. Options are, 'disabled', 'enabled' or 'IGMP snooping querier'. Default is 'disabled'.
+	MulticastRouting string                                                             `json:"multicastRouting,omitempty"` // Enable multicast support if, multicast routing between VLANs is required. Options are:         'disabled', 'enabled' or 'IGMP snooping querier'. Default is 'disabled'.
 	Name             string                                                             `json:"name,omitempty"`             // A friendly name or description for the interface or VLAN.
 	OspfSettings     *RequestSwitchCreateNetworkSwitchStackRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // The OSPF routing settings of the interface.
-	Subnet           string                                                             `json:"subnet,omitempty"`           // The network that this routed interface is on, in CIDR notation (ex. 10.1.1.0/24).
-	VLANID           *int                                                               `json:"vlanId,omitempty"`           // The VLAN this routed interface is on. VLAN must be between 1 and 4094.
+	Subnet           string                                                             `json:"subnet,omitempty"`           // The network that this L3 interface is on, in CIDR notation (ex. 10.1.1.0/24).
+	VLANID           *int                                                               `json:"vlanId,omitempty"`           // The VLAN this L3 interface is on. VLAN must be between 1 and 4094.
 }
 type RequestSwitchCreateNetworkSwitchStackRoutingInterfaceIPv6 struct {
-	Address        string `json:"address,omitempty"`        // The IPv6 address of the interface. Required if assignmentMode is 'static'. Must not be included if assignmentMode is 'eui-64'.
+	Address        string `json:"address,omitempty"`        // The IPv6 address of the interface. Required if assignmentMode is 'static'. Must not be included if           assignmentMode is 'eui-64'.
 	AssignmentMode string `json:"assignmentMode,omitempty"` // The IPv6 assignment mode for the interface. Can be either 'eui-64' or 'static'.
-	Gateway        string `json:"gateway,omitempty"`        // The IPv6 default gateway of the interface. Required if prefix is defined and this is the first interface with IPv6 configured for the stack.
+	Gateway        string `json:"gateway,omitempty"`        // The IPv6 default gateway of the interface. Required if prefix is defined and this is the first           interface with IPv6 configured.
 	Prefix         string `json:"prefix,omitempty"`         // The IPv6 prefix of the interface. Required if IPv6 object is included.
 }
 type RequestSwitchCreateNetworkSwitchStackRoutingInterfaceOspfSettings struct {
-	Area             string `json:"area,omitempty"`             // The OSPF area to which this interface should belong. Can be either 'disabled' or the identifier of an existing OSPF area. Defaults to 'disabled'.
-	Cost             *int   `json:"cost,omitempty"`             // The path cost for this interface. Defaults to 1, but can be increased up to 65535 to give lower priority.
+	Area             string `json:"area,omitempty"`             // The OSPF area to which this interface should belong. Can be either 'disabled' or the identifier of an           existing OSPF area. Defaults to 'disabled'.
+	Cost             *int   `json:"cost,omitempty"`             // The path cost for this interface. Defaults to 1, but can be increased up to 65535           to give lower priority.
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // When enabled, OSPF will not run on the interface, but the subnet will still be advertised.
 }
 type RequestSwitchUpdateNetworkSwitchStackRoutingInterface struct {
-	DefaultGateway   string                                                             `json:"defaultGateway,omitempty"`   // The next hop for any traffic that isn't going to a directly connected subnet or over a static route. This IP address must exist in a subnet with a routed interface.
-	InterfaceIP      string                                                             `json:"interfaceIp,omitempty"`      // The IP address this switch stack will use for layer 3 routing on this VLAN or subnet. This cannot be the same as the switch's management IP.
+	DefaultGateway   string                                                             `json:"defaultGateway,omitempty"`   // The next hop for any traffic that isn't going to a directly connected subnet or over a static route.         This IP address must exist in a subnet with a L3 interface. Required if this is the first IPv4 interface.
+	InterfaceIP      string                                                             `json:"interfaceIp,omitempty"`      // The IP address that will be used for Layer 3 routing on this VLAN or subnet. This cannot be the same         as the device management IP.
 	IPv6             *RequestSwitchUpdateNetworkSwitchStackRoutingInterfaceIPv6         `json:"ipv6,omitempty"`             // The IPv6 settings of the interface.
-	MulticastRouting string                                                             `json:"multicastRouting,omitempty"` // Enable multicast support if, multicast routing between VLANs is required. Options are, 'disabled', 'enabled' or 'IGMP snooping querier'.
+	MulticastRouting string                                                             `json:"multicastRouting,omitempty"` // Enable multicast support if, multicast routing between VLANs is required. Options are:         'disabled', 'enabled' or 'IGMP snooping querier'. Default is 'disabled'.
 	Name             string                                                             `json:"name,omitempty"`             // A friendly name or description for the interface or VLAN.
 	OspfSettings     *RequestSwitchUpdateNetworkSwitchStackRoutingInterfaceOspfSettings `json:"ospfSettings,omitempty"`     // The OSPF routing settings of the interface.
-	Subnet           string                                                             `json:"subnet,omitempty"`           // The network that this routed interface is on, in CIDR notation (ex. 10.1.1.0/24).
-	VLANID           *int                                                               `json:"vlanId,omitempty"`           // The VLAN this routed interface is on. VLAN must be between 1 and 4094.
+	Subnet           string                                                             `json:"subnet,omitempty"`           // The network that this L3 interface is on, in CIDR notation (ex. 10.1.1.0/24).
+	VLANID           *int                                                               `json:"vlanId,omitempty"`           // The VLAN this L3 interface is on. VLAN must be between 1 and 4094.
 }
 type RequestSwitchUpdateNetworkSwitchStackRoutingInterfaceIPv6 struct {
-	Address        string `json:"address,omitempty"`        // The IPv6 address of the interface. Required if assignmentMode is included and set as 'static'. Must not be included if assignmentMode is 'eui-64'.
+	Address        string `json:"address,omitempty"`        // The IPv6 address of the interface. Required if assignmentMode is 'static'. Must not be included if           assignmentMode is 'eui-64'.
 	AssignmentMode string `json:"assignmentMode,omitempty"` // The IPv6 assignment mode for the interface. Can be either 'eui-64' or 'static'.
-	Gateway        string `json:"gateway,omitempty"`        // The IPv6 default gateway of the interface. Required if prefix is defined and this is the first interface with IPv6 configured for the stack.
-	Prefix         string `json:"prefix,omitempty"`         // The IPv6 prefix of the interface. Required if IPv6 object is included and interface does not already have ipv6.prefix configured
+	Gateway        string `json:"gateway,omitempty"`        // The IPv6 default gateway of the interface. Required if prefix is defined and this is the first           interface with IPv6 configured.
+	Prefix         string `json:"prefix,omitempty"`         // The IPv6 prefix of the interface. Required if IPv6 object is included.
 }
 type RequestSwitchUpdateNetworkSwitchStackRoutingInterfaceOspfSettings struct {
-	Area             string `json:"area,omitempty"`             // The OSPF area to which this interface should belong. Can be either 'disabled' or the identifier of an existing OSPF area.
-	Cost             *int   `json:"cost,omitempty"`             // The path cost for this interface. Defaults to 1, but can be increased up to 65535 to give lower priority.
+	Area             string `json:"area,omitempty"`             // The OSPF area to which this interface should belong. Can be either 'disabled' or the identifier of an           existing OSPF area. Defaults to 'disabled'.
+	Cost             *int   `json:"cost,omitempty"`             // The path cost for this interface. Defaults to 1, but can be increased up to 65535           to give lower priority.
 	IsPassiveEnabled *bool  `json:"isPassiveEnabled,omitempty"` // When enabled, OSPF will not run on the interface, but the subnet will still be advertised.
 }
 type RequestSwitchUpdateNetworkSwitchStackRoutingInterfaceDhcp struct {
@@ -2813,7 +2895,7 @@ type RequestSwitchUpdateOrganizationConfigTemplateSwitchProfilePort struct {
 	StormControlEnabled     *bool                                                                  `json:"stormControlEnabled,omitempty"`     // The storm control status of the switch template port.
 	StpGuard                string                                                                 `json:"stpGuard,omitempty"`                // The state of the STP guard ('disabled', 'root guard', 'bpdu guard' or 'loop guard').
 	Tags                    []string                                                               `json:"tags,omitempty"`                    // The list of tags of the switch template port.
-	Type                    string                                                                 `json:"type,omitempty"`                    // The type of the switch template port ('trunk', 'access' or 'stack').
+	Type                    string                                                                 `json:"type,omitempty"`                    // The type of the switch template port ('trunk', 'access', 'stack' or 'routed').
 	Udld                    string                                                                 `json:"udld,omitempty"`                    // The action to take when Unidirectional Link is detected (Alert only, Enforce). Default configuration is Alert only.
 	VLAN                    *int                                                                   `json:"vlan,omitempty"`                    // The VLAN of the switch template port. For a trunk port, this is the native VLAN. A null value will clear the value set for trunk ports.
 	VoiceVLAN               *int                                                                   `json:"voiceVlan,omitempty"`               // The voice VLAN of the switch template port. Only applicable to access ports.
@@ -2979,19 +3061,22 @@ func (s *SwitchService) GetDeviceSwitchPort(serial string, portID string) (*Resp
 /* List layer 3 interfaces for a switch. Those for a stack may be found under switch stack routing.
 
 @param serial serial path parameter.
+@param getDeviceSwitchRoutingInterfacesQueryParams Filtering parameter
 
 
 */
 
-func (s *SwitchService) GetDeviceSwitchRoutingInterfaces(serial string) (*ResponseSwitchGetDeviceSwitchRoutingInterfaces, *resty.Response, error) {
+func (s *SwitchService) GetDeviceSwitchRoutingInterfaces(serial string, getDeviceSwitchRoutingInterfacesQueryParams *GetDeviceSwitchRoutingInterfacesQueryParams) (*ResponseSwitchGetDeviceSwitchRoutingInterfaces, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/switch/routing/interfaces"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
+	queryString, _ := query.Values(getDeviceSwitchRoutingInterfacesQueryParams)
+
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetDeviceSwitchRoutingInterfaces{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetDeviceSwitchRoutingInterfaces{}).
 		SetError(&Error).
 		Get(path)
 
@@ -4060,20 +4145,23 @@ func (s *SwitchService) GetNetworkSwitchStack(networkID string, switchStackID st
 
 @param networkID networkId path parameter. Network ID
 @param switchStackID switchStackId path parameter. Switch stack ID
+@param getNetworkSwitchStackRoutingInterfacesQueryParams Filtering parameter
 
 
 */
 
-func (s *SwitchService) GetNetworkSwitchStackRoutingInterfaces(networkID string, switchStackID string) (*ResponseSwitchGetNetworkSwitchStackRoutingInterfaces, *resty.Response, error) {
+func (s *SwitchService) GetNetworkSwitchStackRoutingInterfaces(networkID string, switchStackID string, getNetworkSwitchStackRoutingInterfacesQueryParams *GetNetworkSwitchStackRoutingInterfacesQueryParams) (*ResponseSwitchGetNetworkSwitchStackRoutingInterfaces, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
+	queryString, _ := query.Values(getNetworkSwitchStackRoutingInterfacesQueryParams)
+
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchStackRoutingInterfaces{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetNetworkSwitchStackRoutingInterfaces{}).
 		SetError(&Error).
 		Get(path)
 
@@ -4783,6 +4871,78 @@ func (s *SwitchService) GetOrganizationSwitchPortsTopologyDiscoveryByDevicePagin
 	getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParamsConverted := getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams.(*GetOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams)
 
 	return s.GetOrganizationSwitchPortsTopologyDiscoveryByDevice(organizationID, getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParamsConverted)
+}
+
+//GetOrganizationSwitchPortsUsageHistoryByDeviceByInterval List the historical usage and traffic data of switchports in an organization.
+/* List the historical usage and traffic data of switchports in an organization.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams Filtering parameter
+
+
+*/
+
+func (s *SwitchService) GetOrganizationSwitchPortsUsageHistoryByDeviceByInterval(organizationID string, getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams *GetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/switch/ports/usage/history/byDevice/byInterval"
+	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams != nil && getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams.PerPage == -1 {
+		var result *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval
+		println("Paginate")
+		getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalPaginate, organizationID, "", getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationSwitchPortsUsageHistoryByDeviceByInterval")
+	}
+
+	result := response.Result().(*ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval)
+	return result, response, err
+
+}
+func (s *SwitchService) GetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalPaginate(organizationID string, getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams any) (any, *resty.Response, error) {
+	getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParamsConverted := getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams.(*GetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams)
+
+	return s.GetOrganizationSwitchPortsUsageHistoryByDeviceByInterval(organizationID, getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParamsConverted)
 }
 
 //CycleDeviceSwitchPorts Cycle a set of switch ports

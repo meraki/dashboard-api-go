@@ -40,6 +40,29 @@ type GetNetworkApplianceUplinksUsageHistoryQueryParams struct {
 	Timespan   float64 `url:"timespan,omitempty"`   //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 10 minutes.
 	Resolution int     `url:"resolution,omitempty"` //The time resolution in seconds for returned data. The valid resolutions are: 60, 300, 600, 1800, 3600, 86400. The default is 60.
 }
+type GetOrganizationApplianceDNSLocalProfilesQueryParams struct {
+	ProfileIDs []string `url:"profileIds[],omitempty"` //Optional parameter to filter the results by profile IDs
+}
+type GetOrganizationApplianceDNSLocalProfilesAssignmentsQueryParams struct {
+	ProfileIDs []string `url:"profileIds[],omitempty"` //Optional parameter to filter the results by profile IDs
+	NetworkIDs []string `url:"networkIds[],omitempty"` //Optional parameter to filter the results by network IDs
+}
+type GetOrganizationApplianceDNSLocalRecordsQueryParams struct {
+	ProfileIDs []string `url:"profileIds[],omitempty"` //Optional parameter to filter the results by profile IDs
+}
+type GetOrganizationApplianceDNSSplitProfilesQueryParams struct {
+	ProfileIDs []string `url:"profileIds[],omitempty"` //Optional parameter to filter the results by profile IDs
+}
+type GetOrganizationApplianceDNSSplitProfilesAssignmentsQueryParams struct {
+	ProfileIDs []string `url:"profileIds[],omitempty"` //Optional parameter to filter the results by profile IDs
+	NetworkIDs []string `url:"networkIds[],omitempty"` //Optional parameter to filter the results by network IDs
+}
+type GetOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams struct {
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Optional parameter to filter the results by network IDs
+}
 type GetOrganizationApplianceSecurityEventsQueryParams struct {
 	T0            string  `url:"t0,omitempty"`            //The beginning of the timespan for the data. Data is gathered after the specified t0 value. The maximum lookback period is 365 days from today.
 	T1            string  `url:"t1,omitempty"`            //The end of the timespan for the data. t1 can be a maximum of 365 days after t0.
@@ -86,13 +109,13 @@ type GetOrganizationApplianceVpnStatusesQueryParams struct {
 
 type ResponseApplianceGetDeviceApplianceDhcpSubnets []ResponseItemApplianceGetDeviceApplianceDhcpSubnets // Array of ResponseApplianceGetDeviceApplianceDhcpSubnets
 type ResponseItemApplianceGetDeviceApplianceDhcpSubnets struct {
-	FreeCount *int   `json:"freeCount,omitempty"` //
-	Subnet    string `json:"subnet,omitempty"`    //
-	UsedCount *int   `json:"usedCount,omitempty"` //
-	VLANID    *int   `json:"vlanId,omitempty"`    //
+	FreeCount *int   `json:"freeCount,omitempty"` // Count of free IP addresses in subnet
+	Subnet    string `json:"subnet,omitempty"`    // Subnet
+	UsedCount *int   `json:"usedCount,omitempty"` // Count of used IP addresses in subnet
+	VLANID    *int   `json:"vlanId,omitempty"`    // VLAN ID
 }
 type ResponseApplianceGetDeviceAppliancePerformance struct {
-	PerfScore *int `json:"perfScore,omitempty"` //
+	PerfScore *float64 `json:"perfScore,omitempty"` // Utilization for the MX device
 }
 type ResponseApplianceGetDeviceAppliancePrefixesDelegated []ResponseItemApplianceGetDeviceAppliancePrefixesDelegated // Array of ResponseApplianceGetDeviceAppliancePrefixesDelegated
 type ResponseItemApplianceGetDeviceAppliancePrefixesDelegated struct {
@@ -555,6 +578,19 @@ type ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCateg
 	ID   string `json:"id,omitempty"`   // The id of the application
 	Name string `json:"name,omitempty"` // The name of the application
 }
+type ResponseApplianceUpdateNetworkApplianceFirewallMulticastForwarding struct {
+	Network *ResponseApplianceUpdateNetworkApplianceFirewallMulticastForwardingNetwork `json:"network,omitempty"` // Network details
+	Rules   *[]ResponseApplianceUpdateNetworkApplianceFirewallMulticastForwardingRules `json:"rules,omitempty"`   // Static multicast forwarding rules.
+}
+type ResponseApplianceUpdateNetworkApplianceFirewallMulticastForwardingNetwork struct {
+	ID   string `json:"id,omitempty"`   // ID of the network whose multicast forwarding settings are returned.
+	Name string `json:"name,omitempty"` // Name of the network whose multicast forwarding settings are returned.
+}
+type ResponseApplianceUpdateNetworkApplianceFirewallMulticastForwardingRules struct {
+	Address     string   `json:"address,omitempty"`     // IP address
+	Description string   `json:"description,omitempty"` // Forwarding rule description.
+	VLANIDs     []string `json:"vlanIds,omitempty"`     // List of VLAN IDs
+}
 type ResponseApplianceGetNetworkApplianceFirewallOneToManyNatRules struct {
 	Rules *[]ResponseApplianceGetNetworkApplianceFirewallOneToManyNatRulesRules `json:"rules,omitempty"` //
 }
@@ -591,7 +627,6 @@ type ResponseApplianceUpdateNetworkApplianceFirewallOneToOneNatRules interface{}
 type ResponseApplianceGetNetworkApplianceFirewallPortForwardingRules struct {
 	Rules *[]ResponseApplianceGetNetworkApplianceFirewallPortForwardingRulesRules `json:"rules,omitempty"` // An array of port forwarding rules
 }
-
 type ResponseApplianceGetNetworkApplianceFirewallPortForwardingRulesRules struct {
 	AllowedIPs []string `json:"allowedIps,omitempty"` // An array of ranges of WAN IP addresses that are allowed to make inbound connections on the specified ports or port ranges (or any)
 	LanIP      string   `json:"lanIp,omitempty"`      // IP address of the device subject to port forwarding
@@ -1423,14 +1458,14 @@ type ResponseApplianceUpdateNetworkApplianceTrafficShapingVpnExclusionsMajorAppl
 }
 type ResponseApplianceGetNetworkApplianceUplinksUsageHistory []ResponseItemApplianceGetNetworkApplianceUplinksUsageHistory // Array of ResponseApplianceGetNetworkApplianceUplinksUsageHistory
 type ResponseItemApplianceGetNetworkApplianceUplinksUsageHistory struct {
-	ByInterface *[]ResponseItemApplianceGetNetworkApplianceUplinksUsageHistoryByInterface `json:"byInterface,omitempty"` //
-	EndTime     string                                                                    `json:"endTime,omitempty"`     //
-	StartTime   string                                                                    `json:"startTime,omitempty"`   //
+	ByInterface *[]ResponseItemApplianceGetNetworkApplianceUplinksUsageHistoryByInterface `json:"byInterface,omitempty"` // List of usage data for each interface
+	EndTime     string                                                                    `json:"endTime,omitempty"`     // End time of interval
+	StartTime   string                                                                    `json:"startTime,omitempty"`   // Start time of interval
 }
 type ResponseItemApplianceGetNetworkApplianceUplinksUsageHistoryByInterface struct {
-	Interface string `json:"interface,omitempty"` //
-	Received  *int   `json:"received,omitempty"`  //
-	Sent      *int   `json:"sent,omitempty"`      //
+	Interface string `json:"interface,omitempty"` // Uplink interface
+	Received  *int   `json:"received,omitempty"`  // Amount of data received in bytes
+	Sent      *int   `json:"sent,omitempty"`      // Amount of data sent in bytes
 }
 type ResponseApplianceGetNetworkApplianceVLANs []ResponseItemApplianceGetNetworkApplianceVLANs // Array of ResponseApplianceGetNetworkApplianceVlans
 type ResponseItemApplianceGetNetworkApplianceVLANs struct {
@@ -1684,28 +1719,52 @@ type ResponseApplianceUpdateNetworkApplianceVpnBgpNeighborsTtlSecurity struct {
 type ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpn struct {
 	Hubs    *[]ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpnHubs    `json:"hubs,omitempty"`    // The list of VPN hubs, in order of preference.
 	Mode    string                                                         `json:"mode,omitempty"`    // The site-to-site VPN mode.
+	Subnet  *ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpnSubnet    `json:"subnet,omitempty"`  // Configuration of subnet features
 	Subnets *[]ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpnSubnets `json:"subnets,omitempty"` // The list of subnets and their VPN presence.
 }
 type ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpnHubs struct {
 	HubID           string `json:"hubId,omitempty"`           // The network ID of the hub.
 	UseDefaultRoute *bool  `json:"useDefaultRoute,omitempty"` // Indicates whether default route traffic should be sent to this hub.
 }
+type ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpnSubnet struct {
+	Nat *ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpnSubnetNat `json:"nat,omitempty"` // Configuration of NAT for subnets
+}
+type ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpnSubnetNat struct {
+	IsAllowed *bool `json:"isAllowed,omitempty"` // If enabled, VPN subnet translation can be used to translate any local subnets that are allowed to use the VPN into a new subnet with the same number of addresses.
+}
 type ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpnSubnets struct {
-	LocalSubnet string `json:"localSubnet,omitempty"` // The CIDR notation subnet used within the VPN
-	UseVpn      *bool  `json:"useVpn,omitempty"`      // Indicates the presence of the subnet in the VPN
+	LocalSubnet string                                                          `json:"localSubnet,omitempty"` // The CIDR notation subnet used within the VPN
+	Nat         *ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpnSubnetsNat `json:"nat,omitempty"`         // Configuration of NAT for the subnet
+	UseVpn      *bool                                                           `json:"useVpn,omitempty"`      // Indicates the presence of the subnet in the VPN
+}
+type ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpnSubnetsNat struct {
+	Enabled      *bool  `json:"enabled,omitempty"`      // Whether or not VPN subnet translation is enabled for the subnet
+	RemoteSubnet string `json:"remoteSubnet,omitempty"` // The translated subnet to be used in the VPN
 }
 type ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpn struct {
 	Hubs    *[]ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpnHubs    `json:"hubs,omitempty"`    // The list of VPN hubs, in order of preference.
 	Mode    string                                                            `json:"mode,omitempty"`    // The site-to-site VPN mode.
+	Subnet  *ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnet    `json:"subnet,omitempty"`  // Configuration of subnet features
 	Subnets *[]ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnets `json:"subnets,omitempty"` // The list of subnets and their VPN presence.
 }
 type ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpnHubs struct {
 	HubID           string `json:"hubId,omitempty"`           // The network ID of the hub.
 	UseDefaultRoute *bool  `json:"useDefaultRoute,omitempty"` // Indicates whether default route traffic should be sent to this hub.
 }
+type ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnet struct {
+	Nat *ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnetNat `json:"nat,omitempty"` // Configuration of NAT for subnets
+}
+type ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnetNat struct {
+	IsAllowed *bool `json:"isAllowed,omitempty"` // If enabled, VPN subnet translation can be used to translate any local subnets that are allowed to use the VPN into a new subnet with the same number of addresses.
+}
 type ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnets struct {
-	LocalSubnet string `json:"localSubnet,omitempty"` // The CIDR notation subnet used within the VPN
-	UseVpn      *bool  `json:"useVpn,omitempty"`      // Indicates the presence of the subnet in the VPN
+	LocalSubnet string                                                             `json:"localSubnet,omitempty"` // The CIDR notation subnet used within the VPN
+	Nat         *ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnetsNat `json:"nat,omitempty"`         // Configuration of NAT for the subnet
+	UseVpn      *bool                                                              `json:"useVpn,omitempty"`      // Indicates the presence of the subnet in the VPN
+}
+type ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnetsNat struct {
+	Enabled      *bool  `json:"enabled,omitempty"`      // Whether or not VPN subnet translation is enabled for the subnet
+	RemoteSubnet string `json:"remoteSubnet,omitempty"` // The translated subnet to be used in the VPN
 }
 type ResponseApplianceGetNetworkApplianceWarmSpare struct {
 	Enabled       *bool                                              `json:"enabled,omitempty"`       // Is the warm spare enabled
@@ -1754,6 +1813,209 @@ type ResponseApplianceSwapNetworkApplianceWarmSpareWan1 struct {
 type ResponseApplianceSwapNetworkApplianceWarmSpareWan2 struct {
 	IP     string `json:"ip,omitempty"`     // IP address used for WAN 2
 	Subnet string `json:"subnet,omitempty"` // Subnet used for WAN 2
+}
+type ResponseApplianceGetOrganizationApplianceDNSLocalProfiles []ResponseItemApplianceGetOrganizationApplianceDNSLocalProfiles // Array of ResponseApplianceGetOrganizationApplianceDnsLocalProfiles
+type ResponseItemApplianceGetOrganizationApplianceDNSLocalProfiles struct {
+	Name      string `json:"name,omitempty"`      // Name of profile
+	ProfileID string `json:"profileId,omitempty"` // Profile ID
+}
+type ResponseApplianceCreateOrganizationApplianceDNSLocalProfile struct {
+	Name      string `json:"name,omitempty"`      // Name of profile
+	ProfileID string `json:"profileId,omitempty"` // Profile ID
+}
+type ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignments struct {
+	Items *[]ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignmentsItems `json:"items,omitempty"` // List of local DNS profile assignment
+	Meta  *ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignmentsMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignmentsItems struct {
+	AssignmentID string                                                                            `json:"assignmentId,omitempty"` // ID of the assignment
+	Network      *ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignmentsItemsNetwork `json:"network,omitempty"`      // The network attached to the profile
+	Profile      *ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignmentsItemsProfile `json:"profile,omitempty"`      // The profile the network is attached to
+}
+type ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignmentsItemsNetwork struct {
+	ID string `json:"id,omitempty"` // ID of the network
+}
+type ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignmentsItemsProfile struct {
+	ID string `json:"id,omitempty"` // ID of the profile
+}
+type ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignmentsMeta struct {
+	Counts *ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignmentsMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignmentsMetaCounts struct {
+	Items *ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignmentsMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignmentsMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreate struct {
+	Items *[]ResponseApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreateItems `json:"items,omitempty"` // List of local DNS profile assignment
+}
+type ResponseApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreateItems struct {
+	AssignmentID string                                                                                   `json:"assignmentId,omitempty"` // ID of the assignment
+	Network      *ResponseApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreateItemsNetwork `json:"network,omitempty"`      // The network attached to the profile
+	Profile      *ResponseApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreateItemsProfile `json:"profile,omitempty"`      // The profile the network is attached to
+}
+type ResponseApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreateItemsNetwork struct {
+	ID string `json:"id,omitempty"` // ID of the network
+}
+type ResponseApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreateItemsProfile struct {
+	ID string `json:"id,omitempty"` // ID of the profile
+}
+type ResponseApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDelete struct {
+	Items *[]ResponseApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDeleteItems `json:"items,omitempty"` // List of local DNS profile assignment
+}
+type ResponseApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDeleteItems struct {
+	AssignmentID string                                                                                         `json:"assignmentId,omitempty"` // ID of the assignment
+	Network      *ResponseApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDeleteItemsNetwork `json:"network,omitempty"`      // The network attached to the profile
+	Profile      *ResponseApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDeleteItemsProfile `json:"profile,omitempty"`      // The profile the network is attached to
+}
+type ResponseApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDeleteItemsNetwork struct {
+	ID string `json:"id,omitempty"` // ID of the network
+}
+type ResponseApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDeleteItemsProfile struct {
+	ID string `json:"id,omitempty"` // ID of the profile
+}
+type ResponseApplianceUpdateOrganizationApplianceDNSLocalProfile struct {
+	Name      string `json:"name,omitempty"`      // Name of profile
+	ProfileID string `json:"profileId,omitempty"` // Profile ID
+}
+type ResponseApplianceGetOrganizationApplianceDNSLocalRecords []ResponseItemApplianceGetOrganizationApplianceDNSLocalRecords // Array of ResponseApplianceGetOrganizationApplianceDnsLocalRecords
+type ResponseItemApplianceGetOrganizationApplianceDNSLocalRecords struct {
+	Address  string                                                               `json:"address,omitempty"`  // IP for the DNS record
+	Hostname string                                                               `json:"hostname,omitempty"` // Hostname for the DNS record
+	Profile  *ResponseItemApplianceGetOrganizationApplianceDNSLocalRecordsProfile `json:"profile,omitempty"`  // The profile the DNS record is associated with
+	RecordID string                                                               `json:"recordId,omitempty"` // Record ID
+}
+type ResponseItemApplianceGetOrganizationApplianceDNSLocalRecordsProfile struct {
+	ID string `json:"id,omitempty"` // Profile ID
+}
+type ResponseApplianceCreateOrganizationApplianceDNSLocalRecord []ResponseItemApplianceCreateOrganizationApplianceDNSLocalRecord // Array of ResponseApplianceCreateOrganizationApplianceDnsLocalRecord
+type ResponseItemApplianceCreateOrganizationApplianceDNSLocalRecord struct {
+	Address  string                                                                 `json:"address,omitempty"`  // IP for the DNS record
+	Hostname string                                                                 `json:"hostname,omitempty"` // Hostname for the DNS record
+	Profile  *ResponseItemApplianceCreateOrganizationApplianceDNSLocalRecordProfile `json:"profile,omitempty"`  // The profile the DNS record is associated with
+	RecordID string                                                                 `json:"recordId,omitempty"` // Record ID
+}
+type ResponseItemApplianceCreateOrganizationApplianceDNSLocalRecordProfile struct {
+	ID string `json:"id,omitempty"` // Profile ID
+}
+type ResponseApplianceUpdateOrganizationApplianceDNSLocalRecord struct {
+	Address  string                                                             `json:"address,omitempty"`  // IP for the DNS record
+	Hostname string                                                             `json:"hostname,omitempty"` // Hostname for the DNS record
+	Profile  *ResponseApplianceUpdateOrganizationApplianceDNSLocalRecordProfile `json:"profile,omitempty"`  // The profile the DNS record is associated with
+	RecordID string                                                             `json:"recordId,omitempty"` // Record ID
+}
+type ResponseApplianceUpdateOrganizationApplianceDNSLocalRecordProfile struct {
+	ID string `json:"id,omitempty"` // Profile ID
+}
+type ResponseApplianceGetOrganizationApplianceDNSSplitProfiles []ResponseItemApplianceGetOrganizationApplianceDNSSplitProfiles // Array of ResponseApplianceGetOrganizationApplianceDnsSplitProfiles
+type ResponseItemApplianceGetOrganizationApplianceDNSSplitProfiles struct {
+	Hostnames   []string                                                                  `json:"hostnames,omitempty"`   // The hostname patterns to match for redirection. For more information on Split DNS hostname pattern formatting, please consult the Split DNS KB.
+	Name        string                                                                    `json:"name,omitempty"`        // Name of profile
+	Nameservers *ResponseItemApplianceGetOrganizationApplianceDNSSplitProfilesNameservers `json:"nameservers,omitempty"` // Contains the nameserver information for redirection.
+	ProfileID   string                                                                    `json:"profileId,omitempty"`   // Profile ID
+}
+type ResponseItemApplianceGetOrganizationApplianceDNSSplitProfilesNameservers struct {
+	Addresses []string `json:"addresses,omitempty"` // The nameserver address(es) to use for redirection. A maximum of one address is supported.
+}
+type ResponseApplianceCreateOrganizationApplianceDNSSplitProfile struct {
+	Hostnames   []string                                                                `json:"hostnames,omitempty"`   // The hostname patterns to match for redirection. For more information on Split DNS hostname pattern formatting, please consult the Split DNS KB.
+	Name        string                                                                  `json:"name,omitempty"`        // Name of profile
+	Nameservers *ResponseApplianceCreateOrganizationApplianceDNSSplitProfileNameservers `json:"nameservers,omitempty"` // Contains the nameserver information for redirection.
+	ProfileID   string                                                                  `json:"profileId,omitempty"`   // Profile ID
+}
+type ResponseApplianceCreateOrganizationApplianceDNSSplitProfileNameservers struct {
+	Addresses []string `json:"addresses,omitempty"` // The nameserver address(es) to use for redirection. A maximum of one address is supported.
+}
+type ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignments struct {
+	Items *[]ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignmentsItems `json:"items,omitempty"` // List of split DNS profile assignment
+	Meta  *ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignmentsMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignmentsItems struct {
+	AssignmentID string                                                                            `json:"assignmentId,omitempty"` // ID of the assignment
+	Network      *ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignmentsItemsNetwork `json:"network,omitempty"`      // The network attached to the profile
+	Profile      *ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignmentsItemsProfile `json:"profile,omitempty"`      // The profile the network is attached to
+}
+type ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignmentsItemsNetwork struct {
+	ID string `json:"id,omitempty"` // ID of the network
+}
+type ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignmentsItemsProfile struct {
+	ID string `json:"id,omitempty"` // ID of the profile
+}
+type ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignmentsMeta struct {
+	Counts *ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignmentsMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignmentsMetaCounts struct {
+	Items *ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignmentsMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignmentsMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreate struct {
+	Items *[]ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreateItems `json:"items,omitempty"` // List of split DNS profile assignment
+}
+type ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreateItems struct {
+	AssignmentID string                                                                                         `json:"assignmentId,omitempty"` // ID of the assignment
+	Network      *ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreateItemsNetwork `json:"network,omitempty"`      // The network attached to the profile
+	Profile      *ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreateItemsProfile `json:"profile,omitempty"`      // The profile the network is attached to
+}
+type ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreateItemsNetwork struct {
+	ID string `json:"id,omitempty"` // ID of the network
+}
+type ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreateItemsProfile struct {
+	ID string `json:"id,omitempty"` // ID of the profile
+}
+type ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDelete struct {
+	Items *[]ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDeleteItems `json:"items,omitempty"` // List of split DNS profile assignment
+}
+type ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDeleteItems struct {
+	AssignmentID string                                                                                         `json:"assignmentId,omitempty"` // ID of the assignment
+	Network      *ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDeleteItemsNetwork `json:"network,omitempty"`      // The network attached to the profile
+	Profile      *ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDeleteItemsProfile `json:"profile,omitempty"`      // The profile the network is attached to
+}
+type ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDeleteItemsNetwork struct {
+	ID string `json:"id,omitempty"` // ID of the network
+}
+type ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDeleteItemsProfile struct {
+	ID string `json:"id,omitempty"` // ID of the profile
+}
+type ResponseApplianceUpdateOrganizationApplianceDNSSplitProfile struct {
+	Hostnames   []string                                                                `json:"hostnames,omitempty"`   // The hostname patterns to match for redirection. For more information on Split DNS hostname pattern formatting, please consult the Split DNS KB.
+	Name        string                                                                  `json:"name,omitempty"`        // Name of profile
+	Nameservers *ResponseApplianceUpdateOrganizationApplianceDNSSplitProfileNameservers `json:"nameservers,omitempty"` // Contains the nameserver information for redirection.
+	ProfileID   string                                                                  `json:"profileId,omitempty"`   // Profile ID
+}
+type ResponseApplianceUpdateOrganizationApplianceDNSSplitProfileNameservers struct {
+	Addresses []string `json:"addresses,omitempty"` // The nameserver address(es) to use for redirection. A maximum of one address is supported.
+}
+type ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork struct {
+	Items *[]ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetworkItems `json:"items,omitempty"` // List of networks with multicast static forwarding rules
+	Meta  *ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetworkMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetworkItems struct {
+	Network *ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetworkItemsNetwork `json:"network,omitempty"` // Network details
+	Rules   *[]ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetworkItemsRules `json:"rules,omitempty"`   // Static multicast forwarding rules.
+}
+type ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetworkItemsNetwork struct {
+	ID   string `json:"id,omitempty"`   // ID of the network whose multicast forwarding settings are returned.
+	Name string `json:"name,omitempty"` // Name of the network whose multicast forwarding settings are returned.
+}
+type ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetworkItemsRules struct {
+	Address     string   `json:"address,omitempty"`     // IP address
+	Description string   `json:"description,omitempty"` // Forwarding rule description.
+	VLANIDs     []string `json:"vlanIds,omitempty"`     // List of VLAN IDs
+}
+type ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetworkMeta struct {
+	Counts *ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetworkMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetworkMetaCounts struct {
+	Items *ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetworkMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetworkMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
 }
 type ResponseApplianceGetOrganizationApplianceSecurityEvents []ResponseItemApplianceGetOrganizationApplianceSecurityEvents // Array of ResponseApplianceGetOrganizationApplianceSecurityEvents
 type ResponseItemApplianceGetOrganizationApplianceSecurityEvents struct {
@@ -1850,50 +2112,50 @@ type ResponseItemApplianceGetOrganizationApplianceUplinksUsageByNetworkByUplink 
 }
 type ResponseApplianceGetOrganizationApplianceVpnStats []ResponseItemApplianceGetOrganizationApplianceVpnStats // Array of ResponseApplianceGetOrganizationApplianceVpnStats
 type ResponseItemApplianceGetOrganizationApplianceVpnStats struct {
-	MerakiVpnpeers *[]ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeers `json:"merakiVpnPeers,omitempty"` //
-	NetworkID      string                                                                 `json:"networkId,omitempty"`      //
-	NetworkName    string                                                                 `json:"networkName,omitempty"`    //
+	MerakiVpnpeers *[]ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeers `json:"merakiVpnPeers,omitempty"` // List of VPN peers with their summaries
+	NetworkID      string                                                                 `json:"networkId,omitempty"`      // Network ID
+	NetworkName    string                                                                 `json:"networkName,omitempty"`    // Network name
 }
 type ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeers struct {
-	JitterSummaries         *[]ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersJitterSummaries         `json:"jitterSummaries,omitempty"`         //
-	LatencySummaries        *[]ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersLatencySummaries        `json:"latencySummaries,omitempty"`        //
-	LossPercentageSummaries *[]ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersLossPercentageSummaries `json:"lossPercentageSummaries,omitempty"` //
-	MosSummaries            *[]ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersMosSummaries            `json:"mosSummaries,omitempty"`            //
-	NetworkID               string                                                                                        `json:"networkId,omitempty"`               //
-	NetworkName             string                                                                                        `json:"networkName,omitempty"`             //
-	UsageSummary            *ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersUsageSummary              `json:"usageSummary,omitempty"`            //
+	JitterSummaries         *[]ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersJitterSummaries         `json:"jitterSummaries,omitempty"`         // List of jitter summaries
+	LatencySummaries        *[]ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersLatencySummaries        `json:"latencySummaries,omitempty"`        // List of latency summaries
+	LossPercentageSummaries *[]ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersLossPercentageSummaries `json:"lossPercentageSummaries,omitempty"` // List of loss percentage summaries
+	MosSummaries            *[]ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersMosSummaries            `json:"mosSummaries,omitempty"`            // List of MOS (Mean opinion score) summaries
+	NetworkID               string                                                                                        `json:"networkId,omitempty"`               // Network ID of the VPN peer
+	NetworkName             string                                                                                        `json:"networkName,omitempty"`             // Network name of the VPN peer
+	UsageSummary            *ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersUsageSummary              `json:"usageSummary,omitempty"`            // Usage summary
 }
 type ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersJitterSummaries struct {
-	AvgJitter      *float64 `json:"avgJitter,omitempty"`      //
-	MaxJitter      *float64 `json:"maxJitter,omitempty"`      //
-	MinJitter      *int     `json:"minJitter,omitempty"`      //
-	ReceiverUplink string   `json:"receiverUplink,omitempty"` //
-	SenderUplink   string   `json:"senderUplink,omitempty"`   //
+	AvgJitter      *float64 `json:"avgJitter,omitempty"`      // Average jitter
+	MaxJitter      *float64 `json:"maxJitter,omitempty"`      // Maximum jitter
+	MinJitter      *float64 `json:"minJitter,omitempty"`      // Minimum jitter
+	ReceiverUplink string   `json:"receiverUplink,omitempty"` // Receiver uplink interface
+	SenderUplink   string   `json:"senderUplink,omitempty"`   // Sender uplink interface
 }
 type ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersLatencySummaries struct {
-	AvgLatencyMs   *int   `json:"avgLatencyMs,omitempty"`   //
-	MaxLatencyMs   *int   `json:"maxLatencyMs,omitempty"`   //
-	MinLatencyMs   *int   `json:"minLatencyMs,omitempty"`   //
-	ReceiverUplink string `json:"receiverUplink,omitempty"` //
-	SenderUplink   string `json:"senderUplink,omitempty"`   //
+	AvgLatencyMs   *int   `json:"avgLatencyMs,omitempty"`   // Average latency in milliseconds
+	MaxLatencyMs   *int   `json:"maxLatencyMs,omitempty"`   // Maximum latency in milliseconds
+	MinLatencyMs   *int   `json:"minLatencyMs,omitempty"`   // Minimum latency in milliseconds
+	ReceiverUplink string `json:"receiverUplink,omitempty"` // Receiver uplink interface
+	SenderUplink   string `json:"senderUplink,omitempty"`   // Sender uplink interface
 }
 type ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersLossPercentageSummaries struct {
-	AvgLossPercentage *int     `json:"avgLossPercentage,omitempty"` //
-	MaxLossPercentage *float64 `json:"maxLossPercentage,omitempty"` //
-	MinLossPercentage *int     `json:"minLossPercentage,omitempty"` //
-	ReceiverUplink    string   `json:"receiverUplink,omitempty"`    //
-	SenderUplink      string   `json:"senderUplink,omitempty"`      //
+	AvgLossPercentage *float64 `json:"avgLossPercentage,omitempty"` // Average loss percentage
+	MaxLossPercentage *float64 `json:"maxLossPercentage,omitempty"` // Maximum loss percentage
+	MinLossPercentage *float64 `json:"minLossPercentage,omitempty"` // Minimum loss percentage
+	ReceiverUplink    string   `json:"receiverUplink,omitempty"`    // Receiver uplink interface
+	SenderUplink      string   `json:"senderUplink,omitempty"`      // Sender uplink interface
 }
 type ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersMosSummaries struct {
-	AvgMos         *float64 `json:"avgMos,omitempty"`         //
-	MaxMos         *float64 `json:"maxMos,omitempty"`         //
-	MinMos         *float64 `json:"minMos,omitempty"`         //
-	ReceiverUplink string   `json:"receiverUplink,omitempty"` //
-	SenderUplink   string   `json:"senderUplink,omitempty"`   //
+	AvgMos         *float64 `json:"avgMos,omitempty"`         // Average MOS (Mean opinion score)
+	MaxMos         *float64 `json:"maxMos,omitempty"`         // Maximum MOS (Mean opinion score
+	MinMos         *float64 `json:"minMos,omitempty"`         // Minimum MOS (Mean opinion score
+	ReceiverUplink string   `json:"receiverUplink,omitempty"` // Receiver uplink interface
+	SenderUplink   string   `json:"senderUplink,omitempty"`   // Sender uplink interface
 }
 type ResponseItemApplianceGetOrganizationApplianceVpnStatsMerakiVpnpeersUsageSummary struct {
-	ReceivedInKilobytes *int `json:"receivedInKilobytes,omitempty"` //
-	SentInKilobytes     *int `json:"sentInKilobytes,omitempty"`     //
+	ReceivedInKilobytes *int `json:"receivedInKilobytes,omitempty"` // The amount of data received (in kilobytes)
+	SentInKilobytes     *int `json:"sentInKilobytes,omitempty"`     // The amount of data sent (in kilobytes)
 }
 type ResponseApplianceGetOrganizationApplianceVpnStatuses struct {
 	Vpnstatusentities *[]ResponseApplianceGetOrganizationApplianceVpnStatusesVpnstatusentities `json:"vpnstatusentities,omitempty"` // The list of VPN Status for networks
@@ -2192,13 +2454,21 @@ type RequestApplianceUpdateNetworkApplianceFirewallL7FirewallRulesRulesValue str
 	ID   string `json:"id,omitempty"`
 	Name string `json:"name,omitempty"`
 }
+type RequestApplianceUpdateNetworkApplianceFirewallMulticastForwarding struct {
+	Rules *[]RequestApplianceUpdateNetworkApplianceFirewallMulticastForwardingRules `json:"rules,omitempty"` // Static multicast forwarding rules. Pass an empty array to clear all rules.
+}
+type RequestApplianceUpdateNetworkApplianceFirewallMulticastForwardingRules struct {
+	Address     string   `json:"address,omitempty"`     // IP address
+	Description string   `json:"description,omitempty"` // Forwarding rule description.
+	VLANIDs     []string `json:"vlanIds,omitempty"`     // List of VLAN IDs
+}
 type RequestApplianceUpdateNetworkApplianceFirewallOneToManyNatRules struct {
 	Rules *[]RequestApplianceUpdateNetworkApplianceFirewallOneToManyNatRulesRules `json:"rules,omitempty"` // An array of 1:Many nat rules
 }
 type RequestApplianceUpdateNetworkApplianceFirewallOneToManyNatRulesRules struct {
 	PortRules *[]RequestApplianceUpdateNetworkApplianceFirewallOneToManyNatRulesRulesPortRules `json:"portRules,omitempty"` // An array of associated forwarding rules
 	PublicIP  string                                                                           `json:"publicIp,omitempty"`  // The IP address that will be used to access the internal resource from the WAN
-	Uplink    string                                                                           `json:"uplink,omitempty"`    // The physical WAN interface on which the traffic will arrive ('internet1' or, if available, 'internet2')
+	Uplink    string                                                                           `json:"uplink,omitempty"`    // The physical WAN interface on which the traffic will arrive, formatted as 'internetN' where N is an integer representing a valid uplink for the network's appliance
 }
 type RequestApplianceUpdateNetworkApplianceFirewallOneToManyNatRulesRulesPortRules struct {
 	AllowedIPs []string `json:"allowedIps,omitempty"` // Remote IP addresses or ranges that are permitted to access the internal resource via this port forwarding rule, or 'any'
@@ -2216,7 +2486,7 @@ type RequestApplianceUpdateNetworkApplianceFirewallOneToOneNatRulesRules struct 
 	LanIP          string                                                                               `json:"lanIp,omitempty"`          // The IP address of the server or device that hosts the internal resource that you wish to make available on the WAN
 	Name           string                                                                               `json:"name,omitempty"`           // A descriptive name for the rule
 	PublicIP       string                                                                               `json:"publicIp,omitempty"`       // The IP address that will be used to access the internal resource from the WAN
-	Uplink         string                                                                               `json:"uplink,omitempty"`         // The physical WAN interface on which the traffic will arrive ('internet1' or, if available, 'internet2')
+	Uplink         string                                                                               `json:"uplink,omitempty"`         // The physical WAN interface on which the traffic will arrive, formatted as 'internetN' where N is an integer representing a valid uplink for the network's appliance
 }
 type RequestApplianceUpdateNetworkApplianceFirewallOneToOneNatRulesRulesAllowedInbound struct {
 	AllowedIPs       []string `json:"allowedIps,omitempty"`       // An array of ranges of WAN IP addresses that are allowed to make inbound connections on the specified ports or port ranges, or 'any'
@@ -2736,7 +3006,7 @@ type RequestApplianceUpdateNetworkApplianceVpnBgpNeighbors struct {
 	NextHopIP       string                                                               `json:"nextHopIp,omitempty"`       // The IPv4 address of the remote BGP peer that will establish a TCP session with the local MX.
 	ReceiveLimit    *int                                                                 `json:"receiveLimit,omitempty"`    // The receive limit is the maximum number of routes that can be received from any BGP peer. The receive limit must be an integer between 0 and 2147483647. When absent, it defaults to 0.
 	RemoteAsNumber  *int                                                                 `json:"remoteAsNumber,omitempty"`  // Remote ASN of the neighbor. The remote ASN must be an integer between 1 and 4294967295.
-	SourceInterface string                                                               `json:"sourceInterface,omitempty"` // The output interface for peering with the remote BGP peer. Valid values are: 'wan1', 'wan2' or 'vlan{VLAN ID}'(e.g. 'vlan123').
+	SourceInterface string                                                               `json:"sourceInterface,omitempty"` // The output interface for peering with the remote BGP peer. Valid values are: 'wan{NUMBER}' (e.g. 'wan3') or 'vlan{VLAN ID}' (e.g. 'vlan123').
 	TtlSecurity     *RequestApplianceUpdateNetworkApplianceVpnBgpNeighborsTtlSecurity    `json:"ttlSecurity,omitempty"`     // Settings for BGP TTL security to protect BGP peering sessions from forged IP attacks.
 }
 type RequestApplianceUpdateNetworkApplianceVpnBgpNeighborsAuthentication struct {
@@ -2751,15 +3021,27 @@ type RequestApplianceUpdateNetworkApplianceVpnBgpNeighborsTtlSecurity struct {
 type RequestApplianceUpdateNetworkApplianceVpnSiteToSiteVpn struct {
 	Hubs    *[]RequestApplianceUpdateNetworkApplianceVpnSiteToSiteVpnHubs    `json:"hubs,omitempty"`    // The list of VPN hubs, in order of preference. In spoke mode, at least 1 hub is required.
 	Mode    string                                                           `json:"mode,omitempty"`    // The site-to-site VPN mode. Can be one of 'none', 'spoke' or 'hub'
+	Subnet  *RequestApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnet    `json:"subnet,omitempty"`  // Configuration of subnet features
 	Subnets *[]RequestApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnets `json:"subnets,omitempty"` // The list of subnets and their VPN presence.
 }
 type RequestApplianceUpdateNetworkApplianceVpnSiteToSiteVpnHubs struct {
 	HubID           string `json:"hubId,omitempty"`           // The network ID of the hub.
 	UseDefaultRoute *bool  `json:"useDefaultRoute,omitempty"` // Only valid in 'spoke' mode. Indicates whether default route traffic should be sent to this hub.
 }
+type RequestApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnet struct {
+	Nat *RequestApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnetNat `json:"nat,omitempty"` // Configuration of NAT for subnets
+}
+type RequestApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnetNat struct {
+	IsAllowed *bool `json:"isAllowed,omitempty"` // If enabled, VPN subnet translation can be used to translate any local subnets that are allowed to use the VPN into a new subnet with the same number of addresses.
+}
 type RequestApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnets struct {
-	LocalSubnet string `json:"localSubnet,omitempty"` // The CIDR notation subnet used within the VPN
-	UseVpn      *bool  `json:"useVpn,omitempty"`      // Indicates the presence of the subnet in the VPN
+	LocalSubnet string                                                            `json:"localSubnet,omitempty"` // The CIDR notation subnet used within the VPN
+	Nat         *RequestApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnetsNat `json:"nat,omitempty"`         // Configuration of NAT for the subnet
+	UseVpn      *bool                                                             `json:"useVpn,omitempty"`      // Indicates the presence of the subnet in the VPN
+}
+type RequestApplianceUpdateNetworkApplianceVpnSiteToSiteVpnSubnetsNat struct {
+	Enabled      *bool  `json:"enabled,omitempty"`      // Whether or not VPN subnet translation is enabled for the subnet
+	RemoteSubnet string `json:"remoteSubnet,omitempty"` // The translated subnet to be used in the VPN
 }
 type RequestApplianceUpdateNetworkApplianceWarmSpare struct {
 	Enabled     *bool  `json:"enabled,omitempty"`     // Enable warm spare
@@ -2767,6 +3049,82 @@ type RequestApplianceUpdateNetworkApplianceWarmSpare struct {
 	UplinkMode  string `json:"uplinkMode,omitempty"`  // Uplink mode, either virtual or public
 	VirtualIP1  string `json:"virtualIp1,omitempty"`  // The WAN 1 shared IP
 	VirtualIP2  string `json:"virtualIp2,omitempty"`  // The WAN 2 shared IP
+}
+type RequestApplianceCreateOrganizationApplianceDNSLocalProfile struct {
+	Name string `json:"name,omitempty"` // Name of profile
+}
+type RequestApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreate struct {
+	Items *[]RequestApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreateItems `json:"items,omitempty"` // List containing the network ID and Profile ID
+}
+type RequestApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreateItems struct {
+	Network *RequestApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreateItemsNetwork `json:"network,omitempty"` // The network attached to the profile
+	Profile *RequestApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreateItemsProfile `json:"profile,omitempty"` // The profile the network is attached to
+}
+type RequestApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreateItemsNetwork struct {
+	ID string `json:"id,omitempty"` // ID of the network
+}
+type RequestApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreateItemsProfile struct {
+	ID string `json:"id,omitempty"` // ID of the profile
+}
+type RequestApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDelete struct {
+	Items *[]RequestApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDeleteItems `json:"items,omitempty"` // List containing the assignment ID
+}
+type RequestApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDeleteItems struct {
+	AssignmentID string `json:"assignmentId,omitempty"` // ID of the assignment
+}
+type RequestApplianceUpdateOrganizationApplianceDNSLocalProfile struct {
+	Name string `json:"name,omitempty"` // Name of profile
+}
+type RequestApplianceCreateOrganizationApplianceDNSLocalRecord struct {
+	Address  string                                                            `json:"address,omitempty"`  // IP for the DNS record
+	Hostname string                                                            `json:"hostname,omitempty"` // Hostname for the DNS record
+	Profile  *RequestApplianceCreateOrganizationApplianceDNSLocalRecordProfile `json:"profile,omitempty"`  // The profile the DNS record is associated with
+}
+type RequestApplianceCreateOrganizationApplianceDNSLocalRecordProfile struct {
+	ID string `json:"id,omitempty"` // Profile ID
+}
+type RequestApplianceUpdateOrganizationApplianceDNSLocalRecord struct {
+	Address  string                                                            `json:"address,omitempty"`  // IP for the DNS record
+	Hostname string                                                            `json:"hostname,omitempty"` // Hostname for the DNS record
+	Profile  *RequestApplianceUpdateOrganizationApplianceDNSLocalRecordProfile `json:"profile,omitempty"`  // The profile the DNS record is associated with
+}
+type RequestApplianceUpdateOrganizationApplianceDNSLocalRecordProfile struct {
+	ID string `json:"id,omitempty"` // Profile ID
+}
+type RequestApplianceCreateOrganizationApplianceDNSSplitProfile struct {
+	Hostnames   []string                                                               `json:"hostnames,omitempty"`   // The hostname patterns to match for redirection. For more information on Split DNS hostname pattern formatting, please consult the Split DNS KB.
+	Name        string                                                                 `json:"name,omitempty"`        // Name of profile
+	Nameservers *RequestApplianceCreateOrganizationApplianceDNSSplitProfileNameservers `json:"nameservers,omitempty"` // Contains the nameserver information for redirection.
+}
+type RequestApplianceCreateOrganizationApplianceDNSSplitProfileNameservers struct {
+	Addresses []string `json:"addresses,omitempty"` // The nameserver address(es) to use for redirection. A maximum of one address is supported.
+}
+type RequestApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreate struct {
+	Items *[]RequestApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreateItems `json:"items,omitempty"` // List containing the network ID and Profile ID
+}
+type RequestApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreateItems struct {
+	Network *RequestApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreateItemsNetwork `json:"network,omitempty"` // The network attached to the profile
+	Profile *RequestApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreateItemsProfile `json:"profile,omitempty"` // The profile the network is attached to
+}
+type RequestApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreateItemsNetwork struct {
+	ID string `json:"id,omitempty"` // ID of the network
+}
+type RequestApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreateItemsProfile struct {
+	ID string `json:"id,omitempty"` // ID of the profile
+}
+type RequestApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDelete struct {
+	Items *[]RequestApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDeleteItems `json:"items,omitempty"` // List containing the assignment ID
+}
+type RequestApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDeleteItems struct {
+	AssignmentID string `json:"assignmentId,omitempty"` // ID of the assignment
+}
+type RequestApplianceUpdateOrganizationApplianceDNSSplitProfile struct {
+	Hostnames   []string                                                               `json:"hostnames,omitempty"`   // The hostname patterns to match for redirection. For more information on Split DNS hostname pattern formatting, please consult the Split DNS KB.
+	Name        string                                                                 `json:"name,omitempty"`        // Name of profile
+	Nameservers *RequestApplianceUpdateOrganizationApplianceDNSSplitProfileNameservers `json:"nameservers,omitempty"` // Contains the nameserver information for redirection.
+}
+type RequestApplianceUpdateOrganizationApplianceDNSSplitProfileNameservers struct {
+	Addresses []string `json:"addresses,omitempty"` // The nameserver address(es) to use for redirection. A maximum of one address is supported.
 }
 type RequestApplianceUpdateOrganizationApplianceSecurityIntrusion struct {
 	AllowedRules *[]RequestApplianceUpdateOrganizationApplianceSecurityIntrusionAllowedRules `json:"allowedRules,omitempty"` // Sets a list of specific SNORT signatures to allow
@@ -4617,6 +4975,263 @@ func (s *ApplianceService) GetNetworkApplianceWarmSpare(networkID string) (*Resp
 
 }
 
+//GetOrganizationApplianceDNSLocalProfiles Fetch the local DNS profiles used in the organization
+/* Fetch the local DNS profiles used in the organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationApplianceDnsLocalProfilesQueryParams Filtering parameter
+
+
+*/
+
+func (s *ApplianceService) GetOrganizationApplianceDNSLocalProfiles(organizationID string, getOrganizationApplianceDnsLocalProfilesQueryParams *GetOrganizationApplianceDNSLocalProfilesQueryParams) (*ResponseApplianceGetOrganizationApplianceDNSLocalProfiles, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/local/profiles"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationApplianceDnsLocalProfilesQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceDNSLocalProfiles{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceDnsLocalProfiles")
+	}
+
+	result := response.Result().(*ResponseApplianceGetOrganizationApplianceDNSLocalProfiles)
+	return result, response, err
+
+}
+
+//GetOrganizationApplianceDNSLocalProfilesAssignments Fetch the local DNS profile assignments in the organization
+/* Fetch the local DNS profile assignments in the organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationApplianceDnsLocalProfilesAssignmentsQueryParams Filtering parameter
+
+
+*/
+
+func (s *ApplianceService) GetOrganizationApplianceDNSLocalProfilesAssignments(organizationID string, getOrganizationApplianceDnsLocalProfilesAssignmentsQueryParams *GetOrganizationApplianceDNSLocalProfilesAssignmentsQueryParams) (*ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignments, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/local/profiles/assignments"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationApplianceDnsLocalProfilesAssignmentsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignments{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceDnsLocalProfilesAssignments")
+	}
+
+	result := response.Result().(*ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignments)
+	return result, response, err
+
+}
+
+//GetOrganizationApplianceDNSLocalRecords Fetch the DNS records used in local DNS profiles
+/* Fetch the DNS records used in local DNS profiles
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationApplianceDnsLocalRecordsQueryParams Filtering parameter
+
+
+*/
+
+func (s *ApplianceService) GetOrganizationApplianceDNSLocalRecords(organizationID string, getOrganizationApplianceDnsLocalRecordsQueryParams *GetOrganizationApplianceDNSLocalRecordsQueryParams) (*ResponseApplianceGetOrganizationApplianceDNSLocalRecords, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/local/records"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationApplianceDnsLocalRecordsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceDNSLocalRecords{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceDnsLocalRecords")
+	}
+
+	result := response.Result().(*ResponseApplianceGetOrganizationApplianceDNSLocalRecords)
+	return result, response, err
+
+}
+
+//GetOrganizationApplianceDNSSplitProfiles Fetch the split DNS profiles used in the organization
+/* Fetch the split DNS profiles used in the organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationApplianceDnsSplitProfilesQueryParams Filtering parameter
+
+
+*/
+
+func (s *ApplianceService) GetOrganizationApplianceDNSSplitProfiles(organizationID string, getOrganizationApplianceDnsSplitProfilesQueryParams *GetOrganizationApplianceDNSSplitProfilesQueryParams) (*ResponseApplianceGetOrganizationApplianceDNSSplitProfiles, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/split/profiles"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationApplianceDnsSplitProfilesQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceDNSSplitProfiles{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceDnsSplitProfiles")
+	}
+
+	result := response.Result().(*ResponseApplianceGetOrganizationApplianceDNSSplitProfiles)
+	return result, response, err
+
+}
+
+//GetOrganizationApplianceDNSSplitProfilesAssignments Fetch the split DNS profile assignments in the organization
+/* Fetch the split DNS profile assignments in the organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationApplianceDnsSplitProfilesAssignmentsQueryParams Filtering parameter
+
+
+*/
+
+func (s *ApplianceService) GetOrganizationApplianceDNSSplitProfilesAssignments(organizationID string, getOrganizationApplianceDnsSplitProfilesAssignmentsQueryParams *GetOrganizationApplianceDNSSplitProfilesAssignmentsQueryParams) (*ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignments, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/split/profiles/assignments"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationApplianceDnsSplitProfilesAssignmentsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignments{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceDnsSplitProfilesAssignments")
+	}
+
+	result := response.Result().(*ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignments)
+	return result, response, err
+
+}
+
+//GetOrganizationApplianceFirewallMulticastForwardingByNetwork List Static Multicasting forwarding settings for MX networks
+/* List Static Multicasting forwarding settings for MX networks
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams Filtering parameter
+
+
+*/
+
+func (s *ApplianceService) GetOrganizationApplianceFirewallMulticastForwardingByNetwork(organizationID string, getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams *GetOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams) (*ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/firewall/multicastForwarding/byNetwork"
+	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams != nil && getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams.PerPage == -1 {
+		var result *ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork
+		println("Paginate")
+		getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationApplianceFirewallMulticastForwardingByNetworkPaginate, organizationID, "", getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceFirewallMulticastForwardingByNetwork")
+	}
+
+	result := response.Result().(*ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork)
+	return result, response, err
+
+}
+func (s *ApplianceService) GetOrganizationApplianceFirewallMulticastForwardingByNetworkPaginate(organizationID string, getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams any) (any, *resty.Response, error) {
+	getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParamsConverted := getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams.(*GetOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams)
+
+	return s.GetOrganizationApplianceFirewallMulticastForwardingByNetwork(organizationID, getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParamsConverted)
+}
+
 //GetOrganizationApplianceSecurityEvents List the security events for an organization
 /* List the security events for an organization
 
@@ -5392,6 +6007,251 @@ func (s *ApplianceService) SwapNetworkApplianceWarmSpare(networkID string) (*Res
 
 }
 
+//CreateOrganizationApplianceDNSLocalProfile Create a new local DNS profile
+/* Create a new local DNS profile
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *ApplianceService) CreateOrganizationApplianceDNSLocalProfile(organizationID string, requestApplianceCreateOrganizationApplianceDnsLocalProfile *RequestApplianceCreateOrganizationApplianceDNSLocalProfile) (*ResponseApplianceCreateOrganizationApplianceDNSLocalProfile, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/local/profiles"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceCreateOrganizationApplianceDnsLocalProfile).
+		SetResult(&ResponseApplianceCreateOrganizationApplianceDNSLocalProfile{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationApplianceDnsLocalProfile")
+	}
+
+	result := response.Result().(*ResponseApplianceCreateOrganizationApplianceDNSLocalProfile)
+	return result, response, err
+
+}
+
+//BulkOrganizationApplianceDNSLocalProfilesAssignmentsCreate Assign the local DNS profile to networks in the organization
+/* Assign the local DNS profile to networks in the organization
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *ApplianceService) BulkOrganizationApplianceDNSLocalProfilesAssignmentsCreate(organizationID string, requestApplianceBulkOrganizationApplianceDnsLocalProfilesAssignmentsCreate *RequestApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreate) (*ResponseApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreate, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/local/profiles/assignments/bulkCreate"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceBulkOrganizationApplianceDnsLocalProfilesAssignmentsCreate).
+		SetResult(&ResponseApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreate{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation BulkOrganizationApplianceDnsLocalProfilesAssignmentsCreate")
+	}
+
+	result := response.Result().(*ResponseApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreate)
+	return result, response, err
+
+}
+
+//CreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDelete Unassign the local DNS profile to networks in the organization
+/* Unassign the local DNS profile to networks in the organization
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *ApplianceService) CreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDelete(organizationID string, requestApplianceCreateOrganizationApplianceDnsLocalProfilesAssignmentsBulkDelete *RequestApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDelete) (*ResponseApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDelete, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/local/profiles/assignments/bulkDelete"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceCreateOrganizationApplianceDnsLocalProfilesAssignmentsBulkDelete).
+		SetResult(&ResponseApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDelete{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationApplianceDnsLocalProfilesAssignmentsBulkDelete")
+	}
+
+	result := response.Result().(*ResponseApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDelete)
+	return result, response, err
+
+}
+
+//CreateOrganizationApplianceDNSLocalRecord Create a new local DNS record
+/* Create a new local DNS record
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *ApplianceService) CreateOrganizationApplianceDNSLocalRecord(organizationID string, requestApplianceCreateOrganizationApplianceDnsLocalRecord *RequestApplianceCreateOrganizationApplianceDNSLocalRecord) (*ResponseApplianceCreateOrganizationApplianceDNSLocalRecord, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/local/records"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceCreateOrganizationApplianceDnsLocalRecord).
+		SetResult(&ResponseApplianceCreateOrganizationApplianceDNSLocalRecord{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationApplianceDnsLocalRecord")
+	}
+
+	result := response.Result().(*ResponseApplianceCreateOrganizationApplianceDNSLocalRecord)
+	return result, response, err
+
+}
+
+//CreateOrganizationApplianceDNSSplitProfile Create a new split DNS profile
+/* Create a new split DNS profile
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *ApplianceService) CreateOrganizationApplianceDNSSplitProfile(organizationID string, requestApplianceCreateOrganizationApplianceDnsSplitProfile *RequestApplianceCreateOrganizationApplianceDNSSplitProfile) (*ResponseApplianceCreateOrganizationApplianceDNSSplitProfile, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/split/profiles"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceCreateOrganizationApplianceDnsSplitProfile).
+		SetResult(&ResponseApplianceCreateOrganizationApplianceDNSSplitProfile{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationApplianceDnsSplitProfile")
+	}
+
+	result := response.Result().(*ResponseApplianceCreateOrganizationApplianceDNSSplitProfile)
+	return result, response, err
+
+}
+
+//CreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreate Assign the split DNS profile to networks in the organization
+/* Assign the split DNS profile to networks in the organization
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *ApplianceService) CreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreate(organizationID string, requestApplianceCreateOrganizationApplianceDnsSplitProfilesAssignmentsBulkCreate *RequestApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreate) (*ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreate, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/split/profiles/assignments/bulkCreate"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceCreateOrganizationApplianceDnsSplitProfilesAssignmentsBulkCreate).
+		SetResult(&ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreate{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationApplianceDnsSplitProfilesAssignmentsBulkCreate")
+	}
+
+	result := response.Result().(*ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreate)
+	return result, response, err
+
+}
+
+//CreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDelete Unassign the split DNS profile to networks in the organization
+/* Unassign the split DNS profile to networks in the organization
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *ApplianceService) CreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDelete(organizationID string, requestApplianceCreateOrganizationApplianceDnsSplitProfilesAssignmentsBulkDelete *RequestApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDelete) (*ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDelete, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/split/profiles/assignments/bulkDelete"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceCreateOrganizationApplianceDnsSplitProfilesAssignmentsBulkDelete).
+		SetResult(&ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDelete{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationApplianceDnsSplitProfilesAssignmentsBulkDelete")
+	}
+
+	result := response.Result().(*ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDelete)
+	return result, response, err
+
+}
+
 //UpdateDeviceApplianceRadioSettings Update the radio settings of an appliance
 /* Update the radio settings of an appliance
 
@@ -5703,6 +6563,38 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallL7FirewallRules(network
 	}
 
 	return response, err
+
+}
+
+//UpdateNetworkApplianceFirewallMulticastForwarding Update static multicast forward rules for a network
+/* Update static multicast forward rules for a network
+
+@param networkID networkId path parameter. Network ID
+*/
+func (s *ApplianceService) UpdateNetworkApplianceFirewallMulticastForwarding(networkID string, requestApplianceUpdateNetworkApplianceFirewallMulticastForwarding *RequestApplianceUpdateNetworkApplianceFirewallMulticastForwarding) (*ResponseApplianceUpdateNetworkApplianceFirewallMulticastForwarding, *resty.Response, error) {
+	path := "/api/v1/networks/{networkId}/appliance/firewall/multicastForwarding"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceUpdateNetworkApplianceFirewallMulticastForwarding).
+		SetResult(&ResponseApplianceUpdateNetworkApplianceFirewallMulticastForwarding{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallMulticastForwarding")
+	}
+
+	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceFirewallMulticastForwarding)
+	return result, response, err
 
 }
 
@@ -6506,6 +7398,108 @@ func (s *ApplianceService) UpdateNetworkApplianceWarmSpare(networkID string, req
 
 }
 
+//UpdateOrganizationApplianceDNSLocalProfile Update a local DNS profile
+/* Update a local DNS profile
+
+@param organizationID organizationId path parameter. Organization ID
+@param profileID profileId path parameter. Profile ID
+*/
+func (s *ApplianceService) UpdateOrganizationApplianceDNSLocalProfile(organizationID string, profileID string, requestApplianceUpdateOrganizationApplianceDnsLocalProfile *RequestApplianceUpdateOrganizationApplianceDNSLocalProfile) (*ResponseApplianceUpdateOrganizationApplianceDNSLocalProfile, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/local/profiles/{profileId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceUpdateOrganizationApplianceDnsLocalProfile).
+		SetResult(&ResponseApplianceUpdateOrganizationApplianceDNSLocalProfile{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateOrganizationApplianceDnsLocalProfile")
+	}
+
+	result := response.Result().(*ResponseApplianceUpdateOrganizationApplianceDNSLocalProfile)
+	return result, response, err
+
+}
+
+//UpdateOrganizationApplianceDNSLocalRecord Updates a local DNS record
+/* Updates a local DNS record
+
+@param organizationID organizationId path parameter. Organization ID
+@param recordID recordId path parameter. Record ID
+*/
+func (s *ApplianceService) UpdateOrganizationApplianceDNSLocalRecord(organizationID string, recordID string, requestApplianceUpdateOrganizationApplianceDnsLocalRecord *RequestApplianceUpdateOrganizationApplianceDNSLocalRecord) (*ResponseApplianceUpdateOrganizationApplianceDNSLocalRecord, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/local/records/{recordId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{recordId}", fmt.Sprintf("%v", recordID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceUpdateOrganizationApplianceDnsLocalRecord).
+		SetResult(&ResponseApplianceUpdateOrganizationApplianceDNSLocalRecord{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateOrganizationApplianceDnsLocalRecord")
+	}
+
+	result := response.Result().(*ResponseApplianceUpdateOrganizationApplianceDNSLocalRecord)
+	return result, response, err
+
+}
+
+//UpdateOrganizationApplianceDNSSplitProfile Update a split DNS profile
+/* Update a split DNS profile
+
+@param organizationID organizationId path parameter. Organization ID
+@param profileID profileId path parameter. Profile ID
+*/
+func (s *ApplianceService) UpdateOrganizationApplianceDNSSplitProfile(organizationID string, profileID string, requestApplianceUpdateOrganizationApplianceDnsSplitProfile *RequestApplianceUpdateOrganizationApplianceDNSSplitProfile) (*ResponseApplianceUpdateOrganizationApplianceDNSSplitProfile, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/split/profiles/{profileId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplianceUpdateOrganizationApplianceDnsSplitProfile).
+		SetResult(&ResponseApplianceUpdateOrganizationApplianceDNSSplitProfile{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateOrganizationApplianceDnsSplitProfile")
+	}
+
+	result := response.Result().(*ResponseApplianceUpdateOrganizationApplianceDNSSplitProfile)
+	return result, response, err
+
+}
+
 //UpdateOrganizationApplianceSecurityIntrusion Sets supported intrusion settings for an organization
 /* Sets supported intrusion settings for an organization
 
@@ -6762,6 +7756,108 @@ func (s *ApplianceService) DeleteNetworkApplianceVLAN(networkID string, vlanID s
 
 	if response.IsError() {
 		return response, fmt.Errorf("error with operation DeleteNetworkApplianceVlan")
+	}
+
+	return response, err
+
+}
+
+//DeleteOrganizationApplianceDNSLocalProfile Deletes a local DNS profile
+/* Deletes a local DNS profile
+
+@param organizationID organizationId path parameter. Organization ID
+@param profileID profileId path parameter. Profile ID
+
+
+*/
+func (s *ApplianceService) DeleteOrganizationApplianceDNSLocalProfile(organizationID string, profileID string) (*resty.Response, error) {
+	//organizationID string,profileID string
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/local/profiles/{profileId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation DeleteOrganizationApplianceDnsLocalProfile")
+	}
+
+	return response, err
+
+}
+
+//DeleteOrganizationApplianceDNSLocalRecord Deletes a local DNS record
+/* Deletes a local DNS record
+
+@param organizationID organizationId path parameter. Organization ID
+@param recordID recordId path parameter. Record ID
+
+
+*/
+func (s *ApplianceService) DeleteOrganizationApplianceDNSLocalRecord(organizationID string, recordID string) (*resty.Response, error) {
+	//organizationID string,recordID string
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/local/records/{recordId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{recordId}", fmt.Sprintf("%v", recordID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation DeleteOrganizationApplianceDnsLocalRecord")
+	}
+
+	return response, err
+
+}
+
+//DeleteOrganizationApplianceDNSSplitProfile Deletes a split DNS profile
+/* Deletes a split DNS profile
+
+@param organizationID organizationId path parameter. Organization ID
+@param profileID profileId path parameter. Profile ID
+
+
+*/
+func (s *ApplianceService) DeleteOrganizationApplianceDNSSplitProfile(organizationID string, profileID string) (*resty.Response, error) {
+	//organizationID string,profileID string
+	path := "/api/v1/organizations/{organizationId}/appliance/dns/split/profiles/{profileId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation DeleteOrganizationApplianceDnsSplitProfile")
 	}
 
 	return response, err

@@ -639,10 +639,11 @@ type ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDevice
 	ID string `json:"id,omitempty"` // Wireless LAN controller network ID
 }
 type ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDeviceItemsRedundancy struct {
-	ChassisName string                                                                                                `json:"chassisName,omitempty"` // Wireless LAN controller chassis name
-	ID          string                                                                                                `json:"id,omitempty"`          // Wireless LAN controller redundancy ID
-	Management  *ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDeviceItemsRedundancyManagement `json:"management,omitempty"`  // Wireless LAN controller redundancy management interface information
-	Role        string                                                                                                `json:"role,omitempty"`        // Wireless LAN controller role(Active, Active recovery, Standby hot, Standby recovery and Offline)
+	ChassisName     string                                                                                                `json:"chassisName,omitempty"`     // Wireless LAN controller chassis name
+	ID              string                                                                                                `json:"id,omitempty"`              // Wireless LAN controller redundancy ID
+	Management      *ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDeviceItemsRedundancyManagement `json:"management,omitempty"`      // Wireless LAN controller redundancy management interface information
+	RedundantSerial string                                                                                                `json:"redundantSerial,omitempty"` // Wireless LAN controller redundant device serial
+	Role            string                                                                                                `json:"role,omitempty"`            // Wireless LAN controller role(Active, Active recovery, Standby hot, Standby recovery and Offline)
 }
 type ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDeviceItemsRedundancyManagement struct {
 	Addresses *[]ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDeviceItemsRedundancyManagementAddresses `json:"addresses,omitempty"` // Wireless LAN controller redundancy management interface addresses
@@ -672,7 +673,6 @@ type ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDevice
 
 func (s *WirelessControllerService) GetOrganizationWirelessControllerAvailabilitiesChangeHistory(organizationID string, getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams *GetOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerAvailabilitiesChangeHistory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/availabilities/changeHistory"
-	fmt.Print("HOLA", path)
 	s.rateLimiterBucket.Wait(1)
 
 	if getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams != nil && getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams.PerPage == -1 {
