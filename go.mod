@@ -1,4 +1,4 @@
-module github.com/meraki/dashboard-api-go/v4
+module github.com/meraki/dashboard-api-go/v5
 
 go 1.21.5
 
