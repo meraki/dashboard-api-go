@@ -386,6 +386,17 @@ type GetOrganizationWirelessSSIDsStatusesByDeviceQueryParams struct {
 	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
 }
 
+type GetOrganizationWirelessDevicesSystemCpuLoadHistoryParams struct {
+	T0            string   `url:"t0,omitempty"`            //The beginning of the timespan for the data. The maximum lookback period is 1 day from today.
+	T1            string   `url:"t1,omitempty"`            //The end of the timespan for the data. t1 can be a maximum of 1 day after t0.
+	Timespan      float64  `url:"timespan,omitempty"`      //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 1 day. The default is 1 day. maximum = 86400
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 20. Default is 10.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Optional parameter to filter the result set by the included set of network IDs
+	Serials       []string `url:"serials[],omitempty"`     //Optional parameter to filter device availabilities history by device serial numbers
+}
+
 type ResponseWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6 struct {
 	Addresses *[]ResponseWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6Addresses `json:"addresses,omitempty"` // configured alternate management interface addresses
 }
@@ -3061,6 +3072,33 @@ type ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDeviceMetaCountsItems
 	Remaining *int `json:"remaining,omitempty"` // The number of items remaining based on current pagination location within the dataset.
 	Total     *int `json:"total,omitempty"`     // The total number of items.
 }
+
+type ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistory struct {
+	Items *[]ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistoryItems `json:"items,omitempty"` // The top-level propery containing all status data.
+}
+
+type ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistoryItems struct {
+	Serial   string                                                                          `json:"serial"`
+	Model    string                                                                          `json:"model"`
+	Name     string                                                                          `json:"name"`
+	Mac      string                                                                          `json:"mac"`
+	Tags     []string                                                                        `json:"tags"`
+	Network  ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistoryItemsNetwork  `json:"network"`
+	CPUCount int                                                                             `json:"cpuCount"`
+	Series   []ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistoryItemsSeries `json:"series"`
+}
+
+type ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistoryItemsNetwork struct {
+	ID   string   `json:"id"`
+	Name string   `json:"name"`
+	Tags []string `json:"tags"`
+}
+
+type ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistoryItemsSeries struct {
+	TS       string `json:"ts"`
+	CPULoad5 int    `json:"cpuLoad5"`
+}
+
 type RequestWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6 struct {
 	Addresses *[]RequestWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6Addresses `json:"addresses,omitempty"` // configured alternate management interface addresses
 }
@@ -7137,6 +7175,90 @@ func (s *WirelessService) GetOrganizationWirelessSSIDsStatusesByDevicePaginate(o
 	getOrganizationWirelessSsidsStatusesByDeviceQueryParamsConverted := getOrganizationWirelessSsidsStatusesByDeviceQueryParams.(*GetOrganizationWirelessSSIDsStatusesByDeviceQueryParams)
 
 	return s.GetOrganizationWirelessSSIDsStatusesByDevice(organizationID, getOrganizationWirelessSsidsStatusesByDeviceQueryParamsConverted)
+}
+
+func (s *WirelessService) GetOrganizationWirelessDevicesSystemCpuLoadHistory(organizationID string, getOrganizationWirelessDevicesSystemCpuLoadHistoryParams *GetOrganizationWirelessDevicesSystemCpuLoadHistoryParams) (*ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistory, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/devices/system/cpu/load/history"
+	s.rateLimiterBucket.Wait(1)
+
+	// Handle pagination case where PerPage is -1 and we need to fetch all records
+	if getOrganizationWirelessDevicesSystemCpuLoadHistoryParams != nil && getOrganizationWirelessDevicesSystemCpuLoadHistoryParams.PerPage == -1 {
+		// we set the perPage to 10 because thats the max we can get in one request. In this way when we are trying to get all records we make as few requests as possible
+		getOrganizationWirelessDevicesSystemCpuLoadHistoryParams.PerPage = 20
+		println("Paginate")
+
+		// Initial request
+		firstResult, response, err := s.makeWirelessDevicesSystemCpuLoadHistoryRequest(path, organizationID, getOrganizationWirelessDevicesSystemCpuLoadHistoryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+
+		// Process Link header for pagination
+		combinedResult := firstResult
+		nextURL := getNextPageURL(response.Header().Get("Link"))
+
+		for nextURL != "" {
+			// Make request to next URL
+			var currentResult ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistory
+			nextResponse, err := s.client.R().
+				SetHeader("Content-Type", "application/json").
+				SetHeader("Accept", "application/json").
+				SetResult(&currentResult).
+				SetError(&Error).
+				Get(nextURL)
+
+			if err != nil {
+				return combinedResult, response, err
+			}
+
+			if nextResponse.IsError() {
+				return combinedResult, nextResponse, fmt.Errorf("error with paginated operation GetOrganizationSwitchPortsStatusesBySwitch")
+			}
+
+			// Append items to combined result
+			if currentResult.Items != nil {
+				*combinedResult.Items = append(*combinedResult.Items, *currentResult.Items...)
+			}
+
+			// Update next URL
+			nextURL = getNextPageURL(nextResponse.Header().Get("Link"))
+			response = nextResponse // Keep track of the latest response
+		}
+
+		return combinedResult, response, nil
+	}
+
+	// Non-pagination case
+	return s.makeWirelessDevicesSystemCpuLoadHistoryRequest(path, organizationID, getOrganizationWirelessDevicesSystemCpuLoadHistoryParams)
+
+}
+
+// makeWirelessDevicesSystemCpuLoadHistoryRequest is a helper function to handle the actual API request
+// and response parsing for the GetOrganizationWirelessDevicesSystemCpuLoadHistory method.
+// It is used internally to avoid code duplication in the pagination logic.
+func (s *WirelessService) makeWirelessDevicesSystemCpuLoadHistoryRequest(path, organizationID string, params *GetOrganizationWirelessDevicesSystemCpuLoadHistoryParams) (*ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistory, *resty.Response, error) {
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(params)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetResult(&ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistory{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationSwitchPortsStatusesBySwitch")
+	}
+
+	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistory)
+	return result, response, nil
 }
 
 //CreateNetworkWirelessAirMarshalRule Creates a new rule

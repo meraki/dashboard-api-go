@@ -24,6 +24,20 @@ type GetDeviceLossAndLatencyHistoryQueryParams struct {
 	IP         string  `url:"ip,omitempty"`         //The destination IP used to obtain the requested stats. This is required.
 }
 
+type GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams struct {
+	PerPage       int      `url:"perPage,omitempty"`        // The number of entries per page returned. Acceptable range is 3 - 20. Default is 10.
+	StartingAfter string   `url:"startingAfter,omitempty"`  // A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`   // A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	T0            string   `url:"t0,omitempty"`             // The beginning of the timespan for the data. The maximum lookback period is 31 days from today.
+	T1            string   `url:"t1,omitempty"`             // The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
+	Timespan      float64  `url:"timespan,omitempty"`       // The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 2 hours. If interval is provided, the timespan will be autocalculated. maximum = 2678400
+	Interval      int      `url:"interval,omitempty"`       // The time interval in seconds for returned data. The valid intervals are: 300, 1200, 3600, 14400. The default is 300. Interval is calculated if time params are provided.
+	NetworkIds    []string `url:"networkIds[],omitempty"`   // Optional parameter to filter the result set by the included set of network IDs
+	Serials       []string `url:"serials[],omitempty"`      // Optional parameter to filter device availabilities history by device serial numbers
+	ProductTypes  []string `url:"productTypes[],omitempty"` // Optional parameter to filter device statuses by product type. Valid types are wireless, appliance, switch, systemsManager, camera, cellularGateway, sensor, wirelessController, and secureConnect. enum = ["appliance", "camera", "cellularGateway", "secureConnect", "sensor", ...]
+
+}
+
 type ResponseDevicesGetDevice struct {
 	Address        string                                  `json:"address,omitempty"`        // Physical address of the device
 	BeaconIDParams *ResponseDevicesGetDeviceBeaconIDParams `json:"beaconIdParams,omitempty"` // Beacon Id parameters with an identifier and major and minor versions
@@ -1587,6 +1601,70 @@ type ResponseDevicesGetOrganizationWirelessControllerDevicesSystemUtilizationHis
 	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
 	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
 }
+
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval struct {
+	Items *[]ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItems `json:"items,omitempty"` // Wireless LAN controller memory usage data
+	Meta  *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMeta struct {
+	Counts ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCounts `json:"counts"`
+}
+
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCounts struct {
+	Items ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCountsItemsCount `json:"items"`
+}
+
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCountsItemsCount struct {
+	Total     int `json:"total"`
+	Remaining int `json:"remaining"`
+}
+
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItems struct {
+	Serial      string                                                                                 `json:"serial"`
+	Model       string                                                                                 `json:"model"`
+	Name        string                                                                                 `json:"name"`
+	Mac         string                                                                                 `json:"mac"`
+	Tags        []string                                                                               `json:"tags"`
+	Provisioned int                                                                                    `json:"provisioned"`
+	Used        ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsStat       `json:"used"`
+	Free        ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsStat       `json:"free"`
+	Network     ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsNetwork    `json:"network"`
+	Intervals   []ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsInterval `json:"intervals"`
+}
+
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsStat struct {
+	Median float64 `json:"median"`
+}
+
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsNetwork struct {
+	ID   string   `json:"id"`
+	Name string   `json:"name"`
+	Tags []string `json:"tags"`
+}
+
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsInterval struct {
+	StartTs string                                                                                     `json:"startTs"`
+	EndTs   string                                                                                     `json:"endTs"`
+	Memory  ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalMemory `json:"memory"`
+}
+
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalMemory struct {
+	Used ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalMemoryStats `json:"used"`
+	Free ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalMemoryStats `json:"free"`
+}
+
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalMemoryStats struct {
+	Minimum     int                                                                                                         `json:"minimum"`
+	Maximum     int                                                                                                         `json:"maximum"`
+	Median      int                                                                                                         `json:"median"`
+	Percentages *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalMemoryStatsPercentages `json:"percentages,omitempty"`
+}
+
+type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervalMemoryStatsPercentages struct {
+	Maximum int `json:"maximum"`
+}
+
 type RequestDevicesUpdateDevice struct {
 	Address         string   `json:"address,omitempty"`         // The address of a device
 	FloorPlanID     string   `json:"floorPlanId,omitempty"`     // The floor plan to associate to this device. null disassociates the device from the floorplan.
@@ -4567,6 +4645,87 @@ func (s *DevicesService) GetOrganizationWirelessControllerDevicesSystemUtilizati
 	getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParamsConverted := getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams.(*GetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams)
 
 	return s.GetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval(organizationID, getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParamsConverted)
+}
+
+func (s *DevicesService) GetOrganizationDevicesSystemMemoryUsageHistoryByInterval(organizationID string, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalParams *GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams) (*ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/devices/system/memory/usage/history/byInterval"
+	s.rateLimiterBucket.Wait(1)
+
+	// Handle pagination case where PerPage is -1 and we need to fetch all records
+	if getOrganizationDevicesSystemMemoryUsageHistoryByIntervalParams != nil && getOrganizationDevicesSystemMemoryUsageHistoryByIntervalParams.PerPage == -1 {
+		// we set the perPage to 10 because thats the max we can get in one request. In this way when we are trying to get all records we make as few requests as possible
+		getOrganizationDevicesSystemMemoryUsageHistoryByIntervalParams.PerPage = 20
+		println("Paginate")
+
+		// Initial request
+		firstResult, response, err := s.makeDevicesSystemMemoryUsageHistoryByIntervalRequest(path, organizationID, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalParams)
+		if err != nil {
+			return nil, nil, err
+		}
+
+		// Process Link header for pagination
+		combinedResult := firstResult
+		nextURL := getNextPageURL(response.Header().Get("Link"))
+
+		for nextURL != "" {
+			// Make request to next URL
+			var currentResult ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval
+			nextResponse, err := s.client.R().
+				SetHeader("Content-Type", "application/json").
+				SetHeader("Accept", "application/json").
+				SetResult(&currentResult).
+				SetError(&Error).
+				Get(nextURL)
+
+			if err != nil {
+				return combinedResult, response, err
+			}
+
+			if nextResponse.IsError() {
+				return combinedResult, nextResponse, fmt.Errorf("error with paginated operation GetOrganizationSwitchPortsStatusesBySwitch")
+			}
+
+			// Append items to combined result
+			if currentResult.Items != nil {
+				*combinedResult.Items = append(*combinedResult.Items, *currentResult.Items...)
+			}
+
+			// Update next URL
+			nextURL = getNextPageURL(nextResponse.Header().Get("Link"))
+			response = nextResponse // Keep track of the latest response
+		}
+
+		return combinedResult, response, nil
+	}
+
+	// Non-pagination case
+	return s.makeDevicesSystemMemoryUsageHistoryByIntervalRequest(path, organizationID, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalParams)
+}
+
+// Helper function to make the actual request
+func (s *DevicesService) makeDevicesSystemMemoryUsageHistoryByIntervalRequest(path, organizationID string, params *GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams) (*ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval, *resty.Response, error) {
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(params)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		SetResult(&ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationSwitchPortsStatusesBySwitch")
+	}
+
+	result := response.Result().(*ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval)
+	return result, response, nil
 }
 
 //BlinkDeviceLeds Blink the LEDs on a device
