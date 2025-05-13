@@ -109,23 +109,6 @@ type GetOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams struct {
 	Serial                    string   `url:"serial,omitempty"`                    //Optional parameter to filter items to switches with serial number that contains the search term or are an exact match.
 	Serials                   []string `url:"serials[],omitempty"`                 //Optional parameter to filter items to switches that have one of the provided serials.
 }
-type GetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams struct {
-	T0                        string   `url:"t0,omitempty"`                        //The beginning of the timespan for the data. The maximum lookback period is 31 days from today.
-	T1                        string   `url:"t1,omitempty"`                        //The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
-	Timespan                  float64  `url:"timespan,omitempty"`                  //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 1 day. If interval is provided, the timespan will be autocalculated.
-	Interval                  int      `url:"interval,omitempty"`                  //The time interval in seconds for returned data. The valid intervals are: 300, 1200, 14400, 86400. The default is 1200. Interval is calculated if time params are provided.
-	PerPage                   int      `url:"perPage,omitempty"`                   //The number of entries per page returned. Acceptable range is 3 - 50. Default is 10.
-	StartingAfter             string   `url:"startingAfter,omitempty"`             //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
-	EndingBefore              string   `url:"endingBefore,omitempty"`              //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
-	ConfigurationUpdatedAfter string   `url:"configurationUpdatedAfter,omitempty"` //Optional parameter to filter items to switches where the configuration has been updated after the given timestamp.
-	Mac                       string   `url:"mac,omitempty"`                       //Optional parameter to filter items to switches with MAC addresses that contain the search term or are an exact match.
-	Macs                      []string `url:"macs[],omitempty"`                    //Optional parameter to filter items to switches that have one of the provided MAC addresses.
-	Name                      string   `url:"name,omitempty"`                      //Optional parameter to filter items to switches with names that contain the search term or are an exact match.
-	NetworkIDs                []string `url:"networkIds[],omitempty"`              //Optional parameter to filter items to switches in one of the provided networks.
-	PortProfileIDs            []string `url:"portProfileIds[],omitempty"`          //Optional parameter to filter items to switches that contain switchports belonging to one of the specified port profiles.
-	Serial                    string   `url:"serial,omitempty"`                    //Optional parameter to filter items to switches with serial number that contains the search term or are an exact match.
-	Serials                   []string `url:"serials[],omitempty"`                 //Optional parameter to filter items to switches that have one of the provided serials.
-}
 
 type GetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams struct {
 	T0                       string   `url:"t0,omitempty"`                        //The beginning of the timespan for the data. The maximum lookback period is 31 days from today.
@@ -2235,7 +2218,6 @@ type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItems
 	Ports   *[]ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPorts `json:"ports,omitempty"`   // Ports belonging to the switch
 }
 
-
 type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsNetwork struct {
 	ID   string `json:"id,omitempty"`   // The ID of the network.
 	Name string `json:"name,omitempty"` // The name of the network.
@@ -2263,7 +2245,6 @@ type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItems
 	Upstream   float64 `json:"upstream,omitempty"`   // Upstream usage in bytes for the given time interval.
 	Downstream float64 `json:"downstream,omitempty"` // Downstream usage in bytes for the given time interval.
 }
-
 
 type RequestSwitchCycleDeviceSwitchPorts struct {
 	Ports []string `json:"ports,omitempty"` // List of switch ports
@@ -4909,7 +4890,6 @@ func (s *SwitchService) GetOrganizationSwitchPortsTopologyDiscoveryByDevicePagin
 	return s.GetOrganizationSwitchPortsTopologyDiscoveryByDevice(organizationID, getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParamsConverted)
 }
 
-
 //GetOrganizationSwitchPortsUsageHistoryByDeviceByInterval Returns the usage history for all switch ports in an organization over the requested timespan (by default the last 24 hours)
 /* Returns the usage history for all switch ports in an organization over the requested timespan (by default the last 24 hours). The returned array is a newest-first list of intervals. The time between intervals depends on the requested timespan with 20 minute intervals used for timespans up to 1 day, 4 hour intervals used for timespans up to 2 weeks, and 1 day intervals for timespans larger than 2 weeks.
 @param organizationID organizationId path parameter. Organization ID
@@ -4975,7 +4955,6 @@ func (s *SwitchService) makeSwitchPortsUsageHistoryByDeviceByIntervalRequest(pat
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
 	queryString, _ := query.Values(params)
-
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").

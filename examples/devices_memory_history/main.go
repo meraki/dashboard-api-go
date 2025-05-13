@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	meraki "github.com/meraki/dashboard-api-go/v4/sdk"
+	meraki "github.com/meraki/dashboard-api-go/v5/sdk"
 )
 
 var client *meraki.Client

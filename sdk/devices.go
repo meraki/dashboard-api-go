@@ -24,20 +24,6 @@ type GetDeviceLossAndLatencyHistoryQueryParams struct {
 	IP         string  `url:"ip,omitempty"`         //The destination IP used to obtain the requested stats. This is required.
 }
 
-type GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams struct {
-	PerPage       int      `url:"perPage,omitempty"`        // The number of entries per page returned. Acceptable range is 3 - 20. Default is 10.
-	StartingAfter string   `url:"startingAfter,omitempty"`  // A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
-	EndingBefore  string   `url:"endingBefore,omitempty"`   // A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
-	T0            string   `url:"t0,omitempty"`             // The beginning of the timespan for the data. The maximum lookback period is 31 days from today.
-	T1            string   `url:"t1,omitempty"`             // The end of the timespan for the data. t1 can be a maximum of 31 days after t0.
-	Timespan      float64  `url:"timespan,omitempty"`       // The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 2 hours. If interval is provided, the timespan will be autocalculated. maximum = 2678400
-	Interval      int      `url:"interval,omitempty"`       // The time interval in seconds for returned data. The valid intervals are: 300, 1200, 3600, 14400. The default is 300. Interval is calculated if time params are provided.
-	NetworkIds    []string `url:"networkIds[],omitempty"`   // Optional parameter to filter the result set by the included set of network IDs
-	Serials       []string `url:"serials[],omitempty"`      // Optional parameter to filter device availabilities history by device serial numbers
-	ProductTypes  []string `url:"productTypes[],omitempty"` // Optional parameter to filter device statuses by product type. Valid types are wireless, appliance, switch, systemsManager, camera, cellularGateway, sensor, wirelessController, and secureConnect. enum = ["appliance", "camera", "cellularGateway", "secureConnect", "sensor", ...]
-
-}
-
 type ResponseDevicesGetDevice struct {
 	Address        string                                  `json:"address,omitempty"`        // Physical address of the device
 	BeaconIDParams *ResponseDevicesGetDeviceBeaconIDParams `json:"beaconIdParams,omitempty"` // Beacon Id parameters with an identifier and major and minor versions
@@ -795,22 +781,7 @@ type ResponseDevicesGetOrganizationDevicesOverviewByModelCounts struct {
 	Model string `json:"model,omitempty"` // Device model
 	Total *int   `json:"total,omitempty"` // Total number of devices for the model
 }
-type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval struct {
-	Items *[]ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItems `json:"items,omitempty"` // The top-level property containing all memory utilization data.
-	Meta  *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMeta    `json:"meta,omitempty"`  // Other metadata related to this result set.
-}
-type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItems struct {
-	Free        *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsFree        `json:"free,omitempty"`        // Information regarding memory availability on the device over the entire timespan
-	Intervals   *[]ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsIntervals `json:"intervals,omitempty"`   // Time interval snapshots of system memory utilization on the device with the most recent snapshot first
-	Mac         string                                                                                   `json:"mac,omitempty"`         // MAC address of the device
-	Model       string                                                                                   `json:"model,omitempty"`       // Model of the device
-	Name        string                                                                                   `json:"name,omitempty"`        // Name of the device
-	Network     *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsNetwork     `json:"network,omitempty"`     // Information regarding the network the device belongs to
-	Provisioned *int                                                                                     `json:"provisioned,omitempty"` // The total RAM size provisioned on the device, in kB
-	Serial      string                                                                                   `json:"serial,omitempty"`      // Unique serial number for the device
-	Tags        []string                                                                                 `json:"tags,omitempty"`        // List of custom tags for the device
-	Used        *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsUsed        `json:"used,omitempty"`        // Information regarding memory usage on the device over the entire timespan
-}
+
 type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsFree struct {
 	Median *int `json:"median,omitempty"` // Median memory in kB free on the device over the entire timespan rounded up to nearest integer
 }
@@ -845,12 +816,7 @@ type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItem
 type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsUsed struct {
 	Median *int `json:"median,omitempty"` // Median memory in kB used on the device over the entire timespan rounded up to nearest integer
 }
-type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMeta struct {
-	Counts *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCounts `json:"counts,omitempty"` // Count metadata related to this result set.
-}
-type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCounts struct {
-	Items *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCountsItems `json:"items,omitempty"` // The count metadata.
-}
+
 type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalMetaCountsItems struct {
 	Remaining *int `json:"remaining,omitempty"` // The number of serials remaining based on current pagination location within the dataset.
 	Total     *int `json:"total,omitempty"`     // The total number of serials.
@@ -1635,12 +1601,6 @@ type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItem
 
 type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsStat struct {
 	Median float64 `json:"median"`
-}
-
-type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsNetwork struct {
-	ID   string   `json:"id"`
-	Name string   `json:"name"`
-	Tags []string `json:"tags"`
 }
 
 type ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByIntervalItemsInterval struct {
@@ -2928,63 +2888,6 @@ func (s *DevicesService) GetOrganizationDevicesOverviewByModel(organizationID st
 
 */
 
-func (s *DevicesService) GetOrganizationDevicesSystemMemoryUsageHistoryByInterval(organizationID string, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams *GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams) (*ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval, *resty.Response, error) {
-	path := "/api/v1/organizations/{organizationId}/devices/system/memory/usage/history/byInterval"
-	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams != nil && getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams.PerPage == -1 {
-		var result *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval
-		println("Paginate")
-		getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalPaginate, organizationID, "", getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
-	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
-
-	queryString, _ := query.Values(getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams)
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesSystemMemoryUsageHistoryByInterval")
-	}
-
-	result := response.Result().(*ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval)
-	return result, response, err
-
-}
 func (s *DevicesService) GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalPaginate(organizationID string, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams any) (any, *resty.Response, error) {
 	getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParamsConverted := getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams.(*GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams)
 
