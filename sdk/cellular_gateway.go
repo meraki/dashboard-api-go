@@ -70,7 +70,7 @@ type ResponseCellularGatewayGetDeviceCellularGatewayPortForwardingRules struct {
 	Rules *[]ResponseCellularGatewayGetDeviceCellularGatewayPortForwardingRulesRules `json:"rules,omitempty"` // An array of port forwarding params
 }
 type ResponseCellularGatewayGetDeviceCellularGatewayPortForwardingRulesRules struct {
-	Access     string   `json:"access,omitempty"`     // *any* or *restricted*. Specify the right to make inbound connections on the specified ports or port ranges. If *restricted*, a list of allowed IPs is mandatory.
+	Access     string   `json:"access,omitempty"`     // `any` or `restricted`. Specify the right to make inbound connections on the specified ports or port ranges. If `restricted`, a list of allowed IPs is mandatory.
 	AllowedIPs []string `json:"allowedIps,omitempty"` // An array of ranges of WAN IP addresses that are allowed to make inbound connections on the specified ports or port ranges.
 	LanIP      string   `json:"lanIp,omitempty"`      // The IP address of the server or device that hosts the internal resource that you wish to make available on the WAN
 	LocalPort  string   `json:"localPort,omitempty"`  // A port or port ranges that will receive the forwarded traffic from the WAN
@@ -82,7 +82,7 @@ type ResponseCellularGatewayUpdateDeviceCellularGatewayPortForwardingRules struc
 	Rules *[]ResponseCellularGatewayUpdateDeviceCellularGatewayPortForwardingRulesRules `json:"rules,omitempty"` // An array of port forwarding params
 }
 type ResponseCellularGatewayUpdateDeviceCellularGatewayPortForwardingRulesRules struct {
-	Access     string   `json:"access,omitempty"`     // *any* or *restricted*. Specify the right to make inbound connections on the specified ports or port ranges. If *restricted*, a list of allowed IPs is mandatory.
+	Access     string   `json:"access,omitempty"`     // `any` or `restricted`. Specify the right to make inbound connections on the specified ports or port ranges. If `restricted`, a list of allowed IPs is mandatory.
 	AllowedIPs []string `json:"allowedIps,omitempty"` // An array of ranges of WAN IP addresses that are allowed to make inbound connections on the specified ports or port ranges.
 	LanIP      string   `json:"lanIp,omitempty"`      // The IP address of the server or device that hosts the internal resource that you wish to make available on the WAN
 	LocalPort  string   `json:"localPort,omitempty"`  // A port or port ranges that will receive the forwarded traffic from the WAN
@@ -154,8 +154,8 @@ type ResponseCellularGatewayUpdateNetworkCellularGatewayUplinkBandwidthLimits st
 	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps). 'null' indicates no limit.
 	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps). 'null' indicates no limit.
 }
-type ResponseCellularGatewayGetOrganizationCellularGatewayEsimsInventory []ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsInventory // Array of ResponseCellularGatewayGetOrganizationCellularGatewayEsimsInventory
-type ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsInventory struct {
+
+type ResponseCellularGatewayGetOrganizationCellularGatewayEsimsInventory struct {
 	Items *[]ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsInventoryItems `json:"items,omitempty"` // List of eSIM Devices
 	Meta  *ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsInventoryMeta    `json:"meta,omitempty"`  // Meta details about the result
 }
@@ -382,14 +382,23 @@ type ResponseItemCellularGatewayGetOrganizationCellularGatewayUplinkStatusesUpli
 	DNS2           string                                                                                    `json:"dns2,omitempty"`           // Secondary DNS IP
 	Gateway        string                                                                                    `json:"gateway,omitempty"`        // Gateway IP
 	Iccid          string                                                                                    `json:"iccid,omitempty"`          // Integrated Circuit Card Identification Number
+	Imsi           string                                                                                    `json:"imsi,omitempty"`           // International Mobile Subscriber Identity
 	Interface      string                                                                                    `json:"interface,omitempty"`      // Uplink interface
 	IP             string                                                                                    `json:"ip,omitempty"`             // Uplink IP
+	Mcc            string                                                                                    `json:"mcc,omitempty"`            // Mobile Country Code
+	Mnc            string                                                                                    `json:"mnc,omitempty"`            // Mobile Network Code
 	Model          string                                                                                    `json:"model,omitempty"`          // Uplink model
+	Msisdn         string                                                                                    `json:"msisdn,omitempty"`         // Mobile Station Integrated Services Digital Network
+	Mtu            *int                                                                                      `json:"mtu,omitempty"`            // Maximum Transmission Unit
 	Provider       string                                                                                    `json:"provider,omitempty"`       // Network Provider
 	PublicIP       string                                                                                    `json:"publicIp,omitempty"`       // Public IP
+	Roaming        *ResponseItemCellularGatewayGetOrganizationCellularGatewayUplinkStatusesUplinksRoaming    `json:"roaming,omitempty"`        // Roaming Status
 	SignalStat     *ResponseItemCellularGatewayGetOrganizationCellularGatewayUplinkStatusesUplinksSignalStat `json:"signalStat,omitempty"`     // Tower Signal Status
 	SignalType     string                                                                                    `json:"signalType,omitempty"`     // Signal Type
 	Status         string                                                                                    `json:"status,omitempty"`         // Uplink status
+}
+type ResponseItemCellularGatewayGetOrganizationCellularGatewayUplinkStatusesUplinksRoaming struct {
+	Status string `json:"status,omitempty"` // Roaming Status
 }
 type ResponseItemCellularGatewayGetOrganizationCellularGatewayUplinkStatusesUplinksSignalStat struct {
 	Rsrp string `json:"rsrp,omitempty"` // Reference Signal Received Power
@@ -413,7 +422,7 @@ type RequestCellularGatewayUpdateDeviceCellularGatewayPortForwardingRules struct
 	Rules *[]RequestCellularGatewayUpdateDeviceCellularGatewayPortForwardingRulesRules `json:"rules,omitempty"` // An array of port forwarding params
 }
 type RequestCellularGatewayUpdateDeviceCellularGatewayPortForwardingRulesRules struct {
-	Access     string   `json:"access,omitempty"`     // *any* or *restricted*. Specify the right to make inbound connections on the specified ports or port ranges. If *restricted*, a list of allowed IPs is mandatory.
+	Access     string   `json:"access,omitempty"`     // `any` or `restricted`. Specify the right to make inbound connections on the specified ports or port ranges. If `restricted`, a list of allowed IPs is mandatory.
 	AllowedIPs []string `json:"allowedIps,omitempty"` // An array of ranges of WAN IP addresses that are allowed to make inbound connections on the specified ports or port ranges.
 	LanIP      string   `json:"lanIp,omitempty"`      // The IP address of the server or device that hosts the internal resource that you wish to make available on the WAN
 	LocalPort  string   `json:"localPort,omitempty"`  // A port or port ranges that will receive the forwarded traffic from the WAN

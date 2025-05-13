@@ -327,6 +327,26 @@ type GetOrganizationWirelessDevicesPacketLossByNetworkQueryParams struct {
 	T1            string   `url:"t1,omitempty"`            //The end of the timespan for the data. t1 can be a maximum of 90 days after t0.
 	Timespan      float64  `url:"timespan,omitempty"`      //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be greater than or equal to 5 minutes and be less than or equal to 90 days. The default is 7 days.
 }
+type GetOrganizationWirelessDevicesPowerModeHistoryQueryParams struct {
+	T0            string   `url:"t0,omitempty"`            //The beginning of the timespan for the data. The maximum lookback period is 1 day from today.
+	T1            string   `url:"t1,omitempty"`            //The end of the timespan for the data. t1 can be a maximum of 1 day after t0.
+	Timespan      float64  `url:"timespan,omitempty"`      //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 1 day. The default is 1 day.
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 20. Default is 10.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Optional parameter to filter the result set by the included set of network IDs
+	Serials       []string `url:"serials[],omitempty"`     //Optional parameter to filter device availabilities history by device serial numbers
+}
+type GetOrganizationWirelessDevicesSystemCPULoadHistoryQueryParams struct {
+	T0            string   `url:"t0,omitempty"`            //The beginning of the timespan for the data. The maximum lookback period is 1 day from today.
+	T1            string   `url:"t1,omitempty"`            //The end of the timespan for the data. t1 can be a maximum of 1 day after t0.
+	Timespan      float64  `url:"timespan,omitempty"`      //The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 1 day. The default is 1 day.
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 20. Default is 10.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Optional parameter to filter the result set by the included set of network IDs
+	Serials       []string `url:"serials[],omitempty"`     //Optional parameter to filter device availabilities history by device serial numbers
+}
 type GetOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams struct {
 	NetworkIDs        []string `url:"networkIds[],omitempty"`        //Optional parameter to filter access points by network ID. This filter uses multiple exact matches.
 	Serials           []string `url:"serials[],omitempty"`           //Optional parameter to filter access points by its cloud ID. This filter uses multiple exact matches.
@@ -348,6 +368,13 @@ type GetOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams struct {
 	Macs          []string `url:"macs[],omitempty"`         //Optional parameter to filter RF profiles by one or more device MAC addresses. All returned devices will have a MAC address that is an exact match.
 	Serials       []string `url:"serials[],omitempty"`      //Optional parameter to filter RF profiles by one or more device serial numbers. All returned devices will have a serial number that is an exact match.
 	Models        []string `url:"models[],omitempty"`       //Optional parameter to filter RF profiles by one or more device models. All returned devices will have a model that is an exact match.
+}
+type GetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesQueryParams struct {
+	PerPage       int      `url:"perPage,omitempty"`       //The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.
+	StartingAfter string   `url:"startingAfter,omitempty"` //A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	EndingBefore  string   `url:"endingBefore,omitempty"`  //A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.
+	NetworkIDs    []string `url:"networkIds[],omitempty"`  //networkIds array to filter out results
+	SSIDs         []string `url:"ssids[],omitempty"`       //ssids number array to filter out results
 }
 type GetOrganizationWirelessSSIDsStatusesByDeviceQueryParams struct {
 	NetworkIDs    []string `url:"networkIds[],omitempty"`  //Optional parameter to filter the result set by the included set of network IDs
@@ -385,14 +412,14 @@ type ResponseWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6Address
 	Addresses []string `json:"addresses,omitempty"` // Up to 2 nameserver addresses to use, ordered in priority from highest to lowest priority.
 }
 type ResponseWirelessGetDeviceWirelessBluetoothSettings struct {
-	Major *int   `json:"major,omitempty"` // Desired major value of the beacon. If the value is set to null it will reset to Dashboard's automatically generated value.
-	Minor *int   `json:"minor,omitempty"` // Desired minor value of the beacon. If the value is set to null it will reset to Dashboard's automatically generated value.
-	UUID  string `json:"uuid,omitempty"`  // Desired UUID of the beacon. If the value is set to null it will reset to Dashboard's automatically generated value.
+	Major *int   `json:"major,omitempty"` // Desired major value of the beacon. If the value is set to null it will reset to           Dashboard's automatically generated value.
+	Minor *int   `json:"minor,omitempty"` // Desired minor value of the beacon. If the value is set to null it will reset to           Dashboard's automatically generated value.
+	UUID  string `json:"uuid,omitempty"`  // Desired UUID of the beacon. If the value is set to null it will reset to Dashboard's           automatically generated value.
 }
 type ResponseWirelessUpdateDeviceWirelessBluetoothSettings struct {
-	Major *int   `json:"major,omitempty"` // Desired major value of the beacon. If the value is set to null it will reset to Dashboard's automatically generated value.
-	Minor *int   `json:"minor,omitempty"` // Desired minor value of the beacon. If the value is set to null it will reset to Dashboard's automatically generated value.
-	UUID  string `json:"uuid,omitempty"`  // Desired UUID of the beacon. If the value is set to null it will reset to Dashboard's automatically generated value.
+	Major *int   `json:"major,omitempty"` // Desired major value of the beacon. If the value is set to null it will reset to           Dashboard's automatically generated value.
+	Minor *int   `json:"minor,omitempty"` // Desired minor value of the beacon. If the value is set to null it will reset to           Dashboard's automatically generated value.
+	UUID  string `json:"uuid,omitempty"`  // Desired UUID of the beacon. If the value is set to null it will reset to Dashboard's           automatically generated value.
 }
 type ResponseWirelessGetDeviceWirelessConnectionStats struct {
 	ConnectionStats *ResponseWirelessGetDeviceWirelessConnectionStatsConnectionStats `json:"connectionStats,omitempty"` // The connection stats of the device
@@ -678,7 +705,7 @@ type ResponseItemWirelessGetNetworkWirelessClientConnectivityEvents struct {
 	Rssi         *int                                                                     `json:"rssi,omitempty"`         // RSSI recorded at the time of the event
 	Severity     string                                                                   `json:"severity,omitempty"`     // Event severity
 	SSIDNumber   *int                                                                     `json:"ssidNumber,omitempty"`   // Number of the SSID the event occurred in
-	Subtype      string                                                                   `json:"subtype,omitempty"`      // Event subtype
+	SubtypeR     string                                                                   `json:"subtype,omitempty"`      // Event subtype
 	Type         string                                                                   `json:"type,omitempty"`         // Event type
 }
 type ResponseItemWirelessGetNetworkWirelessClientConnectivityEventsEventData interface{}
@@ -843,15 +870,18 @@ type ResponseItemWirelessGetNetworkWirelessDevicesLatencyStatsLatencyStatsBackgr
 type ResponseWirelessGetNetworkWirelessElectronicShelfLabel struct {
 	Enabled  *bool  `json:"enabled,omitempty"`  // Turn ESL features on and off for this network
 	Hostname string `json:"hostname,omitempty"` // Desired ESL hostname of the network
+	Mode     string `json:"mode,omitempty"`     // Electronic shelf label mode of the network. Valid options are 'Bluetooth', 'high frequency'
 }
 type ResponseWirelessUpdateNetworkWirelessElectronicShelfLabel struct {
 	Enabled  *bool  `json:"enabled,omitempty"`  // Turn ESL features on and off for this network
 	Hostname string `json:"hostname,omitempty"` // Desired ESL hostname of the network
+	Mode     string `json:"mode,omitempty"`     // Electronic shelf label mode of the network. Valid options are 'Bluetooth', 'high frequency'
 }
 type ResponseWirelessGetNetworkWirelessElectronicShelfLabelConfiguredDevices []ResponseItemWirelessGetNetworkWirelessElectronicShelfLabelConfiguredDevices // Array of ResponseWirelessGetNetworkWirelessElectronicShelfLabelConfiguredDevices
 type ResponseItemWirelessGetNetworkWirelessElectronicShelfLabelConfiguredDevices struct {
 	Enabled  *bool  `json:"enabled,omitempty"`  // Turn ESL features on and off for this network
 	Hostname string `json:"hostname,omitempty"` // Desired ESL hostname of the network
+	Mode     string `json:"mode,omitempty"`     // Electronic shelf label mode of the network. Valid options are 'Bluetooth', 'high frequency'
 }
 type ResponseWirelessGetNetworkWirelessEthernetPortsProfiles []ResponseItemWirelessGetNetworkWirelessEthernetPortsProfiles // Array of ResponseWirelessGetNetworkWirelessEthernetPortsProfiles
 type ResponseItemWirelessGetNetworkWirelessEthernetPortsProfiles struct {
@@ -2805,6 +2835,49 @@ type ResponseItemWirelessGetOrganizationWirelessDevicesPacketLossByNetworkUpstre
 	Lost           *int     `json:"lost,omitempty"`           // Total packets sent by a client and did not reach the AP.
 	Total          *int     `json:"total,omitempty"`          // Total packets sent by a client to an AP.
 }
+type ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory struct {
+	Items *[]ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistoryItems `json:"items,omitempty"` // The top-level property containing all power mode data.
+}
+type ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistoryItems struct {
+	Events  *[]ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistoryItemsEvents `json:"events,omitempty"`  // Events indicating power mode changes for the device
+	Mac     string                                                                       `json:"mac,omitempty"`     // MAC address of the device
+	Model   string                                                                       `json:"model,omitempty"`   // Model of the device
+	Name    string                                                                       `json:"name,omitempty"`    // Name of the device
+	Network *ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistoryItemsNetwork  `json:"network,omitempty"` // Information regarding the network the device belongs to
+	Serial  string                                                                       `json:"serial,omitempty"`  // Unique serial number for the device
+	Tags    []string                                                                     `json:"tags,omitempty"`    // List of custom tags for the device
+}
+type ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistoryItemsEvents struct {
+	PowerMode string `json:"powerMode,omitempty"` // The power mode of the device
+	Ts        string `json:"ts,omitempty"`        // Timestamp of the event
+}
+type ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistoryItemsNetwork struct {
+	ID   string   `json:"id,omitempty"`   // The network ID
+	Name string   `json:"name,omitempty"` // The name of the network
+	Tags []string `json:"tags,omitempty"` // List of custom tags for the network
+}
+type ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory struct {
+	Items *[]ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistoryItems `json:"items,omitempty"` // The top-level property containing all cpu load data.
+}
+type ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistoryItems struct {
+	CPUCount *int                                                                             `json:"cpuCount,omitempty"` // Number of CPU cores on the device
+	Mac      string                                                                           `json:"mac,omitempty"`      // MAC address of the device
+	Model    string                                                                           `json:"model,omitempty"`    // Model of the device
+	Name     string                                                                           `json:"name,omitempty"`     // Name of the device
+	Network  *ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistoryItemsNetwork  `json:"network,omitempty"`  // Information regarding the network the device belongs to
+	Serial   string                                                                           `json:"serial,omitempty"`   // Unique serial number for the device
+	Series   *[]ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistoryItemsSeries `json:"series,omitempty"`   // Series of cpu load average measurements on the device
+	Tags     []string                                                                         `json:"tags,omitempty"`     // List of custom tags for the device
+}
+type ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistoryItemsNetwork struct {
+	ID   string   `json:"id,omitempty"`   // The network ID
+	Name string   `json:"name,omitempty"` // The name of the network
+	Tags []string `json:"tags,omitempty"` // List of custom tags for the network
+}
+type ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistoryItemsSeries struct {
+	CPULoad5 *int   `json:"cpuLoad5,omitempty"` // The 5 minutes cpu load average of the device
+	Ts       string `json:"ts,omitempty"`       // Timestamp of the cpu load measurement
+}
 type ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDevice struct {
 	Items *[]ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDeviceItems `json:"items,omitempty"` // List of Catalyst access points information
 	Meta  *ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDeviceMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
@@ -2878,6 +2951,83 @@ type ResponseItemWirelessGetOrganizationWirelessRfProfilesAssignmentsByDeviceMet
 type ResponseItemWirelessGetOrganizationWirelessRfProfilesAssignmentsByDeviceMetaCountsItems struct {
 	Remaining *int `json:"remaining,omitempty"` // The number of serials remaining based on current pagination location within the dataset.
 	Total     *int `json:"total,omitempty"`     // The total number of serials.
+}
+type ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries struct {
+	Items *[]ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesItems `json:"items,omitempty"` // L2 isolation allowlist items
+	Meta  *ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesItems struct {
+	Client        *ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesItemsClient  `json:"client,omitempty"`        // The client of allowlist
+	CreatedAt     string                                                                                     `json:"createdAt,omitempty"`     // Created at timestamp for the adaptive policy group
+	Description   string                                                                                     `json:"description,omitempty"`   // The description of mac address
+	EntryID       string                                                                                     `json:"entryId,omitempty"`       // The id of entry
+	LastUpdatedAt string                                                                                     `json:"lastUpdatedAt,omitempty"` // Updated at timestamp for the adaptive policy group
+	Network       *ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesItemsNetwork `json:"network,omitempty"`       // The network that allowlist SSID belongs to
+	SSID          *ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesItemsSSID    `json:"ssid,omitempty"`          // The SSID that allowlist belongs to
+}
+type ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesItemsClient struct {
+	Mac string `json:"mac,omitempty"` // L2 Isolation mac address
+}
+type ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesItemsNetwork struct {
+	ID   string `json:"id,omitempty"`   // The index of network
+	Name string `json:"name,omitempty"` // The name of network
+}
+type ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesItemsSSID struct {
+	ID     string `json:"id,omitempty"`     // The index of SSID
+	Name   string `json:"name,omitempty"`   // The name of SSID
+	Number *int   `json:"number,omitempty"` // The number of SSID
+}
+type ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesMeta struct {
+	Counts *ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesMetaCounts struct {
+	Items *ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated items
+}
+type ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of items in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of items in the dataset
+}
+type ResponseWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry struct {
+	Client        *ResponseWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntryClient  `json:"client,omitempty"`        // The client of allowlist
+	CreatedAt     string                                                                                 `json:"createdAt,omitempty"`     // Created at timestamp for the adaptive policy group
+	Description   string                                                                                 `json:"description,omitempty"`   // The description of mac address
+	EntryID       string                                                                                 `json:"entryId,omitempty"`       // The id of entry
+	LastUpdatedAt string                                                                                 `json:"lastUpdatedAt,omitempty"` // Updated at timestamp for the adaptive policy group
+	Network       *ResponseWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntryNetwork `json:"network,omitempty"`       // The network that allowlist SSID belongs to
+	SSID          *ResponseWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntrySSID    `json:"ssid,omitempty"`          // The SSID that allowlist belongs to
+}
+type ResponseWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntryClient struct {
+	Mac string `json:"mac,omitempty"` // L2 Isolation mac address
+}
+type ResponseWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntryNetwork struct {
+	ID   string `json:"id,omitempty"`   // The index of network
+	Name string `json:"name,omitempty"` // The name of network
+}
+type ResponseWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntrySSID struct {
+	ID     string `json:"id,omitempty"`     // The index of SSID
+	Name   string `json:"name,omitempty"`   // The name of SSID
+	Number *int   `json:"number,omitempty"` // The number of SSID
+}
+type ResponseWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry struct {
+	Client        *ResponseWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntryClient  `json:"client,omitempty"`        // The client of allowlist
+	CreatedAt     string                                                                                 `json:"createdAt,omitempty"`     // Created at timestamp for the adaptive policy group
+	Description   string                                                                                 `json:"description,omitempty"`   // The description of mac address
+	EntryID       string                                                                                 `json:"entryId,omitempty"`       // The id of entry
+	LastUpdatedAt string                                                                                 `json:"lastUpdatedAt,omitempty"` // Updated at timestamp for the adaptive policy group
+	Network       *ResponseWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntryNetwork `json:"network,omitempty"`       // The network that allowlist SSID belongs to
+	SSID          *ResponseWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntrySSID    `json:"ssid,omitempty"`          // The SSID that allowlist belongs to
+}
+type ResponseWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntryClient struct {
+	Mac string `json:"mac,omitempty"` // L2 Isolation mac address
+}
+type ResponseWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntryNetwork struct {
+	ID   string `json:"id,omitempty"`   // The index of network
+	Name string `json:"name,omitempty"` // The name of network
+}
+type ResponseWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntrySSID struct {
+	ID     string `json:"id,omitempty"`     // The index of SSID
+	Name   string `json:"name,omitempty"`   // The name of SSID
+	Number *int   `json:"number,omitempty"` // The number of SSID
 }
 type ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDevice struct {
 	Items *[]ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDeviceItems `json:"items,omitempty"` // The top-level propery containing all status data.
@@ -2964,9 +3114,9 @@ type RequestWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6Addresse
 	Addresses []string `json:"addresses,omitempty"` // Up to 2 nameserver addresses to use, ordered in priority from highest to lowest priority.
 }
 type RequestWirelessUpdateDeviceWirelessBluetoothSettings struct {
-	Major *int   `json:"major,omitempty"` // Desired major value of the beacon. If the value is set to null it will reset to Dashboard's automatically generated value.
-	Minor *int   `json:"minor,omitempty"` // Desired minor value of the beacon. If the value is set to null it will reset to Dashboard's automatically generated value.
-	UUID  string `json:"uuid,omitempty"`  // Desired UUID of the beacon. If the value is set to null it will reset to Dashboard's automatically generated value.
+	Major *int   `json:"major,omitempty"` // Desired major value of the beacon. If the value is set to null it will reset to           Dashboard's automatically generated value.
+	Minor *int   `json:"minor,omitempty"` // Desired minor value of the beacon. If the value is set to null it will reset to           Dashboard's automatically generated value.
+	UUID  string `json:"uuid,omitempty"`  // Desired UUID of the beacon. If the value is set to null it will reset to Dashboard's           automatically generated value.
 }
 type RequestWirelessUpdateDeviceWirelessElectronicShelfLabel struct {
 	Channel string `json:"channel,omitempty"` // Desired ESL channel for the device, or 'Auto' (case insensitive) to use the recommended channel
@@ -2979,7 +3129,7 @@ type RequestWirelessUpdateDeviceWirelessRadioSettings struct {
 }
 type RequestWirelessUpdateDeviceWirelessRadioSettingsFiveGhzSettings struct {
 	Channel      *int `json:"channel,omitempty"`      // Sets a manual channel for 5 GHz. Can be '36', '40', '44', '48', '52', '56', '60', '64', '100', '104', '108', '112', '116', '120', '124', '128', '132', '136', '140', '144', '149', '153', '157', '161', '165', '169', '173' or '177' or null for using auto channel.
-	ChannelWidth *int `json:"channelWidth,omitempty"` // Sets a manual channel for 5 GHz. Can be '0', '20', '40', '80' or '160' or null for using auto channel width.
+	ChannelWidth *int `json:"channelWidth,omitempty"` // Sets a manual channel width for 5 GHz. Can be '0', '20', '40', '80' or '160' or null for using auto channel width.
 	TargetPower  *int `json:"targetPower,omitempty"`  // Set a manual target power for 5 GHz (dBm). Enter null for using auto power range.
 }
 type RequestWirelessUpdateDeviceWirelessRadioSettingsTwoFourGhzSettings struct {
@@ -3044,6 +3194,7 @@ type RequestWirelessUpdateNetworkWirelessBluetoothSettings struct {
 type RequestWirelessUpdateNetworkWirelessElectronicShelfLabel struct {
 	Enabled  *bool  `json:"enabled,omitempty"`  // Turn ESL features on and off for this network
 	Hostname string `json:"hostname,omitempty"` // Desired ESL hostname of the network
+	Mode     string `json:"mode,omitempty"`     // Electronic shelf label mode of the network. Valid options are 'Bluetooth', 'high frequency'
 }
 type RequestWirelessCreateNetworkWirelessEthernetPortsProfile struct {
 	Name     string                                                              `json:"name,omitempty"`     // AP port profile name
@@ -3519,7 +3670,7 @@ type RequestWirelessUpdateNetworkWirelessSSID struct {
 	ActiveDirectory                  *RequestWirelessUpdateNetworkWirelessSSIDActiveDirectory           `json:"activeDirectory,omitempty"`                  // The current setting for Active Directory. Only valid if splashPage is 'Password-protected with Active Directory'
 	AdultContentFilteringEnabled     *bool                                                              `json:"adultContentFilteringEnabled,omitempty"`     // Boolean indicating whether or not adult content will be blocked
 	ApTagsAndVLANIDs                 *[]RequestWirelessUpdateNetworkWirelessSSIDApTagsAndVLANIDs        `json:"apTagsAndVlanIds,omitempty"`                 // The list of tags and VLAN IDs used for VLAN tagging. This param is only valid when the ipAssignmentMode is 'Bridge mode' or 'Layer 3 roaming'
-	AuthMode                         string                                                             `json:"authMode,omitempty"`                         // The association control method for the SSID ('open', 'open-enhanced', 'psk', 'open-with-radius', 'open-with-nac', '8021x-meraki', '8021x-nac', '8021x-radius', '8021x-google', '8021x-entra', '8021x-localradius', 'ipsk-with-radius', 'ipsk-without-radius' or 'ipsk-with-nac')
+	AuthMode                         string                                                             `json:"authMode,omitempty"`                         // The association control method for the SSID ('open', 'open-enhanced', 'psk', 'open-with-radius', 'open-with-nac', '8021x-meraki', '8021x-nac', '8021x-radius', '8021x-google', '8021x-entra', '8021x-localradius', 'ipsk-with-radius', 'ipsk-without-radius', 'ipsk-with-nac' or 'ipsk-with-radius-easy-psk')
 	AvailabilityTags                 []string                                                           `json:"availabilityTags,omitempty"`                 // Accepts a list of tags for this SSID. If availableOnAllAps is false, then the SSID will only be broadcast by APs with tags matching any of the tags in this list.
 	AvailableOnAllAps                *bool                                                              `json:"availableOnAllAps,omitempty"`                // Boolean indicating whether all APs should broadcast the SSID or if it should be restricted to APs matching any availability tags. Can only be false if the SSID has availability tags.
 	BandSelection                    string                                                             `json:"bandSelection,omitempty"`                    // The client-serving radio frequencies of this SSID in the default indoor RF profile. ('Dual band operation', '5 GHz band only' or 'Dual band operation with Band Steering')
@@ -3561,6 +3712,7 @@ type RequestWirelessUpdateNetworkWirelessSSID struct {
 	RadiusLoadBalancingPolicy        string                                                             `json:"radiusLoadBalancingPolicy,omitempty"`        // This policy determines which RADIUS server will be contacted first in an authentication attempt and the ordering of any necessary retry attempts ('Strict priority order' or 'Round robin')
 	RadiusOverride                   *bool                                                              `json:"radiusOverride,omitempty"`                   // If true, the RADIUS response can override VLAN tag. This is not valid when ipAssignmentMode is 'NAT mode'.
 	RadiusProxyEnabled               *bool                                                              `json:"radiusProxyEnabled,omitempty"`               // If true, Meraki devices will proxy RADIUS messages through the Meraki cloud to the configured RADIUS auth and accounting servers.
+	RadiusRadsec                     *RequestWirelessUpdateNetworkWirelessSSIDRadiusRadsec              `json:"radiusRadsec,omitempty"`                     // The current settings for RADIUS RADSec
 	RadiusServerAttemptsLimit        *int                                                               `json:"radiusServerAttemptsLimit,omitempty"`        // The maximum number of transmit attempts after which a RADIUS server is failed over (must be between 1-5).
 	RadiusServerTimeout              *int                                                               `json:"radiusServerTimeout,omitempty"`              // The amount of time for which a RADIUS client waits for a reply from the RADIUS server (must be between 1-10 seconds).
 	RadiusServers                    *[]RequestWirelessUpdateNetworkWirelessSSIDRadiusServers           `json:"radiusServers,omitempty"`                    // The RADIUS 802.1X servers to be used for authentication. This param is only valid if the authMode is 'open-with-radius', '8021x-radius' or 'ipsk-with-radius'
@@ -3675,6 +3827,12 @@ type RequestWirelessUpdateNetworkWirelessSSIDRadiusAccountingServers struct {
 	Port          *int   `json:"port,omitempty"`          // Port on the RADIUS server that is listening for accounting messages
 	RadsecEnabled *bool  `json:"radsecEnabled,omitempty"` // Use RADSEC (TLS over TCP) to connect to this RADIUS accounting server. Requires radiusProxyEnabled.
 	Secret        string `json:"secret,omitempty"`        // Shared key used to authenticate messages between the APs and RADIUS server
+}
+type RequestWirelessUpdateNetworkWirelessSSIDRadiusRadsec struct {
+	TlsTunnel *RequestWirelessUpdateNetworkWirelessSSIDRadiusRadsecTlsTunnel `json:"tlsTunnel,omitempty"` // RADSec TLS tunnel settings
+}
+type RequestWirelessUpdateNetworkWirelessSSIDRadiusRadsecTlsTunnel struct {
+	Timeout *int `json:"timeout,omitempty"` // The interval (in seconds) to determines how long a TLS session can remain idle for a RADSec server before it is automatically terminated
 }
 type RequestWirelessUpdateNetworkWirelessSSIDRadiusServers struct {
 	CaCertificate            string `json:"caCertificate,omitempty"`            // Certificate used for authorization for the RADSEC Server
@@ -3813,6 +3971,7 @@ type RequestWirelessUpdateNetworkWirelessSSIDSplashSettings struct {
 	ControllerDisconnectionBehavior string                                                                    `json:"controllerDisconnectionBehavior,omitempty"` // How login attempts should be handled when the controller is unreachable. Can be either 'open', 'restricted', or 'default'.
 	GuestSponsorship                *RequestWirelessUpdateNetworkWirelessSSIDSplashSettingsGuestSponsorship   `json:"guestSponsorship,omitempty"`                // Details associated with guest sponsored splash.
 	RedirectURL                     string                                                                    `json:"redirectUrl,omitempty"`                     // The custom redirect URL where the users will go after the splash page.
+	SelfRegistration                *RequestWirelessUpdateNetworkWirelessSSIDSplashSettingsSelfRegistration   `json:"selfRegistration,omitempty"`                // Self-registration settings for splash with Meraki authentication.
 	SentryEnrollment                *RequestWirelessUpdateNetworkWirelessSSIDSplashSettingsSentryEnrollment   `json:"sentryEnrollment,omitempty"`                // Systems Manager sentry enrollment splash settings.
 	SplashImage                     *RequestWirelessUpdateNetworkWirelessSSIDSplashSettingsSplashImage        `json:"splashImage,omitempty"`                     // The image used in the splash page.
 	SplashLogo                      *RequestWirelessUpdateNetworkWirelessSSIDSplashSettingsSplashLogo         `json:"splashLogo,omitempty"`                      // The logo used in the splash page.
@@ -3836,6 +3995,10 @@ type RequestWirelessUpdateNetworkWirelessSSIDSplashSettingsBillingFreeAccess str
 type RequestWirelessUpdateNetworkWirelessSSIDSplashSettingsGuestSponsorship struct {
 	DurationInMinutes        *int  `json:"durationInMinutes,omitempty"`        // Duration in minutes of sponsored guest authorization. Must be between 1 and 60480 (6 weeks)
 	GuestCanRequestTimeframe *bool `json:"guestCanRequestTimeframe,omitempty"` // Whether or not guests can specify how much time they are requesting.
+}
+type RequestWirelessUpdateNetworkWirelessSSIDSplashSettingsSelfRegistration struct {
+	AuthorizationType string `json:"authorizationType,omitempty"` // How created user accounts should be authorized. Must be included in: [admin, auto, self_email]
+	Enabled           *bool  `json:"enabled,omitempty"`           // Whether or not to allow users to create their own account on the network.
 }
 type RequestWirelessUpdateNetworkWirelessSSIDSplashSettingsSentryEnrollment struct {
 	EnforcedSystems       []string                                                                                     `json:"enforcedSystems,omitempty"`       // The system types that the Sentry enforces. Must be included in: 'iOS, 'Android', 'macOS', and 'Windows'.
@@ -3922,6 +4085,28 @@ type RequestWirelessUpdateNetworkWirelessSSIDVpnSplitTunnelRules struct {
 }
 type RequestWirelessRecalculateOrganizationWirelessRadioAutoRfChannels struct {
 	NetworkIDs []string `json:"networkIds,omitempty"` // A list of network ids (limit: 15).
+}
+type RequestWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry struct {
+	Client      *RequestWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntryClient  `json:"client,omitempty"`      // The client of allowlist
+	Description string                                                                                `json:"description,omitempty"` // The description of mac address
+	Network     *RequestWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntryNetwork `json:"network,omitempty"`     // The Network that allowlist belongs to
+	SSID        *RequestWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntrySSID    `json:"ssid,omitempty"`        // The SSID that allowlist belongs to
+}
+type RequestWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntryClient struct {
+	Mac string `json:"mac,omitempty"` // L2 Isolation mac address
+}
+type RequestWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntryNetwork struct {
+	ID string `json:"id,omitempty"` // The ID of network
+}
+type RequestWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntrySSID struct {
+	Number *int `json:"number,omitempty"` // The number of SSID
+}
+type RequestWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry struct {
+	Client      *RequestWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntryClient `json:"client,omitempty"`      // The client of allowlist
+	Description string                                                                               `json:"description,omitempty"` // The description of mac address
+}
+type RequestWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntryClient struct {
+	Mac string `json:"mac,omitempty"` // L2 Isolation mac address
 }
 
 //GetDeviceWirelessBluetoothSettings Return the bluetooth settings for a wireless device
@@ -4066,8 +4251,8 @@ func (s *WirelessService) GetDeviceWirelessLatencyStats(serial string, getDevice
 
 }
 
-//GetDeviceWirelessRadioSettings Return the radio settings of a device
-/* Return the radio settings of a device
+//GetDeviceWirelessRadioSettings Return the manually configured radio settings overrides of a device, which take precedence over RF profiles.
+/* Return the manually configured radio settings overrides of a device, which take precedence over RF profiles.
 
 @param serial serial path parameter.
 
@@ -6560,6 +6745,150 @@ func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByNetworkPagin
 	return s.GetOrganizationWirelessDevicesPacketLossByNetwork(organizationID, getOrganizationWirelessDevicesPacketLossByNetworkQueryParamsConverted)
 }
 
+//GetOrganizationWirelessDevicesPowerModeHistory Return a record of power mode changes for wireless devices in the organization
+/* Return a record of power mode changes for wireless devices in the organization. For each device, it provides a series of events with timestamps indicating when a power mode change occurred and the new mode. The events are ordered by timestamp.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessDevicesPowerModeHistoryQueryParams Filtering parameter
+
+
+*/
+
+func (s *WirelessService) GetOrganizationWirelessDevicesPowerModeHistory(organizationID string, getOrganizationWirelessDevicesPowerModeHistoryQueryParams *GetOrganizationWirelessDevicesPowerModeHistoryQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/devices/power/mode/history"
+	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessDevicesPowerModeHistoryQueryParams != nil && getOrganizationWirelessDevicesPowerModeHistoryQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory
+		println("Paginate")
+		getOrganizationWirelessDevicesPowerModeHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesPowerModeHistoryPaginate, organizationID, "", getOrganizationWirelessDevicesPowerModeHistoryQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessDevicesPowerModeHistoryQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesPowerModeHistory")
+	}
+
+	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory)
+	return result, response, err
+
+}
+func (s *WirelessService) GetOrganizationWirelessDevicesPowerModeHistoryPaginate(organizationID string, getOrganizationWirelessDevicesPowerModeHistoryQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessDevicesPowerModeHistoryQueryParamsConverted := getOrganizationWirelessDevicesPowerModeHistoryQueryParams.(*GetOrganizationWirelessDevicesPowerModeHistoryQueryParams)
+
+	return s.GetOrganizationWirelessDevicesPowerModeHistory(organizationID, getOrganizationWirelessDevicesPowerModeHistoryQueryParamsConverted)
+}
+
+//GetOrganizationWirelessDevicesSystemCPULoadHistory Return the CPU Load history for a list of wireless devices in the organization.
+/* Return the CPU Load history for a list of wireless devices in the organization.
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams Filtering parameter
+
+
+*/
+
+func (s *WirelessService) GetOrganizationWirelessDevicesSystemCPULoadHistory(organizationID string, getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams *GetOrganizationWirelessDevicesSystemCPULoadHistoryQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/devices/system/cpu/load/history"
+	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams != nil && getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory
+		println("Paginate")
+		getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesSystemCPULoadHistoryPaginate, organizationID, "", getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesSystemCpuLoadHistory")
+	}
+
+	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory)
+	return result, response, err
+
+}
+func (s *WirelessService) GetOrganizationWirelessDevicesSystemCPULoadHistoryPaginate(organizationID string, getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParamsConverted := getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams.(*GetOrganizationWirelessDevicesSystemCPULoadHistoryQueryParams)
+
+	return s.GetOrganizationWirelessDevicesSystemCPULoadHistory(organizationID, getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParamsConverted)
+}
+
 //GetOrganizationWirelessDevicesWirelessControllersByDevice List of Catalyst access points information
 /* List of Catalyst access points information
 
@@ -6702,6 +7031,78 @@ func (s *WirelessService) GetOrganizationWirelessRfProfilesAssignmentsByDevicePa
 	getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParamsConverted := getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams.(*GetOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams)
 
 	return s.GetOrganizationWirelessRfProfilesAssignmentsByDevice(organizationID, getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParamsConverted)
+}
+
+//GetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries List the L2 isolation allow list MAC entry in an organization
+/* List the L2 isolation allow list MAC entry in an organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams Filtering parameter
+
+
+*/
+
+func (s *WirelessService) GetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries(organizationID string, getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams *GetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesQueryParams) (*ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/ssids/firewall/isolation/allowlist/entries"
+	s.rateLimiterBucket.Wait(1)
+
+	if getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams != nil && getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams.PerPage == -1 {
+		var result *ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries
+		println("Paginate")
+		getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams.PerPage = PAGINATION_PER_PAGE
+		result2, response, err := Paginate(s.GetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesPaginate, organizationID, "", getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams)
+		if err != nil {
+			return nil, nil, err
+		}
+		jsonResult, err := json.Marshal(result2)
+		// Verficar el error
+		if err != nil {
+			return nil, nil, err
+		}
+		var paginatedResponse []any
+		err = json.Unmarshal(jsonResult, &paginatedResponse)
+		// for para recorrer "paginatedResponse"
+		for i := 0; i < len(paginatedResponse); i++ {
+			var resultTmp *ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries
+			jsonResult2, _ := json.Marshal(paginatedResponse[i])
+			err = json.Unmarshal(jsonResult2, &resultTmp)
+			// Verificar si result es nil, si lo es inicialiarlo
+			if result == nil {
+				result = resultTmp
+			} else {
+				*result.Items = append(*result.Items, *resultTmp.Items...)
+			}
+		}
+		return result, response, err
+	}
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	queryString, _ := query.Values(getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessSsidsFirewallIsolationAllowlistEntries")
+	}
+
+	result := response.Result().(*ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries)
+	return result, response, err
+
+}
+func (s *WirelessService) GetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesPaginate(organizationID string, getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams any) (any, *resty.Response, error) {
+	getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParamsConverted := getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams.(*GetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesQueryParams)
+
+	return s.GetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries(organizationID, getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParamsConverted)
 }
 
 //GetOrganizationWirelessSSIDsStatusesByDevice List status information of all BSSIDs in your organization
@@ -7107,6 +7508,41 @@ func (s *WirelessService) RecalculateOrganizationWirelessRadioAutoRfChannels(org
 
 }
 
+//CreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry Create isolation allow list MAC entry for this organization
+/* Create isolation allow list MAC entry for this organization
+
+@param organizationID organizationId path parameter. Organization ID
+
+
+*/
+
+func (s *WirelessService) CreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry(organizationID string, requestWirelessCreateOrganizationWirelessSsidsFirewallIsolationAllowlistEntry *RequestWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry) (*ResponseWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/ssids/firewall/isolation/allowlist/entries"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestWirelessCreateOrganizationWirelessSsidsFirewallIsolationAllowlistEntry).
+		SetResult(&ResponseWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateOrganizationWirelessSsidsFirewallIsolationAllowlistEntry")
+	}
+
+	result := response.Result().(*ResponseWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry)
+	return result, response, err
+
+}
+
 //UpdateDeviceWirelessAlternateManagementInterfaceIPv6 Update alternate management interface IPv6 address
 /* Update alternate management interface IPv6 address
 
@@ -7203,8 +7639,8 @@ func (s *WirelessService) UpdateDeviceWirelessElectronicShelfLabel(serial string
 
 }
 
-//UpdateDeviceWirelessRadioSettings Update the radio settings of a device
-/* Update the radio settings of a device
+//UpdateDeviceWirelessRadioSettings Update the radio settings overrides of a device, which take precedence over RF profiles.
+/* Update the radio settings overrides of a device, which take precedence over RF profiles.
 
 @param serial serial path parameter.
 */
@@ -7931,6 +8367,40 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDVpn(networkID string, number 
 
 }
 
+//UpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry Update isolation allow list MAC entry info
+/* Update isolation allow list MAC entry info
+
+@param organizationID organizationId path parameter. Organization ID
+@param entryID entryId path parameter. Entry ID
+*/
+func (s *WirelessService) UpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry(organizationID string, entryID string, requestWirelessUpdateOrganizationWirelessSsidsFirewallIsolationAllowlistEntry *RequestWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry) (*ResponseWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry, *resty.Response, error) {
+	path := "/api/v1/organizations/{organizationId}/wireless/ssids/firewall/isolation/allowlist/entries/{entryId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{entryId}", fmt.Sprintf("%v", entryID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestWirelessUpdateOrganizationWirelessSsidsFirewallIsolationAllowlistEntry).
+		SetResult(&ResponseWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateOrganizationWirelessSsidsFirewallIsolationAllowlistEntry")
+	}
+
+	result := response.Result().(*ResponseWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry)
+	return result, response, err
+
+}
+
 //DeleteNetworkWirelessAirMarshalRule Delete an Air Marshal rule.
 /* Delete an Air Marshal rule.
 
@@ -8063,6 +8533,40 @@ func (s *WirelessService) DeleteNetworkWirelessSSIDIDentityPsk(networkID string,
 
 	if response.IsError() {
 		return response, fmt.Errorf("error with operation DeleteNetworkWirelessSsidIdentityPsk")
+	}
+
+	return response, err
+
+}
+
+//DeleteOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry Destroy isolation allow list MAC entry for this organization
+/* Destroy isolation allow list MAC entry for this organization
+
+@param organizationID organizationId path parameter. Organization ID
+@param entryID entryId path parameter. Entry ID
+
+
+*/
+func (s *WirelessService) DeleteOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry(organizationID string, entryID string) (*resty.Response, error) {
+	//organizationID string,entryID string
+	path := "/api/v1/organizations/{organizationId}/wireless/ssids/firewall/isolation/allowlist/entries/{entryId}"
+	s.rateLimiterBucket.Wait(1)
+	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
+	path = strings.Replace(path, "{entryId}", fmt.Sprintf("%v", entryID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation DeleteOrganizationWirelessSsidsFirewallIsolationAllowlistEntry")
 	}
 
 	return response, err

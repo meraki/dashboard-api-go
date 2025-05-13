@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.1] - 2025-01-20
+### Fixed
+- Update `IMEI` field type in `ResponseItemOrganizationsGetOrganizationDevices` to float64.
+
+## [5.0.0] - 2025-01-20
+### Changed
+- dashboard-api-go supports now v1.57.0 of Meraki Dashboard API.
+
 ## [4.0.6] - 2025-03-10
 ### Fixed
 - Include `ID` to `ResponseCameraGetOrganizationCameraRole` and `ResponseItemCameraGetOrganizationCameraRoles`.
@@ -1454,4 +1462,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [4.0.4]: https://github.com/meraki/dashboard-api-go/compare/v4.0.3...4.0.4
 [4.0.5]: https://github.com/meraki/dashboard-api-go/compare/v4.0.4...4.0.5
 [4.0.6]: https://github.com/meraki/dashboard-api-go/compare/v4.0.5...4.0.6
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v4.0.6...main
+[5.0.0]: https://github.com/meraki/dashboard-api-go/compare/v4.0.6...5.0.0
+[5.0.1]: https://github.com/meraki/dashboard-api-go/compare/v5.0.0...5.0.1
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v5.0.1...main
