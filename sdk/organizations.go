@@ -2757,6 +2757,7 @@ type ResponseOrganizationsGetOrganizationPolicyObjects []ResponseItemOrganizatio
 type ResponseItemOrganizationsGetOrganizationPolicyObjects struct {
 	Category   string   `json:"category,omitempty"`   // Category of a policy object (one of: adaptivePolicy, network)
 	Cidr       string   `json:"cidr,omitempty"`       // CIDR Value of a policy object
+	Fqdn       string   `json:"fqdn,omitempty"`       // FQDN Value of a policy object
 	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
 	GroupIDs   []string `json:"groupIds,omitempty"`   // The IDs of policy object groups the policy object belongs to.
 	ID         string   `json:"id,omitempty"`         // Policy object ID
@@ -2768,6 +2769,7 @@ type ResponseItemOrganizationsGetOrganizationPolicyObjects struct {
 type ResponseOrganizationsCreateOrganizationPolicyObject struct {
 	Category   string   `json:"category,omitempty"`   // Category of a policy object (one of: adaptivePolicy, network)
 	Cidr       string   `json:"cidr,omitempty"`       // CIDR Value of a policy object
+	Fqdn       string   `json:"fqdn,omitempty"`       // FQDN Value of a policy object
 	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
 	GroupIDs   []string `json:"groupIds,omitempty"`   // The IDs of policy object groups the policy object belongs to.
 	ID         string   `json:"id,omitempty"`         // Policy object ID
@@ -2818,6 +2820,7 @@ type ResponseOrganizationsUpdateOrganizationPolicyObjectsGroup struct {
 type ResponseOrganizationsGetOrganizationPolicyObject struct {
 	Category   string   `json:"category,omitempty"`   // Category of a policy object (one of: adaptivePolicy, network)
 	Cidr       string   `json:"cidr,omitempty"`       // CIDR Value of a policy object
+	Fqdn       string   `json:"fqdn,omitempty"`       // FQDN Value of a policy object
 	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
 	GroupIDs   []string `json:"groupIds,omitempty"`   // The IDs of policy object groups the policy object belongs to.
 	ID         string   `json:"id,omitempty"`         // Policy object ID
@@ -2829,6 +2832,7 @@ type ResponseOrganizationsGetOrganizationPolicyObject struct {
 type ResponseOrganizationsUpdateOrganizationPolicyObject struct {
 	Category   string   `json:"category,omitempty"`   // Category of a policy object (one of: adaptivePolicy, network)
 	Cidr       string   `json:"cidr,omitempty"`       // CIDR Value of a policy object
+	Fqdn       string   `json:"fqdn,omitempty"`       // FQDN Value of a policy object
 	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
 	GroupIDs   []string `json:"groupIds,omitempty"`   // The IDs of policy object groups the policy object belongs to.
 	ID         string   `json:"id,omitempty"`         // Policy object ID
