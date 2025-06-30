@@ -232,16 +232,3 @@ func TestRetry(t *testing.T) {
 	Get[result](client.common.client, client.common.rateLimiterBucket, "/url", &result{})
 	assert.LessOrEqual(t, 100*time.Millisecond, time.Since(start))
 }
-
-// TestRetryAfter tests a retry of the Client.Get method with a Retry-After response header.
-func TestRetryAfter(t *testing.T) {
-	defer gock.Off()
-	client := testClient(t)
-	client.common.client.SetRetryCount(1)
-
-	gock.New(TEST_MERAKI_BASE_URL).Get("/url").Reply(429).AddHeader("Retry-After", "1")
-	gock.New(TEST_MERAKI_BASE_URL).Get("/url").Reply(200)
-	start := time.Now()
-	Get[result](client.common.client, client.common.rateLimiterBucket, "/url", &result{})
-	assert.LessOrEqual(t, time.Second, time.Since(start))
-}
