@@ -17,7 +17,9 @@ func main() {
 		return
 	}
 
-	nResponse, _, err := client.Devices.GetDeviceClients("QBSC-ALSL-3GXN", nil)
+	nResponse, _, err := client.Devices.GetDeviceClients("QBSC-ALSL-3GXN", &meraki.GetDeviceClientsQueryParams{
+		T0: "2025-06-24T00:00:00Z",
+	})
 
 	if err != nil {
 		fmt.Println(err)

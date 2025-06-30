@@ -1,12 +1,10 @@
 package meraki
 
 import (
-	"encoding/json"
 	"fmt"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 type SmService service
@@ -671,24 +669,15 @@ func (s *SmService) GetNetworkSmBypassActivationLockAttempt(networkID string, at
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{attemptId}", fmt.Sprintf("%v", attemptID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetNetworkSmBypassActivationLockAttempt{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmBypassActivationLockAttempt")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmBypassActivationLockAttempt)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmBypassActivationLockAttempt](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -704,64 +693,27 @@ func (s *SmService) GetNetworkSmBypassActivationLockAttempt(networkID string, at
 func (s *SmService) GetNetworkSmDevices(networkID string, getNetworkSmDevicesQueryParams *GetNetworkSmDevicesQueryParams) (*ResponseSmGetNetworkSmDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkSmDevicesQueryParams != nil && getNetworkSmDevicesQueryParams.PerPage == -1 {
-		var result *ResponseSmGetNetworkSmDevices
-		println("Paginate")
-		getNetworkSmDevicesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkSmDevicesPaginate, networkID, "", getNetworkSmDevicesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSmGetNetworkSmDevices
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkSmDevicesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetNetworkSmDevices{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmDevices](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSmDevicesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSmGetNetworkSmDevices) ResponseSmGetNetworkSmDevices {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkSmDevicesQueryParams != nil {
+				return getNetworkSmDevicesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmDevices")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmDevices)
-	return result, response, err
-
-}
-func (s *SmService) GetNetworkSmDevicesPaginate(networkID string, getNetworkSmDevicesQueryParams any) (any, *resty.Response, error) {
-	getNetworkSmDevicesQueryParamsConverted := getNetworkSmDevicesQueryParams.(*GetNetworkSmDevicesQueryParams)
-
-	return s.GetNetworkSmDevices(networkID, getNetworkSmDevicesQueryParamsConverted)
 }
 
 //GetNetworkSmDeviceCellularUsageHistory Return the client's daily cellular data usage history
@@ -779,24 +731,15 @@ func (s *SmService) GetNetworkSmDeviceCellularUsageHistory(networkID string, dev
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetNetworkSmDeviceCellularUsageHistory{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmDeviceCellularUsageHistory")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmDeviceCellularUsageHistory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmDeviceCellularUsageHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -815,24 +758,15 @@ func (s *SmService) GetNetworkSmDeviceCerts(networkID string, deviceID string) (
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetNetworkSmDeviceCerts{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmDeviceCerts")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmDeviceCerts)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmDeviceCerts](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -849,65 +783,28 @@ func (s *SmService) GetNetworkSmDeviceCerts(networkID string, deviceID string) (
 func (s *SmService) GetNetworkSmDeviceConnectivity(networkID string, deviceID string, getNetworkSmDeviceConnectivityQueryParams *GetNetworkSmDeviceConnectivityQueryParams) (*ResponseSmGetNetworkSmDeviceConnectivity, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/connectivity"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkSmDeviceConnectivityQueryParams != nil && getNetworkSmDeviceConnectivityQueryParams.PerPage == -1 {
-		var result *ResponseSmGetNetworkSmDeviceConnectivity
-		println("Paginate")
-		getNetworkSmDeviceConnectivityQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkSmDeviceConnectivityPaginate, networkID, deviceID, getNetworkSmDeviceConnectivityQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSmGetNetworkSmDeviceConnectivity
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	queryString, _ := query.Values(getNetworkSmDeviceConnectivityQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetNetworkSmDeviceConnectivity{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmDeviceConnectivity](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSmDeviceConnectivityQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSmGetNetworkSmDeviceConnectivity) ResponseSmGetNetworkSmDeviceConnectivity {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkSmDeviceConnectivityQueryParams != nil {
+				return getNetworkSmDeviceConnectivityQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmDeviceConnectivity")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmDeviceConnectivity)
-	return result, response, err
-
-}
-func (s *SmService) GetNetworkSmDeviceConnectivityPaginate(networkID string, deviceID string, getNetworkSmDeviceConnectivityQueryParams any) (any, *resty.Response, error) {
-	getNetworkSmDeviceConnectivityQueryParamsConverted := getNetworkSmDeviceConnectivityQueryParams.(*GetNetworkSmDeviceConnectivityQueryParams)
-
-	return s.GetNetworkSmDeviceConnectivity(networkID, deviceID, getNetworkSmDeviceConnectivityQueryParamsConverted)
 }
 
 //GetNetworkSmDeviceDesktopLogs Return historical records of various Systems Manager network connection details for desktop devices.
@@ -923,65 +820,28 @@ func (s *SmService) GetNetworkSmDeviceConnectivityPaginate(networkID string, dev
 func (s *SmService) GetNetworkSmDeviceDesktopLogs(networkID string, deviceID string, getNetworkSmDeviceDesktopLogsQueryParams *GetNetworkSmDeviceDesktopLogsQueryParams) (*ResponseSmGetNetworkSmDeviceDesktopLogs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/desktopLogs"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkSmDeviceDesktopLogsQueryParams != nil && getNetworkSmDeviceDesktopLogsQueryParams.PerPage == -1 {
-		var result *ResponseSmGetNetworkSmDeviceDesktopLogs
-		println("Paginate")
-		getNetworkSmDeviceDesktopLogsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkSmDeviceDesktopLogsPaginate, networkID, deviceID, getNetworkSmDeviceDesktopLogsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSmGetNetworkSmDeviceDesktopLogs
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	queryString, _ := query.Values(getNetworkSmDeviceDesktopLogsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetNetworkSmDeviceDesktopLogs{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmDeviceDesktopLogs](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSmDeviceDesktopLogsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSmGetNetworkSmDeviceDesktopLogs) ResponseSmGetNetworkSmDeviceDesktopLogs {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkSmDeviceDesktopLogsQueryParams != nil {
+				return getNetworkSmDeviceDesktopLogsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmDeviceDesktopLogs")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmDeviceDesktopLogs)
-	return result, response, err
-
-}
-func (s *SmService) GetNetworkSmDeviceDesktopLogsPaginate(networkID string, deviceID string, getNetworkSmDeviceDesktopLogsQueryParams any) (any, *resty.Response, error) {
-	getNetworkSmDeviceDesktopLogsQueryParamsConverted := getNetworkSmDeviceDesktopLogsQueryParams.(*GetNetworkSmDeviceDesktopLogsQueryParams)
-
-	return s.GetNetworkSmDeviceDesktopLogs(networkID, deviceID, getNetworkSmDeviceDesktopLogsQueryParamsConverted)
 }
 
 //GetNetworkSmDeviceDeviceCommandLogs Return historical records of commands sent to Systems Manager devices
@@ -997,65 +857,28 @@ func (s *SmService) GetNetworkSmDeviceDesktopLogsPaginate(networkID string, devi
 func (s *SmService) GetNetworkSmDeviceDeviceCommandLogs(networkID string, deviceID string, getNetworkSmDeviceDeviceCommandLogsQueryParams *GetNetworkSmDeviceDeviceCommandLogsQueryParams) (*ResponseSmGetNetworkSmDeviceDeviceCommandLogs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/deviceCommandLogs"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkSmDeviceDeviceCommandLogsQueryParams != nil && getNetworkSmDeviceDeviceCommandLogsQueryParams.PerPage == -1 {
-		var result *ResponseSmGetNetworkSmDeviceDeviceCommandLogs
-		println("Paginate")
-		getNetworkSmDeviceDeviceCommandLogsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkSmDeviceDeviceCommandLogsPaginate, networkID, deviceID, getNetworkSmDeviceDeviceCommandLogsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSmGetNetworkSmDeviceDeviceCommandLogs
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	queryString, _ := query.Values(getNetworkSmDeviceDeviceCommandLogsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetNetworkSmDeviceDeviceCommandLogs{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmDeviceDeviceCommandLogs](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSmDeviceDeviceCommandLogsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSmGetNetworkSmDeviceDeviceCommandLogs) ResponseSmGetNetworkSmDeviceDeviceCommandLogs {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkSmDeviceDeviceCommandLogsQueryParams != nil {
+				return getNetworkSmDeviceDeviceCommandLogsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmDeviceDeviceCommandLogs")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmDeviceDeviceCommandLogs)
-	return result, response, err
-
-}
-func (s *SmService) GetNetworkSmDeviceDeviceCommandLogsPaginate(networkID string, deviceID string, getNetworkSmDeviceDeviceCommandLogsQueryParams any) (any, *resty.Response, error) {
-	getNetworkSmDeviceDeviceCommandLogsQueryParamsConverted := getNetworkSmDeviceDeviceCommandLogsQueryParams.(*GetNetworkSmDeviceDeviceCommandLogsQueryParams)
-
-	return s.GetNetworkSmDeviceDeviceCommandLogs(networkID, deviceID, getNetworkSmDeviceDeviceCommandLogsQueryParamsConverted)
 }
 
 //GetNetworkSmDeviceDeviceProfiles Get the installed profiles associated with a device
@@ -1073,24 +896,15 @@ func (s *SmService) GetNetworkSmDeviceDeviceProfiles(networkID string, deviceID 
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetNetworkSmDeviceDeviceProfiles{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmDeviceDeviceProfiles")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmDeviceDeviceProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmDeviceDeviceProfiles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1109,24 +923,15 @@ func (s *SmService) GetNetworkSmDeviceNetworkAdapters(networkID string, deviceID
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetNetworkSmDeviceNetworkAdapters{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmDeviceNetworkAdapters")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmDeviceNetworkAdapters)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmDeviceNetworkAdapters](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1143,65 +948,28 @@ func (s *SmService) GetNetworkSmDeviceNetworkAdapters(networkID string, deviceID
 func (s *SmService) GetNetworkSmDevicePerformanceHistory(networkID string, deviceID string, getNetworkSmDevicePerformanceHistoryQueryParams *GetNetworkSmDevicePerformanceHistoryQueryParams) (*ResponseSmGetNetworkSmDevicePerformanceHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/devices/{deviceId}/performanceHistory"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkSmDevicePerformanceHistoryQueryParams != nil && getNetworkSmDevicePerformanceHistoryQueryParams.PerPage == -1 {
-		var result *ResponseSmGetNetworkSmDevicePerformanceHistory
-		println("Paginate")
-		getNetworkSmDevicePerformanceHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkSmDevicePerformanceHistoryPaginate, networkID, deviceID, getNetworkSmDevicePerformanceHistoryQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSmGetNetworkSmDevicePerformanceHistory
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	queryString, _ := query.Values(getNetworkSmDevicePerformanceHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetNetworkSmDevicePerformanceHistory{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmDevicePerformanceHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSmDevicePerformanceHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSmGetNetworkSmDevicePerformanceHistory) ResponseSmGetNetworkSmDevicePerformanceHistory {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkSmDevicePerformanceHistoryQueryParams != nil {
+				return getNetworkSmDevicePerformanceHistoryQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmDevicePerformanceHistory")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmDevicePerformanceHistory)
-	return result, response, err
-
-}
-func (s *SmService) GetNetworkSmDevicePerformanceHistoryPaginate(networkID string, deviceID string, getNetworkSmDevicePerformanceHistoryQueryParams any) (any, *resty.Response, error) {
-	getNetworkSmDevicePerformanceHistoryQueryParamsConverted := getNetworkSmDevicePerformanceHistoryQueryParams.(*GetNetworkSmDevicePerformanceHistoryQueryParams)
-
-	return s.GetNetworkSmDevicePerformanceHistory(networkID, deviceID, getNetworkSmDevicePerformanceHistoryQueryParamsConverted)
 }
 
 //GetNetworkSmDeviceRestrictions List the restrictions on a device
@@ -1219,24 +987,15 @@ func (s *SmService) GetNetworkSmDeviceRestrictions(networkID string, deviceID st
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetNetworkSmDeviceRestrictions{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmDeviceRestrictions")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmDeviceRestrictions)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmDeviceRestrictions](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1255,24 +1014,15 @@ func (s *SmService) GetNetworkSmDeviceSecurityCenters(networkID string, deviceID
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetNetworkSmDeviceSecurityCenters{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmDeviceSecurityCenters")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmDeviceSecurityCenters)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmDeviceSecurityCenters](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1291,24 +1041,15 @@ func (s *SmService) GetNetworkSmDeviceSoftwares(networkID string, deviceID strin
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetNetworkSmDeviceSoftwares{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmDeviceSoftwares")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmDeviceSoftwares)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmDeviceSoftwares](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1327,24 +1068,15 @@ func (s *SmService) GetNetworkSmDeviceWLANLists(networkID string, deviceID strin
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetNetworkSmDeviceWLANLists{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmDeviceWlanLists")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmDeviceWLANLists)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmDeviceWLANLists](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1362,26 +1094,15 @@ func (s *SmService) GetNetworkSmProfiles(networkID string, getNetworkSmProfilesQ
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkSmProfilesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetNetworkSmProfiles{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmProfiles")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmProfiles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSmProfilesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1399,26 +1120,15 @@ func (s *SmService) GetNetworkSmTargetGroups(networkID string, getNetworkSmTarge
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkSmTargetGroupsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetNetworkSmTargetGroups{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmTargetGroups")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmTargetGroups)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmTargetGroups](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSmTargetGroupsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1438,26 +1148,15 @@ func (s *SmService) GetNetworkSmTargetGroup(networkID string, targetGroupID stri
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{targetGroupId}", fmt.Sprintf("%v", targetGroupID), -1)
 
-	queryString, _ := query.Values(getNetworkSmTargetGroupQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetNetworkSmTargetGroup{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmTargetGroup")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmTargetGroup)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmTargetGroup](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSmTargetGroupQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1473,64 +1172,27 @@ func (s *SmService) GetNetworkSmTargetGroup(networkID string, targetGroupID stri
 func (s *SmService) GetNetworkSmTrustedAccessConfigs(networkID string, getNetworkSmTrustedAccessConfigsQueryParams *GetNetworkSmTrustedAccessConfigsQueryParams) (*ResponseSmGetNetworkSmTrustedAccessConfigs, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/trustedAccessConfigs"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkSmTrustedAccessConfigsQueryParams != nil && getNetworkSmTrustedAccessConfigsQueryParams.PerPage == -1 {
-		var result *ResponseSmGetNetworkSmTrustedAccessConfigs
-		println("Paginate")
-		getNetworkSmTrustedAccessConfigsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkSmTrustedAccessConfigsPaginate, networkID, "", getNetworkSmTrustedAccessConfigsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSmGetNetworkSmTrustedAccessConfigs
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkSmTrustedAccessConfigsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetNetworkSmTrustedAccessConfigs{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmTrustedAccessConfigs](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSmTrustedAccessConfigsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSmGetNetworkSmTrustedAccessConfigs) ResponseSmGetNetworkSmTrustedAccessConfigs {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkSmTrustedAccessConfigsQueryParams != nil {
+				return getNetworkSmTrustedAccessConfigsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmTrustedAccessConfigs")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmTrustedAccessConfigs)
-	return result, response, err
-
-}
-func (s *SmService) GetNetworkSmTrustedAccessConfigsPaginate(networkID string, getNetworkSmTrustedAccessConfigsQueryParams any) (any, *resty.Response, error) {
-	getNetworkSmTrustedAccessConfigsQueryParamsConverted := getNetworkSmTrustedAccessConfigsQueryParams.(*GetNetworkSmTrustedAccessConfigsQueryParams)
-
-	return s.GetNetworkSmTrustedAccessConfigs(networkID, getNetworkSmTrustedAccessConfigsQueryParamsConverted)
 }
 
 //GetNetworkSmUserAccessDevices List User Access Devices and its Trusted Access Connections
@@ -1545,64 +1207,27 @@ func (s *SmService) GetNetworkSmTrustedAccessConfigsPaginate(networkID string, g
 func (s *SmService) GetNetworkSmUserAccessDevices(networkID string, getNetworkSmUserAccessDevicesQueryParams *GetNetworkSmUserAccessDevicesQueryParams) (*ResponseSmGetNetworkSmUserAccessDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/sm/userAccessDevices"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkSmUserAccessDevicesQueryParams != nil && getNetworkSmUserAccessDevicesQueryParams.PerPage == -1 {
-		var result *ResponseSmGetNetworkSmUserAccessDevices
-		println("Paginate")
-		getNetworkSmUserAccessDevicesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkSmUserAccessDevicesPaginate, networkID, "", getNetworkSmUserAccessDevicesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSmGetNetworkSmUserAccessDevices
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkSmUserAccessDevicesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetNetworkSmUserAccessDevices{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmUserAccessDevices](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSmUserAccessDevicesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSmGetNetworkSmUserAccessDevices) ResponseSmGetNetworkSmUserAccessDevices {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkSmUserAccessDevicesQueryParams != nil {
+				return getNetworkSmUserAccessDevicesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmUserAccessDevices")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmUserAccessDevices)
-	return result, response, err
-
-}
-func (s *SmService) GetNetworkSmUserAccessDevicesPaginate(networkID string, getNetworkSmUserAccessDevicesQueryParams any) (any, *resty.Response, error) {
-	getNetworkSmUserAccessDevicesQueryParamsConverted := getNetworkSmUserAccessDevicesQueryParams.(*GetNetworkSmUserAccessDevicesQueryParams)
-
-	return s.GetNetworkSmUserAccessDevices(networkID, getNetworkSmUserAccessDevicesQueryParamsConverted)
 }
 
 //GetNetworkSmUsers List the owners in an SM network with various specified fields and filters
@@ -1619,26 +1244,15 @@ func (s *SmService) GetNetworkSmUsers(networkID string, getNetworkSmUsersQueryPa
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkSmUsersQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetNetworkSmUsers{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmUsers")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmUsers)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmUsers](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSmUsersQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1657,24 +1271,15 @@ func (s *SmService) GetNetworkSmUserDeviceProfiles(networkID string, userID stri
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{userId}", fmt.Sprintf("%v", userID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetNetworkSmUserDeviceProfiles{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmUserDeviceProfiles")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmUserDeviceProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmUserDeviceProfiles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1693,24 +1298,15 @@ func (s *SmService) GetNetworkSmUserSoftwares(networkID string, userID string) (
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{userId}", fmt.Sprintf("%v", userID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetNetworkSmUserSoftwares{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSmUserSoftwares")
-	}
-
-	result := response.Result().(*ResponseSmGetNetworkSmUserSoftwares)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetNetworkSmUserSoftwares](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1726,64 +1322,27 @@ func (s *SmService) GetNetworkSmUserSoftwares(networkID string, userID string) (
 func (s *SmService) GetOrganizationSmAdminsRoles(organizationID string, getOrganizationSmAdminsRolesQueryParams *GetOrganizationSmAdminsRolesQueryParams) (*ResponseSmGetOrganizationSmAdminsRoles, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sm/admins/roles"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationSmAdminsRolesQueryParams != nil && getOrganizationSmAdminsRolesQueryParams.PerPage == -1 {
-		var result *ResponseSmGetOrganizationSmAdminsRoles
-		println("Paginate")
-		getOrganizationSmAdminsRolesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationSmAdminsRolesPaginate, organizationID, "", getOrganizationSmAdminsRolesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSmGetOrganizationSmAdminsRoles
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSmAdminsRolesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetOrganizationSmAdminsRoles{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSmGetOrganizationSmAdminsRoles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSmAdminsRolesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSmGetOrganizationSmAdminsRoles) ResponseSmGetOrganizationSmAdminsRoles {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationSmAdminsRolesQueryParams != nil {
+				return getOrganizationSmAdminsRolesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSmAdminsRoles")
-	}
-
-	result := response.Result().(*ResponseSmGetOrganizationSmAdminsRoles)
-	return result, response, err
-
-}
-func (s *SmService) GetOrganizationSmAdminsRolesPaginate(organizationID string, getOrganizationSmAdminsRolesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationSmAdminsRolesQueryParamsConverted := getOrganizationSmAdminsRolesQueryParams.(*GetOrganizationSmAdminsRolesQueryParams)
-
-	return s.GetOrganizationSmAdminsRoles(organizationID, getOrganizationSmAdminsRolesQueryParamsConverted)
 }
 
 //GetOrganizationSmAdminsRole Return a Limited Access Role
@@ -1801,24 +1360,15 @@ func (s *SmService) GetOrganizationSmAdminsRole(organizationID string, roleID st
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{roleId}", fmt.Sprintf("%v", roleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetOrganizationSmAdminsRole{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSmAdminsRole")
-	}
-
-	result := response.Result().(*ResponseSmGetOrganizationSmAdminsRole)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetOrganizationSmAdminsRole](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1835,24 +1385,15 @@ func (s *SmService) GetOrganizationSmApnsCert(organizationID string) (*ResponseS
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetOrganizationSmApnsCert{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSmApnsCert")
-	}
-
-	result := response.Result().(*ResponseSmGetOrganizationSmApnsCert)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetOrganizationSmApnsCert](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1868,64 +1409,27 @@ func (s *SmService) GetOrganizationSmApnsCert(organizationID string) (*ResponseS
 func (s *SmService) GetOrganizationSmSentryPoliciesAssignmentsByNetwork(organizationID string, getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams *GetOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams) (*ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sm/sentry/policies/assignments/byNetwork"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams != nil && getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams.PerPage == -1 {
-		var result *ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork
-		println("Paginate")
-		getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationSmSentryPoliciesAssignmentsByNetworkPaginate, organizationID, "", getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork) ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams != nil {
+				return getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSmSentryPoliciesAssignmentsByNetwork")
-	}
-
-	result := response.Result().(*ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork)
-	return result, response, err
-
-}
-func (s *SmService) GetOrganizationSmSentryPoliciesAssignmentsByNetworkPaginate(organizationID string, getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams any) (any, *resty.Response, error) {
-	getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParamsConverted := getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams.(*GetOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams)
-
-	return s.GetOrganizationSmSentryPoliciesAssignmentsByNetwork(organizationID, getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParamsConverted)
 }
 
 //GetOrganizationSmVppAccounts List the VPP accounts in the organization
@@ -1941,24 +1445,15 @@ func (s *SmService) GetOrganizationSmVppAccounts(organizationID string) (*Respon
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetOrganizationSmVppAccounts{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSmVppAccounts")
-	}
-
-	result := response.Result().(*ResponseSmGetOrganizationSmVppAccounts)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetOrganizationSmVppAccounts](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1977,24 +1472,15 @@ func (s *SmService) GetOrganizationSmVppAccount(organizationID string, vppAccoun
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{vppAccountId}", fmt.Sprintf("%v", vppAccountID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmGetOrganizationSmVppAccount{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSmVppAccount")
-	}
-
-	result := response.Result().(*ResponseSmGetOrganizationSmVppAccount)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmGetOrganizationSmVppAccount](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2011,24 +1497,13 @@ func (s *SmService) CreateNetworkSmBypassActivationLockAttempt(networkID string,
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmCreateNetworkSmBypassActivationLockAttempt).
-		// SetResult(&ResponseSmCreateNetworkSmBypassActivationLockAttempt{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateNetworkSmBypassActivationLockAttempt")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSmCreateNetworkSmBypassActivationLockAttempt, nil)
+		},
+	)
 
 }
 
@@ -2045,25 +1520,15 @@ func (s *SmService) CheckinNetworkSmDevices(networkID string, requestSmCheckinNe
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmCheckinNetworkSmDevices).
-		SetResult(&ResponseSmCheckinNetworkSmDevices{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CheckinNetworkSmDevices")
-	}
-
-	result := response.Result().(*ResponseSmCheckinNetworkSmDevices)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmCheckinNetworkSmDevices](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSmCheckinNetworkSmDevices, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2080,25 +1545,15 @@ func (s *SmService) LockNetworkSmDevices(networkID string, requestSmLockNetworkS
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmLockNetworkSmDevices).
-		SetResult(&ResponseSmLockNetworkSmDevices{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation LockNetworkSmDevices")
-	}
-
-	result := response.Result().(*ResponseSmLockNetworkSmDevices)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmLockNetworkSmDevices](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSmLockNetworkSmDevices, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2115,25 +1570,15 @@ func (s *SmService) ModifyNetworkSmDevicesTags(networkID string, requestSmModify
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmModifyNetworkSmDevicesTags).
-		SetResult(&ResponseSmModifyNetworkSmDevicesTags{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ModifyNetworkSmDevicesTags")
-	}
-
-	result := response.Result().(*ResponseSmModifyNetworkSmDevicesTags)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmModifyNetworkSmDevicesTags](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSmModifyNetworkSmDevicesTags, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2150,25 +1595,15 @@ func (s *SmService) MoveNetworkSmDevices(networkID string, requestSmMoveNetworkS
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmMoveNetworkSmDevices).
-		SetResult(&ResponseSmMoveNetworkSmDevices{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation MoveNetworkSmDevices")
-	}
-
-	result := response.Result().(*ResponseSmMoveNetworkSmDevices)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmMoveNetworkSmDevices](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSmMoveNetworkSmDevices, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2185,25 +1620,15 @@ func (s *SmService) RebootNetworkSmDevices(networkID string, requestSmRebootNetw
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmRebootNetworkSmDevices).
-		SetResult(&ResponseSmRebootNetworkSmDevices{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation RebootNetworkSmDevices")
-	}
-
-	result := response.Result().(*ResponseSmRebootNetworkSmDevices)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmRebootNetworkSmDevices](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSmRebootNetworkSmDevices, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2220,25 +1645,15 @@ func (s *SmService) ShutdownNetworkSmDevices(networkID string, requestSmShutdown
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmShutdownNetworkSmDevices).
-		SetResult(&ResponseSmShutdownNetworkSmDevices{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ShutdownNetworkSmDevices")
-	}
-
-	result := response.Result().(*ResponseSmShutdownNetworkSmDevices)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmShutdownNetworkSmDevices](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSmShutdownNetworkSmDevices, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2255,25 +1670,15 @@ func (s *SmService) WipeNetworkSmDevices(networkID string, requestSmWipeNetworkS
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmWipeNetworkSmDevices).
-		SetResult(&ResponseSmWipeNetworkSmDevices{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation WipeNetworkSmDevices")
-	}
-
-	result := response.Result().(*ResponseSmWipeNetworkSmDevices)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmWipeNetworkSmDevices](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSmWipeNetworkSmDevices, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2292,24 +1697,13 @@ func (s *SmService) InstallNetworkSmDeviceApps(networkID string, deviceID string
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmInstallNetworkSmDeviceApps).
-		// SetResult(&ResponseSmInstallNetworkSmDeviceApps{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation InstallNetworkSmDeviceApps")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSmInstallNetworkSmDeviceApps, nil)
+		},
+	)
 
 }
 
@@ -2328,24 +1722,13 @@ func (s *SmService) RefreshNetworkSmDeviceDetails(networkID string, deviceID str
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
+	// Past way
 
-		// SetResult(&ResponseSmRefreshNetworkSmDeviceDetails{}).
-		SetError(&Error).
-		Post(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation RefreshNetworkSmDeviceDetails")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return POST(path, s.client, nil, nil)
+		},
+	)
 
 }
 
@@ -2364,24 +1747,15 @@ func (s *SmService) UnenrollNetworkSmDevice(networkID string, deviceID string) (
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSmUnenrollNetworkSmDevice{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UnenrollNetworkSmDevice")
-	}
-
-	result := response.Result().(*ResponseSmUnenrollNetworkSmDevice)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmUnenrollNetworkSmDevice](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, nil, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2400,24 +1774,13 @@ func (s *SmService) UninstallNetworkSmDeviceApps(networkID string, deviceID stri
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmUninstallNetworkSmDeviceApps).
-		// SetResult(&ResponseSmUninstallNetworkSmDeviceApps{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UninstallNetworkSmDeviceApps")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSmUninstallNetworkSmDeviceApps, nil)
+		},
+	)
 
 }
 
@@ -2434,25 +1797,15 @@ func (s *SmService) CreateNetworkSmTargetGroup(networkID string, requestSmCreate
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmCreateNetworkSmTargetGroup).
-		SetResult(&ResponseSmCreateNetworkSmTargetGroup{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkSmTargetGroup")
-	}
-
-	result := response.Result().(*ResponseSmCreateNetworkSmTargetGroup)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmCreateNetworkSmTargetGroup](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSmCreateNetworkSmTargetGroup, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2469,25 +1822,15 @@ func (s *SmService) CreateOrganizationSmAdminsRole(organizationID string, reques
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmCreateOrganizationSmAdminsRole).
-		SetResult(&ResponseSmCreateOrganizationSmAdminsRole{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationSmAdminsRole")
-	}
-
-	result := response.Result().(*ResponseSmCreateOrganizationSmAdminsRole)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmCreateOrganizationSmAdminsRole](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSmCreateOrganizationSmAdminsRole, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2501,25 +1844,15 @@ func (s *SmService) UpdateNetworkSmDevicesFields(networkID string, requestSmUpda
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmUpdateNetworkSmDevicesFields).
-		SetResult(&ResponseSmUpdateNetworkSmDevicesFields{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSmDevicesFields")
-	}
-
-	result := response.Result().(*ResponseSmUpdateNetworkSmDevicesFields)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmUpdateNetworkSmDevicesFields](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSmUpdateNetworkSmDevicesFields)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2535,25 +1868,15 @@ func (s *SmService) UpdateNetworkSmTargetGroup(networkID string, targetGroupID s
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{targetGroupId}", fmt.Sprintf("%v", targetGroupID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmUpdateNetworkSmTargetGroup).
-		SetResult(&ResponseSmUpdateNetworkSmTargetGroup{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSmTargetGroup")
-	}
-
-	result := response.Result().(*ResponseSmUpdateNetworkSmTargetGroup)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmUpdateNetworkSmTargetGroup](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSmUpdateNetworkSmTargetGroup)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2569,25 +1892,15 @@ func (s *SmService) UpdateOrganizationSmAdminsRole(organizationID string, roleID
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{roleId}", fmt.Sprintf("%v", roleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmUpdateOrganizationSmAdminsRole).
-		SetResult(&ResponseSmUpdateOrganizationSmAdminsRole{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationSmAdminsRole")
-	}
-
-	result := response.Result().(*ResponseSmUpdateOrganizationSmAdminsRole)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmUpdateOrganizationSmAdminsRole](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSmUpdateOrganizationSmAdminsRole)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2601,25 +1914,15 @@ func (s *SmService) UpdateOrganizationSmSentryPoliciesAssignments(organizationID
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSmUpdateOrganizationSmSentryPoliciesAssignments).
-		SetResult(&ResponseSmUpdateOrganizationSmSentryPoliciesAssignments{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationSmSentryPoliciesAssignments")
-	}
-
-	result := response.Result().(*ResponseSmUpdateOrganizationSmSentryPoliciesAssignments)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSmUpdateOrganizationSmSentryPoliciesAssignments](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSmUpdateOrganizationSmSentryPoliciesAssignments)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2638,23 +1941,11 @@ func (s *SmService) DeleteNetworkSmTargetGroup(networkID string, targetGroupID s
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{targetGroupId}", fmt.Sprintf("%v", targetGroupID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkSmTargetGroup")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkSmUserAccessDevice Delete a User Access Device
@@ -2672,23 +1963,11 @@ func (s *SmService) DeleteNetworkSmUserAccessDevice(networkID string, userAccess
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{userAccessDeviceId}", fmt.Sprintf("%v", userAccessDeviceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkSmUserAccessDevice")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationSmAdminsRole Delete a Limited Access Role
@@ -2706,21 +1985,9 @@ func (s *SmService) DeleteOrganizationSmAdminsRole(organizationID string, roleID
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{roleId}", fmt.Sprintf("%v", roleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationSmAdminsRole")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }

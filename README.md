@@ -101,6 +101,48 @@ Client, err = meraki.NewClient()
 devicesCount, _, err := Client.Devices.GetDeviceCount()
 ```
 
+## Backoff and Jitter Configuration
+
+The client allows you to configure the retry (backoff) strategy with jitter to avoid collisions when retrying failed requests. This can be adjusted using environment variables or directly in the code.
+
+### Environment Variables
+
+- `MERAKI_RETRIES`: Maximum number of retries (default: 3)
+- `MERAKI_RETRY_DELAY`: Base wait time between retries, in milliseconds (default: 1000 ms)
+- `MERAKI_RETRY_JITTER`: Maximum random jitter added to the backoff, in milliseconds (default: 3000 ms)
+- `MERAKI_USE_RETRY_HEADER`: If set to `true`, the client will respect the `Retry-After` header from API responses (default: false)
+
+Example:
+
+```sh
+export MERAKI_RETRIES=5
+export MERAKI_RETRY_DELAY=2000
+export MERAKI_RETRY_JITTER=5000
+export MERAKI_USE_RETRY_HEADER=true
+```
+
+### How does backoff with jitter work?
+
+On each retry, the SDK adds to the base wait time (`MERAKI_RETRY_DELAY`) a random value between 0 and `MERAKI_RETRY_JITTER`, to avoid multiple clients retrying at the same time:
+
+```
+wait_time = RETRY_DELAY + random(0, RETRY_JITTER)
+```
+
+If `MERAKI_USE_RETRY_HEADER` is set to `true`, the client will also respect the `Retry-After` header sent by the API, if present, to determine the wait time before the next retry.
+
+### Default values
+
+- `MERAKI_RETRIES`: **3**
+- `MERAKI_RETRY_DELAY`: **1000 ms**
+- `MERAKI_RETRY_JITTER`: **3000 ms**
+- `MERAKI_USE_RETRY_HEADER`: **false**
+
+If the environment variables are not set, these default values will be used.
+
+---
+
+
 ## Examples
 
 Here is an example of how we can generate a client, get a device count and then a list of devices filtering them using query params.

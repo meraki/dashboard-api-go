@@ -33,4 +33,20 @@ func main() {
 	}
 
 	fmt.Println("There's no data on response")
+
+	// nResponse, _, err := client.Networks.GetNetworkClientsApplicationUsageWithRetries("L_828099381482771185", &meraki.GetNetworkClientsApplicationUsageQueryParams{
+	// 	PerPage: 10,
+	// 	Clients: "4c:c8:a1:0b:01:58",
+	// })
+
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// if nResponse != nil {
+	// 	fmt.Println("\n Cantidad: ", len(*nResponse))
+	// 	fmt.Printf("%v", *nResponse)
+	// 	return
+	// }
+	// fmt.Println("There's no data on response")
 }

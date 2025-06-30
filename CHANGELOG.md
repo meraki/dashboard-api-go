@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.2] - 2025-06-30
+### Added
+- Backoff and jitter configuration for retries via environment variables:
+  - `MERAKI_RETRIES`: Maximum number of retries (default: 3)
+  - `MERAKI_RETRY_DELAY`: Base wait time between retries in ms (default: 1000)
+  - `MERAKI_RETRY_JITTER`: Maximum random jitter in ms (default: 3000)
+  - `MERAKI_USE_RETRY_HEADER`: Whether to respect Retry-After header (default: false)
+
+
 ## [5.0.1] - 2025-01-20
 ### Fixed
 - Update `IMEI` field type in `ResponseItemOrganizationsGetOrganizationDevices` to float64.

@@ -1,12 +1,10 @@
 package meraki
 
 import (
-	"encoding/json"
 	"fmt"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 type CellularGatewayService service
@@ -154,7 +152,6 @@ type ResponseCellularGatewayUpdateNetworkCellularGatewayUplinkBandwidthLimits st
 	LimitDown *int `json:"limitDown,omitempty"` // The maximum download limit (integer, in Kbps). 'null' indicates no limit.
 	LimitUp   *int `json:"limitUp,omitempty"`   // The maximum upload limit (integer, in Kbps). 'null' indicates no limit.
 }
-
 type ResponseCellularGatewayGetOrganizationCellularGatewayEsimsInventory struct {
 	Items *[]ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsInventoryItems `json:"items,omitempty"` // List of eSIM Devices
 	Meta  *ResponseItemCellularGatewayGetOrganizationCellularGatewayEsimsInventoryMeta    `json:"meta,omitempty"`  // Meta details about the result
@@ -497,24 +494,15 @@ func (s *CellularGatewayService) GetDeviceCellularGatewayLan(serial string) (*Re
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCellularGatewayGetDeviceCellularGatewayLan{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCellularGatewayLan")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayGetDeviceCellularGatewayLan)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayGetDeviceCellularGatewayLan](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -531,24 +519,15 @@ func (s *CellularGatewayService) GetDeviceCellularGatewayPortForwardingRules(ser
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCellularGatewayGetDeviceCellularGatewayPortForwardingRules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCellularGatewayPortForwardingRules")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayGetDeviceCellularGatewayPortForwardingRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayGetDeviceCellularGatewayPortForwardingRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -565,24 +544,15 @@ func (s *CellularGatewayService) GetNetworkCellularGatewayConnectivityMonitoring
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCellularGatewayGetNetworkCellularGatewayConnectivityMonitoringDestinations{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkCellularGatewayConnectivityMonitoringDestinations")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayGetNetworkCellularGatewayConnectivityMonitoringDestinations)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayGetNetworkCellularGatewayConnectivityMonitoringDestinations](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -599,24 +569,15 @@ func (s *CellularGatewayService) GetNetworkCellularGatewayDhcp(networkID string)
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCellularGatewayGetNetworkCellularGatewayDhcp{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkCellularGatewayDhcp")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayGetNetworkCellularGatewayDhcp)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayGetNetworkCellularGatewayDhcp](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -633,24 +594,15 @@ func (s *CellularGatewayService) GetNetworkCellularGatewaySubnetPool(networkID s
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCellularGatewayGetNetworkCellularGatewaySubnetPool{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkCellularGatewaySubnetPool")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayGetNetworkCellularGatewaySubnetPool)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayGetNetworkCellularGatewaySubnetPool](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -667,24 +619,15 @@ func (s *CellularGatewayService) GetNetworkCellularGatewayUplink(networkID strin
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCellularGatewayGetNetworkCellularGatewayUplink{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkCellularGatewayUplink")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayGetNetworkCellularGatewayUplink)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayGetNetworkCellularGatewayUplink](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -702,26 +645,15 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsInventory(or
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationCellularGatewayEsimsInventoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseCellularGatewayGetOrganizationCellularGatewayEsimsInventory{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCellularGatewayEsimsInventory")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayGetOrganizationCellularGatewayEsimsInventory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayGetOrganizationCellularGatewayEsimsInventory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationCellularGatewayEsimsInventoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -738,24 +670,15 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvi
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProviders{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCellularGatewayEsimsServiceProviders")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProviders)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProviders](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -773,26 +696,15 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvi
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationCellularGatewayEsimsServiceProvidersAccountsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCellularGatewayEsimsServiceProvidersAccounts")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccounts](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationCellularGatewayEsimsServiceProvidersAccountsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -810,26 +722,15 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvi
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationCellularGatewayEsimsServiceProvidersAccountsCommunicationPlansQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccountsCommunicationPlans{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCellularGatewayEsimsServiceProvidersAccountsCommunicationPlans")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccountsCommunicationPlans)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccountsCommunicationPlans](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationCellularGatewayEsimsServiceProvidersAccountsCommunicationPlansQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -847,26 +748,15 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvi
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationCellularGatewayEsimsServiceProvidersAccountsRatePlansQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccountsRatePlans{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCellularGatewayEsimsServiceProvidersAccountsRatePlans")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccountsRatePlans)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayGetOrganizationCellularGatewayEsimsServiceProvidersAccountsRatePlans](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationCellularGatewayEsimsServiceProvidersAccountsRatePlansQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -882,64 +772,27 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvi
 func (s *CellularGatewayService) GetOrganizationCellularGatewayUplinkStatuses(organizationID string, getOrganizationCellularGatewayUplinkStatusesQueryParams *GetOrganizationCellularGatewayUplinkStatusesQueryParams) (*ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/cellularGateway/uplink/statuses"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationCellularGatewayUplinkStatusesQueryParams != nil && getOrganizationCellularGatewayUplinkStatusesQueryParams.PerPage == -1 {
-		var result *ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses
-		println("Paginate")
-		getOrganizationCellularGatewayUplinkStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationCellularGatewayUplinkStatusesPaginate, organizationID, "", getOrganizationCellularGatewayUplinkStatusesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationCellularGatewayUplinkStatusesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationCellularGatewayUplinkStatusesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses) ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationCellularGatewayUplinkStatusesQueryParams != nil {
+				return getOrganizationCellularGatewayUplinkStatusesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCellularGatewayUplinkStatuses")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses)
-	return result, response, err
-
-}
-func (s *CellularGatewayService) GetOrganizationCellularGatewayUplinkStatusesPaginate(organizationID string, getOrganizationCellularGatewayUplinkStatusesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationCellularGatewayUplinkStatusesQueryParamsConverted := getOrganizationCellularGatewayUplinkStatusesQueryParams.(*GetOrganizationCellularGatewayUplinkStatusesQueryParams)
-
-	return s.GetOrganizationCellularGatewayUplinkStatuses(organizationID, getOrganizationCellularGatewayUplinkStatusesQueryParamsConverted)
 }
 
 //CreateOrganizationCellularGatewayEsimsServiceProvidersAccount Add a service provider account.
@@ -955,25 +808,15 @@ func (s *CellularGatewayService) CreateOrganizationCellularGatewayEsimsServicePr
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCellularGatewayCreateOrganizationCellularGatewayEsimsServiceProvidersAccount).
-		SetResult(&ResponseCellularGatewayCreateOrganizationCellularGatewayEsimsServiceProvidersAccount{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationCellularGatewayEsimsServiceProvidersAccount")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayCreateOrganizationCellularGatewayEsimsServiceProvidersAccount)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayCreateOrganizationCellularGatewayEsimsServiceProvidersAccount](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestCellularGatewayCreateOrganizationCellularGatewayEsimsServiceProvidersAccount, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -990,25 +833,15 @@ func (s *CellularGatewayService) CreateOrganizationCellularGatewayEsimsSwap(orga
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCellularGatewayCreateOrganizationCellularGatewayEsimsSwap).
-		SetResult(&ResponseCellularGatewayCreateOrganizationCellularGatewayEsimsSwap{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationCellularGatewayEsimsSwap")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayCreateOrganizationCellularGatewayEsimsSwap)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayCreateOrganizationCellularGatewayEsimsSwap](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestCellularGatewayCreateOrganizationCellularGatewayEsimsSwap, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1022,25 +855,15 @@ func (s *CellularGatewayService) UpdateDeviceCellularGatewayLan(serial string, r
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCellularGatewayUpdateDeviceCellularGatewayLan).
-		SetResult(&ResponseCellularGatewayUpdateDeviceCellularGatewayLan{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateDeviceCellularGatewayLan")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayUpdateDeviceCellularGatewayLan)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayUpdateDeviceCellularGatewayLan](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCellularGatewayUpdateDeviceCellularGatewayLan)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1054,25 +877,15 @@ func (s *CellularGatewayService) UpdateDeviceCellularGatewayPortForwardingRules(
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCellularGatewayUpdateDeviceCellularGatewayPortForwardingRules).
-		SetResult(&ResponseCellularGatewayUpdateDeviceCellularGatewayPortForwardingRules{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateDeviceCellularGatewayPortForwardingRules")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayUpdateDeviceCellularGatewayPortForwardingRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayUpdateDeviceCellularGatewayPortForwardingRules](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCellularGatewayUpdateDeviceCellularGatewayPortForwardingRules)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1086,25 +899,15 @@ func (s *CellularGatewayService) UpdateNetworkCellularGatewayConnectivityMonitor
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCellularGatewayUpdateNetworkCellularGatewayConnectivityMonitoringDestinations).
-		SetResult(&ResponseCellularGatewayUpdateNetworkCellularGatewayConnectivityMonitoringDestinations{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkCellularGatewayConnectivityMonitoringDestinations")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayUpdateNetworkCellularGatewayConnectivityMonitoringDestinations)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayUpdateNetworkCellularGatewayConnectivityMonitoringDestinations](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCellularGatewayUpdateNetworkCellularGatewayConnectivityMonitoringDestinations)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1118,25 +921,15 @@ func (s *CellularGatewayService) UpdateNetworkCellularGatewayDhcp(networkID stri
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCellularGatewayUpdateNetworkCellularGatewayDhcp).
-		SetResult(&ResponseCellularGatewayUpdateNetworkCellularGatewayDhcp{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkCellularGatewayDhcp")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayUpdateNetworkCellularGatewayDhcp)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayUpdateNetworkCellularGatewayDhcp](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCellularGatewayUpdateNetworkCellularGatewayDhcp)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1150,25 +943,15 @@ func (s *CellularGatewayService) UpdateNetworkCellularGatewaySubnetPool(networkI
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCellularGatewayUpdateNetworkCellularGatewaySubnetPool).
-		SetResult(&ResponseCellularGatewayUpdateNetworkCellularGatewaySubnetPool{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkCellularGatewaySubnetPool")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayUpdateNetworkCellularGatewaySubnetPool)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayUpdateNetworkCellularGatewaySubnetPool](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCellularGatewayUpdateNetworkCellularGatewaySubnetPool)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1182,25 +965,15 @@ func (s *CellularGatewayService) UpdateNetworkCellularGatewayUplink(networkID st
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCellularGatewayUpdateNetworkCellularGatewayUplink).
-		SetResult(&ResponseCellularGatewayUpdateNetworkCellularGatewayUplink{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkCellularGatewayUplink")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayUpdateNetworkCellularGatewayUplink)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayUpdateNetworkCellularGatewayUplink](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCellularGatewayUpdateNetworkCellularGatewayUplink)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1216,25 +989,15 @@ func (s *CellularGatewayService) UpdateOrganizationCellularGatewayEsimsInventory
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCellularGatewayUpdateOrganizationCellularGatewayEsimsInventory).
-		SetResult(&ResponseCellularGatewayUpdateOrganizationCellularGatewayEsimsInventory{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationCellularGatewayEsimsInventory")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayUpdateOrganizationCellularGatewayEsimsInventory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayUpdateOrganizationCellularGatewayEsimsInventory](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCellularGatewayUpdateOrganizationCellularGatewayEsimsInventory)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1250,25 +1013,15 @@ func (s *CellularGatewayService) UpdateOrganizationCellularGatewayEsimsServicePr
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{accountId}", fmt.Sprintf("%v", accountID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCellularGatewayUpdateOrganizationCellularGatewayEsimsServiceProvidersAccount).
-		SetResult(&ResponseCellularGatewayUpdateOrganizationCellularGatewayEsimsServiceProvidersAccount{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationCellularGatewayEsimsServiceProvidersAccount")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayUpdateOrganizationCellularGatewayEsimsServiceProvidersAccount)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayUpdateOrganizationCellularGatewayEsimsServiceProvidersAccount](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCellularGatewayUpdateOrganizationCellularGatewayEsimsServiceProvidersAccount)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1284,24 +1037,15 @@ func (s *CellularGatewayService) UpdateOrganizationCellularGatewayEsimsSwap(id s
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCellularGatewayUpdateOrganizationCellularGatewayEsimsSwap{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationCellularGatewayEsimsSwap")
-	}
-
-	result := response.Result().(*ResponseCellularGatewayUpdateOrganizationCellularGatewayEsimsSwap)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCellularGatewayUpdateOrganizationCellularGatewayEsimsSwap](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1320,21 +1064,9 @@ func (s *CellularGatewayService) DeleteOrganizationCellularGatewayEsimsServicePr
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{accountId}", fmt.Sprintf("%v", accountID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationCellularGatewayEsimsServiceProvidersAccount")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }

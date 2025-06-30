@@ -1,13 +1,11 @@
 package meraki
 
 import (
-	"encoding/json"
 	"fmt"
 	"strings"
 	"time"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 type SwitchService service
@@ -2241,9 +2239,9 @@ type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItems
 }
 
 type ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalItemsPortsIntervalsUsage struct {
-	Total      float64 `json:"total,omitempty"`      // Total usage in bytes for the given time interval.
-	Upstream   float64 `json:"upstream,omitempty"`   // Upstream usage in bytes for the given time interval.
-	Downstream float64 `json:"downstream,omitempty"` // Downstream usage in bytes for the given time interval.
+	Total      *float64 `json:"total,omitempty"`      // Total usage in bytes for the given time interval.
+	Upstream   *float64 `json:"upstream,omitempty"`   // Upstream usage in bytes for the given time interval.
+	Downstream *float64 `json:"downstream,omitempty"` // Downstream usage in bytes for the given time interval.
 }
 
 type RequestSwitchCycleDeviceSwitchPorts struct {
@@ -2922,24 +2920,15 @@ func (s *SwitchService) GetDeviceSwitchPorts(serial string) (*ResponseSwitchGetD
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetDeviceSwitchPorts{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceSwitchPorts")
-	}
-
-	result := response.Result().(*ResponseSwitchGetDeviceSwitchPorts)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetDeviceSwitchPorts](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2957,26 +2946,15 @@ func (s *SwitchService) GetDeviceSwitchPortsStatuses(serial string, getDeviceSwi
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	queryString, _ := query.Values(getDeviceSwitchPortsStatusesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetDeviceSwitchPortsStatuses{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceSwitchPortsStatuses")
-	}
-
-	result := response.Result().(*ResponseSwitchGetDeviceSwitchPortsStatuses)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetDeviceSwitchPortsStatuses](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getDeviceSwitchPortsStatusesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2994,26 +2972,15 @@ func (s *SwitchService) GetDeviceSwitchPortsStatusesPackets(serial string, getDe
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	queryString, _ := query.Values(getDeviceSwitchPortsStatusesPacketsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetDeviceSwitchPortsStatusesPackets{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceSwitchPortsStatusesPackets")
-	}
-
-	result := response.Result().(*ResponseSwitchGetDeviceSwitchPortsStatusesPackets)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetDeviceSwitchPortsStatusesPackets](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getDeviceSwitchPortsStatusesPacketsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3032,24 +2999,15 @@ func (s *SwitchService) GetDeviceSwitchPort(serial string, portID string) (*Resp
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{portId}", fmt.Sprintf("%v", portID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetDeviceSwitchPort{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceSwitchPort")
-	}
-
-	result := response.Result().(*ResponseSwitchGetDeviceSwitchPort)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetDeviceSwitchPort](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3067,26 +3025,15 @@ func (s *SwitchService) GetDeviceSwitchRoutingInterfaces(serial string, getDevic
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	queryString, _ := query.Values(getDeviceSwitchRoutingInterfacesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetDeviceSwitchRoutingInterfaces{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceSwitchRoutingInterfaces")
-	}
-
-	result := response.Result().(*ResponseSwitchGetDeviceSwitchRoutingInterfaces)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetDeviceSwitchRoutingInterfaces](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getDeviceSwitchRoutingInterfacesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3105,24 +3052,15 @@ func (s *SwitchService) GetDeviceSwitchRoutingInterface(serial string, interface
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetDeviceSwitchRoutingInterface{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceSwitchRoutingInterface")
-	}
-
-	result := response.Result().(*ResponseSwitchGetDeviceSwitchRoutingInterface)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetDeviceSwitchRoutingInterface](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3141,24 +3079,15 @@ func (s *SwitchService) GetDeviceSwitchRoutingInterfaceDhcp(serial string, inter
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetDeviceSwitchRoutingInterfaceDhcp{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceSwitchRoutingInterfaceDhcp")
-	}
-
-	result := response.Result().(*ResponseSwitchGetDeviceSwitchRoutingInterfaceDhcp)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetDeviceSwitchRoutingInterfaceDhcp](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3175,24 +3104,15 @@ func (s *SwitchService) GetDeviceSwitchRoutingStaticRoutes(serial string) (*Resp
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetDeviceSwitchRoutingStaticRoutes{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceSwitchRoutingStaticRoutes")
-	}
-
-	result := response.Result().(*ResponseSwitchGetDeviceSwitchRoutingStaticRoutes)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetDeviceSwitchRoutingStaticRoutes](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3211,24 +3131,15 @@ func (s *SwitchService) GetDeviceSwitchRoutingStaticRoute(serial string, staticR
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetDeviceSwitchRoutingStaticRoute{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceSwitchRoutingStaticRoute")
-	}
-
-	result := response.Result().(*ResponseSwitchGetDeviceSwitchRoutingStaticRoute)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetDeviceSwitchRoutingStaticRoute](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3245,24 +3156,15 @@ func (s *SwitchService) GetDeviceSwitchWarmSpare(serial string) (*ResponseSwitch
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetDeviceSwitchWarmSpare{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceSwitchWarmSpare")
-	}
-
-	result := response.Result().(*ResponseSwitchGetDeviceSwitchWarmSpare)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetDeviceSwitchWarmSpare](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3279,24 +3181,15 @@ func (s *SwitchService) GetNetworkSwitchAccessControlLists(networkID string) (*R
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchAccessControlLists{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchAccessControlLists")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchAccessControlLists)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchAccessControlLists](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3313,24 +3206,15 @@ func (s *SwitchService) GetNetworkSwitchAccessPolicies(networkID string) (*Respo
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchAccessPolicies{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchAccessPolicies")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchAccessPolicies)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchAccessPolicies](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3349,24 +3233,15 @@ func (s *SwitchService) GetNetworkSwitchAccessPolicy(networkID string, accessPol
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{accessPolicyNumber}", fmt.Sprintf("%v", accessPolicyNumber), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchAccessPolicy{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchAccessPolicy")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchAccessPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchAccessPolicy](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3383,24 +3258,15 @@ func (s *SwitchService) GetNetworkSwitchAlternateManagementInterface(networkID s
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchAlternateManagementInterface{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchAlternateManagementInterface")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchAlternateManagementInterface)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchAlternateManagementInterface](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3416,64 +3282,27 @@ func (s *SwitchService) GetNetworkSwitchAlternateManagementInterface(networkID s
 func (s *SwitchService) GetNetworkSwitchDhcpV4ServersSeen(networkID string, getNetworkSwitchDhcpV4ServersSeenQueryParams *GetNetworkSwitchDhcpV4ServersSeenQueryParams) (*ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dhcp/v4/servers/seen"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkSwitchDhcpV4ServersSeenQueryParams != nil && getNetworkSwitchDhcpV4ServersSeenQueryParams.PerPage == -1 {
-		var result *ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen
-		println("Paginate")
-		getNetworkSwitchDhcpV4ServersSeenQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkSwitchDhcpV4ServersSeenPaginate, networkID, "", getNetworkSwitchDhcpV4ServersSeenQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkSwitchDhcpV4ServersSeenQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSwitchDhcpV4ServersSeenQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen) ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkSwitchDhcpV4ServersSeenQueryParams != nil {
+				return getNetworkSwitchDhcpV4ServersSeenQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchDhcpV4ServersSeen")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen)
-	return result, response, err
-
-}
-func (s *SwitchService) GetNetworkSwitchDhcpV4ServersSeenPaginate(networkID string, getNetworkSwitchDhcpV4ServersSeenQueryParams any) (any, *resty.Response, error) {
-	getNetworkSwitchDhcpV4ServersSeenQueryParamsConverted := getNetworkSwitchDhcpV4ServersSeenQueryParams.(*GetNetworkSwitchDhcpV4ServersSeenQueryParams)
-
-	return s.GetNetworkSwitchDhcpV4ServersSeen(networkID, getNetworkSwitchDhcpV4ServersSeenQueryParamsConverted)
 }
 
 //GetNetworkSwitchDhcpServerPolicy Return the DHCP server settings
@@ -3489,24 +3318,15 @@ func (s *SwitchService) GetNetworkSwitchDhcpServerPolicy(networkID string) (*Res
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchDhcpServerPolicy{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchDhcpServerPolicy")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchDhcpServerPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchDhcpServerPolicy](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3522,64 +3342,27 @@ func (s *SwitchService) GetNetworkSwitchDhcpServerPolicy(networkID string) (*Res
 func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers(networkID string, getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams *GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams) (*ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dhcpServerPolicy/arpInspection/trustedServers"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams != nil && getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams.PerPage == -1 {
-		var result *ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers
-		println("Paginate")
-		getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersPaginate, networkID, "", getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers) ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams != nil {
+				return getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers)
-	return result, response, err
-
-}
-func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersPaginate(networkID string, getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams any) (any, *resty.Response, error) {
-	getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParamsConverted := getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams.(*GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams)
-
-	return s.GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers(networkID, getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParamsConverted)
 }
 
 //GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice Return the devices that have a Dynamic ARP Inspection warning and their warnings
@@ -3594,64 +3377,27 @@ func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServ
 func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice(networkID string, getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams) (*ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/switch/dhcpServerPolicy/arpInspection/warnings/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams != nil && getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice
-		println("Paginate")
-		getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevicePaginate, networkID, "", getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice) ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams != nil {
+				return getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice)
-	return result, response, err
-
-}
-func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevicePaginate(networkID string, getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams any) (any, *resty.Response, error) {
-	getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParamsConverted := getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams.(*GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams)
-
-	return s.GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice(networkID, getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParamsConverted)
 }
 
 //GetNetworkSwitchDscpToCosMappings Return the DSCP to CoS mappings
@@ -3667,24 +3413,15 @@ func (s *SwitchService) GetNetworkSwitchDscpToCosMappings(networkID string) (*Re
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchDscpToCosMappings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchDscpToCosMappings")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchDscpToCosMappings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchDscpToCosMappings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3701,24 +3438,15 @@ func (s *SwitchService) GetNetworkSwitchLinkAggregations(networkID string) (*Res
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchLinkAggregations{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchLinkAggregations")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchLinkAggregations)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchLinkAggregations](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3735,24 +3463,15 @@ func (s *SwitchService) GetNetworkSwitchMtu(networkID string) (*ResponseSwitchGe
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchMtu{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchMtu")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchMtu)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchMtu](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3769,24 +3488,15 @@ func (s *SwitchService) GetNetworkSwitchPortSchedules(networkID string) (*Respon
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchPortSchedules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchPortSchedules")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchPortSchedules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchPortSchedules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3803,24 +3513,15 @@ func (s *SwitchService) GetNetworkSwitchQosRules(networkID string) (*ResponseSwi
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchQosRules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchQosRules")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchQosRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchQosRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3837,24 +3538,15 @@ func (s *SwitchService) GetNetworkSwitchQosRulesOrder(networkID string) (*Respon
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchQosRulesOrder{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchQosRulesOrder")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchQosRulesOrder)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchQosRulesOrder](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3873,24 +3565,15 @@ func (s *SwitchService) GetNetworkSwitchQosRule(networkID string, qosRuleID stri
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{qosRuleId}", fmt.Sprintf("%v", qosRuleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchQosRule{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchQosRule")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchQosRule)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchQosRule](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3907,24 +3590,15 @@ func (s *SwitchService) GetNetworkSwitchRoutingMulticast(networkID string) (*Res
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchRoutingMulticast{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchRoutingMulticast")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchRoutingMulticast)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchRoutingMulticast](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3941,24 +3615,15 @@ func (s *SwitchService) GetNetworkSwitchRoutingMulticastRendezvousPoints(network
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchRoutingMulticastRendezvousPoints{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchRoutingMulticastRendezvousPoints")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchRoutingMulticastRendezvousPoints)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchRoutingMulticastRendezvousPoints](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3977,24 +3642,15 @@ func (s *SwitchService) GetNetworkSwitchRoutingMulticastRendezvousPoint(networkI
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{rendezvousPointId}", fmt.Sprintf("%v", rendezvousPointID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchRoutingMulticastRendezvousPoint{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchRoutingMulticastRendezvousPoint")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchRoutingMulticastRendezvousPoint)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchRoutingMulticastRendezvousPoint](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4011,24 +3667,15 @@ func (s *SwitchService) GetNetworkSwitchRoutingOspf(networkID string) (*Response
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchRoutingOspf{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchRoutingOspf")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchRoutingOspf)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchRoutingOspf](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4045,24 +3692,15 @@ func (s *SwitchService) GetNetworkSwitchSettings(networkID string) (*ResponseSwi
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchSettings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchSettings")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchSettings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4079,24 +3717,15 @@ func (s *SwitchService) GetNetworkSwitchStacks(networkID string) (*ResponseSwitc
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchStacks{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchStacks")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchStacks)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchStacks](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4115,24 +3744,15 @@ func (s *SwitchService) GetNetworkSwitchStack(networkID string, switchStackID st
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchStack{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchStack")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchStack)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchStack](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4152,26 +3772,15 @@ func (s *SwitchService) GetNetworkSwitchStackRoutingInterfaces(networkID string,
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
-	queryString, _ := query.Values(getNetworkSwitchStackRoutingInterfacesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetNetworkSwitchStackRoutingInterfaces{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchStackRoutingInterfaces")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchStackRoutingInterfaces)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchStackRoutingInterfaces](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSwitchStackRoutingInterfacesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4192,24 +3801,15 @@ func (s *SwitchService) GetNetworkSwitchStackRoutingInterface(networkID string, 
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchStackRoutingInterface{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchStackRoutingInterface")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchStackRoutingInterface)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchStackRoutingInterface](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4230,24 +3830,15 @@ func (s *SwitchService) GetNetworkSwitchStackRoutingInterfaceDhcp(networkID stri
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchStackRoutingInterfaceDhcp{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchStackRoutingInterfaceDhcp")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchStackRoutingInterfaceDhcp)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchStackRoutingInterfaceDhcp](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4266,24 +3857,15 @@ func (s *SwitchService) GetNetworkSwitchStackRoutingStaticRoutes(networkID strin
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchStackRoutingStaticRoutes{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchStackRoutingStaticRoutes")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchStackRoutingStaticRoutes)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchStackRoutingStaticRoutes](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4304,24 +3886,15 @@ func (s *SwitchService) GetNetworkSwitchStackRoutingStaticRoute(networkID string
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchStackRoutingStaticRoute{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchStackRoutingStaticRoute")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchStackRoutingStaticRoute)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchStackRoutingStaticRoute](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4338,24 +3911,15 @@ func (s *SwitchService) GetNetworkSwitchStormControl(networkID string) (*Respons
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchStormControl{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchStormControl")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchStormControl)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchStormControl](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4372,24 +3936,15 @@ func (s *SwitchService) GetNetworkSwitchStp(networkID string) (*ResponseSwitchGe
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetNetworkSwitchStp{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSwitchStp")
-	}
-
-	result := response.Result().(*ResponseSwitchGetNetworkSwitchStp)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetNetworkSwitchStp](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4408,24 +3963,15 @@ func (s *SwitchService) GetOrganizationConfigTemplateSwitchProfiles(organization
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{configTemplateId}", fmt.Sprintf("%v", configTemplateID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetOrganizationConfigTemplateSwitchProfiles{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationConfigTemplateSwitchProfiles")
-	}
-
-	result := response.Result().(*ResponseSwitchGetOrganizationConfigTemplateSwitchProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetOrganizationConfigTemplateSwitchProfiles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4446,24 +3992,15 @@ func (s *SwitchService) GetOrganizationConfigTemplateSwitchProfilePorts(organiza
 	path = strings.Replace(path, "{configTemplateId}", fmt.Sprintf("%v", configTemplateID), -1)
 	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePorts{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationConfigTemplateSwitchProfilePorts")
-	}
-
-	result := response.Result().(*ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePorts)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePorts](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4486,24 +4023,15 @@ func (s *SwitchService) GetOrganizationConfigTemplateSwitchProfilePort(organizat
 	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
 	path = strings.Replace(path, "{portId}", fmt.Sprintf("%v", portID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePort{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationConfigTemplateSwitchProfilePort")
-	}
-
-	result := response.Result().(*ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePort)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetOrganizationConfigTemplateSwitchProfilePort](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4521,26 +4049,15 @@ func (s *SwitchService) GetOrganizationSummarySwitchPowerHistory(organizationID 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSummarySwitchPowerHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetOrganizationSummarySwitchPowerHistory{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSummarySwitchPowerHistory")
-	}
-
-	result := response.Result().(*ResponseSwitchGetOrganizationSummarySwitchPowerHistory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetOrganizationSummarySwitchPowerHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSummarySwitchPowerHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4556,64 +4073,27 @@ func (s *SwitchService) GetOrganizationSummarySwitchPowerHistory(organizationID 
 func (s *SwitchService) GetOrganizationSwitchPortsBySwitch(organizationID string, getOrganizationSwitchPortsBySwitchQueryParams *GetOrganizationSwitchPortsBySwitchQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsBySwitch, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/switch/ports/bySwitch"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationSwitchPortsBySwitchQueryParams != nil && getOrganizationSwitchPortsBySwitchQueryParams.PerPage == -1 {
-		var result *ResponseSwitchGetOrganizationSwitchPortsBySwitch
-		println("Paginate")
-		getOrganizationSwitchPortsBySwitchQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationSwitchPortsBySwitchPaginate, organizationID, "", getOrganizationSwitchPortsBySwitchQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSwitchGetOrganizationSwitchPortsBySwitch
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Ports = append(*result.Ports, *resultTmp.Ports...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSwitchPortsBySwitchQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetOrganizationSwitchPortsBySwitch{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSwitchGetOrganizationSwitchPortsBySwitch](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSwitchPortsBySwitchQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSwitchGetOrganizationSwitchPortsBySwitch) ResponseSwitchGetOrganizationSwitchPortsBySwitch {
+			*dst.Ports = append(*dst.Ports, *src.Ports...) // Total arrays: 1
+			return dst
+		},
+		func() bool {
+			if getOrganizationSwitchPortsBySwitchQueryParams != nil {
+				return getOrganizationSwitchPortsBySwitchQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSwitchPortsBySwitch")
-	}
-
-	result := response.Result().(*ResponseSwitchGetOrganizationSwitchPortsBySwitch)
-	return result, response, err
-
-}
-func (s *SwitchService) GetOrganizationSwitchPortsBySwitchPaginate(organizationID string, getOrganizationSwitchPortsBySwitchQueryParams any) (any, *resty.Response, error) {
-	getOrganizationSwitchPortsBySwitchQueryParamsConverted := getOrganizationSwitchPortsBySwitchQueryParams.(*GetOrganizationSwitchPortsBySwitchQueryParams)
-
-	return s.GetOrganizationSwitchPortsBySwitch(organizationID, getOrganizationSwitchPortsBySwitchQueryParamsConverted)
 }
 
 //GetOrganizationSwitchPortsClientsOverviewByDevice List the number of clients for all switchports with at least one online client in an organization.
@@ -4628,64 +4108,27 @@ func (s *SwitchService) GetOrganizationSwitchPortsBySwitchPaginate(organizationI
 func (s *SwitchService) GetOrganizationSwitchPortsClientsOverviewByDevice(organizationID string, getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams *GetOrganizationSwitchPortsClientsOverviewByDeviceQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/switch/ports/clients/overview/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams != nil && getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice
-		println("Paginate")
-		getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationSwitchPortsClientsOverviewByDevicePaginate, organizationID, "", getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice) ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams != nil {
+				return getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSwitchPortsClientsOverviewByDevice")
-	}
-
-	result := response.Result().(*ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice)
-	return result, response, err
-
-}
-func (s *SwitchService) GetOrganizationSwitchPortsClientsOverviewByDevicePaginate(organizationID string, getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationSwitchPortsClientsOverviewByDeviceQueryParamsConverted := getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams.(*GetOrganizationSwitchPortsClientsOverviewByDeviceQueryParams)
-
-	return s.GetOrganizationSwitchPortsClientsOverviewByDevice(organizationID, getOrganizationSwitchPortsClientsOverviewByDeviceQueryParamsConverted)
 }
 
 //GetOrganizationSwitchPortsOverview Returns the counts of all active ports for the requested timespan, grouped by speed
@@ -4702,26 +4145,15 @@ func (s *SwitchService) GetOrganizationSwitchPortsOverview(organizationID string
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSwitchPortsOverviewQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetOrganizationSwitchPortsOverview{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSwitchPortsOverview")
-	}
-
-	result := response.Result().(*ResponseSwitchGetOrganizationSwitchPortsOverview)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetOrganizationSwitchPortsOverview](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSwitchPortsOverviewQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4737,85 +4169,27 @@ func (s *SwitchService) GetOrganizationSwitchPortsOverview(organizationID string
 func (s *SwitchService) GetOrganizationSwitchPortsStatusesBySwitch(organizationID string, getOrganizationSwitchPortsStatusesBySwitchQueryParams *GetOrganizationSwitchPortsStatusesBySwitchQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/switch/ports/statuses/bySwitch"
 	s.rateLimiterBucket.Wait(1)
-
-	// Handle pagination case where PerPage is -1 and we need to fetch all records
-	if getOrganizationSwitchPortsStatusesBySwitchQueryParams != nil && getOrganizationSwitchPortsStatusesBySwitchQueryParams.PerPage == -1 {
-		// we set the perPage to 20 because thats the max we can get in one request. In this way when we are trying to get all records we make as few requests as possible
-		getOrganizationSwitchPortsStatusesBySwitchQueryParams.PerPage = 20
-		println("Paginate")
-
-		// Initial request
-		firstResult, response, err := s.makeSwitchPortStatusRequest(path, organizationID, getOrganizationSwitchPortsStatusesBySwitchQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-
-		// Process Link header for pagination
-		combinedResult := firstResult
-		nextURL := getNextPageURL(response.Header().Get("Link"))
-
-		for nextURL != "" {
-			// Make request to next URL
-			nextResponse, err := s.client.R().
-				SetHeader("Content-Type", "application/json").
-				SetHeader("Accept", "application/json").
-				SetError(&Error).
-				Get(nextURL)
-
-			if err != nil {
-				return combinedResult, response, err
-			}
-
-			if nextResponse.IsError() {
-				return combinedResult, nextResponse, fmt.Errorf("error with paginated operation GetOrganizationSwitchPortsStatusesBySwitch")
-			}
-
-			// Append items to combined result
-			currentResult := nextResponse.Result().(*ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch)
-			*combinedResult.Items = append(*combinedResult.Items, *currentResult.Items...)
-
-			// Update next URL
-			nextURL = getNextPageURL(nextResponse.Header().Get("Link"))
-			response = nextResponse // Keep track of the latest response
-		}
-
-		return combinedResult, response, nil
-	}
-
-	// Non-pagination case
-	return s.makeSwitchPortStatusRequest(path, organizationID, getOrganizationSwitchPortsStatusesBySwitchQueryParams)
-}
-
-// Helper function to make the actual request
-func (s *SwitchService) makeSwitchPortStatusRequest(path, organizationID string, params *GetOrganizationSwitchPortsStatusesBySwitchQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch, *resty.Response, error) {
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(params)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).
-		SetResult(&ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSwitchPortsStatusesBySwitchQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch) ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationSwitchPortsStatusesBySwitchQueryParams != nil {
+				return getOrganizationSwitchPortsStatusesBySwitchQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSwitchPortsStatusesBySwitch")
-	}
-
-	result := response.Result().(*ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch)
-	return result, response, nil
-}
-
-func (s *SwitchService) GetOrganizationSwitchPortsStatusesBySwitchPaginate(organizationID string, getOrganizationSwitchPortsStatusesBySwitchQueryParams any) (any, *resty.Response, error) {
-	getOrganizationSwitchPortsStatusesBySwitchQueryParamsConverted := getOrganizationSwitchPortsStatusesBySwitchQueryParams.(*GetOrganizationSwitchPortsStatusesBySwitchQueryParams)
-
-	return s.GetOrganizationSwitchPortsStatusesBySwitch(organizationID, getOrganizationSwitchPortsStatusesBySwitchQueryParamsConverted)
 }
 
 //GetOrganizationSwitchPortsTopologyDiscoveryByDevice List most recently seen LLDP/CDP discovery and topology information per switch port in an organization.
@@ -4830,150 +4204,61 @@ func (s *SwitchService) GetOrganizationSwitchPortsStatusesBySwitchPaginate(organ
 func (s *SwitchService) GetOrganizationSwitchPortsTopologyDiscoveryByDevice(organizationID string, getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams *GetOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/switch/ports/topology/discovery/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams != nil && getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice
-		println("Paginate")
-		getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationSwitchPortsTopologyDiscoveryByDevicePaginate, organizationID, "", getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSwitchPortsTopologyDiscoveryByDevice")
-	}
-
-	result := response.Result().(*ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice) ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams != nil {
+				return getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
 }
-func (s *SwitchService) GetOrganizationSwitchPortsTopologyDiscoveryByDevicePaginate(organizationID string, getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParamsConverted := getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams.(*GetOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams)
 
-	return s.GetOrganizationSwitchPortsTopologyDiscoveryByDevice(organizationID, getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParamsConverted)
-}
+//GetOrganizationSwitchPortsUsageHistoryByDeviceByInterval List the historical usage and traffic data of switchports in an organization.
+/* List the historical usage and traffic data of switchports in an organization.
 
-//GetOrganizationSwitchPortsUsageHistoryByDeviceByInterval Returns the usage history for all switch ports in an organization over the requested timespan (by default the last 24 hours)
-/* Returns the usage history for all switch ports in an organization over the requested timespan (by default the last 24 hours). The returned array is a newest-first list of intervals. The time between intervals depends on the requested timespan with 20 minute intervals used for timespans up to 1 day, 4 hour intervals used for timespans up to 2 weeks, and 1 day intervals for timespans larger than 2 weeks.
 @param organizationID organizationId path parameter. Organization ID
 @param getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams Filtering parameter
+
+
 */
+
 func (s *SwitchService) GetOrganizationSwitchPortsUsageHistoryByDeviceByInterval(organizationID string, getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams *GetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/switch/ports/usage/history/byDevice/byInterval"
 	s.rateLimiterBucket.Wait(1)
-	// Handle pagination case where PerPage is -1 and we need to fetch all records
-	if getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams != nil && getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams.PerPage == -1 {
-		// we set the perPage to 20 because thats the max we can get in one request. In this way when we are trying to get all records we make as few requests as possible
-		getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams.PerPage = 10
-		println("Paginate")
-
-		// Initial request
-		firstResult, response, err := s.makeSwitchPortsUsageHistoryByDeviceByIntervalRequest(path, organizationID, getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-
-		// Process Link header for pagination
-		combinedResult := firstResult
-		nextURL := getNextPageURL(response.Header().Get("Link"))
-
-		for nextURL != "" {
-			// Make request to next URL
-			var currentResult ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval
-			nextResponse, err := s.client.R().
-				SetHeader("Content-Type", "application/json").
-				SetHeader("Accept", "application/json").
-				SetResult(&currentResult).
-				SetError(&Error).
-				Get(nextURL)
-
-			if err != nil {
-				return combinedResult, response, err
-			}
-
-			if nextResponse.IsError() {
-				return combinedResult, nextResponse, fmt.Errorf("error with paginated operation GetOrganizationSwitchPortsStatusesBySwitch")
-			}
-
-			// Append items to combined result
-			if currentResult.Items != nil {
-				*combinedResult.Items = append(*combinedResult.Items, *currentResult.Items...)
-			}
-
-			// Update next URL
-			nextURL = getNextPageURL(nextResponse.Header().Get("Link"))
-			response = nextResponse // Keep track of the latest response
-		}
-
-		return combinedResult, response, nil
-	}
-
-	// Non-pagination case
-	return s.makeSwitchPortsUsageHistoryByDeviceByIntervalRequest(path, organizationID, getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams)
-
-}
-
-// Helper function to make the actual request for GetOrganizationSwitchPortsUsageHistoryByDeviceByInterval
-func (s *SwitchService) makeSwitchPortsUsageHistoryByDeviceByIntervalRequest(path, organizationID string, params *GetOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams) (*ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval, *resty.Response, error) {
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(params)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).
-		SetResult(&ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSwitchPortsStatusesBySwitch")
-	}
-
-	result := response.Result().(*ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval)
-	return result, response, nil
+	return doWithRetriesAndResult[ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval) ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams != nil {
+				return getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
 }
 
@@ -4990,25 +4275,15 @@ func (s *SwitchService) CycleDeviceSwitchPorts(serial string, requestSwitchCycle
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchCycleDeviceSwitchPorts).
-		SetResult(&ResponseSwitchCycleDeviceSwitchPorts{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CycleDeviceSwitchPorts")
-	}
-
-	result := response.Result().(*ResponseSwitchCycleDeviceSwitchPorts)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchCycleDeviceSwitchPorts](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSwitchCycleDeviceSwitchPorts, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5025,25 +4300,15 @@ func (s *SwitchService) CreateDeviceSwitchRoutingInterface(serial string, reques
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchCreateDeviceSwitchRoutingInterface).
-		SetResult(&ResponseSwitchCreateDeviceSwitchRoutingInterface{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateDeviceSwitchRoutingInterface")
-	}
-
-	result := response.Result().(*ResponseSwitchCreateDeviceSwitchRoutingInterface)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchCreateDeviceSwitchRoutingInterface](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSwitchCreateDeviceSwitchRoutingInterface, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5060,25 +4325,15 @@ func (s *SwitchService) CreateDeviceSwitchRoutingStaticRoute(serial string, requ
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchCreateDeviceSwitchRoutingStaticRoute).
-		SetResult(&ResponseSwitchCreateDeviceSwitchRoutingStaticRoute{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateDeviceSwitchRoutingStaticRoute")
-	}
-
-	result := response.Result().(*ResponseSwitchCreateDeviceSwitchRoutingStaticRoute)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchCreateDeviceSwitchRoutingStaticRoute](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSwitchCreateDeviceSwitchRoutingStaticRoute, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5095,25 +4350,15 @@ func (s *SwitchService) CreateNetworkSwitchAccessPolicy(networkID string, reques
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchCreateNetworkSwitchAccessPolicy).
-		SetResult(&ResponseSwitchCreateNetworkSwitchAccessPolicy{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkSwitchAccessPolicy")
-	}
-
-	result := response.Result().(*ResponseSwitchCreateNetworkSwitchAccessPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchCreateNetworkSwitchAccessPolicy](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSwitchCreateNetworkSwitchAccessPolicy, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5130,25 +4375,15 @@ func (s *SwitchService) CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedS
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer).
-		SetResult(&ResponseSwitchCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer")
-	}
-
-	result := response.Result().(*ResponseSwitchCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSwitchCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5165,25 +4400,15 @@ func (s *SwitchService) CreateNetworkSwitchLinkAggregation(networkID string, req
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchCreateNetworkSwitchLinkAggregation).
-		SetResult(&ResponseSwitchCreateNetworkSwitchLinkAggregation{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkSwitchLinkAggregation")
-	}
-
-	result := response.Result().(*ResponseSwitchCreateNetworkSwitchLinkAggregation)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchCreateNetworkSwitchLinkAggregation](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSwitchCreateNetworkSwitchLinkAggregation, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5200,25 +4425,15 @@ func (s *SwitchService) CreateNetworkSwitchPortSchedule(networkID string, reques
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchCreateNetworkSwitchPortSchedule).
-		SetResult(&ResponseSwitchCreateNetworkSwitchPortSchedule{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkSwitchPortSchedule")
-	}
-
-	result := response.Result().(*ResponseSwitchCreateNetworkSwitchPortSchedule)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchCreateNetworkSwitchPortSchedule](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSwitchCreateNetworkSwitchPortSchedule, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5235,25 +4450,15 @@ func (s *SwitchService) CreateNetworkSwitchQosRule(networkID string, requestSwit
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchCreateNetworkSwitchQosRule).
-		SetResult(&ResponseSwitchCreateNetworkSwitchQosRule{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkSwitchQosRule")
-	}
-
-	result := response.Result().(*ResponseSwitchCreateNetworkSwitchQosRule)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchCreateNetworkSwitchQosRule](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSwitchCreateNetworkSwitchQosRule, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5270,25 +4475,15 @@ func (s *SwitchService) CreateNetworkSwitchRoutingMulticastRendezvousPoint(netwo
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchCreateNetworkSwitchRoutingMulticastRendezvousPoint).
-		SetResult(&ResponseSwitchCreateNetworkSwitchRoutingMulticastRendezvousPoint{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkSwitchRoutingMulticastRendezvousPoint")
-	}
-
-	result := response.Result().(*ResponseSwitchCreateNetworkSwitchRoutingMulticastRendezvousPoint)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchCreateNetworkSwitchRoutingMulticastRendezvousPoint](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSwitchCreateNetworkSwitchRoutingMulticastRendezvousPoint, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5305,25 +4500,15 @@ func (s *SwitchService) CreateNetworkSwitchStack(networkID string, requestSwitch
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchCreateNetworkSwitchStack).
-		SetResult(&ResponseSwitchCreateNetworkSwitchStack{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkSwitchStack")
-	}
-
-	result := response.Result().(*ResponseSwitchCreateNetworkSwitchStack)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchCreateNetworkSwitchStack](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSwitchCreateNetworkSwitchStack, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5342,25 +4527,15 @@ func (s *SwitchService) AddNetworkSwitchStack(networkID string, switchStackID st
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchAddNetworkSwitchStack).
-		SetResult(&ResponseSwitchAddNetworkSwitchStack{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation AddNetworkSwitchStack")
-	}
-
-	result := response.Result().(*ResponseSwitchAddNetworkSwitchStack)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchAddNetworkSwitchStack](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSwitchAddNetworkSwitchStack, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5379,25 +4554,15 @@ func (s *SwitchService) RemoveNetworkSwitchStack(networkID string, switchStackID
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchRemoveNetworkSwitchStack).
-		SetResult(&ResponseSwitchRemoveNetworkSwitchStack{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation RemoveNetworkSwitchStack")
-	}
-
-	result := response.Result().(*ResponseSwitchRemoveNetworkSwitchStack)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchRemoveNetworkSwitchStack](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSwitchRemoveNetworkSwitchStack, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5416,25 +4581,15 @@ func (s *SwitchService) CreateNetworkSwitchStackRoutingInterface(networkID strin
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchCreateNetworkSwitchStackRoutingInterface).
-		SetResult(&ResponseSwitchCreateNetworkSwitchStackRoutingInterface{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkSwitchStackRoutingInterface")
-	}
-
-	result := response.Result().(*ResponseSwitchCreateNetworkSwitchStackRoutingInterface)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchCreateNetworkSwitchStackRoutingInterface](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSwitchCreateNetworkSwitchStackRoutingInterface, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5453,25 +4608,15 @@ func (s *SwitchService) CreateNetworkSwitchStackRoutingStaticRoute(networkID str
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchCreateNetworkSwitchStackRoutingStaticRoute).
-		SetResult(&ResponseSwitchCreateNetworkSwitchStackRoutingStaticRoute{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkSwitchStackRoutingStaticRoute")
-	}
-
-	result := response.Result().(*ResponseSwitchCreateNetworkSwitchStackRoutingStaticRoute)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchCreateNetworkSwitchStackRoutingStaticRoute](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSwitchCreateNetworkSwitchStackRoutingStaticRoute, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5488,25 +4633,15 @@ func (s *SwitchService) CloneOrganizationSwitchDevices(organizationID string, re
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchCloneOrganizationSwitchDevices).
-		SetResult(&ResponseSwitchCloneOrganizationSwitchDevices{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CloneOrganizationSwitchDevices")
-	}
-
-	result := response.Result().(*ResponseSwitchCloneOrganizationSwitchDevices)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchCloneOrganizationSwitchDevices](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSwitchCloneOrganizationSwitchDevices, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5522,25 +4657,15 @@ func (s *SwitchService) UpdateDeviceSwitchPort(serial string, portID string, req
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{portId}", fmt.Sprintf("%v", portID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateDeviceSwitchPort).
-		SetResult(&ResponseSwitchUpdateDeviceSwitchPort{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateDeviceSwitchPort")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateDeviceSwitchPort)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateDeviceSwitchPort](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateDeviceSwitchPort)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5556,25 +4681,15 @@ func (s *SwitchService) UpdateDeviceSwitchRoutingInterface(serial string, interf
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateDeviceSwitchRoutingInterface).
-		SetResult(&ResponseSwitchUpdateDeviceSwitchRoutingInterface{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateDeviceSwitchRoutingInterface")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateDeviceSwitchRoutingInterface)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateDeviceSwitchRoutingInterface](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateDeviceSwitchRoutingInterface)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5590,25 +4705,15 @@ func (s *SwitchService) UpdateDeviceSwitchRoutingInterfaceDhcp(serial string, in
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateDeviceSwitchRoutingInterfaceDhcp).
-		SetResult(&ResponseSwitchUpdateDeviceSwitchRoutingInterfaceDhcp{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateDeviceSwitchRoutingInterfaceDhcp")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateDeviceSwitchRoutingInterfaceDhcp)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateDeviceSwitchRoutingInterfaceDhcp](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateDeviceSwitchRoutingInterfaceDhcp)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5624,25 +4729,15 @@ func (s *SwitchService) UpdateDeviceSwitchRoutingStaticRoute(serial string, stat
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateDeviceSwitchRoutingStaticRoute).
-		SetResult(&ResponseSwitchUpdateDeviceSwitchRoutingStaticRoute{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateDeviceSwitchRoutingStaticRoute")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateDeviceSwitchRoutingStaticRoute)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateDeviceSwitchRoutingStaticRoute](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateDeviceSwitchRoutingStaticRoute)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5656,25 +4751,15 @@ func (s *SwitchService) UpdateDeviceSwitchWarmSpare(serial string, requestSwitch
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateDeviceSwitchWarmSpare).
-		SetResult(&ResponseSwitchUpdateDeviceSwitchWarmSpare{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateDeviceSwitchWarmSpare")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateDeviceSwitchWarmSpare)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateDeviceSwitchWarmSpare](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateDeviceSwitchWarmSpare)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5688,25 +4773,15 @@ func (s *SwitchService) UpdateNetworkSwitchAccessControlLists(networkID string, 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchAccessControlLists).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchAccessControlLists{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchAccessControlLists")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchAccessControlLists)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchAccessControlLists](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchAccessControlLists)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5722,25 +4797,15 @@ func (s *SwitchService) UpdateNetworkSwitchAccessPolicy(networkID string, access
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{accessPolicyNumber}", fmt.Sprintf("%v", accessPolicyNumber), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchAccessPolicy).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchAccessPolicy{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchAccessPolicy")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchAccessPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchAccessPolicy](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchAccessPolicy)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5754,25 +4819,15 @@ func (s *SwitchService) UpdateNetworkSwitchAlternateManagementInterface(networkI
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchAlternateManagementInterface).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchAlternateManagementInterface{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchAlternateManagementInterface")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchAlternateManagementInterface)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchAlternateManagementInterface](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchAlternateManagementInterface)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5786,25 +4841,15 @@ func (s *SwitchService) UpdateNetworkSwitchDhcpServerPolicy(networkID string, re
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchDhcpServerPolicy).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchDhcpServerPolicy{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchDhcpServerPolicy")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchDhcpServerPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchDhcpServerPolicy](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchDhcpServerPolicy)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5820,25 +4865,15 @@ func (s *SwitchService) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedS
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{trustedServerId}", fmt.Sprintf("%v", trustedServerID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5852,25 +4887,15 @@ func (s *SwitchService) UpdateNetworkSwitchDscpToCosMappings(networkID string, r
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchDscpToCosMappings).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchDscpToCosMappings{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchDscpToCosMappings")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchDscpToCosMappings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchDscpToCosMappings](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchDscpToCosMappings)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5886,25 +4911,15 @@ func (s *SwitchService) UpdateNetworkSwitchLinkAggregation(networkID string, lin
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{linkAggregationId}", fmt.Sprintf("%v", linkAggregationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchLinkAggregation).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchLinkAggregation{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchLinkAggregation")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchLinkAggregation)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchLinkAggregation](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchLinkAggregation)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5918,25 +4933,15 @@ func (s *SwitchService) UpdateNetworkSwitchMtu(networkID string, requestSwitchUp
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchMtu).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchMtu{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchMtu")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchMtu)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchMtu](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchMtu)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5952,25 +4957,15 @@ func (s *SwitchService) UpdateNetworkSwitchPortSchedule(networkID string, portSc
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{portScheduleId}", fmt.Sprintf("%v", portScheduleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchPortSchedule).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchPortSchedule{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchPortSchedule")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchPortSchedule)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchPortSchedule](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchPortSchedule)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5984,25 +4979,15 @@ func (s *SwitchService) UpdateNetworkSwitchQosRulesOrder(networkID string, reque
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchQosRulesOrder).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchQosRulesOrder{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchQosRulesOrder")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchQosRulesOrder)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchQosRulesOrder](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchQosRulesOrder)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6018,25 +5003,15 @@ func (s *SwitchService) UpdateNetworkSwitchQosRule(networkID string, qosRuleID s
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{qosRuleId}", fmt.Sprintf("%v", qosRuleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchQosRule).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchQosRule{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchQosRule")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchQosRule)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchQosRule](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchQosRule)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6050,25 +5025,15 @@ func (s *SwitchService) UpdateNetworkSwitchRoutingMulticast(networkID string, re
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchRoutingMulticast).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchRoutingMulticast{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchRoutingMulticast")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchRoutingMulticast)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchRoutingMulticast](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchRoutingMulticast)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6084,25 +5049,15 @@ func (s *SwitchService) UpdateNetworkSwitchRoutingMulticastRendezvousPoint(netwo
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{rendezvousPointId}", fmt.Sprintf("%v", rendezvousPointID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchRoutingMulticastRendezvousPoint).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchRoutingMulticastRendezvousPoint{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchRoutingMulticastRendezvousPoint")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchRoutingMulticastRendezvousPoint)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchRoutingMulticastRendezvousPoint](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchRoutingMulticastRendezvousPoint)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6116,25 +5071,15 @@ func (s *SwitchService) UpdateNetworkSwitchRoutingOspf(networkID string, request
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchRoutingOspf).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchRoutingOspf{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchRoutingOspf")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchRoutingOspf)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchRoutingOspf](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchRoutingOspf)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6148,25 +5093,15 @@ func (s *SwitchService) UpdateNetworkSwitchSettings(networkID string, requestSwi
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchSettings).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchSettings{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchSettings")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchSettings](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchSettings)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6184,25 +5119,15 @@ func (s *SwitchService) UpdateNetworkSwitchStackRoutingInterface(networkID strin
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchStackRoutingInterface).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchStackRoutingInterface{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchStackRoutingInterface")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchStackRoutingInterface)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchStackRoutingInterface](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchStackRoutingInterface)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6220,25 +5145,15 @@ func (s *SwitchService) UpdateNetworkSwitchStackRoutingInterfaceDhcp(networkID s
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchStackRoutingInterfaceDhcp).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchStackRoutingInterfaceDhcp{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchStackRoutingInterfaceDhcp")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchStackRoutingInterfaceDhcp)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchStackRoutingInterfaceDhcp](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchStackRoutingInterfaceDhcp)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6256,25 +5171,15 @@ func (s *SwitchService) UpdateNetworkSwitchStackRoutingStaticRoute(networkID str
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchStackRoutingStaticRoute).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchStackRoutingStaticRoute{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchStackRoutingStaticRoute")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchStackRoutingStaticRoute)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchStackRoutingStaticRoute](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchStackRoutingStaticRoute)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6288,25 +5193,15 @@ func (s *SwitchService) UpdateNetworkSwitchStormControl(networkID string, reques
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchStormControl).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchStormControl{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchStormControl")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchStormControl)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchStormControl](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchStormControl)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6320,25 +5215,15 @@ func (s *SwitchService) UpdateNetworkSwitchStp(networkID string, requestSwitchUp
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateNetworkSwitchStp).
-		SetResult(&ResponseSwitchUpdateNetworkSwitchStp{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSwitchStp")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateNetworkSwitchStp)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateNetworkSwitchStp](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchStp)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6358,25 +5243,15 @@ func (s *SwitchService) UpdateOrganizationConfigTemplateSwitchProfilePort(organi
 	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
 	path = strings.Replace(path, "{portId}", fmt.Sprintf("%v", portID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSwitchUpdateOrganizationConfigTemplateSwitchProfilePort).
-		SetResult(&ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePort{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationConfigTemplateSwitchProfilePort")
-	}
-
-	result := response.Result().(*ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePort)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSwitchUpdateOrganizationConfigTemplateSwitchProfilePort](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSwitchUpdateOrganizationConfigTemplateSwitchProfilePort)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6395,23 +5270,11 @@ func (s *SwitchService) DeleteDeviceSwitchRoutingInterface(serial string, interf
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteDeviceSwitchRoutingInterface")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteDeviceSwitchRoutingStaticRoute Delete a layer 3 static route for a switch
@@ -6429,23 +5292,11 @@ func (s *SwitchService) DeleteDeviceSwitchRoutingStaticRoute(serial string, stat
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteDeviceSwitchRoutingStaticRoute")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkSwitchAccessPolicy Delete an access policy for a switch network
@@ -6463,23 +5314,11 @@ func (s *SwitchService) DeleteNetworkSwitchAccessPolicy(networkID string, access
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{accessPolicyNumber}", fmt.Sprintf("%v", accessPolicyNumber), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkSwitchAccessPolicy")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer Remove a server from being trusted by Dynamic ARP Inspection on this network
@@ -6497,23 +5336,11 @@ func (s *SwitchService) DeleteNetworkSwitchDhcpServerPolicyArpInspectionTrustedS
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{trustedServerId}", fmt.Sprintf("%v", trustedServerID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkSwitchLinkAggregation Split a link aggregation group into separate ports
@@ -6531,23 +5358,11 @@ func (s *SwitchService) DeleteNetworkSwitchLinkAggregation(networkID string, lin
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{linkAggregationId}", fmt.Sprintf("%v", linkAggregationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkSwitchLinkAggregation")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkSwitchPortSchedule Delete a switch port schedule
@@ -6565,23 +5380,11 @@ func (s *SwitchService) DeleteNetworkSwitchPortSchedule(networkID string, portSc
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{portScheduleId}", fmt.Sprintf("%v", portScheduleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkSwitchPortSchedule")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkSwitchQosRule Delete a quality of service rule
@@ -6599,23 +5402,11 @@ func (s *SwitchService) DeleteNetworkSwitchQosRule(networkID string, qosRuleID s
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{qosRuleId}", fmt.Sprintf("%v", qosRuleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkSwitchQosRule")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkSwitchRoutingMulticastRendezvousPoint Delete a multicast rendezvous point
@@ -6633,23 +5424,11 @@ func (s *SwitchService) DeleteNetworkSwitchRoutingMulticastRendezvousPoint(netwo
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{rendezvousPointId}", fmt.Sprintf("%v", rendezvousPointID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkSwitchRoutingMulticastRendezvousPoint")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkSwitchStack Delete a stack
@@ -6667,23 +5446,11 @@ func (s *SwitchService) DeleteNetworkSwitchStack(networkID string, switchStackID
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkSwitchStack")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkSwitchStackRoutingInterface Delete a layer 3 interface from a switch stack
@@ -6703,23 +5470,11 @@ func (s *SwitchService) DeleteNetworkSwitchStackRoutingInterface(networkID strin
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{interfaceId}", fmt.Sprintf("%v", interfaceID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkSwitchStackRoutingInterface")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkSwitchStackRoutingStaticRoute Delete a layer 3 static route for a switch stack
@@ -6739,21 +5494,9 @@ func (s *SwitchService) DeleteNetworkSwitchStackRoutingStaticRoute(networkID str
 	path = strings.Replace(path, "{switchStackId}", fmt.Sprintf("%v", switchStackID), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkSwitchStackRoutingStaticRoute")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
