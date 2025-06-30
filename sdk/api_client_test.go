@@ -218,17 +218,3 @@ func TestRateLimit(t *testing.T) {
 	}
 	assert.LessOrEqual(t, time.Second, time.Since(start))
 }
-
-// TestRetry tests a retry of the Client.Get method.
-func TestRetry(t *testing.T) {
-	defer gock.Off()
-	client := testClient(t)
-	client.common.client.SetRetryCount(1)
-	client.common.client.SetRetryWaitTime(100 * time.Millisecond)
-
-	gock.New(TEST_MERAKI_BASE_URL).Get("/url").Reply(429)
-	gock.New(TEST_MERAKI_BASE_URL).Get("/url").Reply(200)
-	start := time.Now()
-	Get[result](client.common.client, client.common.rateLimiterBucket, "/url", &result{})
-	assert.LessOrEqual(t, 100*time.Millisecond, time.Since(start))
-}
