@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [5.0.3] - 2025-06-30
+- Ignore user-agent validation.
+
 ## [5.0.2] - 2025-06-30
 ### Added
 - Backoff and jitter configuration for retries via environment variables:

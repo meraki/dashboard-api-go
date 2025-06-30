@@ -2,7 +2,6 @@ package meraki
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"log"
 	"math/rand"
@@ -271,9 +270,9 @@ func NewClientWithOptionsAndRequests(baseURL string, dashboardApiKey string, deb
 func SetOptions(baseURL string, dashboardApiKey string, debug string, userAgent string) error {
 	var err error
 
-	if !validateUserAgent(userAgent) {
-		return errors.New("user-agent bad format, expected: `AplicationName VendorName Client`")
-	}
+	// if !validateUserAgent(userAgent) {
+	// 	return errors.New("user-agent bad format, expected: `AplicationName VendorName Client`")
+	// }
 
 	err = os.Setenv(MERAKI_USER_AGENT, userAgent)
 	if err != nil {
