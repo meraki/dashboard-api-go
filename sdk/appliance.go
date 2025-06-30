@@ -6,7 +6,6 @@ import (
 	"strings"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 type ApplianceService service
@@ -3188,24 +3187,15 @@ func (s *ApplianceService) GetDeviceApplianceDhcpSubnets(serial string) (*Respon
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetDeviceApplianceDhcpSubnets{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceApplianceDhcpSubnets")
-	}
-
-	result := response.Result().(*ResponseApplianceGetDeviceApplianceDhcpSubnets)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetDeviceApplianceDhcpSubnets](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3223,26 +3213,15 @@ func (s *ApplianceService) GetDeviceAppliancePerformance(serial string, getDevic
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	queryString, _ := query.Values(getDeviceAppliancePerformanceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetDeviceAppliancePerformance{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceAppliancePerformance")
-	}
-
-	result := response.Result().(*ResponseApplianceGetDeviceAppliancePerformance)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetDeviceAppliancePerformance](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getDeviceAppliancePerformanceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3259,24 +3238,15 @@ func (s *ApplianceService) GetDeviceAppliancePrefixesDelegated(serial string) (*
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetDeviceAppliancePrefixesDelegated{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceAppliancePrefixesDelegated")
-	}
-
-	result := response.Result().(*ResponseApplianceGetDeviceAppliancePrefixesDelegated)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetDeviceAppliancePrefixesDelegated](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3293,24 +3263,15 @@ func (s *ApplianceService) GetDeviceAppliancePrefixesDelegatedVLANAssignments(se
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetDeviceAppliancePrefixesDelegatedVLANAssignments{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceAppliancePrefixesDelegatedVlanAssignments")
-	}
-
-	result := response.Result().(*ResponseApplianceGetDeviceAppliancePrefixesDelegatedVLANAssignments)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetDeviceAppliancePrefixesDelegatedVLANAssignments](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3327,24 +3288,15 @@ func (s *ApplianceService) GetDeviceApplianceRadioSettings(serial string) (*Resp
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetDeviceApplianceRadioSettings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceApplianceRadioSettings")
-	}
-
-	result := response.Result().(*ResponseApplianceGetDeviceApplianceRadioSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetDeviceApplianceRadioSettings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3361,24 +3313,15 @@ func (s *ApplianceService) GetDeviceApplianceUplinksSettings(serial string) (*Re
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetDeviceApplianceUplinksSettings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceApplianceUplinksSettings")
-	}
-
-	result := response.Result().(*ResponseApplianceGetDeviceApplianceUplinksSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetDeviceApplianceUplinksSettings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3395,65 +3338,28 @@ func (s *ApplianceService) GetDeviceApplianceUplinksSettings(serial string) (*Re
 func (s *ApplianceService) GetNetworkApplianceClientSecurityEvents(networkID string, clientID string, getNetworkApplianceClientSecurityEventsQueryParams *GetNetworkApplianceClientSecurityEventsQueryParams) (*ResponseApplianceGetNetworkApplianceClientSecurityEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/clients/{clientId}/security/events"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkApplianceClientSecurityEventsQueryParams != nil && getNetworkApplianceClientSecurityEventsQueryParams.PerPage == -1 {
-		var result *ResponseApplianceGetNetworkApplianceClientSecurityEvents
-		println("Paginate")
-		getNetworkApplianceClientSecurityEventsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkApplianceClientSecurityEventsPaginate, networkID, clientID, getNetworkApplianceClientSecurityEventsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseApplianceGetNetworkApplianceClientSecurityEvents
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
-	queryString, _ := query.Values(getNetworkApplianceClientSecurityEventsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetNetworkApplianceClientSecurityEvents{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceClientSecurityEvents](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkApplianceClientSecurityEventsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseApplianceGetNetworkApplianceClientSecurityEvents) ResponseApplianceGetNetworkApplianceClientSecurityEvents {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkApplianceClientSecurityEventsQueryParams != nil {
+				return getNetworkApplianceClientSecurityEventsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceClientSecurityEvents")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceClientSecurityEvents)
-	return result, response, err
-
-}
-func (s *ApplianceService) GetNetworkApplianceClientSecurityEventsPaginate(networkID string, clientID string, getNetworkApplianceClientSecurityEventsQueryParams any) (any, *resty.Response, error) {
-	getNetworkApplianceClientSecurityEventsQueryParamsConverted := getNetworkApplianceClientSecurityEventsQueryParams.(*GetNetworkApplianceClientSecurityEventsQueryParams)
-
-	return s.GetNetworkApplianceClientSecurityEvents(networkID, clientID, getNetworkApplianceClientSecurityEventsQueryParamsConverted)
 }
 
 //GetNetworkApplianceConnectivityMonitoringDestinations Return the connectivity testing destinations for an MX network
@@ -3469,24 +3375,15 @@ func (s *ApplianceService) GetNetworkApplianceConnectivityMonitoringDestinations
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceConnectivityMonitoringDestinations{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceConnectivityMonitoringDestinations")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceConnectivityMonitoringDestinations)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceConnectivityMonitoringDestinations](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3503,24 +3400,15 @@ func (s *ApplianceService) GetNetworkApplianceContentFiltering(networkID string)
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceContentFiltering{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceContentFiltering")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceContentFiltering)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceContentFiltering](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3537,24 +3425,15 @@ func (s *ApplianceService) GetNetworkApplianceContentFilteringCategories(network
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceContentFilteringCategories{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceContentFilteringCategories")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceContentFilteringCategories)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceContentFilteringCategories](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3571,24 +3450,15 @@ func (s *ApplianceService) GetNetworkApplianceFirewallCellularFirewallRules(netw
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceFirewallCellularFirewallRules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceFirewallCellularFirewallRules")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceFirewallCellularFirewallRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceFirewallCellularFirewallRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3605,24 +3475,15 @@ func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledServices(network
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceFirewallFirewalledServices{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceFirewallFirewalledServices")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceFirewallFirewalledServices)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceFirewallFirewalledServices](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3641,24 +3502,15 @@ func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledService(networkI
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{service}", fmt.Sprintf("%v", service), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceFirewallFirewalledService{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceFirewallFirewalledService")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceFirewallFirewalledService)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceFirewallFirewalledService](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3675,24 +3527,15 @@ func (s *ApplianceService) GetNetworkApplianceFirewallInboundCellularFirewallRul
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceFirewallInboundCellularFirewallRules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceFirewallInboundCellularFirewallRules")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceFirewallInboundCellularFirewallRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceFirewallInboundCellularFirewallRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3709,24 +3552,15 @@ func (s *ApplianceService) GetNetworkApplianceFirewallInboundFirewallRules(netwo
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceFirewallInboundFirewallRules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceFirewallInboundFirewallRules")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceFirewallInboundFirewallRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceFirewallInboundFirewallRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3743,24 +3577,15 @@ func (s *ApplianceService) GetNetworkApplianceFirewallL3FirewallRules(networkID 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceFirewallL3FirewallRules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceFirewallL3FirewallRules")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceFirewallL3FirewallRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceFirewallL3FirewallRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3777,24 +3602,15 @@ func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRules(networkID 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceFirewallL7FirewallRules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceFirewallL7FirewallRules")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceFirewallL7FirewallRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceFirewallL7FirewallRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3811,24 +3627,15 @@ func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRulesApplication
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategories{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategories)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceFirewallL7FirewallRulesApplicationCategories](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3845,24 +3652,15 @@ func (s *ApplianceService) GetNetworkApplianceFirewallOneToManyNatRules(networkI
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceFirewallOneToManyNatRules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceFirewallOneToManyNatRules")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceFirewallOneToManyNatRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceFirewallOneToManyNatRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3879,24 +3677,15 @@ func (s *ApplianceService) GetNetworkApplianceFirewallOneToOneNatRules(networkID
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceFirewallOneToOneNatRules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceFirewallOneToOneNatRules")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceFirewallOneToOneNatRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceFirewallOneToOneNatRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3913,24 +3702,15 @@ func (s *ApplianceService) GetNetworkApplianceFirewallPortForwardingRules(networ
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceFirewallPortForwardingRules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceFirewallPortForwardingRules")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceFirewallPortForwardingRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceFirewallPortForwardingRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3947,24 +3727,15 @@ func (s *ApplianceService) GetNetworkApplianceFirewallSettings(networkID string)
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceFirewallSettings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceFirewallSettings")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceFirewallSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceFirewallSettings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3981,24 +3752,15 @@ func (s *ApplianceService) GetNetworkAppliancePorts(networkID string) (*Response
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkAppliancePorts{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkAppliancePorts")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkAppliancePorts)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkAppliancePorts](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4017,24 +3779,15 @@ func (s *ApplianceService) GetNetworkAppliancePort(networkID string, portID stri
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{portId}", fmt.Sprintf("%v", portID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkAppliancePort{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkAppliancePort")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkAppliancePort)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkAppliancePort](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4051,24 +3804,15 @@ func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatics(networkID
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkAppliancePrefixesDelegatedStatics{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkAppliancePrefixesDelegatedStatics")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkAppliancePrefixesDelegatedStatics)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkAppliancePrefixesDelegatedStatics](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4087,24 +3831,15 @@ func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatic(networkID 
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{staticDelegatedPrefixId}", fmt.Sprintf("%v", staticDelegatedPrefixID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkAppliancePrefixesDelegatedStatic{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkAppliancePrefixesDelegatedStatic")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkAppliancePrefixesDelegatedStatic)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkAppliancePrefixesDelegatedStatic](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4121,24 +3856,15 @@ func (s *ApplianceService) GetNetworkApplianceRfProfiles(networkID string) (*Res
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceRfProfiles{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceRfProfiles")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceRfProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceRfProfiles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4157,24 +3883,15 @@ func (s *ApplianceService) GetNetworkApplianceRfProfile(networkID string, rfProf
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{rfProfileId}", fmt.Sprintf("%v", rfProfileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceRfProfile{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceRfProfile")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceRfProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceRfProfile](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4190,64 +3907,27 @@ func (s *ApplianceService) GetNetworkApplianceRfProfile(networkID string, rfProf
 func (s *ApplianceService) GetNetworkApplianceSecurityEvents(networkID string, getNetworkApplianceSecurityEventsQueryParams *GetNetworkApplianceSecurityEventsQueryParams) (*ResponseApplianceGetNetworkApplianceSecurityEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/appliance/security/events"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkApplianceSecurityEventsQueryParams != nil && getNetworkApplianceSecurityEventsQueryParams.PerPage == -1 {
-		var result *ResponseApplianceGetNetworkApplianceSecurityEvents
-		println("Paginate")
-		getNetworkApplianceSecurityEventsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkApplianceSecurityEventsPaginate, networkID, "", getNetworkApplianceSecurityEventsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseApplianceGetNetworkApplianceSecurityEvents
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkApplianceSecurityEventsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetNetworkApplianceSecurityEvents{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceSecurityEvents](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkApplianceSecurityEventsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseApplianceGetNetworkApplianceSecurityEvents) ResponseApplianceGetNetworkApplianceSecurityEvents {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkApplianceSecurityEventsQueryParams != nil {
+				return getNetworkApplianceSecurityEventsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceSecurityEvents")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceSecurityEvents)
-	return result, response, err
-
-}
-func (s *ApplianceService) GetNetworkApplianceSecurityEventsPaginate(networkID string, getNetworkApplianceSecurityEventsQueryParams any) (any, *resty.Response, error) {
-	getNetworkApplianceSecurityEventsQueryParamsConverted := getNetworkApplianceSecurityEventsQueryParams.(*GetNetworkApplianceSecurityEventsQueryParams)
-
-	return s.GetNetworkApplianceSecurityEvents(networkID, getNetworkApplianceSecurityEventsQueryParamsConverted)
 }
 
 //GetNetworkApplianceSecurityIntrusion Returns all supported intrusion settings for an MX network
@@ -4263,24 +3943,15 @@ func (s *ApplianceService) GetNetworkApplianceSecurityIntrusion(networkID string
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceSecurityIntrusion{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceSecurityIntrusion")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceSecurityIntrusion)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceSecurityIntrusion](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4297,24 +3968,15 @@ func (s *ApplianceService) GetNetworkApplianceSecurityMalware(networkID string) 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceSecurityMalware{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceSecurityMalware")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceSecurityMalware)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceSecurityMalware](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4331,24 +3993,15 @@ func (s *ApplianceService) GetNetworkApplianceSettings(networkID string) (*Respo
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceSettings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceSettings")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceSettings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4365,24 +4018,15 @@ func (s *ApplianceService) GetNetworkApplianceSingleLan(networkID string) (*Resp
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceSingleLan{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceSingleLan")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceSingleLan)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceSingleLan](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4399,24 +4043,15 @@ func (s *ApplianceService) GetNetworkApplianceSSIDs(networkID string) (*Response
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceSSIDs{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceSsids")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceSSIDs)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceSSIDs](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4435,24 +4070,15 @@ func (s *ApplianceService) GetNetworkApplianceSSID(networkID string, number stri
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceSSID{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceSsid")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceSSID)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceSSID](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4469,24 +4095,15 @@ func (s *ApplianceService) GetNetworkApplianceStaticRoutes(networkID string) (*R
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceStaticRoutes{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceStaticRoutes")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceStaticRoutes)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceStaticRoutes](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4505,24 +4122,15 @@ func (s *ApplianceService) GetNetworkApplianceStaticRoute(networkID string, stat
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceStaticRoute{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceStaticRoute")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceStaticRoute)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceStaticRoute](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4539,24 +4147,15 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShaping(networkID string) (
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceTrafficShaping{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceTrafficShaping")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceTrafficShaping)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceTrafficShaping](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4573,24 +4172,15 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceCla
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClasses{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceTrafficShapingCustomPerformanceClasses")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClasses)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClasses](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4609,24 +4199,15 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceCla
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{customPerformanceClassId}", fmt.Sprintf("%v", customPerformanceClassID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClass{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceTrafficShapingCustomPerformanceClass")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClass)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceTrafficShapingCustomPerformanceClass](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4643,24 +4224,15 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingRules(networkID stri
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceTrafficShapingRules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceTrafficShapingRules")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceTrafficShapingRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceTrafficShapingRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4677,24 +4249,15 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkBandwidth(netw
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceTrafficShapingUplinkBandwidth{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceTrafficShapingUplinkBandwidth")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceTrafficShapingUplinkBandwidth)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceTrafficShapingUplinkBandwidth](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4711,24 +4274,15 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkSelection(netw
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceTrafficShapingUplinkSelection{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceTrafficShapingUplinkSelection")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceTrafficShapingUplinkSelection)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceTrafficShapingUplinkSelection](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4746,26 +4300,15 @@ func (s *ApplianceService) GetNetworkApplianceUplinksUsageHistory(networkID stri
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkApplianceUplinksUsageHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetNetworkApplianceUplinksUsageHistory{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceUplinksUsageHistory")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceUplinksUsageHistory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceUplinksUsageHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkApplianceUplinksUsageHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4782,24 +4325,15 @@ func (s *ApplianceService) GetNetworkApplianceVLANs(networkID string) (*Response
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceVLANs{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceVlans")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceVLANs)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceVLANs](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4816,24 +4350,15 @@ func (s *ApplianceService) GetNetworkApplianceVLANsSettings(networkID string) (*
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceVLANsSettings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceVlansSettings")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceVLANsSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceVLANsSettings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4852,24 +4377,15 @@ func (s *ApplianceService) GetNetworkApplianceVLAN(networkID string, vlanID stri
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{vlanId}", fmt.Sprintf("%v", vlanID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceVLAN{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceVlan")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceVLAN)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceVLAN](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4886,24 +4402,15 @@ func (s *ApplianceService) GetNetworkApplianceVpnBgp(networkID string) (*Respons
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceVpnBgp{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceVpnBgp")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceVpnBgp)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceVpnBgp](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4920,24 +4427,15 @@ func (s *ApplianceService) GetNetworkApplianceVpnSiteToSiteVpn(networkID string)
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpn{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceVpnSiteToSiteVpn")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpn)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceVpnSiteToSiteVpn](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4954,24 +4452,15 @@ func (s *ApplianceService) GetNetworkApplianceWarmSpare(networkID string) (*Resp
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetNetworkApplianceWarmSpare{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkApplianceWarmSpare")
-	}
-
-	result := response.Result().(*ResponseApplianceGetNetworkApplianceWarmSpare)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetNetworkApplianceWarmSpare](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4989,26 +4478,15 @@ func (s *ApplianceService) GetOrganizationApplianceDNSLocalProfiles(organization
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationApplianceDnsLocalProfilesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceDNSLocalProfiles{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceDnsLocalProfiles")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceDNSLocalProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetOrganizationApplianceDNSLocalProfiles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationApplianceDnsLocalProfilesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5026,26 +4504,15 @@ func (s *ApplianceService) GetOrganizationApplianceDNSLocalProfilesAssignments(o
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationApplianceDnsLocalProfilesAssignmentsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignments{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceDnsLocalProfilesAssignments")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignments)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetOrganizationApplianceDNSLocalProfilesAssignments](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationApplianceDnsLocalProfilesAssignmentsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5063,26 +4530,15 @@ func (s *ApplianceService) GetOrganizationApplianceDNSLocalRecords(organizationI
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationApplianceDnsLocalRecordsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceDNSLocalRecords{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceDnsLocalRecords")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceDNSLocalRecords)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetOrganizationApplianceDNSLocalRecords](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationApplianceDnsLocalRecordsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5100,26 +4556,15 @@ func (s *ApplianceService) GetOrganizationApplianceDNSSplitProfiles(organization
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationApplianceDnsSplitProfilesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceDNSSplitProfiles{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceDnsSplitProfiles")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceDNSSplitProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetOrganizationApplianceDNSSplitProfiles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationApplianceDnsSplitProfilesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5137,26 +4582,15 @@ func (s *ApplianceService) GetOrganizationApplianceDNSSplitProfilesAssignments(o
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationApplianceDnsSplitProfilesAssignmentsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignments{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceDnsSplitProfilesAssignments")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignments)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetOrganizationApplianceDNSSplitProfilesAssignments](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationApplianceDnsSplitProfilesAssignmentsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5172,64 +4606,27 @@ func (s *ApplianceService) GetOrganizationApplianceDNSSplitProfilesAssignments(o
 func (s *ApplianceService) GetOrganizationApplianceFirewallMulticastForwardingByNetwork(organizationID string, getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams *GetOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams) (*ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/firewall/multicastForwarding/byNetwork"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams != nil && getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams.PerPage == -1 {
-		var result *ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork
-		println("Paginate")
-		getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationApplianceFirewallMulticastForwardingByNetworkPaginate, organizationID, "", getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork) ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams != nil {
+				return getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceFirewallMulticastForwardingByNetwork")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork)
-	return result, response, err
-
-}
-func (s *ApplianceService) GetOrganizationApplianceFirewallMulticastForwardingByNetworkPaginate(organizationID string, getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams any) (any, *resty.Response, error) {
-	getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParamsConverted := getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams.(*GetOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams)
-
-	return s.GetOrganizationApplianceFirewallMulticastForwardingByNetwork(organizationID, getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParamsConverted)
 }
 
 //GetOrganizationApplianceSecurityEvents List the security events for an organization
@@ -5244,64 +4641,27 @@ func (s *ApplianceService) GetOrganizationApplianceFirewallMulticastForwardingBy
 func (s *ApplianceService) GetOrganizationApplianceSecurityEvents(organizationID string, getOrganizationApplianceSecurityEventsQueryParams *GetOrganizationApplianceSecurityEventsQueryParams) (*ResponseApplianceGetOrganizationApplianceSecurityEvents, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/security/events"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationApplianceSecurityEventsQueryParams != nil && getOrganizationApplianceSecurityEventsQueryParams.PerPage == -1 {
-		var result *ResponseApplianceGetOrganizationApplianceSecurityEvents
-		println("Paginate")
-		getOrganizationApplianceSecurityEventsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationApplianceSecurityEventsPaginate, organizationID, "", getOrganizationApplianceSecurityEventsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseApplianceGetOrganizationApplianceSecurityEvents
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationApplianceSecurityEventsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceSecurityEvents{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseApplianceGetOrganizationApplianceSecurityEvents](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationApplianceSecurityEventsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseApplianceGetOrganizationApplianceSecurityEvents) ResponseApplianceGetOrganizationApplianceSecurityEvents {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationApplianceSecurityEventsQueryParams != nil {
+				return getOrganizationApplianceSecurityEventsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceSecurityEvents")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceSecurityEvents)
-	return result, response, err
-
-}
-func (s *ApplianceService) GetOrganizationApplianceSecurityEventsPaginate(organizationID string, getOrganizationApplianceSecurityEventsQueryParams any) (any, *resty.Response, error) {
-	getOrganizationApplianceSecurityEventsQueryParamsConverted := getOrganizationApplianceSecurityEventsQueryParams.(*GetOrganizationApplianceSecurityEventsQueryParams)
-
-	return s.GetOrganizationApplianceSecurityEvents(organizationID, getOrganizationApplianceSecurityEventsQueryParamsConverted)
 }
 
 //GetOrganizationApplianceSecurityIntrusion Returns all supported intrusion settings for an organization
@@ -5317,24 +4677,15 @@ func (s *ApplianceService) GetOrganizationApplianceSecurityIntrusion(organizatio
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetOrganizationApplianceSecurityIntrusion{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceSecurityIntrusion")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceSecurityIntrusion)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetOrganizationApplianceSecurityIntrusion](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5350,64 +4701,27 @@ func (s *ApplianceService) GetOrganizationApplianceSecurityIntrusion(organizatio
 func (s *ApplianceService) GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork(organizationID string, getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams *GetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams) (*ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/trafficShaping/vpnExclusions/byNetwork"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams != nil && getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams.PerPage == -1 {
-		var result *ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork
-		println("Paginate")
-		getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkPaginate, organizationID, "", getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork) ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams != nil {
+				return getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork)
-	return result, response, err
-
-}
-func (s *ApplianceService) GetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkPaginate(organizationID string, getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams any) (any, *resty.Response, error) {
-	getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParamsConverted := getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams.(*GetOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams)
-
-	return s.GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork(organizationID, getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParamsConverted)
 }
 
 //GetOrganizationApplianceUplinkStatuses List the uplink status of every Meraki MX and Z series appliances in the organization
@@ -5422,64 +4736,27 @@ func (s *ApplianceService) GetOrganizationApplianceTrafficShapingVpnExclusionsBy
 func (s *ApplianceService) GetOrganizationApplianceUplinkStatuses(organizationID string, getOrganizationApplianceUplinkStatusesQueryParams *GetOrganizationApplianceUplinkStatusesQueryParams) (*ResponseApplianceGetOrganizationApplianceUplinkStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/uplink/statuses"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationApplianceUplinkStatusesQueryParams != nil && getOrganizationApplianceUplinkStatusesQueryParams.PerPage == -1 {
-		var result *ResponseApplianceGetOrganizationApplianceUplinkStatuses
-		println("Paginate")
-		getOrganizationApplianceUplinkStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationApplianceUplinkStatusesPaginate, organizationID, "", getOrganizationApplianceUplinkStatusesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseApplianceGetOrganizationApplianceUplinkStatuses
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationApplianceUplinkStatusesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceUplinkStatuses{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult(
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationApplianceUplinkStatusesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseApplianceGetOrganizationApplianceUplinkStatuses) ResponseApplianceGetOrganizationApplianceUplinkStatuses {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationApplianceUplinkStatusesQueryParams != nil {
+				return getOrganizationApplianceUplinkStatusesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceUplinkStatuses")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceUplinkStatuses)
-	return result, response, err
-
-}
-func (s *ApplianceService) GetOrganizationApplianceUplinkStatusesPaginate(organizationID string, getOrganizationApplianceUplinkStatusesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationApplianceUplinkStatusesQueryParamsConverted := getOrganizationApplianceUplinkStatusesQueryParams.(*GetOrganizationApplianceUplinkStatusesQueryParams)
-
-	return s.GetOrganizationApplianceUplinkStatuses(organizationID, getOrganizationApplianceUplinkStatusesQueryParamsConverted)
 }
 
 //GetOrganizationApplianceUplinksStatusesOverview Returns an overview of uplink statuses
@@ -5495,24 +4772,15 @@ func (s *ApplianceService) GetOrganizationApplianceUplinksStatusesOverview(organ
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetOrganizationApplianceUplinksStatusesOverview{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceUplinksStatusesOverview")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceUplinksStatusesOverview)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetOrganizationApplianceUplinksStatusesOverview](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5530,26 +4798,15 @@ func (s *ApplianceService) GetOrganizationApplianceUplinksUsageByNetwork(organiz
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationApplianceUplinksUsageByNetworkQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceUplinksUsageByNetwork{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceUplinksUsageByNetwork")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceUplinksUsageByNetwork)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetOrganizationApplianceUplinksUsageByNetwork](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationApplianceUplinksUsageByNetworkQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5565,64 +4822,27 @@ func (s *ApplianceService) GetOrganizationApplianceUplinksUsageByNetwork(organiz
 func (s *ApplianceService) GetOrganizationApplianceVpnStats(organizationID string, getOrganizationApplianceVpnStatsQueryParams *GetOrganizationApplianceVpnStatsQueryParams) (*ResponseApplianceGetOrganizationApplianceVpnStats, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/stats"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationApplianceVpnStatsQueryParams != nil && getOrganizationApplianceVpnStatsQueryParams.PerPage == -1 {
-		var result *ResponseApplianceGetOrganizationApplianceVpnStats
-		println("Paginate")
-		getOrganizationApplianceVpnStatsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationApplianceVpnStatsPaginate, organizationID, "", getOrganizationApplianceVpnStatsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseApplianceGetOrganizationApplianceVpnStats
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationApplianceVpnStatsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceVpnStats{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseApplianceGetOrganizationApplianceVpnStats](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationApplianceVpnStatsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseApplianceGetOrganizationApplianceVpnStats) ResponseApplianceGetOrganizationApplianceVpnStats {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationApplianceVpnStatsQueryParams != nil {
+				return getOrganizationApplianceVpnStatsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceVpnStats")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceVpnStats)
-	return result, response, err
-
-}
-func (s *ApplianceService) GetOrganizationApplianceVpnStatsPaginate(organizationID string, getOrganizationApplianceVpnStatsQueryParams any) (any, *resty.Response, error) {
-	getOrganizationApplianceVpnStatsQueryParamsConverted := getOrganizationApplianceVpnStatsQueryParams.(*GetOrganizationApplianceVpnStatsQueryParams)
-
-	return s.GetOrganizationApplianceVpnStats(organizationID, getOrganizationApplianceVpnStatsQueryParamsConverted)
 }
 
 //GetOrganizationApplianceVpnStatuses Show VPN status for networks in an organization
@@ -5637,64 +4857,27 @@ func (s *ApplianceService) GetOrganizationApplianceVpnStatsPaginate(organization
 func (s *ApplianceService) GetOrganizationApplianceVpnStatuses(organizationID string, getOrganizationApplianceVpnStatusesQueryParams *GetOrganizationApplianceVpnStatusesQueryParams) (*ResponseApplianceGetOrganizationApplianceVpnStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/appliance/vpn/statuses"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationApplianceVpnStatusesQueryParams != nil && getOrganizationApplianceVpnStatusesQueryParams.PerPage == -1 {
-		var result *ResponseApplianceGetOrganizationApplianceVpnStatuses
-		println("Paginate")
-		getOrganizationApplianceVpnStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationApplianceVpnStatusesPaginate, organizationID, "", getOrganizationApplianceVpnStatusesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseApplianceGetOrganizationApplianceVpnStatuses
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Vpnstatusentities = append(*result.Vpnstatusentities, *resultTmp.Vpnstatusentities...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationApplianceVpnStatusesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplianceGetOrganizationApplianceVpnStatuses{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseApplianceGetOrganizationApplianceVpnStatuses](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationApplianceVpnStatusesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseApplianceGetOrganizationApplianceVpnStatuses) ResponseApplianceGetOrganizationApplianceVpnStatuses {
+			*dst.Vpnstatusentities = append(*dst.Vpnstatusentities, *src.Vpnstatusentities...) // Total arrays: 1
+			return dst
+		},
+		func() bool {
+			if getOrganizationApplianceVpnStatusesQueryParams != nil {
+				return getOrganizationApplianceVpnStatusesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceVpnStatuses")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceVpnStatuses)
-	return result, response, err
-
-}
-func (s *ApplianceService) GetOrganizationApplianceVpnStatusesPaginate(organizationID string, getOrganizationApplianceVpnStatusesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationApplianceVpnStatusesQueryParamsConverted := getOrganizationApplianceVpnStatusesQueryParams.(*GetOrganizationApplianceVpnStatusesQueryParams)
-
-	return s.GetOrganizationApplianceVpnStatuses(organizationID, getOrganizationApplianceVpnStatusesQueryParamsConverted)
 }
 
 //GetOrganizationApplianceVpnThirdPartyVpnpeers Return the third party VPN peers for an organization
@@ -5710,24 +4893,15 @@ func (s *ApplianceService) GetOrganizationApplianceVpnThirdPartyVpnpeers(organiz
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeers{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceVpnThirdPartyVpnpeers")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeers)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetOrganizationApplianceVpnThirdPartyVpnpeers](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5744,24 +4918,15 @@ func (s *ApplianceService) GetOrganizationApplianceVpnVpnFirewallRules(organizat
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceGetOrganizationApplianceVpnVpnFirewallRules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApplianceVpnVpnFirewallRules")
-	}
-
-	result := response.Result().(*ResponseApplianceGetOrganizationApplianceVpnVpnFirewallRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceGetOrganizationApplianceVpnVpnFirewallRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5778,24 +4943,15 @@ func (s *ApplianceService) CreateDeviceApplianceVmxAuthenticationToken(serial st
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceCreateDeviceApplianceVmxAuthenticationToken{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateDeviceApplianceVmxAuthenticationToken")
-	}
-
-	result := response.Result().(*ResponseApplianceCreateDeviceApplianceVmxAuthenticationToken)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceCreateDeviceApplianceVmxAuthenticationToken](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, nil, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5812,24 +4968,13 @@ func (s *ApplianceService) CreateNetworkAppliancePrefixesDelegatedStatic(network
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceCreateNetworkAppliancePrefixesDelegatedStatic).
-		// SetResult(&ResponseApplianceCreateNetworkAppliancePrefixesDelegatedStatic{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateNetworkAppliancePrefixesDelegatedStatic")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestApplianceCreateNetworkAppliancePrefixesDelegatedStatic, nil)
+		},
+	)
 
 }
 
@@ -5846,25 +4991,15 @@ func (s *ApplianceService) CreateNetworkApplianceRfProfile(networkID string, req
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceCreateNetworkApplianceRfProfile).
-		SetResult(&ResponseApplianceCreateNetworkApplianceRfProfile{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkApplianceRfProfile")
-	}
-
-	result := response.Result().(*ResponseApplianceCreateNetworkApplianceRfProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceCreateNetworkApplianceRfProfile](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestApplianceCreateNetworkApplianceRfProfile, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5881,25 +5016,15 @@ func (s *ApplianceService) CreateNetworkApplianceStaticRoute(networkID string, r
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceCreateNetworkApplianceStaticRoute).
-		SetResult(&ResponseApplianceCreateNetworkApplianceStaticRoute{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkApplianceStaticRoute")
-	}
-
-	result := response.Result().(*ResponseApplianceCreateNetworkApplianceStaticRoute)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceCreateNetworkApplianceStaticRoute](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestApplianceCreateNetworkApplianceStaticRoute, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5916,25 +5041,15 @@ func (s *ApplianceService) CreateNetworkApplianceTrafficShapingCustomPerformance
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass).
-		SetResult(&ResponseApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkApplianceTrafficShapingCustomPerformanceClass")
-	}
-
-	result := response.Result().(*ResponseApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5951,25 +5066,15 @@ func (s *ApplianceService) CreateNetworkApplianceVLAN(networkID string, requestA
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceCreateNetworkApplianceVlan).
-		SetResult(&ResponseApplianceCreateNetworkApplianceVLAN{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkApplianceVlan")
-	}
-
-	result := response.Result().(*ResponseApplianceCreateNetworkApplianceVLAN)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceCreateNetworkApplianceVLAN](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestApplianceCreateNetworkApplianceVlan, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5986,24 +5091,15 @@ func (s *ApplianceService) SwapNetworkApplianceWarmSpare(networkID string) (*Res
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplianceSwapNetworkApplianceWarmSpare{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation SwapNetworkApplianceWarmSpare")
-	}
-
-	result := response.Result().(*ResponseApplianceSwapNetworkApplianceWarmSpare)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceSwapNetworkApplianceWarmSpare](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, nil, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6020,25 +5116,15 @@ func (s *ApplianceService) CreateOrganizationApplianceDNSLocalProfile(organizati
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceCreateOrganizationApplianceDnsLocalProfile).
-		SetResult(&ResponseApplianceCreateOrganizationApplianceDNSLocalProfile{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationApplianceDnsLocalProfile")
-	}
-
-	result := response.Result().(*ResponseApplianceCreateOrganizationApplianceDNSLocalProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceCreateOrganizationApplianceDNSLocalProfile](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestApplianceCreateOrganizationApplianceDnsLocalProfile, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6055,25 +5141,15 @@ func (s *ApplianceService) BulkOrganizationApplianceDNSLocalProfilesAssignmentsC
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceBulkOrganizationApplianceDnsLocalProfilesAssignmentsCreate).
-		SetResult(&ResponseApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreate{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation BulkOrganizationApplianceDnsLocalProfilesAssignmentsCreate")
-	}
-
-	result := response.Result().(*ResponseApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreate)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceBulkOrganizationApplianceDNSLocalProfilesAssignmentsCreate](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestApplianceBulkOrganizationApplianceDnsLocalProfilesAssignmentsCreate, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6090,25 +5166,15 @@ func (s *ApplianceService) CreateOrganizationApplianceDNSLocalProfilesAssignment
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceCreateOrganizationApplianceDnsLocalProfilesAssignmentsBulkDelete).
-		SetResult(&ResponseApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDelete{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationApplianceDnsLocalProfilesAssignmentsBulkDelete")
-	}
-
-	result := response.Result().(*ResponseApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDelete)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceCreateOrganizationApplianceDNSLocalProfilesAssignmentsBulkDelete](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestApplianceCreateOrganizationApplianceDnsLocalProfilesAssignmentsBulkDelete, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6125,25 +5191,15 @@ func (s *ApplianceService) CreateOrganizationApplianceDNSLocalRecord(organizatio
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceCreateOrganizationApplianceDnsLocalRecord).
-		SetResult(&ResponseApplianceCreateOrganizationApplianceDNSLocalRecord{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationApplianceDnsLocalRecord")
-	}
-
-	result := response.Result().(*ResponseApplianceCreateOrganizationApplianceDNSLocalRecord)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceCreateOrganizationApplianceDNSLocalRecord](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestApplianceCreateOrganizationApplianceDnsLocalRecord, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6160,25 +5216,15 @@ func (s *ApplianceService) CreateOrganizationApplianceDNSSplitProfile(organizati
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceCreateOrganizationApplianceDnsSplitProfile).
-		SetResult(&ResponseApplianceCreateOrganizationApplianceDNSSplitProfile{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationApplianceDnsSplitProfile")
-	}
-
-	result := response.Result().(*ResponseApplianceCreateOrganizationApplianceDNSSplitProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceCreateOrganizationApplianceDNSSplitProfile](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestApplianceCreateOrganizationApplianceDnsSplitProfile, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6195,25 +5241,15 @@ func (s *ApplianceService) CreateOrganizationApplianceDNSSplitProfilesAssignment
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceCreateOrganizationApplianceDnsSplitProfilesAssignmentsBulkCreate).
-		SetResult(&ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreate{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationApplianceDnsSplitProfilesAssignmentsBulkCreate")
-	}
-
-	result := response.Result().(*ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreate)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkCreate](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestApplianceCreateOrganizationApplianceDnsSplitProfilesAssignmentsBulkCreate, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6230,25 +5266,15 @@ func (s *ApplianceService) CreateOrganizationApplianceDNSSplitProfilesAssignment
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceCreateOrganizationApplianceDnsSplitProfilesAssignmentsBulkDelete).
-		SetResult(&ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDelete{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationApplianceDnsSplitProfilesAssignmentsBulkDelete")
-	}
-
-	result := response.Result().(*ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDelete)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceCreateOrganizationApplianceDNSSplitProfilesAssignmentsBulkDelete](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestApplianceCreateOrganizationApplianceDnsSplitProfilesAssignmentsBulkDelete, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6262,25 +5288,15 @@ func (s *ApplianceService) UpdateDeviceApplianceRadioSettings(serial string, req
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateDeviceApplianceRadioSettings).
-		SetResult(&ResponseApplianceUpdateDeviceApplianceRadioSettings{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateDeviceApplianceRadioSettings")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateDeviceApplianceRadioSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateDeviceApplianceRadioSettings](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateDeviceApplianceRadioSettings)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6294,25 +5310,15 @@ func (s *ApplianceService) UpdateDeviceApplianceUplinksSettings(serial string, r
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateDeviceApplianceUplinksSettings).
-		SetResult(&ResponseApplianceUpdateDeviceApplianceUplinksSettings{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateDeviceApplianceUplinksSettings")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateDeviceApplianceUplinksSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateDeviceApplianceUplinksSettings](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateDeviceApplianceUplinksSettings)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6326,25 +5332,15 @@ func (s *ApplianceService) UpdateNetworkApplianceConnectivityMonitoringDestinati
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceConnectivityMonitoringDestinations")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6358,23 +5354,13 @@ func (s *ApplianceService) UpdateNetworkApplianceContentFiltering(networkID stri
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceContentFiltering).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceContentFiltering")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceContentFiltering)
+		},
+	)
 
 }
 
@@ -6388,23 +5374,13 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallCellularFirewallRules(n
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceFirewallCellularFirewallRules).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallCellularFirewallRules")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallCellularFirewallRules)
+		},
+	)
 
 }
 
@@ -6420,25 +5396,15 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallFirewalledService(netwo
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{service}", fmt.Sprintf("%v", service), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceFirewallFirewalledService).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceFirewallFirewalledService{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallFirewalledService")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceFirewallFirewalledService)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceFirewallFirewalledService](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallFirewalledService)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6452,25 +5418,15 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallInboundCellularFirewall
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallInboundCellularFirewallRules")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6484,25 +5440,15 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallInboundFirewallRules(ne
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceFirewallInboundFirewallRules).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceFirewallInboundFirewallRules{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallInboundFirewallRules")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceFirewallInboundFirewallRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceFirewallInboundFirewallRules](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallInboundFirewallRules)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6516,23 +5462,13 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallL3FirewallRules(network
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceFirewallL3FirewallRules).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallL3FirewallRules")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallL3FirewallRules)
+		},
+	)
 
 }
 
@@ -6546,23 +5482,13 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallL7FirewallRules(network
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceFirewallL7FirewallRules).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallL7FirewallRules")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallL7FirewallRules)
+		},
+	)
 
 }
 
@@ -6576,25 +5502,15 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallMulticastForwarding(net
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceFirewallMulticastForwarding).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceFirewallMulticastForwarding{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallMulticastForwarding")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceFirewallMulticastForwarding)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceFirewallMulticastForwarding](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallMulticastForwarding)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6608,23 +5524,13 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallOneToManyNatRules(netwo
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceFirewallOneToManyNatRules).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallOneToManyNatRules")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallOneToManyNatRules)
+		},
+	)
 
 }
 
@@ -6638,23 +5544,13 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallOneToOneNatRules(networ
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceFirewallOneToOneNatRules).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallOneToOneNatRules")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallOneToOneNatRules)
+		},
+	)
 
 }
 
@@ -6668,25 +5564,15 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallPortForwardingRules(net
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceFirewallPortForwardingRules).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceFirewallPortForwardingRules{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallPortForwardingRules")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceFirewallPortForwardingRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceFirewallPortForwardingRules](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallPortForwardingRules)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6700,23 +5586,13 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallSettings(networkID stri
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceFirewallSettings).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceFirewallSettings")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallSettings)
+		},
+	)
 
 }
 
@@ -6732,25 +5608,15 @@ func (s *ApplianceService) UpdateNetworkAppliancePort(networkID string, portID s
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{portId}", fmt.Sprintf("%v", portID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkAppliancePort).
-		SetResult(&ResponseApplianceUpdateNetworkAppliancePort{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkAppliancePort")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkAppliancePort)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkAppliancePort](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkAppliancePort)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6766,23 +5632,13 @@ func (s *ApplianceService) UpdateNetworkAppliancePrefixesDelegatedStatic(network
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{staticDelegatedPrefixId}", fmt.Sprintf("%v", staticDelegatedPrefixID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkAppliancePrefixesDelegatedStatic).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkAppliancePrefixesDelegatedStatic")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkAppliancePrefixesDelegatedStatic)
+		},
+	)
 
 }
 
@@ -6798,25 +5654,15 @@ func (s *ApplianceService) UpdateNetworkApplianceRfProfile(networkID string, rfP
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{rfProfileId}", fmt.Sprintf("%v", rfProfileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceRfProfile).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceRfProfile{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceRfProfile")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceRfProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceRfProfile](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceRfProfile)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6830,25 +5676,15 @@ func (s *ApplianceService) UpdateNetworkApplianceSdwanInternetPolicies(networkID
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceSdwanInternetPolicies).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceSdwanInternetPolicies{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceSdwanInternetPolicies")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceSdwanInternetPolicies)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceSdwanInternetPolicies](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceSdwanInternetPolicies)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6862,25 +5698,15 @@ func (s *ApplianceService) UpdateNetworkApplianceSecurityIntrusion(networkID str
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceSecurityIntrusion).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceSecurityIntrusion{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceSecurityIntrusion")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceSecurityIntrusion)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceSecurityIntrusion](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceSecurityIntrusion)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6894,25 +5720,15 @@ func (s *ApplianceService) UpdateNetworkApplianceSecurityMalware(networkID strin
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceSecurityMalware).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceSecurityMalware{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceSecurityMalware")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceSecurityMalware)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceSecurityMalware](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceSecurityMalware)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6926,25 +5742,15 @@ func (s *ApplianceService) UpdateNetworkApplianceSettings(networkID string, requ
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceSettings).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceSettings{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceSettings")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceSettings](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceSettings)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6958,25 +5764,15 @@ func (s *ApplianceService) UpdateNetworkApplianceSingleLan(networkID string, req
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceSingleLan).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceSingleLan{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceSingleLan")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceSingleLan)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceSingleLan](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceSingleLan)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6992,25 +5788,15 @@ func (s *ApplianceService) UpdateNetworkApplianceSSID(networkID string, number s
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceSsid).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceSSID{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceSsid")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceSSID)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceSSID](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceSsid)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7026,25 +5812,15 @@ func (s *ApplianceService) UpdateNetworkApplianceStaticRoute(networkID string, s
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceStaticRoute).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceStaticRoute{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceStaticRoute")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceStaticRoute)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceStaticRoute](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceStaticRoute)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7058,23 +5834,13 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShaping(networkID string
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceTrafficShaping).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceTrafficShaping")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceTrafficShaping)
+		},
+	)
 
 }
 
@@ -7090,25 +5856,15 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingCustomPerformance
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{customPerformanceClassId}", fmt.Sprintf("%v", customPerformanceClassID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceTrafficShapingCustomPerformanceClass")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7122,23 +5878,13 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingRules(networkID s
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceTrafficShapingRules).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceTrafficShapingRules")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceTrafficShapingRules)
+		},
+	)
 
 }
 
@@ -7152,23 +5898,13 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingUplinkBandwidth(n
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceTrafficShapingUplinkBandwidth).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkApplianceTrafficShapingUplinkBandwidth")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceTrafficShapingUplinkBandwidth)
+		},
+	)
 
 }
 
@@ -7182,25 +5918,15 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingUplinkSelection(n
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceTrafficShapingUplinkSelection).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceTrafficShapingUplinkSelection{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceTrafficShapingUplinkSelection")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceTrafficShapingUplinkSelection)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceTrafficShapingUplinkSelection](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceTrafficShapingUplinkSelection)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7214,25 +5940,15 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingVpnExclusions(net
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceTrafficShapingVpnExclusions).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceTrafficShapingVpnExclusions{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceTrafficShapingVpnExclusions")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceTrafficShapingVpnExclusions)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceTrafficShapingVpnExclusions](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceTrafficShapingVpnExclusions)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7246,25 +5962,15 @@ func (s *ApplianceService) UpdateNetworkApplianceVLANsSettings(networkID string,
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceVlansSettings).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceVLANsSettings{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceVlansSettings")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceVLANsSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceVLANsSettings](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceVlansSettings)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7280,25 +5986,15 @@ func (s *ApplianceService) UpdateNetworkApplianceVLAN(networkID string, vlanID s
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{vlanId}", fmt.Sprintf("%v", vlanID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceVlan).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceVLAN{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceVlan")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceVLAN)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceVLAN](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceVlan)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7312,25 +6008,15 @@ func (s *ApplianceService) UpdateNetworkApplianceVpnBgp(networkID string, reques
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceVpnBgp).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceVpnBgp{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceVpnBgp")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceVpnBgp)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceVpnBgp](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceVpnBgp)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7344,25 +6030,15 @@ func (s *ApplianceService) UpdateNetworkApplianceVpnSiteToSiteVpn(networkID stri
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceVpnSiteToSiteVpn).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpn{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceVpnSiteToSiteVpn")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpn)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceVpnSiteToSiteVpn](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceVpnSiteToSiteVpn)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7376,25 +6052,15 @@ func (s *ApplianceService) UpdateNetworkApplianceWarmSpare(networkID string, req
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateNetworkApplianceWarmSpare).
-		SetResult(&ResponseApplianceUpdateNetworkApplianceWarmSpare{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkApplianceWarmSpare")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateNetworkApplianceWarmSpare)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateNetworkApplianceWarmSpare](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceWarmSpare)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7410,25 +6076,15 @@ func (s *ApplianceService) UpdateOrganizationApplianceDNSLocalProfile(organizati
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateOrganizationApplianceDnsLocalProfile).
-		SetResult(&ResponseApplianceUpdateOrganizationApplianceDNSLocalProfile{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationApplianceDnsLocalProfile")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateOrganizationApplianceDNSLocalProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateOrganizationApplianceDNSLocalProfile](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateOrganizationApplianceDnsLocalProfile)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7444,25 +6100,15 @@ func (s *ApplianceService) UpdateOrganizationApplianceDNSLocalRecord(organizatio
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{recordId}", fmt.Sprintf("%v", recordID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateOrganizationApplianceDnsLocalRecord).
-		SetResult(&ResponseApplianceUpdateOrganizationApplianceDNSLocalRecord{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationApplianceDnsLocalRecord")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateOrganizationApplianceDNSLocalRecord)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateOrganizationApplianceDNSLocalRecord](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateOrganizationApplianceDnsLocalRecord)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7478,25 +6124,15 @@ func (s *ApplianceService) UpdateOrganizationApplianceDNSSplitProfile(organizati
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateOrganizationApplianceDnsSplitProfile).
-		SetResult(&ResponseApplianceUpdateOrganizationApplianceDNSSplitProfile{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationApplianceDnsSplitProfile")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateOrganizationApplianceDNSSplitProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateOrganizationApplianceDNSSplitProfile](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateOrganizationApplianceDnsSplitProfile)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7510,23 +6146,13 @@ func (s *ApplianceService) UpdateOrganizationApplianceSecurityIntrusion(organiza
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateOrganizationApplianceSecurityIntrusion).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateOrganizationApplianceSecurityIntrusion")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateOrganizationApplianceSecurityIntrusion)
+		},
+	)
 
 }
 
@@ -7540,23 +6166,13 @@ func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(orga
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateOrganizationApplianceVpnThirdPartyVpnpeers")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers)
+		},
+	)
 
 }
 
@@ -7570,25 +6186,15 @@ func (s *ApplianceService) UpdateOrganizationApplianceVpnVpnFirewallRules(organi
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestApplianceUpdateOrganizationApplianceVpnVpnFirewallRules).
-		SetResult(&ResponseApplianceUpdateOrganizationApplianceVpnVpnFirewallRules{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationApplianceVpnVpnFirewallRules")
-	}
-
-	result := response.Result().(*ResponseApplianceUpdateOrganizationApplianceVpnVpnFirewallRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseApplianceUpdateOrganizationApplianceVpnVpnFirewallRules](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestApplianceUpdateOrganizationApplianceVpnVpnFirewallRules)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7607,23 +6213,11 @@ func (s *ApplianceService) DeleteNetworkAppliancePrefixesDelegatedStatic(network
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{staticDelegatedPrefixId}", fmt.Sprintf("%v", staticDelegatedPrefixID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkAppliancePrefixesDelegatedStatic")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkApplianceRfProfile Delete a RF Profile
@@ -7641,23 +6235,11 @@ func (s *ApplianceService) DeleteNetworkApplianceRfProfile(networkID string, rfP
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{rfProfileId}", fmt.Sprintf("%v", rfProfileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkApplianceRfProfile")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkApplianceStaticRoute Delete a static route from an MX or teleworker network
@@ -7675,23 +6257,11 @@ func (s *ApplianceService) DeleteNetworkApplianceStaticRoute(networkID string, s
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{staticRouteId}", fmt.Sprintf("%v", staticRouteID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkApplianceStaticRoute")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkApplianceTrafficShapingCustomPerformanceClass Delete a custom performance class from an MX network
@@ -7709,23 +6279,11 @@ func (s *ApplianceService) DeleteNetworkApplianceTrafficShapingCustomPerformance
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{customPerformanceClassId}", fmt.Sprintf("%v", customPerformanceClassID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkApplianceTrafficShapingCustomPerformanceClass")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkApplianceVLAN Delete a VLAN from a network
@@ -7743,23 +6301,11 @@ func (s *ApplianceService) DeleteNetworkApplianceVLAN(networkID string, vlanID s
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{vlanId}", fmt.Sprintf("%v", vlanID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkApplianceVlan")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationApplianceDNSLocalProfile Deletes a local DNS profile
@@ -7777,23 +6323,11 @@ func (s *ApplianceService) DeleteOrganizationApplianceDNSLocalProfile(organizati
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationApplianceDnsLocalProfile")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationApplianceDNSLocalRecord Deletes a local DNS record
@@ -7811,23 +6345,11 @@ func (s *ApplianceService) DeleteOrganizationApplianceDNSLocalRecord(organizatio
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{recordId}", fmt.Sprintf("%v", recordID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationApplianceDnsLocalRecord")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationApplianceDNSSplitProfile Deletes a split DNS profile
@@ -7845,21 +6367,9 @@ func (s *ApplianceService) DeleteOrganizationApplianceDNSSplitProfile(organizati
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationApplianceDnsSplitProfile")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }

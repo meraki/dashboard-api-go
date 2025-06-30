@@ -5,7 +5,6 @@ import (
 	"strings"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 type CameraService service
@@ -879,30 +878,21 @@ type RequestCameraUpdateOrganizationCameraRoleAppliedOrgWide struct {
 
 
 */
-
+// {'deprecated': True, 'description': 'Returns live state from camera analytics zones', 'operationId': 'getDeviceCameraAnalyticsLive', 'parameters': [{'description': 'Serial', 'in': 'path', 'name': 'serial', 'required': True, 'schema': {'type': 'string'}}], 'responses': [{'code': '200', 'content_type': 'application/json', 'schema': None, 'data': {'properties': {'ts': {'description': 'The current time', 'type': 'string'}, 'zones': {'description': 'The zones state', 'properties': {'zoneId': {'description': 'The zone state, dynamic', 'properties': {'person': {'description': 'The count per type, dynamic', 'type': 'integer'}}, 'type': 'object'}}, 'type': 'object'}}, 'type': 'object'}}], 'summary': 'Returns live state from camera analytics zones', 'tags': ['camera', 'monitor', 'analytics', 'live'], 'content_types': ['application/json'], 'response_type': {}, 'method': 'GET', 'request_types': [], 'path': '/api/v1/devices/{serial}/camera/analytics/live', 'originalURL': '/api/v1/devices/{serial}/camera/analytics/live', 'headers': {}, 'path_params': {'serial': {'type': 'string', 'description': 'serial path parameter.', 'required': True}}, 'params': {}, 'response_json_schema': {'properties': {'ts': {'description': 'The current time', 'type': 'string'}, 'zones': {'description': 'The zones state', 'properties': {'zoneId': {'description': 'The zone state, dynamic', 'properties': {'person': {'description': 'The count per type, dynamic', 'type': 'integer'}}, 'type': 'object'}}, 'type': 'object'}}, 'type': 'object', '$schema': 'http://json-schema.org/draft-04/schema#'}, 'response': {'ts': 'string', 'zones': {'zoneId': {'person': 0}}}, 'data': {}, 'id': 'aca5cc3c-e030-585d-8fe0-b6f9d6b87a42', 'alt_name': 'getDeviceCameraAnalyticsLive', 'name': 'getDeviceCameraAnalyticsLive', 'has_rename': False, 'kwargs': ''}
 func (s *CameraService) GetDeviceCameraAnalyticsLive(serial string) (*ResponseCameraGetDeviceCameraAnalyticsLive, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/analytics/live"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetDeviceCameraAnalyticsLive{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCameraAnalyticsLive")
-	}
-
-	result := response.Result().(*ResponseCameraGetDeviceCameraAnalyticsLive)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetDeviceCameraAnalyticsLive](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -914,32 +904,21 @@ func (s *CameraService) GetDeviceCameraAnalyticsLive(serial string) (*ResponseCa
 
 
 */
-
+// {'deprecated': True, 'description': 'Returns an overview of aggregate analytics data for a timespan', 'operationId': 'getDeviceCameraAnalyticsOverview', 'parameters': [{'description': 'Serial', 'in': 'path', 'name': 'serial', 'required': True, 'schema': {'type': 'string'}}, {'description': 'The beginning of the timespan for the data. The maximum lookback period is 365 days from today.', 'in': 'query', 'name': 't0', 'schema': {'type': 'string'}}, {'description': 'The end of the timespan for the data. t1 can be a maximum of 7 days after t0.', 'in': 'query', 'name': 't1', 'schema': {'type': 'string'}}, {'description': 'The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 7 days. The default is 1 hour.', 'in': 'query', 'name': 'timespan', 'schema': {'format': 'float', 'maximum': 604800, 'type': 'number'}}, {'description': '[optional] The object type for which analytics will be retrieved. The default object type is person. The available types are [person, vehicle].', 'in': 'query', 'name': 'objectType', 'schema': {'enum': ['person', 'vehicle'], 'type': 'string'}}], 'responses': [{'code': '200', 'content_type': 'application/json', 'schema': None, 'data': {'items': {'properties': {'averageCount': {'description': 'The average count', 'format': 'float', 'type': 'number'}, 'endTs': {'description': 'The end time', 'format': 'date-time', 'type': 'string'}, 'entrances': {'description': 'The number of sentrances', 'type': 'integer'}, 'startTs': {'description': 'The start time', 'format': 'date-time', 'type': 'string'}, 'zoneId': {'description': 'The zone id', 'type': 'integer'}}, 'type': 'object'}, 'type': 'array'}}], 'summary': 'Returns an overview of aggregate analytics data for a timespan', 'tags': ['camera', 'monitor', 'analytics', 'overview'], 'content_types': ['application/json'], 'response_type': [], 'method': 'GET', 'request_types': [], 'path': '/api/v1/devices/{serial}/camera/analytics/overview', 'originalURL': '/api/v1/devices/{serial}/camera/analytics/overview', 'headers': {}, 'path_params': {'serial': {'type': 'string', 'description': 'serial path parameter.', 'required': True}}, 'params': {'t0': {'type': 'string', 'description': 't0 query parameter. The beginning of the timespan for the data. The maximum lookback period is 365 days from today.', 'required': False}, 't1': {'type': 'string', 'description': 't1 query parameter. The end of the timespan for the data. t1 can be a maximum of 7 days after t0.', 'required': False}, 'timespan': {'type': 'number', 'description': 'timespan query parameter. The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 7 days. The default is 1 hour.', 'required': False}, 'objectType': {'type': 'string', 'description': 'objectType query parameter. [optional] The object type for which analytics will be retrieved. The default object type is person. The available types are [person, vehicle].', 'required': False}}, 'response_json_schema': {'items': {'properties': {'averageCount': {'description': 'The average count', 'format': 'float', 'type': 'number'}, 'endTs': {'description': 'The end time', 'format': 'date-time', 'type': 'string'}, 'entrances': {'description': 'The number of sentrances', 'type': 'integer'}, 'startTs': {'description': 'The start time', 'format': 'date-time', 'type': 'string'}, 'zoneId': {'description': 'The zone id', 'type': 'integer'}}, 'type': 'object'}, 'type': 'array', '$schema': 'http://json-schema.org/draft-04/schema#'}, 'response': [{'averageCount': 0, 'endTs': 'string', 'entrances': 0, 'startTs': 'string', 'zoneId': 0}], 'data': {}, 'id': '6f282ea8-e896-5ca2-af45-6ed584b34d29', 'alt_name': 'getDeviceCameraAnalyticsOverview', 'name': 'getDeviceCameraAnalyticsOverview', 'has_rename': False, 'kwargs': ''}
 func (s *CameraService) GetDeviceCameraAnalyticsOverview(serial string, getDeviceCameraAnalyticsOverviewQueryParams *GetDeviceCameraAnalyticsOverviewQueryParams) (*ResponseCameraGetDeviceCameraAnalyticsOverview, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/analytics/overview"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	queryString, _ := query.Values(getDeviceCameraAnalyticsOverviewQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseCameraGetDeviceCameraAnalyticsOverview{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCameraAnalyticsOverview")
-	}
-
-	result := response.Result().(*ResponseCameraGetDeviceCameraAnalyticsOverview)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetDeviceCameraAnalyticsOverview](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getDeviceCameraAnalyticsOverviewQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -951,32 +930,21 @@ func (s *CameraService) GetDeviceCameraAnalyticsOverview(serial string, getDevic
 
 
 */
-
+// {'deprecated': True, 'description': 'Returns most recent record for analytics zones', 'operationId': 'getDeviceCameraAnalyticsRecent', 'parameters': [{'description': 'Serial', 'in': 'path', 'name': 'serial', 'required': True, 'schema': {'type': 'string'}}, {'description': '[optional] The object type for which analytics will be retrieved. The default object type is person. The available types are [person, vehicle].', 'in': 'query', 'name': 'objectType', 'schema': {'enum': ['person', 'vehicle'], 'type': 'string'}}], 'responses': [{'code': '200', 'content_type': 'application/json', 'schema': None, 'data': {'items': {'properties': {'averageCount': {'description': 'The average count', 'format': 'float', 'type': 'number'}, 'endTs': {'description': 'The end time', 'format': 'date-time', 'type': 'string'}, 'entrances': {'description': 'The number of entrances', 'type': 'integer'}, 'startTs': {'description': 'The start time', 'format': 'date-time', 'type': 'string'}, 'zoneId': {'description': 'The zone id', 'type': 'integer'}}, 'type': 'object'}, 'type': 'array'}}], 'summary': 'Returns most recent record for analytics zones', 'tags': ['camera', 'monitor', 'analytics', 'recent'], 'content_types': ['application/json'], 'response_type': [], 'method': 'GET', 'request_types': [], 'path': '/api/v1/devices/{serial}/camera/analytics/recent', 'originalURL': '/api/v1/devices/{serial}/camera/analytics/recent', 'headers': {}, 'path_params': {'serial': {'type': 'string', 'description': 'serial path parameter.', 'required': True}}, 'params': {'objectType': {'type': 'string', 'description': 'objectType query parameter. [optional] The object type for which analytics will be retrieved. The default object type is person. The available types are [person, vehicle].', 'required': False}}, 'response_json_schema': {'items': {'properties': {'averageCount': {'description': 'The average count', 'format': 'float', 'type': 'number'}, 'endTs': {'description': 'The end time', 'format': 'date-time', 'type': 'string'}, 'entrances': {'description': 'The number of entrances', 'type': 'integer'}, 'startTs': {'description': 'The start time', 'format': 'date-time', 'type': 'string'}, 'zoneId': {'description': 'The zone id', 'type': 'integer'}}, 'type': 'object'}, 'type': 'array', '$schema': 'http://json-schema.org/draft-04/schema#'}, 'response': [{'averageCount': 0, 'endTs': 'string', 'entrances': 0, 'startTs': 'string', 'zoneId': 0}], 'data': {}, 'id': 'c4784d56-951c-5974-9bda-395c6aaad916', 'alt_name': 'getDeviceCameraAnalyticsRecent', 'name': 'getDeviceCameraAnalyticsRecent', 'has_rename': False, 'kwargs': ''}
 func (s *CameraService) GetDeviceCameraAnalyticsRecent(serial string, getDeviceCameraAnalyticsRecentQueryParams *GetDeviceCameraAnalyticsRecentQueryParams) (*ResponseCameraGetDeviceCameraAnalyticsRecent, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/analytics/recent"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	queryString, _ := query.Values(getDeviceCameraAnalyticsRecentQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseCameraGetDeviceCameraAnalyticsRecent{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCameraAnalyticsRecent")
-	}
-
-	result := response.Result().(*ResponseCameraGetDeviceCameraAnalyticsRecent)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetDeviceCameraAnalyticsRecent](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getDeviceCameraAnalyticsRecentQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -987,30 +955,21 @@ func (s *CameraService) GetDeviceCameraAnalyticsRecent(serial string, getDeviceC
 
 
 */
-
+// {'deprecated': True, 'description': 'Returns all configured analytic zones for this camera', 'operationId': 'getDeviceCameraAnalyticsZones', 'parameters': [{'description': 'Serial', 'in': 'path', 'name': 'serial', 'required': True, 'schema': {'type': 'string'}}], 'responses': [{'code': '200', 'content_type': 'application/json', 'schema': None, 'data': {'items': {'properties': {'id': {'description': 'The zone ID', 'type': 'string'}, 'label': {'description': 'The zone label', 'type': 'string'}, 'regionOfInterest': {'description': 'The region of interest', 'properties': {'x0': {'description': 'The x0 coordinate', 'type': 'string'}, 'x1': {'description': 'The x1 coordinate', 'type': 'string'}, 'y0': {'description': 'The y0 coordinate', 'type': 'string'}, 'y1': {'description': 'The y1 coordinate', 'type': 'string'}}, 'type': 'object'}, 'type': {'description': 'The zone type', 'type': 'string'}}, 'type': 'object'}, 'type': 'array'}}], 'summary': 'Returns all configured analytic zones for this camera', 'tags': ['camera', 'monitor', 'analytics', 'zones'], 'content_types': ['application/json'], 'response_type': [], 'method': 'GET', 'request_types': [], 'path': '/api/v1/devices/{serial}/camera/analytics/zones', 'originalURL': '/api/v1/devices/{serial}/camera/analytics/zones', 'headers': {}, 'path_params': {'serial': {'type': 'string', 'description': 'serial path parameter.', 'required': True}}, 'params': {}, 'response_json_schema': {'items': {'properties': {'id': {'description': 'The zone ID', 'type': 'string'}, 'label': {'description': 'The zone label', 'type': 'string'}, 'regionOfInterest': {'description': 'The region of interest', 'properties': {'x0': {'description': 'The x0 coordinate', 'type': 'string'}, 'x1': {'description': 'The x1 coordinate', 'type': 'string'}, 'y0': {'description': 'The y0 coordinate', 'type': 'string'}, 'y1': {'description': 'The y1 coordinate', 'type': 'string'}}, 'type': 'object'}, 'type': {'description': 'The zone type', 'type': 'string'}}, 'type': 'object'}, 'type': 'array', '$schema': 'http://json-schema.org/draft-04/schema#'}, 'response': [{'id': 'string', 'label': 'string', 'regionOfInterest': {'x0': 'string', 'x1': 'string', 'y0': 'string', 'y1': 'string'}, 'type': 'string'}], 'data': {}, 'id': '63cb69f1-baa9-5a2d-b847-a75ded2dfb00', 'alt_name': 'getDeviceCameraAnalyticsZones', 'name': 'getDeviceCameraAnalyticsZones', 'has_rename': False, 'kwargs': ''}
 func (s *CameraService) GetDeviceCameraAnalyticsZones(serial string) (*ResponseCameraGetDeviceCameraAnalyticsZones, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/analytics/zones"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetDeviceCameraAnalyticsZones{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCameraAnalyticsZones")
-	}
-
-	result := response.Result().(*ResponseCameraGetDeviceCameraAnalyticsZones)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetDeviceCameraAnalyticsZones](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1023,33 +982,22 @@ func (s *CameraService) GetDeviceCameraAnalyticsZones(serial string) (*ResponseC
 
 
 */
-
+// {'deprecated': True, 'description': 'Return historical records for analytic zones', 'operationId': 'getDeviceCameraAnalyticsZoneHistory', 'parameters': [{'description': 'Serial', 'in': 'path', 'name': 'serial', 'required': True, 'schema': {'type': 'string'}}, {'description': 'Zone ID', 'in': 'path', 'name': 'zoneId', 'required': True, 'schema': {'type': 'string'}}, {'description': 'The beginning of the timespan for the data. The maximum lookback period is 365 days from today.', 'in': 'query', 'name': 't0', 'schema': {'type': 'string'}}, {'description': 'The end of the timespan for the data. t1 can be a maximum of 14 hours after t0.', 'in': 'query', 'name': 't1', 'schema': {'type': 'string'}}, {'description': 'The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 14 hours. The default is 1 hour.', 'in': 'query', 'name': 'timespan', 'schema': {'format': 'float', 'maximum': 50400, 'type': 'number'}}, {'description': 'The time resolution in seconds for returned data. The valid resolutions are: 60. The default is 60.', 'in': 'query', 'name': 'resolution', 'schema': {'type': 'integer'}}, {'description': '[optional] The object type for which analytics will be retrieved. The default object type is person. The available types are [person, vehicle].', 'in': 'query', 'name': 'objectType', 'schema': {'enum': ['person', 'vehicle'], 'type': 'string'}}], 'responses': [{'code': '200', 'content_type': 'application/json', 'schema': None, 'data': {'items': {'properties': {'averageCount': {'description': 'The average count', 'format': 'float', 'type': 'number'}, 'endTs': {'description': 'The end time', 'format': 'date-time', 'type': 'string'}, 'entrances': {'description': 'The number of entrances', 'type': 'integer'}, 'startTs': {'description': 'The start time', 'format': 'date-time', 'type': 'string'}}, 'type': 'object'}, 'type': 'array'}}], 'summary': 'Return historical records for analytic zones', 'tags': ['camera', 'monitor', 'analytics', 'zones', 'history'], 'content_types': ['application/json'], 'response_type': [], 'method': 'GET', 'request_types': [], 'path': '/api/v1/devices/{serial}/camera/analytics/zones/{zoneId}/history', 'originalURL': '/api/v1/devices/{serial}/camera/analytics/zones/{zoneId}/history', 'headers': {}, 'path_params': {'serial': {'type': 'string', 'description': 'serial path parameter.', 'required': True}, 'zoneId': {'type': 'string', 'description': 'zoneId path parameter. Zone ID', 'required': True}}, 'params': {'t0': {'type': 'string', 'description': 't0 query parameter. The beginning of the timespan for the data. The maximum lookback period is 365 days from today.', 'required': False}, 't1': {'type': 'string', 'description': 't1 query parameter. The end of the timespan for the data. t1 can be a maximum of 14 hours after t0.', 'required': False}, 'timespan': {'type': 'number', 'description': 'timespan query parameter. The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 14 hours. The default is 1 hour.', 'required': False}, 'resolution': {'type': 'integer', 'description': 'resolution query parameter. The time resolution in seconds for returned data. The valid resolutions are: 60. The default is 60.', 'required': False}, 'objectType': {'type': 'string', 'description': 'objectType query parameter. [optional] The object type for which analytics will be retrieved. The default object type is person. The available types are [person, vehicle].', 'required': False}}, 'response_json_schema': {'items': {'properties': {'averageCount': {'description': 'The average count', 'format': 'float', 'type': 'number'}, 'endTs': {'description': 'The end time', 'format': 'date-time', 'type': 'string'}, 'entrances': {'description': 'The number of entrances', 'type': 'integer'}, 'startTs': {'description': 'The start time', 'format': 'date-time', 'type': 'string'}}, 'type': 'object'}, 'type': 'array', '$schema': 'http://json-schema.org/draft-04/schema#'}, 'response': [{'averageCount': 0, 'endTs': 'string', 'entrances': 0, 'startTs': 'string'}], 'data': {}, 'id': 'b787212f-cf12-54cb-ac69-c0e157ab7a9d', 'alt_name': 'getDeviceCameraAnalyticsZoneHistory', 'name': 'getDeviceCameraAnalyticsZoneHistory', 'has_rename': False, 'kwargs': ''}
 func (s *CameraService) GetDeviceCameraAnalyticsZoneHistory(serial string, zoneID string, getDeviceCameraAnalyticsZoneHistoryQueryParams *GetDeviceCameraAnalyticsZoneHistoryQueryParams) (*ResponseCameraGetDeviceCameraAnalyticsZoneHistory, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/camera/analytics/zones/{zoneId}/history"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{zoneId}", fmt.Sprintf("%v", zoneID), -1)
 
-	queryString, _ := query.Values(getDeviceCameraAnalyticsZoneHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseCameraGetDeviceCameraAnalyticsZoneHistory{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCameraAnalyticsZoneHistory")
-	}
-
-	result := response.Result().(*ResponseCameraGetDeviceCameraAnalyticsZoneHistory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetDeviceCameraAnalyticsZoneHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getDeviceCameraAnalyticsZoneHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1066,24 +1014,15 @@ func (s *CameraService) GetDeviceCameraCustomAnalytics(serial string) (*Response
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetDeviceCameraCustomAnalytics{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCameraCustomAnalytics")
-	}
-
-	result := response.Result().(*ResponseCameraGetDeviceCameraCustomAnalytics)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetDeviceCameraCustomAnalytics](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1100,24 +1039,15 @@ func (s *CameraService) GetDeviceCameraQualityAndRetention(serial string) (*Resp
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetDeviceCameraQualityAndRetention{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCameraQualityAndRetention")
-	}
-
-	result := response.Result().(*ResponseCameraGetDeviceCameraQualityAndRetention)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetDeviceCameraQualityAndRetention](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1134,24 +1064,15 @@ func (s *CameraService) GetDeviceCameraSense(serial string) (*ResponseCameraGetD
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetDeviceCameraSense{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCameraSense")
-	}
-
-	result := response.Result().(*ResponseCameraGetDeviceCameraSense)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetDeviceCameraSense](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1168,24 +1089,15 @@ func (s *CameraService) GetDeviceCameraSenseObjectDetectionModels(serial string)
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetDeviceCameraSenseObjectDetectionModels{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCameraSenseObjectDetectionModels")
-	}
-
-	result := response.Result().(*ResponseCameraGetDeviceCameraSenseObjectDetectionModels)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetDeviceCameraSenseObjectDetectionModels](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1202,24 +1114,15 @@ func (s *CameraService) GetDeviceCameraVideoSettings(serial string) (*ResponseCa
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetDeviceCameraVideoSettings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCameraVideoSettings")
-	}
-
-	result := response.Result().(*ResponseCameraGetDeviceCameraVideoSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetDeviceCameraVideoSettings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1237,26 +1140,15 @@ func (s *CameraService) GetDeviceCameraVideoLink(serial string, getDeviceCameraV
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	queryString, _ := query.Values(getDeviceCameraVideoLinkQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseCameraGetDeviceCameraVideoLink{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCameraVideoLink")
-	}
-
-	result := response.Result().(*ResponseCameraGetDeviceCameraVideoLink)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetDeviceCameraVideoLink](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getDeviceCameraVideoLinkQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1273,24 +1165,15 @@ func (s *CameraService) GetDeviceCameraWirelessProfiles(serial string) (*Respons
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetDeviceCameraWirelessProfiles{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCameraWirelessProfiles")
-	}
-
-	result := response.Result().(*ResponseCameraGetDeviceCameraWirelessProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetDeviceCameraWirelessProfiles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1307,24 +1190,15 @@ func (s *CameraService) GetNetworkCameraQualityRetentionProfiles(networkID strin
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetNetworkCameraQualityRetentionProfiles{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkCameraQualityRetentionProfiles")
-	}
-
-	result := response.Result().(*ResponseCameraGetNetworkCameraQualityRetentionProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetNetworkCameraQualityRetentionProfiles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1343,24 +1217,15 @@ func (s *CameraService) GetNetworkCameraQualityRetentionProfile(networkID string
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{qualityRetentionProfileId}", fmt.Sprintf("%v", qualityRetentionProfileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetNetworkCameraQualityRetentionProfile{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkCameraQualityRetentionProfile")
-	}
-
-	result := response.Result().(*ResponseCameraGetNetworkCameraQualityRetentionProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetNetworkCameraQualityRetentionProfile](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1377,24 +1242,15 @@ func (s *CameraService) GetNetworkCameraSchedules(networkID string) (*ResponseCa
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetNetworkCameraSchedules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkCameraSchedules")
-	}
-
-	result := response.Result().(*ResponseCameraGetNetworkCameraSchedules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetNetworkCameraSchedules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1411,24 +1267,15 @@ func (s *CameraService) GetNetworkCameraWirelessProfiles(networkID string) (*Res
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetNetworkCameraWirelessProfiles{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkCameraWirelessProfiles")
-	}
-
-	result := response.Result().(*ResponseCameraGetNetworkCameraWirelessProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetNetworkCameraWirelessProfiles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1447,24 +1294,15 @@ func (s *CameraService) GetNetworkCameraWirelessProfile(networkID string, wirele
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{wirelessProfileId}", fmt.Sprintf("%v", wirelessProfileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetNetworkCameraWirelessProfile{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkCameraWirelessProfile")
-	}
-
-	result := response.Result().(*ResponseCameraGetNetworkCameraWirelessProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetNetworkCameraWirelessProfile](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1482,26 +1320,15 @@ func (s *CameraService) GetOrganizationCameraBoundariesAreasByDevice(organizatio
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationCameraBoundariesAreasByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseCameraGetOrganizationCameraBoundariesAreasByDevice{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraBoundariesAreasByDevice")
-	}
-
-	result := response.Result().(*ResponseCameraGetOrganizationCameraBoundariesAreasByDevice)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetOrganizationCameraBoundariesAreasByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationCameraBoundariesAreasByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1519,26 +1346,15 @@ func (s *CameraService) GetOrganizationCameraBoundariesLinesByDevice(organizatio
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationCameraBoundariesLinesByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseCameraGetOrganizationCameraBoundariesLinesByDevice{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraBoundariesLinesByDevice")
-	}
-
-	result := response.Result().(*ResponseCameraGetOrganizationCameraBoundariesLinesByDevice)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetOrganizationCameraBoundariesLinesByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationCameraBoundariesLinesByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1555,24 +1371,15 @@ func (s *CameraService) GetOrganizationCameraCustomAnalyticsArtifacts(organizati
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetOrganizationCameraCustomAnalyticsArtifacts{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraCustomAnalyticsArtifacts")
-	}
-
-	result := response.Result().(*ResponseCameraGetOrganizationCameraCustomAnalyticsArtifacts)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetOrganizationCameraCustomAnalyticsArtifacts](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1591,24 +1398,15 @@ func (s *CameraService) GetOrganizationCameraCustomAnalyticsArtifact(organizatio
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{artifactId}", fmt.Sprintf("%v", artifactID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetOrganizationCameraCustomAnalyticsArtifact{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraCustomAnalyticsArtifact")
-	}
-
-	result := response.Result().(*ResponseCameraGetOrganizationCameraCustomAnalyticsArtifact)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetOrganizationCameraCustomAnalyticsArtifact](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1626,26 +1424,15 @@ func (s *CameraService) GetOrganizationCameraDetectionsHistoryByBoundaryByInterv
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationCameraDetectionsHistoryByBoundaryByIntervalQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseCameraGetOrganizationCameraDetectionsHistoryByBoundaryByInterval{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraDetectionsHistoryByBoundaryByInterval")
-	}
-
-	result := response.Result().(*ResponseCameraGetOrganizationCameraDetectionsHistoryByBoundaryByInterval)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetOrganizationCameraDetectionsHistoryByBoundaryByInterval](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationCameraDetectionsHistoryByBoundaryByIntervalQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1663,26 +1450,15 @@ func (s *CameraService) GetOrganizationCameraOnboardingStatuses(organizationID s
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationCameraOnboardingStatusesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseCameraGetOrganizationCameraOnboardingStatuses{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraOnboardingStatuses")
-	}
-
-	result := response.Result().(*ResponseCameraGetOrganizationCameraOnboardingStatuses)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetOrganizationCameraOnboardingStatuses](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationCameraOnboardingStatusesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1699,24 +1475,15 @@ func (s *CameraService) GetOrganizationCameraPermissions(organizationID string) 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetOrganizationCameraPermissions{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraPermissions")
-	}
-
-	result := response.Result().(*ResponseCameraGetOrganizationCameraPermissions)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetOrganizationCameraPermissions](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1735,24 +1502,15 @@ func (s *CameraService) GetOrganizationCameraPermission(organizationID string, p
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{permissionScopeId}", fmt.Sprintf("%v", permissionScopeID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetOrganizationCameraPermission{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraPermission")
-	}
-
-	result := response.Result().(*ResponseCameraGetOrganizationCameraPermission)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetOrganizationCameraPermission](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1769,24 +1527,15 @@ func (s *CameraService) GetOrganizationCameraRoles(organizationID string) (*Resp
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetOrganizationCameraRoles{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraRoles")
-	}
-
-	result := response.Result().(*ResponseCameraGetOrganizationCameraRoles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetOrganizationCameraRoles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1805,24 +1554,15 @@ func (s *CameraService) GetOrganizationCameraRole(organizationID string, roleID 
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{roleId}", fmt.Sprintf("%v", roleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCameraGetOrganizationCameraRole{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationCameraRole")
-	}
-
-	result := response.Result().(*ResponseCameraGetOrganizationCameraRole)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGetOrganizationCameraRole](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1839,25 +1579,15 @@ func (s *CameraService) GenerateDeviceCameraSnapshot(serial string, requestCamer
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCameraGenerateDeviceCameraSnapshot).
-		SetResult(&ResponseCameraGenerateDeviceCameraSnapshot{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GenerateDeviceCameraSnapshot")
-	}
-
-	result := response.Result().(*ResponseCameraGenerateDeviceCameraSnapshot)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraGenerateDeviceCameraSnapshot](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestCameraGenerateDeviceCameraSnapshot, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1874,24 +1604,13 @@ func (s *CameraService) CreateNetworkCameraQualityRetentionProfile(networkID str
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCameraCreateNetworkCameraQualityRetentionProfile).
-		// SetResult(&ResponseCameraCreateNetworkCameraQualityRetentionProfile{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateNetworkCameraQualityRetentionProfile")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestCameraCreateNetworkCameraQualityRetentionProfile, nil)
+		},
+	)
 
 }
 
@@ -1908,25 +1627,15 @@ func (s *CameraService) CreateNetworkCameraWirelessProfile(networkID string, req
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCameraCreateNetworkCameraWirelessProfile).
-		SetResult(&ResponseCameraCreateNetworkCameraWirelessProfile{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkCameraWirelessProfile")
-	}
-
-	result := response.Result().(*ResponseCameraCreateNetworkCameraWirelessProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraCreateNetworkCameraWirelessProfile](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestCameraCreateNetworkCameraWirelessProfile, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1943,25 +1652,15 @@ func (s *CameraService) CreateOrganizationCameraCustomAnalyticsArtifact(organiza
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCameraCreateOrganizationCameraCustomAnalyticsArtifact).
-		SetResult(&ResponseCameraCreateOrganizationCameraCustomAnalyticsArtifact{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationCameraCustomAnalyticsArtifact")
-	}
-
-	result := response.Result().(*ResponseCameraCreateOrganizationCameraCustomAnalyticsArtifact)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraCreateOrganizationCameraCustomAnalyticsArtifact](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestCameraCreateOrganizationCameraCustomAnalyticsArtifact, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1978,24 +1677,13 @@ func (s *CameraService) CreateOrganizationCameraRole(organizationID string, requ
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCameraCreateOrganizationCameraRole).
-		// SetResult(&ResponseCameraCreateOrganizationCameraRole{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateOrganizationCameraRole")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestCameraCreateOrganizationCameraRole, nil)
+		},
+	)
 
 }
 
@@ -2009,25 +1697,15 @@ func (s *CameraService) UpdateDeviceCameraCustomAnalytics(serial string, request
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCameraUpdateDeviceCameraCustomAnalytics).
-		SetResult(&ResponseCameraUpdateDeviceCameraCustomAnalytics{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateDeviceCameraCustomAnalytics")
-	}
-
-	result := response.Result().(*ResponseCameraUpdateDeviceCameraCustomAnalytics)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraUpdateDeviceCameraCustomAnalytics](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCameraUpdateDeviceCameraCustomAnalytics)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2041,23 +1719,13 @@ func (s *CameraService) UpdateDeviceCameraQualityAndRetention(serial string, req
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCameraUpdateDeviceCameraQualityAndRetention).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateDeviceCameraQualityAndRetention")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCameraUpdateDeviceCameraQualityAndRetention)
+		},
+	)
 
 }
 
@@ -2071,23 +1739,13 @@ func (s *CameraService) UpdateDeviceCameraSense(serial string, requestCameraUpda
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCameraUpdateDeviceCameraSense).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateDeviceCameraSense")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCameraUpdateDeviceCameraSense)
+		},
+	)
 
 }
 
@@ -2101,25 +1759,15 @@ func (s *CameraService) UpdateDeviceCameraVideoSettings(serial string, requestCa
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCameraUpdateDeviceCameraVideoSettings).
-		SetResult(&ResponseCameraUpdateDeviceCameraVideoSettings{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateDeviceCameraVideoSettings")
-	}
-
-	result := response.Result().(*ResponseCameraUpdateDeviceCameraVideoSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraUpdateDeviceCameraVideoSettings](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCameraUpdateDeviceCameraVideoSettings)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2133,23 +1781,13 @@ func (s *CameraService) UpdateDeviceCameraWirelessProfiles(serial string, reques
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCameraUpdateDeviceCameraWirelessProfiles).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateDeviceCameraWirelessProfiles")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCameraUpdateDeviceCameraWirelessProfiles)
+		},
+	)
 
 }
 
@@ -2165,23 +1803,13 @@ func (s *CameraService) UpdateNetworkCameraQualityRetentionProfile(networkID str
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{qualityRetentionProfileId}", fmt.Sprintf("%v", qualityRetentionProfileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCameraUpdateNetworkCameraQualityRetentionProfile).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkCameraQualityRetentionProfile")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCameraUpdateNetworkCameraQualityRetentionProfile)
+		},
+	)
 
 }
 
@@ -2197,25 +1825,15 @@ func (s *CameraService) UpdateNetworkCameraWirelessProfile(networkID string, wir
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{wirelessProfileId}", fmt.Sprintf("%v", wirelessProfileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCameraUpdateNetworkCameraWirelessProfile).
-		SetResult(&ResponseCameraUpdateNetworkCameraWirelessProfile{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkCameraWirelessProfile")
-	}
-
-	result := response.Result().(*ResponseCameraUpdateNetworkCameraWirelessProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseCameraUpdateNetworkCameraWirelessProfile](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCameraUpdateNetworkCameraWirelessProfile)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -2229,23 +1847,13 @@ func (s *CameraService) UpdateOrganizationCameraOnboardingStatuses(organizationI
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCameraUpdateOrganizationCameraOnboardingStatuses).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateOrganizationCameraOnboardingStatuses")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCameraUpdateOrganizationCameraOnboardingStatuses)
+		},
+	)
 
 }
 
@@ -2261,23 +1869,13 @@ func (s *CameraService) UpdateOrganizationCameraRole(organizationID string, role
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{roleId}", fmt.Sprintf("%v", roleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestCameraUpdateOrganizationCameraRole).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateOrganizationCameraRole")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestCameraUpdateOrganizationCameraRole)
+		},
+	)
 
 }
 
@@ -2296,23 +1894,11 @@ func (s *CameraService) DeleteNetworkCameraQualityRetentionProfile(networkID str
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{qualityRetentionProfileId}", fmt.Sprintf("%v", qualityRetentionProfileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkCameraQualityRetentionProfile")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkCameraWirelessProfile Delete an existing camera wireless profile for this network.
@@ -2330,23 +1916,11 @@ func (s *CameraService) DeleteNetworkCameraWirelessProfile(networkID string, wir
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{wirelessProfileId}", fmt.Sprintf("%v", wirelessProfileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkCameraWirelessProfile")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationCameraCustomAnalyticsArtifact Delete Custom Analytics Artifact
@@ -2364,23 +1938,11 @@ func (s *CameraService) DeleteOrganizationCameraCustomAnalyticsArtifact(organiza
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{artifactId}", fmt.Sprintf("%v", artifactID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationCameraCustomAnalyticsArtifact")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationCameraRole Delete an existing role for this organization.
@@ -2398,21 +1960,9 @@ func (s *CameraService) DeleteOrganizationCameraRole(organizationID string, role
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{roleId}", fmt.Sprintf("%v", roleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationCameraRole")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }

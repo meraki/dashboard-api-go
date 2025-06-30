@@ -1,12 +1,10 @@
 package meraki
 
 import (
-	"encoding/json"
 	"fmt"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 type LicensingService service
@@ -348,26 +346,15 @@ func (s *LicensingService) GetAdministeredLicensingSubscriptionEntitlements(getA
 	path := "/api/v1/administered/licensing/subscription/entitlements"
 	s.rateLimiterBucket.Wait(1)
 
-	queryString, _ := query.Values(getAdministeredLicensingSubscriptionEntitlementsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseLicensingGetAdministeredLicensingSubscriptionEntitlements{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetAdministeredLicensingSubscriptionEntitlements")
-	}
-
-	result := response.Result().(*ResponseLicensingGetAdministeredLicensingSubscriptionEntitlements)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseLicensingGetAdministeredLicensingSubscriptionEntitlements](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getAdministeredLicensingSubscriptionEntitlementsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -383,62 +370,25 @@ func (s *LicensingService) GetAdministeredLicensingSubscriptionSubscriptions(get
 	path := "/api/v1/administered/licensing/subscription/subscriptions"
 	s.rateLimiterBucket.Wait(1)
 
-	if getAdministeredLicensingSubscriptionSubscriptionsQueryParams != nil && getAdministeredLicensingSubscriptionSubscriptionsQueryParams.PerPage == -1 {
-		var result *ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptions
-		println("Paginate")
-		getAdministeredLicensingSubscriptionSubscriptionsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetAdministeredLicensingSubscriptionSubscriptionsPaginate, "", "", getAdministeredLicensingSubscriptionSubscriptionsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptions
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
+	// Other way
+
+	return doWithRetriesAndResult[ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptions](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getAdministeredLicensingSubscriptionSubscriptionsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptions) ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptions {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getAdministeredLicensingSubscriptionSubscriptionsQueryParams != nil {
+				return getAdministeredLicensingSubscriptionSubscriptionsQueryParams.PerPage == -1
 			}
-		}
-		return result, response, err
-	}
+			return false
+		}(),
+	)
 
-	queryString, _ := query.Values(getAdministeredLicensingSubscriptionSubscriptionsQueryParams)
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptions{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetAdministeredLicensingSubscriptionSubscriptions")
-	}
-
-	result := response.Result().(*ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptions)
-	return result, response, err
-
-}
-func (s *LicensingService) GetAdministeredLicensingSubscriptionSubscriptionsPaginate(getAdministeredLicensingSubscriptionSubscriptionsQueryParams any) (any, *resty.Response, error) {
-	getAdministeredLicensingSubscriptionSubscriptionsQueryParamsConverted := getAdministeredLicensingSubscriptionSubscriptionsQueryParams.(*GetAdministeredLicensingSubscriptionSubscriptionsQueryParams)
-
-	return s.GetAdministeredLicensingSubscriptionSubscriptions(getAdministeredLicensingSubscriptionSubscriptionsQueryParamsConverted)
 }
 
 //GetAdministeredLicensingSubscriptionSubscriptionsComplianceStatuses Get compliance status for requested subscriptions
@@ -453,26 +403,15 @@ func (s *LicensingService) GetAdministeredLicensingSubscriptionSubscriptionsComp
 	path := "/api/v1/administered/licensing/subscription/subscriptions/compliance/statuses"
 	s.rateLimiterBucket.Wait(1)
 
-	queryString, _ := query.Values(getAdministeredLicensingSubscriptionSubscriptionsComplianceStatusesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptionsComplianceStatuses{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetAdministeredLicensingSubscriptionSubscriptionsComplianceStatuses")
-	}
-
-	result := response.Result().(*ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptionsComplianceStatuses)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptionsComplianceStatuses](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getAdministeredLicensingSubscriptionSubscriptionsComplianceStatusesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -488,64 +427,27 @@ func (s *LicensingService) GetAdministeredLicensingSubscriptionSubscriptionsComp
 func (s *LicensingService) GetOrganizationLicensingCotermLicenses(organizationID string, getOrganizationLicensingCotermLicensesQueryParams *GetOrganizationLicensingCotermLicensesQueryParams) (*ResponseLicensingGetOrganizationLicensingCotermLicenses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licensing/coterm/licenses"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationLicensingCotermLicensesQueryParams != nil && getOrganizationLicensingCotermLicensesQueryParams.PerPage == -1 {
-		var result *ResponseLicensingGetOrganizationLicensingCotermLicenses
-		println("Paginate")
-		getOrganizationLicensingCotermLicensesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationLicensingCotermLicensesPaginate, organizationID, "", getOrganizationLicensingCotermLicensesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseLicensingGetOrganizationLicensingCotermLicenses
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationLicensingCotermLicensesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseLicensingGetOrganizationLicensingCotermLicenses{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseLicensingGetOrganizationLicensingCotermLicenses](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationLicensingCotermLicensesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseLicensingGetOrganizationLicensingCotermLicenses) ResponseLicensingGetOrganizationLicensingCotermLicenses {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationLicensingCotermLicensesQueryParams != nil {
+				return getOrganizationLicensingCotermLicensesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationLicensingCotermLicenses")
-	}
-
-	result := response.Result().(*ResponseLicensingGetOrganizationLicensingCotermLicenses)
-	return result, response, err
-
-}
-func (s *LicensingService) GetOrganizationLicensingCotermLicensesPaginate(organizationID string, getOrganizationLicensingCotermLicensesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationLicensingCotermLicensesQueryParamsConverted := getOrganizationLicensingCotermLicensesQueryParams.(*GetOrganizationLicensingCotermLicensesQueryParams)
-
-	return s.GetOrganizationLicensingCotermLicenses(organizationID, getOrganizationLicensingCotermLicensesQueryParamsConverted)
 }
 
 //ClaimAdministeredLicensingSubscriptionSubscriptions Claim a subscription into an organization.
@@ -560,27 +462,15 @@ func (s *LicensingService) ClaimAdministeredLicensingSubscriptionSubscriptions(r
 	path := "/api/v1/administered/licensing/subscription/subscriptions/claim"
 	s.rateLimiterBucket.Wait(1)
 
-	queryString, _ := query.Values(claimAdministeredLicensingSubscriptionSubscriptionsQueryParams)
+	// Past way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetBody(requestLicensingClaimAdministeredLicensingSubscriptionSubscriptions).
-		SetResult(&ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptions{}).
-		SetError(&Error).
-		Post(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ClaimAdministeredLicensingSubscriptionSubscriptions")
-	}
-
-	result := response.Result().(*ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptions)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseLicensingClaimAdministeredLicensingSubscriptionSubscriptions](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestLicensingClaimAdministeredLicensingSubscriptionSubscriptions, claimAdministeredLicensingSubscriptionSubscriptionsQueryParams)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -595,25 +485,15 @@ func (s *LicensingService) ValidateAdministeredLicensingSubscriptionSubscription
 	path := "/api/v1/administered/licensing/subscription/subscriptions/claimKey/validate"
 	s.rateLimiterBucket.Wait(1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKey).
-		SetResult(&ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKey{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ValidateAdministeredLicensingSubscriptionSubscriptionsClaimKey")
-	}
-
-	result := response.Result().(*ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKey)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKey](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKey, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -631,27 +511,15 @@ func (s *LicensingService) BindAdministeredLicensingSubscriptionSubscription(sub
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{subscriptionId}", fmt.Sprintf("%v", subscriptionID), -1)
 
-	queryString, _ := query.Values(bindAdministeredLicensingSubscriptionSubscriptionQueryParams)
+	// Past way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetBody(requestLicensingBindAdministeredLicensingSubscriptionSubscription).
-		SetResult(&ResponseLicensingBindAdministeredLicensingSubscriptionSubscription{}).
-		SetError(&Error).
-		Post(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation BindAdministeredLicensingSubscriptionSubscription")
-	}
-
-	result := response.Result().(*ResponseLicensingBindAdministeredLicensingSubscriptionSubscription)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseLicensingBindAdministeredLicensingSubscriptionSubscription](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestLicensingBindAdministeredLicensingSubscriptionSubscription, bindAdministeredLicensingSubscriptionSubscriptionQueryParams)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -668,24 +536,14 @@ func (s *LicensingService) MoveOrganizationLicensingCotermLicenses(organizationI
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestLicensingMoveOrganizationLicensingCotermLicenses).
-		SetResult(&ResponseLicensingMoveOrganizationLicensingCotermLicenses{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation MoveOrganizationLicensingCotermLicenses")
-	}
-
-	result := response.Result().(*ResponseLicensingMoveOrganizationLicensingCotermLicenses)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseLicensingMoveOrganizationLicensingCotermLicenses](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestLicensingMoveOrganizationLicensingCotermLicenses, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }

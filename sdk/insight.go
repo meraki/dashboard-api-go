@@ -5,7 +5,6 @@ import (
 	"strings"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 type InsightService service
@@ -99,26 +98,15 @@ func (s *InsightService) GetNetworkInsightApplicationHealthByTime(networkID stri
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{applicationId}", fmt.Sprintf("%v", applicationID), -1)
 
-	queryString, _ := query.Values(getNetworkInsightApplicationHealthByTimeQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseInsightGetNetworkInsightApplicationHealthByTime{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkInsightApplicationHealthByTime")
-	}
-
-	result := response.Result().(*ResponseInsightGetNetworkInsightApplicationHealthByTime)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseInsightGetNetworkInsightApplicationHealthByTime](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkInsightApplicationHealthByTimeQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -135,24 +123,15 @@ func (s *InsightService) GetOrganizationInsightApplications(organizationID strin
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseInsightGetOrganizationInsightApplications{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationInsightApplications")
-	}
-
-	result := response.Result().(*ResponseInsightGetOrganizationInsightApplications)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseInsightGetOrganizationInsightApplications](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -169,24 +148,15 @@ func (s *InsightService) GetOrganizationInsightMonitoredMediaServers(organizatio
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseInsightGetOrganizationInsightMonitoredMediaServers{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationInsightMonitoredMediaServers")
-	}
-
-	result := response.Result().(*ResponseInsightGetOrganizationInsightMonitoredMediaServers)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseInsightGetOrganizationInsightMonitoredMediaServers](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -205,24 +175,15 @@ func (s *InsightService) GetOrganizationInsightMonitoredMediaServer(organization
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{monitoredMediaServerId}", fmt.Sprintf("%v", monitoredMediaServerID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseInsightGetOrganizationInsightMonitoredMediaServer{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationInsightMonitoredMediaServer")
-	}
-
-	result := response.Result().(*ResponseInsightGetOrganizationInsightMonitoredMediaServer)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseInsightGetOrganizationInsightMonitoredMediaServer](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -239,25 +200,15 @@ func (s *InsightService) CreateOrganizationInsightMonitoredMediaServer(organizat
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestInsightCreateOrganizationInsightMonitoredMediaServer).
-		SetResult(&ResponseInsightCreateOrganizationInsightMonitoredMediaServer{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationInsightMonitoredMediaServer")
-	}
-
-	result := response.Result().(*ResponseInsightCreateOrganizationInsightMonitoredMediaServer)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseInsightCreateOrganizationInsightMonitoredMediaServer](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestInsightCreateOrganizationInsightMonitoredMediaServer, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -273,25 +224,15 @@ func (s *InsightService) UpdateOrganizationInsightMonitoredMediaServer(organizat
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{monitoredMediaServerId}", fmt.Sprintf("%v", monitoredMediaServerID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestInsightUpdateOrganizationInsightMonitoredMediaServer).
-		SetResult(&ResponseInsightUpdateOrganizationInsightMonitoredMediaServer{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationInsightMonitoredMediaServer")
-	}
-
-	result := response.Result().(*ResponseInsightUpdateOrganizationInsightMonitoredMediaServer)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseInsightUpdateOrganizationInsightMonitoredMediaServer](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestInsightUpdateOrganizationInsightMonitoredMediaServer)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -310,21 +251,9 @@ func (s *InsightService) DeleteOrganizationInsightMonitoredMediaServer(organizat
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{monitoredMediaServerId}", fmt.Sprintf("%v", monitoredMediaServerID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationInsightMonitoredMediaServer")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }

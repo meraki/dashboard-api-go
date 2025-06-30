@@ -1,12 +1,10 @@
 package meraki
 
 import (
-	"encoding/json"
 	"fmt"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 type NetworksService service
@@ -238,7 +236,6 @@ type ResponseNetworksGetNetworkAlertsSettingsAlerts struct {
 	Filters           *ResponseNetworksGetNetworkAlertsSettingsAlertsFilters           `json:"filters,omitempty"`           // A hash of specific configuration data for the alert. Only filters specific to the alert will be updated.
 	Type              string                                                           `json:"type,omitempty"`              // The type of alert
 }
-
 type ResponseNetworksGetNetworkAlertsSettingsAlertsAlertDestinations struct {
 	AllAdmins     *bool    `json:"allAdmins,omitempty"`     // If true, then all network admins will receive emails for this alert
 	Emails        []string `json:"emails,omitempty"`        // A list of emails that will receive information about the alert
@@ -379,13 +376,13 @@ type ResponseItemNetworksGetNetworkClients struct {
 	AdaptivePolicyGroup    string                                      `json:"adaptivePolicyGroup,omitempty"`    // The adaptive policy group of the client
 	Description            string                                      `json:"description,omitempty"`            // Short description of the client
 	DeviceTypePrediction   string                                      `json:"deviceTypePrediction,omitempty"`   // Prediction of the client's device type
-	FirstSeen              string                                      `json:"firstSeen,omitempty"`              // Timestamp client was first seen in the network
+	FirstSeen              *int                                        `json:"firstSeen,omitempty"`              // Timestamp client was first seen in the network
 	GroupPolicy8021X       string                                      `json:"groupPolicy8021x,omitempty"`       // 802.1x group policy of the client
 	ID                     string                                      `json:"id,omitempty"`                     // The ID of the client
 	IP                     string                                      `json:"ip,omitempty"`                     // The IP address of the client
 	IP6                    string                                      `json:"ip6,omitempty"`                    // The IPv6 address of the client
 	IP6Local               string                                      `json:"ip6Local,omitempty"`               // Local IPv6 address of the client
-	LastSeen               string                                      `json:"lastSeen,omitempty"`               // Timestamp client was last seen in the network
+	LastSeen               *int                                        `json:"lastSeen,omitempty"`               // Timestamp client was last seen in the network
 	Mac                    string                                      `json:"mac,omitempty"`                    // The MAC address of the client
 	Manufacturer           string                                      `json:"manufacturer,omitempty"`           // Manufacturer of the client
 	NamedVLAN              string                                      `json:"namedVlan,omitempty"`              // Named VLAN of the client
@@ -2128,7 +2125,6 @@ type ResponseItemNetworksGetNetworkGroupPolicies struct {
 	Scheduling                *ResponseItemNetworksGetNetworkGroupPoliciesScheduling                `json:"scheduling,omitempty"`                //     The schedule for the group policy. Schedules are applied to days of the week.
 	SplashAuthSettings        string                                                                `json:"splashAuthSettings,omitempty"`        // Whether clients bound to your policy will bypass splash authorization or behave according to the network's rules. Can be one of 'network default' or 'bypass'. Only available if your network has a wireless configuration.
 	VLANTagging               *ResponseItemNetworksGetNetworkGroupPoliciesVLANTagging               `json:"vlanTagging,omitempty"`               // The VLAN tagging settings for your group policy. Only available if your network has a wireless configuration.
-	Name                      string                                                                `json:"name,omitempty"`                      // The name of the group policy
 }
 type ResponseItemNetworksGetNetworkGroupPoliciesBandwidth struct {
 	BandwidthLimits *ResponseItemNetworksGetNetworkGroupPoliciesBandwidthBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth limits object, specifying upload and download speed for clients bound to the group policy. These are only enforced if 'settings' is set to 'custom'.
@@ -3020,16 +3016,16 @@ type ResponseNetworksGetNetworkSyslogServers struct {
 	Servers *[]ResponseNetworksGetNetworkSyslogServersServers `json:"servers,omitempty"` // List of the syslog servers for this network
 }
 type ResponseNetworksGetNetworkSyslogServersServers struct {
-	Host  string   `json:"host,omitempty"`  // The IP address of the syslog server
-	Port  string   `json:"port,omitempty"`  // The port of the syslog server
+	Host  string   `json:"host,omitempty"`  // The IP address or FQDN of the syslog server
+	Port  *int     `json:"port,omitempty"`  // The port of the syslog server
 	Roles []string `json:"roles,omitempty"` // A list of roles for the syslog server. Options (case-insensitive): 'Wireless event log', 'Appliance event log', 'Switch event log', 'Air Marshal events', 'Flows', 'URLs', 'IDS alerts', 'Security events'
 }
 type ResponseNetworksUpdateNetworkSyslogServers struct {
 	Servers *[]ResponseNetworksUpdateNetworkSyslogServersServers `json:"servers,omitempty"` // List of the syslog servers for this network
 }
 type ResponseNetworksUpdateNetworkSyslogServersServers struct {
-	Host  string   `json:"host,omitempty"`  // The IP address of the syslog server
-	Port  string   `json:"port,omitempty"`  // The port of the syslog server
+	Host  string   `json:"host,omitempty"`  // The IP address or FQDN of the syslog server
+	Port  *int     `json:"port,omitempty"`  // The port of the syslog server
 	Roles []string `json:"roles,omitempty"` // A list of roles for the syslog server. Options (case-insensitive): 'Wireless event log', 'Appliance event log', 'Switch event log', 'Air Marshal events', 'Flows', 'URLs', 'IDS alerts', 'Security events'
 }
 type ResponseNetworksGetNetworkTopologyLinkLayer struct {
@@ -3378,7 +3374,105 @@ type ResponseNetworksGetNetworkWebhooksWebhookTest struct {
 	Status string `json:"status,omitempty"` // Current status of the webhook delivery
 	URL    string `json:"url,omitempty"`    // URL where the webhook was delivered
 }
-
+type ResponseNetworksGetOrganizationIntegrationsXdrNetworks struct {
+	Items *[]ResponseNetworksGetOrganizationIntegrationsXdrNetworksItems `json:"items,omitempty"` // List of networks with XDR enabled
+	Meta  *ResponseNetworksGetOrganizationIntegrationsXdrNetworksMeta    `json:"meta,omitempty"`  // Metadata relevant to the paginated dataset
+}
+type ResponseNetworksGetOrganizationIntegrationsXdrNetworksItems struct {
+	Enabled      *bool    `json:"enabled,omitempty"`      // Represents whether XDR is enabled for the network
+	IsEligible   *bool    `json:"isEligible,omitempty"`   // Represents whether the network is eligible for XDR
+	Name         string   `json:"name,omitempty"`         // The name of the network
+	NetworkID    string   `json:"networkId,omitempty"`    // Network ID
+	ProductTypes []string `json:"productTypes,omitempty"` // List of products that have XDR enabled
+}
+type ResponseNetworksGetOrganizationIntegrationsXdrNetworksMeta struct {
+	Counts *ResponseNetworksGetOrganizationIntegrationsXdrNetworksMetaCounts `json:"counts,omitempty"` // Counts relating to the paginated dataset
+}
+type ResponseNetworksGetOrganizationIntegrationsXdrNetworksMetaCounts struct {
+	Items *ResponseNetworksGetOrganizationIntegrationsXdrNetworksMetaCountsItems `json:"items,omitempty"` // Counts relating to the paginated networks
+}
+type ResponseNetworksGetOrganizationIntegrationsXdrNetworksMetaCountsItems struct {
+	Remaining *int `json:"remaining,omitempty"` // The number of networks in the dataset that are available on subsequent pages
+	Total     *int `json:"total,omitempty"`     // The total number of networks in the dataset
+}
+type ResponseNetworksDisableOrganizationIntegrationsXdrNetworks struct {
+	Networks *[]ResponseNetworksDisableOrganizationIntegrationsXdrNetworksNetworks `json:"networks,omitempty"` // List of networks that have XDR disabled
+}
+type ResponseNetworksDisableOrganizationIntegrationsXdrNetworksNetworks struct {
+	Enabled      *bool    `json:"enabled,omitempty"`      // Represents whether XDR is enabled for the network
+	IsEligible   *bool    `json:"isEligible,omitempty"`   // Represents whether the network is eligible for XDR
+	Name         string   `json:"name,omitempty"`         // The name of the network
+	NetworkID    string   `json:"networkId,omitempty"`    // Network ID
+	ProductTypes []string `json:"productTypes,omitempty"` // List of products that have XDR disabled
+}
+type ResponseNetworksEnableOrganizationIntegrationsXdrNetworks struct {
+	Networks *[]ResponseNetworksEnableOrganizationIntegrationsXdrNetworksNetworks `json:"networks,omitempty"` // List of networks that have XDR enabled
+}
+type ResponseNetworksEnableOrganizationIntegrationsXdrNetworksNetworks struct {
+	Enabled      *bool    `json:"enabled,omitempty"`      // Represents whether XDR is enabled for the network
+	IsEligible   *bool    `json:"isEligible,omitempty"`   // Represents whether the network is eligible for XDR
+	Name         string   `json:"name,omitempty"`         // The name of the network
+	NetworkID    string   `json:"networkId,omitempty"`    // Network ID
+	ProductTypes []string `json:"productTypes,omitempty"` // List of products that have XDR enabled
+}
+type ResponseNetworksCombineOrganizationNetworks struct {
+	ResultingNetwork *ResponseNetworksCombineOrganizationNetworksResultingNetwork `json:"resultingNetwork,omitempty"` // Network after the combination
+}
+type ResponseNetworksCombineOrganizationNetworksResultingNetwork struct {
+	EnrollmentString        string   `json:"enrollmentString,omitempty"`        // Enrollment string for the network
+	ID                      string   `json:"id,omitempty"`                      // Network ID
+	IsBoundToConfigTemplate *bool    `json:"isBoundToConfigTemplate,omitempty"` // If the network is bound to a config template
+	Name                    string   `json:"name,omitempty"`                    // Network name
+	Notes                   string   `json:"notes,omitempty"`                   // Notes for the network
+	OrganizationID          string   `json:"organizationId,omitempty"`          // Organization ID
+	ProductTypes            []string `json:"productTypes,omitempty"`            // List of the product types that the network supports
+	Tags                    []string `json:"tags,omitempty"`                    // Network tags
+	TimeZone                string   `json:"timeZone,omitempty"`                // Timezone of the network
+	URL                     string   `json:"url,omitempty"`                     // URL to the network Dashboard UI
+}
+type ResponseNetworksGetOrganizationSummaryTopNetworksByStatus []ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatus // Array of ResponseNetworksGetOrganizationSummaryTopNetworksByStatus
+type ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatus struct {
+	Clients      *ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusClients  `json:"clients,omitempty"`      // Network clients data
+	Devices      *ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusDevices  `json:"devices,omitempty"`      // Network device information
+	Name         string                                                                 `json:"name,omitempty"`         // Network name
+	NetworkID    string                                                                 `json:"networkId,omitempty"`    // Network identifier
+	ProductTypes []string                                                               `json:"productTypes,omitempty"` // Product types in network
+	Statuses     *ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusStatuses `json:"statuses,omitempty"`     // Network device statuses
+	Tags         []string                                                               `json:"tags,omitempty"`         // Network tags
+	URL          string                                                                 `json:"url,omitempty"`          // Network clients list URL
+}
+type ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusClients struct {
+	Counts *ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusClientsCounts `json:"counts,omitempty"` // Network client counts
+	Usage  *ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusClientsUsage  `json:"usage,omitempty"`  // Network client usage data
+}
+type ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusClientsCounts struct {
+	Total *int `json:"total,omitempty"` // Total count of clients in network
+}
+type ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusClientsUsage struct {
+	Downstream *float64 `json:"downstream,omitempty"` // Total downstream usage in network, in KB
+	Upstream   *float64 `json:"upstream,omitempty"`   // Total upstream usage in network, in KB
+}
+type ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusDevices struct {
+	ByProductType *[]ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusDevicesByProductType `json:"byProductType,omitempty"` // URLs by product type
+}
+type ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusDevicesByProductType struct {
+	ProductType string `json:"productType,omitempty"` // Product type
+	URL         string `json:"url,omitempty"`         // URL to clients list for the relevant product type
+}
+type ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusStatuses struct {
+	ByProductType *[]ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusStatusesByProductType `json:"byProductType,omitempty"` // List of status counts by product type
+	Overall       string                                                                                `json:"overall,omitempty"`       // Overall status of network
+}
+type ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusStatusesByProductType struct {
+	Counts      *ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusStatusesByProductTypeCounts `json:"counts,omitempty"`      // Counts of devices by status
+	ProductType string                                                                                    `json:"productType,omitempty"` // Product type
+}
+type ResponseItemNetworksGetOrganizationSummaryTopNetworksByStatusStatusesByProductTypeCounts struct {
+	Alerting *int `json:"alerting,omitempty"` // Count of alerting devices
+	Dormant  *int `json:"dormant,omitempty"`  // Count of dormant devices
+	Offline  *int `json:"offline,omitempty"`  // Count of offline devices
+	Online   *int `json:"online,omitempty"`   // Count of online devices
+}
 type RequestNetworksUpdateNetwork struct {
 	EnrollmentString string   `json:"enrollmentString,omitempty"` // A unique identifier which can be used for device enrollment or easy access through the Meraki SM Registration page or the Self Service Portal. Please note that changing this field may cause existing bookmarks to break.
 	Name             string   `json:"name,omitempty"`             // The name of the network
@@ -4435,6 +4529,25 @@ type RequestNetworksCreateNetworkWebhooksWebhookTest struct {
 	SharedSecret        string `json:"sharedSecret,omitempty"`        // The shared secret the test webhook will send. Optional. Defaults to an empty string.
 	URL                 string `json:"url,omitempty"`                 // The URL where the test webhook will be sent
 }
+type RequestNetworksDisableOrganizationIntegrationsXdrNetworks struct {
+	Networks *[]RequestNetworksDisableOrganizationIntegrationsXdrNetworksNetworks `json:"networks,omitempty"` // List containing the network ID and the product type to disable XDR on
+}
+type RequestNetworksDisableOrganizationIntegrationsXdrNetworksNetworks struct {
+	NetworkID    string   `json:"networkId,omitempty"`    // Network ID
+	ProductTypes []string `json:"productTypes,omitempty"` // List of products for which to disable XDR
+}
+type RequestNetworksEnableOrganizationIntegrationsXdrNetworks struct {
+	Networks *[]RequestNetworksEnableOrganizationIntegrationsXdrNetworksNetworks `json:"networks,omitempty"` // List containing the network ID and the product type to enable XDR on
+}
+type RequestNetworksEnableOrganizationIntegrationsXdrNetworksNetworks struct {
+	NetworkID    string   `json:"networkId,omitempty"`    // Network ID
+	ProductTypes []string `json:"productTypes,omitempty"` // List of products for which to enable XDR
+}
+type RequestNetworksCombineOrganizationNetworks struct {
+	EnrollmentString string   `json:"enrollmentString,omitempty"` // A unique identifier which can be used for device enrollment or easy access through the Meraki SM Registration page or the Self Service Portal. Please note that changing this field may cause existing bookmarks to break. All networks that are part of this combined network will have their enrollment string appended by '-network_type'. If left empty, all exisitng enrollment strings will be deleted.
+	Name             string   `json:"name,omitempty"`             // The name of the combined network
+	NetworkIDs       []string `json:"networkIds,omitempty"`       // A list of the network IDs that will be combined. If an ID of a combined network is included in this list, the other networks in the list will be grouped into that network
+}
 
 //GetNetwork Return a network
 /* Return a network
@@ -4449,24 +4562,15 @@ func (s *NetworksService) GetNetwork(networkID string) (*ResponseNetworksGetNetw
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetwork{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetwork")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetwork)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetwork](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4482,64 +4586,27 @@ func (s *NetworksService) GetNetwork(networkID string) (*ResponseNetworksGetNetw
 func (s *NetworksService) GetNetworkAlertsHistory(networkID string, getNetworkAlertsHistoryQueryParams *GetNetworkAlertsHistoryQueryParams) (*ResponseNetworksGetNetworkAlertsHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/alerts/history"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkAlertsHistoryQueryParams != nil && getNetworkAlertsHistoryQueryParams.PerPage == -1 {
-		var result *ResponseNetworksGetNetworkAlertsHistory
-		println("Paginate")
-		getNetworkAlertsHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkAlertsHistoryPaginate, networkID, "", getNetworkAlertsHistoryQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseNetworksGetNetworkAlertsHistory
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkAlertsHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkAlertsHistory{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkAlertsHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkAlertsHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseNetworksGetNetworkAlertsHistory) ResponseNetworksGetNetworkAlertsHistory {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkAlertsHistoryQueryParams != nil {
+				return getNetworkAlertsHistoryQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkAlertsHistory")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkAlertsHistory)
-	return result, response, err
-
-}
-func (s *NetworksService) GetNetworkAlertsHistoryPaginate(networkID string, getNetworkAlertsHistoryQueryParams any) (any, *resty.Response, error) {
-	getNetworkAlertsHistoryQueryParamsConverted := getNetworkAlertsHistoryQueryParams.(*GetNetworkAlertsHistoryQueryParams)
-
-	return s.GetNetworkAlertsHistory(networkID, getNetworkAlertsHistoryQueryParamsConverted)
 }
 
 //GetNetworkAlertsSettings Return the alert configuration for this network
@@ -4555,24 +4622,15 @@ func (s *NetworksService) GetNetworkAlertsSettings(networkID string) (*ResponseN
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkAlertsSettings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkAlertsSettings")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkAlertsSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkAlertsSettings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4588,64 +4646,27 @@ func (s *NetworksService) GetNetworkAlertsSettings(networkID string) (*ResponseN
 func (s *NetworksService) GetNetworkBluetoothClients(networkID string, getNetworkBluetoothClientsQueryParams *GetNetworkBluetoothClientsQueryParams) (*ResponseNetworksGetNetworkBluetoothClients, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/bluetoothClients"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkBluetoothClientsQueryParams != nil && getNetworkBluetoothClientsQueryParams.PerPage == -1 {
-		var result *ResponseNetworksGetNetworkBluetoothClients
-		println("Paginate")
-		getNetworkBluetoothClientsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkBluetoothClientsPaginate, networkID, "", getNetworkBluetoothClientsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseNetworksGetNetworkBluetoothClients
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkBluetoothClientsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkBluetoothClients{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkBluetoothClients](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkBluetoothClientsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseNetworksGetNetworkBluetoothClients) ResponseNetworksGetNetworkBluetoothClients {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkBluetoothClientsQueryParams != nil {
+				return getNetworkBluetoothClientsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkBluetoothClients")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkBluetoothClients)
-	return result, response, err
-
-}
-func (s *NetworksService) GetNetworkBluetoothClientsPaginate(networkID string, getNetworkBluetoothClientsQueryParams any) (any, *resty.Response, error) {
-	getNetworkBluetoothClientsQueryParamsConverted := getNetworkBluetoothClientsQueryParams.(*GetNetworkBluetoothClientsQueryParams)
-
-	return s.GetNetworkBluetoothClients(networkID, getNetworkBluetoothClientsQueryParamsConverted)
 }
 
 //GetNetworkBluetoothClient Return a Bluetooth client
@@ -4664,26 +4685,15 @@ func (s *NetworksService) GetNetworkBluetoothClient(networkID string, bluetoothC
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{bluetoothClientId}", fmt.Sprintf("%v", bluetoothClientID), -1)
 
-	queryString, _ := query.Values(getNetworkBluetoothClientQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkBluetoothClient{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkBluetoothClient")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkBluetoothClient)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkBluetoothClient](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkBluetoothClientQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4699,64 +4709,27 @@ func (s *NetworksService) GetNetworkBluetoothClient(networkID string, bluetoothC
 func (s *NetworksService) GetNetworkClients(networkID string, getNetworkClientsQueryParams *GetNetworkClientsQueryParams) (*ResponseNetworksGetNetworkClients, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkClientsQueryParams != nil && getNetworkClientsQueryParams.PerPage == -1 {
-		var result *ResponseNetworksGetNetworkClients
-		println("Paginate")
-		getNetworkClientsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkClientsPaginate, networkID, "", getNetworkClientsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseNetworksGetNetworkClients
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkClientsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkClients{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkClients](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkClientsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseNetworksGetNetworkClients) ResponseNetworksGetNetworkClients {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkClientsQueryParams != nil {
+				return getNetworkClientsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkClients")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkClients)
-	return result, response, err
-
-}
-func (s *NetworksService) GetNetworkClientsPaginate(networkID string, getNetworkClientsQueryParams any) (any, *resty.Response, error) {
-	getNetworkClientsQueryParamsConverted := getNetworkClientsQueryParams.(*GetNetworkClientsQueryParams)
-
-	return s.GetNetworkClients(networkID, getNetworkClientsQueryParamsConverted)
 }
 
 //GetNetworkClientsApplicationUsage Return the application usage data for clients
@@ -4771,64 +4744,27 @@ func (s *NetworksService) GetNetworkClientsPaginate(networkID string, getNetwork
 func (s *NetworksService) GetNetworkClientsApplicationUsage(networkID string, getNetworkClientsApplicationUsageQueryParams *GetNetworkClientsApplicationUsageQueryParams) (*ResponseNetworksGetNetworkClientsApplicationUsage, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/applicationUsage"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkClientsApplicationUsageQueryParams != nil && getNetworkClientsApplicationUsageQueryParams.PerPage == -1 {
-		var result *ResponseNetworksGetNetworkClientsApplicationUsage
-		println("Paginate")
-		getNetworkClientsApplicationUsageQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkClientsApplicationUsagePaginate, networkID, "", getNetworkClientsApplicationUsageQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseNetworksGetNetworkClientsApplicationUsage
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkClientsApplicationUsageQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkClientsApplicationUsage{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkClientsApplicationUsage](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkClientsApplicationUsageQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseNetworksGetNetworkClientsApplicationUsage) ResponseNetworksGetNetworkClientsApplicationUsage {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkClientsApplicationUsageQueryParams != nil {
+				return getNetworkClientsApplicationUsageQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkClientsApplicationUsage")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkClientsApplicationUsage)
-	return result, response, err
-
-}
-func (s *NetworksService) GetNetworkClientsApplicationUsagePaginate(networkID string, getNetworkClientsApplicationUsageQueryParams any) (any, *resty.Response, error) {
-	getNetworkClientsApplicationUsageQueryParamsConverted := getNetworkClientsApplicationUsageQueryParams.(*GetNetworkClientsApplicationUsageQueryParams)
-
-	return s.GetNetworkClientsApplicationUsage(networkID, getNetworkClientsApplicationUsageQueryParamsConverted)
 }
 
 //GetNetworkClientsBandwidthUsageHistory Returns a timeseries of total traffic consumption rates for all clients on a network within a given timespan, in megabits per second.
@@ -4843,64 +4779,27 @@ func (s *NetworksService) GetNetworkClientsApplicationUsagePaginate(networkID st
 func (s *NetworksService) GetNetworkClientsBandwidthUsageHistory(networkID string, getNetworkClientsBandwidthUsageHistoryQueryParams *GetNetworkClientsBandwidthUsageHistoryQueryParams) (*ResponseNetworksGetNetworkClientsBandwidthUsageHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/bandwidthUsageHistory"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkClientsBandwidthUsageHistoryQueryParams != nil && getNetworkClientsBandwidthUsageHistoryQueryParams.PerPage == -1 {
-		var result *ResponseNetworksGetNetworkClientsBandwidthUsageHistory
-		println("Paginate")
-		getNetworkClientsBandwidthUsageHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkClientsBandwidthUsageHistoryPaginate, networkID, "", getNetworkClientsBandwidthUsageHistoryQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseNetworksGetNetworkClientsBandwidthUsageHistory
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkClientsBandwidthUsageHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkClientsBandwidthUsageHistory{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkClientsBandwidthUsageHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkClientsBandwidthUsageHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseNetworksGetNetworkClientsBandwidthUsageHistory) ResponseNetworksGetNetworkClientsBandwidthUsageHistory {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkClientsBandwidthUsageHistoryQueryParams != nil {
+				return getNetworkClientsBandwidthUsageHistoryQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkClientsBandwidthUsageHistory")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkClientsBandwidthUsageHistory)
-	return result, response, err
-
-}
-func (s *NetworksService) GetNetworkClientsBandwidthUsageHistoryPaginate(networkID string, getNetworkClientsBandwidthUsageHistoryQueryParams any) (any, *resty.Response, error) {
-	getNetworkClientsBandwidthUsageHistoryQueryParamsConverted := getNetworkClientsBandwidthUsageHistoryQueryParams.(*GetNetworkClientsBandwidthUsageHistoryQueryParams)
-
-	return s.GetNetworkClientsBandwidthUsageHistory(networkID, getNetworkClientsBandwidthUsageHistoryQueryParamsConverted)
 }
 
 //GetNetworkClientsOverview Return overview statistics for network clients
@@ -4917,26 +4816,15 @@ func (s *NetworksService) GetNetworkClientsOverview(networkID string, getNetwork
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkClientsOverviewQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkClientsOverview{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkClientsOverview")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkClientsOverview)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkClientsOverview](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkClientsOverviewQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4952,64 +4840,27 @@ func (s *NetworksService) GetNetworkClientsOverview(networkID string, getNetwork
 func (s *NetworksService) GetNetworkClientsUsageHistories(networkID string, getNetworkClientsUsageHistoriesQueryParams *GetNetworkClientsUsageHistoriesQueryParams) (*ResponseNetworksGetNetworkClientsUsageHistories, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/usageHistories"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkClientsUsageHistoriesQueryParams != nil && getNetworkClientsUsageHistoriesQueryParams.PerPage == -1 {
-		var result *ResponseNetworksGetNetworkClientsUsageHistories
-		println("Paginate")
-		getNetworkClientsUsageHistoriesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkClientsUsageHistoriesPaginate, networkID, "", getNetworkClientsUsageHistoriesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseNetworksGetNetworkClientsUsageHistories
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkClientsUsageHistoriesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkClientsUsageHistories{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkClientsUsageHistories](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkClientsUsageHistoriesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseNetworksGetNetworkClientsUsageHistories) ResponseNetworksGetNetworkClientsUsageHistories {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkClientsUsageHistoriesQueryParams != nil {
+				return getNetworkClientsUsageHistoriesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkClientsUsageHistories")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkClientsUsageHistories)
-	return result, response, err
-
-}
-func (s *NetworksService) GetNetworkClientsUsageHistoriesPaginate(networkID string, getNetworkClientsUsageHistoriesQueryParams any) (any, *resty.Response, error) {
-	getNetworkClientsUsageHistoriesQueryParamsConverted := getNetworkClientsUsageHistoriesQueryParams.(*GetNetworkClientsUsageHistoriesQueryParams)
-
-	return s.GetNetworkClientsUsageHistories(networkID, getNetworkClientsUsageHistoriesQueryParamsConverted)
 }
 
 //GetNetworkClient Return the client associated with the given identifier
@@ -5027,24 +4878,15 @@ func (s *NetworksService) GetNetworkClient(networkID string, clientID string) (*
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkClient{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkClient")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkClient)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkClient](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5063,24 +4905,15 @@ func (s *NetworksService) GetNetworkClientPolicy(networkID string, clientID stri
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkClientPolicy{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkClientPolicy")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkClientPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkClientPolicy](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5099,24 +4932,15 @@ func (s *NetworksService) GetNetworkClientSplashAuthorizationStatus(networkID st
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkClientSplashAuthorizationStatus{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkClientSplashAuthorizationStatus")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkClientSplashAuthorizationStatus)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkClientSplashAuthorizationStatus](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5133,65 +4957,28 @@ func (s *NetworksService) GetNetworkClientSplashAuthorizationStatus(networkID st
 func (s *NetworksService) GetNetworkClientTrafficHistory(networkID string, clientID string, getNetworkClientTrafficHistoryQueryParams *GetNetworkClientTrafficHistoryQueryParams) (*ResponseNetworksGetNetworkClientTrafficHistory, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/clients/{clientId}/trafficHistory"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkClientTrafficHistoryQueryParams != nil && getNetworkClientTrafficHistoryQueryParams.PerPage == -1 {
-		var result *ResponseNetworksGetNetworkClientTrafficHistory
-		println("Paginate")
-		getNetworkClientTrafficHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkClientTrafficHistoryPaginate, networkID, clientID, getNetworkClientTrafficHistoryQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseNetworksGetNetworkClientTrafficHistory
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
-	queryString, _ := query.Values(getNetworkClientTrafficHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkClientTrafficHistory{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkClientTrafficHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkClientTrafficHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseNetworksGetNetworkClientTrafficHistory) ResponseNetworksGetNetworkClientTrafficHistory {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkClientTrafficHistoryQueryParams != nil {
+				return getNetworkClientTrafficHistoryQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkClientTrafficHistory")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkClientTrafficHistory)
-	return result, response, err
-
-}
-func (s *NetworksService) GetNetworkClientTrafficHistoryPaginate(networkID string, clientID string, getNetworkClientTrafficHistoryQueryParams any) (any, *resty.Response, error) {
-	getNetworkClientTrafficHistoryQueryParamsConverted := getNetworkClientTrafficHistoryQueryParams.(*GetNetworkClientTrafficHistoryQueryParams)
-
-	return s.GetNetworkClientTrafficHistory(networkID, clientID, getNetworkClientTrafficHistoryQueryParamsConverted)
 }
 
 //GetNetworkClientUsageHistory Return the client's daily usage history
@@ -5209,24 +4996,15 @@ func (s *NetworksService) GetNetworkClientUsageHistory(networkID string, clientI
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkClientUsageHistory{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkClientUsageHistory")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkClientUsageHistory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkClientUsageHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5237,30 +5015,21 @@ func (s *NetworksService) GetNetworkClientUsageHistory(networkID string, clientI
 
 
 */
-
+// {'deprecated': True, 'description': 'List the devices in a network', 'operationId': 'getNetworkDevices', 'parameters': [{'description': 'Network ID', 'in': 'path', 'name': 'networkId', 'required': True, 'schema': {'type': 'string'}}], 'responses': [{'code': '200', 'content_type': 'application/json', 'schema': None, 'data': {'items': {'properties': {'address': {'description': 'Physical address of the device', 'type': 'string'}, 'beaconIdParams': {'description': 'Beacon Id parameters with an identifier and major and minor versions', 'properties': {'major': {'description': 'The major number to be used in the beacon identifier', 'type': 'integer'}, 'minor': {'description': 'The minor number to be used in the beacon identifier', 'type': 'integer'}, 'uuid': {'description': 'The UUID to be used in the beacon identifier', 'type': 'string'}}, 'type': 'object'}, 'details': {'description': 'Additional device information', 'items': {'properties': {'name': {'description': 'Additional property name', 'type': 'string'}, 'value': {'description': 'Additional property value', 'type': 'string'}}, 'type': 'object'}, 'type': 'array'}, 'firmware': {'description': 'Firmware version of the device', 'type': 'string'}, 'floorPlanId': {'description': 'The floor plan to associate to this device. null disassociates the device from the floorplan.', 'type': 'string'}, 'lanIp': {'description': 'LAN IP address of the device', 'type': 'string'}, 'lat': {'description': 'Latitude of the device', 'format': 'float', 'type': 'number'}, 'lng': {'description': 'Longitude of the device', 'format': 'float', 'type': 'number'}, 'mac': {'description': 'MAC address of the device', 'type': 'string'}, 'model': {'description': 'Model of the device', 'type': 'string'}, 'name': {'description': 'Name of the device', 'type': 'string'}, 'networkId': {'description': 'ID of the network the device belongs to', 'type': 'string'}, 'notes': {'description': 'Notes for the device, limited to 255 characters', 'type': 'string'}, 'serial': {'description': 'Serial number of the device', 'type': 'string'}, 'tags': {'description': 'List of tags assigned to the device', 'items': {'type': 'string'}, 'type': 'array'}}, 'type': 'object'}, 'type': 'array'}}], 'summary': 'List the devices in a network', 'tags': ['networks', 'configure', 'devices'], 'content_types': ['application/json'], 'response_type': [], 'method': 'GET', 'request_types': [], 'path': '/api/v1/networks/{networkId}/devices', 'originalURL': '/api/v1/networks/{networkId}/devices', 'headers': {}, 'path_params': {'networkId': {'type': 'string', 'description': 'networkId path parameter. Network ID', 'required': True}}, 'params': {}, 'response_json_schema': {'items': {'properties': {'address': {'description': 'Physical address of the device', 'type': 'string'}, 'beaconIdParams': {'description': 'Beacon Id parameters with an identifier and major and minor versions', 'properties': {'major': {'description': 'The major number to be used in the beacon identifier', 'type': 'integer'}, 'minor': {'description': 'The minor number to be used in the beacon identifier', 'type': 'integer'}, 'uuid': {'description': 'The UUID to be used in the beacon identifier', 'type': 'string'}}, 'type': 'object'}, 'details': {'description': 'Additional device information', 'items': {'properties': {'name': {'description': 'Additional property name', 'type': 'string'}, 'value': {'description': 'Additional property value', 'type': 'string'}}, 'type': 'object'}, 'type': 'array'}, 'firmware': {'description': 'Firmware version of the device', 'type': 'string'}, 'floorPlanId': {'description': 'The floor plan to associate to this device. null disassociates the device from the floorplan.', 'type': 'string'}, 'lanIp': {'description': 'LAN IP address of the device', 'type': 'string'}, 'lat': {'description': 'Latitude of the device', 'format': 'float', 'type': 'number'}, 'lng': {'description': 'Longitude of the device', 'format': 'float', 'type': 'number'}, 'mac': {'description': 'MAC address of the device', 'type': 'string'}, 'model': {'description': 'Model of the device', 'type': 'string'}, 'name': {'description': 'Name of the device', 'type': 'string'}, 'networkId': {'description': 'ID of the network the device belongs to', 'type': 'string'}, 'notes': {'description': 'Notes for the device, limited to 255 characters', 'type': 'string'}, 'serial': {'description': 'Serial number of the device', 'type': 'string'}, 'tags': {'description': 'List of tags assigned to the device', 'items': {'type': 'string'}, 'type': 'array'}}, 'type': 'object'}, 'type': 'array', '$schema': 'http://json-schema.org/draft-04/schema#'}, 'response': [{'address': 'string', 'beaconIdParams': {'major': 0, 'minor': 0, 'uuid': 'string'}, 'details': [{'name': 'string', 'value': 'string'}], 'firmware': 'string', 'floorPlanId': 'string', 'lanIp': 'string', 'lat': 0, 'lng': 0, 'mac': 'string', 'model': 'string', 'name': 'string', 'networkId': 'string', 'notes': 'string', 'serial': 'string', 'tags': ['string']}], 'data': {}, 'id': '570ff438-3970-5dbd-b5c2-702e56d7456b', 'alt_name': 'getNetworkDevices', 'name': 'getNetworkDevices', 'has_rename': False, 'kwargs': ''}
 func (s *NetworksService) GetNetworkDevices(networkID string) (*ResponseNetworksGetNetworkDevices, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/devices"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkDevices{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkDevices")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkDevices)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkDevices](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5276,64 +5045,27 @@ func (s *NetworksService) GetNetworkDevices(networkID string) (*ResponseNetworks
 func (s *NetworksService) GetNetworkEvents(networkID string, getNetworkEventsQueryParams *GetNetworkEventsQueryParams) (*ResponseNetworksGetNetworkEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/events"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkEventsQueryParams != nil && getNetworkEventsQueryParams.PerPage == -1 {
-		var result *ResponseNetworksGetNetworkEvents
-		println("Paginate")
-		getNetworkEventsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkEventsPaginate, networkID, "", getNetworkEventsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseNetworksGetNetworkEvents
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Events = append(*result.Events, *resultTmp.Events...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkEventsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkEvents{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkEvents](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkEventsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseNetworksGetNetworkEvents) ResponseNetworksGetNetworkEvents {
+			*dst.Events = append(*dst.Events, *src.Events...) // Total arrays: 1
+			return dst
+		},
+		func() bool {
+			if getNetworkEventsQueryParams != nil {
+				return getNetworkEventsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkEvents")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkEvents)
-	return result, response, err
-
-}
-func (s *NetworksService) GetNetworkEventsPaginate(networkID string, getNetworkEventsQueryParams any) (any, *resty.Response, error) {
-	getNetworkEventsQueryParamsConverted := getNetworkEventsQueryParams.(*GetNetworkEventsQueryParams)
-
-	return s.GetNetworkEvents(networkID, getNetworkEventsQueryParamsConverted)
 }
 
 //GetNetworkEventsEventTypes List the event type to human-readable description
@@ -5349,24 +5081,15 @@ func (s *NetworksService) GetNetworkEventsEventTypes(networkID string) (*Respons
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkEventsEventTypes{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkEventsEventTypes")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkEventsEventTypes)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkEventsEventTypes](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5383,24 +5106,15 @@ func (s *NetworksService) GetNetworkFirmwareUpgrades(networkID string) (*Respons
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkFirmwareUpgrades{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkFirmwareUpgrades")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkFirmwareUpgrades)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkFirmwareUpgrades](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5417,24 +5131,15 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedEvents(networkID strin
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkFirmwareUpgradesStagedEvents{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkFirmwareUpgradesStagedEvents")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkFirmwareUpgradesStagedEvents)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkFirmwareUpgradesStagedEvents](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5451,24 +5156,15 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedGroups(networkID strin
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkFirmwareUpgradesStagedGroups{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkFirmwareUpgradesStagedGroups")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkFirmwareUpgradesStagedGroups)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkFirmwareUpgradesStagedGroups](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5487,24 +5183,15 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedGroup(networkID string
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{groupId}", fmt.Sprintf("%v", groupID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkFirmwareUpgradesStagedGroup{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkFirmwareUpgradesStagedGroup")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkFirmwareUpgradesStagedGroup)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkFirmwareUpgradesStagedGroup](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5521,24 +5208,15 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedStages(networkID strin
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkFirmwareUpgradesStagedStages{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkFirmwareUpgradesStagedStages")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkFirmwareUpgradesStagedStages)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkFirmwareUpgradesStagedStages](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5555,24 +5233,15 @@ func (s *NetworksService) GetNetworkFloorPlans(networkID string) (*ResponseNetwo
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkFloorPlans{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkFloorPlans")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkFloorPlans)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkFloorPlans](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5591,24 +5260,15 @@ func (s *NetworksService) GetNetworkFloorPlan(networkID string, floorPlanID stri
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{floorPlanId}", fmt.Sprintf("%v", floorPlanID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkFloorPlan{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkFloorPlan")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkFloorPlan)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkFloorPlan](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5625,24 +5285,15 @@ func (s *NetworksService) GetNetworkGroupPolicies(networkID string) (*ResponseNe
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkGroupPolicies{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkGroupPolicies")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkGroupPolicies)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkGroupPolicies](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5661,24 +5312,15 @@ func (s *NetworksService) GetNetworkGroupPolicy(networkID string, groupPolicyID 
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{groupPolicyId}", fmt.Sprintf("%v", groupPolicyID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkGroupPolicy{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkGroupPolicy")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkGroupPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkGroupPolicy](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5689,30 +5331,21 @@ func (s *NetworksService) GetNetworkGroupPolicy(networkID string, groupPolicyID 
 
 
 */
-
+// {'deprecated': True, 'description': 'Return all global alerts on this network', 'operationId': 'getNetworkHealthAlerts', 'parameters': [{'description': 'Network ID', 'in': 'path', 'name': 'networkId', 'required': True, 'schema': {'type': 'string'}}], 'responses': [{'code': '200', 'content_type': 'application/json', 'schema': None, 'data': {'items': {'properties': {'category': {'description': 'Category of the alert', 'type': 'string'}, 'id': {'description': 'Alert identifier. Value can be empty', 'type': 'string'}, 'scope': {'description': 'The scope of the alert', 'properties': {'applications': {'description': 'Applications related to the alert', 'items': {'properties': {'name': {'description': 'Name of the application', 'type': 'string'}, 'url': {'description': 'URL to the application', 'type': 'string'}}, 'type': 'object'}, 'type': 'array'}, 'devices': {'description': 'Devices related to the alert', 'items': {'properties': {'clients': {'description': 'Clients related to the device', 'items': {'properties': {'mac': {'description': 'Mac address of the client', 'type': 'string'}}, 'type': 'object'}, 'type': 'array'}, 'lldp': {'description': 'Lldp information', 'properties': {'portId': {'description': 'Port Id', 'type': 'string'}}, 'type': 'object'}, 'mac': {'description': 'The mac address of the device', 'type': 'string'}, 'name': {'description': 'Name of the device', 'type': 'string'}, 'productType': {'description': 'Product type of the device', 'type': 'string'}, 'serial': {'description': 'Serial number of the device', 'type': 'string'}, 'url': {'description': 'URL to the device', 'type': 'string'}}, 'type': 'object'}, 'type': 'array'}, 'peers': {'description': 'Peers related to the alert', 'items': {'properties': {'network': {'description': 'Network of the peer', 'properties': {'id': {'description': 'Id of the network', 'type': 'string'}, 'name': {'description': 'Name of the network', 'type': 'string'}}, 'type': 'object'}, 'url': {'description': 'URL to the peer', 'type': 'string'}}, 'type': 'object'}, 'type': 'array'}}, 'type': 'object'}, 'severity': {'description': 'Severity of the alert', 'enum': ['error', 'info', 'warning'], 'type': 'string'}, 'type': {'description': 'Alert type', 'type': 'string'}}, 'type': 'object'}, 'type': 'array'}}], 'summary': 'Return all global alerts on this network', 'tags': ['networks', 'configure', 'health', 'alerts'], 'content_types': ['application/json'], 'response_type': [], 'method': 'GET', 'request_types': [], 'path': '/api/v1/networks/{networkId}/health/alerts', 'originalURL': '/api/v1/networks/{networkId}/health/alerts', 'headers': {}, 'path_params': {'networkId': {'type': 'string', 'description': 'networkId path parameter. Network ID', 'required': True}}, 'params': {}, 'response_json_schema': {'items': {'properties': {'category': {'description': 'Category of the alert', 'type': 'string'}, 'id': {'description': 'Alert identifier. Value can be empty', 'type': 'string'}, 'scope': {'description': 'The scope of the alert', 'properties': {'applications': {'description': 'Applications related to the alert', 'items': {'properties': {'name': {'description': 'Name of the application', 'type': 'string'}, 'url': {'description': 'URL to the application', 'type': 'string'}}, 'type': 'object'}, 'type': 'array'}, 'devices': {'description': 'Devices related to the alert', 'items': {'properties': {'clients': {'description': 'Clients related to the device', 'items': {'properties': {'mac': {'description': 'Mac address of the client', 'type': 'string'}}, 'type': 'object'}, 'type': 'array'}, 'lldp': {'description': 'Lldp information', 'properties': {'portId': {'description': 'Port Id', 'type': 'string'}}, 'type': 'object'}, 'mac': {'description': 'The mac address of the device', 'type': 'string'}, 'name': {'description': 'Name of the device', 'type': 'string'}, 'productType': {'description': 'Product type of the device', 'type': 'string'}, 'serial': {'description': 'Serial number of the device', 'type': 'string'}, 'url': {'description': 'URL to the device', 'type': 'string'}}, 'type': 'object'}, 'type': 'array'}, 'peers': {'description': 'Peers related to the alert', 'items': {'properties': {'network': {'description': 'Network of the peer', 'properties': {'id': {'description': 'Id of the network', 'type': 'string'}, 'name': {'description': 'Name of the network', 'type': 'string'}}, 'type': 'object'}, 'url': {'description': 'URL to the peer', 'type': 'string'}}, 'type': 'object'}, 'type': 'array'}}, 'type': 'object'}, 'severity': {'description': 'Severity of the alert', 'enum': ['error', 'info', 'warning'], 'type': 'string'}, 'type': {'description': 'Alert type', 'type': 'string'}}, 'type': 'object'}, 'type': 'array', '$schema': 'http://json-schema.org/draft-04/schema#'}, 'response': [{'category': 'string', 'id': 'string', 'scope': {'applications': [{'name': 'string', 'url': 'string'}], 'devices': [{'clients': [{'mac': 'string'}], 'lldp': {'portId': 'string'}, 'mac': 'string', 'name': 'string', 'productType': 'string', 'serial': 'string', 'url': 'string'}], 'peers': [{'network': {'id': 'string', 'name': 'string'}, 'url': 'string'}]}, 'severity': 'string', 'type': 'string'}], 'data': {}, 'id': 'ac23b626-a2cb-5eef-80a8-125a0c3a1087', 'alt_name': 'getNetworkHealthAlerts', 'name': 'getNetworkHealthAlerts', 'has_rename': False, 'kwargs': ''}
 func (s *NetworksService) GetNetworkHealthAlerts(networkID string) (*ResponseNetworksGetNetworkHealthAlerts, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/health/alerts"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkHealthAlerts{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkHealthAlerts")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkHealthAlerts)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkHealthAlerts](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5729,24 +5362,15 @@ func (s *NetworksService) GetNetworkMerakiAuthUsers(networkID string) (*Response
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkMerakiAuthUsers{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkMerakiAuthUsers")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkMerakiAuthUsers)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkMerakiAuthUsers](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5765,24 +5389,15 @@ func (s *NetworksService) GetNetworkMerakiAuthUser(networkID string, merakiAuthU
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{merakiAuthUserId}", fmt.Sprintf("%v", merakiAuthUserID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkMerakiAuthUser{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkMerakiAuthUser")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkMerakiAuthUser)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkMerakiAuthUser](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5799,24 +5414,15 @@ func (s *NetworksService) GetNetworkMqttBrokers(networkID string) (*ResponseNetw
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkMqttBrokers{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkMqttBrokers")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkMqttBrokers)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkMqttBrokers](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5835,24 +5441,15 @@ func (s *NetworksService) GetNetworkMqttBroker(networkID string, mqttBrokerID st
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{mqttBrokerId}", fmt.Sprintf("%v", mqttBrokerID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkMqttBroker{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkMqttBroker")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkMqttBroker)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkMqttBroker](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5869,24 +5466,15 @@ func (s *NetworksService) GetNetworkNetflow(networkID string) (*ResponseNetworks
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkNetflow{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkNetflow")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkNetflow)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkNetflow](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5902,64 +5490,27 @@ func (s *NetworksService) GetNetworkNetflow(networkID string) (*ResponseNetworks
 func (s *NetworksService) GetNetworkNetworkHealthChannelUtilization(networkID string, getNetworkNetworkHealthChannelUtilizationQueryParams *GetNetworkNetworkHealthChannelUtilizationQueryParams) (*ResponseNetworksGetNetworkNetworkHealthChannelUtilization, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/networkHealth/channelUtilization"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkNetworkHealthChannelUtilizationQueryParams != nil && getNetworkNetworkHealthChannelUtilizationQueryParams.PerPage == -1 {
-		var result *ResponseNetworksGetNetworkNetworkHealthChannelUtilization
-		println("Paginate")
-		getNetworkNetworkHealthChannelUtilizationQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkNetworkHealthChannelUtilizationPaginate, networkID, "", getNetworkNetworkHealthChannelUtilizationQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseNetworksGetNetworkNetworkHealthChannelUtilization
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkNetworkHealthChannelUtilizationQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkNetworkHealthChannelUtilization{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkNetworkHealthChannelUtilization](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkNetworkHealthChannelUtilizationQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseNetworksGetNetworkNetworkHealthChannelUtilization) ResponseNetworksGetNetworkNetworkHealthChannelUtilization {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkNetworkHealthChannelUtilizationQueryParams != nil {
+				return getNetworkNetworkHealthChannelUtilizationQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkNetworkHealthChannelUtilization")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkNetworkHealthChannelUtilization)
-	return result, response, err
-
-}
-func (s *NetworksService) GetNetworkNetworkHealthChannelUtilizationPaginate(networkID string, getNetworkNetworkHealthChannelUtilizationQueryParams any) (any, *resty.Response, error) {
-	getNetworkNetworkHealthChannelUtilizationQueryParamsConverted := getNetworkNetworkHealthChannelUtilizationQueryParams.(*GetNetworkNetworkHealthChannelUtilizationQueryParams)
-
-	return s.GetNetworkNetworkHealthChannelUtilization(networkID, getNetworkNetworkHealthChannelUtilizationQueryParamsConverted)
 }
 
 //GetNetworkPiiPiiKeys List the keys required to access Personally Identifiable Information (PII) for a given identifier
@@ -5967,9 +5518,9 @@ func (s *NetworksService) GetNetworkNetworkHealthChannelUtilizationPaginate(netw
 
 ## ALTERNATE PATH
 
-***
+```
 /organizations/{organizationId}/pii/piiKeys
-***
+```
 
 @param networkID networkId path parameter. Network ID
 @param getNetworkPiiPiiKeysQueryParams Filtering parameter
@@ -5982,26 +5533,15 @@ func (s *NetworksService) GetNetworkPiiPiiKeys(networkID string, getNetworkPiiPi
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkPiiPiiKeysQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkPiiPiiKeys{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkPiiPiiKeys")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkPiiPiiKeys)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkPiiPiiKeys](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkPiiPiiKeysQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6010,9 +5550,9 @@ func (s *NetworksService) GetNetworkPiiPiiKeys(networkID string, getNetworkPiiPi
 
 ## ALTERNATE PATH
 
-***
+```
 /organizations/{organizationId}/pii/requests
-***
+```
 
 @param networkID networkId path parameter. Network ID
 
@@ -6024,24 +5564,15 @@ func (s *NetworksService) GetNetworkPiiRequests(networkID string) (*ResponseNetw
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkPiiRequests{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkPiiRequests")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkPiiRequests)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkPiiRequests](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6050,9 +5581,9 @@ func (s *NetworksService) GetNetworkPiiRequests(networkID string) (*ResponseNetw
 
 ## ALTERNATE PATH
 
-***
+```
 /organizations/{organizationId}/pii/requests/{requestId}
-***
+```
 
 @param networkID networkId path parameter. Network ID
 @param requestID requestId path parameter. Request ID
@@ -6066,24 +5597,15 @@ func (s *NetworksService) GetNetworkPiiRequest(networkID string, requestID strin
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{requestId}", fmt.Sprintf("%v", requestID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkPiiRequest{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkPiiRequest")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkPiiRequest)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkPiiRequest](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6092,9 +5614,9 @@ func (s *NetworksService) GetNetworkPiiRequest(networkID string, requestID strin
 
 ## ALTERNATE PATH
 
-***
+```
 /organizations/{organizationId}/pii/smDevicesForKey
-***
+```
 
 @param networkID networkId path parameter. Network ID
 @param getNetworkPiiSmDevicesForKeyQueryParams Filtering parameter
@@ -6107,26 +5629,15 @@ func (s *NetworksService) GetNetworkPiiSmDevicesForKey(networkID string, getNetw
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkPiiSmDevicesForKeyQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkPiiSmDevicesForKey{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkPiiSmDevicesForKey")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkPiiSmDevicesForKey)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkPiiSmDevicesForKey](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkPiiSmDevicesForKeyQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6135,9 +5646,9 @@ func (s *NetworksService) GetNetworkPiiSmDevicesForKey(networkID string, getNetw
 
 ## ALTERNATE PATH
 
-***
+```
 /organizations/{organizationId}/pii/smOwnersForKey
-***
+```
 
 @param networkID networkId path parameter. Network ID
 @param getNetworkPiiSmOwnersForKeyQueryParams Filtering parameter
@@ -6150,26 +5661,15 @@ func (s *NetworksService) GetNetworkPiiSmOwnersForKey(networkID string, getNetwo
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkPiiSmOwnersForKeyQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkPiiSmOwnersForKey{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkPiiSmOwnersForKey")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkPiiSmOwnersForKey)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkPiiSmOwnersForKey](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkPiiSmOwnersForKeyQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6185,64 +5685,27 @@ func (s *NetworksService) GetNetworkPiiSmOwnersForKey(networkID string, getNetwo
 func (s *NetworksService) GetNetworkPoliciesByClient(networkID string, getNetworkPoliciesByClientQueryParams *GetNetworkPoliciesByClientQueryParams) (*ResponseNetworksGetNetworkPoliciesByClient, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/policies/byClient"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkPoliciesByClientQueryParams != nil && getNetworkPoliciesByClientQueryParams.PerPage == -1 {
-		var result *ResponseNetworksGetNetworkPoliciesByClient
-		println("Paginate")
-		getNetworkPoliciesByClientQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkPoliciesByClientPaginate, networkID, "", getNetworkPoliciesByClientQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseNetworksGetNetworkPoliciesByClient
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkPoliciesByClientQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkPoliciesByClient{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkPoliciesByClient](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkPoliciesByClientQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseNetworksGetNetworkPoliciesByClient) ResponseNetworksGetNetworkPoliciesByClient {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkPoliciesByClientQueryParams != nil {
+				return getNetworkPoliciesByClientQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkPoliciesByClient")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkPoliciesByClient)
-	return result, response, err
-
-}
-func (s *NetworksService) GetNetworkPoliciesByClientPaginate(networkID string, getNetworkPoliciesByClientQueryParams any) (any, *resty.Response, error) {
-	getNetworkPoliciesByClientQueryParamsConverted := getNetworkPoliciesByClientQueryParams.(*GetNetworkPoliciesByClientQueryParams)
-
-	return s.GetNetworkPoliciesByClient(networkID, getNetworkPoliciesByClientQueryParamsConverted)
 }
 
 //GetNetworkSettings Return the settings for a network
@@ -6258,24 +5721,15 @@ func (s *NetworksService) GetNetworkSettings(networkID string) (*ResponseNetwork
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkSettings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSettings")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkSettings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6292,24 +5746,15 @@ func (s *NetworksService) GetNetworkSNMP(networkID string) (*ResponseNetworksGet
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkSNMP{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSnmp")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkSNMP)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkSNMP](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6327,26 +5772,15 @@ func (s *NetworksService) GetNetworkSplashLoginAttempts(networkID string, getNet
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkSplashLoginAttemptsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkSplashLoginAttempts{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSplashLoginAttempts")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkSplashLoginAttempts)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkSplashLoginAttempts](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSplashLoginAttemptsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6363,24 +5797,15 @@ func (s *NetworksService) GetNetworkSyslogServers(networkID string) (*ResponseNe
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkSyslogServers{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSyslogServers")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkSyslogServers)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkSyslogServers](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6397,24 +5822,15 @@ func (s *NetworksService) GetNetworkTopologyLinkLayer(networkID string) (*Respon
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkTopologyLinkLayer{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkTopologyLinkLayer")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkTopologyLinkLayer)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkTopologyLinkLayer](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6432,26 +5848,15 @@ func (s *NetworksService) GetNetworkTraffic(networkID string, getNetworkTrafficQ
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkTrafficQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkTraffic{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkTraffic")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkTraffic)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkTraffic](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkTrafficQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6468,24 +5873,15 @@ func (s *NetworksService) GetNetworkTrafficAnalysis(networkID string) (*Response
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkTrafficAnalysis{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkTrafficAnalysis")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkTrafficAnalysis)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkTrafficAnalysis](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6502,24 +5898,15 @@ func (s *NetworksService) GetNetworkTrafficShapingApplicationCategories(networkI
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkTrafficShapingApplicationCategories{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkTrafficShapingApplicationCategories")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkTrafficShapingApplicationCategories)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkTrafficShapingApplicationCategories](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6536,24 +5923,15 @@ func (s *NetworksService) GetNetworkTrafficShapingDscpTaggingOptions(networkID s
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkTrafficShapingDscpTaggingOptions{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkTrafficShapingDscpTaggingOptions")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkTrafficShapingDscpTaggingOptions)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkTrafficShapingDscpTaggingOptions](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6570,24 +5948,15 @@ func (s *NetworksService) GetNetworkVLANProfiles(networkID string) (*ResponseNet
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkVLANProfiles{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkVlanProfiles")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkVLANProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkVLANProfiles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6603,64 +5972,27 @@ func (s *NetworksService) GetNetworkVLANProfiles(networkID string) (*ResponseNet
 func (s *NetworksService) GetNetworkVLANProfilesAssignmentsByDevice(networkID string, getNetworkVlanProfilesAssignmentsByDeviceQueryParams *GetNetworkVLANProfilesAssignmentsByDeviceQueryParams) (*ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/vlanProfiles/assignments/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkVlanProfilesAssignmentsByDeviceQueryParams != nil && getNetworkVlanProfilesAssignmentsByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice
-		println("Paginate")
-		getNetworkVlanProfilesAssignmentsByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkVLANProfilesAssignmentsByDevicePaginate, networkID, "", getNetworkVlanProfilesAssignmentsByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkVlanProfilesAssignmentsByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkVlanProfilesAssignmentsByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice) ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkVlanProfilesAssignmentsByDeviceQueryParams != nil {
+				return getNetworkVlanProfilesAssignmentsByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkVlanProfilesAssignmentsByDevice")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice)
-	return result, response, err
-
-}
-func (s *NetworksService) GetNetworkVLANProfilesAssignmentsByDevicePaginate(networkID string, getNetworkVlanProfilesAssignmentsByDeviceQueryParams any) (any, *resty.Response, error) {
-	getNetworkVlanProfilesAssignmentsByDeviceQueryParamsConverted := getNetworkVlanProfilesAssignmentsByDeviceQueryParams.(*GetNetworkVLANProfilesAssignmentsByDeviceQueryParams)
-
-	return s.GetNetworkVLANProfilesAssignmentsByDevice(networkID, getNetworkVlanProfilesAssignmentsByDeviceQueryParamsConverted)
 }
 
 //GetNetworkVLANProfile Get an existing VLAN profile of a network
@@ -6678,24 +6010,15 @@ func (s *NetworksService) GetNetworkVLANProfile(networkID string, iname string) 
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{iname}", fmt.Sprintf("%v", iname), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkVLANProfile{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkVlanProfile")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkVLANProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkVLANProfile](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6712,24 +6035,15 @@ func (s *NetworksService) GetNetworkWebhooksHTTPServers(networkID string) (*Resp
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkWebhooksHTTPServers{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWebhooksHttpServers")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkWebhooksHTTPServers)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkWebhooksHTTPServers](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6748,24 +6062,15 @@ func (s *NetworksService) GetNetworkWebhooksHTTPServer(networkID string, httpSer
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{httpServerId}", fmt.Sprintf("%v", httpServerID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkWebhooksHTTPServer{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWebhooksHttpServer")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkWebhooksHTTPServer)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkWebhooksHTTPServer](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6782,24 +6087,15 @@ func (s *NetworksService) GetNetworkWebhooksPayloadTemplates(networkID string) (
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkWebhooksPayloadTemplates{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWebhooksPayloadTemplates")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkWebhooksPayloadTemplates)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkWebhooksPayloadTemplates](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6818,24 +6114,15 @@ func (s *NetworksService) GetNetworkWebhooksPayloadTemplate(networkID string, pa
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{payloadTemplateId}", fmt.Sprintf("%v", payloadTemplateID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkWebhooksPayloadTemplate{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWebhooksPayloadTemplate")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkWebhooksPayloadTemplate)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkWebhooksPayloadTemplate](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6854,24 +6141,15 @@ func (s *NetworksService) GetNetworkWebhooksWebhookTest(networkID string, webhoo
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{webhookTestId}", fmt.Sprintf("%v", webhookTestID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksGetNetworkWebhooksWebhookTest{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWebhooksWebhookTest")
-	}
-
-	result := response.Result().(*ResponseNetworksGetNetworkWebhooksWebhookTest)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksGetNetworkWebhooksWebhookTest](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6884,31 +6162,29 @@ func (s *NetworksService) GetNetworkWebhooksWebhookTest(networkID string, webhoo
 
 */
 
-func (s *NetworksService) GetOrganizationIntegrationsXdrNetworks(organizationID string, getOrganizationIntegrationsXdrNetworksQueryParams *GetOrganizationIntegrationsXdrNetworksQueryParams) (*resty.Response, error) {
+func (s *NetworksService) GetOrganizationIntegrationsXdrNetworks(organizationID string, getOrganizationIntegrationsXdrNetworksQueryParams *GetOrganizationIntegrationsXdrNetworksQueryParams) (*ResponseNetworksGetOrganizationIntegrationsXdrNetworks, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/integrations/xdr/networks"
 	s.rateLimiterBucket.Wait(1)
-
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationIntegrationsXdrNetworksQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation GetOrganizationIntegrationsXdrNetworks")
-	}
-
-	return response, err
+	return doWithRetriesAndResult[ResponseNetworksGetOrganizationIntegrationsXdrNetworks](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationIntegrationsXdrNetworksQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseNetworksGetOrganizationIntegrationsXdrNetworks) ResponseNetworksGetOrganizationIntegrationsXdrNetworks {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationIntegrationsXdrNetworksQueryParams != nil {
+				return getOrganizationIntegrationsXdrNetworksQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
 }
 
@@ -6921,67 +6197,30 @@ func (s *NetworksService) GetOrganizationIntegrationsXdrNetworks(organizationID 
 
 */
 
-func (s *NetworksService) GetOrganizationSummaryTopNetworksByStatus(organizationID string, getOrganizationSummaryTopNetworksByStatusQueryParams *GetOrganizationSummaryTopNetworksByStatusQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus, *resty.Response, error) {
+func (s *NetworksService) GetOrganizationSummaryTopNetworksByStatus(organizationID string, getOrganizationSummaryTopNetworksByStatusQueryParams *GetOrganizationSummaryTopNetworksByStatusQueryParams) (*ResponseNetworksGetOrganizationSummaryTopNetworksByStatus, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/networks/byStatus"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationSummaryTopNetworksByStatusQueryParams != nil && getOrganizationSummaryTopNetworksByStatusQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus
-		println("Paginate")
-		getOrganizationSummaryTopNetworksByStatusQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationSummaryTopNetworksByStatusPaginate, organizationID, "", getOrganizationSummaryTopNetworksByStatusQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSummaryTopNetworksByStatusQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseNetworksGetOrganizationSummaryTopNetworksByStatus](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSummaryTopNetworksByStatusQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseNetworksGetOrganizationSummaryTopNetworksByStatus) ResponseNetworksGetOrganizationSummaryTopNetworksByStatus {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationSummaryTopNetworksByStatusQueryParams != nil {
+				return getOrganizationSummaryTopNetworksByStatusQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSummaryTopNetworksByStatus")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus)
-	return result, response, err
-
-}
-func (s *NetworksService) GetOrganizationSummaryTopNetworksByStatusPaginate(organizationID string, getOrganizationSummaryTopNetworksByStatusQueryParams any) (any, *resty.Response, error) {
-	getOrganizationSummaryTopNetworksByStatusQueryParamsConverted := getOrganizationSummaryTopNetworksByStatusQueryParams.(*GetOrganizationSummaryTopNetworksByStatusQueryParams)
-
-	return s.GetOrganizationSummaryTopNetworksByStatus(organizationID, getOrganizationSummaryTopNetworksByStatusQueryParamsConverted)
 }
 
 //BindNetwork Bind a network to a template.
@@ -6997,25 +6236,15 @@ func (s *NetworksService) BindNetwork(networkID string, requestNetworksBindNetwo
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksBindNetwork).
-		SetResult(&ResponseNetworksBindNetwork{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation BindNetwork")
-	}
-
-	result := response.Result().(*ResponseNetworksBindNetwork)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksBindNetwork](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksBindNetwork, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7032,25 +6261,15 @@ func (s *NetworksService) ProvisionNetworkClients(networkID string, requestNetwo
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksProvisionNetworkClients).
-		SetResult(&ResponseNetworksProvisionNetworkClients{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ProvisionNetworkClients")
-	}
-
-	result := response.Result().(*ResponseNetworksProvisionNetworkClients)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksProvisionNetworkClients](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksProvisionNetworkClients, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7068,27 +6287,15 @@ func (s *NetworksService) ClaimNetworkDevices(networkID string, requestNetworksC
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(claimNetworkDevicesQueryParams)
+	// Past way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetBody(requestNetworksClaimNetworkDevices).
-		SetResult(&ResponseNetworksClaimNetworkDevices{}).
-		SetError(&Error).
-		Post(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ClaimNetworkDevices")
-	}
-
-	result := response.Result().(*ResponseNetworksClaimNetworkDevices)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksClaimNetworkDevices](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksClaimNetworkDevices, claimNetworkDevicesQueryParams)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7105,25 +6312,15 @@ func (s *NetworksService) VmxNetworkDevicesClaim(networkID string, requestNetwor
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksVmxNetworkDevicesClaim).
-		SetResult(&ResponseNetworksVmxNetworkDevicesClaim{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation VmxNetworkDevicesClaim")
-	}
-
-	result := response.Result().(*ResponseNetworksVmxNetworkDevicesClaim)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksVmxNetworkDevicesClaim](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksVmxNetworkDevicesClaim, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7140,23 +6337,13 @@ func (s *NetworksService) RemoveNetworkDevices(networkID string, requestNetworks
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksRemoveNetworkDevices).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation RemoveNetworkDevices")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksRemoveNetworkDevices, nil)
+		},
+	)
 
 }
 
@@ -7173,25 +6360,15 @@ func (s *NetworksService) CreateNetworkFirmwareUpgradesRollback(networkID string
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksCreateNetworkFirmwareUpgradesRollback).
-		SetResult(&ResponseNetworksCreateNetworkFirmwareUpgradesRollback{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkFirmwareUpgradesRollback")
-	}
-
-	result := response.Result().(*ResponseNetworksCreateNetworkFirmwareUpgradesRollback)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksCreateNetworkFirmwareUpgradesRollback](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksCreateNetworkFirmwareUpgradesRollback, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7208,25 +6385,15 @@ func (s *NetworksService) CreateNetworkFirmwareUpgradesStagedEvent(networkID str
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksCreateNetworkFirmwareUpgradesStagedEvent).
-		SetResult(&ResponseNetworksCreateNetworkFirmwareUpgradesStagedEvent{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkFirmwareUpgradesStagedEvent")
-	}
-
-	result := response.Result().(*ResponseNetworksCreateNetworkFirmwareUpgradesStagedEvent)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksCreateNetworkFirmwareUpgradesStagedEvent](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksCreateNetworkFirmwareUpgradesStagedEvent, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7243,24 +6410,15 @@ func (s *NetworksService) DeferNetworkFirmwareUpgradesStagedEvents(networkID str
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksDeferNetworkFirmwareUpgradesStagedEvents{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation DeferNetworkFirmwareUpgradesStagedEvents")
-	}
-
-	result := response.Result().(*ResponseNetworksDeferNetworkFirmwareUpgradesStagedEvents)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksDeferNetworkFirmwareUpgradesStagedEvents](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, nil, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7277,25 +6435,15 @@ func (s *NetworksService) RollbacksNetworkFirmwareUpgradesStagedEvents(networkID
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksRollbacksNetworkFirmwareUpgradesStagedEvents).
-		SetResult(&ResponseNetworksRollbacksNetworkFirmwareUpgradesStagedEvents{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation RollbacksNetworkFirmwareUpgradesStagedEvents")
-	}
-
-	result := response.Result().(*ResponseNetworksRollbacksNetworkFirmwareUpgradesStagedEvents)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksRollbacksNetworkFirmwareUpgradesStagedEvents](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksRollbacksNetworkFirmwareUpgradesStagedEvents, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7312,25 +6460,15 @@ func (s *NetworksService) CreateNetworkFirmwareUpgradesStagedGroup(networkID str
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksCreateNetworkFirmwareUpgradesStagedGroup).
-		SetResult(&ResponseNetworksCreateNetworkFirmwareUpgradesStagedGroup{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkFirmwareUpgradesStagedGroup")
-	}
-
-	result := response.Result().(*ResponseNetworksCreateNetworkFirmwareUpgradesStagedGroup)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksCreateNetworkFirmwareUpgradesStagedGroup](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksCreateNetworkFirmwareUpgradesStagedGroup, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7347,25 +6485,15 @@ func (s *NetworksService) CreateNetworkFloorPlan(networkID string, requestNetwor
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksCreateNetworkFloorPlan).
-		SetResult(&ResponseNetworksCreateNetworkFloorPlan{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkFloorPlan")
-	}
-
-	result := response.Result().(*ResponseNetworksCreateNetworkFloorPlan)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksCreateNetworkFloorPlan](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksCreateNetworkFloorPlan, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7382,25 +6510,15 @@ func (s *NetworksService) BatchNetworkFloorPlansAutoLocateJobs(networkID string,
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksBatchNetworkFloorPlansAutoLocateJobs).
-		SetResult(&ResponseNetworksBatchNetworkFloorPlansAutoLocateJobs{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation BatchNetworkFloorPlansAutoLocateJobs")
-	}
-
-	result := response.Result().(*ResponseNetworksBatchNetworkFloorPlansAutoLocateJobs)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksBatchNetworkFloorPlansAutoLocateJobs](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksBatchNetworkFloorPlansAutoLocateJobs, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7419,22 +6537,13 @@ func (s *NetworksService) CancelNetworkFloorPlansAutoLocateJob(networkID string,
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{jobId}", fmt.Sprintf("%v", jobID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation CancelNetworkFloorPlansAutoLocateJob")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return POST(path, s.client, nil, nil)
+		},
+	)
 
 }
 
@@ -7453,25 +6562,15 @@ func (s *NetworksService) PublishNetworkFloorPlansAutoLocateJob(networkID string
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{jobId}", fmt.Sprintf("%v", jobID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksPublishNetworkFloorPlansAutoLocateJob).
-		SetResult(&ResponseNetworksPublishNetworkFloorPlansAutoLocateJob{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation PublishNetworkFloorPlansAutoLocateJob")
-	}
-
-	result := response.Result().(*ResponseNetworksPublishNetworkFloorPlansAutoLocateJob)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksPublishNetworkFloorPlansAutoLocateJob](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksPublishNetworkFloorPlansAutoLocateJob, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7490,25 +6589,15 @@ func (s *NetworksService) RecalculateNetworkFloorPlansAutoLocateJob(networkID st
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{jobId}", fmt.Sprintf("%v", jobID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksRecalculateNetworkFloorPlansAutoLocateJob).
-		SetResult(&ResponseNetworksRecalculateNetworkFloorPlansAutoLocateJob{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation RecalculateNetworkFloorPlansAutoLocateJob")
-	}
-
-	result := response.Result().(*ResponseNetworksRecalculateNetworkFloorPlansAutoLocateJob)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksRecalculateNetworkFloorPlansAutoLocateJob](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksRecalculateNetworkFloorPlansAutoLocateJob, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7525,25 +6614,15 @@ func (s *NetworksService) BatchNetworkFloorPlansDevicesUpdate(networkID string, 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksBatchNetworkFloorPlansDevicesUpdate).
-		SetResult(&ResponseNetworksBatchNetworkFloorPlansDevicesUpdate{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation BatchNetworkFloorPlansDevicesUpdate")
-	}
-
-	result := response.Result().(*ResponseNetworksBatchNetworkFloorPlansDevicesUpdate)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksBatchNetworkFloorPlansDevicesUpdate](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksBatchNetworkFloorPlansDevicesUpdate, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7560,25 +6639,15 @@ func (s *NetworksService) CreateNetworkGroupPolicy(networkID string, requestNetw
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksCreateNetworkGroupPolicy).
-		SetResult(&ResponseNetworksCreateNetworkGroupPolicy{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkGroupPolicy")
-	}
-
-	result := response.Result().(*ResponseNetworksCreateNetworkGroupPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksCreateNetworkGroupPolicy](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksCreateNetworkGroupPolicy, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7595,25 +6664,15 @@ func (s *NetworksService) CreateNetworkMerakiAuthUser(networkID string, requestN
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksCreateNetworkMerakiAuthUser).
-		SetResult(&ResponseNetworksCreateNetworkMerakiAuthUser{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkMerakiAuthUser")
-	}
-
-	result := response.Result().(*ResponseNetworksCreateNetworkMerakiAuthUser)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksCreateNetworkMerakiAuthUser](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksCreateNetworkMerakiAuthUser, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7630,25 +6689,15 @@ func (s *NetworksService) CreateNetworkMqttBroker(networkID string, requestNetwo
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksCreateNetworkMqttBroker).
-		SetResult(&ResponseNetworksCreateNetworkMqttBroker{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkMqttBroker")
-	}
-
-	result := response.Result().(*ResponseNetworksCreateNetworkMqttBroker)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksCreateNetworkMqttBroker](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksCreateNetworkMqttBroker, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7657,9 +6706,9 @@ func (s *NetworksService) CreateNetworkMqttBroker(networkID string, requestNetwo
 
 ## ALTERNATE PATH
 
-***
+```
 /organizations/{organizationId}/pii/requests
-***
+```
 
 @param networkID networkId path parameter. Network ID
 
@@ -7671,25 +6720,15 @@ func (s *NetworksService) CreateNetworkPiiRequest(networkID string, requestNetwo
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksCreateNetworkPiiRequest).
-		SetResult(&ResponseNetworksCreateNetworkPiiRequest{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkPiiRequest")
-	}
-
-	result := response.Result().(*ResponseNetworksCreateNetworkPiiRequest)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksCreateNetworkPiiRequest](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksCreateNetworkPiiRequest, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7706,24 +6745,15 @@ func (s *NetworksService) SplitNetwork(networkID string) (*ResponseNetworksSplit
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksSplitNetwork{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation SplitNetwork")
-	}
-
-	result := response.Result().(*ResponseNetworksSplitNetwork)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksSplitNetwork](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, nil, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7740,25 +6770,15 @@ func (s *NetworksService) UnbindNetwork(networkID string, requestNetworksUnbindN
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUnbindNetwork).
-		SetResult(&ResponseNetworksUnbindNetwork{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UnbindNetwork")
-	}
-
-	result := response.Result().(*ResponseNetworksUnbindNetwork)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUnbindNetwork](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksUnbindNetwork, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7775,25 +6795,15 @@ func (s *NetworksService) CreateNetworkVLANProfile(networkID string, requestNetw
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksCreateNetworkVlanProfile).
-		SetResult(&ResponseNetworksCreateNetworkVLANProfile{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkVlanProfile")
-	}
-
-	result := response.Result().(*ResponseNetworksCreateNetworkVLANProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksCreateNetworkVLANProfile](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksCreateNetworkVlanProfile, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7810,25 +6820,15 @@ func (s *NetworksService) ReassignNetworkVLANProfilesAssignments(networkID strin
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksReassignNetworkVlanProfilesAssignments).
-		SetResult(&ResponseNetworksReassignNetworkVLANProfilesAssignments{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ReassignNetworkVlanProfilesAssignments")
-	}
-
-	result := response.Result().(*ResponseNetworksReassignNetworkVLANProfilesAssignments)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksReassignNetworkVLANProfilesAssignments](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksReassignNetworkVlanProfilesAssignments, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7845,25 +6845,15 @@ func (s *NetworksService) CreateNetworkWebhooksHTTPServer(networkID string, requ
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksCreateNetworkWebhooksHttpServer).
-		SetResult(&ResponseNetworksCreateNetworkWebhooksHTTPServer{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkWebhooksHttpServer")
-	}
-
-	result := response.Result().(*ResponseNetworksCreateNetworkWebhooksHTTPServer)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksCreateNetworkWebhooksHTTPServer](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksCreateNetworkWebhooksHttpServer, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7880,25 +6870,15 @@ func (s *NetworksService) CreateNetworkWebhooksPayloadTemplate(networkID string,
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksCreateNetworkWebhooksPayloadTemplate).
-		SetResult(&ResponseNetworksCreateNetworkWebhooksPayloadTemplate{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkWebhooksPayloadTemplate")
-	}
-
-	result := response.Result().(*ResponseNetworksCreateNetworkWebhooksPayloadTemplate)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksCreateNetworkWebhooksPayloadTemplate](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksCreateNetworkWebhooksPayloadTemplate, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7915,25 +6895,15 @@ func (s *NetworksService) CreateNetworkWebhooksWebhookTest(networkID string, req
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksCreateNetworkWebhooksWebhookTest).
-		SetResult(&ResponseNetworksCreateNetworkWebhooksWebhookTest{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkWebhooksWebhookTest")
-	}
-
-	result := response.Result().(*ResponseNetworksCreateNetworkWebhooksWebhookTest)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksCreateNetworkWebhooksWebhookTest](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksCreateNetworkWebhooksWebhookTest, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7945,27 +6915,20 @@ func (s *NetworksService) CreateNetworkWebhooksWebhookTest(networkID string, req
 
 */
 
-func (s *NetworksService) DisableOrganizationIntegrationsXdrNetworks(organizationID string) (*resty.Response, error) {
+func (s *NetworksService) DisableOrganizationIntegrationsXdrNetworks(organizationID string, requestNetworksDisableOrganizationIntegrationsXdrNetworks *RequestNetworksDisableOrganizationIntegrationsXdrNetworks) (*ResponseNetworksDisableOrganizationIntegrationsXdrNetworks, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/integrations/xdr/networks/disable"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DisableOrganizationIntegrationsXdrNetworks")
-	}
-
-	return response, err
+	return doWithRetriesAndResult[ResponseNetworksDisableOrganizationIntegrationsXdrNetworks](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksDisableOrganizationIntegrationsXdrNetworks, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7977,27 +6940,20 @@ func (s *NetworksService) DisableOrganizationIntegrationsXdrNetworks(organizatio
 
 */
 
-func (s *NetworksService) EnableOrganizationIntegrationsXdrNetworks(organizationID string) (*resty.Response, error) {
+func (s *NetworksService) EnableOrganizationIntegrationsXdrNetworks(organizationID string, requestNetworksEnableOrganizationIntegrationsXdrNetworks *RequestNetworksEnableOrganizationIntegrationsXdrNetworks) (*ResponseNetworksEnableOrganizationIntegrationsXdrNetworks, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/integrations/xdr/networks/enable"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation EnableOrganizationIntegrationsXdrNetworks")
-	}
-
-	return response, err
+	return doWithRetriesAndResult[ResponseNetworksEnableOrganizationIntegrationsXdrNetworks](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksEnableOrganizationIntegrationsXdrNetworks, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8009,27 +6965,20 @@ func (s *NetworksService) EnableOrganizationIntegrationsXdrNetworks(organization
 
 */
 
-func (s *NetworksService) CombineOrganizationNetworks(organizationID string) (*resty.Response, error) {
+func (s *NetworksService) CombineOrganizationNetworks(organizationID string, requestNetworksCombineOrganizationNetworks *RequestNetworksCombineOrganizationNetworks) (*ResponseNetworksCombineOrganizationNetworks, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/networks/combine"
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation CombineOrganizationNetworks")
-	}
-
-	return response, err
+	return doWithRetriesAndResult[ResponseNetworksCombineOrganizationNetworks](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestNetworksCombineOrganizationNetworks, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8043,25 +6992,15 @@ func (s *NetworksService) UpdateNetwork(networkID string, requestNetworksUpdateN
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetwork).
-		SetResult(&ResponseNetworksUpdateNetwork{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetwork")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetwork)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetwork](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetwork)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8075,25 +7014,15 @@ func (s *NetworksService) UpdateNetworkAlertsSettings(networkID string, requestN
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkAlertsSettings).
-		SetResult(&ResponseNetworksUpdateNetworkAlertsSettings{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkAlertsSettings")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkAlertsSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkAlertsSettings](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkAlertsSettings)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8109,25 +7038,15 @@ func (s *NetworksService) UpdateNetworkClientPolicy(networkID string, clientID s
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkClientPolicy).
-		SetResult(&ResponseNetworksUpdateNetworkClientPolicy{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkClientPolicy")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkClientPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkClientPolicy](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkClientPolicy)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8143,23 +7062,13 @@ func (s *NetworksService) UpdateNetworkClientSplashAuthorizationStatus(networkID
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkClientSplashAuthorizationStatus).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkClientSplashAuthorizationStatus")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkClientSplashAuthorizationStatus)
+		},
+	)
 
 }
 
@@ -8173,25 +7082,15 @@ func (s *NetworksService) UpdateNetworkFirmwareUpgrades(networkID string, reques
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkFirmwareUpgrades).
-		SetResult(&ResponseNetworksUpdateNetworkFirmwareUpgrades{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkFirmwareUpgrades")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkFirmwareUpgrades)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkFirmwareUpgrades](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkFirmwareUpgrades)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8205,25 +7104,15 @@ func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedEvents(networkID st
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkFirmwareUpgradesStagedEvents).
-		SetResult(&ResponseNetworksUpdateNetworkFirmwareUpgradesStagedEvents{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkFirmwareUpgradesStagedEvents")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkFirmwareUpgradesStagedEvents)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkFirmwareUpgradesStagedEvents](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkFirmwareUpgradesStagedEvents)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8239,25 +7128,15 @@ func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedGroup(networkID str
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{groupId}", fmt.Sprintf("%v", groupID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkFirmwareUpgradesStagedGroup).
-		SetResult(&ResponseNetworksUpdateNetworkFirmwareUpgradesStagedGroup{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkFirmwareUpgradesStagedGroup")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkFirmwareUpgradesStagedGroup)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkFirmwareUpgradesStagedGroup](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkFirmwareUpgradesStagedGroup)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8271,25 +7150,15 @@ func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedStages(networkID st
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkFirmwareUpgradesStagedStages).
-		SetResult(&ResponseNetworksUpdateNetworkFirmwareUpgradesStagedStages{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkFirmwareUpgradesStagedStages")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkFirmwareUpgradesStagedStages)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkFirmwareUpgradesStagedStages](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkFirmwareUpgradesStagedStages)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8305,25 +7174,15 @@ func (s *NetworksService) UpdateNetworkFloorPlan(networkID string, floorPlanID s
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{floorPlanId}", fmt.Sprintf("%v", floorPlanID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkFloorPlan).
-		SetResult(&ResponseNetworksUpdateNetworkFloorPlan{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkFloorPlan")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkFloorPlan)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkFloorPlan](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkFloorPlan)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8339,25 +7198,15 @@ func (s *NetworksService) UpdateNetworkGroupPolicy(networkID string, groupPolicy
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{groupPolicyId}", fmt.Sprintf("%v", groupPolicyID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkGroupPolicy).
-		SetResult(&ResponseNetworksUpdateNetworkGroupPolicy{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkGroupPolicy")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkGroupPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkGroupPolicy](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkGroupPolicy)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8373,25 +7222,15 @@ func (s *NetworksService) UpdateNetworkMerakiAuthUser(networkID string, merakiAu
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{merakiAuthUserId}", fmt.Sprintf("%v", merakiAuthUserID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkMerakiAuthUser).
-		SetResult(&ResponseNetworksUpdateNetworkMerakiAuthUser{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkMerakiAuthUser")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkMerakiAuthUser)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkMerakiAuthUser](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkMerakiAuthUser)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8407,25 +7246,15 @@ func (s *NetworksService) UpdateNetworkMqttBroker(networkID string, mqttBrokerID
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{mqttBrokerId}", fmt.Sprintf("%v", mqttBrokerID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkMqttBroker).
-		SetResult(&ResponseNetworksUpdateNetworkMqttBroker{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkMqttBroker")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkMqttBroker)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkMqttBroker](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkMqttBroker)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8439,25 +7268,15 @@ func (s *NetworksService) UpdateNetworkNetflow(networkID string, requestNetworks
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkNetflow).
-		SetResult(&ResponseNetworksUpdateNetworkNetflow{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkNetflow")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkNetflow)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkNetflow](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkNetflow)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8471,25 +7290,15 @@ func (s *NetworksService) UpdateNetworkSettings(networkID string, requestNetwork
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkSettings).
-		SetResult(&ResponseNetworksUpdateNetworkSettings{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSettings")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkSettings](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkSettings)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8503,25 +7312,15 @@ func (s *NetworksService) UpdateNetworkSNMP(networkID string, requestNetworksUpd
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkSnmp).
-		SetResult(&ResponseNetworksUpdateNetworkSNMP{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSnmp")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkSNMP)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkSNMP](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkSnmp)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8535,25 +7334,15 @@ func (s *NetworksService) UpdateNetworkSyslogServers(networkID string, requestNe
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkSyslogServers).
-		SetResult(&ResponseNetworksUpdateNetworkSyslogServers{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSyslogServers")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkSyslogServers)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkSyslogServers](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkSyslogServers)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8567,25 +7356,15 @@ func (s *NetworksService) UpdateNetworkTrafficAnalysis(networkID string, request
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkTrafficAnalysis).
-		SetResult(&ResponseNetworksUpdateNetworkTrafficAnalysis{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkTrafficAnalysis")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkTrafficAnalysis)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkTrafficAnalysis](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkTrafficAnalysis)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8601,25 +7380,15 @@ func (s *NetworksService) UpdateNetworkVLANProfile(networkID string, iname strin
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{iname}", fmt.Sprintf("%v", iname), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkVlanProfile).
-		SetResult(&ResponseNetworksUpdateNetworkVLANProfile{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkVlanProfile")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkVLANProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkVLANProfile](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkVlanProfile)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8635,25 +7404,15 @@ func (s *NetworksService) UpdateNetworkWebhooksHTTPServer(networkID string, http
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{httpServerId}", fmt.Sprintf("%v", httpServerID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkWebhooksHttpServer).
-		SetResult(&ResponseNetworksUpdateNetworkWebhooksHTTPServer{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWebhooksHttpServer")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkWebhooksHTTPServer)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkWebhooksHTTPServer](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkWebhooksHttpServer)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8669,25 +7428,15 @@ func (s *NetworksService) UpdateNetworkWebhooksPayloadTemplate(networkID string,
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{payloadTemplateId}", fmt.Sprintf("%v", payloadTemplateID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestNetworksUpdateNetworkWebhooksPayloadTemplate).
-		SetResult(&ResponseNetworksUpdateNetworkWebhooksPayloadTemplate{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWebhooksPayloadTemplate")
-	}
-
-	result := response.Result().(*ResponseNetworksUpdateNetworkWebhooksPayloadTemplate)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseNetworksUpdateNetworkWebhooksPayloadTemplate](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestNetworksUpdateNetworkWebhooksPayloadTemplate)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8704,23 +7453,11 @@ func (s *NetworksService) DeleteNetwork(networkID string) (*resty.Response, erro
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetwork")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkFirmwareUpgradesStagedGroup Delete a Staged Upgrade Group
@@ -8738,23 +7475,11 @@ func (s *NetworksService) DeleteNetworkFirmwareUpgradesStagedGroup(networkID str
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{groupId}", fmt.Sprintf("%v", groupID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkFirmwareUpgradesStagedGroup")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkFloorPlan Destroy a floor plan
@@ -8772,25 +7497,13 @@ func (s *NetworksService) DeleteNetworkFloorPlan(networkID string, floorPlanID s
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{floorPlanId}", fmt.Sprintf("%v", floorPlanID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseNetworksDeleteNetworkFloorPlan{}).
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation DeleteNetworkFloorPlan")
-	}
-
-	result := response.Result().(*ResponseNetworksDeleteNetworkFloorPlan)
-	return result, response, err
-
+	return doWithRetriesAndResult[ResponseNetworksDeleteNetworkFloorPlan](
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+		s.client,
+		nil,
+	)
 }
 
 //DeleteNetworkGroupPolicy Delete a group policy
@@ -8809,26 +7522,11 @@ func (s *NetworksService) DeleteNetworkGroupPolicy(networkID string, groupPolicy
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{groupPolicyId}", fmt.Sprintf("%v", groupPolicyID), -1)
 
-	queryString, _ := query.Values(deleteNetworkGroupPolicyQueryParams)
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkGroupPolicy")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, deleteNetworkGroupPolicyQueryParams)
+		},
+	)
 }
 
 //DeleteNetworkMerakiAuthUser Delete an 802.1X RADIUS user, or deauthorize and optionally delete a splash guest or client VPN user.
@@ -8847,26 +7545,11 @@ func (s *NetworksService) DeleteNetworkMerakiAuthUser(networkID string, merakiAu
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{merakiAuthUserId}", fmt.Sprintf("%v", merakiAuthUserID), -1)
 
-	queryString, _ := query.Values(deleteNetworkMerakiAuthUserQueryParams)
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkMerakiAuthUser")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, deleteNetworkMerakiAuthUserQueryParams)
+		},
+	)
 }
 
 //DeleteNetworkMqttBroker Delete an MQTT broker
@@ -8884,23 +7567,11 @@ func (s *NetworksService) DeleteNetworkMqttBroker(networkID string, mqttBrokerID
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{mqttBrokerId}", fmt.Sprintf("%v", mqttBrokerID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkMqttBroker")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkPiiRequest Delete a restrict processing PII request
@@ -8908,9 +7579,9 @@ func (s *NetworksService) DeleteNetworkMqttBroker(networkID string, mqttBrokerID
 
 ## ALTERNATE PATH
 
-***
+```
 /organizations/{organizationId}/pii/requests/{requestId}
-***
+```
 
 @param networkID networkId path parameter. Network ID
 @param requestID requestId path parameter. Request ID
@@ -8924,23 +7595,11 @@ func (s *NetworksService) DeleteNetworkPiiRequest(networkID string, requestID st
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{requestId}", fmt.Sprintf("%v", requestID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkPiiRequest")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkVLANProfile Delete a VLAN profile of a network
@@ -8958,23 +7617,11 @@ func (s *NetworksService) DeleteNetworkVLANProfile(networkID string, iname strin
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{iname}", fmt.Sprintf("%v", iname), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkVlanProfile")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkWebhooksHTTPServer Delete an HTTP server from a network
@@ -8992,23 +7639,11 @@ func (s *NetworksService) DeleteNetworkWebhooksHTTPServer(networkID string, http
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{httpServerId}", fmt.Sprintf("%v", httpServerID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkWebhooksHttpServer")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkWebhooksPayloadTemplate Destroy a webhook payload template for a network
@@ -9026,21 +7661,9 @@ func (s *NetworksService) DeleteNetworkWebhooksPayloadTemplate(networkID string,
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{payloadTemplateId}", fmt.Sprintf("%v", payloadTemplateID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkWebhooksPayloadTemplate")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }

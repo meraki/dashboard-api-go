@@ -1,12 +1,10 @@
 package meraki
 
 import (
-	"encoding/json"
 	"fmt"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 type WirelessControllerService service
@@ -674,64 +672,27 @@ type ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDevice
 func (s *WirelessControllerService) GetOrganizationWirelessControllerAvailabilitiesChangeHistory(organizationID string, getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams *GetOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerAvailabilitiesChangeHistory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/availabilities/changeHistory"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams != nil && getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams.PerPage == -1 {
-		var result *ResponseWirelessControllerGetOrganizationWirelessControllerAvailabilitiesChangeHistory
-		println("Paginate")
-		getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessControllerAvailabilitiesChangeHistoryPaginate, organizationID, "", getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessControllerGetOrganizationWirelessControllerAvailabilitiesChangeHistory
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessControllerGetOrganizationWirelessControllerAvailabilitiesChangeHistory{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessControllerGetOrganizationWirelessControllerAvailabilitiesChangeHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerAvailabilitiesChangeHistory) ResponseWirelessControllerGetOrganizationWirelessControllerAvailabilitiesChangeHistory {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams != nil {
+				return getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessControllerAvailabilitiesChangeHistory")
-	}
-
-	result := response.Result().(*ResponseWirelessControllerGetOrganizationWirelessControllerAvailabilitiesChangeHistory)
-	return result, response, err
-
-}
-func (s *WirelessControllerService) GetOrganizationWirelessControllerAvailabilitiesChangeHistoryPaginate(organizationID string, getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParamsConverted := getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams.(*GetOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams)
-
-	return s.GetOrganizationWirelessControllerAvailabilitiesChangeHistory(organizationID, getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParamsConverted)
 }
 
 //GetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByInterval List wireless client counts of wireless LAN controllers over time in an organization
@@ -746,64 +707,27 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerAvailabilit
 func (s *WirelessControllerService) GetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByInterval(organizationID string, getOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParams *GetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByInterval, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/clients/overview/history/byDevice/byInterval"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParams != nil && getOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParams.PerPage == -1 {
-		var result *ResponseWirelessControllerGetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByInterval
-		println("Paginate")
-		getOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalPaginate, organizationID, "", getOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessControllerGetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByInterval
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessControllerGetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByInterval{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessControllerGetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByInterval](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByInterval) ResponseWirelessControllerGetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByInterval {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParams != nil {
+				return getOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByInterval")
-	}
-
-	result := response.Result().(*ResponseWirelessControllerGetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByInterval)
-	return result, response, err
-
-}
-func (s *WirelessControllerService) GetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalPaginate(organizationID string, getOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParamsConverted := getOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParams.(*GetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParams)
-
-	return s.GetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByInterval(organizationID, getOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParamsConverted)
 }
 
 //GetOrganizationWirelessControllerConnections List all access points associated with wireless LAN controllers in an organization
@@ -818,64 +742,27 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerClientsOver
 func (s *WirelessControllerService) GetOrganizationWirelessControllerConnections(organizationID string, getOrganizationWirelessControllerConnectionsQueryParams *GetOrganizationWirelessControllerConnectionsQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerConnections, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/connections"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessControllerConnectionsQueryParams != nil && getOrganizationWirelessControllerConnectionsQueryParams.PerPage == -1 {
-		var result *ResponseWirelessControllerGetOrganizationWirelessControllerConnections
-		println("Paginate")
-		getOrganizationWirelessControllerConnectionsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessControllerConnectionsPaginate, organizationID, "", getOrganizationWirelessControllerConnectionsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessControllerGetOrganizationWirelessControllerConnections
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessControllerConnectionsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessControllerGetOrganizationWirelessControllerConnections{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessControllerGetOrganizationWirelessControllerConnections](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessControllerConnectionsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerConnections) ResponseWirelessControllerGetOrganizationWirelessControllerConnections {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessControllerConnectionsQueryParams != nil {
+				return getOrganizationWirelessControllerConnectionsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessControllerConnections")
-	}
-
-	result := response.Result().(*ResponseWirelessControllerGetOrganizationWirelessControllerConnections)
-	return result, response, err
-
-}
-func (s *WirelessControllerService) GetOrganizationWirelessControllerConnectionsPaginate(organizationID string, getOrganizationWirelessControllerConnectionsQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessControllerConnectionsQueryParamsConverted := getOrganizationWirelessControllerConnectionsQueryParams.(*GetOrganizationWirelessControllerConnectionsQueryParams)
-
-	return s.GetOrganizationWirelessControllerConnections(organizationID, getOrganizationWirelessControllerConnectionsQueryParamsConverted)
 }
 
 //GetOrganizationWirelessControllerDevicesInterfacesL2ByDevice List wireless LAN controller layer 2 interfaces in an organization
@@ -890,64 +777,27 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerConnections
 func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesL2ByDevice(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams *GetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2ByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/l2/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams != nil && getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2ByDevice
-		println("Paginate")
-		getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessControllerDevicesInterfacesL2ByDevicePaginate, organizationID, "", getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2ByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2ByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2ByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2ByDevice) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2ByDevice {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams != nil {
+				return getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesL2ByDevice")
-	}
-
-	result := response.Result().(*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2ByDevice)
-	return result, response, err
-
-}
-func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesL2ByDevicePaginate(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParamsConverted := getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams.(*GetOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams)
-
-	return s.GetOrganizationWirelessControllerDevicesInterfacesL2ByDevice(organizationID, getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParamsConverted)
 }
 
 //GetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice List wireless LAN controller layer 2 interfaces history status in an organization
@@ -962,64 +812,27 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams *GetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/l2/statuses/changeHistory/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams != nil && getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice
-		println("Paginate")
-		getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevicePaginate, organizationID, "", getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams != nil {
+				return getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice")
-	}
-
-	result := response.Result().(*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice)
-	return result, response, err
-
-}
-func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevicePaginate(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParamsConverted := getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams.(*GetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams)
-
-	return s.GetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice(organizationID, getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParamsConverted)
 }
 
 //GetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval List wireless LAN controller layer 2 interfaces history usage in an organization
@@ -1034,64 +847,27 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams *GetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/l2/usage/history/byInterval"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams != nil && getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams.PerPage == -1 {
-		var result *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval
-		println("Paginate")
-		getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalPaginate, organizationID, "", getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams != nil {
+				return getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval")
-	}
-
-	result := response.Result().(*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval)
-	return result, response, err
-
-}
-func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalPaginate(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParamsConverted := getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams.(*GetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams)
-
-	return s.GetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval(organizationID, getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParamsConverted)
 }
 
 //GetOrganizationWirelessControllerDevicesInterfacesL3ByDevice List wireless LAN controller layer 3 interfaces in an organization
@@ -1106,64 +882,27 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesL3ByDevice(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams *GetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3ByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/l3/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams != nil && getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3ByDevice
-		println("Paginate")
-		getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessControllerDevicesInterfacesL3ByDevicePaginate, organizationID, "", getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3ByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3ByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3ByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3ByDevice) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3ByDevice {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams != nil {
+				return getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesL3ByDevice")
-	}
-
-	result := response.Result().(*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3ByDevice)
-	return result, response, err
-
-}
-func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesL3ByDevicePaginate(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParamsConverted := getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams.(*GetOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams)
-
-	return s.GetOrganizationWirelessControllerDevicesInterfacesL3ByDevice(organizationID, getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParamsConverted)
 }
 
 //GetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice List wireless LAN controller layer 3 interfaces history status in an organization
@@ -1178,64 +917,27 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams *GetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/l3/statuses/changeHistory/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams != nil && getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice
-		println("Paginate")
-		getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevicePaginate, organizationID, "", getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams != nil {
+				return getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice")
-	}
-
-	result := response.Result().(*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice)
-	return result, response, err
-
-}
-func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevicePaginate(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParamsConverted := getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams.(*GetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams)
-
-	return s.GetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice(organizationID, getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParamsConverted)
 }
 
 //GetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval List wireless LAN controller layer 3 interfaces history usage in an organization
@@ -1250,64 +952,27 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams *GetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/l3/usage/history/byInterval"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams != nil && getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams.PerPage == -1 {
-		var result *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval
-		println("Paginate")
-		getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalPaginate, organizationID, "", getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams != nil {
+				return getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval")
-	}
-
-	result := response.Result().(*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval)
-	return result, response, err
-
-}
-func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalPaginate(organizationID string, getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParamsConverted := getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams.(*GetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams)
-
-	return s.GetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval(organizationID, getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParamsConverted)
 }
 
 //GetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice Retrieve the packet counters for the interfaces of a Wireless LAN controller
@@ -1322,64 +987,27 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice(organizationID string, getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams *GetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/packets/overview/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams != nil && getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice
-		println("Paginate")
-		getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevicePaginate, organizationID, "", getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams != nil {
+				return getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice")
-	}
-
-	result := response.Result().(*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice)
-	return result, response, err
-
-}
-func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevicePaginate(organizationID string, getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParamsConverted := getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams.(*GetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams)
-
-	return s.GetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice(organizationID, getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParamsConverted)
 }
 
 //GetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval Retrieve the traffic for the interfaces of a Wireless LAN controller
@@ -1394,64 +1022,27 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval(organizationID string, getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams *GetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/interfaces/usage/history/byInterval"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams != nil && getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams.PerPage == -1 {
-		var result *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval
-		println("Paginate")
-		getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalPaginate, organizationID, "", getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams != nil {
+				return getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval")
-	}
-
-	result := response.Result().(*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval)
-	return result, response, err
-
-}
-func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalPaginate(organizationID string, getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParamsConverted := getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams.(*GetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams)
-
-	return s.GetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval(organizationID, getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParamsConverted)
 }
 
 //GetOrganizationWirelessControllerDevicesRedundancyFailoverHistory List the failover events of wireless LAN controllers in an organization
@@ -1466,64 +1057,27 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesRedundancyFailoverHistory(organizationID string, getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams *GetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/redundancy/failover/history"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams != nil && getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams.PerPage == -1 {
-		var result *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory
-		println("Paginate")
-		getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryPaginate, organizationID, "", getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams != nil {
+				return getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesRedundancyFailoverHistory")
-	}
-
-	result := response.Result().(*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory)
-	return result, response, err
-
-}
-func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryPaginate(organizationID string, getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParamsConverted := getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams.(*GetOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams)
-
-	return s.GetOrganizationWirelessControllerDevicesRedundancyFailoverHistory(organizationID, getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParamsConverted)
 }
 
 //GetOrganizationWirelessControllerDevicesRedundancyStatuses List redundancy details of wireless LAN controllers in an organization
@@ -1538,64 +1092,27 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesRedu
 func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesRedundancyStatuses(organizationID string, getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams *GetOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/redundancy/statuses"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams != nil && getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams.PerPage == -1 {
-		var result *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyStatuses
-		println("Paginate")
-		getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessControllerDevicesRedundancyStatusesPaginate, organizationID, "", getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyStatuses
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyStatuses{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyStatuses](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyStatuses) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyStatuses {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams != nil {
+				return getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesRedundancyStatuses")
-	}
-
-	result := response.Result().(*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyStatuses)
-	return result, response, err
-
-}
-func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesRedundancyStatusesPaginate(organizationID string, getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParamsConverted := getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams.(*GetOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams)
-
-	return s.GetOrganizationWirelessControllerDevicesRedundancyStatuses(organizationID, getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParamsConverted)
 }
 
 //GetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval List cpu utilization data of wireless LAN controllers in an organization
@@ -1610,64 +1127,27 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesRedu
 func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval(organizationID string, getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams *GetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/devices/system/utilization/history/byInterval"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams != nil && getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams.PerPage == -1 {
-		var result *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval
-		println("Paginate")
-		getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalPaginate, organizationID, "", getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessControllerGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessControllerGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessControllerGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams != nil {
+				return getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval")
-	}
-
-	result := response.Result().(*ResponseWirelessControllerGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval)
-	return result, response, err
-
-}
-func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalPaginate(organizationID string, getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParamsConverted := getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams.(*GetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams)
-
-	return s.GetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval(organizationID, getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParamsConverted)
 }
 
 //GetOrganizationWirelessControllerOverviewByDevice List the overview information of wireless LAN controllers in an organization and it is updated every minute.
@@ -1682,62 +1162,25 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesSyst
 func (s *WirelessControllerService) GetOrganizationWirelessControllerOverviewByDevice(organizationID string, getOrganizationWirelessControllerOverviewByDeviceQueryParams *GetOrganizationWirelessControllerOverviewByDeviceQueryParams) (*ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wirelessController/overview/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessControllerOverviewByDeviceQueryParams != nil && getOrganizationWirelessControllerOverviewByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDevice
-		println("Paginate")
-		getOrganizationWirelessControllerOverviewByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessControllerOverviewByDevicePaginate, organizationID, "", getOrganizationWirelessControllerOverviewByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessControllerOverviewByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessControllerOverviewByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDevice) ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDevice {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessControllerOverviewByDeviceQueryParams != nil {
+				return getOrganizationWirelessControllerOverviewByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessControllerOverviewByDevice")
-	}
-
-	result := response.Result().(*ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDevice)
-	return result, response, err
-
-}
-func (s *WirelessControllerService) GetOrganizationWirelessControllerOverviewByDevicePaginate(organizationID string, getOrganizationWirelessControllerOverviewByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessControllerOverviewByDeviceQueryParamsConverted := getOrganizationWirelessControllerOverviewByDeviceQueryParams.(*GetOrganizationWirelessControllerOverviewByDeviceQueryParams)
-
-	return s.GetOrganizationWirelessControllerOverviewByDevice(organizationID, getOrganizationWirelessControllerOverviewByDeviceQueryParamsConverted)
 }

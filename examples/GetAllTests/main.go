@@ -17,6 +17,10 @@ func main() {
 		return
 	}
 
+	// nResponse, _, err := client.Organizations.GetOrganizationDevices("828099381482762270", &meraki.GetOrganizationDevicesQueryParams{
+	// 	PerPage:        -1,
+	// 	TagsFilterType: "withAnyTags",
+	// })
 	nResponse, _, err := client.Organizations.GetOrganizationDevices("828099381482762270", &meraki.GetOrganizationDevicesQueryParams{
 		PerPage:        -1,
 		TagsFilterType: "withAnyTags",

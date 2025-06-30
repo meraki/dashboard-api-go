@@ -53,24 +53,15 @@ func (s *AdministeredService) GetAdministeredIDentitiesMe() (*ResponseAdminister
 	path := "/api/v1/administered/identities/me"
 	s.rateLimiterBucket.Wait(1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseAdministeredGetAdministeredIDentitiesMe{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetAdministeredIdentitiesMe")
-	}
-
-	result := response.Result().(*ResponseAdministeredGetAdministeredIDentitiesMe)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseAdministeredGetAdministeredIDentitiesMe](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -85,24 +76,15 @@ func (s *AdministeredService) GetAdministeredIDentitiesMeAPIKeys() (*ResponseAdm
 	path := "/api/v1/administered/identities/me/api/keys"
 	s.rateLimiterBucket.Wait(1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseAdministeredGetAdministeredIDentitiesMeAPIKeys{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetAdministeredIdentitiesMeApiKeys")
-	}
-
-	result := response.Result().(*ResponseAdministeredGetAdministeredIDentitiesMeAPIKeys)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseAdministeredGetAdministeredIDentitiesMeAPIKeys](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -117,24 +99,15 @@ func (s *AdministeredService) GenerateAdministeredIDentitiesMeAPIKeys() (*Respon
 	path := "/api/v1/administered/identities/me/api/keys/generate"
 	s.rateLimiterBucket.Wait(1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseAdministeredGenerateAdministeredIDentitiesMeAPIKeys{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GenerateAdministeredIdentitiesMeApiKeys")
-	}
-
-	result := response.Result().(*ResponseAdministeredGenerateAdministeredIDentitiesMeAPIKeys)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseAdministeredGenerateAdministeredIDentitiesMeAPIKeys](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, nil, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -151,21 +124,12 @@ func (s *AdministeredService) RevokeAdministeredIDentitiesMeAPIKeys(suffix strin
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{suffix}", fmt.Sprintf("%v", suffix), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation RevokeAdministeredIdentitiesMeApiKeys")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return POST(path, s.client, nil, nil)
+		},
+	)
 
 }

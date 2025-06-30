@@ -6,7 +6,6 @@ import (
 	"strings"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 type WirelessService service
@@ -4122,24 +4121,15 @@ func (s *WirelessService) GetDeviceWirelessBluetoothSettings(serial string) (*Re
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetDeviceWirelessBluetoothSettings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceWirelessBluetoothSettings")
-	}
-
-	result := response.Result().(*ResponseWirelessGetDeviceWirelessBluetoothSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetDeviceWirelessBluetoothSettings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4157,26 +4147,15 @@ func (s *WirelessService) GetDeviceWirelessConnectionStats(serial string, getDev
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	queryString, _ := query.Values(getDeviceWirelessConnectionStatsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetDeviceWirelessConnectionStats{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceWirelessConnectionStats")
-	}
-
-	result := response.Result().(*ResponseWirelessGetDeviceWirelessConnectionStats)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetDeviceWirelessConnectionStats](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getDeviceWirelessConnectionStatsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4193,24 +4172,15 @@ func (s *WirelessService) GetDeviceWirelessElectronicShelfLabel(serial string) (
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetDeviceWirelessElectronicShelfLabel{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceWirelessElectronicShelfLabel")
-	}
-
-	result := response.Result().(*ResponseWirelessGetDeviceWirelessElectronicShelfLabel)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetDeviceWirelessElectronicShelfLabel](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4228,26 +4198,15 @@ func (s *WirelessService) GetDeviceWirelessLatencyStats(serial string, getDevice
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	queryString, _ := query.Values(getDeviceWirelessLatencyStatsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetDeviceWirelessLatencyStats{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceWirelessLatencyStats")
-	}
-
-	result := response.Result().(*ResponseWirelessGetDeviceWirelessLatencyStats)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetDeviceWirelessLatencyStats](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getDeviceWirelessLatencyStatsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4264,24 +4223,15 @@ func (s *WirelessService) GetDeviceWirelessRadioSettings(serial string) (*Respon
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetDeviceWirelessRadioSettings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceWirelessRadioSettings")
-	}
-
-	result := response.Result().(*ResponseWirelessGetDeviceWirelessRadioSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetDeviceWirelessRadioSettings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4298,24 +4248,15 @@ func (s *WirelessService) GetDeviceWirelessStatus(serial string) (*ResponseWirel
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetDeviceWirelessStatus{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceWirelessStatus")
-	}
-
-	result := response.Result().(*ResponseWirelessGetDeviceWirelessStatus)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetDeviceWirelessStatus](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4333,26 +4274,15 @@ func (s *WirelessService) GetNetworkWirelessAirMarshal(networkID string, getNetw
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessAirMarshalQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessAirMarshal{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessAirMarshal")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessAirMarshal)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessAirMarshal](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessAirMarshalQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4369,24 +4299,15 @@ func (s *WirelessService) GetNetworkWirelessAlternateManagementInterface(network
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessAlternateManagementInterface{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessAlternateManagementInterface")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessAlternateManagementInterface)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessAlternateManagementInterface](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4403,24 +4324,15 @@ func (s *WirelessService) GetNetworkWirelessBilling(networkID string) (*Response
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessBilling{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessBilling")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessBilling)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessBilling](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4439,24 +4351,15 @@ func (s *WirelessService) GetNetworkWirelessBluetoothSettings(networkID string) 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessBluetoothSettings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessBluetoothSettings")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessBluetoothSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessBluetoothSettings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4474,26 +4377,15 @@ func (s *WirelessService) GetNetworkWirelessChannelUtilizationHistory(networkID 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessChannelUtilizationHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessChannelUtilizationHistory{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessChannelUtilizationHistory")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessChannelUtilizationHistory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessChannelUtilizationHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessChannelUtilizationHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4511,26 +4403,15 @@ func (s *WirelessService) GetNetworkWirelessClientCountHistory(networkID string,
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessClientCountHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessClientCountHistory{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessClientCountHistory")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessClientCountHistory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessClientCountHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessClientCountHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4548,26 +4429,15 @@ func (s *WirelessService) GetNetworkWirelessClientsConnectionStats(networkID str
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessClientsConnectionStatsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessClientsConnectionStats{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessClientsConnectionStats")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessClientsConnectionStats)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessClientsConnectionStats](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessClientsConnectionStatsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4585,26 +4455,15 @@ func (s *WirelessService) GetNetworkWirelessClientsLatencyStats(networkID string
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessClientsLatencyStatsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessClientsLatencyStats{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessClientsLatencyStats")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessClientsLatencyStats)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessClientsLatencyStats](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessClientsLatencyStatsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4624,26 +4483,15 @@ func (s *WirelessService) GetNetworkWirelessClientConnectionStats(networkID stri
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessClientConnectionStatsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessClientConnectionStats{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessClientConnectionStats")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessClientConnectionStats)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessClientConnectionStats](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessClientConnectionStatsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4660,65 +4508,28 @@ func (s *WirelessService) GetNetworkWirelessClientConnectionStats(networkID stri
 func (s *WirelessService) GetNetworkWirelessClientConnectivityEvents(networkID string, clientID string, getNetworkWirelessClientConnectivityEventsQueryParams *GetNetworkWirelessClientConnectivityEventsQueryParams) (*ResponseWirelessGetNetworkWirelessClientConnectivityEvents, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/clients/{clientId}/connectivityEvents"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkWirelessClientConnectivityEventsQueryParams != nil && getNetworkWirelessClientConnectivityEventsQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetNetworkWirelessClientConnectivityEvents
-		println("Paginate")
-		getNetworkWirelessClientConnectivityEventsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkWirelessClientConnectivityEventsPaginate, networkID, clientID, getNetworkWirelessClientConnectivityEventsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetNetworkWirelessClientConnectivityEvents
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessClientConnectivityEventsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessClientConnectivityEvents{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessClientConnectivityEvents](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessClientConnectivityEventsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetNetworkWirelessClientConnectivityEvents) ResponseWirelessGetNetworkWirelessClientConnectivityEvents {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkWirelessClientConnectivityEventsQueryParams != nil {
+				return getNetworkWirelessClientConnectivityEventsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessClientConnectivityEvents")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessClientConnectivityEvents)
-	return result, response, err
-
-}
-func (s *WirelessService) GetNetworkWirelessClientConnectivityEventsPaginate(networkID string, clientID string, getNetworkWirelessClientConnectivityEventsQueryParams any) (any, *resty.Response, error) {
-	getNetworkWirelessClientConnectivityEventsQueryParamsConverted := getNetworkWirelessClientConnectivityEventsQueryParams.(*GetNetworkWirelessClientConnectivityEventsQueryParams)
-
-	return s.GetNetworkWirelessClientConnectivityEvents(networkID, clientID, getNetworkWirelessClientConnectivityEventsQueryParamsConverted)
 }
 
 //GetNetworkWirelessClientLatencyHistory Return the latency history for a client
@@ -4737,26 +4548,15 @@ func (s *WirelessService) GetNetworkWirelessClientLatencyHistory(networkID strin
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessClientLatencyHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessClientLatencyHistory{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessClientLatencyHistory")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessClientLatencyHistory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessClientLatencyHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessClientLatencyHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4776,26 +4576,15 @@ func (s *WirelessService) GetNetworkWirelessClientLatencyStats(networkID string,
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{clientId}", fmt.Sprintf("%v", clientID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessClientLatencyStatsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessClientLatencyStats{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessClientLatencyStats")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessClientLatencyStats)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessClientLatencyStats](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessClientLatencyStatsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4813,26 +4602,15 @@ func (s *WirelessService) GetNetworkWirelessConnectionStats(networkID string, ge
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessConnectionStatsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessConnectionStats{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessConnectionStats")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessConnectionStats)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessConnectionStats](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessConnectionStatsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4850,26 +4628,15 @@ func (s *WirelessService) GetNetworkWirelessDataRateHistory(networkID string, ge
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessDataRateHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessDataRateHistory{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessDataRateHistory")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessDataRateHistory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessDataRateHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessDataRateHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4887,26 +4654,15 @@ func (s *WirelessService) GetNetworkWirelessDevicesConnectionStats(networkID str
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessDevicesConnectionStatsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessDevicesConnectionStats{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessDevicesConnectionStats")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessDevicesConnectionStats)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessDevicesConnectionStats](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessDevicesConnectionStatsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4924,26 +4680,15 @@ func (s *WirelessService) GetNetworkWirelessDevicesLatencyStats(networkID string
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessDevicesLatencyStatsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessDevicesLatencyStats{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessDevicesLatencyStats")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessDevicesLatencyStats)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessDevicesLatencyStats](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessDevicesLatencyStatsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4960,24 +4705,15 @@ func (s *WirelessService) GetNetworkWirelessElectronicShelfLabel(networkID strin
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessElectronicShelfLabel{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessElectronicShelfLabel")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessElectronicShelfLabel)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessElectronicShelfLabel](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4994,24 +4730,15 @@ func (s *WirelessService) GetNetworkWirelessElectronicShelfLabelConfiguredDevice
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessElectronicShelfLabelConfiguredDevices{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessElectronicShelfLabelConfiguredDevices")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessElectronicShelfLabelConfiguredDevices)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessElectronicShelfLabelConfiguredDevices](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5028,24 +4755,15 @@ func (s *WirelessService) GetNetworkWirelessEthernetPortsProfiles(networkID stri
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessEthernetPortsProfiles{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessEthernetPortsProfiles")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessEthernetPortsProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessEthernetPortsProfiles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5064,24 +4782,15 @@ func (s *WirelessService) GetNetworkWirelessEthernetPortsProfile(networkID strin
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessEthernetPortsProfile{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessEthernetPortsProfile")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessEthernetPortsProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessEthernetPortsProfile](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5099,26 +4808,15 @@ func (s *WirelessService) GetNetworkWirelessFailedConnections(networkID string, 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessFailedConnectionsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessFailedConnections{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessFailedConnections")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessFailedConnections)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessFailedConnections](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessFailedConnectionsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5136,26 +4834,15 @@ func (s *WirelessService) GetNetworkWirelessLatencyHistory(networkID string, get
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessLatencyHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessLatencyHistory{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessLatencyHistory")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessLatencyHistory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessLatencyHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessLatencyHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5173,26 +4860,15 @@ func (s *WirelessService) GetNetworkWirelessLatencyStats(networkID string, getNe
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessLatencyStatsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessLatencyStats{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessLatencyStats")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessLatencyStats)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessLatencyStats](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessLatencyStatsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5208,64 +4884,27 @@ func (s *WirelessService) GetNetworkWirelessLatencyStats(networkID string, getNe
 func (s *WirelessService) GetNetworkWirelessMeshStatuses(networkID string, getNetworkWirelessMeshStatusesQueryParams *GetNetworkWirelessMeshStatusesQueryParams) (*ResponseWirelessGetNetworkWirelessMeshStatuses, *resty.Response, error) {
 	path := "/api/v1/networks/{networkId}/wireless/meshStatuses"
 	s.rateLimiterBucket.Wait(1)
-
-	if getNetworkWirelessMeshStatusesQueryParams != nil && getNetworkWirelessMeshStatusesQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetNetworkWirelessMeshStatuses
-		println("Paginate")
-		getNetworkWirelessMeshStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetNetworkWirelessMeshStatusesPaginate, networkID, "", getNetworkWirelessMeshStatusesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetNetworkWirelessMeshStatuses
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessMeshStatusesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessMeshStatuses{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessMeshStatuses](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessMeshStatusesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetNetworkWirelessMeshStatuses) ResponseWirelessGetNetworkWirelessMeshStatuses {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getNetworkWirelessMeshStatusesQueryParams != nil {
+				return getNetworkWirelessMeshStatusesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessMeshStatuses")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessMeshStatuses)
-	return result, response, err
-
-}
-func (s *WirelessService) GetNetworkWirelessMeshStatusesPaginate(networkID string, getNetworkWirelessMeshStatusesQueryParams any) (any, *resty.Response, error) {
-	getNetworkWirelessMeshStatusesQueryParamsConverted := getNetworkWirelessMeshStatusesQueryParams.(*GetNetworkWirelessMeshStatusesQueryParams)
-
-	return s.GetNetworkWirelessMeshStatuses(networkID, getNetworkWirelessMeshStatusesQueryParamsConverted)
 }
 
 //GetNetworkWirelessRfProfiles List RF profiles for this network
@@ -5282,26 +4921,15 @@ func (s *WirelessService) GetNetworkWirelessRfProfiles(networkID string, getNetw
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessRfProfilesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessRfProfiles{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessRfProfiles")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessRfProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessRfProfiles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessRfProfilesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5320,24 +4948,15 @@ func (s *WirelessService) GetNetworkWirelessRfProfile(networkID string, rfProfil
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{rfProfileId}", fmt.Sprintf("%v", rfProfileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessRfProfile{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessRfProfile")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessRfProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessRfProfile](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5354,24 +4973,15 @@ func (s *WirelessService) GetNetworkWirelessSettings(networkID string) (*Respons
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessSettings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSettings")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSettings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5389,26 +4999,15 @@ func (s *WirelessService) GetNetworkWirelessSignalQualityHistory(networkID strin
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessSignalQualityHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessSignalQualityHistory{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSignalQualityHistory")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSignalQualityHistory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSignalQualityHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessSignalQualityHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5425,24 +5024,15 @@ func (s *WirelessService) GetNetworkWirelessSSIDs(networkID string) (*ResponseWi
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessSSIDs{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSsids")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSSIDs)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSSIDs](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5461,24 +5051,15 @@ func (s *WirelessService) GetNetworkWirelessSSID(networkID string, number string
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessSSID{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSsid")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSSID)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSSID](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5497,24 +5078,15 @@ func (s *WirelessService) GetNetworkWirelessSSIDBonjourForwarding(networkID stri
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessSSIDBonjourForwarding{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSsidBonjourForwarding")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSSIDBonjourForwarding)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSSIDBonjourForwarding](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5533,24 +5105,15 @@ func (s *WirelessService) GetNetworkWirelessSSIDDeviceTypeGroupPolicies(networkI
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessSSIDDeviceTypeGroupPolicies{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSsidDeviceTypeGroupPolicies")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSSIDDeviceTypeGroupPolicies)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSSIDDeviceTypeGroupPolicies](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5569,24 +5132,15 @@ func (s *WirelessService) GetNetworkWirelessSSIDEapOverride(networkID string, nu
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessSSIDEapOverride{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSsidEapOverride")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSSIDEapOverride)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSSIDEapOverride](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5605,24 +5159,15 @@ func (s *WirelessService) GetNetworkWirelessSSIDFirewallL3FirewallRules(networkI
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessSSIDFirewallL3FirewallRules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSsidFirewallL3FirewallRules")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSSIDFirewallL3FirewallRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSSIDFirewallL3FirewallRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5641,24 +5186,15 @@ func (s *WirelessService) GetNetworkWirelessSSIDFirewallL7FirewallRules(networkI
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSsidFirewallL7FirewallRules")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSSIDFirewallL7FirewallRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5677,24 +5213,15 @@ func (s *WirelessService) GetNetworkWirelessSSIDHotspot20(networkID string, numb
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessSSIDHotspot20{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSsidHotspot20")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSSIDHotspot20)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSSIDHotspot20](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5713,24 +5240,15 @@ func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsks(networkID string, n
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessSSIDIDentityPsks{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSsidIdentityPsks")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSSIDIDentityPsks)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSSIDIDentityPsks](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5751,24 +5269,15 @@ func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsk(networkID string, nu
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 	path = strings.Replace(path, "{identityPskId}", fmt.Sprintf("%v", identityPskID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessSSIDIDentityPsk{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSsidIdentityPsk")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSSIDIDentityPsk)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSSIDIDentityPsk](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5787,24 +5296,15 @@ func (s *WirelessService) GetNetworkWirelessSSIDSchedules(networkID string, numb
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessSSIDSchedules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSsidSchedules")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSSIDSchedules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSSIDSchedules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5823,24 +5323,15 @@ func (s *WirelessService) GetNetworkWirelessSSIDSplashSettings(networkID string,
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessSSIDSplashSettings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSsidSplashSettings")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSSIDSplashSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSSIDSplashSettings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5859,24 +5350,15 @@ func (s *WirelessService) GetNetworkWirelessSSIDTrafficShapingRules(networkID st
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRules{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSsidTrafficShapingRules")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSSIDTrafficShapingRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5895,24 +5377,15 @@ func (s *WirelessService) GetNetworkWirelessSSIDVpn(networkID string, number str
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessGetNetworkWirelessSSIDVpn{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessSsidVpn")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessSSIDVpn)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessSSIDVpn](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5930,26 +5403,15 @@ func (s *WirelessService) GetNetworkWirelessUsageHistory(networkID string, getNe
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkWirelessUsageHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetNetworkWirelessUsageHistory{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkWirelessUsageHistory")
-	}
-
-	result := response.Result().(*ResponseWirelessGetNetworkWirelessUsageHistory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetNetworkWirelessUsageHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkWirelessUsageHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5965,64 +5427,27 @@ func (s *WirelessService) GetNetworkWirelessUsageHistory(networkID string, getNe
 func (s *WirelessService) GetOrganizationWirelessAirMarshalRules(organizationID string, getOrganizationWirelessAirMarshalRulesQueryParams *GetOrganizationWirelessAirMarshalRulesQueryParams) (*ResponseWirelessGetOrganizationWirelessAirMarshalRules, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/airMarshal/rules"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessAirMarshalRulesQueryParams != nil && getOrganizationWirelessAirMarshalRulesQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessAirMarshalRules
-		println("Paginate")
-		getOrganizationWirelessAirMarshalRulesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessAirMarshalRulesPaginate, organizationID, "", getOrganizationWirelessAirMarshalRulesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessAirMarshalRules
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessAirMarshalRulesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessAirMarshalRules{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessAirMarshalRules](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessAirMarshalRulesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessAirMarshalRules) ResponseWirelessGetOrganizationWirelessAirMarshalRules {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessAirMarshalRulesQueryParams != nil {
+				return getOrganizationWirelessAirMarshalRulesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessAirMarshalRules")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessAirMarshalRules)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessAirMarshalRulesPaginate(organizationID string, getOrganizationWirelessAirMarshalRulesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessAirMarshalRulesQueryParamsConverted := getOrganizationWirelessAirMarshalRulesQueryParams.(*GetOrganizationWirelessAirMarshalRulesQueryParams)
-
-	return s.GetOrganizationWirelessAirMarshalRules(organizationID, getOrganizationWirelessAirMarshalRulesQueryParamsConverted)
 }
 
 //GetOrganizationWirelessAirMarshalSettingsByNetwork Returns the current Air Marshal settings for this network
@@ -6037,64 +5462,27 @@ func (s *WirelessService) GetOrganizationWirelessAirMarshalRulesPaginate(organiz
 func (s *WirelessService) GetOrganizationWirelessAirMarshalSettingsByNetwork(organizationID string, getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams *GetOrganizationWirelessAirMarshalSettingsByNetworkQueryParams) (*ResponseWirelessGetOrganizationWirelessAirMarshalSettingsByNetwork, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/airMarshal/settings/byNetwork"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams != nil && getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessAirMarshalSettingsByNetwork
-		println("Paginate")
-		getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessAirMarshalSettingsByNetworkPaginate, organizationID, "", getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessAirMarshalSettingsByNetwork
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessAirMarshalSettingsByNetwork{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessAirMarshalSettingsByNetwork](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessAirMarshalSettingsByNetwork) ResponseWirelessGetOrganizationWirelessAirMarshalSettingsByNetwork {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams != nil {
+				return getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessAirMarshalSettingsByNetwork")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessAirMarshalSettingsByNetwork)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessAirMarshalSettingsByNetworkPaginate(organizationID string, getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessAirMarshalSettingsByNetworkQueryParamsConverted := getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams.(*GetOrganizationWirelessAirMarshalSettingsByNetworkQueryParams)
-
-	return s.GetOrganizationWirelessAirMarshalSettingsByNetwork(organizationID, getOrganizationWirelessAirMarshalSettingsByNetworkQueryParamsConverted)
 }
 
 //GetOrganizationWirelessClientsOverviewByDevice List access point client count at the moment in an organization
@@ -6109,64 +5497,27 @@ func (s *WirelessService) GetOrganizationWirelessAirMarshalSettingsByNetworkPagi
 func (s *WirelessService) GetOrganizationWirelessClientsOverviewByDevice(organizationID string, getOrganizationWirelessClientsOverviewByDeviceQueryParams *GetOrganizationWirelessClientsOverviewByDeviceQueryParams) (*ResponseWirelessGetOrganizationWirelessClientsOverviewByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/clients/overview/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessClientsOverviewByDeviceQueryParams != nil && getOrganizationWirelessClientsOverviewByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessClientsOverviewByDevice
-		println("Paginate")
-		getOrganizationWirelessClientsOverviewByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessClientsOverviewByDevicePaginate, organizationID, "", getOrganizationWirelessClientsOverviewByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessClientsOverviewByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessClientsOverviewByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessClientsOverviewByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessClientsOverviewByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessClientsOverviewByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessClientsOverviewByDevice) ResponseWirelessGetOrganizationWirelessClientsOverviewByDevice {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessClientsOverviewByDeviceQueryParams != nil {
+				return getOrganizationWirelessClientsOverviewByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessClientsOverviewByDevice")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessClientsOverviewByDevice)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessClientsOverviewByDevicePaginate(organizationID string, getOrganizationWirelessClientsOverviewByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessClientsOverviewByDeviceQueryParamsConverted := getOrganizationWirelessClientsOverviewByDeviceQueryParams.(*GetOrganizationWirelessClientsOverviewByDeviceQueryParams)
-
-	return s.GetOrganizationWirelessClientsOverviewByDevice(organizationID, getOrganizationWirelessClientsOverviewByDeviceQueryParamsConverted)
 }
 
 //GetOrganizationWirelessDevicesChannelUtilizationByDevice Get average channel utilization for all bands in a network, split by AP
@@ -6181,64 +5532,27 @@ func (s *WirelessService) GetOrganizationWirelessClientsOverviewByDevicePaginate
 func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByDevice(organizationID string, getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams *GetOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams != nil && getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice
-		println("Paginate")
-		getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesChannelUtilizationByDevicePaginate, organizationID, "", getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice) ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams != nil {
+				return getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesChannelUtilizationByDevice")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByDevicePaginate(organizationID string, getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParamsConverted := getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams.(*GetOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams)
-
-	return s.GetOrganizationWirelessDevicesChannelUtilizationByDevice(organizationID, getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParamsConverted)
 }
 
 //GetOrganizationWirelessDevicesChannelUtilizationByNetwork Get average channel utilization across all bands for all networks in the organization
@@ -6253,64 +5567,27 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByDevi
 func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByNetwork(organizationID string, getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams *GetOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/byNetwork"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams != nil && getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork
-		println("Paginate")
-		getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesChannelUtilizationByNetworkPaginate, organizationID, "", getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork) ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams != nil {
+				return getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesChannelUtilizationByNetwork")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByNetworkPaginate(organizationID string, getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParamsConverted := getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams.(*GetOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams)
-
-	return s.GetOrganizationWirelessDevicesChannelUtilizationByNetwork(organizationID, getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParamsConverted)
 }
 
 //GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval Get a time-series of average channel utilization for all bands, segmented by device.
@@ -6325,64 +5602,27 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByNetw
 func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval(organizationID string, getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams *GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/history/byDevice/byInterval"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams != nil && getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval
-		println("Paginate")
-		getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalPaginate, organizationID, "", getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval) ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams != nil {
+				return getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalPaginate(organizationID string, getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParamsConverted := getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams.(*GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams)
-
-	return s.GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval(organizationID, getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParamsConverted)
 }
 
 //GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval Get a time-series of average channel utilization for all bands
@@ -6397,64 +5637,27 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistor
 func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval(organizationID string, getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/channelUtilization/history/byNetwork/byInterval"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams != nil && getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval
-		println("Paginate")
-		getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalPaginate, organizationID, "", getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval) ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams != nil {
+				return getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalPaginate(organizationID string, getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParamsConverted := getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams.(*GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams)
-
-	return s.GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval(organizationID, getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParamsConverted)
 }
 
 //GetOrganizationWirelessDevicesEthernetStatuses List the most recent Ethernet link speed, duplex, aggregation and power mode and status information for wireless devices.
@@ -6469,64 +5672,27 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistor
 func (s *WirelessService) GetOrganizationWirelessDevicesEthernetStatuses(organizationID string, getOrganizationWirelessDevicesEthernetStatusesQueryParams *GetOrganizationWirelessDevicesEthernetStatusesQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/ethernet/statuses"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessDevicesEthernetStatusesQueryParams != nil && getOrganizationWirelessDevicesEthernetStatusesQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses
-		println("Paginate")
-		getOrganizationWirelessDevicesEthernetStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesEthernetStatusesPaginate, organizationID, "", getOrganizationWirelessDevicesEthernetStatusesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessDevicesEthernetStatusesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessDevicesEthernetStatusesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses) ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessDevicesEthernetStatusesQueryParams != nil {
+				return getOrganizationWirelessDevicesEthernetStatusesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesEthernetStatuses")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessDevicesEthernetStatusesPaginate(organizationID string, getOrganizationWirelessDevicesEthernetStatusesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessDevicesEthernetStatusesQueryParamsConverted := getOrganizationWirelessDevicesEthernetStatusesQueryParams.(*GetOrganizationWirelessDevicesEthernetStatusesQueryParams)
-
-	return s.GetOrganizationWirelessDevicesEthernetStatuses(organizationID, getOrganizationWirelessDevicesEthernetStatusesQueryParamsConverted)
 }
 
 //GetOrganizationWirelessDevicesPacketLossByClient Get average packet loss for the given timespan for all clients in the organization.
@@ -6541,64 +5707,27 @@ func (s *WirelessService) GetOrganizationWirelessDevicesEthernetStatusesPaginate
 func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByClient(organizationID string, getOrganizationWirelessDevicesPacketLossByClientQueryParams *GetOrganizationWirelessDevicesPacketLossByClientQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/packetLoss/byClient"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessDevicesPacketLossByClientQueryParams != nil && getOrganizationWirelessDevicesPacketLossByClientQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient
-		println("Paginate")
-		getOrganizationWirelessDevicesPacketLossByClientQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesPacketLossByClientPaginate, organizationID, "", getOrganizationWirelessDevicesPacketLossByClientQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessDevicesPacketLossByClientQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessDevicesPacketLossByClientQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient) ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessDevicesPacketLossByClientQueryParams != nil {
+				return getOrganizationWirelessDevicesPacketLossByClientQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesPacketLossByClient")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByClientPaginate(organizationID string, getOrganizationWirelessDevicesPacketLossByClientQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessDevicesPacketLossByClientQueryParamsConverted := getOrganizationWirelessDevicesPacketLossByClientQueryParams.(*GetOrganizationWirelessDevicesPacketLossByClientQueryParams)
-
-	return s.GetOrganizationWirelessDevicesPacketLossByClient(organizationID, getOrganizationWirelessDevicesPacketLossByClientQueryParamsConverted)
 }
 
 //GetOrganizationWirelessDevicesPacketLossByDevice Get average packet loss for the given timespan for all devices in the organization
@@ -6613,64 +5742,27 @@ func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByClientPagina
 func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByDevice(organizationID string, getOrganizationWirelessDevicesPacketLossByDeviceQueryParams *GetOrganizationWirelessDevicesPacketLossByDeviceQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/packetLoss/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessDevicesPacketLossByDeviceQueryParams != nil && getOrganizationWirelessDevicesPacketLossByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice
-		println("Paginate")
-		getOrganizationWirelessDevicesPacketLossByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesPacketLossByDevicePaginate, organizationID, "", getOrganizationWirelessDevicesPacketLossByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessDevicesPacketLossByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessDevicesPacketLossByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice) ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessDevicesPacketLossByDeviceQueryParams != nil {
+				return getOrganizationWirelessDevicesPacketLossByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesPacketLossByDevice")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByDevicePaginate(organizationID string, getOrganizationWirelessDevicesPacketLossByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessDevicesPacketLossByDeviceQueryParamsConverted := getOrganizationWirelessDevicesPacketLossByDeviceQueryParams.(*GetOrganizationWirelessDevicesPacketLossByDeviceQueryParams)
-
-	return s.GetOrganizationWirelessDevicesPacketLossByDevice(organizationID, getOrganizationWirelessDevicesPacketLossByDeviceQueryParamsConverted)
 }
 
 //GetOrganizationWirelessDevicesPacketLossByNetwork Get average packet loss for the given timespan for all networks in the organization.
@@ -6685,64 +5777,27 @@ func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByDevicePagina
 func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByNetwork(organizationID string, getOrganizationWirelessDevicesPacketLossByNetworkQueryParams *GetOrganizationWirelessDevicesPacketLossByNetworkQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/packetLoss/byNetwork"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessDevicesPacketLossByNetworkQueryParams != nil && getOrganizationWirelessDevicesPacketLossByNetworkQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork
-		println("Paginate")
-		getOrganizationWirelessDevicesPacketLossByNetworkQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesPacketLossByNetworkPaginate, organizationID, "", getOrganizationWirelessDevicesPacketLossByNetworkQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessDevicesPacketLossByNetworkQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessDevicesPacketLossByNetworkQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork) ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessDevicesPacketLossByNetworkQueryParams != nil {
+				return getOrganizationWirelessDevicesPacketLossByNetworkQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesPacketLossByNetwork")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByNetworkPaginate(organizationID string, getOrganizationWirelessDevicesPacketLossByNetworkQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessDevicesPacketLossByNetworkQueryParamsConverted := getOrganizationWirelessDevicesPacketLossByNetworkQueryParams.(*GetOrganizationWirelessDevicesPacketLossByNetworkQueryParams)
-
-	return s.GetOrganizationWirelessDevicesPacketLossByNetwork(organizationID, getOrganizationWirelessDevicesPacketLossByNetworkQueryParamsConverted)
 }
 
 //GetOrganizationWirelessDevicesPowerModeHistory Return a record of power mode changes for wireless devices in the organization
@@ -6757,64 +5812,27 @@ func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByNetworkPagin
 func (s *WirelessService) GetOrganizationWirelessDevicesPowerModeHistory(organizationID string, getOrganizationWirelessDevicesPowerModeHistoryQueryParams *GetOrganizationWirelessDevicesPowerModeHistoryQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/power/mode/history"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessDevicesPowerModeHistoryQueryParams != nil && getOrganizationWirelessDevicesPowerModeHistoryQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory
-		println("Paginate")
-		getOrganizationWirelessDevicesPowerModeHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesPowerModeHistoryPaginate, organizationID, "", getOrganizationWirelessDevicesPowerModeHistoryQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessDevicesPowerModeHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessDevicesPowerModeHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory) ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessDevicesPowerModeHistoryQueryParams != nil {
+				return getOrganizationWirelessDevicesPowerModeHistoryQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesPowerModeHistory")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessDevicesPowerModeHistoryPaginate(organizationID string, getOrganizationWirelessDevicesPowerModeHistoryQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessDevicesPowerModeHistoryQueryParamsConverted := getOrganizationWirelessDevicesPowerModeHistoryQueryParams.(*GetOrganizationWirelessDevicesPowerModeHistoryQueryParams)
-
-	return s.GetOrganizationWirelessDevicesPowerModeHistory(organizationID, getOrganizationWirelessDevicesPowerModeHistoryQueryParamsConverted)
 }
 
 //GetOrganizationWirelessDevicesSystemCPULoadHistory Return the CPU Load history for a list of wireless devices in the organization.
@@ -6829,64 +5847,27 @@ func (s *WirelessService) GetOrganizationWirelessDevicesPowerModeHistoryPaginate
 func (s *WirelessService) GetOrganizationWirelessDevicesSystemCPULoadHistory(organizationID string, getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams *GetOrganizationWirelessDevicesSystemCPULoadHistoryQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/system/cpu/load/history"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams != nil && getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory
-		println("Paginate")
-		getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesSystemCPULoadHistoryPaginate, organizationID, "", getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory) ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams != nil {
+				return getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesSystemCpuLoadHistory")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessDevicesSystemCPULoadHistoryPaginate(organizationID string, getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParamsConverted := getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams.(*GetOrganizationWirelessDevicesSystemCPULoadHistoryQueryParams)
-
-	return s.GetOrganizationWirelessDevicesSystemCPULoadHistory(organizationID, getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParamsConverted)
 }
 
 //GetOrganizationWirelessDevicesWirelessControllersByDevice List of Catalyst access points information
@@ -6901,64 +5882,27 @@ func (s *WirelessService) GetOrganizationWirelessDevicesSystemCPULoadHistoryPagi
 func (s *WirelessService) GetOrganizationWirelessDevicesWirelessControllersByDevice(organizationID string, getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams *GetOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams) (*ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/devices/wirelessControllers/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams != nil && getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDevice
-		println("Paginate")
-		getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessDevicesWirelessControllersByDevicePaginate, organizationID, "", getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDevice) ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDevice {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams != nil {
+				return getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessDevicesWirelessControllersByDevice")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDevice)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessDevicesWirelessControllersByDevicePaginate(organizationID string, getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParamsConverted := getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams.(*GetOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams)
-
-	return s.GetOrganizationWirelessDevicesWirelessControllersByDevice(organizationID, getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParamsConverted)
 }
 
 //GetOrganizationWirelessRfProfilesAssignmentsByDevice List the RF profiles of an organization by device
@@ -6973,64 +5917,27 @@ func (s *WirelessService) GetOrganizationWirelessDevicesWirelessControllersByDev
 func (s *WirelessService) GetOrganizationWirelessRfProfilesAssignmentsByDevice(organizationID string, getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams *GetOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams) (*ResponseWirelessGetOrganizationWirelessRfProfilesAssignmentsByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/rfProfiles/assignments/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams != nil && getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessRfProfilesAssignmentsByDevice
-		println("Paginate")
-		getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessRfProfilesAssignmentsByDevicePaginate, organizationID, "", getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessRfProfilesAssignmentsByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessRfProfilesAssignmentsByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessRfProfilesAssignmentsByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessRfProfilesAssignmentsByDevice) ResponseWirelessGetOrganizationWirelessRfProfilesAssignmentsByDevice {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams != nil {
+				return getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessRfProfilesAssignmentsByDevice")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessRfProfilesAssignmentsByDevice)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessRfProfilesAssignmentsByDevicePaginate(organizationID string, getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParamsConverted := getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams.(*GetOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams)
-
-	return s.GetOrganizationWirelessRfProfilesAssignmentsByDevice(organizationID, getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParamsConverted)
 }
 
 //GetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries List the L2 isolation allow list MAC entry in an organization
@@ -7045,64 +5952,27 @@ func (s *WirelessService) GetOrganizationWirelessRfProfilesAssignmentsByDevicePa
 func (s *WirelessService) GetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries(organizationID string, getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams *GetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesQueryParams) (*ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/ssids/firewall/isolation/allowlist/entries"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams != nil && getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries
-		println("Paginate")
-		getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesPaginate, organizationID, "", getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries) ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams != nil {
+				return getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessSsidsFirewallIsolationAllowlistEntries")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesPaginate(organizationID string, getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParamsConverted := getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams.(*GetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntriesQueryParams)
-
-	return s.GetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries(organizationID, getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParamsConverted)
 }
 
 //GetOrganizationWirelessSSIDsStatusesByDevice List status information of all BSSIDs in your organization
@@ -7117,148 +5987,27 @@ func (s *WirelessService) GetOrganizationWirelessSSIDsFirewallIsolationAllowlist
 func (s *WirelessService) GetOrganizationWirelessSSIDsStatusesByDevice(organizationID string, getOrganizationWirelessSsidsStatusesByDeviceQueryParams *GetOrganizationWirelessSSIDsStatusesByDeviceQueryParams) (*ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/wireless/ssids/statuses/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWirelessSsidsStatusesByDeviceQueryParams != nil && getOrganizationWirelessSsidsStatusesByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDevice
-		println("Paginate")
-		getOrganizationWirelessSsidsStatusesByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWirelessSSIDsStatusesByDevicePaginate, organizationID, "", getOrganizationWirelessSsidsStatusesByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWirelessSsidsStatusesByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDevice{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWirelessSsidsStatusesByDevice")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDevice)
-	return result, response, err
-
-}
-func (s *WirelessService) GetOrganizationWirelessSSIDsStatusesByDevicePaginate(organizationID string, getOrganizationWirelessSsidsStatusesByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWirelessSsidsStatusesByDeviceQueryParamsConverted := getOrganizationWirelessSsidsStatusesByDeviceQueryParams.(*GetOrganizationWirelessSSIDsStatusesByDeviceQueryParams)
-
-	return s.GetOrganizationWirelessSSIDsStatusesByDevice(organizationID, getOrganizationWirelessSsidsStatusesByDeviceQueryParamsConverted)
-}
-
-func (s *WirelessService) GetOrganizationWirelessDevicesSystemCpuLoadHistory(organizationID string, getOrganizationWirelessDevicesSystemCpuLoadHistoryParams *GetOrganizationWirelessDevicesSystemCpuLoadHistoryParams) (*ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistory, *resty.Response, error) {
-	path := "/api/v1/organizations/{organizationId}/wireless/devices/system/cpu/load/history"
-	s.rateLimiterBucket.Wait(1)
-
-	// Handle pagination case where PerPage is -1 and we need to fetch all records
-	if getOrganizationWirelessDevicesSystemCpuLoadHistoryParams != nil && getOrganizationWirelessDevicesSystemCpuLoadHistoryParams.PerPage == -1 {
-		// we set the perPage to 10 because thats the max we can get in one request. In this way when we are trying to get all records we make as few requests as possible
-		getOrganizationWirelessDevicesSystemCpuLoadHistoryParams.PerPage = 20
-		println("Paginate")
-
-		// Initial request
-		firstResult, response, err := s.makeWirelessDevicesSystemCpuLoadHistoryRequest(path, organizationID, getOrganizationWirelessDevicesSystemCpuLoadHistoryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-
-		// Process Link header for pagination
-		combinedResult := firstResult
-		nextURL := getNextPageURL(response.Header().Get("Link"))
-
-		for nextURL != "" {
-			// Make request to next URL
-			var currentResult ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistory
-			nextResponse, err := s.client.R().
-				SetHeader("Content-Type", "application/json").
-				SetHeader("Accept", "application/json").
-				SetResult(&currentResult).
-				SetError(&Error).
-				Get(nextURL)
-
-			if err != nil {
-				return combinedResult, response, err
+	return doWithRetriesAndResult[ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWirelessSsidsStatusesByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDevice) ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDevice {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWirelessSsidsStatusesByDeviceQueryParams != nil {
+				return getOrganizationWirelessSsidsStatusesByDeviceQueryParams.PerPage == -1
 			}
+			return false
+		}(),
+	)
 
-			if nextResponse.IsError() {
-				return combinedResult, nextResponse, fmt.Errorf("error with paginated operation GetOrganizationSwitchPortsStatusesBySwitch")
-			}
-
-			// Append items to combined result
-			if currentResult.Items != nil {
-				*combinedResult.Items = append(*combinedResult.Items, *currentResult.Items...)
-			}
-
-			// Update next URL
-			nextURL = getNextPageURL(nextResponse.Header().Get("Link"))
-			response = nextResponse // Keep track of the latest response
-		}
-
-		return combinedResult, response, nil
-	}
-
-	// Non-pagination case
-	return s.makeWirelessDevicesSystemCpuLoadHistoryRequest(path, organizationID, getOrganizationWirelessDevicesSystemCpuLoadHistoryParams)
-
-}
-
-// makeWirelessDevicesSystemCpuLoadHistoryRequest is a helper function to handle the actual API request
-// and response parsing for the GetOrganizationWirelessDevicesSystemCpuLoadHistory method.
-// It is used internally to avoid code duplication in the pagination logic.
-func (s *WirelessService) makeWirelessDevicesSystemCpuLoadHistoryRequest(path, organizationID string, params *GetOrganizationWirelessDevicesSystemCpuLoadHistoryParams) (*ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistory, *resty.Response, error) {
-	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
-
-	queryString, _ := query.Values(params)
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).
-		SetResult(&ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistory{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSwitchPortsStatusesBySwitch")
-	}
-
-	result := response.Result().(*ResponseWirelessGetOrganizationWirelessDevicesSystemCpuLoadHistory)
-	return result, response, nil
 }
 
 //CreateNetworkWirelessAirMarshalRule Creates a new rule
@@ -7274,25 +6023,15 @@ func (s *WirelessService) CreateNetworkWirelessAirMarshalRule(networkID string, 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessCreateNetworkWirelessAirMarshalRule).
-		SetResult(&ResponseWirelessCreateNetworkWirelessAirMarshalRule{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkWirelessAirMarshalRule")
-	}
-
-	result := response.Result().(*ResponseWirelessCreateNetworkWirelessAirMarshalRule)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessCreateNetworkWirelessAirMarshalRule](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestWirelessCreateNetworkWirelessAirMarshalRule, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7309,25 +6048,15 @@ func (s *WirelessService) CreateNetworkWirelessEthernetPortsProfile(networkID st
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessCreateNetworkWirelessEthernetPortsProfile).
-		SetResult(&ResponseWirelessCreateNetworkWirelessEthernetPortsProfile{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkWirelessEthernetPortsProfile")
-	}
-
-	result := response.Result().(*ResponseWirelessCreateNetworkWirelessEthernetPortsProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessCreateNetworkWirelessEthernetPortsProfile](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestWirelessCreateNetworkWirelessEthernetPortsProfile, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7344,25 +6073,15 @@ func (s *WirelessService) AssignNetworkWirelessEthernetPortsProfiles(networkID s
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessAssignNetworkWirelessEthernetPortsProfiles).
-		SetResult(&ResponseWirelessAssignNetworkWirelessEthernetPortsProfiles{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation AssignNetworkWirelessEthernetPortsProfiles")
-	}
-
-	result := response.Result().(*ResponseWirelessAssignNetworkWirelessEthernetPortsProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessAssignNetworkWirelessEthernetPortsProfiles](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestWirelessAssignNetworkWirelessEthernetPortsProfiles, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7379,25 +6098,15 @@ func (s *WirelessService) SetNetworkWirelessEthernetPortsProfilesDefault(network
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessSetNetworkWirelessEthernetPortsProfilesDefault).
-		SetResult(&ResponseWirelessSetNetworkWirelessEthernetPortsProfilesDefault{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation SetNetworkWirelessEthernetPortsProfilesDefault")
-	}
-
-	result := response.Result().(*ResponseWirelessSetNetworkWirelessEthernetPortsProfilesDefault)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessSetNetworkWirelessEthernetPortsProfilesDefault](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestWirelessSetNetworkWirelessEthernetPortsProfilesDefault, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7414,25 +6123,15 @@ func (s *WirelessService) CreateNetworkWirelessRfProfile(networkID string, reque
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessCreateNetworkWirelessRfProfile).
-		SetResult(&ResponseWirelessCreateNetworkWirelessRfProfile{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkWirelessRfProfile")
-	}
-
-	result := response.Result().(*ResponseWirelessCreateNetworkWirelessRfProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessCreateNetworkWirelessRfProfile](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestWirelessCreateNetworkWirelessRfProfile, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7451,25 +6150,15 @@ func (s *WirelessService) CreateNetworkWirelessSSIDIDentityPsk(networkID string,
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessCreateNetworkWirelessSsidIdentityPsk).
-		SetResult(&ResponseWirelessCreateNetworkWirelessSSIDIDentityPsk{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkWirelessSsidIdentityPsk")
-	}
-
-	result := response.Result().(*ResponseWirelessCreateNetworkWirelessSSIDIDentityPsk)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessCreateNetworkWirelessSSIDIDentityPsk](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestWirelessCreateNetworkWirelessSsidIdentityPsk, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7486,25 +6175,15 @@ func (s *WirelessService) RecalculateOrganizationWirelessRadioAutoRfChannels(org
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessRecalculateOrganizationWirelessRadioAutoRfChannels).
-		SetResult(&ResponseWirelessRecalculateOrganizationWirelessRadioAutoRfChannels{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation RecalculateOrganizationWirelessRadioAutoRfChannels")
-	}
-
-	result := response.Result().(*ResponseWirelessRecalculateOrganizationWirelessRadioAutoRfChannels)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessRecalculateOrganizationWirelessRadioAutoRfChannels](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestWirelessRecalculateOrganizationWirelessRadioAutoRfChannels, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7521,25 +6200,15 @@ func (s *WirelessService) CreateOrganizationWirelessSSIDsFirewallIsolationAllowl
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessCreateOrganizationWirelessSsidsFirewallIsolationAllowlistEntry).
-		SetResult(&ResponseWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationWirelessSsidsFirewallIsolationAllowlistEntry")
-	}
-
-	result := response.Result().(*ResponseWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessCreateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestWirelessCreateOrganizationWirelessSsidsFirewallIsolationAllowlistEntry, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7553,25 +6222,15 @@ func (s *WirelessService) UpdateDeviceWirelessAlternateManagementInterfaceIPv6(s
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateDeviceWirelessAlternateManagementInterfaceIpv6).
-		SetResult(&ResponseWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateDeviceWirelessAlternateManagementInterfaceIpv6")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateDeviceWirelessAlternateManagementInterfaceIPv6](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateDeviceWirelessAlternateManagementInterfaceIpv6)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7585,25 +6244,15 @@ func (s *WirelessService) UpdateDeviceWirelessBluetoothSettings(serial string, r
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateDeviceWirelessBluetoothSettings).
-		SetResult(&ResponseWirelessUpdateDeviceWirelessBluetoothSettings{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateDeviceWirelessBluetoothSettings")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateDeviceWirelessBluetoothSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateDeviceWirelessBluetoothSettings](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateDeviceWirelessBluetoothSettings)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7617,25 +6266,15 @@ func (s *WirelessService) UpdateDeviceWirelessElectronicShelfLabel(serial string
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateDeviceWirelessElectronicShelfLabel).
-		SetResult(&ResponseWirelessUpdateDeviceWirelessElectronicShelfLabel{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateDeviceWirelessElectronicShelfLabel")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateDeviceWirelessElectronicShelfLabel)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateDeviceWirelessElectronicShelfLabel](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateDeviceWirelessElectronicShelfLabel)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7649,23 +6288,13 @@ func (s *WirelessService) UpdateDeviceWirelessRadioSettings(serial string, reque
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateDeviceWirelessRadioSettings).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateDeviceWirelessRadioSettings")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateDeviceWirelessRadioSettings)
+		},
+	)
 
 }
 
@@ -7681,25 +6310,15 @@ func (s *WirelessService) UpdateNetworkWirelessAirMarshalRule(networkID string, 
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{ruleId}", fmt.Sprintf("%v", ruleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessAirMarshalRule).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessAirMarshalRule{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessAirMarshalRule")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessAirMarshalRule)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessAirMarshalRule](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessAirMarshalRule)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7713,25 +6332,15 @@ func (s *WirelessService) UpdateNetworkWirelessAirMarshalSettings(networkID stri
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessAirMarshalSettings).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessAirMarshalSettings{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessAirMarshalSettings")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessAirMarshalSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessAirMarshalSettings](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessAirMarshalSettings)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7745,23 +6354,13 @@ func (s *WirelessService) UpdateNetworkWirelessAlternateManagementInterface(netw
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessAlternateManagementInterface).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkWirelessAlternateManagementInterface")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessAlternateManagementInterface)
+		},
+	)
 
 }
 
@@ -7775,25 +6374,15 @@ func (s *WirelessService) UpdateNetworkWirelessBilling(networkID string, request
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessBilling).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessBilling{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessBilling")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessBilling)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessBilling](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessBilling)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7809,25 +6398,15 @@ func (s *WirelessService) UpdateNetworkWirelessBluetoothSettings(networkID strin
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessBluetoothSettings).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessBluetoothSettings{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessBluetoothSettings")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessBluetoothSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessBluetoothSettings](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessBluetoothSettings)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7841,25 +6420,15 @@ func (s *WirelessService) UpdateNetworkWirelessElectronicShelfLabel(networkID st
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessElectronicShelfLabel).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessElectronicShelfLabel{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessElectronicShelfLabel")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessElectronicShelfLabel)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessElectronicShelfLabel](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessElectronicShelfLabel)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7875,25 +6444,15 @@ func (s *WirelessService) UpdateNetworkWirelessEthernetPortsProfile(networkID st
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessEthernetPortsProfile).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessEthernetPortsProfile{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessEthernetPortsProfile")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessEthernetPortsProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessEthernetPortsProfile](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessEthernetPortsProfile)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7909,25 +6468,15 @@ func (s *WirelessService) UpdateNetworkWirelessRfProfile(networkID string, rfPro
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{rfProfileId}", fmt.Sprintf("%v", rfProfileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessRfProfile).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessRfProfile{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessRfProfile")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessRfProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessRfProfile](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessRfProfile)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7941,25 +6490,15 @@ func (s *WirelessService) UpdateNetworkWirelessSettings(networkID string, reques
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessSettings).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessSettings{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSettings")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessSettings](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSettings)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7975,25 +6514,15 @@ func (s *WirelessService) UpdateNetworkWirelessSSID(networkID string, number str
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessSsid).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessSSID{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSsid")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSSID)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessSSID](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsid)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8009,25 +6538,15 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDBonjourForwarding(networkID s
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessSsidBonjourForwarding).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessSSIDBonjourForwarding{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidBonjourForwarding")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSSIDBonjourForwarding)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessSSIDBonjourForwarding](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidBonjourForwarding)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8043,23 +6562,13 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDDeviceTypeGroupPolicies(netwo
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessSsidDeviceTypeGroupPolicies).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidDeviceTypeGroupPolicies")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidDeviceTypeGroupPolicies)
+		},
+	)
 
 }
 
@@ -8075,25 +6584,15 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDEapOverride(networkID string,
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessSsidEapOverride).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessSSIDEapOverride{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidEapOverride")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSSIDEapOverride)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessSSIDEapOverride](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidEapOverride)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8109,25 +6608,15 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDFirewallL3FirewallRules(netwo
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessSsidFirewallL3FirewallRules).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRules{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidFirewallL3FirewallRules")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessSSIDFirewallL3FirewallRules](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidFirewallL3FirewallRules)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8143,25 +6632,15 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDFirewallL7FirewallRules(netwo
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessSsidFirewallL7FirewallRules).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRules{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidFirewallL7FirewallRules")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessSSIDFirewallL7FirewallRules](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidFirewallL7FirewallRules)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8177,23 +6656,13 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDHotspot20(networkID string, n
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessSsidHotspot20).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidHotspot20")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidHotspot20)
+		},
+	)
 
 }
 
@@ -8211,25 +6680,15 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDIDentityPsk(networkID string,
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 	path = strings.Replace(path, "{identityPskId}", fmt.Sprintf("%v", identityPskID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessSsidIdentityPsk).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessSSIDIDentityPsk{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidIdentityPsk")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSSIDIDentityPsk)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessSSIDIDentityPsk](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidIdentityPsk)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8245,25 +6704,15 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDSchedules(networkID string, n
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessSsidSchedules).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessSSIDSchedules{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidSchedules")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSSIDSchedules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessSSIDSchedules](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidSchedules)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8279,25 +6728,15 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDSplashSettings(networkID stri
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessSsidSplashSettings).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessSSIDSplashSettings{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidSplashSettings")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSSIDSplashSettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessSSIDSplashSettings](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidSplashSettings)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8313,25 +6752,15 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDTrafficShapingRules(networkID
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessSsidTrafficShapingRules).
-		SetResult(&ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRules{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidTrafficShapingRules")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRules)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateNetworkWirelessSSIDTrafficShapingRules](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidTrafficShapingRules)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8347,23 +6776,13 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDVpn(networkID string, number 
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateNetworkWirelessSsidVpn).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateNetworkWirelessSsidVpn")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidVpn)
+		},
+	)
 
 }
 
@@ -8379,25 +6798,15 @@ func (s *WirelessService) UpdateOrganizationWirelessSSIDsFirewallIsolationAllowl
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{entryId}", fmt.Sprintf("%v", entryID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateOrganizationWirelessSsidsFirewallIsolationAllowlistEntry).
-		SetResult(&ResponseWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationWirelessSsidsFirewallIsolationAllowlistEntry")
-	}
-
-	result := response.Result().(*ResponseWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseWirelessUpdateOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestWirelessUpdateOrganizationWirelessSsidsFirewallIsolationAllowlistEntry)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8416,23 +6825,11 @@ func (s *WirelessService) DeleteNetworkWirelessAirMarshalRule(networkID string, 
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{ruleId}", fmt.Sprintf("%v", ruleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkWirelessAirMarshalRule")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkWirelessEthernetPortsProfile Delete an AP port profile
@@ -8450,23 +6847,11 @@ func (s *WirelessService) DeleteNetworkWirelessEthernetPortsProfile(networkID st
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkWirelessEthernetPortsProfile")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkWirelessRfProfile Delete a RF Profile
@@ -8484,23 +6869,11 @@ func (s *WirelessService) DeleteNetworkWirelessRfProfile(networkID string, rfPro
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{rfProfileId}", fmt.Sprintf("%v", rfProfileID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkWirelessRfProfile")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteNetworkWirelessSSIDIDentityPsk Delete an Identity PSK
@@ -8520,23 +6893,11 @@ func (s *WirelessService) DeleteNetworkWirelessSSIDIDentityPsk(networkID string,
 	path = strings.Replace(path, "{number}", fmt.Sprintf("%v", number), -1)
 	path = strings.Replace(path, "{identityPskId}", fmt.Sprintf("%v", identityPskID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkWirelessSsidIdentityPsk")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationWirelessSSIDsFirewallIsolationAllowlistEntry Destroy isolation allow list MAC entry for this organization
@@ -8554,21 +6915,9 @@ func (s *WirelessService) DeleteOrganizationWirelessSSIDsFirewallIsolationAllowl
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{entryId}", fmt.Sprintf("%v", entryID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationWirelessSsidsFirewallIsolationAllowlistEntry")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
