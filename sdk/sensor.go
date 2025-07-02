@@ -1,12 +1,10 @@
 package meraki
 
 import (
-	"encoding/json"
 	"fmt"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 type SensorService service
@@ -1017,65 +1015,27 @@ type RequestSensorUpdateNetworkSensorMqttBroker struct {
 func (s *SensorService) GetDeviceSensorCommands(serial string, getDeviceSensorCommandsQueryParams *GetDeviceSensorCommandsQueryParams) (*ResponseSensorGetDeviceSensorCommands, *resty.Response, error) {
 	path := "/api/v1/devices/{serial}/sensor/commands"
 	s.rateLimiterBucket.Wait(1)
-
-	if getDeviceSensorCommandsQueryParams != nil && getDeviceSensorCommandsQueryParams.PerPage == -1 {
-		var result *ResponseSensorGetDeviceSensorCommands
-		println("Paginate")
-		result2, response, err := Paginate(s.GetDeviceSensorCommandsPaginate, serial, "", &GetDeviceSensorCommandsQueryParams{
-			PerPage: PAGINATION_PER_PAGE,
-		})
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSensorGetDeviceSensorCommands
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	queryString, _ := query.Values(getDeviceSensorCommandsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSensorGetDeviceSensorCommands{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSensorGetDeviceSensorCommands](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getDeviceSensorCommandsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSensorGetDeviceSensorCommands) ResponseSensorGetDeviceSensorCommands {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getDeviceSensorCommandsQueryParams != nil {
+				return getDeviceSensorCommandsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceSensorCommands")
-	}
-
-	result := response.Result().(*ResponseSensorGetDeviceSensorCommands)
-	return result, response, err
-
-}
-func (s *SensorService) GetDeviceSensorCommandsPaginate(serial string, getDeviceSensorCommandsQueryParams any) (any, *resty.Response, error) {
-	getDeviceSensorCommandsQueryParamsConverted := getDeviceSensorCommandsQueryParams.(*GetDeviceSensorCommandsQueryParams)
-
-	return s.GetDeviceSensorCommands(serial, getDeviceSensorCommandsQueryParamsConverted)
 }
 
 //GetDeviceSensorCommand Returns information about the command's execution, including the status
@@ -1093,24 +1053,15 @@ func (s *SensorService) GetDeviceSensorCommand(serial string, commandID string) 
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 	path = strings.Replace(path, "{commandId}", fmt.Sprintf("%v", commandID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSensorGetDeviceSensorCommand{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceSensorCommand")
-	}
-
-	result := response.Result().(*ResponseSensorGetDeviceSensorCommand)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSensorGetDeviceSensorCommand](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1127,24 +1078,15 @@ func (s *SensorService) GetDeviceSensorRelationships(serial string) (*ResponseSe
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSensorGetDeviceSensorRelationships{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceSensorRelationships")
-	}
-
-	result := response.Result().(*ResponseSensorGetDeviceSensorRelationships)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSensorGetDeviceSensorRelationships](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1161,24 +1103,15 @@ func (s *SensorService) GetNetworkSensorAlertsCurrentOverviewByMetric(networkID 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSensorGetNetworkSensorAlertsCurrentOverviewByMetric{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSensorAlertsCurrentOverviewByMetric")
-	}
-
-	result := response.Result().(*ResponseSensorGetNetworkSensorAlertsCurrentOverviewByMetric)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSensorGetNetworkSensorAlertsCurrentOverviewByMetric](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1196,26 +1129,15 @@ func (s *SensorService) GetNetworkSensorAlertsOverviewByMetric(networkID string,
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	queryString, _ := query.Values(getNetworkSensorAlertsOverviewByMetricQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSensorGetNetworkSensorAlertsOverviewByMetric{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSensorAlertsOverviewByMetric")
-	}
-
-	result := response.Result().(*ResponseSensorGetNetworkSensorAlertsOverviewByMetric)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSensorGetNetworkSensorAlertsOverviewByMetric](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getNetworkSensorAlertsOverviewByMetricQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1232,24 +1154,15 @@ func (s *SensorService) GetNetworkSensorAlertsProfiles(networkID string) (*Respo
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSensorGetNetworkSensorAlertsProfiles{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSensorAlertsProfiles")
-	}
-
-	result := response.Result().(*ResponseSensorGetNetworkSensorAlertsProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSensorGetNetworkSensorAlertsProfiles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1268,24 +1181,15 @@ func (s *SensorService) GetNetworkSensorAlertsProfile(networkID string, id strin
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSensorGetNetworkSensorAlertsProfile{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSensorAlertsProfile")
-	}
-
-	result := response.Result().(*ResponseSensorGetNetworkSensorAlertsProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSensorGetNetworkSensorAlertsProfile](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1302,24 +1206,15 @@ func (s *SensorService) GetNetworkSensorMqttBrokers(networkID string) (*Response
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSensorGetNetworkSensorMqttBrokers{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSensorMqttBrokers")
-	}
-
-	result := response.Result().(*ResponseSensorGetNetworkSensorMqttBrokers)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSensorGetNetworkSensorMqttBrokers](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1338,24 +1233,15 @@ func (s *SensorService) GetNetworkSensorMqttBroker(networkID string, mqttBrokerI
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{mqttBrokerId}", fmt.Sprintf("%v", mqttBrokerID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSensorGetNetworkSensorMqttBroker{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSensorMqttBroker")
-	}
-
-	result := response.Result().(*ResponseSensorGetNetworkSensorMqttBroker)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSensorGetNetworkSensorMqttBroker](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1372,24 +1258,15 @@ func (s *SensorService) GetNetworkSensorRelationships(networkID string) (*Respon
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSensorGetNetworkSensorRelationships{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetNetworkSensorRelationships")
-	}
-
-	result := response.Result().(*ResponseSensorGetNetworkSensorRelationships)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSensorGetNetworkSensorRelationships](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1405,65 +1282,27 @@ func (s *SensorService) GetNetworkSensorRelationships(networkID string) (*Respon
 func (s *SensorService) GetOrganizationSensorReadingsHistory(organizationID string, getOrganizationSensorReadingsHistoryQueryParams *GetOrganizationSensorReadingsHistoryQueryParams) (*ResponseSensorGetOrganizationSensorReadingsHistory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sensor/readings/history"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationSensorReadingsHistoryQueryParams != nil && getOrganizationSensorReadingsHistoryQueryParams.PerPage == -1 {
-		var result *ResponseSensorGetOrganizationSensorReadingsHistory
-		println("Paginate")
-		result2, response, err := Paginate(s.GetOrganizationSensorReadingsHistoryPaginate, organizationID, "", &GetOrganizationSensorReadingsHistoryQueryParams{
-			PerPage: PAGINATION_PER_PAGE,
-		})
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSensorGetOrganizationSensorReadingsHistory
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSensorReadingsHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSensorGetOrganizationSensorReadingsHistory{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSensorGetOrganizationSensorReadingsHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSensorReadingsHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSensorGetOrganizationSensorReadingsHistory) ResponseSensorGetOrganizationSensorReadingsHistory {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationSensorReadingsHistoryQueryParams != nil {
+				return getOrganizationSensorReadingsHistoryQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSensorReadingsHistory")
-	}
-
-	result := response.Result().(*ResponseSensorGetOrganizationSensorReadingsHistory)
-	return result, response, err
-
-}
-func (s *SensorService) GetOrganizationSensorReadingsHistoryPaginate(organizationID string, getOrganizationSensorReadingsHistoryQueryParams any) (any, *resty.Response, error) {
-	getOrganizationSensorReadingsHistoryQueryParamsConverted := getOrganizationSensorReadingsHistoryQueryParams.(*GetOrganizationSensorReadingsHistoryQueryParams)
-
-	return s.GetOrganizationSensorReadingsHistory(organizationID, getOrganizationSensorReadingsHistoryQueryParamsConverted)
 }
 
 //GetOrganizationSensorReadingsLatest Return the latest available reading for each metric from each sensor, sorted by sensor serial
@@ -1478,65 +1317,27 @@ func (s *SensorService) GetOrganizationSensorReadingsHistoryPaginate(organizatio
 func (s *SensorService) GetOrganizationSensorReadingsLatest(organizationID string, getOrganizationSensorReadingsLatestQueryParams *GetOrganizationSensorReadingsLatestQueryParams) (*ResponseSensorGetOrganizationSensorReadingsLatest, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/sensor/readings/latest"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationSensorReadingsLatestQueryParams != nil && getOrganizationSensorReadingsLatestQueryParams.PerPage == -1 {
-		var result *ResponseSensorGetOrganizationSensorReadingsLatest
-		println("Paginate")
-		result2, response, err := Paginate(s.GetOrganizationSensorReadingsLatestPaginate, organizationID, "", &GetOrganizationSensorReadingsLatestQueryParams{
-			PerPage: PAGINATION_PER_PAGE,
-		})
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseSensorGetOrganizationSensorReadingsLatest
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSensorReadingsLatestQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSensorGetOrganizationSensorReadingsLatest{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseSensorGetOrganizationSensorReadingsLatest](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSensorReadingsLatestQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseSensorGetOrganizationSensorReadingsLatest) ResponseSensorGetOrganizationSensorReadingsLatest {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationSensorReadingsLatestQueryParams != nil {
+				return getOrganizationSensorReadingsLatestQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSensorReadingsLatest")
-	}
-
-	result := response.Result().(*ResponseSensorGetOrganizationSensorReadingsLatest)
-	return result, response, err
-
-}
-func (s *SensorService) GetOrganizationSensorReadingsLatestPaginate(organizationID string, getOrganizationSensorReadingsLatestQueryParams any) (any, *resty.Response, error) {
-	getOrganizationSensorReadingsLatestQueryParamsConverted := getOrganizationSensorReadingsLatestQueryParams.(*GetOrganizationSensorReadingsLatestQueryParams)
-
-	return s.GetOrganizationSensorReadingsLatest(organizationID, getOrganizationSensorReadingsLatestQueryParamsConverted)
 }
 
 //CreateDeviceSensorCommand Sends a command to a sensor
@@ -1552,25 +1353,15 @@ func (s *SensorService) CreateDeviceSensorCommand(serial string, requestSensorCr
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSensorCreateDeviceSensorCommand).
-		SetResult(&ResponseSensorCreateDeviceSensorCommand{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateDeviceSensorCommand")
-	}
-
-	result := response.Result().(*ResponseSensorCreateDeviceSensorCommand)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSensorCreateDeviceSensorCommand](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSensorCreateDeviceSensorCommand, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1587,25 +1378,15 @@ func (s *SensorService) CreateNetworkSensorAlertsProfile(networkID string, reque
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSensorCreateNetworkSensorAlertsProfile).
-		SetResult(&ResponseSensorCreateNetworkSensorAlertsProfile{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateNetworkSensorAlertsProfile")
-	}
-
-	result := response.Result().(*ResponseSensorCreateNetworkSensorAlertsProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSensorCreateNetworkSensorAlertsProfile](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestSensorCreateNetworkSensorAlertsProfile, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1619,25 +1400,15 @@ func (s *SensorService) UpdateDeviceSensorRelationships(serial string, requestSe
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSensorUpdateDeviceSensorRelationships).
-		SetResult(&ResponseSensorUpdateDeviceSensorRelationships{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateDeviceSensorRelationships")
-	}
-
-	result := response.Result().(*ResponseSensorUpdateDeviceSensorRelationships)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSensorUpdateDeviceSensorRelationships](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSensorUpdateDeviceSensorRelationships)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1653,25 +1424,15 @@ func (s *SensorService) UpdateNetworkSensorAlertsProfile(networkID string, id st
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSensorUpdateNetworkSensorAlertsProfile).
-		SetResult(&ResponseSensorUpdateNetworkSensorAlertsProfile{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSensorAlertsProfile")
-	}
-
-	result := response.Result().(*ResponseSensorUpdateNetworkSensorAlertsProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSensorUpdateNetworkSensorAlertsProfile](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSensorUpdateNetworkSensorAlertsProfile)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1687,25 +1448,15 @@ func (s *SensorService) UpdateNetworkSensorMqttBroker(networkID string, mqttBrok
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{mqttBrokerId}", fmt.Sprintf("%v", mqttBrokerID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSensorUpdateNetworkSensorMqttBroker).
-		SetResult(&ResponseSensorUpdateNetworkSensorMqttBroker{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateNetworkSensorMqttBroker")
-	}
-
-	result := response.Result().(*ResponseSensorUpdateNetworkSensorMqttBroker)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseSensorUpdateNetworkSensorMqttBroker](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestSensorUpdateNetworkSensorMqttBroker)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -1724,21 +1475,9 @@ func (s *SensorService) DeleteNetworkSensorAlertsProfile(networkID string, id st
 	path = strings.Replace(path, "{networkId}", fmt.Sprintf("%v", networkID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteNetworkSensorAlertsProfile")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }

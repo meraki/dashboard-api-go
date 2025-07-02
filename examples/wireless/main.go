@@ -17,7 +17,7 @@ func main() {
 		return
 	}
 
-	nResponse, _, err := client.Wireless.GetOrganizationWirelessDevicesSystemCpuLoadHistory("orgId", &meraki.GetOrganizationWirelessDevicesSystemCpuLoadHistoryParams{
+	nResponse, _, err := client.Wireless.GetOrganizationWirelessDevicesSystemCPULoadHistory("orgId", &meraki.GetOrganizationWirelessDevicesSystemCPULoadHistoryQueryParams{
 		PerPage:  10,
 		Timespan: 300,
 	})
@@ -31,9 +31,9 @@ func main() {
 
 		for _, i := range *nResponse.Items {
 			fmt.Println("ID: ", i.Name)
-			if len(i.Series) > 0 {
-				fmt.Println("Time: ", i.Series[0].TS)
-				fmt.Println("CPU: ", i.Series[0].CPULoad5)
+			if i.Series != nil && len(*i.Series) > 0 {
+				fmt.Println("Time: ", (*i.Series)[0].Ts)
+				fmt.Println("CPU: ", (*i.Series)[0].CPULoad5)
 			} else {
 				fmt.Println("cpu data not available")
 			}

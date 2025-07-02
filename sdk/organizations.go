@@ -1,12 +1,10 @@
 package meraki
 
 import (
-	"encoding/json"
 	"fmt"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 type OrganizationsService service
@@ -3893,62 +3891,25 @@ func (s *OrganizationsService) GetOrganizations(getOrganizationsQueryParams *Get
 	path := "/api/v1/organizations"
 	s.rateLimiterBucket.Wait(1)
 
-	if getOrganizationsQueryParams != nil && getOrganizationsQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizations
-		println("Paginate")
-		getOrganizationsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationsPaginate, "", "", getOrganizationsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizations
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
+	// Other way
+
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizations](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizations) ResponseOrganizationsGetOrganizations {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationsQueryParams != nil {
+				return getOrganizationsQueryParams.PerPage == -1
 			}
-		}
-		return result, response, err
-	}
+			return false
+		}(),
+	)
 
-	queryString, _ := query.Values(getOrganizationsQueryParams)
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizations{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizations")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizations)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationsPaginate(getOrganizationsQueryParams any) (any, *resty.Response, error) {
-	getOrganizationsQueryParamsConverted := getOrganizationsQueryParams.(*GetOrganizationsQueryParams)
-
-	return s.GetOrganizations(getOrganizationsQueryParamsConverted)
 }
 
 //GetOrganization Return an organization
@@ -3964,24 +3925,15 @@ func (s *OrganizationsService) GetOrganization(organizationID string) (*Response
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganization{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganization")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganization)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganization](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -3999,26 +3951,15 @@ func (s *OrganizationsService) GetOrganizationActionBatches(organizationID strin
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationActionBatchesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationActionBatches{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationActionBatches")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationActionBatches)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationActionBatches](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationActionBatchesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4037,24 +3978,15 @@ func (s *OrganizationsService) GetOrganizationActionBatch(organizationID string,
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{actionBatchId}", fmt.Sprintf("%v", actionBatchID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationActionBatch{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationActionBatch")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationActionBatch)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationActionBatch](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4071,24 +4003,15 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyACLs(organizationID 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationAdaptivePolicyACLs{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAdaptivePolicyAcls")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAdaptivePolicyACLs)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAdaptivePolicyACLs](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4107,24 +4030,15 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyACL(organizationID s
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{aclId}", fmt.Sprintf("%v", aclID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationAdaptivePolicyACL{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAdaptivePolicyAcl")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAdaptivePolicyACL)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAdaptivePolicyACL](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4141,24 +4055,15 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyGroups(organizationI
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationAdaptivePolicyGroups{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAdaptivePolicyGroups")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAdaptivePolicyGroups)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAdaptivePolicyGroups](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4177,24 +4082,15 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyGroup(organizationID
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationAdaptivePolicyGroup{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAdaptivePolicyGroup")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAdaptivePolicyGroup)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAdaptivePolicyGroup](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4211,24 +4107,15 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyOverview(organizatio
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationAdaptivePolicyOverview{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAdaptivePolicyOverview")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAdaptivePolicyOverview)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAdaptivePolicyOverview](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4245,24 +4132,15 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyPolicies(organizatio
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationAdaptivePolicyPolicies{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAdaptivePolicyPolicies")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAdaptivePolicyPolicies)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAdaptivePolicyPolicies](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4281,24 +4159,15 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyPolicy(organizationI
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationAdaptivePolicyPolicy{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAdaptivePolicyPolicy")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAdaptivePolicyPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAdaptivePolicyPolicy](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4315,24 +4184,15 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicySettings(organizatio
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationAdaptivePolicySettings{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAdaptivePolicySettings")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAdaptivePolicySettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAdaptivePolicySettings](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4350,26 +4210,15 @@ func (s *OrganizationsService) GetOrganizationAdmins(organizationID string, getO
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationAdminsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationAdmins{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAdmins")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAdmins)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAdmins](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationAdminsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4386,24 +4235,15 @@ func (s *OrganizationsService) GetOrganizationAlertsProfiles(organizationID stri
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationAlertsProfiles{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAlertsProfiles")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAlertsProfiles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAlertsProfiles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4419,64 +4259,27 @@ func (s *OrganizationsService) GetOrganizationAlertsProfiles(organizationID stri
 func (s *OrganizationsService) GetOrganizationAPIRequests(organizationID string, getOrganizationApiRequestsQueryParams *GetOrganizationAPIRequestsQueryParams) (*ResponseOrganizationsGetOrganizationAPIRequests, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/apiRequests"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationApiRequestsQueryParams != nil && getOrganizationApiRequestsQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationAPIRequests
-		println("Paginate")
-		getOrganizationApiRequestsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationAPIRequestsPaginate, organizationID, "", getOrganizationApiRequestsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationAPIRequests
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationApiRequestsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationAPIRequests{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAPIRequests](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationApiRequestsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationAPIRequests) ResponseOrganizationsGetOrganizationAPIRequests {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationApiRequestsQueryParams != nil {
+				return getOrganizationApiRequestsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApiRequests")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAPIRequests)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationAPIRequestsPaginate(organizationID string, getOrganizationApiRequestsQueryParams any) (any, *resty.Response, error) {
-	getOrganizationApiRequestsQueryParamsConverted := getOrganizationApiRequestsQueryParams.(*GetOrganizationAPIRequestsQueryParams)
-
-	return s.GetOrganizationAPIRequests(organizationID, getOrganizationApiRequestsQueryParamsConverted)
 }
 
 //GetOrganizationAPIRequestsOverview Return an aggregated overview of API requests data
@@ -4493,26 +4296,15 @@ func (s *OrganizationsService) GetOrganizationAPIRequestsOverview(organizationID
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationApiRequestsOverviewQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationAPIRequestsOverview{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApiRequestsOverview")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAPIRequestsOverview)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAPIRequestsOverview](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationApiRequestsOverviewQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4530,26 +4322,15 @@ func (s *OrganizationsService) GetOrganizationAPIRequestsOverviewResponseCodesBy
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationApiRequestsOverviewResponseCodesByIntervalQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationAPIRequestsOverviewResponseCodesByInterval{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationApiRequestsOverviewResponseCodesByInterval")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAPIRequestsOverviewResponseCodesByInterval)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAPIRequestsOverviewResponseCodesByInterval](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationApiRequestsOverviewResponseCodesByIntervalQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4565,64 +4346,27 @@ func (s *OrganizationsService) GetOrganizationAPIRequestsOverviewResponseCodesBy
 func (s *OrganizationsService) GetOrganizationAssuranceAlerts(organizationID string, getOrganizationAssuranceAlertsQueryParams *GetOrganizationAssuranceAlertsQueryParams) (*ResponseOrganizationsGetOrganizationAssuranceAlerts, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/assurance/alerts"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationAssuranceAlertsQueryParams != nil && getOrganizationAssuranceAlertsQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationAssuranceAlerts
-		println("Paginate")
-		getOrganizationAssuranceAlertsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationAssuranceAlertsPaginate, organizationID, "", getOrganizationAssuranceAlertsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationAssuranceAlerts
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationAssuranceAlertsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationAssuranceAlerts{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAssuranceAlerts](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationAssuranceAlertsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationAssuranceAlerts) ResponseOrganizationsGetOrganizationAssuranceAlerts {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationAssuranceAlertsQueryParams != nil {
+				return getOrganizationAssuranceAlertsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAssuranceAlerts")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAssuranceAlerts)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationAssuranceAlertsPaginate(organizationID string, getOrganizationAssuranceAlertsQueryParams any) (any, *resty.Response, error) {
-	getOrganizationAssuranceAlertsQueryParamsConverted := getOrganizationAssuranceAlertsQueryParams.(*GetOrganizationAssuranceAlertsQueryParams)
-
-	return s.GetOrganizationAssuranceAlerts(organizationID, getOrganizationAssuranceAlertsQueryParamsConverted)
 }
 
 //GetOrganizationAssuranceAlertsOverview Return overview of active health alerts for an organization
@@ -4639,26 +4383,15 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverview(organizati
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationAssuranceAlertsOverviewQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationAssuranceAlertsOverview{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAssuranceAlertsOverview")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAssuranceAlertsOverview)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAssuranceAlertsOverview](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationAssuranceAlertsOverviewQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4674,64 +4407,27 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverview(organizati
 func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewByNetwork(organizationID string, getOrganizationAssuranceAlertsOverviewByNetworkQueryParams *GetOrganizationAssuranceAlertsOverviewByNetworkQueryParams) (*ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByNetwork, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/assurance/alerts/overview/byNetwork"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationAssuranceAlertsOverviewByNetworkQueryParams != nil && getOrganizationAssuranceAlertsOverviewByNetworkQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByNetwork
-		println("Paginate")
-		getOrganizationAssuranceAlertsOverviewByNetworkQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationAssuranceAlertsOverviewByNetworkPaginate, organizationID, "", getOrganizationAssuranceAlertsOverviewByNetworkQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByNetwork
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationAssuranceAlertsOverviewByNetworkQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByNetwork{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByNetwork](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationAssuranceAlertsOverviewByNetworkQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByNetwork) ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByNetwork {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationAssuranceAlertsOverviewByNetworkQueryParams != nil {
+				return getOrganizationAssuranceAlertsOverviewByNetworkQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAssuranceAlertsOverviewByNetwork")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByNetwork)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewByNetworkPaginate(organizationID string, getOrganizationAssuranceAlertsOverviewByNetworkQueryParams any) (any, *resty.Response, error) {
-	getOrganizationAssuranceAlertsOverviewByNetworkQueryParamsConverted := getOrganizationAssuranceAlertsOverviewByNetworkQueryParams.(*GetOrganizationAssuranceAlertsOverviewByNetworkQueryParams)
-
-	return s.GetOrganizationAssuranceAlertsOverviewByNetwork(organizationID, getOrganizationAssuranceAlertsOverviewByNetworkQueryParamsConverted)
 }
 
 //GetOrganizationAssuranceAlertsOverviewByType Return a Summary of Alerts grouped by type and severity
@@ -4746,64 +4442,27 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewByNetworkPa
 func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewByType(organizationID string, getOrganizationAssuranceAlertsOverviewByTypeQueryParams *GetOrganizationAssuranceAlertsOverviewByTypeQueryParams) (*ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByType, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/assurance/alerts/overview/byType"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationAssuranceAlertsOverviewByTypeQueryParams != nil && getOrganizationAssuranceAlertsOverviewByTypeQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByType
-		println("Paginate")
-		getOrganizationAssuranceAlertsOverviewByTypeQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationAssuranceAlertsOverviewByTypePaginate, organizationID, "", getOrganizationAssuranceAlertsOverviewByTypeQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByType
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationAssuranceAlertsOverviewByTypeQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByType{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByType](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationAssuranceAlertsOverviewByTypeQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByType) ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByType {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationAssuranceAlertsOverviewByTypeQueryParams != nil {
+				return getOrganizationAssuranceAlertsOverviewByTypeQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAssuranceAlertsOverviewByType")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByType)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewByTypePaginate(organizationID string, getOrganizationAssuranceAlertsOverviewByTypeQueryParams any) (any, *resty.Response, error) {
-	getOrganizationAssuranceAlertsOverviewByTypeQueryParamsConverted := getOrganizationAssuranceAlertsOverviewByTypeQueryParams.(*GetOrganizationAssuranceAlertsOverviewByTypeQueryParams)
-
-	return s.GetOrganizationAssuranceAlertsOverviewByType(organizationID, getOrganizationAssuranceAlertsOverviewByTypeQueryParamsConverted)
 }
 
 //GetOrganizationAssuranceAlertsOverviewHistorical Returns historical health alert overviews
@@ -4820,26 +4479,15 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewHistorical(
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationAssuranceAlertsOverviewHistoricalQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewHistorical{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAssuranceAlertsOverviewHistorical")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewHistorical)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewHistorical](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationAssuranceAlertsOverviewHistoricalQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4858,24 +4506,15 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlert(organizationID stri
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationAssuranceAlert{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationAssuranceAlert")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationAssuranceAlert)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationAssuranceAlert](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4892,24 +4531,15 @@ func (s *OrganizationsService) GetOrganizationBrandingPolicies(organizationID st
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationBrandingPolicies{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationBrandingPolicies")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationBrandingPolicies)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationBrandingPolicies](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4926,24 +4556,15 @@ func (s *OrganizationsService) GetOrganizationBrandingPoliciesPriorities(organiz
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationBrandingPoliciesPriorities{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationBrandingPoliciesPriorities")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationBrandingPoliciesPriorities)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationBrandingPoliciesPriorities](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4962,24 +4583,15 @@ func (s *OrganizationsService) GetOrganizationBrandingPolicy(organizationID stri
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{brandingPolicyId}", fmt.Sprintf("%v", brandingPolicyID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationBrandingPolicy{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationBrandingPolicy")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationBrandingPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationBrandingPolicy](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -4997,26 +4609,15 @@ func (s *OrganizationsService) GetOrganizationClientsBandwidthUsageHistory(organ
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationClientsBandwidthUsageHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationClientsBandwidthUsageHistory{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationClientsBandwidthUsageHistory")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationClientsBandwidthUsageHistory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationClientsBandwidthUsageHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationClientsBandwidthUsageHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5034,26 +4635,15 @@ func (s *OrganizationsService) GetOrganizationClientsOverview(organizationID str
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationClientsOverviewQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationClientsOverview{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationClientsOverview")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationClientsOverview)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationClientsOverview](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationClientsOverviewQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5069,64 +4659,27 @@ func (s *OrganizationsService) GetOrganizationClientsOverview(organizationID str
 func (s *OrganizationsService) GetOrganizationClientsSearch(organizationID string, getOrganizationClientsSearchQueryParams *GetOrganizationClientsSearchQueryParams) (*ResponseOrganizationsGetOrganizationClientsSearch, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/clients/search"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationClientsSearchQueryParams != nil && getOrganizationClientsSearchQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationClientsSearch
-		println("Paginate")
-		getOrganizationClientsSearchQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationClientsSearchPaginate, organizationID, "", getOrganizationClientsSearchQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationClientsSearch
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Records = append(*result.Records, *resultTmp.Records...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationClientsSearchQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationClientsSearch{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationClientsSearch](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationClientsSearchQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationClientsSearch) ResponseOrganizationsGetOrganizationClientsSearch {
+			*dst.Records = append(*dst.Records, *src.Records...) // Total arrays: 1
+			return dst
+		},
+		func() bool {
+			if getOrganizationClientsSearchQueryParams != nil {
+				return getOrganizationClientsSearchQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationClientsSearch")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationClientsSearch)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationClientsSearchPaginate(organizationID string, getOrganizationClientsSearchQueryParams any) (any, *resty.Response, error) {
-	getOrganizationClientsSearchQueryParamsConverted := getOrganizationClientsSearchQueryParams.(*GetOrganizationClientsSearchQueryParams)
-
-	return s.GetOrganizationClientsSearch(organizationID, getOrganizationClientsSearchQueryParamsConverted)
 }
 
 //GetOrganizationConfigTemplates List the configuration templates for this organization
@@ -5142,24 +4695,15 @@ func (s *OrganizationsService) GetOrganizationConfigTemplates(organizationID str
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationConfigTemplates{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationConfigTemplates")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationConfigTemplates)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationConfigTemplates](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5178,24 +4722,15 @@ func (s *OrganizationsService) GetOrganizationConfigTemplate(organizationID stri
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{configTemplateId}", fmt.Sprintf("%v", configTemplateID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationConfigTemplate{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationConfigTemplate")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationConfigTemplate)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationConfigTemplate](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5211,64 +4746,27 @@ func (s *OrganizationsService) GetOrganizationConfigTemplate(organizationID stri
 func (s *OrganizationsService) GetOrganizationConfigurationChanges(organizationID string, getOrganizationConfigurationChangesQueryParams *GetOrganizationConfigurationChangesQueryParams) (*ResponseOrganizationsGetOrganizationConfigurationChanges, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/configurationChanges"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationConfigurationChangesQueryParams != nil && getOrganizationConfigurationChangesQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationConfigurationChanges
-		println("Paginate")
-		getOrganizationConfigurationChangesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationConfigurationChangesPaginate, organizationID, "", getOrganizationConfigurationChangesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationConfigurationChanges
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationConfigurationChangesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationConfigurationChanges{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationConfigurationChanges](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationConfigurationChangesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationConfigurationChanges) ResponseOrganizationsGetOrganizationConfigurationChanges {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationConfigurationChangesQueryParams != nil {
+				return getOrganizationConfigurationChangesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationConfigurationChanges")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationConfigurationChanges)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationConfigurationChangesPaginate(organizationID string, getOrganizationConfigurationChangesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationConfigurationChangesQueryParamsConverted := getOrganizationConfigurationChangesQueryParams.(*GetOrganizationConfigurationChangesQueryParams)
-
-	return s.GetOrganizationConfigurationChanges(organizationID, getOrganizationConfigurationChangesQueryParamsConverted)
 }
 
 //GetOrganizationDevices List the devices in an organization that have been assigned to a network.
@@ -5283,64 +4781,27 @@ func (s *OrganizationsService) GetOrganizationConfigurationChangesPaginate(organ
 func (s *OrganizationsService) GetOrganizationDevices(organizationID string, getOrganizationDevicesQueryParams *GetOrganizationDevicesQueryParams) (*ResponseOrganizationsGetOrganizationDevices, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationDevicesQueryParams != nil && getOrganizationDevicesQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationDevices
-		println("Paginate")
-		getOrganizationDevicesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationDevicesPaginate, organizationID, "", getOrganizationDevicesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationDevices
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationDevicesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevices{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationDevices](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationDevicesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationDevices) ResponseOrganizationsGetOrganizationDevices {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationDevicesQueryParams != nil {
+				return getOrganizationDevicesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationDevices")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationDevices)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationDevicesPaginate(organizationID string, getOrganizationDevicesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationDevicesQueryParamsConverted := getOrganizationDevicesQueryParams.(*GetOrganizationDevicesQueryParams)
-
-	return s.GetOrganizationDevices(organizationID, getOrganizationDevicesQueryParamsConverted)
 }
 
 //GetOrganizationDevicesAvailabilities List the availability information for devices in an organization
@@ -5355,64 +4816,27 @@ func (s *OrganizationsService) GetOrganizationDevicesPaginate(organizationID str
 func (s *OrganizationsService) GetOrganizationDevicesAvailabilities(organizationID string, getOrganizationDevicesAvailabilitiesQueryParams *GetOrganizationDevicesAvailabilitiesQueryParams) (*ResponseOrganizationsGetOrganizationDevicesAvailabilities, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/availabilities"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationDevicesAvailabilitiesQueryParams != nil && getOrganizationDevicesAvailabilitiesQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationDevicesAvailabilities
-		println("Paginate")
-		getOrganizationDevicesAvailabilitiesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationDevicesAvailabilitiesPaginate, organizationID, "", getOrganizationDevicesAvailabilitiesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationDevicesAvailabilities
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationDevicesAvailabilitiesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevicesAvailabilities{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationDevicesAvailabilities](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationDevicesAvailabilitiesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationDevicesAvailabilities) ResponseOrganizationsGetOrganizationDevicesAvailabilities {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationDevicesAvailabilitiesQueryParams != nil {
+				return getOrganizationDevicesAvailabilitiesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesAvailabilities")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesAvailabilities)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationDevicesAvailabilitiesPaginate(organizationID string, getOrganizationDevicesAvailabilitiesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationDevicesAvailabilitiesQueryParamsConverted := getOrganizationDevicesAvailabilitiesQueryParams.(*GetOrganizationDevicesAvailabilitiesQueryParams)
-
-	return s.GetOrganizationDevicesAvailabilities(organizationID, getOrganizationDevicesAvailabilitiesQueryParamsConverted)
 }
 
 //GetOrganizationDevicesAvailabilitiesChangeHistory List the availability history information for devices in an organization.
@@ -5427,64 +4851,27 @@ func (s *OrganizationsService) GetOrganizationDevicesAvailabilitiesPaginate(orga
 func (s *OrganizationsService) GetOrganizationDevicesAvailabilitiesChangeHistory(organizationID string, getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams *GetOrganizationDevicesAvailabilitiesChangeHistoryQueryParams) (*ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/availabilities/changeHistory"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams != nil && getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory
-		println("Paginate")
-		getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationDevicesAvailabilitiesChangeHistoryPaginate, organizationID, "", getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory) ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams != nil {
+				return getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesAvailabilitiesChangeHistory")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationDevicesAvailabilitiesChangeHistoryPaginate(organizationID string, getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams any) (any, *resty.Response, error) {
-	getOrganizationDevicesAvailabilitiesChangeHistoryQueryParamsConverted := getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams.(*GetOrganizationDevicesAvailabilitiesChangeHistoryQueryParams)
-
-	return s.GetOrganizationDevicesAvailabilitiesChangeHistory(organizationID, getOrganizationDevicesAvailabilitiesChangeHistoryQueryParamsConverted)
 }
 
 //GetOrganizationDevicesControllerMigrations Retrieve device migration statuses in an organization
@@ -5499,64 +4886,27 @@ func (s *OrganizationsService) GetOrganizationDevicesAvailabilitiesChangeHistory
 func (s *OrganizationsService) GetOrganizationDevicesControllerMigrations(organizationID string, getOrganizationDevicesControllerMigrationsQueryParams *GetOrganizationDevicesControllerMigrationsQueryParams) (*ResponseOrganizationsGetOrganizationDevicesControllerMigrations, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/controller/migrations"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationDevicesControllerMigrationsQueryParams != nil && getOrganizationDevicesControllerMigrationsQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationDevicesControllerMigrations
-		println("Paginate")
-		getOrganizationDevicesControllerMigrationsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationDevicesControllerMigrationsPaginate, organizationID, "", getOrganizationDevicesControllerMigrationsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationDevicesControllerMigrations
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationDevicesControllerMigrationsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevicesControllerMigrations{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationDevicesControllerMigrations](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationDevicesControllerMigrationsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationDevicesControllerMigrations) ResponseOrganizationsGetOrganizationDevicesControllerMigrations {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationDevicesControllerMigrationsQueryParams != nil {
+				return getOrganizationDevicesControllerMigrationsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesControllerMigrations")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesControllerMigrations)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationDevicesControllerMigrationsPaginate(organizationID string, getOrganizationDevicesControllerMigrationsQueryParams any) (any, *resty.Response, error) {
-	getOrganizationDevicesControllerMigrationsQueryParamsConverted := getOrganizationDevicesControllerMigrationsQueryParams.(*GetOrganizationDevicesControllerMigrationsQueryParams)
-
-	return s.GetOrganizationDevicesControllerMigrations(organizationID, getOrganizationDevicesControllerMigrationsQueryParamsConverted)
 }
 
 //GetOrganizationDevicesOverviewByModel Lists the count for each device model
@@ -5573,26 +4923,15 @@ func (s *OrganizationsService) GetOrganizationDevicesOverviewByModel(organizatio
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationDevicesOverviewByModelQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevicesOverviewByModel{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesOverviewByModel")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesOverviewByModel)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationDevicesOverviewByModel](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationDevicesOverviewByModelQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5608,64 +4947,27 @@ func (s *OrganizationsService) GetOrganizationDevicesOverviewByModel(organizatio
 func (s *OrganizationsService) GetOrganizationDevicesPowerModulesStatusesByDevice(organizationID string, getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams *GetOrganizationDevicesPowerModulesStatusesByDeviceQueryParams) (*ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/powerModules/statuses/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams != nil && getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice
-		println("Paginate")
-		getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationDevicesPowerModulesStatusesByDevicePaginate, organizationID, "", getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice) ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams != nil {
+				return getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesPowerModulesStatusesByDevice")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationDevicesPowerModulesStatusesByDevicePaginate(organizationID string, getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationDevicesPowerModulesStatusesByDeviceQueryParamsConverted := getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams.(*GetOrganizationDevicesPowerModulesStatusesByDeviceQueryParams)
-
-	return s.GetOrganizationDevicesPowerModulesStatusesByDevice(organizationID, getOrganizationDevicesPowerModulesStatusesByDeviceQueryParamsConverted)
 }
 
 //GetOrganizationDevicesProvisioningStatuses List the provisioning statuses information for devices in an organization.
@@ -5680,64 +4982,27 @@ func (s *OrganizationsService) GetOrganizationDevicesPowerModulesStatusesByDevic
 func (s *OrganizationsService) GetOrganizationDevicesProvisioningStatuses(organizationID string, getOrganizationDevicesProvisioningStatusesQueryParams *GetOrganizationDevicesProvisioningStatusesQueryParams) (*ResponseOrganizationsGetOrganizationDevicesProvisioningStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/provisioning/statuses"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationDevicesProvisioningStatusesQueryParams != nil && getOrganizationDevicesProvisioningStatusesQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationDevicesProvisioningStatuses
-		println("Paginate")
-		getOrganizationDevicesProvisioningStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationDevicesProvisioningStatusesPaginate, organizationID, "", getOrganizationDevicesProvisioningStatusesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationDevicesProvisioningStatuses
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationDevicesProvisioningStatusesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevicesProvisioningStatuses{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationDevicesProvisioningStatuses](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationDevicesProvisioningStatusesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationDevicesProvisioningStatuses) ResponseOrganizationsGetOrganizationDevicesProvisioningStatuses {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationDevicesProvisioningStatusesQueryParams != nil {
+				return getOrganizationDevicesProvisioningStatusesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesProvisioningStatuses")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesProvisioningStatuses)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationDevicesProvisioningStatusesPaginate(organizationID string, getOrganizationDevicesProvisioningStatusesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationDevicesProvisioningStatusesQueryParamsConverted := getOrganizationDevicesProvisioningStatusesQueryParams.(*GetOrganizationDevicesProvisioningStatusesQueryParams)
-
-	return s.GetOrganizationDevicesProvisioningStatuses(organizationID, getOrganizationDevicesProvisioningStatusesQueryParamsConverted)
 }
 
 //GetOrganizationDevicesStatuses List the status of every Meraki device in the organization
@@ -5748,68 +5013,31 @@ func (s *OrganizationsService) GetOrganizationDevicesProvisioningStatusesPaginat
 
 
 */
-
+// {'deprecated': True, 'description': 'List the status of every Meraki device in the organization', 'operationId': 'getOrganizationDevicesStatuses', 'parameters': [{'description': 'Organization ID', 'in': 'path', 'name': 'organizationId', 'required': True, 'schema': {'type': 'string'}}, {'description': 'The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.', 'in': 'query', 'name': 'perPage', 'schema': {'type': 'integer'}}, {'description': 'A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.', 'in': 'query', 'name': 'startingAfter', 'schema': {'type': 'string'}}, {'description': 'A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.', 'in': 'query', 'name': 'endingBefore', 'schema': {'type': 'string'}}, {'description': 'Optional parameter to filter devices by network ids.', 'in': 'query', 'name': 'networkIds', 'schema': {'items': {'type': 'string'}, 'type': 'array'}}, {'description': 'Optional parameter to filter devices by serials.', 'in': 'query', 'name': 'serials', 'schema': {'items': {'type': 'string'}, 'type': 'array'}}, {'description': 'Optional parameter to filter devices by statuses. Valid statuses are ["online", "alerting", "offline", "dormant"].', 'in': 'query', 'name': 'statuses', 'schema': {'items': {'enum': ['alerting', 'dormant', 'offline', 'online'], 'type': 'string'}, 'type': 'array'}}, {'description': 'An optional parameter to filter device statuses by product type. Valid types are wireless, appliance, switch, systemsManager, camera, cellularGateway, sensor, wirelessController, and secureConnect.', 'in': 'query', 'name': 'productTypes', 'schema': {'items': {'enum': ['appliance', 'camera', 'cellularGateway', 'secureConnect', 'sensor', 'switch', 'systemsManager', 'wireless', 'wirelessController'], 'type': 'string'}, 'type': 'array'}}, {'description': 'Optional parameter to filter devices by models.', 'in': 'query', 'name': 'models', 'schema': {'items': {'type': 'string'}, 'type': 'array'}}, {'description': "An optional parameter to filter devices by tags. The filtering is case-sensitive. If tags are included, 'tagsFilterType' should also be included (see below).", 'in': 'query', 'name': 'tags', 'schema': {'items': {'type': 'string'}, 'type': 'array'}}, {'description': "An optional parameter of value 'withAnyTags' or 'withAllTags' to indicate whether to return devices which contain ANY or ALL of the included tags. If no type is included, 'withAnyTags' will be selected.", 'in': 'query', 'name': 'tagsFilterType', 'schema': {'enum': ['withAllTags', 'withAnyTags'], 'type': 'string'}}], 'responses': [{'code': '200', 'content_type': 'application/json', 'schema': None, 'data': {'items': {'properties': {'components': {'description': 'Components', 'properties': {'powerSupplies': {'description': 'Power Supplies', 'items': {'properties': {'model': {'description': 'Model of the power supply', 'type': 'string'}, 'poe': {'description': 'PoE info of the power supply', 'properties': {'maximum': {'description': 'Maximum PoE this power supply can provide when connected to the current switch model', 'type': 'integer'}, 'unit': {'description': 'Unit of the PoE maximum', 'type': 'string'}}, 'type': 'object'}, 'serial': {'description': 'Serial of the power supply', 'type': 'string'}, 'slot': {'description': 'Slot the power supply is in', 'type': 'integer'}, 'status': {'description': 'Status of the power supply', 'enum': ['available', 'connected', 'disconnected', 'powered', 'powering', 'standby'], 'type': 'string'}}, 'type': 'object'}, 'type': 'array'}}, 'type': 'object'}, 'gateway': {'description': 'IP Gateway', 'type': 'string'}, 'ipType': {'description': 'IP Type', 'type': 'string'}, 'lanIp': {'description': 'LAN IP Address', 'type': 'string'}, 'lastReportedAt': {'description': 'Device Last Reported Location', 'type': 'string'}, 'mac': {'description': 'MAC Address', 'type': 'string'}, 'model': {'description': 'Model', 'type': 'string'}, 'name': {'description': 'Device Name', 'type': 'string'}, 'networkId': {'description': 'Network ID', 'type': 'string'}, 'primaryDns': {'description': 'Primary DNS', 'type': 'string'}, 'productType': {'description': 'Product Type', 'type': 'string'}, 'publicIp': {'description': 'Public IP Address', 'type': 'string'}, 'secondaryDns': {'description': 'Secondary DNS', 'type': 'string'}, 'serial': {'description': 'Device Serial Number', 'type': 'string'}, 'status': {'description': 'Device Status', 'type': 'string'}, 'tags': {'description': 'Tags', 'items': {'type': 'string'}, 'type': 'array'}}, 'type': 'object'}, 'type': 'array'}}], 'summary': 'List the status of every Meraki device in the organization', 'tags': ['organizations', 'monitor', 'devices', 'statuses'], 'content_types': ['application/json'], 'response_type': [], 'method': 'GET', 'request_types': [], 'path': '/api/v1/organizations/{organizationId}/devices/statuses', 'originalURL': '/api/v1/organizations/{organizationId}/devices/statuses', 'headers': {}, 'path_params': {'organizationId': {'type': 'string', 'description': 'organizationId path parameter. Organization ID', 'required': True}}, 'params': {'perPage': {'type': 'integer', 'description': 'perPage query parameter. The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000.', 'required': False}, 'startingAfter': {'type': 'string', 'description': 'startingAfter query parameter. A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.', 'required': False}, 'endingBefore': {'type': 'string', 'description': 'endingBefore query parameter. A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it.', 'required': False}, 'networkIds': {'type': 'array', 'description': 'networkIds query parameter. Optional parameter to filter devices by network ids.', 'required': False}, 'serials': {'type': 'array', 'description': 'serials query parameter. Optional parameter to filter devices by serials.', 'required': False}, 'statuses': {'type': 'array', 'description': 'statuses query parameter. Optional parameter to filter devices by statuses. Valid statuses are ["online", "alerting", "offline", "dormant"].', 'required': False}, 'productTypes': {'type': 'array', 'description': 'productTypes query parameter. An optional parameter to filter device statuses by product type. Valid types are wireless, appliance, switch, systemsManager, camera, cellularGateway, sensor, wirelessController, and secureConnect.', 'required': False}, 'models': {'type': 'array', 'description': 'models query parameter. Optional parameter to filter devices by models.', 'required': False}, 'tags': {'type': 'array', 'description': "tags query parameter. An optional parameter to filter devices by tags. The filtering is case-sensitive. If tags are included, 'tagsFilterType' should also be included (see below).", 'required': False}, 'tagsFilterType': {'type': 'string', 'description': "tagsFilterType query parameter. An optional parameter of value 'withAnyTags' or 'withAllTags' to indicate whether to return devices which contain ANY or ALL of the included tags. If no type is included, 'withAnyTags' will be selected.", 'required': False}}, 'response_json_schema': {'items': {'properties': {'components': {'description': 'Components', 'properties': {'powerSupplies': {'description': 'Power Supplies', 'items': {'properties': {'model': {'description': 'Model of the power supply', 'type': 'string'}, 'poe': {'description': 'PoE info of the power supply', 'properties': {'maximum': {'description': 'Maximum PoE this power supply can provide when connected to the current switch model', 'type': 'integer'}, 'unit': {'description': 'Unit of the PoE maximum', 'type': 'string'}}, 'type': 'object'}, 'serial': {'description': 'Serial of the power supply', 'type': 'string'}, 'slot': {'description': 'Slot the power supply is in', 'type': 'integer'}, 'status': {'description': 'Status of the power supply', 'enum': ['available', 'connected', 'disconnected', 'powered', 'powering', 'standby'], 'type': 'string'}}, 'type': 'object'}, 'type': 'array'}}, 'type': 'object'}, 'gateway': {'description': 'IP Gateway', 'type': 'string'}, 'ipType': {'description': 'IP Type', 'type': 'string'}, 'lanIp': {'description': 'LAN IP Address', 'type': 'string'}, 'lastReportedAt': {'description': 'Device Last Reported Location', 'type': 'string'}, 'mac': {'description': 'MAC Address', 'type': 'string'}, 'model': {'description': 'Model', 'type': 'string'}, 'name': {'description': 'Device Name', 'type': 'string'}, 'networkId': {'description': 'Network ID', 'type': 'string'}, 'primaryDns': {'description': 'Primary DNS', 'type': 'string'}, 'productType': {'description': 'Product Type', 'type': 'string'}, 'publicIp': {'description': 'Public IP Address', 'type': 'string'}, 'secondaryDns': {'description': 'Secondary DNS', 'type': 'string'}, 'serial': {'description': 'Device Serial Number', 'type': 'string'}, 'status': {'description': 'Device Status', 'type': 'string'}, 'tags': {'description': 'Tags', 'items': {'type': 'string'}, 'type': 'array'}}, 'type': 'object'}, 'type': 'array', '$schema': 'http://json-schema.org/draft-04/schema#'}, 'response': [{'components': {'powerSupplies': [{'model': 'string', 'poe': {'maximum': 0, 'unit': 'string'}, 'serial': 'string', 'slot': 0, 'status': 'string'}]}, 'gateway': 'string', 'ipType': 'string', 'lanIp': 'string', 'lastReportedAt': 'string', 'mac': 'string', 'model': 'string', 'name': 'string', 'networkId': 'string', 'primaryDns': 'string', 'productType': 'string', 'publicIp': 'string', 'secondaryDns': 'string', 'serial': 'string', 'status': 'string', 'tags': ['string']}], 'data': {}, 'id': '9e6d6127-afa6-53e8-bc80-5f9f3ae595f3', 'alt_name': 'getOrganizationDevicesStatuses', 'name': 'getOrganizationDevicesStatuses', 'has_rename': False, 'kwargs': ''}
 func (s *OrganizationsService) GetOrganizationDevicesStatuses(organizationID string, getOrganizationDevicesStatusesQueryParams *GetOrganizationDevicesStatusesQueryParams) (*ResponseOrganizationsGetOrganizationDevicesStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/statuses"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationDevicesStatusesQueryParams != nil && getOrganizationDevicesStatusesQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationDevicesStatuses
-		println("Paginate")
-		getOrganizationDevicesStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationDevicesStatusesPaginate, organizationID, "", getOrganizationDevicesStatusesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationDevicesStatuses
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationDevicesStatusesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevicesStatuses{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationDevicesStatuses](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationDevicesStatusesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationDevicesStatuses) ResponseOrganizationsGetOrganizationDevicesStatuses {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationDevicesStatusesQueryParams != nil {
+				return getOrganizationDevicesStatusesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesStatuses")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesStatuses)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationDevicesStatusesPaginate(organizationID string, getOrganizationDevicesStatusesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationDevicesStatusesQueryParamsConverted := getOrganizationDevicesStatusesQueryParams.(*GetOrganizationDevicesStatusesQueryParams)
-
-	return s.GetOrganizationDevicesStatuses(organizationID, getOrganizationDevicesStatusesQueryParamsConverted)
 }
 
 //GetOrganizationDevicesStatusesOverview Return an overview of current device statuses
@@ -5826,26 +5054,15 @@ func (s *OrganizationsService) GetOrganizationDevicesStatusesOverview(organizati
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationDevicesStatusesOverviewQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevicesStatusesOverview{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesStatusesOverview")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesStatusesOverview)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationDevicesStatusesOverview](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationDevicesStatusesOverviewQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -5861,64 +5078,27 @@ func (s *OrganizationsService) GetOrganizationDevicesStatusesOverview(organizati
 func (s *OrganizationsService) GetOrganizationDevicesSystemMemoryUsageHistoryByInterval(organizationID string, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams *GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams) (*ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/system/memory/usage/history/byInterval"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams != nil && getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval
-		println("Paginate")
-		getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalPaginate, organizationID, "", getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval) ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams != nil {
+				return getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesSystemMemoryUsageHistoryByInterval")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalPaginate(organizationID string, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams any) (any, *resty.Response, error) {
-	getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParamsConverted := getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams.(*GetOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams)
-
-	return s.GetOrganizationDevicesSystemMemoryUsageHistoryByInterval(organizationID, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParamsConverted)
 }
 
 //GetOrganizationDevicesUplinksAddressesByDevice List the current uplink addresses for devices in an organization.
@@ -5933,64 +5113,27 @@ func (s *OrganizationsService) GetOrganizationDevicesSystemMemoryUsageHistoryByI
 func (s *OrganizationsService) GetOrganizationDevicesUplinksAddressesByDevice(organizationID string, getOrganizationDevicesUplinksAddressesByDeviceQueryParams *GetOrganizationDevicesUplinksAddressesByDeviceQueryParams) (*ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/devices/uplinks/addresses/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationDevicesUplinksAddressesByDeviceQueryParams != nil && getOrganizationDevicesUplinksAddressesByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice
-		println("Paginate")
-		getOrganizationDevicesUplinksAddressesByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationDevicesUplinksAddressesByDevicePaginate, organizationID, "", getOrganizationDevicesUplinksAddressesByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationDevicesUplinksAddressesByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationDevicesUplinksAddressesByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice) ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationDevicesUplinksAddressesByDeviceQueryParams != nil {
+				return getOrganizationDevicesUplinksAddressesByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesUplinksAddressesByDevice")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationDevicesUplinksAddressesByDevicePaginate(organizationID string, getOrganizationDevicesUplinksAddressesByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationDevicesUplinksAddressesByDeviceQueryParamsConverted := getOrganizationDevicesUplinksAddressesByDeviceQueryParams.(*GetOrganizationDevicesUplinksAddressesByDeviceQueryParams)
-
-	return s.GetOrganizationDevicesUplinksAddressesByDevice(organizationID, getOrganizationDevicesUplinksAddressesByDeviceQueryParamsConverted)
 }
 
 //GetOrganizationDevicesUplinksLossAndLatency Return the uplink loss and latency for every MX in the organization from at latest 2 minutes ago
@@ -6007,26 +5150,15 @@ func (s *OrganizationsService) GetOrganizationDevicesUplinksLossAndLatency(organ
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationDevicesUplinksLossAndLatencyQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationDevicesUplinksLossAndLatency{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationDevicesUplinksLossAndLatency")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationDevicesUplinksLossAndLatency)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationDevicesUplinksLossAndLatency](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationDevicesUplinksLossAndLatencyQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6043,24 +5175,15 @@ func (s *OrganizationsService) GetOrganizationEarlyAccessFeatures(organizationID
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationEarlyAccessFeatures{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationEarlyAccessFeatures")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationEarlyAccessFeatures)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationEarlyAccessFeatures](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6077,24 +5200,15 @@ func (s *OrganizationsService) GetOrganizationEarlyAccessFeaturesOptIns(organiza
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptIns{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationEarlyAccessFeaturesOptIns")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptIns)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptIns](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6113,24 +5227,15 @@ func (s *OrganizationsService) GetOrganizationEarlyAccessFeaturesOptIn(organizat
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{optInId}", fmt.Sprintf("%v", optInID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptIn{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationEarlyAccessFeaturesOptIn")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptIn)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationEarlyAccessFeaturesOptIn](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6146,64 +5251,27 @@ func (s *OrganizationsService) GetOrganizationEarlyAccessFeaturesOptIn(organizat
 func (s *OrganizationsService) GetOrganizationFirmwareUpgrades(organizationID string, getOrganizationFirmwareUpgradesQueryParams *GetOrganizationFirmwareUpgradesQueryParams) (*ResponseOrganizationsGetOrganizationFirmwareUpgrades, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/firmware/upgrades"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationFirmwareUpgradesQueryParams != nil && getOrganizationFirmwareUpgradesQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationFirmwareUpgrades
-		println("Paginate")
-		getOrganizationFirmwareUpgradesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationFirmwareUpgradesPaginate, organizationID, "", getOrganizationFirmwareUpgradesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationFirmwareUpgrades
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationFirmwareUpgradesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationFirmwareUpgrades{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationFirmwareUpgrades](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationFirmwareUpgradesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationFirmwareUpgrades) ResponseOrganizationsGetOrganizationFirmwareUpgrades {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationFirmwareUpgradesQueryParams != nil {
+				return getOrganizationFirmwareUpgradesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationFirmwareUpgrades")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationFirmwareUpgrades)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationFirmwareUpgradesPaginate(organizationID string, getOrganizationFirmwareUpgradesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationFirmwareUpgradesQueryParamsConverted := getOrganizationFirmwareUpgradesQueryParams.(*GetOrganizationFirmwareUpgradesQueryParams)
-
-	return s.GetOrganizationFirmwareUpgrades(organizationID, getOrganizationFirmwareUpgradesQueryParamsConverted)
 }
 
 //GetOrganizationFirmwareUpgradesByDevice Get firmware upgrade status for the filtered devices
@@ -6218,64 +5286,27 @@ func (s *OrganizationsService) GetOrganizationFirmwareUpgradesPaginate(organizat
 func (s *OrganizationsService) GetOrganizationFirmwareUpgradesByDevice(organizationID string, getOrganizationFirmwareUpgradesByDeviceQueryParams *GetOrganizationFirmwareUpgradesByDeviceQueryParams) (*ResponseOrganizationsGetOrganizationFirmwareUpgradesByDevice, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/firmware/upgrades/byDevice"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationFirmwareUpgradesByDeviceQueryParams != nil && getOrganizationFirmwareUpgradesByDeviceQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationFirmwareUpgradesByDevice
-		println("Paginate")
-		getOrganizationFirmwareUpgradesByDeviceQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationFirmwareUpgradesByDevicePaginate, organizationID, "", getOrganizationFirmwareUpgradesByDeviceQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationFirmwareUpgradesByDevice
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationFirmwareUpgradesByDeviceQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationFirmwareUpgradesByDevice{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationFirmwareUpgradesByDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationFirmwareUpgradesByDeviceQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationFirmwareUpgradesByDevice) ResponseOrganizationsGetOrganizationFirmwareUpgradesByDevice {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationFirmwareUpgradesByDeviceQueryParams != nil {
+				return getOrganizationFirmwareUpgradesByDeviceQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationFirmwareUpgradesByDevice")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationFirmwareUpgradesByDevice)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationFirmwareUpgradesByDevicePaginate(organizationID string, getOrganizationFirmwareUpgradesByDeviceQueryParams any) (any, *resty.Response, error) {
-	getOrganizationFirmwareUpgradesByDeviceQueryParamsConverted := getOrganizationFirmwareUpgradesByDeviceQueryParams.(*GetOrganizationFirmwareUpgradesByDeviceQueryParams)
-
-	return s.GetOrganizationFirmwareUpgradesByDevice(organizationID, getOrganizationFirmwareUpgradesByDeviceQueryParamsConverted)
 }
 
 //GetOrganizationFloorPlansAutoLocateDevices List auto locate details for each device in your organization
@@ -6290,64 +5321,27 @@ func (s *OrganizationsService) GetOrganizationFirmwareUpgradesByDevicePaginate(o
 func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateDevices(organizationID string, getOrganizationFloorPlansAutoLocateDevicesQueryParams *GetOrganizationFloorPlansAutoLocateDevicesQueryParams) (*ResponseOrganizationsGetOrganizationFloorPlansAutoLocateDevices, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/floorPlans/autoLocate/devices"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationFloorPlansAutoLocateDevicesQueryParams != nil && getOrganizationFloorPlansAutoLocateDevicesQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationFloorPlansAutoLocateDevices
-		println("Paginate")
-		getOrganizationFloorPlansAutoLocateDevicesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationFloorPlansAutoLocateDevicesPaginate, organizationID, "", getOrganizationFloorPlansAutoLocateDevicesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationFloorPlansAutoLocateDevices
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationFloorPlansAutoLocateDevicesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationFloorPlansAutoLocateDevices{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationFloorPlansAutoLocateDevices](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationFloorPlansAutoLocateDevicesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationFloorPlansAutoLocateDevices) ResponseOrganizationsGetOrganizationFloorPlansAutoLocateDevices {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationFloorPlansAutoLocateDevicesQueryParams != nil {
+				return getOrganizationFloorPlansAutoLocateDevicesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationFloorPlansAutoLocateDevices")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationFloorPlansAutoLocateDevices)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateDevicesPaginate(organizationID string, getOrganizationFloorPlansAutoLocateDevicesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationFloorPlansAutoLocateDevicesQueryParamsConverted := getOrganizationFloorPlansAutoLocateDevicesQueryParams.(*GetOrganizationFloorPlansAutoLocateDevicesQueryParams)
-
-	return s.GetOrganizationFloorPlansAutoLocateDevices(organizationID, getOrganizationFloorPlansAutoLocateDevicesQueryParamsConverted)
 }
 
 //GetOrganizationFloorPlansAutoLocateStatuses List the status of auto locate for each floorplan in your organization
@@ -6362,64 +5356,27 @@ func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateDevicesPaginat
 func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateStatuses(organizationID string, getOrganizationFloorPlansAutoLocateStatusesQueryParams *GetOrganizationFloorPlansAutoLocateStatusesQueryParams) (*ResponseOrganizationsGetOrganizationFloorPlansAutoLocateStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/floorPlans/autoLocate/statuses"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationFloorPlansAutoLocateStatusesQueryParams != nil && getOrganizationFloorPlansAutoLocateStatusesQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationFloorPlansAutoLocateStatuses
-		println("Paginate")
-		getOrganizationFloorPlansAutoLocateStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationFloorPlansAutoLocateStatusesPaginate, organizationID, "", getOrganizationFloorPlansAutoLocateStatusesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationFloorPlansAutoLocateStatuses
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationFloorPlansAutoLocateStatusesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationFloorPlansAutoLocateStatuses{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationFloorPlansAutoLocateStatuses](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationFloorPlansAutoLocateStatusesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationFloorPlansAutoLocateStatuses) ResponseOrganizationsGetOrganizationFloorPlansAutoLocateStatuses {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationFloorPlansAutoLocateStatusesQueryParams != nil {
+				return getOrganizationFloorPlansAutoLocateStatusesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationFloorPlansAutoLocateStatuses")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationFloorPlansAutoLocateStatuses)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateStatusesPaginate(organizationID string, getOrganizationFloorPlansAutoLocateStatusesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationFloorPlansAutoLocateStatusesQueryParamsConverted := getOrganizationFloorPlansAutoLocateStatusesQueryParams.(*GetOrganizationFloorPlansAutoLocateStatusesQueryParams)
-
-	return s.GetOrganizationFloorPlansAutoLocateStatuses(organizationID, getOrganizationFloorPlansAutoLocateStatusesQueryParamsConverted)
 }
 
 //GetOrganizationIntegrationsXdrNetworks Returns the networks in the organization that have XDR enabled
@@ -6434,64 +5391,27 @@ func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateStatusesPagina
 func (s *OrganizationsService) GetOrganizationIntegrationsXdrNetworks(organizationID string, getOrganizationIntegrationsXdrNetworksQueryParams *GetOrganizationIntegrationsXdrNetworksQueryParams) (*ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/integrations/xdr/networks"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationIntegrationsXdrNetworksQueryParams != nil && getOrganizationIntegrationsXdrNetworksQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks
-		println("Paginate")
-		getOrganizationIntegrationsXdrNetworksQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationIntegrationsXdrNetworksPaginate, organizationID, "", getOrganizationIntegrationsXdrNetworksQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result.Items = append(*result.Items, *resultTmp.Items...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationIntegrationsXdrNetworksQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationIntegrationsXdrNetworksQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks) ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks {
+			*dst.Items = append(*dst.Items, *src.Items...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationIntegrationsXdrNetworksQueryParams != nil {
+				return getOrganizationIntegrationsXdrNetworksQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationIntegrationsXdrNetworks")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationIntegrationsXdrNetworksPaginate(organizationID string, getOrganizationIntegrationsXdrNetworksQueryParams any) (any, *resty.Response, error) {
-	getOrganizationIntegrationsXdrNetworksQueryParamsConverted := getOrganizationIntegrationsXdrNetworksQueryParams.(*GetOrganizationIntegrationsXdrNetworksQueryParams)
-
-	return s.GetOrganizationIntegrationsXdrNetworks(organizationID, getOrganizationIntegrationsXdrNetworksQueryParamsConverted)
 }
 
 //GetOrganizationInventoryDevices Return the device inventory for an organization
@@ -6506,64 +5426,27 @@ func (s *OrganizationsService) GetOrganizationIntegrationsXdrNetworksPaginate(or
 func (s *OrganizationsService) GetOrganizationInventoryDevices(organizationID string, getOrganizationInventoryDevicesQueryParams *GetOrganizationInventoryDevicesQueryParams) (*ResponseOrganizationsGetOrganizationInventoryDevices, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/devices"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationInventoryDevicesQueryParams != nil && getOrganizationInventoryDevicesQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationInventoryDevices
-		println("Paginate")
-		getOrganizationInventoryDevicesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationInventoryDevicesPaginate, organizationID, "", getOrganizationInventoryDevicesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationInventoryDevices
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationInventoryDevicesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationInventoryDevices{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationInventoryDevices](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationInventoryDevicesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationInventoryDevices) ResponseOrganizationsGetOrganizationInventoryDevices {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationInventoryDevicesQueryParams != nil {
+				return getOrganizationInventoryDevicesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationInventoryDevices")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationInventoryDevices)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationInventoryDevicesPaginate(organizationID string, getOrganizationInventoryDevicesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationInventoryDevicesQueryParamsConverted := getOrganizationInventoryDevicesQueryParams.(*GetOrganizationInventoryDevicesQueryParams)
-
-	return s.GetOrganizationInventoryDevices(organizationID, getOrganizationInventoryDevicesQueryParamsConverted)
 }
 
 //GetOrganizationInventoryDevicesSwapsBulk List of device swaps for a given request ID ({id}).
@@ -6581,24 +5464,15 @@ func (s *OrganizationsService) GetOrganizationInventoryDevicesSwapsBulk(organiza
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulk{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationInventoryDevicesSwapsBulk")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulk)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationInventoryDevicesSwapsBulk](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6617,24 +5491,15 @@ func (s *OrganizationsService) GetOrganizationInventoryDevice(organizationID str
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{serial}", fmt.Sprintf("%v", serial), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationInventoryDevice{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationInventoryDevice")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationInventoryDevice)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationInventoryDevice](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6652,26 +5517,15 @@ func (s *OrganizationsService) GetOrganizationInventoryOnboardingCloudMonitoring
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationInventoryOnboardingCloudMonitoringImportsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringImports{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationInventoryOnboardingCloudMonitoringImports")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringImports)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringImports](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationInventoryOnboardingCloudMonitoringImportsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6687,64 +5541,27 @@ func (s *OrganizationsService) GetOrganizationInventoryOnboardingCloudMonitoring
 func (s *OrganizationsService) GetOrganizationInventoryOnboardingCloudMonitoringNetworks(organizationID string, getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams *GetOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams) (*ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringNetworks, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/networks"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams != nil && getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringNetworks
-		println("Paginate")
-		getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationInventoryOnboardingCloudMonitoringNetworksPaginate, organizationID, "", getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringNetworks
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringNetworks{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringNetworks](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringNetworks) ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringNetworks {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams != nil {
+				return getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationInventoryOnboardingCloudMonitoringNetworks")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringNetworks)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationInventoryOnboardingCloudMonitoringNetworksPaginate(organizationID string, getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams any) (any, *resty.Response, error) {
-	getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParamsConverted := getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams.(*GetOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams)
-
-	return s.GetOrganizationInventoryOnboardingCloudMonitoringNetworks(organizationID, getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParamsConverted)
 }
 
 //GetOrganizationLicenses List the licenses for an organization
@@ -6759,64 +5576,27 @@ func (s *OrganizationsService) GetOrganizationInventoryOnboardingCloudMonitoring
 func (s *OrganizationsService) GetOrganizationLicenses(organizationID string, getOrganizationLicensesQueryParams *GetOrganizationLicensesQueryParams) (*ResponseOrganizationsGetOrganizationLicenses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/licenses"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationLicensesQueryParams != nil && getOrganizationLicensesQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationLicenses
-		println("Paginate")
-		getOrganizationLicensesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationLicensesPaginate, organizationID, "", getOrganizationLicensesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationLicenses
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationLicensesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationLicenses{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationLicenses](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationLicensesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationLicenses) ResponseOrganizationsGetOrganizationLicenses {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationLicensesQueryParams != nil {
+				return getOrganizationLicensesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationLicenses")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationLicenses)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationLicensesPaginate(organizationID string, getOrganizationLicensesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationLicensesQueryParamsConverted := getOrganizationLicensesQueryParams.(*GetOrganizationLicensesQueryParams)
-
-	return s.GetOrganizationLicenses(organizationID, getOrganizationLicensesQueryParamsConverted)
 }
 
 //GetOrganizationLicensesOverview Return an overview of the license state for an organization
@@ -6832,24 +5612,15 @@ func (s *OrganizationsService) GetOrganizationLicensesOverview(organizationID st
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationLicensesOverview{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationLicensesOverview")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationLicensesOverview)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationLicensesOverview](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6868,24 +5639,15 @@ func (s *OrganizationsService) GetOrganizationLicense(organizationID string, lic
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{licenseId}", fmt.Sprintf("%v", licenseID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationLicense{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationLicense")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationLicense)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationLicense](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6902,24 +5664,15 @@ func (s *OrganizationsService) GetOrganizationLoginSecurity(organizationID strin
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationLoginSecurity{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationLoginSecurity")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationLoginSecurity)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationLoginSecurity](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -6935,64 +5688,27 @@ func (s *OrganizationsService) GetOrganizationLoginSecurity(organizationID strin
 func (s *OrganizationsService) GetOrganizationNetworks(organizationID string, getOrganizationNetworksQueryParams *GetOrganizationNetworksQueryParams) (*ResponseOrganizationsGetOrganizationNetworks, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/networks"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationNetworksQueryParams != nil && getOrganizationNetworksQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationNetworks
-		println("Paginate")
-		getOrganizationNetworksQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationNetworksPaginate, organizationID, "", getOrganizationNetworksQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationNetworks
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationNetworksQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationNetworks{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationNetworks](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationNetworksQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationNetworks) ResponseOrganizationsGetOrganizationNetworks {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationNetworksQueryParams != nil {
+				return getOrganizationNetworksQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationNetworks")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationNetworks)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationNetworksPaginate(organizationID string, getOrganizationNetworksQueryParams any) (any, *resty.Response, error) {
-	getOrganizationNetworksQueryParamsConverted := getOrganizationNetworksQueryParams.(*GetOrganizationNetworksQueryParams)
-
-	return s.GetOrganizationNetworks(organizationID, getOrganizationNetworksQueryParamsConverted)
 }
 
 //GetOrganizationOpenapiSpec Return the OpenAPI Specification of the organization's API documentation in JSON
@@ -7009,26 +5725,15 @@ func (s *OrganizationsService) GetOrganizationOpenapiSpec(organizationID string,
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationOpenapiSpecQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationOpenapiSpec{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationOpenapiSpec")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationOpenapiSpec)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationOpenapiSpec](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationOpenapiSpecQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7044,64 +5749,27 @@ func (s *OrganizationsService) GetOrganizationOpenapiSpec(organizationID string,
 func (s *OrganizationsService) GetOrganizationPolicyObjects(organizationID string, getOrganizationPolicyObjectsQueryParams *GetOrganizationPolicyObjectsQueryParams) (*ResponseOrganizationsGetOrganizationPolicyObjects, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationPolicyObjectsQueryParams != nil && getOrganizationPolicyObjectsQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationPolicyObjects
-		println("Paginate")
-		getOrganizationPolicyObjectsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationPolicyObjectsPaginate, organizationID, "", getOrganizationPolicyObjectsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationPolicyObjects
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationPolicyObjectsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationPolicyObjects{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationPolicyObjects](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationPolicyObjectsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationPolicyObjects) ResponseOrganizationsGetOrganizationPolicyObjects {
+			dst = append(dst, src...) // Total arrays: 2
+			return dst
+		},
+		func() bool {
+			if getOrganizationPolicyObjectsQueryParams != nil {
+				return getOrganizationPolicyObjectsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationPolicyObjects")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationPolicyObjects)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationPolicyObjectsPaginate(organizationID string, getOrganizationPolicyObjectsQueryParams any) (any, *resty.Response, error) {
-	getOrganizationPolicyObjectsQueryParamsConverted := getOrganizationPolicyObjectsQueryParams.(*GetOrganizationPolicyObjectsQueryParams)
-
-	return s.GetOrganizationPolicyObjects(organizationID, getOrganizationPolicyObjectsQueryParamsConverted)
 }
 
 //GetOrganizationPolicyObjectsGroups Lists Policy Object Groups belonging to the organization.
@@ -7116,64 +5784,27 @@ func (s *OrganizationsService) GetOrganizationPolicyObjectsPaginate(organization
 func (s *OrganizationsService) GetOrganizationPolicyObjectsGroups(organizationID string, getOrganizationPolicyObjectsGroupsQueryParams *GetOrganizationPolicyObjectsGroupsQueryParams) (*ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/policyObjects/groups"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationPolicyObjectsGroupsQueryParams != nil && getOrganizationPolicyObjectsGroupsQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray
-		println("Paginate")
-		getOrganizationPolicyObjectsGroupsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationPolicyObjectsGroupsPaginate, organizationID, "", getOrganizationPolicyObjectsGroupsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationPolicyObjectsGroupsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationPolicyObjectsGroupsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray) ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray {
+			dst = append(dst, src...) // Total arrays: 2
+			return dst
+		},
+		func() bool {
+			if getOrganizationPolicyObjectsGroupsQueryParams != nil {
+				return getOrganizationPolicyObjectsGroupsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationPolicyObjectsGroups")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationPolicyObjectsGroupsPaginate(organizationID string, getOrganizationPolicyObjectsGroupsQueryParams any) (any, *resty.Response, error) {
-	getOrganizationPolicyObjectsGroupsQueryParamsConverted := getOrganizationPolicyObjectsGroupsQueryParams.(*GetOrganizationPolicyObjectsGroupsQueryParams)
-
-	return s.GetOrganizationPolicyObjectsGroups(organizationID, getOrganizationPolicyObjectsGroupsQueryParamsConverted)
 }
 
 //GetOrganizationPolicyObjectsGroup Shows details of a Policy Object Group.
@@ -7191,24 +5822,15 @@ func (s *OrganizationsService) GetOrganizationPolicyObjectsGroup(organizationID 
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{policyObjectGroupId}", fmt.Sprintf("%v", policyObjectGroupID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationPolicyObjectsGroup{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationPolicyObjectsGroup")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationPolicyObjectsGroup)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationPolicyObjectsGroup](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7227,24 +5849,15 @@ func (s *OrganizationsService) GetOrganizationPolicyObject(organizationID string
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{policyObjectId}", fmt.Sprintf("%v", policyObjectID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationPolicyObject{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationPolicyObject")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationPolicyObject)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationPolicyObject](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7261,24 +5874,15 @@ func (s *OrganizationsService) GetOrganizationSaml(organizationID string) (*Resp
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationSaml{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSaml")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSaml)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSaml](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7295,24 +5899,15 @@ func (s *OrganizationsService) GetOrganizationSamlIDps(organizationID string) (*
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationSamlIDps{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSamlIdps")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSamlIDps)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSamlIDps](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7331,24 +5926,15 @@ func (s *OrganizationsService) GetOrganizationSamlIDp(organizationID string, idp
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{idpId}", fmt.Sprintf("%v", idpID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationSamlIDp{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSamlIdp")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSamlIDp)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSamlIDp](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7365,24 +5951,15 @@ func (s *OrganizationsService) GetOrganizationSamlRoles(organizationID string) (
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationSamlRoles{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSamlRoles")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSamlRoles)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSamlRoles](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7401,24 +5978,15 @@ func (s *OrganizationsService) GetOrganizationSamlRole(organizationID string, sa
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{samlRoleId}", fmt.Sprintf("%v", samlRoleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationSamlRole{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSamlRole")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSamlRole)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSamlRole](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7435,24 +6003,15 @@ func (s *OrganizationsService) GetOrganizationSNMP(organizationID string) (*Resp
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationSNMP{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSnmp")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSNMP)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSNMP](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7471,24 +6030,15 @@ func (s *OrganizationsService) GetOrganizationSplashAsset(organizationID string,
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationSplashAsset{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSplashAsset")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSplashAsset)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSplashAsset](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7505,24 +6055,15 @@ func (s *OrganizationsService) GetOrganizationSplashThemes(organizationID string
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationSplashThemes{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSplashThemes")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSplashThemes)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSplashThemes](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7540,26 +6081,15 @@ func (s *OrganizationsService) GetOrganizationSummaryTopAppliancesByUtilization(
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSummaryTopAppliancesByUtilizationQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationSummaryTopAppliancesByUtilization{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSummaryTopAppliancesByUtilization")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSummaryTopAppliancesByUtilization)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSummaryTopAppliancesByUtilization](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSummaryTopAppliancesByUtilizationQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7577,26 +6107,15 @@ func (s *OrganizationsService) GetOrganizationSummaryTopApplicationsByUsage(orga
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSummaryTopApplicationsByUsageQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationSummaryTopApplicationsByUsage{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSummaryTopApplicationsByUsage")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSummaryTopApplicationsByUsage)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSummaryTopApplicationsByUsage](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSummaryTopApplicationsByUsageQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7614,26 +6133,15 @@ func (s *OrganizationsService) GetOrganizationSummaryTopApplicationsCategoriesBy
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSummaryTopApplicationsCategoriesByUsageQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationSummaryTopApplicationsCategoriesByUsage{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSummaryTopApplicationsCategoriesByUsage")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSummaryTopApplicationsCategoriesByUsage)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSummaryTopApplicationsCategoriesByUsage](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSummaryTopApplicationsCategoriesByUsageQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7651,26 +6159,15 @@ func (s *OrganizationsService) GetOrganizationSummaryTopClientsByUsage(organizat
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSummaryTopClientsByUsageQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationSummaryTopClientsByUsage{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSummaryTopClientsByUsage")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSummaryTopClientsByUsage)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSummaryTopClientsByUsage](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSummaryTopClientsByUsageQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7688,26 +6185,15 @@ func (s *OrganizationsService) GetOrganizationSummaryTopClientsManufacturersByUs
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSummaryTopClientsManufacturersByUsageQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationSummaryTopClientsManufacturersByUsage{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSummaryTopClientsManufacturersByUsage")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSummaryTopClientsManufacturersByUsage)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSummaryTopClientsManufacturersByUsage](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSummaryTopClientsManufacturersByUsageQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7725,26 +6211,15 @@ func (s *OrganizationsService) GetOrganizationSummaryTopDevicesByUsage(organizat
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSummaryTopDevicesByUsageQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationSummaryTopDevicesByUsage{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSummaryTopDevicesByUsage")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSummaryTopDevicesByUsage)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSummaryTopDevicesByUsage](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSummaryTopDevicesByUsageQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7762,26 +6237,15 @@ func (s *OrganizationsService) GetOrganizationSummaryTopDevicesModelsByUsage(org
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSummaryTopDevicesModelsByUsageQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationSummaryTopDevicesModelsByUsage{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSummaryTopDevicesModelsByUsage")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSummaryTopDevicesModelsByUsage)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSummaryTopDevicesModelsByUsage](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSummaryTopDevicesModelsByUsageQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7797,64 +6261,27 @@ func (s *OrganizationsService) GetOrganizationSummaryTopDevicesModelsByUsage(org
 func (s *OrganizationsService) GetOrganizationSummaryTopNetworksByStatus(organizationID string, getOrganizationSummaryTopNetworksByStatusQueryParams *GetOrganizationSummaryTopNetworksByStatusQueryParams) (*ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/summary/top/networks/byStatus"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationSummaryTopNetworksByStatusQueryParams != nil && getOrganizationSummaryTopNetworksByStatusQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus
-		println("Paginate")
-		getOrganizationSummaryTopNetworksByStatusQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationSummaryTopNetworksByStatusPaginate, organizationID, "", getOrganizationSummaryTopNetworksByStatusQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSummaryTopNetworksByStatusQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSummaryTopNetworksByStatusQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus) ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationSummaryTopNetworksByStatusQueryParams != nil {
+				return getOrganizationSummaryTopNetworksByStatusQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSummaryTopNetworksByStatus")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationSummaryTopNetworksByStatusPaginate(organizationID string, getOrganizationSummaryTopNetworksByStatusQueryParams any) (any, *resty.Response, error) {
-	getOrganizationSummaryTopNetworksByStatusQueryParamsConverted := getOrganizationSummaryTopNetworksByStatusQueryParams.(*GetOrganizationSummaryTopNetworksByStatusQueryParams)
-
-	return s.GetOrganizationSummaryTopNetworksByStatus(organizationID, getOrganizationSummaryTopNetworksByStatusQueryParamsConverted)
 }
 
 //GetOrganizationSummaryTopSSIDsByUsage Return metrics for organization's top 10 ssids by data usage over given time range
@@ -7871,26 +6298,15 @@ func (s *OrganizationsService) GetOrganizationSummaryTopSSIDsByUsage(organizatio
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSummaryTopSsidsByUsageQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationSummaryTopSSIDsByUsage{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSummaryTopSsidsByUsage")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSummaryTopSSIDsByUsage)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSummaryTopSSIDsByUsage](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSummaryTopSsidsByUsageQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7908,26 +6324,15 @@ func (s *OrganizationsService) GetOrganizationSummaryTopSwitchesByEnergyUsage(or
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationSummaryTopSwitchesByEnergyUsageQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationSummaryTopSwitchesByEnergyUsage{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationSummaryTopSwitchesByEnergyUsage")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationSummaryTopSwitchesByEnergyUsage)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationSummaryTopSwitchesByEnergyUsage](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationSummaryTopSwitchesByEnergyUsageQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -7943,64 +6348,27 @@ func (s *OrganizationsService) GetOrganizationSummaryTopSwitchesByEnergyUsage(or
 func (s *OrganizationsService) GetOrganizationUplinksStatuses(organizationID string, getOrganizationUplinksStatusesQueryParams *GetOrganizationUplinksStatusesQueryParams) (*ResponseOrganizationsGetOrganizationUplinksStatuses, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/uplinks/statuses"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationUplinksStatusesQueryParams != nil && getOrganizationUplinksStatusesQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationUplinksStatuses
-		println("Paginate")
-		getOrganizationUplinksStatusesQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationUplinksStatusesPaginate, organizationID, "", getOrganizationUplinksStatusesQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationUplinksStatuses
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationUplinksStatusesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationUplinksStatuses{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationUplinksStatuses](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationUplinksStatusesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationUplinksStatuses) ResponseOrganizationsGetOrganizationUplinksStatuses {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationUplinksStatusesQueryParams != nil {
+				return getOrganizationUplinksStatusesQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationUplinksStatuses")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationUplinksStatuses)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationUplinksStatusesPaginate(organizationID string, getOrganizationUplinksStatusesQueryParams any) (any, *resty.Response, error) {
-	getOrganizationUplinksStatusesQueryParamsConverted := getOrganizationUplinksStatusesQueryParams.(*GetOrganizationUplinksStatusesQueryParams)
-
-	return s.GetOrganizationUplinksStatuses(organizationID, getOrganizationUplinksStatusesQueryParamsConverted)
 }
 
 //GetOrganizationWebhooksAlertTypes Return a list of alert types to be used with managing webhook alerts
@@ -8017,26 +6385,15 @@ func (s *OrganizationsService) GetOrganizationWebhooksAlertTypes(organizationID 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWebhooksAlertTypesQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationWebhooksAlertTypes{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWebhooksAlertTypes")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationWebhooksAlertTypes)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationWebhooksAlertTypes](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWebhooksAlertTypesQueryParams, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8055,24 +6412,15 @@ func (s *OrganizationsService) GetOrganizationWebhooksCallbacksStatus(organizati
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{callbackId}", fmt.Sprintf("%v", callbackID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseOrganizationsGetOrganizationWebhooksCallbacksStatus{}).
-		SetError(&Error).
-		Get(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWebhooksCallbacksStatus")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationWebhooksCallbacksStatus)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationWebhooksCallbacksStatus](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8088,64 +6436,27 @@ func (s *OrganizationsService) GetOrganizationWebhooksCallbacksStatus(organizati
 func (s *OrganizationsService) GetOrganizationWebhooksLogs(organizationID string, getOrganizationWebhooksLogsQueryParams *GetOrganizationWebhooksLogsQueryParams) (*ResponseOrganizationsGetOrganizationWebhooksLogs, *resty.Response, error) {
 	path := "/api/v1/organizations/{organizationId}/webhooks/logs"
 	s.rateLimiterBucket.Wait(1)
-
-	if getOrganizationWebhooksLogsQueryParams != nil && getOrganizationWebhooksLogsQueryParams.PerPage == -1 {
-		var result *ResponseOrganizationsGetOrganizationWebhooksLogs
-		println("Paginate")
-		getOrganizationWebhooksLogsQueryParams.PerPage = PAGINATION_PER_PAGE
-		result2, response, err := Paginate(s.GetOrganizationWebhooksLogsPaginate, organizationID, "", getOrganizationWebhooksLogsQueryParams)
-		if err != nil {
-			return nil, nil, err
-		}
-		jsonResult, err := json.Marshal(result2)
-		// Verficar el error
-		if err != nil {
-			return nil, nil, err
-		}
-		var paginatedResponse []any
-		err = json.Unmarshal(jsonResult, &paginatedResponse)
-		// for para recorrer "paginatedResponse"
-		for i := 0; i < len(paginatedResponse); i++ {
-			var resultTmp *ResponseOrganizationsGetOrganizationWebhooksLogs
-			jsonResult2, _ := json.Marshal(paginatedResponse[i])
-			err = json.Unmarshal(jsonResult2, &resultTmp)
-			// Verificar si result es nil, si lo es inicialiarlo
-			if result == nil {
-				result = resultTmp
-			} else {
-				*result = append(*result, *resultTmp...)
-			}
-		}
-		return result, response, err
-	}
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	queryString, _ := query.Values(getOrganizationWebhooksLogsQueryParams)
+	// Other way
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseOrganizationsGetOrganizationWebhooksLogs{}).
-		SetError(&Error).
-		Get(path)
+	return doWithRetriesAndResult[ResponseOrganizationsGetOrganizationWebhooksLogs](
+		func() (*resty.Response, error) {
+			return GET(path, s.client, getOrganizationWebhooksLogsQueryParams, &HeaderDefault)
+		},
+		s.client,
+		func(dst, src ResponseOrganizationsGetOrganizationWebhooksLogs) ResponseOrganizationsGetOrganizationWebhooksLogs {
+			dst = append(dst, src...)
+			return dst
+		},
+		func() bool {
+			if getOrganizationWebhooksLogsQueryParams != nil {
+				return getOrganizationWebhooksLogsQueryParams.PerPage == -1
+			}
+			return false
+		}(),
+	)
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetOrganizationWebhooksLogs")
-	}
-
-	result := response.Result().(*ResponseOrganizationsGetOrganizationWebhooksLogs)
-	return result, response, err
-
-}
-func (s *OrganizationsService) GetOrganizationWebhooksLogsPaginate(organizationID string, getOrganizationWebhooksLogsQueryParams any) (any, *resty.Response, error) {
-	getOrganizationWebhooksLogsQueryParamsConverted := getOrganizationWebhooksLogsQueryParams.(*GetOrganizationWebhooksLogsQueryParams)
-
-	return s.GetOrganizationWebhooksLogs(organizationID, getOrganizationWebhooksLogsQueryParamsConverted)
 }
 
 //CreateOrganization Create a new organization
@@ -8159,25 +6470,15 @@ func (s *OrganizationsService) CreateOrganization(requestOrganizationsCreateOrga
 	path := "/api/v1/organizations"
 	s.rateLimiterBucket.Wait(1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganization).
-		SetResult(&ResponseOrganizationsCreateOrganization{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganization")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganization)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganization](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganization, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8194,25 +6495,15 @@ func (s *OrganizationsService) CreateOrganizationActionBatch(organizationID stri
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationActionBatch).
-		SetResult(&ResponseOrganizationsCreateOrganizationActionBatch{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationActionBatch")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationActionBatch)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationActionBatch](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationActionBatch, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8229,25 +6520,15 @@ func (s *OrganizationsService) CreateOrganizationAdaptivePolicyACL(organizationI
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationAdaptivePolicyAcl).
-		SetResult(&ResponseOrganizationsCreateOrganizationAdaptivePolicyACL{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationAdaptivePolicyAcl")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationAdaptivePolicyACL)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationAdaptivePolicyACL](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationAdaptivePolicyAcl, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8264,25 +6545,15 @@ func (s *OrganizationsService) CreateOrganizationAdaptivePolicyGroup(organizatio
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationAdaptivePolicyGroup).
-		SetResult(&ResponseOrganizationsCreateOrganizationAdaptivePolicyGroup{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationAdaptivePolicyGroup")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationAdaptivePolicyGroup)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationAdaptivePolicyGroup](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationAdaptivePolicyGroup, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8299,25 +6570,15 @@ func (s *OrganizationsService) CreateOrganizationAdaptivePolicyPolicy(organizati
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationAdaptivePolicyPolicy).
-		SetResult(&ResponseOrganizationsCreateOrganizationAdaptivePolicyPolicy{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationAdaptivePolicyPolicy")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationAdaptivePolicyPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationAdaptivePolicyPolicy](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationAdaptivePolicyPolicy, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8334,25 +6595,15 @@ func (s *OrganizationsService) CreateOrganizationAdmin(organizationID string, re
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationAdmin).
-		SetResult(&ResponseOrganizationsCreateOrganizationAdmin{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationAdmin")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationAdmin)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationAdmin](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationAdmin, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8369,25 +6620,15 @@ func (s *OrganizationsService) CreateOrganizationAlertsProfile(organizationID st
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationAlertsProfile).
-		SetResult(&ResponseOrganizationsCreateOrganizationAlertsProfile{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationAlertsProfile")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationAlertsProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationAlertsProfile](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationAlertsProfile, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8404,23 +6645,13 @@ func (s *OrganizationsService) DismissOrganizationAssuranceAlerts(organizationID
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsDismissOrganizationAssuranceAlerts).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DismissOrganizationAssuranceAlerts")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsDismissOrganizationAssuranceAlerts, nil)
+		},
+	)
 
 }
 
@@ -8437,23 +6668,13 @@ func (s *OrganizationsService) RestoreOrganizationAssuranceAlerts(organizationID
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsRestoreOrganizationAssuranceAlerts).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation RestoreOrganizationAssuranceAlerts")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsRestoreOrganizationAssuranceAlerts, nil)
+		},
+	)
 
 }
 
@@ -8470,25 +6691,15 @@ func (s *OrganizationsService) CreateOrganizationBrandingPolicy(organizationID s
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationBrandingPolicy).
-		SetResult(&ResponseOrganizationsCreateOrganizationBrandingPolicy{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationBrandingPolicy")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationBrandingPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationBrandingPolicy](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationBrandingPolicy, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8505,25 +6716,15 @@ func (s *OrganizationsService) ClaimIntoOrganization(organizationID string, requ
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsClaimIntoOrganization).
-		SetResult(&ResponseOrganizationsClaimIntoOrganization{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ClaimIntoOrganization")
-	}
-
-	result := response.Result().(*ResponseOrganizationsClaimIntoOrganization)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsClaimIntoOrganization](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsClaimIntoOrganization, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8540,25 +6741,15 @@ func (s *OrganizationsService) CloneOrganization(organizationID string, requestO
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCloneOrganization).
-		SetResult(&ResponseOrganizationsCloneOrganization{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CloneOrganization")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCloneOrganization)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCloneOrganization](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCloneOrganization, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8575,25 +6766,15 @@ func (s *OrganizationsService) CreateOrganizationConfigTemplate(organizationID s
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationConfigTemplate).
-		SetResult(&ResponseOrganizationsCreateOrganizationConfigTemplate{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationConfigTemplate")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationConfigTemplate)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationConfigTemplate](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationConfigTemplate, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8610,25 +6791,15 @@ func (s *OrganizationsService) CreateOrganizationDevicesControllerMigration(orga
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationDevicesControllerMigration).
-		SetResult(&ResponseOrganizationsCreateOrganizationDevicesControllerMigration{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationDevicesControllerMigration")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationDevicesControllerMigration)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationDevicesControllerMigration](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationDevicesControllerMigration, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8645,25 +6816,15 @@ func (s *OrganizationsService) BulkUpdateOrganizationDevicesDetails(organization
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsBulkUpdateOrganizationDevicesDetails).
-		SetResult(&ResponseOrganizationsBulkUpdateOrganizationDevicesDetails{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation BulkUpdateOrganizationDevicesDetails")
-	}
-
-	result := response.Result().(*ResponseOrganizationsBulkUpdateOrganizationDevicesDetails)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsBulkUpdateOrganizationDevicesDetails](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsBulkUpdateOrganizationDevicesDetails, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8680,25 +6841,15 @@ func (s *OrganizationsService) CreateOrganizationEarlyAccessFeaturesOptIn(organi
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationEarlyAccessFeaturesOptIn).
-		SetResult(&ResponseOrganizationsCreateOrganizationEarlyAccessFeaturesOptIn{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationEarlyAccessFeaturesOptIn")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationEarlyAccessFeaturesOptIn)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationEarlyAccessFeaturesOptIn](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationEarlyAccessFeaturesOptIn, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8715,25 +6866,15 @@ func (s *OrganizationsService) DisableOrganizationIntegrationsXdrNetworks(organi
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsDisableOrganizationIntegrationsXdrNetworks).
-		SetResult(&ResponseOrganizationsDisableOrganizationIntegrationsXdrNetworks{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation DisableOrganizationIntegrationsXdrNetworks")
-	}
-
-	result := response.Result().(*ResponseOrganizationsDisableOrganizationIntegrationsXdrNetworks)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsDisableOrganizationIntegrationsXdrNetworks](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsDisableOrganizationIntegrationsXdrNetworks, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8750,25 +6891,15 @@ func (s *OrganizationsService) EnableOrganizationIntegrationsXdrNetworks(organiz
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsEnableOrganizationIntegrationsXdrNetworks).
-		SetResult(&ResponseOrganizationsEnableOrganizationIntegrationsXdrNetworks{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation EnableOrganizationIntegrationsXdrNetworks")
-	}
-
-	result := response.Result().(*ResponseOrganizationsEnableOrganizationIntegrationsXdrNetworks)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsEnableOrganizationIntegrationsXdrNetworks](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsEnableOrganizationIntegrationsXdrNetworks, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8785,25 +6916,15 @@ func (s *OrganizationsService) ClaimIntoOrganizationInventory(organizationID str
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsClaimIntoOrganizationInventory).
-		SetResult(&ResponseOrganizationsClaimIntoOrganizationInventory{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ClaimIntoOrganizationInventory")
-	}
-
-	result := response.Result().(*ResponseOrganizationsClaimIntoOrganizationInventory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsClaimIntoOrganizationInventory](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsClaimIntoOrganizationInventory, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8820,25 +6941,15 @@ func (s *OrganizationsService) CreateOrganizationInventoryDevicesSwapsBulk(organ
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationInventoryDevicesSwapsBulk).
-		SetResult(&ResponseOrganizationsCreateOrganizationInventoryDevicesSwapsBulk{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationInventoryDevicesSwapsBulk")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationInventoryDevicesSwapsBulk)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationInventoryDevicesSwapsBulk](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationInventoryDevicesSwapsBulk, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8855,24 +6966,13 @@ func (s *OrganizationsService) CreateOrganizationInventoryOnboardingCloudMonitor
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringExportEvent).
-		// SetResult(&ResponseOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringExportEvent{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent")
-	}
-
-	return response, err
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringExportEvent, nil)
+		},
+	)
 
 }
 
@@ -8889,25 +6989,15 @@ func (s *OrganizationsService) CreateOrganizationInventoryOnboardingCloudMonitor
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringImport).
-		SetResult(&ResponseOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringImport{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationInventoryOnboardingCloudMonitoringImport")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringImport)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringImport](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringImport, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8924,25 +7014,15 @@ func (s *OrganizationsService) CreateOrganizationInventoryOnboardingCloudMonitor
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringPrepare).
-		SetResult(&ResponseOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringPrepare{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationInventoryOnboardingCloudMonitoringPrepare")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringPrepare)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringPrepare](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringPrepare, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8959,25 +7039,15 @@ func (s *OrganizationsService) ReleaseFromOrganizationInventory(organizationID s
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsReleaseFromOrganizationInventory).
-		SetResult(&ResponseOrganizationsReleaseFromOrganizationInventory{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ReleaseFromOrganizationInventory")
-	}
-
-	result := response.Result().(*ResponseOrganizationsReleaseFromOrganizationInventory)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsReleaseFromOrganizationInventory](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsReleaseFromOrganizationInventory, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -8994,25 +7064,15 @@ func (s *OrganizationsService) AssignOrganizationLicensesSeats(organizationID st
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsAssignOrganizationLicensesSeats).
-		SetResult(&ResponseOrganizationsAssignOrganizationLicensesSeats{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation AssignOrganizationLicensesSeats")
-	}
-
-	result := response.Result().(*ResponseOrganizationsAssignOrganizationLicensesSeats)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsAssignOrganizationLicensesSeats](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsAssignOrganizationLicensesSeats, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9029,25 +7089,15 @@ func (s *OrganizationsService) MoveOrganizationLicenses(organizationID string, r
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsMoveOrganizationLicenses).
-		SetResult(&ResponseOrganizationsMoveOrganizationLicenses{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation MoveOrganizationLicenses")
-	}
-
-	result := response.Result().(*ResponseOrganizationsMoveOrganizationLicenses)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsMoveOrganizationLicenses](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsMoveOrganizationLicenses, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9064,25 +7114,15 @@ func (s *OrganizationsService) MoveOrganizationLicensesSeats(organizationID stri
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsMoveOrganizationLicensesSeats).
-		SetResult(&ResponseOrganizationsMoveOrganizationLicensesSeats{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation MoveOrganizationLicensesSeats")
-	}
-
-	result := response.Result().(*ResponseOrganizationsMoveOrganizationLicensesSeats)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsMoveOrganizationLicensesSeats](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsMoveOrganizationLicensesSeats, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9099,25 +7139,15 @@ func (s *OrganizationsService) RenewOrganizationLicensesSeats(organizationID str
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsRenewOrganizationLicensesSeats).
-		SetResult(&ResponseOrganizationsRenewOrganizationLicensesSeats{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation RenewOrganizationLicensesSeats")
-	}
-
-	result := response.Result().(*ResponseOrganizationsRenewOrganizationLicensesSeats)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsRenewOrganizationLicensesSeats](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsRenewOrganizationLicensesSeats, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9134,25 +7164,15 @@ func (s *OrganizationsService) CreateOrganizationNetwork(organizationID string, 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationNetwork).
-		SetResult(&ResponseOrganizationsCreateOrganizationNetwork{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationNetwork")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationNetwork)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationNetwork](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationNetwork, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9169,25 +7189,15 @@ func (s *OrganizationsService) CombineOrganizationNetworks(organizationID string
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCombineOrganizationNetworks).
-		SetResult(&ResponseOrganizationsCombineOrganizationNetworks{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CombineOrganizationNetworks")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCombineOrganizationNetworks)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCombineOrganizationNetworks](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCombineOrganizationNetworks, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9204,25 +7214,15 @@ func (s *OrganizationsService) CreateOrganizationPolicyObject(organizationID str
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationPolicyObject).
-		SetResult(&ResponseOrganizationsCreateOrganizationPolicyObject{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationPolicyObject")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationPolicyObject)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationPolicyObject](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationPolicyObject, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9239,25 +7239,15 @@ func (s *OrganizationsService) CreateOrganizationPolicyObjectsGroup(organization
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationPolicyObjectsGroup).
-		SetResult(&ResponseOrganizationsCreateOrganizationPolicyObjectsGroup{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationPolicyObjectsGroup")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationPolicyObjectsGroup)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationPolicyObjectsGroup](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationPolicyObjectsGroup, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9274,25 +7264,15 @@ func (s *OrganizationsService) CreateOrganizationSamlIDp(organizationID string, 
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationSamlIdp).
-		SetResult(&ResponseOrganizationsCreateOrganizationSamlIDp{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationSamlIdp")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationSamlIDp)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationSamlIDp](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationSamlIdp, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9309,25 +7289,15 @@ func (s *OrganizationsService) CreateOrganizationSamlRole(organizationID string,
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationSamlRole).
-		SetResult(&ResponseOrganizationsCreateOrganizationSamlRole{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationSamlRole")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationSamlRole)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationSamlRole](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationSamlRole, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9344,25 +7314,15 @@ func (s *OrganizationsService) CreateOrganizationSplashTheme(organizationID stri
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationSplashTheme).
-		SetResult(&ResponseOrganizationsCreateOrganizationSplashTheme{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationSplashTheme")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationSplashTheme)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationSplashTheme](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationSplashTheme, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9381,25 +7341,15 @@ func (s *OrganizationsService) CreateOrganizationSplashThemeAsset(organizationID
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{themeIdentifier}", fmt.Sprintf("%v", themeIDentifier), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsCreateOrganizationSplashThemeAsset).
-		SetResult(&ResponseOrganizationsCreateOrganizationSplashThemeAsset{}).
-		SetError(&Error).
-		Post(path)
+	// Past way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateOrganizationSplashThemeAsset")
-	}
-
-	result := response.Result().(*ResponseOrganizationsCreateOrganizationSplashThemeAsset)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsCreateOrganizationSplashThemeAsset](
+		func() (*resty.Response, error) {
+			return POST(path, s.client, requestOrganizationsCreateOrganizationSplashThemeAsset, nil)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9413,25 +7363,15 @@ func (s *OrganizationsService) UpdateOrganization(organizationID string, request
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganization).
-		SetResult(&ResponseOrganizationsUpdateOrganization{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganization")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganization)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganization](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganization)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9447,25 +7387,15 @@ func (s *OrganizationsService) UpdateOrganizationActionBatch(organizationID stri
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{actionBatchId}", fmt.Sprintf("%v", actionBatchID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationActionBatch).
-		SetResult(&ResponseOrganizationsUpdateOrganizationActionBatch{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationActionBatch")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationActionBatch)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationActionBatch](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationActionBatch)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9481,25 +7411,15 @@ func (s *OrganizationsService) UpdateOrganizationAdaptivePolicyACL(organizationI
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{aclId}", fmt.Sprintf("%v", aclID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationAdaptivePolicyAcl).
-		SetResult(&ResponseOrganizationsUpdateOrganizationAdaptivePolicyACL{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationAdaptivePolicyAcl")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationAdaptivePolicyACL)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationAdaptivePolicyACL](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationAdaptivePolicyAcl)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9515,25 +7435,15 @@ func (s *OrganizationsService) UpdateOrganizationAdaptivePolicyGroup(organizatio
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationAdaptivePolicyGroup).
-		SetResult(&ResponseOrganizationsUpdateOrganizationAdaptivePolicyGroup{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationAdaptivePolicyGroup")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationAdaptivePolicyGroup)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationAdaptivePolicyGroup](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationAdaptivePolicyGroup)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9549,25 +7459,15 @@ func (s *OrganizationsService) UpdateOrganizationAdaptivePolicyPolicy(organizati
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationAdaptivePolicyPolicy).
-		SetResult(&ResponseOrganizationsUpdateOrganizationAdaptivePolicyPolicy{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationAdaptivePolicyPolicy")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationAdaptivePolicyPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationAdaptivePolicyPolicy](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationAdaptivePolicyPolicy)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9581,25 +7481,15 @@ func (s *OrganizationsService) UpdateOrganizationAdaptivePolicySettings(organiza
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationAdaptivePolicySettings).
-		SetResult(&ResponseOrganizationsUpdateOrganizationAdaptivePolicySettings{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationAdaptivePolicySettings")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationAdaptivePolicySettings)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationAdaptivePolicySettings](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationAdaptivePolicySettings)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9615,25 +7505,15 @@ func (s *OrganizationsService) UpdateOrganizationAdmin(organizationID string, ad
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{adminId}", fmt.Sprintf("%v", adminID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationAdmin).
-		SetResult(&ResponseOrganizationsUpdateOrganizationAdmin{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationAdmin")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationAdmin)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationAdmin](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationAdmin)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9649,25 +7529,15 @@ func (s *OrganizationsService) UpdateOrganizationAlertsProfile(organizationID st
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{alertConfigId}", fmt.Sprintf("%v", alertConfigID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationAlertsProfile).
-		SetResult(&ResponseOrganizationsUpdateOrganizationAlertsProfile{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationAlertsProfile")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationAlertsProfile)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationAlertsProfile](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationAlertsProfile)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9681,25 +7551,15 @@ func (s *OrganizationsService) UpdateOrganizationBrandingPoliciesPriorities(orga
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationBrandingPoliciesPriorities).
-		SetResult(&ResponseOrganizationsUpdateOrganizationBrandingPoliciesPriorities{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationBrandingPoliciesPriorities")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationBrandingPoliciesPriorities)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationBrandingPoliciesPriorities](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationBrandingPoliciesPriorities)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9715,25 +7575,15 @@ func (s *OrganizationsService) UpdateOrganizationBrandingPolicy(organizationID s
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{brandingPolicyId}", fmt.Sprintf("%v", brandingPolicyID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationBrandingPolicy).
-		SetResult(&ResponseOrganizationsUpdateOrganizationBrandingPolicy{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationBrandingPolicy")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationBrandingPolicy)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationBrandingPolicy](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationBrandingPolicy)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9749,25 +7599,15 @@ func (s *OrganizationsService) UpdateOrganizationConfigTemplate(organizationID s
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{configTemplateId}", fmt.Sprintf("%v", configTemplateID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationConfigTemplate).
-		SetResult(&ResponseOrganizationsUpdateOrganizationConfigTemplate{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationConfigTemplate")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationConfigTemplate)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationConfigTemplate](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationConfigTemplate)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9783,25 +7623,15 @@ func (s *OrganizationsService) UpdateOrganizationEarlyAccessFeaturesOptIn(organi
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{optInId}", fmt.Sprintf("%v", optInID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn).
-		SetResult(&ResponseOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationEarlyAccessFeaturesOptIn")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9817,25 +7647,15 @@ func (s *OrganizationsService) UpdateOrganizationLicense(organizationID string, 
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{licenseId}", fmt.Sprintf("%v", licenseID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationLicense).
-		SetResult(&ResponseOrganizationsUpdateOrganizationLicense{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationLicense")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationLicense)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationLicense](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationLicense)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9849,25 +7669,15 @@ func (s *OrganizationsService) UpdateOrganizationLoginSecurity(organizationID st
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationLoginSecurity).
-		SetResult(&ResponseOrganizationsUpdateOrganizationLoginSecurity{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationLoginSecurity")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationLoginSecurity)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationLoginSecurity](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationLoginSecurity)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9883,25 +7693,15 @@ func (s *OrganizationsService) UpdateOrganizationPolicyObjectsGroup(organization
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{policyObjectGroupId}", fmt.Sprintf("%v", policyObjectGroupID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationPolicyObjectsGroup).
-		SetResult(&ResponseOrganizationsUpdateOrganizationPolicyObjectsGroup{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationPolicyObjectsGroup")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationPolicyObjectsGroup)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationPolicyObjectsGroup](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationPolicyObjectsGroup)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9917,25 +7717,15 @@ func (s *OrganizationsService) UpdateOrganizationPolicyObject(organizationID str
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{policyObjectId}", fmt.Sprintf("%v", policyObjectID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationPolicyObject).
-		SetResult(&ResponseOrganizationsUpdateOrganizationPolicyObject{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationPolicyObject")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationPolicyObject)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationPolicyObject](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationPolicyObject)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9949,25 +7739,15 @@ func (s *OrganizationsService) UpdateOrganizationSaml(organizationID string, req
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationSaml).
-		SetResult(&ResponseOrganizationsUpdateOrganizationSaml{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationSaml")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationSaml)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationSaml](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationSaml)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -9983,25 +7763,15 @@ func (s *OrganizationsService) UpdateOrganizationSamlIDp(organizationID string, 
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{idpId}", fmt.Sprintf("%v", idpID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationSamlIdp).
-		SetResult(&ResponseOrganizationsUpdateOrganizationSamlIDp{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationSamlIdp")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationSamlIDp)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationSamlIDp](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationSamlIdp)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -10017,25 +7787,15 @@ func (s *OrganizationsService) UpdateOrganizationSamlRole(organizationID string,
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{samlRoleId}", fmt.Sprintf("%v", samlRoleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationSamlRole).
-		SetResult(&ResponseOrganizationsUpdateOrganizationSamlRole{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationSamlRole")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationSamlRole)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationSamlRole](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationSamlRole)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -10049,25 +7809,15 @@ func (s *OrganizationsService) UpdateOrganizationSNMP(organizationID string, req
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestOrganizationsUpdateOrganizationSnmp).
-		SetResult(&ResponseOrganizationsUpdateOrganizationSNMP{}).
-		SetError(&Error).
-		Put(path)
+	// Other way
 
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateOrganizationSnmp")
-	}
-
-	result := response.Result().(*ResponseOrganizationsUpdateOrganizationSNMP)
-	return result, response, err
+	return doWithRetriesAndResult[ResponseOrganizationsUpdateOrganizationSNMP](
+		func() (*resty.Response, error) {
+			return PUT(path, s.client, requestOrganizationsUpdateOrganizationSnmp)
+		},
+		s.client,
+		nil,
+	)
 
 }
 
@@ -10084,23 +7834,11 @@ func (s *OrganizationsService) DeleteOrganization(organizationID string) (*resty
 	s.rateLimiterBucket.Wait(1)
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganization")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationActionBatch Delete an action batch
@@ -10118,23 +7856,11 @@ func (s *OrganizationsService) DeleteOrganizationActionBatch(organizationID stri
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{actionBatchId}", fmt.Sprintf("%v", actionBatchID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationActionBatch")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationAdaptivePolicyACL Deletes the specified adaptive policy ACL
@@ -10152,23 +7878,11 @@ func (s *OrganizationsService) DeleteOrganizationAdaptivePolicyACL(organizationI
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{aclId}", fmt.Sprintf("%v", aclID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationAdaptivePolicyAcl")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationAdaptivePolicyGroup Deletes the specified adaptive policy group and any associated policies and references
@@ -10186,23 +7900,11 @@ func (s *OrganizationsService) DeleteOrganizationAdaptivePolicyGroup(organizatio
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationAdaptivePolicyGroup")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationAdaptivePolicyPolicy Delete an Adaptive Policy
@@ -10220,23 +7922,11 @@ func (s *OrganizationsService) DeleteOrganizationAdaptivePolicyPolicy(organizati
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationAdaptivePolicyPolicy")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationAdmin Revoke all access for a dashboard administrator within this organization
@@ -10254,23 +7944,11 @@ func (s *OrganizationsService) DeleteOrganizationAdmin(organizationID string, ad
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{adminId}", fmt.Sprintf("%v", adminID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationAdmin")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationAlertsProfile Removes an organization-wide alert config
@@ -10288,23 +7966,11 @@ func (s *OrganizationsService) DeleteOrganizationAlertsProfile(organizationID st
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{alertConfigId}", fmt.Sprintf("%v", alertConfigID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationAlertsProfile")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationBrandingPolicy Delete a branding policy
@@ -10322,23 +7988,11 @@ func (s *OrganizationsService) DeleteOrganizationBrandingPolicy(organizationID s
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{brandingPolicyId}", fmt.Sprintf("%v", brandingPolicyID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationBrandingPolicy")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationConfigTemplate Remove a configuration template
@@ -10356,23 +8010,11 @@ func (s *OrganizationsService) DeleteOrganizationConfigTemplate(organizationID s
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{configTemplateId}", fmt.Sprintf("%v", configTemplateID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationConfigTemplate")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationEarlyAccessFeaturesOptIn Delete an early access feature opt-in
@@ -10390,23 +8032,11 @@ func (s *OrganizationsService) DeleteOrganizationEarlyAccessFeaturesOptIn(organi
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{optInId}", fmt.Sprintf("%v", optInID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationEarlyAccessFeaturesOptIn")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationPolicyObjectsGroup Deletes a Policy Object Group.
@@ -10424,23 +8054,11 @@ func (s *OrganizationsService) DeleteOrganizationPolicyObjectsGroup(organization
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{policyObjectGroupId}", fmt.Sprintf("%v", policyObjectGroupID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationPolicyObjectsGroup")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationPolicyObject Deletes a Policy Object.
@@ -10458,23 +8076,11 @@ func (s *OrganizationsService) DeleteOrganizationPolicyObject(organizationID str
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{policyObjectId}", fmt.Sprintf("%v", policyObjectID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationPolicyObject")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationSamlIDp Remove a SAML IdP in your organization.
@@ -10492,23 +8098,11 @@ func (s *OrganizationsService) DeleteOrganizationSamlIDp(organizationID string, 
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{idpId}", fmt.Sprintf("%v", idpID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationSamlIdp")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationSamlRole Remove a SAML role
@@ -10526,23 +8120,11 @@ func (s *OrganizationsService) DeleteOrganizationSamlRole(organizationID string,
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{samlRoleId}", fmt.Sprintf("%v", samlRoleID), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationSamlRole")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationSplashAsset Delete a Splash Theme Asset
@@ -10560,23 +8142,11 @@ func (s *OrganizationsService) DeleteOrganizationSplashAsset(organizationID stri
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationSplashAsset")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }
 
 //DeleteOrganizationSplashTheme Delete a Splash Theme
@@ -10594,21 +8164,9 @@ func (s *OrganizationsService) DeleteOrganizationSplashTheme(organizationID stri
 	path = strings.Replace(path, "{organizationId}", fmt.Sprintf("%v", organizationID), -1)
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteOrganizationSplashTheme")
-	}
-
-	return response, err
-
+	return doWithRetriesAndNotResult(
+		func() (*resty.Response, error) {
+			return DELETE(path, s.client, &QueryParamsDefault)
+		},
+	)
 }

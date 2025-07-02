@@ -1,8 +1,11 @@
 package meraki
 
 import (
-	"errors"
+	"encoding/json"
 	"fmt"
+	"log"
+	"math/rand"
+	"net"
 	"net/http"
 	"net/url"
 	"os"
@@ -13,6 +16,7 @@ import (
 	"time"
 
 	"github.com/go-resty/resty/v2"
+	"github.com/google/go-querystring/query"
 	"github.com/juju/ratelimit"
 )
 
@@ -22,12 +26,59 @@ const (
 	MERAKI_DASHBOARD_API_KEY    = "MERAKI_DASHBOARD_API_KEY"
 	MERAKI_DEBUG                = "MERAKI_DEBUG"
 	MERAKI_REQUESTS_PER_SECOND  = "MERAKI_REQUESTS_PER_SECOND"
+	MERAKI_RETRIES              = "MERAKI_RETRIES"
+	MERAKI_RETRY_DELAY          = "MERAKI_RETRY_DELAY"
+	MERAKI_RETRY_JITTER         = "MERAKI_RETRY_JITTER"
+	MERAKI_USE_RETRY_HEADER     = "MERAKI_USE_RETRY_HEADER"
 	DEFAULT_USER_AGENT          = "go-meraki/1.57.0"
 	DEFAULT_REQUESTS_PER_SECOND = 10
 	PAGINATION_PER_PAGE         = 1000
+	DEFAULT_RETRIES             = 3
+	DEFAULT_RETRY_DELAY         = 1000 * time.Millisecond
+	DEFAULT_RETRY_JITTER        = 3000 * time.Millisecond
 )
 
 // Client manages communication with the Cisco Meraki API
+var USE_RETRY_HEADER = func() bool {
+	if os.Getenv(MERAKI_USE_RETRY_HEADER) != "" {
+		return os.Getenv(MERAKI_USE_RETRY_HEADER) == "true"
+	}
+	return false
+}()
+
+var MAX_RETRIES = func() int {
+	if os.Getenv(MERAKI_RETRIES) != "" {
+		v, err := strconv.Atoi(os.Getenv(MERAKI_RETRIES))
+		if err != nil || v < 0 {
+			return DEFAULT_RETRIES
+		}
+		return v
+	}
+	return DEFAULT_RETRIES
+}()
+
+var MAX_RETRY_DELAY = func() time.Duration {
+	if os.Getenv(MERAKI_RETRY_DELAY) != "" {
+		v, err := strconv.Atoi(os.Getenv(MERAKI_RETRY_DELAY))
+		if err != nil || v < 0 {
+			return DEFAULT_RETRY_DELAY
+		}
+		return time.Duration(v) * time.Millisecond
+	}
+	return DEFAULT_RETRY_DELAY
+}()
+
+var MAX_RETRY_JITTER = func() time.Duration {
+	if os.Getenv(MERAKI_RETRY_JITTER) != "" {
+		v, err := strconv.Atoi(os.Getenv(MERAKI_RETRY_JITTER))
+		if err != nil || v < 0 {
+			return DEFAULT_RETRY_JITTER
+		}
+		return time.Duration(v) * time.Millisecond
+	}
+	return DEFAULT_RETRY_JITTER
+}()
+
 type Client struct {
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
@@ -54,6 +105,52 @@ type service struct {
 	rateLimiterBucket *ratelimit.Bucket
 }
 
+func GET[Q any, H any](path string, client *resty.Client, params *Q, header *H) (*resty.Response, error) {
+	queryString, _ := query.Values(params)
+
+	if queryString.Get("perPage") == "-1" {
+		queryString.Set("perPage", strconv.Itoa(PAGINATION_PER_PAGE))
+	}
+
+	return client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		Get(path)
+}
+
+func POST(path string, client *resty.Client, body any, params any) (*resty.Response, error) {
+	queryString, _ := query.Values(params)
+	response := client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode())
+	if body != nil {
+		response.SetBody(body)
+	}
+	return response.Post(path)
+}
+
+func PUT(path string, client *resty.Client, body any) (*resty.Response, error) {
+	response := client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+	if body != nil {
+		response.SetBody(body)
+	}
+	return response.Put(path)
+}
+
+func DELETE[Q any](path string, client *resty.Client, params *Q) (*resty.Response, error) {
+	queryString, _ := query.Values(params)
+
+	return client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
+		Delete(path)
+}
+
 // SetAuthToken sets the Authorization bearer token sent in the request
 func (c *Client) SetAuthToken(accessToken string) {
 	accessToken = "Bearer " + accessToken
@@ -73,6 +170,9 @@ func (c *Client) SetRequestsPerSecond(requestsPerSecond int) {
 
 // Error indicates an error from the invocation of a Cisco Meraki API.
 var Error map[string]interface{}
+
+var HeaderDefault interface{} = nil
+var QueryParamsDefault interface{} = nil
 
 // NewClient creates a new API client.
 func NewClient() (*Client, error) {
@@ -108,24 +208,24 @@ func NewClient() (*Client, error) {
 
 	c.SetUserAgent()
 	client.SetLogger(&CustomLogger{})
-	client.SetRetryCount(2)
-	client.SetRetryWaitTime(time.Second)
-	client.SetRetryMaxWaitTime(1 * time.Minute)
-	// Respect "Retry-After" header in response
-	client.SetRetryAfter(func(client *resty.Client, resp *resty.Response) (time.Duration, error) {
-		retryHeader := resp.Header().Get("Retry-After")
-		if _, err := strconv.Atoi(retryHeader); err == nil {
-			t, _ := time.ParseDuration(retryHeader + "s")
-			return t, nil
-		}
-		return 0, nil
-	})
-	// Retry on 429
-	client.AddRetryCondition(
-		func(r *resty.Response, err error) bool {
-			return err != nil || r.StatusCode() == http.StatusTooManyRequests
-		},
-	)
+	// client.SetRetryCount(2)
+	// client.SetRetryWaitTime(time.Second)
+	// client.SetRetryMaxWaitTime(1 * time.Minute)
+	// // Respect "Retry-After" header in response
+	// client.SetRetryAfter(func(client *resty.Client, resp *resty.Response) (time.Duration, error) {
+	// 	retryHeader := resp.Header().Get("Retry-After")
+	// 	if _, err := strconv.Atoi(retryHeader); err == nil {
+	// 		t, _ := time.ParseDuration(retryHeader + "s")
+	// 		return t, nil
+	// 	}
+	// 	return 0, nil
+	// })
+	// // Retry on 429
+	// client.AddRetryCondition(
+	// 	func(r *resty.Response, err error) bool {
+	// 		return err != nil || r.StatusCode() == http.StatusTooManyRequests
+	// 	},
+	// )
 
 	c.Administered = (*AdministeredService)(&c.common)
 	c.Appliance = (*ApplianceService)(&c.common)
@@ -170,9 +270,9 @@ func NewClientWithOptionsAndRequests(baseURL string, dashboardApiKey string, deb
 func SetOptions(baseURL string, dashboardApiKey string, debug string, userAgent string) error {
 	var err error
 
-	if !validateUserAgent(userAgent) {
-		return errors.New("user-agent bad format, expected: `AplicationName VendorName Client`")
-	}
+	// if !validateUserAgent(userAgent) {
+	// 	return errors.New("user-agent bad format, expected: `AplicationName VendorName Client`")
+	// }
 
 	err = os.Setenv(MERAKI_USER_AGENT, userAgent)
 	if err != nil {
@@ -456,4 +556,155 @@ func getNextPageURL(linkHeader string) string {
 	}
 
 	return ""
+}
+
+func doWithRetriesAndResult[T any](
+	operation func() (*resty.Response, error),
+	client *resty.Client,
+	merge func(dst, src T) T,
+	paginate ...bool,
+) (*T, *resty.Response, error) {
+	var result *T
+	var resp *resty.Response
+	var err error
+	// log.Printf("MAX_RETRIES: %d", MAX_RETRIES)
+	// log.Printf("MAX_RETRY_DELAY: %d", MAX_RETRY_DELAY)
+	// log.Printf("MAX_RETRY_JITTER: %d", MAX_RETRY_JITTER)
+	// var zero *T
+
+	for attempt := 0; attempt <= MAX_RETRIES; attempt++ {
+		resp, err = operation()
+
+		if err != nil && resp.StatusCode() != http.StatusTooManyRequests {
+
+			log.Printf("Error 1: %v", err)
+			log.Printf("Response: %v", resp.StatusCode())
+			return nil, resp, err
+		}
+		if resp.IsError() && resp.StatusCode() != http.StatusTooManyRequests {
+			log.Printf("Error 2: %v", resp)
+			log.Printf("Status code: %v", resp.StatusCode())
+			return nil, resp, fmt.Errorf("error with operation: %s Error:\n %s", resp.Request.URL, resp)
+		}
+		if resp != nil && resp.StatusCode() != http.StatusTooManyRequests {
+			json.Unmarshal(resp.Body(), &result)
+			pages := false
+			if len(paginate) > 0 {
+				pages = paginate[0]
+			} else {
+				perPage, _ := strconv.Atoi(resp.Request.QueryParam.Get("perPage"))
+				if perPage == -1 {
+					pages = true // si el perPage es -1, entonces se debe paginar
+				}
+			}
+			if result != nil && !pages {
+				return result, resp, nil
+			}
+
+			// Pagination
+			if result != nil && pages {
+				link := getNextPageURL(resp.Header().Get("Link"))
+				var result2 *T
+				for link != "" {
+					// Add jitter backoff attempt
+					for attempt := 0; attempt <= MAX_RETRIES; attempt++ {
+						resp, err = GET(link, client, &QueryParamsDefault, &HeaderDefault)
+						if err == nil {
+							break
+						}
+						if resp.IsError() {
+							log.Printf("Error 3: %v", resp)
+							if resp.StatusCode() != http.StatusTooManyRequests {
+								return result, resp, fmt.Errorf("error with get operation: %s", link)
+							}
+						}
+						delay := MAX_RETRY_DELAY * time.Duration(1<<attempt)
+						jitter := time.Duration(rand.Int63n(int64(MAX_RETRY_JITTER)))
+						wait := delay + jitter
+						log.Printf("[retry] attempt %d: received 429, waiting %v", attempt, wait)
+						time.Sleep(wait)
+					}
+					json.Unmarshal(resp.Body(), &result2)
+
+					*result = merge(*result, *result2)
+
+					link = getNextPageURL(resp.Header().Get("Link"))
+				}
+				if resp.IsError() {
+					return nil, resp, fmt.Errorf("error with get operation: %s", link)
+				}
+				return result, resp, nil
+			}
+
+			return nil, resp, nil
+		}
+
+		// Exponential backoff with jitter
+		// Calculate exponential backoff delay by multiplying baseDelay by 2^attempt
+		// For example: if baseDelay is 1s and attempt is 2, delay will be 1s * 2^2 = 4s
+		delay := MAX_RETRY_DELAY * time.Duration(1<<attempt)
+		// Generate a random duration between 0 and jitterMax to add randomness to retry delays
+		jitter := time.Duration(rand.Int63n(int64(MAX_RETRY_JITTER)))
+		wait := delay + jitter
+
+		if resp != nil && USE_RETRY_HEADER {
+			if retryAfter := resp.Header().Get("Retry-After"); retryAfter != "" {
+				if secs, err := strconv.Atoi(retryAfter); err == nil {
+					wait = time.Duration(secs) * time.Second
+				}
+			}
+		}
+
+		log.Printf("[retry] attempt %d: received 429, waiting %v", attempt, wait)
+		time.Sleep(wait)
+	}
+
+	// If result is nil, return zero value
+	log.Printf("error 4: %v", err)
+	if result != nil {
+
+		return result, resp, fmt.Errorf("failed after %d retries", MAX_RETRIES)
+	}
+
+	return nil, resp, fmt.Errorf("failed after %d retries", MAX_RETRIES)
+}
+
+func doWithRetriesAndNotResult(
+	operation func() (*resty.Response, error),
+) (*resty.Response, error) {
+	var resp *resty.Response
+	var err error
+
+	for attempt := 0; attempt <= MAX_RETRIES; attempt++ {
+		resp, err = operation()
+
+		if err != nil {
+			if nerr, ok := err.(net.Error); ok && nerr.Temporary() {
+				// continue to retry
+			} else {
+				return resp, err
+			}
+		}
+
+		if resp != nil && resp.StatusCode() != http.StatusTooManyRequests {
+			return resp, nil
+		}
+
+		delay := MAX_RETRY_DELAY * time.Duration(1<<attempt)
+		jitter := time.Duration(rand.Int63n(int64(MAX_RETRY_JITTER)))
+		wait := delay + jitter
+
+		if resp != nil && USE_RETRY_HEADER {
+			if retryAfter := resp.Header().Get("Retry-After"); retryAfter != "" {
+				if secs, err := strconv.Atoi(retryAfter); err == nil {
+					wait = time.Duration(secs) * time.Second
+				}
+			}
+		}
+
+		log.Printf("[retry] attempt %d: received 429, waiting %v", attempt, wait)
+		time.Sleep(wait)
+	}
+
+	return resp, fmt.Errorf("failed after %d retries", MAX_RETRIES)
 }
