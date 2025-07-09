@@ -130,6 +130,85 @@ client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
 
 [dashboard-api-go](https://pkg.go.dev/github.com/meraki/dashboard-api-go)
 
+### Rate Limiting and Retry Configuration
+
+The client allows you to configure automatic retry (backoff) behavior for rate-limited (HTTP 429) responses using the `SetBackoff` method. This is useful to control how and how many times the SDK retries requests when the API responds with rate limits.
+
+#### Using SetBackoff
+
+```go
+// Example of custom backoff configuration
+maxRetries := 5 // Maximum number of retries (total attempts = maxRetries + 1)
+maxRetryDelay := 2 * time.Second // Base wait time for exponential backoff between retries
+maxRetryJitter := 3 * time.Second // Maximum random jitter to add to the backoff
+useRetryHeader := true // Whether to respect the Retry-After header if present
+
+err := client.SetBackoff(&maxRetries, &maxRetryDelay, &maxRetryJitter, &useRetryHeader)
+if err != nil {
+    fmt.Println("Error configuring backoff:", err)
+}
+```
+
+#### SetBackoff Parameters
+
+- `maxRetries` (`*int`): Maximum number of retries before failing. If `nil`, the default is 2 (3 total attempts).
+- `maxRetryDelay` (`*time.Duration`): Base wait time for exponential backoff. If `nil`, the default is 1 second.
+- `maxRetryJitter` (`*time.Duration`): Maximum random jitter to add to the backoff. If `nil`, the default is 3 seconds.
+- `useRetryHeader` (`*bool`): If `true`, the client will respect the `Retry-After` header in the response to determine the wait time before retrying. If `nil`, the default is `false`.
+
+#### Default Values
+
+If you do not call `SetBackoff`, the following defaults are used:
+- `maxRetries`: 2 (3 total attempts)
+- `maxRetryDelay`: 1 second
+- `maxRetryJitter`: 3 seconds
+- `useRetryHeader`: false
+
+#### Behavior
+
+- Backoff is exponential: the wait time doubles on each attempt, plus a random jitter.
+- If the response includes a `Retry-After` header and `useRetryHeader` is `true`, that value will be used as the wait time.
+- The backoff mechanism is automatically applied to all calls that receive an HTTP 429 (rate limit).
+
+#### Complete Example
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    meraki "github.com/meraki/dashboard-api-go/sdk"
+)
+
+func main() {
+    client, err := meraki.NewClient()
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    maxRetries := 5
+    maxRetryDelay := 2 * time.Second
+    maxRetryJitter := 3 * time.Second
+    useRetryHeader := true
+
+    err = client.SetBackoff(&maxRetries, &maxRetryDelay, &maxRetryJitter, &useRetryHeader)
+    if err != nil {
+        fmt.Println("Error configuring backoff:", err)
+        return
+    }
+
+    // All calls will now use this backoff configuration
+    nResponse, _, err := client.Organizations.GetOrganizations()
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(nResponse)
+}
+```
+
 ## Compatibility matrix
 
 | SDK versions | MERAKI Dashboard version supported |
