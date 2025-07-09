@@ -3194,6 +3194,7 @@ func (s *ApplianceService) GetDeviceApplianceDhcpSubnets(serial string) (*Respon
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3220,6 +3221,7 @@ func (s *ApplianceService) GetDeviceAppliancePerformance(serial string, getDevic
 			return GET(path, s.client, getDeviceAppliancePerformanceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3245,6 +3247,7 @@ func (s *ApplianceService) GetDeviceAppliancePrefixesDelegated(serial string) (*
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3270,6 +3273,7 @@ func (s *ApplianceService) GetDeviceAppliancePrefixesDelegatedVLANAssignments(se
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3295,6 +3299,7 @@ func (s *ApplianceService) GetDeviceApplianceRadioSettings(serial string) (*Resp
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3320,6 +3325,7 @@ func (s *ApplianceService) GetDeviceApplianceUplinksSettings(serial string) (*Re
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3348,6 +3354,7 @@ func (s *ApplianceService) GetNetworkApplianceClientSecurityEvents(networkID str
 			return GET(path, s.client, getNetworkApplianceClientSecurityEventsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseApplianceGetNetworkApplianceClientSecurityEvents) ResponseApplianceGetNetworkApplianceClientSecurityEvents {
 			dst = append(dst, src...)
 			return dst
@@ -3382,6 +3389,7 @@ func (s *ApplianceService) GetNetworkApplianceConnectivityMonitoringDestinations
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3407,6 +3415,7 @@ func (s *ApplianceService) GetNetworkApplianceContentFiltering(networkID string)
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3432,6 +3441,7 @@ func (s *ApplianceService) GetNetworkApplianceContentFilteringCategories(network
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3457,6 +3467,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallCellularFirewallRules(netw
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3482,6 +3493,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledServices(network
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3509,6 +3521,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallFirewalledService(networkI
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3534,6 +3547,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallInboundCellularFirewallRul
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3559,6 +3573,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallInboundFirewallRules(netwo
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3584,6 +3599,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallL3FirewallRules(networkID 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3609,6 +3625,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRules(networkID 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3634,6 +3651,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallL7FirewallRulesApplication
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3659,6 +3677,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallOneToManyNatRules(networkI
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3684,6 +3703,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallOneToOneNatRules(networkID
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3709,6 +3729,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallPortForwardingRules(networ
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3734,6 +3755,7 @@ func (s *ApplianceService) GetNetworkApplianceFirewallSettings(networkID string)
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3759,6 +3781,7 @@ func (s *ApplianceService) GetNetworkAppliancePorts(networkID string) (*Response
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3786,6 +3809,7 @@ func (s *ApplianceService) GetNetworkAppliancePort(networkID string, portID stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3811,6 +3835,7 @@ func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatics(networkID
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3838,6 +3863,7 @@ func (s *ApplianceService) GetNetworkAppliancePrefixesDelegatedStatic(networkID 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3863,6 +3889,7 @@ func (s *ApplianceService) GetNetworkApplianceRfProfiles(networkID string) (*Res
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3890,6 +3917,7 @@ func (s *ApplianceService) GetNetworkApplianceRfProfile(networkID string, rfProf
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3916,6 +3944,7 @@ func (s *ApplianceService) GetNetworkApplianceSecurityEvents(networkID string, g
 			return GET(path, s.client, getNetworkApplianceSecurityEventsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseApplianceGetNetworkApplianceSecurityEvents) ResponseApplianceGetNetworkApplianceSecurityEvents {
 			dst = append(dst, src...)
 			return dst
@@ -3950,6 +3979,7 @@ func (s *ApplianceService) GetNetworkApplianceSecurityIntrusion(networkID string
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3975,6 +4005,7 @@ func (s *ApplianceService) GetNetworkApplianceSecurityMalware(networkID string) 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4000,6 +4031,7 @@ func (s *ApplianceService) GetNetworkApplianceSettings(networkID string) (*Respo
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4025,6 +4057,7 @@ func (s *ApplianceService) GetNetworkApplianceSingleLan(networkID string) (*Resp
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4050,6 +4083,7 @@ func (s *ApplianceService) GetNetworkApplianceSSIDs(networkID string) (*Response
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4077,6 +4111,7 @@ func (s *ApplianceService) GetNetworkApplianceSSID(networkID string, number stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4102,6 +4137,7 @@ func (s *ApplianceService) GetNetworkApplianceStaticRoutes(networkID string) (*R
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4129,6 +4165,7 @@ func (s *ApplianceService) GetNetworkApplianceStaticRoute(networkID string, stat
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4154,6 +4191,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShaping(networkID string) (
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4179,6 +4217,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceCla
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4206,6 +4245,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingCustomPerformanceCla
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4231,6 +4271,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingRules(networkID stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4256,6 +4297,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkBandwidth(netw
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4281,6 +4323,7 @@ func (s *ApplianceService) GetNetworkApplianceTrafficShapingUplinkSelection(netw
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4307,6 +4350,7 @@ func (s *ApplianceService) GetNetworkApplianceUplinksUsageHistory(networkID stri
 			return GET(path, s.client, getNetworkApplianceUplinksUsageHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4332,6 +4376,7 @@ func (s *ApplianceService) GetNetworkApplianceVLANs(networkID string) (*Response
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4357,6 +4402,7 @@ func (s *ApplianceService) GetNetworkApplianceVLANsSettings(networkID string) (*
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4384,6 +4430,7 @@ func (s *ApplianceService) GetNetworkApplianceVLAN(networkID string, vlanID stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4409,6 +4456,7 @@ func (s *ApplianceService) GetNetworkApplianceVpnBgp(networkID string) (*Respons
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4434,6 +4482,7 @@ func (s *ApplianceService) GetNetworkApplianceVpnSiteToSiteVpn(networkID string)
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4459,6 +4508,7 @@ func (s *ApplianceService) GetNetworkApplianceWarmSpare(networkID string) (*Resp
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4485,6 +4535,7 @@ func (s *ApplianceService) GetOrganizationApplianceDNSLocalProfiles(organization
 			return GET(path, s.client, getOrganizationApplianceDnsLocalProfilesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4511,6 +4562,7 @@ func (s *ApplianceService) GetOrganizationApplianceDNSLocalProfilesAssignments(o
 			return GET(path, s.client, getOrganizationApplianceDnsLocalProfilesAssignmentsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4537,6 +4589,7 @@ func (s *ApplianceService) GetOrganizationApplianceDNSLocalRecords(organizationI
 			return GET(path, s.client, getOrganizationApplianceDnsLocalRecordsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4563,6 +4616,7 @@ func (s *ApplianceService) GetOrganizationApplianceDNSSplitProfiles(organization
 			return GET(path, s.client, getOrganizationApplianceDnsSplitProfilesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4589,6 +4643,7 @@ func (s *ApplianceService) GetOrganizationApplianceDNSSplitProfilesAssignments(o
 			return GET(path, s.client, getOrganizationApplianceDnsSplitProfilesAssignmentsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4615,6 +4670,7 @@ func (s *ApplianceService) GetOrganizationApplianceFirewallMulticastForwardingBy
 			return GET(path, s.client, getOrganizationApplianceFirewallMulticastForwardingByNetworkQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork) ResponseApplianceGetOrganizationApplianceFirewallMulticastForwardingByNetwork {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -4650,6 +4706,7 @@ func (s *ApplianceService) GetOrganizationApplianceSecurityEvents(organizationID
 			return GET(path, s.client, getOrganizationApplianceSecurityEventsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseApplianceGetOrganizationApplianceSecurityEvents) ResponseApplianceGetOrganizationApplianceSecurityEvents {
 			dst = append(dst, src...)
 			return dst
@@ -4684,6 +4741,7 @@ func (s *ApplianceService) GetOrganizationApplianceSecurityIntrusion(organizatio
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4710,6 +4768,7 @@ func (s *ApplianceService) GetOrganizationApplianceTrafficShapingVpnExclusionsBy
 			return GET(path, s.client, getOrganizationApplianceTrafficShapingVpnExclusionsByNetworkQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork) ResponseApplianceGetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -4745,6 +4804,7 @@ func (s *ApplianceService) GetOrganizationApplianceUplinkStatuses(organizationID
 			return GET(path, s.client, getOrganizationApplianceUplinkStatusesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseApplianceGetOrganizationApplianceUplinkStatuses) ResponseApplianceGetOrganizationApplianceUplinkStatuses {
 			dst = append(dst, src...)
 			return dst
@@ -4779,6 +4839,7 @@ func (s *ApplianceService) GetOrganizationApplianceUplinksStatusesOverview(organ
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4805,6 +4866,7 @@ func (s *ApplianceService) GetOrganizationApplianceUplinksUsageByNetwork(organiz
 			return GET(path, s.client, getOrganizationApplianceUplinksUsageByNetworkQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4831,6 +4893,7 @@ func (s *ApplianceService) GetOrganizationApplianceVpnStats(organizationID strin
 			return GET(path, s.client, getOrganizationApplianceVpnStatsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseApplianceGetOrganizationApplianceVpnStats) ResponseApplianceGetOrganizationApplianceVpnStats {
 			dst = append(dst, src...)
 			return dst
@@ -4866,6 +4929,7 @@ func (s *ApplianceService) GetOrganizationApplianceVpnStatuses(organizationID st
 			return GET(path, s.client, getOrganizationApplianceVpnStatusesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseApplianceGetOrganizationApplianceVpnStatuses) ResponseApplianceGetOrganizationApplianceVpnStatuses {
 			*dst.Vpnstatusentities = append(*dst.Vpnstatusentities, *src.Vpnstatusentities...) // Total arrays: 1
 			return dst
@@ -4900,6 +4964,7 @@ func (s *ApplianceService) GetOrganizationApplianceVpnThirdPartyVpnpeers(organiz
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4925,6 +4990,7 @@ func (s *ApplianceService) GetOrganizationApplianceVpnVpnFirewallRules(organizat
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4950,6 +5016,7 @@ func (s *ApplianceService) CreateDeviceApplianceVmxAuthenticationToken(serial st
 			return POST(path, s.client, nil, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4974,6 +5041,7 @@ func (s *ApplianceService) CreateNetworkAppliancePrefixesDelegatedStatic(network
 		func() (*resty.Response, error) {
 			return POST(path, s.client, requestApplianceCreateNetworkAppliancePrefixesDelegatedStatic, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -4998,6 +5066,7 @@ func (s *ApplianceService) CreateNetworkApplianceRfProfile(networkID string, req
 			return POST(path, s.client, requestApplianceCreateNetworkApplianceRfProfile, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5023,6 +5092,7 @@ func (s *ApplianceService) CreateNetworkApplianceStaticRoute(networkID string, r
 			return POST(path, s.client, requestApplianceCreateNetworkApplianceStaticRoute, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5048,6 +5118,7 @@ func (s *ApplianceService) CreateNetworkApplianceTrafficShapingCustomPerformance
 			return POST(path, s.client, requestApplianceCreateNetworkApplianceTrafficShapingCustomPerformanceClass, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5073,6 +5144,7 @@ func (s *ApplianceService) CreateNetworkApplianceVLAN(networkID string, requestA
 			return POST(path, s.client, requestApplianceCreateNetworkApplianceVlan, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5098,6 +5170,7 @@ func (s *ApplianceService) SwapNetworkApplianceWarmSpare(networkID string) (*Res
 			return POST(path, s.client, nil, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5123,6 +5196,7 @@ func (s *ApplianceService) CreateOrganizationApplianceDNSLocalProfile(organizati
 			return POST(path, s.client, requestApplianceCreateOrganizationApplianceDnsLocalProfile, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5148,6 +5222,7 @@ func (s *ApplianceService) BulkOrganizationApplianceDNSLocalProfilesAssignmentsC
 			return POST(path, s.client, requestApplianceBulkOrganizationApplianceDnsLocalProfilesAssignmentsCreate, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5173,6 +5248,7 @@ func (s *ApplianceService) CreateOrganizationApplianceDNSLocalProfilesAssignment
 			return POST(path, s.client, requestApplianceCreateOrganizationApplianceDnsLocalProfilesAssignmentsBulkDelete, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5198,6 +5274,7 @@ func (s *ApplianceService) CreateOrganizationApplianceDNSLocalRecord(organizatio
 			return POST(path, s.client, requestApplianceCreateOrganizationApplianceDnsLocalRecord, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5223,6 +5300,7 @@ func (s *ApplianceService) CreateOrganizationApplianceDNSSplitProfile(organizati
 			return POST(path, s.client, requestApplianceCreateOrganizationApplianceDnsSplitProfile, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5248,6 +5326,7 @@ func (s *ApplianceService) CreateOrganizationApplianceDNSSplitProfilesAssignment
 			return POST(path, s.client, requestApplianceCreateOrganizationApplianceDnsSplitProfilesAssignmentsBulkCreate, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5273,6 +5352,7 @@ func (s *ApplianceService) CreateOrganizationApplianceDNSSplitProfilesAssignment
 			return POST(path, s.client, requestApplianceCreateOrganizationApplianceDnsSplitProfilesAssignmentsBulkDelete, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5295,6 +5375,7 @@ func (s *ApplianceService) UpdateDeviceApplianceRadioSettings(serial string, req
 			return PUT(path, s.client, requestApplianceUpdateDeviceApplianceRadioSettings)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5317,6 +5398,7 @@ func (s *ApplianceService) UpdateDeviceApplianceUplinksSettings(serial string, r
 			return PUT(path, s.client, requestApplianceUpdateDeviceApplianceUplinksSettings)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5339,6 +5421,7 @@ func (s *ApplianceService) UpdateNetworkApplianceConnectivityMonitoringDestinati
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceConnectivityMonitoringDestinations)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5360,6 +5443,7 @@ func (s *ApplianceService) UpdateNetworkApplianceContentFiltering(networkID stri
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceContentFiltering)
 		},
+		s.backoff,
 	)
 
 }
@@ -5380,6 +5464,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallCellularFirewallRules(n
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallCellularFirewallRules)
 		},
+		s.backoff,
 	)
 
 }
@@ -5403,6 +5488,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallFirewalledService(netwo
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallFirewalledService)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5425,6 +5511,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallInboundCellularFirewall
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallInboundCellularFirewallRules)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5447,6 +5534,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallInboundFirewallRules(ne
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallInboundFirewallRules)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5468,6 +5556,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallL3FirewallRules(network
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallL3FirewallRules)
 		},
+		s.backoff,
 	)
 
 }
@@ -5488,6 +5577,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallL7FirewallRules(network
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallL7FirewallRules)
 		},
+		s.backoff,
 	)
 
 }
@@ -5509,6 +5599,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallMulticastForwarding(net
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallMulticastForwarding)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5530,6 +5621,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallOneToManyNatRules(netwo
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallOneToManyNatRules)
 		},
+		s.backoff,
 	)
 
 }
@@ -5550,6 +5642,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallOneToOneNatRules(networ
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallOneToOneNatRules)
 		},
+		s.backoff,
 	)
 
 }
@@ -5571,6 +5664,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallPortForwardingRules(net
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallPortForwardingRules)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5592,6 +5686,7 @@ func (s *ApplianceService) UpdateNetworkApplianceFirewallSettings(networkID stri
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceFirewallSettings)
 		},
+		s.backoff,
 	)
 
 }
@@ -5615,6 +5710,7 @@ func (s *ApplianceService) UpdateNetworkAppliancePort(networkID string, portID s
 			return PUT(path, s.client, requestApplianceUpdateNetworkAppliancePort)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5638,6 +5734,7 @@ func (s *ApplianceService) UpdateNetworkAppliancePrefixesDelegatedStatic(network
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestApplianceUpdateNetworkAppliancePrefixesDelegatedStatic)
 		},
+		s.backoff,
 	)
 
 }
@@ -5661,6 +5758,7 @@ func (s *ApplianceService) UpdateNetworkApplianceRfProfile(networkID string, rfP
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceRfProfile)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5683,6 +5781,7 @@ func (s *ApplianceService) UpdateNetworkApplianceSdwanInternetPolicies(networkID
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceSdwanInternetPolicies)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5705,6 +5804,7 @@ func (s *ApplianceService) UpdateNetworkApplianceSecurityIntrusion(networkID str
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceSecurityIntrusion)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5727,6 +5827,7 @@ func (s *ApplianceService) UpdateNetworkApplianceSecurityMalware(networkID strin
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceSecurityMalware)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5749,6 +5850,7 @@ func (s *ApplianceService) UpdateNetworkApplianceSettings(networkID string, requ
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceSettings)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5771,6 +5873,7 @@ func (s *ApplianceService) UpdateNetworkApplianceSingleLan(networkID string, req
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceSingleLan)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5795,6 +5898,7 @@ func (s *ApplianceService) UpdateNetworkApplianceSSID(networkID string, number s
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceSsid)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5819,6 +5923,7 @@ func (s *ApplianceService) UpdateNetworkApplianceStaticRoute(networkID string, s
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceStaticRoute)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5840,6 +5945,7 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShaping(networkID string
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceTrafficShaping)
 		},
+		s.backoff,
 	)
 
 }
@@ -5863,6 +5969,7 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingCustomPerformance
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceTrafficShapingCustomPerformanceClass)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5884,6 +5991,7 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingRules(networkID s
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceTrafficShapingRules)
 		},
+		s.backoff,
 	)
 
 }
@@ -5904,6 +6012,7 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingUplinkBandwidth(n
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceTrafficShapingUplinkBandwidth)
 		},
+		s.backoff,
 	)
 
 }
@@ -5925,6 +6034,7 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingUplinkSelection(n
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceTrafficShapingUplinkSelection)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5947,6 +6057,7 @@ func (s *ApplianceService) UpdateNetworkApplianceTrafficShapingVpnExclusions(net
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceTrafficShapingVpnExclusions)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5969,6 +6080,7 @@ func (s *ApplianceService) UpdateNetworkApplianceVLANsSettings(networkID string,
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceVlansSettings)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5993,6 +6105,7 @@ func (s *ApplianceService) UpdateNetworkApplianceVLAN(networkID string, vlanID s
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceVlan)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6015,6 +6128,7 @@ func (s *ApplianceService) UpdateNetworkApplianceVpnBgp(networkID string, reques
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceVpnBgp)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6037,6 +6151,7 @@ func (s *ApplianceService) UpdateNetworkApplianceVpnSiteToSiteVpn(networkID stri
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceVpnSiteToSiteVpn)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6059,6 +6174,7 @@ func (s *ApplianceService) UpdateNetworkApplianceWarmSpare(networkID string, req
 			return PUT(path, s.client, requestApplianceUpdateNetworkApplianceWarmSpare)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6083,6 +6199,7 @@ func (s *ApplianceService) UpdateOrganizationApplianceDNSLocalProfile(organizati
 			return PUT(path, s.client, requestApplianceUpdateOrganizationApplianceDnsLocalProfile)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6107,6 +6224,7 @@ func (s *ApplianceService) UpdateOrganizationApplianceDNSLocalRecord(organizatio
 			return PUT(path, s.client, requestApplianceUpdateOrganizationApplianceDnsLocalRecord)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6131,6 +6249,7 @@ func (s *ApplianceService) UpdateOrganizationApplianceDNSSplitProfile(organizati
 			return PUT(path, s.client, requestApplianceUpdateOrganizationApplianceDnsSplitProfile)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6152,6 +6271,7 @@ func (s *ApplianceService) UpdateOrganizationApplianceSecurityIntrusion(organiza
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestApplianceUpdateOrganizationApplianceSecurityIntrusion)
 		},
+		s.backoff,
 	)
 
 }
@@ -6172,6 +6292,7 @@ func (s *ApplianceService) UpdateOrganizationApplianceVpnThirdPartyVpnpeers(orga
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestApplianceUpdateOrganizationApplianceVpnThirdPartyVpnpeers)
 		},
+		s.backoff,
 	)
 
 }
@@ -6193,6 +6314,7 @@ func (s *ApplianceService) UpdateOrganizationApplianceVpnVpnFirewallRules(organi
 			return PUT(path, s.client, requestApplianceUpdateOrganizationApplianceVpnVpnFirewallRules)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6217,6 +6339,7 @@ func (s *ApplianceService) DeleteNetworkAppliancePrefixesDelegatedStatic(network
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -6239,6 +6362,7 @@ func (s *ApplianceService) DeleteNetworkApplianceRfProfile(networkID string, rfP
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -6261,6 +6385,7 @@ func (s *ApplianceService) DeleteNetworkApplianceStaticRoute(networkID string, s
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -6283,6 +6408,7 @@ func (s *ApplianceService) DeleteNetworkApplianceTrafficShapingCustomPerformance
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -6305,6 +6431,7 @@ func (s *ApplianceService) DeleteNetworkApplianceVLAN(networkID string, vlanID s
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -6327,6 +6454,7 @@ func (s *ApplianceService) DeleteOrganizationApplianceDNSLocalProfile(organizati
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -6349,6 +6477,7 @@ func (s *ApplianceService) DeleteOrganizationApplianceDNSLocalRecord(organizatio
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -6371,5 +6500,6 @@ func (s *ApplianceService) DeleteOrganizationApplianceDNSSplitProfile(organizati
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }

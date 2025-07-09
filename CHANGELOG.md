@@ -5,9 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [5.0.4] - 2025-07-09
 ### Fixed
-- PolicyObject handling missed the FQDN field.
-  Updated organizations.go, `ResponseItemOrganizationsGetOrganizationPolicyObjects`, `ResponseOrganizationsCreateOrganizationPolicyObject`, `ResponseOrganizationsGetOrganizationPolicyObject` and `ResponseOrganizationsUpdateOrganizationPolicyObject`
+- Added retry and backoff logic for handling rate limit (429) responses.
 
 ### [5.0.3] - 2025-06-30
 - Ignore user-agent validation.

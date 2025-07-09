@@ -4569,6 +4569,7 @@ func (s *NetworksService) GetNetwork(networkID string) (*ResponseNetworksGetNetw
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4595,6 +4596,7 @@ func (s *NetworksService) GetNetworkAlertsHistory(networkID string, getNetworkAl
 			return GET(path, s.client, getNetworkAlertsHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseNetworksGetNetworkAlertsHistory) ResponseNetworksGetNetworkAlertsHistory {
 			dst = append(dst, src...)
 			return dst
@@ -4629,6 +4631,7 @@ func (s *NetworksService) GetNetworkAlertsSettings(networkID string) (*ResponseN
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4655,6 +4658,7 @@ func (s *NetworksService) GetNetworkBluetoothClients(networkID string, getNetwor
 			return GET(path, s.client, getNetworkBluetoothClientsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseNetworksGetNetworkBluetoothClients) ResponseNetworksGetNetworkBluetoothClients {
 			dst = append(dst, src...)
 			return dst
@@ -4692,6 +4696,7 @@ func (s *NetworksService) GetNetworkBluetoothClient(networkID string, bluetoothC
 			return GET(path, s.client, getNetworkBluetoothClientQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4718,6 +4723,7 @@ func (s *NetworksService) GetNetworkClients(networkID string, getNetworkClientsQ
 			return GET(path, s.client, getNetworkClientsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseNetworksGetNetworkClients) ResponseNetworksGetNetworkClients {
 			dst = append(dst, src...)
 			return dst
@@ -4753,6 +4759,7 @@ func (s *NetworksService) GetNetworkClientsApplicationUsage(networkID string, ge
 			return GET(path, s.client, getNetworkClientsApplicationUsageQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseNetworksGetNetworkClientsApplicationUsage) ResponseNetworksGetNetworkClientsApplicationUsage {
 			dst = append(dst, src...)
 			return dst
@@ -4788,6 +4795,7 @@ func (s *NetworksService) GetNetworkClientsBandwidthUsageHistory(networkID strin
 			return GET(path, s.client, getNetworkClientsBandwidthUsageHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseNetworksGetNetworkClientsBandwidthUsageHistory) ResponseNetworksGetNetworkClientsBandwidthUsageHistory {
 			dst = append(dst, src...)
 			return dst
@@ -4823,6 +4831,7 @@ func (s *NetworksService) GetNetworkClientsOverview(networkID string, getNetwork
 			return GET(path, s.client, getNetworkClientsOverviewQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4849,6 +4858,7 @@ func (s *NetworksService) GetNetworkClientsUsageHistories(networkID string, getN
 			return GET(path, s.client, getNetworkClientsUsageHistoriesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseNetworksGetNetworkClientsUsageHistories) ResponseNetworksGetNetworkClientsUsageHistories {
 			dst = append(dst, src...)
 			return dst
@@ -4885,6 +4895,7 @@ func (s *NetworksService) GetNetworkClient(networkID string, clientID string) (*
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4912,6 +4923,7 @@ func (s *NetworksService) GetNetworkClientPolicy(networkID string, clientID stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4939,6 +4951,7 @@ func (s *NetworksService) GetNetworkClientSplashAuthorizationStatus(networkID st
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4967,6 +4980,7 @@ func (s *NetworksService) GetNetworkClientTrafficHistory(networkID string, clien
 			return GET(path, s.client, getNetworkClientTrafficHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseNetworksGetNetworkClientTrafficHistory) ResponseNetworksGetNetworkClientTrafficHistory {
 			dst = append(dst, src...)
 			return dst
@@ -5003,6 +5017,7 @@ func (s *NetworksService) GetNetworkClientUsageHistory(networkID string, clientI
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5028,6 +5043,7 @@ func (s *NetworksService) GetNetworkDevices(networkID string) (*ResponseNetworks
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5054,6 +5070,7 @@ func (s *NetworksService) GetNetworkEvents(networkID string, getNetworkEventsQue
 			return GET(path, s.client, getNetworkEventsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseNetworksGetNetworkEvents) ResponseNetworksGetNetworkEvents {
 			*dst.Events = append(*dst.Events, *src.Events...) // Total arrays: 1
 			return dst
@@ -5088,6 +5105,7 @@ func (s *NetworksService) GetNetworkEventsEventTypes(networkID string) (*Respons
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5113,6 +5131,7 @@ func (s *NetworksService) GetNetworkFirmwareUpgrades(networkID string) (*Respons
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5138,6 +5157,7 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedEvents(networkID strin
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5163,6 +5183,7 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedGroups(networkID strin
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5190,6 +5211,7 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedGroup(networkID string
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5215,6 +5237,7 @@ func (s *NetworksService) GetNetworkFirmwareUpgradesStagedStages(networkID strin
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5240,6 +5263,7 @@ func (s *NetworksService) GetNetworkFloorPlans(networkID string) (*ResponseNetwo
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5267,6 +5291,7 @@ func (s *NetworksService) GetNetworkFloorPlan(networkID string, floorPlanID stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5292,6 +5317,7 @@ func (s *NetworksService) GetNetworkGroupPolicies(networkID string) (*ResponseNe
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5319,6 +5345,7 @@ func (s *NetworksService) GetNetworkGroupPolicy(networkID string, groupPolicyID 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5344,6 +5371,7 @@ func (s *NetworksService) GetNetworkHealthAlerts(networkID string) (*ResponseNet
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5369,6 +5397,7 @@ func (s *NetworksService) GetNetworkMerakiAuthUsers(networkID string) (*Response
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5396,6 +5425,7 @@ func (s *NetworksService) GetNetworkMerakiAuthUser(networkID string, merakiAuthU
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5421,6 +5451,7 @@ func (s *NetworksService) GetNetworkMqttBrokers(networkID string) (*ResponseNetw
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5448,6 +5479,7 @@ func (s *NetworksService) GetNetworkMqttBroker(networkID string, mqttBrokerID st
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5473,6 +5505,7 @@ func (s *NetworksService) GetNetworkNetflow(networkID string) (*ResponseNetworks
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5499,6 +5532,7 @@ func (s *NetworksService) GetNetworkNetworkHealthChannelUtilization(networkID st
 			return GET(path, s.client, getNetworkNetworkHealthChannelUtilizationQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseNetworksGetNetworkNetworkHealthChannelUtilization) ResponseNetworksGetNetworkNetworkHealthChannelUtilization {
 			dst = append(dst, src...)
 			return dst
@@ -5540,6 +5574,7 @@ func (s *NetworksService) GetNetworkPiiPiiKeys(networkID string, getNetworkPiiPi
 			return GET(path, s.client, getNetworkPiiPiiKeysQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5571,6 +5606,7 @@ func (s *NetworksService) GetNetworkPiiRequests(networkID string) (*ResponseNetw
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5604,6 +5640,7 @@ func (s *NetworksService) GetNetworkPiiRequest(networkID string, requestID strin
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5636,6 +5673,7 @@ func (s *NetworksService) GetNetworkPiiSmDevicesForKey(networkID string, getNetw
 			return GET(path, s.client, getNetworkPiiSmDevicesForKeyQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5668,6 +5706,7 @@ func (s *NetworksService) GetNetworkPiiSmOwnersForKey(networkID string, getNetwo
 			return GET(path, s.client, getNetworkPiiSmOwnersForKeyQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5694,6 +5733,7 @@ func (s *NetworksService) GetNetworkPoliciesByClient(networkID string, getNetwor
 			return GET(path, s.client, getNetworkPoliciesByClientQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseNetworksGetNetworkPoliciesByClient) ResponseNetworksGetNetworkPoliciesByClient {
 			dst = append(dst, src...)
 			return dst
@@ -5728,6 +5768,7 @@ func (s *NetworksService) GetNetworkSettings(networkID string) (*ResponseNetwork
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5753,6 +5794,7 @@ func (s *NetworksService) GetNetworkSNMP(networkID string) (*ResponseNetworksGet
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5779,6 +5821,7 @@ func (s *NetworksService) GetNetworkSplashLoginAttempts(networkID string, getNet
 			return GET(path, s.client, getNetworkSplashLoginAttemptsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5804,6 +5847,7 @@ func (s *NetworksService) GetNetworkSyslogServers(networkID string) (*ResponseNe
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5829,6 +5873,7 @@ func (s *NetworksService) GetNetworkTopologyLinkLayer(networkID string) (*Respon
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5855,6 +5900,7 @@ func (s *NetworksService) GetNetworkTraffic(networkID string, getNetworkTrafficQ
 			return GET(path, s.client, getNetworkTrafficQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5880,6 +5926,7 @@ func (s *NetworksService) GetNetworkTrafficAnalysis(networkID string) (*Response
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5905,6 +5952,7 @@ func (s *NetworksService) GetNetworkTrafficShapingApplicationCategories(networkI
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5930,6 +5978,7 @@ func (s *NetworksService) GetNetworkTrafficShapingDscpTaggingOptions(networkID s
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5955,6 +6004,7 @@ func (s *NetworksService) GetNetworkVLANProfiles(networkID string) (*ResponseNet
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5981,6 +6031,7 @@ func (s *NetworksService) GetNetworkVLANProfilesAssignmentsByDevice(networkID st
 			return GET(path, s.client, getNetworkVlanProfilesAssignmentsByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice) ResponseNetworksGetNetworkVLANProfilesAssignmentsByDevice {
 			dst = append(dst, src...)
 			return dst
@@ -6017,6 +6068,7 @@ func (s *NetworksService) GetNetworkVLANProfile(networkID string, iname string) 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6042,6 +6094,7 @@ func (s *NetworksService) GetNetworkWebhooksHTTPServers(networkID string) (*Resp
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6069,6 +6122,7 @@ func (s *NetworksService) GetNetworkWebhooksHTTPServer(networkID string, httpSer
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6094,6 +6148,7 @@ func (s *NetworksService) GetNetworkWebhooksPayloadTemplates(networkID string) (
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6121,6 +6176,7 @@ func (s *NetworksService) GetNetworkWebhooksPayloadTemplate(networkID string, pa
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6148,6 +6204,7 @@ func (s *NetworksService) GetNetworkWebhooksWebhookTest(networkID string, webhoo
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6174,6 +6231,7 @@ func (s *NetworksService) GetOrganizationIntegrationsXdrNetworks(organizationID 
 			return GET(path, s.client, getOrganizationIntegrationsXdrNetworksQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseNetworksGetOrganizationIntegrationsXdrNetworks) ResponseNetworksGetOrganizationIntegrationsXdrNetworks {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -6209,6 +6267,7 @@ func (s *NetworksService) GetOrganizationSummaryTopNetworksByStatus(organization
 			return GET(path, s.client, getOrganizationSummaryTopNetworksByStatusQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseNetworksGetOrganizationSummaryTopNetworksByStatus) ResponseNetworksGetOrganizationSummaryTopNetworksByStatus {
 			dst = append(dst, src...)
 			return dst
@@ -6243,6 +6302,7 @@ func (s *NetworksService) BindNetwork(networkID string, requestNetworksBindNetwo
 			return POST(path, s.client, requestNetworksBindNetwork, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6268,6 +6328,7 @@ func (s *NetworksService) ProvisionNetworkClients(networkID string, requestNetwo
 			return POST(path, s.client, requestNetworksProvisionNetworkClients, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6294,6 +6355,7 @@ func (s *NetworksService) ClaimNetworkDevices(networkID string, requestNetworksC
 			return POST(path, s.client, requestNetworksClaimNetworkDevices, claimNetworkDevicesQueryParams)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6319,6 +6381,7 @@ func (s *NetworksService) VmxNetworkDevicesClaim(networkID string, requestNetwor
 			return POST(path, s.client, requestNetworksVmxNetworkDevicesClaim, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6343,6 +6406,7 @@ func (s *NetworksService) RemoveNetworkDevices(networkID string, requestNetworks
 		func() (*resty.Response, error) {
 			return POST(path, s.client, requestNetworksRemoveNetworkDevices, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -6367,6 +6431,7 @@ func (s *NetworksService) CreateNetworkFirmwareUpgradesRollback(networkID string
 			return POST(path, s.client, requestNetworksCreateNetworkFirmwareUpgradesRollback, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6392,6 +6457,7 @@ func (s *NetworksService) CreateNetworkFirmwareUpgradesStagedEvent(networkID str
 			return POST(path, s.client, requestNetworksCreateNetworkFirmwareUpgradesStagedEvent, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6417,6 +6483,7 @@ func (s *NetworksService) DeferNetworkFirmwareUpgradesStagedEvents(networkID str
 			return POST(path, s.client, nil, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6442,6 +6509,7 @@ func (s *NetworksService) RollbacksNetworkFirmwareUpgradesStagedEvents(networkID
 			return POST(path, s.client, requestNetworksRollbacksNetworkFirmwareUpgradesStagedEvents, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6467,6 +6535,7 @@ func (s *NetworksService) CreateNetworkFirmwareUpgradesStagedGroup(networkID str
 			return POST(path, s.client, requestNetworksCreateNetworkFirmwareUpgradesStagedGroup, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6492,6 +6561,7 @@ func (s *NetworksService) CreateNetworkFloorPlan(networkID string, requestNetwor
 			return POST(path, s.client, requestNetworksCreateNetworkFloorPlan, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6517,6 +6587,7 @@ func (s *NetworksService) BatchNetworkFloorPlansAutoLocateJobs(networkID string,
 			return POST(path, s.client, requestNetworksBatchNetworkFloorPlansAutoLocateJobs, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6543,6 +6614,7 @@ func (s *NetworksService) CancelNetworkFloorPlansAutoLocateJob(networkID string,
 		func() (*resty.Response, error) {
 			return POST(path, s.client, nil, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -6569,6 +6641,7 @@ func (s *NetworksService) PublishNetworkFloorPlansAutoLocateJob(networkID string
 			return POST(path, s.client, requestNetworksPublishNetworkFloorPlansAutoLocateJob, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6596,6 +6669,7 @@ func (s *NetworksService) RecalculateNetworkFloorPlansAutoLocateJob(networkID st
 			return POST(path, s.client, requestNetworksRecalculateNetworkFloorPlansAutoLocateJob, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6621,6 +6695,7 @@ func (s *NetworksService) BatchNetworkFloorPlansDevicesUpdate(networkID string, 
 			return POST(path, s.client, requestNetworksBatchNetworkFloorPlansDevicesUpdate, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6646,6 +6721,7 @@ func (s *NetworksService) CreateNetworkGroupPolicy(networkID string, requestNetw
 			return POST(path, s.client, requestNetworksCreateNetworkGroupPolicy, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6671,6 +6747,7 @@ func (s *NetworksService) CreateNetworkMerakiAuthUser(networkID string, requestN
 			return POST(path, s.client, requestNetworksCreateNetworkMerakiAuthUser, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6696,6 +6773,7 @@ func (s *NetworksService) CreateNetworkMqttBroker(networkID string, requestNetwo
 			return POST(path, s.client, requestNetworksCreateNetworkMqttBroker, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6727,6 +6805,7 @@ func (s *NetworksService) CreateNetworkPiiRequest(networkID string, requestNetwo
 			return POST(path, s.client, requestNetworksCreateNetworkPiiRequest, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6752,6 +6831,7 @@ func (s *NetworksService) SplitNetwork(networkID string) (*ResponseNetworksSplit
 			return POST(path, s.client, nil, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6777,6 +6857,7 @@ func (s *NetworksService) UnbindNetwork(networkID string, requestNetworksUnbindN
 			return POST(path, s.client, requestNetworksUnbindNetwork, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6802,6 +6883,7 @@ func (s *NetworksService) CreateNetworkVLANProfile(networkID string, requestNetw
 			return POST(path, s.client, requestNetworksCreateNetworkVlanProfile, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6827,6 +6909,7 @@ func (s *NetworksService) ReassignNetworkVLANProfilesAssignments(networkID strin
 			return POST(path, s.client, requestNetworksReassignNetworkVlanProfilesAssignments, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6852,6 +6935,7 @@ func (s *NetworksService) CreateNetworkWebhooksHTTPServer(networkID string, requ
 			return POST(path, s.client, requestNetworksCreateNetworkWebhooksHttpServer, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6877,6 +6961,7 @@ func (s *NetworksService) CreateNetworkWebhooksPayloadTemplate(networkID string,
 			return POST(path, s.client, requestNetworksCreateNetworkWebhooksPayloadTemplate, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6902,6 +6987,7 @@ func (s *NetworksService) CreateNetworkWebhooksWebhookTest(networkID string, req
 			return POST(path, s.client, requestNetworksCreateNetworkWebhooksWebhookTest, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6927,6 +7013,7 @@ func (s *NetworksService) DisableOrganizationIntegrationsXdrNetworks(organizatio
 			return POST(path, s.client, requestNetworksDisableOrganizationIntegrationsXdrNetworks, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6952,6 +7039,7 @@ func (s *NetworksService) EnableOrganizationIntegrationsXdrNetworks(organization
 			return POST(path, s.client, requestNetworksEnableOrganizationIntegrationsXdrNetworks, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6977,6 +7065,7 @@ func (s *NetworksService) CombineOrganizationNetworks(organizationID string, req
 			return POST(path, s.client, requestNetworksCombineOrganizationNetworks, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6999,6 +7088,7 @@ func (s *NetworksService) UpdateNetwork(networkID string, requestNetworksUpdateN
 			return PUT(path, s.client, requestNetworksUpdateNetwork)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7021,6 +7111,7 @@ func (s *NetworksService) UpdateNetworkAlertsSettings(networkID string, requestN
 			return PUT(path, s.client, requestNetworksUpdateNetworkAlertsSettings)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7045,6 +7136,7 @@ func (s *NetworksService) UpdateNetworkClientPolicy(networkID string, clientID s
 			return PUT(path, s.client, requestNetworksUpdateNetworkClientPolicy)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7068,6 +7160,7 @@ func (s *NetworksService) UpdateNetworkClientSplashAuthorizationStatus(networkID
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestNetworksUpdateNetworkClientSplashAuthorizationStatus)
 		},
+		s.backoff,
 	)
 
 }
@@ -7089,6 +7182,7 @@ func (s *NetworksService) UpdateNetworkFirmwareUpgrades(networkID string, reques
 			return PUT(path, s.client, requestNetworksUpdateNetworkFirmwareUpgrades)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7111,6 +7205,7 @@ func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedEvents(networkID st
 			return PUT(path, s.client, requestNetworksUpdateNetworkFirmwareUpgradesStagedEvents)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7135,6 +7230,7 @@ func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedGroup(networkID str
 			return PUT(path, s.client, requestNetworksUpdateNetworkFirmwareUpgradesStagedGroup)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7157,6 +7253,7 @@ func (s *NetworksService) UpdateNetworkFirmwareUpgradesStagedStages(networkID st
 			return PUT(path, s.client, requestNetworksUpdateNetworkFirmwareUpgradesStagedStages)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7181,6 +7278,7 @@ func (s *NetworksService) UpdateNetworkFloorPlan(networkID string, floorPlanID s
 			return PUT(path, s.client, requestNetworksUpdateNetworkFloorPlan)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7205,6 +7303,7 @@ func (s *NetworksService) UpdateNetworkGroupPolicy(networkID string, groupPolicy
 			return PUT(path, s.client, requestNetworksUpdateNetworkGroupPolicy)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7229,6 +7328,7 @@ func (s *NetworksService) UpdateNetworkMerakiAuthUser(networkID string, merakiAu
 			return PUT(path, s.client, requestNetworksUpdateNetworkMerakiAuthUser)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7253,6 +7353,7 @@ func (s *NetworksService) UpdateNetworkMqttBroker(networkID string, mqttBrokerID
 			return PUT(path, s.client, requestNetworksUpdateNetworkMqttBroker)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7275,6 +7376,7 @@ func (s *NetworksService) UpdateNetworkNetflow(networkID string, requestNetworks
 			return PUT(path, s.client, requestNetworksUpdateNetworkNetflow)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7297,6 +7399,7 @@ func (s *NetworksService) UpdateNetworkSettings(networkID string, requestNetwork
 			return PUT(path, s.client, requestNetworksUpdateNetworkSettings)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7319,6 +7422,7 @@ func (s *NetworksService) UpdateNetworkSNMP(networkID string, requestNetworksUpd
 			return PUT(path, s.client, requestNetworksUpdateNetworkSnmp)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7341,6 +7445,7 @@ func (s *NetworksService) UpdateNetworkSyslogServers(networkID string, requestNe
 			return PUT(path, s.client, requestNetworksUpdateNetworkSyslogServers)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7363,6 +7468,7 @@ func (s *NetworksService) UpdateNetworkTrafficAnalysis(networkID string, request
 			return PUT(path, s.client, requestNetworksUpdateNetworkTrafficAnalysis)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7387,6 +7493,7 @@ func (s *NetworksService) UpdateNetworkVLANProfile(networkID string, iname strin
 			return PUT(path, s.client, requestNetworksUpdateNetworkVlanProfile)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7411,6 +7518,7 @@ func (s *NetworksService) UpdateNetworkWebhooksHTTPServer(networkID string, http
 			return PUT(path, s.client, requestNetworksUpdateNetworkWebhooksHttpServer)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7435,6 +7543,7 @@ func (s *NetworksService) UpdateNetworkWebhooksPayloadTemplate(networkID string,
 			return PUT(path, s.client, requestNetworksUpdateNetworkWebhooksPayloadTemplate)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7457,6 +7566,7 @@ func (s *NetworksService) DeleteNetwork(networkID string) (*resty.Response, erro
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -7479,6 +7589,7 @@ func (s *NetworksService) DeleteNetworkFirmwareUpgradesStagedGroup(networkID str
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -7502,6 +7613,7 @@ func (s *NetworksService) DeleteNetworkFloorPlan(networkID string, floorPlanID s
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 }
@@ -7526,6 +7638,7 @@ func (s *NetworksService) DeleteNetworkGroupPolicy(networkID string, groupPolicy
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, deleteNetworkGroupPolicyQueryParams)
 		},
+		s.backoff,
 	)
 }
 
@@ -7549,6 +7662,7 @@ func (s *NetworksService) DeleteNetworkMerakiAuthUser(networkID string, merakiAu
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, deleteNetworkMerakiAuthUserQueryParams)
 		},
+		s.backoff,
 	)
 }
 
@@ -7571,6 +7685,7 @@ func (s *NetworksService) DeleteNetworkMqttBroker(networkID string, mqttBrokerID
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -7599,6 +7714,7 @@ func (s *NetworksService) DeleteNetworkPiiRequest(networkID string, requestID st
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -7621,6 +7737,7 @@ func (s *NetworksService) DeleteNetworkVLANProfile(networkID string, iname strin
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -7643,6 +7760,7 @@ func (s *NetworksService) DeleteNetworkWebhooksHTTPServer(networkID string, http
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -7665,5 +7783,6 @@ func (s *NetworksService) DeleteNetworkWebhooksPayloadTemplate(networkID string,
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }

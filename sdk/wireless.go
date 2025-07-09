@@ -4128,6 +4128,7 @@ func (s *WirelessService) GetDeviceWirelessBluetoothSettings(serial string) (*Re
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4154,6 +4155,7 @@ func (s *WirelessService) GetDeviceWirelessConnectionStats(serial string, getDev
 			return GET(path, s.client, getDeviceWirelessConnectionStatsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4179,6 +4181,7 @@ func (s *WirelessService) GetDeviceWirelessElectronicShelfLabel(serial string) (
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4205,6 +4208,7 @@ func (s *WirelessService) GetDeviceWirelessLatencyStats(serial string, getDevice
 			return GET(path, s.client, getDeviceWirelessLatencyStatsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4230,6 +4234,7 @@ func (s *WirelessService) GetDeviceWirelessRadioSettings(serial string) (*Respon
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4255,6 +4260,7 @@ func (s *WirelessService) GetDeviceWirelessStatus(serial string) (*ResponseWirel
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4281,6 +4287,7 @@ func (s *WirelessService) GetNetworkWirelessAirMarshal(networkID string, getNetw
 			return GET(path, s.client, getNetworkWirelessAirMarshalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4306,6 +4313,7 @@ func (s *WirelessService) GetNetworkWirelessAlternateManagementInterface(network
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4331,6 +4339,7 @@ func (s *WirelessService) GetNetworkWirelessBilling(networkID string) (*Response
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4358,6 +4367,7 @@ func (s *WirelessService) GetNetworkWirelessBluetoothSettings(networkID string) 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4384,6 +4394,7 @@ func (s *WirelessService) GetNetworkWirelessChannelUtilizationHistory(networkID 
 			return GET(path, s.client, getNetworkWirelessChannelUtilizationHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4410,6 +4421,7 @@ func (s *WirelessService) GetNetworkWirelessClientCountHistory(networkID string,
 			return GET(path, s.client, getNetworkWirelessClientCountHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4436,6 +4448,7 @@ func (s *WirelessService) GetNetworkWirelessClientsConnectionStats(networkID str
 			return GET(path, s.client, getNetworkWirelessClientsConnectionStatsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4462,6 +4475,7 @@ func (s *WirelessService) GetNetworkWirelessClientsLatencyStats(networkID string
 			return GET(path, s.client, getNetworkWirelessClientsLatencyStatsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4490,6 +4504,7 @@ func (s *WirelessService) GetNetworkWirelessClientConnectionStats(networkID stri
 			return GET(path, s.client, getNetworkWirelessClientConnectionStatsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4518,6 +4533,7 @@ func (s *WirelessService) GetNetworkWirelessClientConnectivityEvents(networkID s
 			return GET(path, s.client, getNetworkWirelessClientConnectivityEventsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetNetworkWirelessClientConnectivityEvents) ResponseWirelessGetNetworkWirelessClientConnectivityEvents {
 			dst = append(dst, src...)
 			return dst
@@ -4555,6 +4571,7 @@ func (s *WirelessService) GetNetworkWirelessClientLatencyHistory(networkID strin
 			return GET(path, s.client, getNetworkWirelessClientLatencyHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4583,6 +4600,7 @@ func (s *WirelessService) GetNetworkWirelessClientLatencyStats(networkID string,
 			return GET(path, s.client, getNetworkWirelessClientLatencyStatsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4609,6 +4627,7 @@ func (s *WirelessService) GetNetworkWirelessConnectionStats(networkID string, ge
 			return GET(path, s.client, getNetworkWirelessConnectionStatsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4635,6 +4654,7 @@ func (s *WirelessService) GetNetworkWirelessDataRateHistory(networkID string, ge
 			return GET(path, s.client, getNetworkWirelessDataRateHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4661,6 +4681,7 @@ func (s *WirelessService) GetNetworkWirelessDevicesConnectionStats(networkID str
 			return GET(path, s.client, getNetworkWirelessDevicesConnectionStatsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4687,6 +4708,7 @@ func (s *WirelessService) GetNetworkWirelessDevicesLatencyStats(networkID string
 			return GET(path, s.client, getNetworkWirelessDevicesLatencyStatsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4712,6 +4734,7 @@ func (s *WirelessService) GetNetworkWirelessElectronicShelfLabel(networkID strin
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4737,6 +4760,7 @@ func (s *WirelessService) GetNetworkWirelessElectronicShelfLabelConfiguredDevice
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4762,6 +4786,7 @@ func (s *WirelessService) GetNetworkWirelessEthernetPortsProfiles(networkID stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4789,6 +4814,7 @@ func (s *WirelessService) GetNetworkWirelessEthernetPortsProfile(networkID strin
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4815,6 +4841,7 @@ func (s *WirelessService) GetNetworkWirelessFailedConnections(networkID string, 
 			return GET(path, s.client, getNetworkWirelessFailedConnectionsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4841,6 +4868,7 @@ func (s *WirelessService) GetNetworkWirelessLatencyHistory(networkID string, get
 			return GET(path, s.client, getNetworkWirelessLatencyHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4867,6 +4895,7 @@ func (s *WirelessService) GetNetworkWirelessLatencyStats(networkID string, getNe
 			return GET(path, s.client, getNetworkWirelessLatencyStatsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4893,6 +4922,7 @@ func (s *WirelessService) GetNetworkWirelessMeshStatuses(networkID string, getNe
 			return GET(path, s.client, getNetworkWirelessMeshStatusesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetNetworkWirelessMeshStatuses) ResponseWirelessGetNetworkWirelessMeshStatuses {
 			dst = append(dst, src...)
 			return dst
@@ -4928,6 +4958,7 @@ func (s *WirelessService) GetNetworkWirelessRfProfiles(networkID string, getNetw
 			return GET(path, s.client, getNetworkWirelessRfProfilesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4955,6 +4986,7 @@ func (s *WirelessService) GetNetworkWirelessRfProfile(networkID string, rfProfil
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4980,6 +5012,7 @@ func (s *WirelessService) GetNetworkWirelessSettings(networkID string) (*Respons
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5006,6 +5039,7 @@ func (s *WirelessService) GetNetworkWirelessSignalQualityHistory(networkID strin
 			return GET(path, s.client, getNetworkWirelessSignalQualityHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5031,6 +5065,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDs(networkID string) (*ResponseWi
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5058,6 +5093,7 @@ func (s *WirelessService) GetNetworkWirelessSSID(networkID string, number string
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5085,6 +5121,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDBonjourForwarding(networkID stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5112,6 +5149,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDDeviceTypeGroupPolicies(networkI
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5139,6 +5177,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDEapOverride(networkID string, nu
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5166,6 +5205,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDFirewallL3FirewallRules(networkI
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5193,6 +5233,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDFirewallL7FirewallRules(networkI
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5220,6 +5261,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDHotspot20(networkID string, numb
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5247,6 +5289,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsks(networkID string, n
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5276,6 +5319,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDIDentityPsk(networkID string, nu
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5303,6 +5347,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDSchedules(networkID string, numb
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5330,6 +5375,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDSplashSettings(networkID string,
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5357,6 +5403,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDTrafficShapingRules(networkID st
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5384,6 +5431,7 @@ func (s *WirelessService) GetNetworkWirelessSSIDVpn(networkID string, number str
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5410,6 +5458,7 @@ func (s *WirelessService) GetNetworkWirelessUsageHistory(networkID string, getNe
 			return GET(path, s.client, getNetworkWirelessUsageHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5436,6 +5485,7 @@ func (s *WirelessService) GetOrganizationWirelessAirMarshalRules(organizationID 
 			return GET(path, s.client, getOrganizationWirelessAirMarshalRulesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessAirMarshalRules) ResponseWirelessGetOrganizationWirelessAirMarshalRules {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -5471,6 +5521,7 @@ func (s *WirelessService) GetOrganizationWirelessAirMarshalSettingsByNetwork(org
 			return GET(path, s.client, getOrganizationWirelessAirMarshalSettingsByNetworkQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessAirMarshalSettingsByNetwork) ResponseWirelessGetOrganizationWirelessAirMarshalSettingsByNetwork {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -5506,6 +5557,7 @@ func (s *WirelessService) GetOrganizationWirelessClientsOverviewByDevice(organiz
 			return GET(path, s.client, getOrganizationWirelessClientsOverviewByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessClientsOverviewByDevice) ResponseWirelessGetOrganizationWirelessClientsOverviewByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -5541,6 +5593,7 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByDevi
 			return GET(path, s.client, getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice) ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByDevice {
 			dst = append(dst, src...)
 			return dst
@@ -5576,6 +5629,7 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationByNetw
 			return GET(path, s.client, getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork) ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationByNetwork {
 			dst = append(dst, src...)
 			return dst
@@ -5611,6 +5665,7 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistor
 			return GET(path, s.client, getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval) ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval {
 			dst = append(dst, src...)
 			return dst
@@ -5646,6 +5701,7 @@ func (s *WirelessService) GetOrganizationWirelessDevicesChannelUtilizationHistor
 			return GET(path, s.client, getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval) ResponseWirelessGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval {
 			dst = append(dst, src...)
 			return dst
@@ -5681,6 +5737,7 @@ func (s *WirelessService) GetOrganizationWirelessDevicesEthernetStatuses(organiz
 			return GET(path, s.client, getOrganizationWirelessDevicesEthernetStatusesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses) ResponseWirelessGetOrganizationWirelessDevicesEthernetStatuses {
 			dst = append(dst, src...)
 			return dst
@@ -5716,6 +5773,7 @@ func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByClient(organ
 			return GET(path, s.client, getOrganizationWirelessDevicesPacketLossByClientQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient) ResponseWirelessGetOrganizationWirelessDevicesPacketLossByClient {
 			dst = append(dst, src...)
 			return dst
@@ -5751,6 +5809,7 @@ func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByDevice(organ
 			return GET(path, s.client, getOrganizationWirelessDevicesPacketLossByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice) ResponseWirelessGetOrganizationWirelessDevicesPacketLossByDevice {
 			dst = append(dst, src...)
 			return dst
@@ -5786,6 +5845,7 @@ func (s *WirelessService) GetOrganizationWirelessDevicesPacketLossByNetwork(orga
 			return GET(path, s.client, getOrganizationWirelessDevicesPacketLossByNetworkQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork) ResponseWirelessGetOrganizationWirelessDevicesPacketLossByNetwork {
 			dst = append(dst, src...)
 			return dst
@@ -5821,6 +5881,7 @@ func (s *WirelessService) GetOrganizationWirelessDevicesPowerModeHistory(organiz
 			return GET(path, s.client, getOrganizationWirelessDevicesPowerModeHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory) ResponseWirelessGetOrganizationWirelessDevicesPowerModeHistory {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -5856,6 +5917,7 @@ func (s *WirelessService) GetOrganizationWirelessDevicesSystemCPULoadHistory(org
 			return GET(path, s.client, getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory) ResponseWirelessGetOrganizationWirelessDevicesSystemCPULoadHistory {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -5891,6 +5953,7 @@ func (s *WirelessService) GetOrganizationWirelessDevicesWirelessControllersByDev
 			return GET(path, s.client, getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDevice) ResponseWirelessGetOrganizationWirelessDevicesWirelessControllersByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -5926,6 +5989,7 @@ func (s *WirelessService) GetOrganizationWirelessRfProfilesAssignmentsByDevice(o
 			return GET(path, s.client, getOrganizationWirelessRfProfilesAssignmentsByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessRfProfilesAssignmentsByDevice) ResponseWirelessGetOrganizationWirelessRfProfilesAssignmentsByDevice {
 			dst = append(dst, src...)
 			return dst
@@ -5961,6 +6025,7 @@ func (s *WirelessService) GetOrganizationWirelessSSIDsFirewallIsolationAllowlist
 			return GET(path, s.client, getOrganizationWirelessSsidsFirewallIsolationAllowlistEntriesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries) ResponseWirelessGetOrganizationWirelessSSIDsFirewallIsolationAllowlistEntries {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -5996,6 +6061,7 @@ func (s *WirelessService) GetOrganizationWirelessSSIDsStatusesByDevice(organizat
 			return GET(path, s.client, getOrganizationWirelessSsidsStatusesByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDevice) ResponseWirelessGetOrganizationWirelessSSIDsStatusesByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -6030,6 +6096,7 @@ func (s *WirelessService) CreateNetworkWirelessAirMarshalRule(networkID string, 
 			return POST(path, s.client, requestWirelessCreateNetworkWirelessAirMarshalRule, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6055,6 +6122,7 @@ func (s *WirelessService) CreateNetworkWirelessEthernetPortsProfile(networkID st
 			return POST(path, s.client, requestWirelessCreateNetworkWirelessEthernetPortsProfile, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6080,6 +6148,7 @@ func (s *WirelessService) AssignNetworkWirelessEthernetPortsProfiles(networkID s
 			return POST(path, s.client, requestWirelessAssignNetworkWirelessEthernetPortsProfiles, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6105,6 +6174,7 @@ func (s *WirelessService) SetNetworkWirelessEthernetPortsProfilesDefault(network
 			return POST(path, s.client, requestWirelessSetNetworkWirelessEthernetPortsProfilesDefault, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6130,6 +6200,7 @@ func (s *WirelessService) CreateNetworkWirelessRfProfile(networkID string, reque
 			return POST(path, s.client, requestWirelessCreateNetworkWirelessRfProfile, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6157,6 +6228,7 @@ func (s *WirelessService) CreateNetworkWirelessSSIDIDentityPsk(networkID string,
 			return POST(path, s.client, requestWirelessCreateNetworkWirelessSsidIdentityPsk, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6182,6 +6254,7 @@ func (s *WirelessService) RecalculateOrganizationWirelessRadioAutoRfChannels(org
 			return POST(path, s.client, requestWirelessRecalculateOrganizationWirelessRadioAutoRfChannels, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6207,6 +6280,7 @@ func (s *WirelessService) CreateOrganizationWirelessSSIDsFirewallIsolationAllowl
 			return POST(path, s.client, requestWirelessCreateOrganizationWirelessSsidsFirewallIsolationAllowlistEntry, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6229,6 +6303,7 @@ func (s *WirelessService) UpdateDeviceWirelessAlternateManagementInterfaceIPv6(s
 			return PUT(path, s.client, requestWirelessUpdateDeviceWirelessAlternateManagementInterfaceIpv6)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6251,6 +6326,7 @@ func (s *WirelessService) UpdateDeviceWirelessBluetoothSettings(serial string, r
 			return PUT(path, s.client, requestWirelessUpdateDeviceWirelessBluetoothSettings)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6273,6 +6349,7 @@ func (s *WirelessService) UpdateDeviceWirelessElectronicShelfLabel(serial string
 			return PUT(path, s.client, requestWirelessUpdateDeviceWirelessElectronicShelfLabel)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6294,6 +6371,7 @@ func (s *WirelessService) UpdateDeviceWirelessRadioSettings(serial string, reque
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestWirelessUpdateDeviceWirelessRadioSettings)
 		},
+		s.backoff,
 	)
 
 }
@@ -6317,6 +6395,7 @@ func (s *WirelessService) UpdateNetworkWirelessAirMarshalRule(networkID string, 
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessAirMarshalRule)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6339,6 +6418,7 @@ func (s *WirelessService) UpdateNetworkWirelessAirMarshalSettings(networkID stri
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessAirMarshalSettings)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6360,6 +6440,7 @@ func (s *WirelessService) UpdateNetworkWirelessAlternateManagementInterface(netw
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessAlternateManagementInterface)
 		},
+		s.backoff,
 	)
 
 }
@@ -6381,6 +6462,7 @@ func (s *WirelessService) UpdateNetworkWirelessBilling(networkID string, request
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessBilling)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6405,6 +6487,7 @@ func (s *WirelessService) UpdateNetworkWirelessBluetoothSettings(networkID strin
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessBluetoothSettings)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6427,6 +6510,7 @@ func (s *WirelessService) UpdateNetworkWirelessElectronicShelfLabel(networkID st
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessElectronicShelfLabel)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6451,6 +6535,7 @@ func (s *WirelessService) UpdateNetworkWirelessEthernetPortsProfile(networkID st
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessEthernetPortsProfile)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6475,6 +6560,7 @@ func (s *WirelessService) UpdateNetworkWirelessRfProfile(networkID string, rfPro
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessRfProfile)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6497,6 +6583,7 @@ func (s *WirelessService) UpdateNetworkWirelessSettings(networkID string, reques
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSettings)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6521,6 +6608,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSID(networkID string, number str
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsid)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6545,6 +6633,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDBonjourForwarding(networkID s
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidBonjourForwarding)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6568,6 +6657,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDDeviceTypeGroupPolicies(netwo
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidDeviceTypeGroupPolicies)
 		},
+		s.backoff,
 	)
 
 }
@@ -6591,6 +6681,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDEapOverride(networkID string,
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidEapOverride)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6615,6 +6706,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDFirewallL3FirewallRules(netwo
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidFirewallL3FirewallRules)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6639,6 +6731,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDFirewallL7FirewallRules(netwo
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidFirewallL7FirewallRules)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6662,6 +6755,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDHotspot20(networkID string, n
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidHotspot20)
 		},
+		s.backoff,
 	)
 
 }
@@ -6687,6 +6781,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDIDentityPsk(networkID string,
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidIdentityPsk)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6711,6 +6806,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDSchedules(networkID string, n
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidSchedules)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6735,6 +6831,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDSplashSettings(networkID stri
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidSplashSettings)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6759,6 +6856,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDTrafficShapingRules(networkID
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidTrafficShapingRules)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6782,6 +6880,7 @@ func (s *WirelessService) UpdateNetworkWirelessSSIDVpn(networkID string, number 
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestWirelessUpdateNetworkWirelessSsidVpn)
 		},
+		s.backoff,
 	)
 
 }
@@ -6805,6 +6904,7 @@ func (s *WirelessService) UpdateOrganizationWirelessSSIDsFirewallIsolationAllowl
 			return PUT(path, s.client, requestWirelessUpdateOrganizationWirelessSsidsFirewallIsolationAllowlistEntry)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6829,6 +6929,7 @@ func (s *WirelessService) DeleteNetworkWirelessAirMarshalRule(networkID string, 
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -6851,6 +6952,7 @@ func (s *WirelessService) DeleteNetworkWirelessEthernetPortsProfile(networkID st
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -6873,6 +6975,7 @@ func (s *WirelessService) DeleteNetworkWirelessRfProfile(networkID string, rfPro
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -6897,6 +7000,7 @@ func (s *WirelessService) DeleteNetworkWirelessSSIDIDentityPsk(networkID string,
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -6919,5 +7023,6 @@ func (s *WirelessService) DeleteOrganizationWirelessSSIDsFirewallIsolationAllowl
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }

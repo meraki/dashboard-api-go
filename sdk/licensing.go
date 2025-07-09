@@ -353,6 +353,7 @@ func (s *LicensingService) GetAdministeredLicensingSubscriptionEntitlements(getA
 			return GET(path, s.client, getAdministeredLicensingSubscriptionEntitlementsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -377,6 +378,7 @@ func (s *LicensingService) GetAdministeredLicensingSubscriptionSubscriptions(get
 			return GET(path, s.client, getAdministeredLicensingSubscriptionSubscriptionsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptions) ResponseLicensingGetAdministeredLicensingSubscriptionSubscriptions {
 			dst = append(dst, src...)
 			return dst
@@ -410,6 +412,7 @@ func (s *LicensingService) GetAdministeredLicensingSubscriptionSubscriptionsComp
 			return GET(path, s.client, getAdministeredLicensingSubscriptionSubscriptionsComplianceStatusesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -436,6 +439,7 @@ func (s *LicensingService) GetOrganizationLicensingCotermLicenses(organizationID
 			return GET(path, s.client, getOrganizationLicensingCotermLicensesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseLicensingGetOrganizationLicensingCotermLicenses) ResponseLicensingGetOrganizationLicensingCotermLicenses {
 			dst = append(dst, src...)
 			return dst
@@ -469,6 +473,7 @@ func (s *LicensingService) ClaimAdministeredLicensingSubscriptionSubscriptions(r
 			return POST(path, s.client, requestLicensingClaimAdministeredLicensingSubscriptionSubscriptions, claimAdministeredLicensingSubscriptionSubscriptionsQueryParams)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -492,6 +497,7 @@ func (s *LicensingService) ValidateAdministeredLicensingSubscriptionSubscription
 			return POST(path, s.client, requestLicensingValidateAdministeredLicensingSubscriptionSubscriptionsClaimKey, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -518,6 +524,7 @@ func (s *LicensingService) BindAdministeredLicensingSubscriptionSubscription(sub
 			return POST(path, s.client, requestLicensingBindAdministeredLicensingSubscriptionSubscription, bindAdministeredLicensingSubscriptionSubscriptionQueryParams)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -543,6 +550,7 @@ func (s *LicensingService) MoveOrganizationLicensingCotermLicenses(organizationI
 			return POST(path, s.client, requestLicensingMoveOrganizationLicensingCotermLicenses, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 

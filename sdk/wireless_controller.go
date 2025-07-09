@@ -681,6 +681,7 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerAvailabilit
 			return GET(path, s.client, getOrganizationWirelessControllerAvailabilitiesChangeHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerAvailabilitiesChangeHistory) ResponseWirelessControllerGetOrganizationWirelessControllerAvailabilitiesChangeHistory {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -716,6 +717,7 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerClientsOver
 			return GET(path, s.client, getOrganizationWirelessControllerClientsOverviewHistoryByDeviceByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByInterval) ResponseWirelessControllerGetOrganizationWirelessControllerClientsOverviewHistoryByDeviceByInterval {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -751,6 +753,7 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerConnections
 			return GET(path, s.client, getOrganizationWirelessControllerConnectionsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerConnections) ResponseWirelessControllerGetOrganizationWirelessControllerConnections {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -786,6 +789,7 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2ByDevice) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2ByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -821,6 +825,7 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -856,6 +861,7 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -891,6 +897,7 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3ByDevice) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3ByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -926,6 +933,7 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -961,6 +969,7 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -996,6 +1005,7 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -1031,6 +1041,7 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesInte
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -1066,6 +1077,7 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesRedu
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory {
 			dst = append(dst, src...)
 			return dst
@@ -1101,6 +1113,7 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesRedu
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyStatuses) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesRedundancyStatuses {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -1136,6 +1149,7 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerDevicesSyst
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval) ResponseWirelessControllerGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -1171,6 +1185,7 @@ func (s *WirelessControllerService) GetOrganizationWirelessControllerOverviewByD
 			return GET(path, s.client, getOrganizationWirelessControllerOverviewByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDevice) ResponseWirelessControllerGetOrganizationWirelessControllerOverviewByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
