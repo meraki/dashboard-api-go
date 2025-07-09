@@ -1024,6 +1024,7 @@ func (s *SensorService) GetDeviceSensorCommands(serial string, getDeviceSensorCo
 			return GET(path, s.client, getDeviceSensorCommandsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSensorGetDeviceSensorCommands) ResponseSensorGetDeviceSensorCommands {
 			dst = append(dst, src...)
 			return dst
@@ -1060,6 +1061,7 @@ func (s *SensorService) GetDeviceSensorCommand(serial string, commandID string) 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1085,6 +1087,7 @@ func (s *SensorService) GetDeviceSensorRelationships(serial string) (*ResponseSe
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1110,6 +1113,7 @@ func (s *SensorService) GetNetworkSensorAlertsCurrentOverviewByMetric(networkID 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1136,6 +1140,7 @@ func (s *SensorService) GetNetworkSensorAlertsOverviewByMetric(networkID string,
 			return GET(path, s.client, getNetworkSensorAlertsOverviewByMetricQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1161,6 +1166,7 @@ func (s *SensorService) GetNetworkSensorAlertsProfiles(networkID string) (*Respo
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1188,6 +1194,7 @@ func (s *SensorService) GetNetworkSensorAlertsProfile(networkID string, id strin
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1213,6 +1220,7 @@ func (s *SensorService) GetNetworkSensorMqttBrokers(networkID string) (*Response
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1240,6 +1248,7 @@ func (s *SensorService) GetNetworkSensorMqttBroker(networkID string, mqttBrokerI
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1265,6 +1274,7 @@ func (s *SensorService) GetNetworkSensorRelationships(networkID string) (*Respon
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1291,6 +1301,7 @@ func (s *SensorService) GetOrganizationSensorReadingsHistory(organizationID stri
 			return GET(path, s.client, getOrganizationSensorReadingsHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSensorGetOrganizationSensorReadingsHistory) ResponseSensorGetOrganizationSensorReadingsHistory {
 			dst = append(dst, src...)
 			return dst
@@ -1326,6 +1337,7 @@ func (s *SensorService) GetOrganizationSensorReadingsLatest(organizationID strin
 			return GET(path, s.client, getOrganizationSensorReadingsLatestQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSensorGetOrganizationSensorReadingsLatest) ResponseSensorGetOrganizationSensorReadingsLatest {
 			dst = append(dst, src...)
 			return dst
@@ -1360,6 +1372,7 @@ func (s *SensorService) CreateDeviceSensorCommand(serial string, requestSensorCr
 			return POST(path, s.client, requestSensorCreateDeviceSensorCommand, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1385,6 +1398,7 @@ func (s *SensorService) CreateNetworkSensorAlertsProfile(networkID string, reque
 			return POST(path, s.client, requestSensorCreateNetworkSensorAlertsProfile, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1407,6 +1421,7 @@ func (s *SensorService) UpdateDeviceSensorRelationships(serial string, requestSe
 			return PUT(path, s.client, requestSensorUpdateDeviceSensorRelationships)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1431,6 +1446,7 @@ func (s *SensorService) UpdateNetworkSensorAlertsProfile(networkID string, id st
 			return PUT(path, s.client, requestSensorUpdateNetworkSensorAlertsProfile)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1455,6 +1471,7 @@ func (s *SensorService) UpdateNetworkSensorMqttBroker(networkID string, mqttBrok
 			return PUT(path, s.client, requestSensorUpdateNetworkSensorMqttBroker)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1479,5 +1496,6 @@ func (s *SensorService) DeleteNetworkSensorAlertsProfile(networkID string, id st
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }

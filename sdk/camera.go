@@ -891,6 +891,7 @@ func (s *CameraService) GetDeviceCameraAnalyticsLive(serial string) (*ResponseCa
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -917,6 +918,7 @@ func (s *CameraService) GetDeviceCameraAnalyticsOverview(serial string, getDevic
 			return GET(path, s.client, getDeviceCameraAnalyticsOverviewQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -943,6 +945,7 @@ func (s *CameraService) GetDeviceCameraAnalyticsRecent(serial string, getDeviceC
 			return GET(path, s.client, getDeviceCameraAnalyticsRecentQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -968,6 +971,7 @@ func (s *CameraService) GetDeviceCameraAnalyticsZones(serial string) (*ResponseC
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -996,6 +1000,7 @@ func (s *CameraService) GetDeviceCameraAnalyticsZoneHistory(serial string, zoneI
 			return GET(path, s.client, getDeviceCameraAnalyticsZoneHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1021,6 +1026,7 @@ func (s *CameraService) GetDeviceCameraCustomAnalytics(serial string) (*Response
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1046,6 +1052,7 @@ func (s *CameraService) GetDeviceCameraQualityAndRetention(serial string) (*Resp
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1071,6 +1078,7 @@ func (s *CameraService) GetDeviceCameraSense(serial string) (*ResponseCameraGetD
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1096,6 +1104,7 @@ func (s *CameraService) GetDeviceCameraSenseObjectDetectionModels(serial string)
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1121,6 +1130,7 @@ func (s *CameraService) GetDeviceCameraVideoSettings(serial string) (*ResponseCa
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1147,6 +1157,7 @@ func (s *CameraService) GetDeviceCameraVideoLink(serial string, getDeviceCameraV
 			return GET(path, s.client, getDeviceCameraVideoLinkQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1172,6 +1183,7 @@ func (s *CameraService) GetDeviceCameraWirelessProfiles(serial string) (*Respons
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1197,6 +1209,7 @@ func (s *CameraService) GetNetworkCameraQualityRetentionProfiles(networkID strin
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1224,6 +1237,7 @@ func (s *CameraService) GetNetworkCameraQualityRetentionProfile(networkID string
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1249,6 +1263,7 @@ func (s *CameraService) GetNetworkCameraSchedules(networkID string) (*ResponseCa
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1274,6 +1289,7 @@ func (s *CameraService) GetNetworkCameraWirelessProfiles(networkID string) (*Res
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1301,6 +1317,7 @@ func (s *CameraService) GetNetworkCameraWirelessProfile(networkID string, wirele
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1327,6 +1344,7 @@ func (s *CameraService) GetOrganizationCameraBoundariesAreasByDevice(organizatio
 			return GET(path, s.client, getOrganizationCameraBoundariesAreasByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1353,6 +1371,7 @@ func (s *CameraService) GetOrganizationCameraBoundariesLinesByDevice(organizatio
 			return GET(path, s.client, getOrganizationCameraBoundariesLinesByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1378,6 +1397,7 @@ func (s *CameraService) GetOrganizationCameraCustomAnalyticsArtifacts(organizati
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1405,6 +1425,7 @@ func (s *CameraService) GetOrganizationCameraCustomAnalyticsArtifact(organizatio
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1431,6 +1452,7 @@ func (s *CameraService) GetOrganizationCameraDetectionsHistoryByBoundaryByInterv
 			return GET(path, s.client, getOrganizationCameraDetectionsHistoryByBoundaryByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1457,6 +1479,7 @@ func (s *CameraService) GetOrganizationCameraOnboardingStatuses(organizationID s
 			return GET(path, s.client, getOrganizationCameraOnboardingStatusesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1482,6 +1505,7 @@ func (s *CameraService) GetOrganizationCameraPermissions(organizationID string) 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1509,6 +1533,7 @@ func (s *CameraService) GetOrganizationCameraPermission(organizationID string, p
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1534,6 +1559,7 @@ func (s *CameraService) GetOrganizationCameraRoles(organizationID string) (*Resp
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1561,6 +1587,7 @@ func (s *CameraService) GetOrganizationCameraRole(organizationID string, roleID 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1586,6 +1613,7 @@ func (s *CameraService) GenerateDeviceCameraSnapshot(serial string, requestCamer
 			return POST(path, s.client, requestCameraGenerateDeviceCameraSnapshot, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1610,6 +1638,7 @@ func (s *CameraService) CreateNetworkCameraQualityRetentionProfile(networkID str
 		func() (*resty.Response, error) {
 			return POST(path, s.client, requestCameraCreateNetworkCameraQualityRetentionProfile, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -1634,6 +1663,7 @@ func (s *CameraService) CreateNetworkCameraWirelessProfile(networkID string, req
 			return POST(path, s.client, requestCameraCreateNetworkCameraWirelessProfile, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1659,6 +1689,7 @@ func (s *CameraService) CreateOrganizationCameraCustomAnalyticsArtifact(organiza
 			return POST(path, s.client, requestCameraCreateOrganizationCameraCustomAnalyticsArtifact, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1683,6 +1714,7 @@ func (s *CameraService) CreateOrganizationCameraRole(organizationID string, requ
 		func() (*resty.Response, error) {
 			return POST(path, s.client, requestCameraCreateOrganizationCameraRole, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -1704,6 +1736,7 @@ func (s *CameraService) UpdateDeviceCameraCustomAnalytics(serial string, request
 			return PUT(path, s.client, requestCameraUpdateDeviceCameraCustomAnalytics)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1725,6 +1758,7 @@ func (s *CameraService) UpdateDeviceCameraQualityAndRetention(serial string, req
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestCameraUpdateDeviceCameraQualityAndRetention)
 		},
+		s.backoff,
 	)
 
 }
@@ -1745,6 +1779,7 @@ func (s *CameraService) UpdateDeviceCameraSense(serial string, requestCameraUpda
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestCameraUpdateDeviceCameraSense)
 		},
+		s.backoff,
 	)
 
 }
@@ -1766,6 +1801,7 @@ func (s *CameraService) UpdateDeviceCameraVideoSettings(serial string, requestCa
 			return PUT(path, s.client, requestCameraUpdateDeviceCameraVideoSettings)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1787,6 +1823,7 @@ func (s *CameraService) UpdateDeviceCameraWirelessProfiles(serial string, reques
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestCameraUpdateDeviceCameraWirelessProfiles)
 		},
+		s.backoff,
 	)
 
 }
@@ -1809,6 +1846,7 @@ func (s *CameraService) UpdateNetworkCameraQualityRetentionProfile(networkID str
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestCameraUpdateNetworkCameraQualityRetentionProfile)
 		},
+		s.backoff,
 	)
 
 }
@@ -1832,6 +1870,7 @@ func (s *CameraService) UpdateNetworkCameraWirelessProfile(networkID string, wir
 			return PUT(path, s.client, requestCameraUpdateNetworkCameraWirelessProfile)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1853,6 +1892,7 @@ func (s *CameraService) UpdateOrganizationCameraOnboardingStatuses(organizationI
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestCameraUpdateOrganizationCameraOnboardingStatuses)
 		},
+		s.backoff,
 	)
 
 }
@@ -1875,6 +1915,7 @@ func (s *CameraService) UpdateOrganizationCameraRole(organizationID string, role
 		func() (*resty.Response, error) {
 			return PUT(path, s.client, requestCameraUpdateOrganizationCameraRole)
 		},
+		s.backoff,
 	)
 
 }
@@ -1898,6 +1939,7 @@ func (s *CameraService) DeleteNetworkCameraQualityRetentionProfile(networkID str
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -1920,6 +1962,7 @@ func (s *CameraService) DeleteNetworkCameraWirelessProfile(networkID string, wir
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -1942,6 +1985,7 @@ func (s *CameraService) DeleteOrganizationCameraCustomAnalyticsArtifact(organiza
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -1964,5 +2008,6 @@ func (s *CameraService) DeleteOrganizationCameraRole(organizationID string, role
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }

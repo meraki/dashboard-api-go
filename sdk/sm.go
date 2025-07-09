@@ -676,6 +676,7 @@ func (s *SmService) GetNetworkSmBypassActivationLockAttempt(networkID string, at
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -702,6 +703,7 @@ func (s *SmService) GetNetworkSmDevices(networkID string, getNetworkSmDevicesQue
 			return GET(path, s.client, getNetworkSmDevicesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSmGetNetworkSmDevices) ResponseSmGetNetworkSmDevices {
 			dst = append(dst, src...)
 			return dst
@@ -738,6 +740,7 @@ func (s *SmService) GetNetworkSmDeviceCellularUsageHistory(networkID string, dev
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -765,6 +768,7 @@ func (s *SmService) GetNetworkSmDeviceCerts(networkID string, deviceID string) (
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -793,6 +797,7 @@ func (s *SmService) GetNetworkSmDeviceConnectivity(networkID string, deviceID st
 			return GET(path, s.client, getNetworkSmDeviceConnectivityQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSmGetNetworkSmDeviceConnectivity) ResponseSmGetNetworkSmDeviceConnectivity {
 			dst = append(dst, src...)
 			return dst
@@ -830,6 +835,7 @@ func (s *SmService) GetNetworkSmDeviceDesktopLogs(networkID string, deviceID str
 			return GET(path, s.client, getNetworkSmDeviceDesktopLogsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSmGetNetworkSmDeviceDesktopLogs) ResponseSmGetNetworkSmDeviceDesktopLogs {
 			dst = append(dst, src...)
 			return dst
@@ -867,6 +873,7 @@ func (s *SmService) GetNetworkSmDeviceDeviceCommandLogs(networkID string, device
 			return GET(path, s.client, getNetworkSmDeviceDeviceCommandLogsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSmGetNetworkSmDeviceDeviceCommandLogs) ResponseSmGetNetworkSmDeviceDeviceCommandLogs {
 			dst = append(dst, src...)
 			return dst
@@ -903,6 +910,7 @@ func (s *SmService) GetNetworkSmDeviceDeviceProfiles(networkID string, deviceID 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -930,6 +938,7 @@ func (s *SmService) GetNetworkSmDeviceNetworkAdapters(networkID string, deviceID
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -958,6 +967,7 @@ func (s *SmService) GetNetworkSmDevicePerformanceHistory(networkID string, devic
 			return GET(path, s.client, getNetworkSmDevicePerformanceHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSmGetNetworkSmDevicePerformanceHistory) ResponseSmGetNetworkSmDevicePerformanceHistory {
 			dst = append(dst, src...)
 			return dst
@@ -994,6 +1004,7 @@ func (s *SmService) GetNetworkSmDeviceRestrictions(networkID string, deviceID st
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1021,6 +1032,7 @@ func (s *SmService) GetNetworkSmDeviceSecurityCenters(networkID string, deviceID
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1048,6 +1060,7 @@ func (s *SmService) GetNetworkSmDeviceSoftwares(networkID string, deviceID strin
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1075,6 +1088,7 @@ func (s *SmService) GetNetworkSmDeviceWLANLists(networkID string, deviceID strin
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1101,6 +1115,7 @@ func (s *SmService) GetNetworkSmProfiles(networkID string, getNetworkSmProfilesQ
 			return GET(path, s.client, getNetworkSmProfilesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1127,6 +1142,7 @@ func (s *SmService) GetNetworkSmTargetGroups(networkID string, getNetworkSmTarge
 			return GET(path, s.client, getNetworkSmTargetGroupsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1155,6 +1171,7 @@ func (s *SmService) GetNetworkSmTargetGroup(networkID string, targetGroupID stri
 			return GET(path, s.client, getNetworkSmTargetGroupQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1181,6 +1198,7 @@ func (s *SmService) GetNetworkSmTrustedAccessConfigs(networkID string, getNetwor
 			return GET(path, s.client, getNetworkSmTrustedAccessConfigsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSmGetNetworkSmTrustedAccessConfigs) ResponseSmGetNetworkSmTrustedAccessConfigs {
 			dst = append(dst, src...)
 			return dst
@@ -1216,6 +1234,7 @@ func (s *SmService) GetNetworkSmUserAccessDevices(networkID string, getNetworkSm
 			return GET(path, s.client, getNetworkSmUserAccessDevicesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSmGetNetworkSmUserAccessDevices) ResponseSmGetNetworkSmUserAccessDevices {
 			dst = append(dst, src...)
 			return dst
@@ -1251,6 +1270,7 @@ func (s *SmService) GetNetworkSmUsers(networkID string, getNetworkSmUsersQueryPa
 			return GET(path, s.client, getNetworkSmUsersQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1278,6 +1298,7 @@ func (s *SmService) GetNetworkSmUserDeviceProfiles(networkID string, userID stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1305,6 +1326,7 @@ func (s *SmService) GetNetworkSmUserSoftwares(networkID string, userID string) (
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1331,6 +1353,7 @@ func (s *SmService) GetOrganizationSmAdminsRoles(organizationID string, getOrgan
 			return GET(path, s.client, getOrganizationSmAdminsRolesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSmGetOrganizationSmAdminsRoles) ResponseSmGetOrganizationSmAdminsRoles {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -1367,6 +1390,7 @@ func (s *SmService) GetOrganizationSmAdminsRole(organizationID string, roleID st
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1392,6 +1416,7 @@ func (s *SmService) GetOrganizationSmApnsCert(organizationID string) (*ResponseS
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1418,6 +1443,7 @@ func (s *SmService) GetOrganizationSmSentryPoliciesAssignmentsByNetwork(organiza
 			return GET(path, s.client, getOrganizationSmSentryPoliciesAssignmentsByNetworkQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork) ResponseSmGetOrganizationSmSentryPoliciesAssignmentsByNetwork {
 			dst = append(dst, src...)
 			return dst
@@ -1452,6 +1478,7 @@ func (s *SmService) GetOrganizationSmVppAccounts(organizationID string) (*Respon
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1479,6 +1506,7 @@ func (s *SmService) GetOrganizationSmVppAccount(organizationID string, vppAccoun
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1503,6 +1531,7 @@ func (s *SmService) CreateNetworkSmBypassActivationLockAttempt(networkID string,
 		func() (*resty.Response, error) {
 			return POST(path, s.client, requestSmCreateNetworkSmBypassActivationLockAttempt, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -1527,6 +1556,7 @@ func (s *SmService) CheckinNetworkSmDevices(networkID string, requestSmCheckinNe
 			return POST(path, s.client, requestSmCheckinNetworkSmDevices, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1552,6 +1582,7 @@ func (s *SmService) LockNetworkSmDevices(networkID string, requestSmLockNetworkS
 			return POST(path, s.client, requestSmLockNetworkSmDevices, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1577,6 +1608,7 @@ func (s *SmService) ModifyNetworkSmDevicesTags(networkID string, requestSmModify
 			return POST(path, s.client, requestSmModifyNetworkSmDevicesTags, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1602,6 +1634,7 @@ func (s *SmService) MoveNetworkSmDevices(networkID string, requestSmMoveNetworkS
 			return POST(path, s.client, requestSmMoveNetworkSmDevices, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1627,6 +1660,7 @@ func (s *SmService) RebootNetworkSmDevices(networkID string, requestSmRebootNetw
 			return POST(path, s.client, requestSmRebootNetworkSmDevices, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1652,6 +1686,7 @@ func (s *SmService) ShutdownNetworkSmDevices(networkID string, requestSmShutdown
 			return POST(path, s.client, requestSmShutdownNetworkSmDevices, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1677,6 +1712,7 @@ func (s *SmService) WipeNetworkSmDevices(networkID string, requestSmWipeNetworkS
 			return POST(path, s.client, requestSmWipeNetworkSmDevices, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1703,6 +1739,7 @@ func (s *SmService) InstallNetworkSmDeviceApps(networkID string, deviceID string
 		func() (*resty.Response, error) {
 			return POST(path, s.client, requestSmInstallNetworkSmDeviceApps, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -1728,6 +1765,7 @@ func (s *SmService) RefreshNetworkSmDeviceDetails(networkID string, deviceID str
 		func() (*resty.Response, error) {
 			return POST(path, s.client, nil, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -1754,6 +1792,7 @@ func (s *SmService) UnenrollNetworkSmDevice(networkID string, deviceID string) (
 			return POST(path, s.client, nil, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1780,6 +1819,7 @@ func (s *SmService) UninstallNetworkSmDeviceApps(networkID string, deviceID stri
 		func() (*resty.Response, error) {
 			return POST(path, s.client, requestSmUninstallNetworkSmDeviceApps, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -1804,6 +1844,7 @@ func (s *SmService) CreateNetworkSmTargetGroup(networkID string, requestSmCreate
 			return POST(path, s.client, requestSmCreateNetworkSmTargetGroup, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1829,6 +1870,7 @@ func (s *SmService) CreateOrganizationSmAdminsRole(organizationID string, reques
 			return POST(path, s.client, requestSmCreateOrganizationSmAdminsRole, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1851,6 +1893,7 @@ func (s *SmService) UpdateNetworkSmDevicesFields(networkID string, requestSmUpda
 			return PUT(path, s.client, requestSmUpdateNetworkSmDevicesFields)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1875,6 +1918,7 @@ func (s *SmService) UpdateNetworkSmTargetGroup(networkID string, targetGroupID s
 			return PUT(path, s.client, requestSmUpdateNetworkSmTargetGroup)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1899,6 +1943,7 @@ func (s *SmService) UpdateOrganizationSmAdminsRole(organizationID string, roleID
 			return PUT(path, s.client, requestSmUpdateOrganizationSmAdminsRole)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1921,6 +1966,7 @@ func (s *SmService) UpdateOrganizationSmSentryPoliciesAssignments(organizationID
 			return PUT(path, s.client, requestSmUpdateOrganizationSmSentryPoliciesAssignments)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1945,6 +1991,7 @@ func (s *SmService) DeleteNetworkSmTargetGroup(networkID string, targetGroupID s
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -1967,6 +2014,7 @@ func (s *SmService) DeleteNetworkSmUserAccessDevice(networkID string, userAccess
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -1989,5 +2037,6 @@ func (s *SmService) DeleteOrganizationSmAdminsRole(organizationID string, roleID
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }

@@ -10,7 +10,6 @@ import (
 	"net/url"
 	"os"
 	"reflect"
-	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -39,45 +38,50 @@ const (
 )
 
 // Client manages communication with the Cisco Meraki API
-var USE_RETRY_HEADER = func() bool {
-	if os.Getenv(MERAKI_USE_RETRY_HEADER) != "" {
-		return os.Getenv(MERAKI_USE_RETRY_HEADER) == "true"
-	}
-	return false
-}()
 
-var MAX_RETRIES = func() int {
-	if os.Getenv(MERAKI_RETRIES) != "" {
-		v, err := strconv.Atoi(os.Getenv(MERAKI_RETRIES))
-		if err != nil || v < 0 {
-			return DEFAULT_RETRIES
-		}
-		return v
-	}
-	return DEFAULT_RETRIES
-}()
+type Backoff struct {
+	MaxRetries     *int
+	MaxRetryDelay  *time.Duration
+	MaxRetryJitter *time.Duration
+	UseRetryHeader *bool
+}
 
-var MAX_RETRY_DELAY = func() time.Duration {
-	if os.Getenv(MERAKI_RETRY_DELAY) != "" {
-		v, err := strconv.Atoi(os.Getenv(MERAKI_RETRY_DELAY))
-		if err != nil || v < 0 {
-			return DEFAULT_RETRY_DELAY
+func (backoff *Backoff) initBackoff(maxRetries *int, maxRetryDelay *time.Duration, maxRetryJitter *time.Duration, useRetryHeader *bool) {
+	defaultMaxRetries := DEFAULT_RETRIES - 1
+	defaultMaxRetryDelay := DEFAULT_RETRY_DELAY
+	defaultMaxRetryJitter := DEFAULT_RETRY_JITTER
+	defaultUseRetryHeader := false
+	backoff.MaxRetries = func() *int {
+		if maxRetries != nil {
+			finalMaxRetries := *maxRetries
+			if *maxRetries > 0 {
+				finalMaxRetries = *maxRetries - 1
+			}
+			return &finalMaxRetries
 		}
-		return time.Duration(v) * time.Millisecond
-	}
-	return DEFAULT_RETRY_DELAY
-}()
+		return &defaultMaxRetries
+	}()
 
-var MAX_RETRY_JITTER = func() time.Duration {
-	if os.Getenv(MERAKI_RETRY_JITTER) != "" {
-		v, err := strconv.Atoi(os.Getenv(MERAKI_RETRY_JITTER))
-		if err != nil || v < 0 {
-			return DEFAULT_RETRY_JITTER
+	backoff.MaxRetryDelay = func() *time.Duration {
+		if maxRetryDelay != nil {
+			return maxRetryDelay
 		}
-		return time.Duration(v) * time.Millisecond
-	}
-	return DEFAULT_RETRY_JITTER
-}()
+		return &defaultMaxRetryDelay
+	}()
+
+	backoff.MaxRetryJitter = func() *time.Duration {
+		if maxRetryJitter != nil {
+			return maxRetryJitter
+		}
+		return &defaultMaxRetryJitter
+	}()
+	backoff.UseRetryHeader = func() *bool {
+		if useRetryHeader != nil {
+			return useRetryHeader
+		}
+		return &defaultUseRetryHeader
+	}()
+}
 
 type Client struct {
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
@@ -103,6 +107,7 @@ type Client struct {
 type service struct {
 	client            *resty.Client
 	rateLimiterBucket *ratelimit.Bucket
+	backoff           *Backoff
 }
 
 func GET[Q any, H any](path string, client *resty.Client, params *Q, header *H) (*resty.Response, error) {
@@ -179,7 +184,6 @@ func NewClient() (*Client, error) {
 	client := resty.New()
 	c := &Client{}
 	c.common.client = client
-
 	if os.Getenv(MERAKI_DEBUG) == "true" {
 		client.SetDebug(true)
 	}
@@ -256,13 +260,19 @@ func NewClientWithOptions(baseURL string, dashboardApiKey string, debug string, 
 	return NewClient()
 }
 
+func (c *Client) SetBackoff(maxRetries *int, maxRetryDelay *time.Duration, maxRetryJitter *time.Duration, useRetryHeader *bool) error {
+	backoff := Backoff{}
+	backoff.initBackoff(maxRetries, maxRetryDelay, maxRetryJitter, useRetryHeader)
+	c.common.backoff = &backoff
+	return nil
+}
+
 // NewClientWithOptionsAndRequests creates a new API client with options passed with parameters including the requests per second
 func NewClientWithOptionsAndRequests(baseURL string, dashboardApiKey string, debug string, userAgent string, requestsPerSecond int) (*Client, error) {
 	err := SetOptionsWithRequests(baseURL, dashboardApiKey, debug, userAgent, requestsPerSecond)
 	if err != nil {
 		return nil, err
 	}
-
 	return NewClient()
 }
 
@@ -408,10 +418,10 @@ func Delete(client *resty.Client, rateLimiterBucket *ratelimit.Bucket, path stri
 // 	}
 // }
 
-func validateUserAgent(ua string) bool {
-	regex := regexp.MustCompile(`^\S+ \S+ \S+$`)
-	return regex.MatchString(ua)
-}
+// func validateUserAgent(ua string) bool {
+// 	regex := regexp.MustCompile(`^\S+ \S+ \S+$`)
+// 	return regex.MatchString(ua)
+// }
 
 func Paginate(fn any, id string, secondId string, params interface{}) (interface{}, *resty.Response, error) {
 	var result []interface{}
@@ -561,18 +571,17 @@ func getNextPageURL(linkHeader string) string {
 func doWithRetriesAndResult[T any](
 	operation func() (*resty.Response, error),
 	client *resty.Client,
+	backoff *Backoff,
 	merge func(dst, src T) T,
 	paginate ...bool,
 ) (*T, *resty.Response, error) {
 	var result *T
 	var resp *resty.Response
 	var err error
-	// log.Printf("MAX_RETRIES: %d", MAX_RETRIES)
-	// log.Printf("MAX_RETRY_DELAY: %d", MAX_RETRY_DELAY)
-	// log.Printf("MAX_RETRY_JITTER: %d", MAX_RETRY_JITTER)
-	// var zero *T
+	maxRetries, maxRetryDelay, maxRetryJitter, useRetryHeader := getBackoffValues(backoff)
 
-	for attempt := 0; attempt <= MAX_RETRIES; attempt++ {
+	for attempt := 0; attempt <= maxRetries; attempt++ {
+		fmt.Println("MAX_RETRIES: ", maxRetries+1)
 		resp, err = operation()
 
 		if err != nil && resp.StatusCode() != http.StatusTooManyRequests {
@@ -607,7 +616,7 @@ func doWithRetriesAndResult[T any](
 				var result2 *T
 				for link != "" {
 					// Add jitter backoff attempt
-					for attempt := 0; attempt <= MAX_RETRIES; attempt++ {
+					for attempt := 0; attempt <= maxRetries; attempt++ {
 						resp, err = GET(link, client, &QueryParamsDefault, &HeaderDefault)
 						if err == nil {
 							break
@@ -618,8 +627,8 @@ func doWithRetriesAndResult[T any](
 								return result, resp, fmt.Errorf("error with get operation: %s", link)
 							}
 						}
-						delay := MAX_RETRY_DELAY * time.Duration(1<<attempt)
-						jitter := time.Duration(rand.Int63n(int64(MAX_RETRY_JITTER)))
+						delay := maxRetryDelay * time.Duration(1<<attempt)
+						jitter := time.Duration(rand.Int63n(int64(maxRetryJitter)))
 						wait := delay + jitter
 						log.Printf("[retry] attempt %d: received 429, waiting %v", attempt, wait)
 						time.Sleep(wait)
@@ -642,12 +651,12 @@ func doWithRetriesAndResult[T any](
 		// Exponential backoff with jitter
 		// Calculate exponential backoff delay by multiplying baseDelay by 2^attempt
 		// For example: if baseDelay is 1s and attempt is 2, delay will be 1s * 2^2 = 4s
-		delay := MAX_RETRY_DELAY * time.Duration(1<<attempt)
+		delay := maxRetryDelay * time.Duration(1<<attempt)
 		// Generate a random duration between 0 and jitterMax to add randomness to retry delays
-		jitter := time.Duration(rand.Int63n(int64(MAX_RETRY_JITTER)))
+		jitter := time.Duration(rand.Int63n(int64(maxRetryJitter)))
 		wait := delay + jitter
 
-		if resp != nil && USE_RETRY_HEADER {
+		if resp != nil && useRetryHeader {
 			if retryAfter := resp.Header().Get("Retry-After"); retryAfter != "" {
 				if secs, err := strconv.Atoi(retryAfter); err == nil {
 					wait = time.Duration(secs) * time.Second
@@ -655,7 +664,7 @@ func doWithRetriesAndResult[T any](
 			}
 		}
 
-		log.Printf("[retry] attempt %d: received 429, waiting %v", attempt, wait)
+		log.Printf("[retry] attempt %d: received 429, waiting %v", attempt+1, wait)
 		time.Sleep(wait)
 	}
 
@@ -663,19 +672,42 @@ func doWithRetriesAndResult[T any](
 	log.Printf("error 4: %v", err)
 	if result != nil {
 
-		return result, resp, fmt.Errorf("failed after %d retries", MAX_RETRIES)
+		return result, resp, fmt.Errorf("failed after %d retries", maxRetries+1)
 	}
 
-	return nil, resp, fmt.Errorf("failed after %d retries", MAX_RETRIES)
+	return nil, resp, fmt.Errorf("failed after %d retries", maxRetries+1)
+}
+
+func getBackoffValues(backoff *Backoff) (int, time.Duration, time.Duration, bool) {
+	maxRetries, maxRetryDelay, maxRetryJitter, useRetryHeader := DEFAULT_RETRIES, DEFAULT_RETRY_DELAY, DEFAULT_RETRY_JITTER, false
+	if backoff == nil {
+		return maxRetries, maxRetryDelay, maxRetryJitter, useRetryHeader
+	}
+
+	if backoff.MaxRetries != nil {
+		maxRetries = *backoff.MaxRetries
+	}
+	if backoff.MaxRetryDelay != nil {
+		maxRetryDelay = *backoff.MaxRetryDelay
+	}
+	if backoff.MaxRetryJitter != nil {
+		maxRetryJitter = *backoff.MaxRetryJitter
+	}
+	if backoff.UseRetryHeader != nil {
+		useRetryHeader = *backoff.UseRetryHeader
+	}
+	return maxRetries, maxRetryDelay, maxRetryJitter, useRetryHeader
 }
 
 func doWithRetriesAndNotResult(
 	operation func() (*resty.Response, error),
+	backoff *Backoff,
 ) (*resty.Response, error) {
 	var resp *resty.Response
 	var err error
-
-	for attempt := 0; attempt <= MAX_RETRIES; attempt++ {
+	maxRetries, maxRetryDelay, maxRetryJitter, useRetryHeader := getBackoffValues(backoff)
+	fmt.Println("MAX_RETRIES: ", maxRetries+1)
+	for attempt := 0; attempt <= maxRetries; attempt++ {
 		resp, err = operation()
 
 		if err != nil {
@@ -690,11 +722,11 @@ func doWithRetriesAndNotResult(
 			return resp, nil
 		}
 
-		delay := MAX_RETRY_DELAY * time.Duration(1<<attempt)
-		jitter := time.Duration(rand.Int63n(int64(MAX_RETRY_JITTER)))
+		delay := maxRetryDelay * time.Duration(1<<attempt)
+		jitter := time.Duration(rand.Int63n(int64(maxRetryJitter)))
 		wait := delay + jitter
 
-		if resp != nil && USE_RETRY_HEADER {
+		if resp != nil && useRetryHeader {
 			if retryAfter := resp.Header().Get("Retry-After"); retryAfter != "" {
 				if secs, err := strconv.Atoi(retryAfter); err == nil {
 					wait = time.Duration(secs) * time.Second
@@ -702,9 +734,9 @@ func doWithRetriesAndNotResult(
 			}
 		}
 
-		log.Printf("[retry] attempt %d: received 429, waiting %v", attempt, wait)
+		log.Printf("[retry] attempt %d: received 429, waiting %v", attempt+1, wait)
 		time.Sleep(wait)
 	}
 
-	return resp, fmt.Errorf("failed after %d retries", MAX_RETRIES)
+	return resp, fmt.Errorf("failed after %d retries", maxRetries+1)
 }

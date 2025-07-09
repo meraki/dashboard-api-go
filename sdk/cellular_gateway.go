@@ -501,6 +501,7 @@ func (s *CellularGatewayService) GetDeviceCellularGatewayLan(serial string) (*Re
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -526,6 +527,7 @@ func (s *CellularGatewayService) GetDeviceCellularGatewayPortForwardingRules(ser
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -551,6 +553,7 @@ func (s *CellularGatewayService) GetNetworkCellularGatewayConnectivityMonitoring
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -576,6 +579,7 @@ func (s *CellularGatewayService) GetNetworkCellularGatewayDhcp(networkID string)
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -601,6 +605,7 @@ func (s *CellularGatewayService) GetNetworkCellularGatewaySubnetPool(networkID s
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -626,6 +631,7 @@ func (s *CellularGatewayService) GetNetworkCellularGatewayUplink(networkID strin
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -652,6 +658,7 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsInventory(or
 			return GET(path, s.client, getOrganizationCellularGatewayEsimsInventoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -677,6 +684,7 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvi
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -703,6 +711,7 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvi
 			return GET(path, s.client, getOrganizationCellularGatewayEsimsServiceProvidersAccountsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -729,6 +738,7 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvi
 			return GET(path, s.client, getOrganizationCellularGatewayEsimsServiceProvidersAccountsCommunicationPlansQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -755,6 +765,7 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayEsimsServiceProvi
 			return GET(path, s.client, getOrganizationCellularGatewayEsimsServiceProvidersAccountsRatePlansQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -781,6 +792,7 @@ func (s *CellularGatewayService) GetOrganizationCellularGatewayUplinkStatuses(or
 			return GET(path, s.client, getOrganizationCellularGatewayUplinkStatusesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses) ResponseCellularGatewayGetOrganizationCellularGatewayUplinkStatuses {
 			dst = append(dst, src...)
 			return dst
@@ -815,6 +827,7 @@ func (s *CellularGatewayService) CreateOrganizationCellularGatewayEsimsServicePr
 			return POST(path, s.client, requestCellularGatewayCreateOrganizationCellularGatewayEsimsServiceProvidersAccount, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -840,6 +853,7 @@ func (s *CellularGatewayService) CreateOrganizationCellularGatewayEsimsSwap(orga
 			return POST(path, s.client, requestCellularGatewayCreateOrganizationCellularGatewayEsimsSwap, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -862,6 +876,7 @@ func (s *CellularGatewayService) UpdateDeviceCellularGatewayLan(serial string, r
 			return PUT(path, s.client, requestCellularGatewayUpdateDeviceCellularGatewayLan)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -884,6 +899,7 @@ func (s *CellularGatewayService) UpdateDeviceCellularGatewayPortForwardingRules(
 			return PUT(path, s.client, requestCellularGatewayUpdateDeviceCellularGatewayPortForwardingRules)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -906,6 +922,7 @@ func (s *CellularGatewayService) UpdateNetworkCellularGatewayConnectivityMonitor
 			return PUT(path, s.client, requestCellularGatewayUpdateNetworkCellularGatewayConnectivityMonitoringDestinations)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -928,6 +945,7 @@ func (s *CellularGatewayService) UpdateNetworkCellularGatewayDhcp(networkID stri
 			return PUT(path, s.client, requestCellularGatewayUpdateNetworkCellularGatewayDhcp)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -950,6 +968,7 @@ func (s *CellularGatewayService) UpdateNetworkCellularGatewaySubnetPool(networkI
 			return PUT(path, s.client, requestCellularGatewayUpdateNetworkCellularGatewaySubnetPool)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -972,6 +991,7 @@ func (s *CellularGatewayService) UpdateNetworkCellularGatewayUplink(networkID st
 			return PUT(path, s.client, requestCellularGatewayUpdateNetworkCellularGatewayUplink)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -996,6 +1016,7 @@ func (s *CellularGatewayService) UpdateOrganizationCellularGatewayEsimsInventory
 			return PUT(path, s.client, requestCellularGatewayUpdateOrganizationCellularGatewayEsimsInventory)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1020,6 +1041,7 @@ func (s *CellularGatewayService) UpdateOrganizationCellularGatewayEsimsServicePr
 			return PUT(path, s.client, requestCellularGatewayUpdateOrganizationCellularGatewayEsimsServiceProvidersAccount)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1044,6 +1066,7 @@ func (s *CellularGatewayService) UpdateOrganizationCellularGatewayEsimsSwap(id s
 			return PUT(path, s.client, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1068,5 +1091,6 @@ func (s *CellularGatewayService) DeleteOrganizationCellularGatewayEsimsServicePr
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }

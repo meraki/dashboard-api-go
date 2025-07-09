@@ -2927,6 +2927,7 @@ func (s *SwitchService) GetDeviceSwitchPorts(serial string) (*ResponseSwitchGetD
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2953,6 +2954,7 @@ func (s *SwitchService) GetDeviceSwitchPortsStatuses(serial string, getDeviceSwi
 			return GET(path, s.client, getDeviceSwitchPortsStatusesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2979,6 +2981,7 @@ func (s *SwitchService) GetDeviceSwitchPortsStatusesPackets(serial string, getDe
 			return GET(path, s.client, getDeviceSwitchPortsStatusesPacketsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3006,6 +3009,7 @@ func (s *SwitchService) GetDeviceSwitchPort(serial string, portID string) (*Resp
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3032,6 +3036,7 @@ func (s *SwitchService) GetDeviceSwitchRoutingInterfaces(serial string, getDevic
 			return GET(path, s.client, getDeviceSwitchRoutingInterfacesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3059,6 +3064,7 @@ func (s *SwitchService) GetDeviceSwitchRoutingInterface(serial string, interface
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3086,6 +3092,7 @@ func (s *SwitchService) GetDeviceSwitchRoutingInterfaceDhcp(serial string, inter
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3111,6 +3118,7 @@ func (s *SwitchService) GetDeviceSwitchRoutingStaticRoutes(serial string) (*Resp
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3138,6 +3146,7 @@ func (s *SwitchService) GetDeviceSwitchRoutingStaticRoute(serial string, staticR
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3163,6 +3172,7 @@ func (s *SwitchService) GetDeviceSwitchWarmSpare(serial string) (*ResponseSwitch
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3188,6 +3198,7 @@ func (s *SwitchService) GetNetworkSwitchAccessControlLists(networkID string) (*R
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3213,6 +3224,7 @@ func (s *SwitchService) GetNetworkSwitchAccessPolicies(networkID string) (*Respo
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3240,6 +3252,7 @@ func (s *SwitchService) GetNetworkSwitchAccessPolicy(networkID string, accessPol
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3265,6 +3278,7 @@ func (s *SwitchService) GetNetworkSwitchAlternateManagementInterface(networkID s
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3291,6 +3305,7 @@ func (s *SwitchService) GetNetworkSwitchDhcpV4ServersSeen(networkID string, getN
 			return GET(path, s.client, getNetworkSwitchDhcpV4ServersSeenQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen) ResponseSwitchGetNetworkSwitchDhcpV4ServersSeen {
 			dst = append(dst, src...)
 			return dst
@@ -3325,6 +3340,7 @@ func (s *SwitchService) GetNetworkSwitchDhcpServerPolicy(networkID string) (*Res
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3351,6 +3367,7 @@ func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServ
 			return GET(path, s.client, getNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers) ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers {
 			dst = append(dst, src...)
 			return dst
@@ -3386,6 +3403,7 @@ func (s *SwitchService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByD
 			return GET(path, s.client, getNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice) ResponseSwitchGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice {
 			dst = append(dst, src...)
 			return dst
@@ -3420,6 +3438,7 @@ func (s *SwitchService) GetNetworkSwitchDscpToCosMappings(networkID string) (*Re
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3445,6 +3464,7 @@ func (s *SwitchService) GetNetworkSwitchLinkAggregations(networkID string) (*Res
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3470,6 +3490,7 @@ func (s *SwitchService) GetNetworkSwitchMtu(networkID string) (*ResponseSwitchGe
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3495,6 +3516,7 @@ func (s *SwitchService) GetNetworkSwitchPortSchedules(networkID string) (*Respon
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3520,6 +3542,7 @@ func (s *SwitchService) GetNetworkSwitchQosRules(networkID string) (*ResponseSwi
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3545,6 +3568,7 @@ func (s *SwitchService) GetNetworkSwitchQosRulesOrder(networkID string) (*Respon
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3572,6 +3596,7 @@ func (s *SwitchService) GetNetworkSwitchQosRule(networkID string, qosRuleID stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3597,6 +3622,7 @@ func (s *SwitchService) GetNetworkSwitchRoutingMulticast(networkID string) (*Res
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3622,6 +3648,7 @@ func (s *SwitchService) GetNetworkSwitchRoutingMulticastRendezvousPoints(network
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3649,6 +3676,7 @@ func (s *SwitchService) GetNetworkSwitchRoutingMulticastRendezvousPoint(networkI
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3674,6 +3702,7 @@ func (s *SwitchService) GetNetworkSwitchRoutingOspf(networkID string) (*Response
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3699,6 +3728,7 @@ func (s *SwitchService) GetNetworkSwitchSettings(networkID string) (*ResponseSwi
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3724,6 +3754,7 @@ func (s *SwitchService) GetNetworkSwitchStacks(networkID string) (*ResponseSwitc
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3751,6 +3782,7 @@ func (s *SwitchService) GetNetworkSwitchStack(networkID string, switchStackID st
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3779,6 +3811,7 @@ func (s *SwitchService) GetNetworkSwitchStackRoutingInterfaces(networkID string,
 			return GET(path, s.client, getNetworkSwitchStackRoutingInterfacesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3808,6 +3841,7 @@ func (s *SwitchService) GetNetworkSwitchStackRoutingInterface(networkID string, 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3837,6 +3871,7 @@ func (s *SwitchService) GetNetworkSwitchStackRoutingInterfaceDhcp(networkID stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3864,6 +3899,7 @@ func (s *SwitchService) GetNetworkSwitchStackRoutingStaticRoutes(networkID strin
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3893,6 +3929,7 @@ func (s *SwitchService) GetNetworkSwitchStackRoutingStaticRoute(networkID string
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3918,6 +3955,7 @@ func (s *SwitchService) GetNetworkSwitchStormControl(networkID string) (*Respons
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3943,6 +3981,7 @@ func (s *SwitchService) GetNetworkSwitchStp(networkID string) (*ResponseSwitchGe
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3970,6 +4009,7 @@ func (s *SwitchService) GetOrganizationConfigTemplateSwitchProfiles(organization
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3999,6 +4039,7 @@ func (s *SwitchService) GetOrganizationConfigTemplateSwitchProfilePorts(organiza
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4030,6 +4071,7 @@ func (s *SwitchService) GetOrganizationConfigTemplateSwitchProfilePort(organizat
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4056,6 +4098,7 @@ func (s *SwitchService) GetOrganizationSummarySwitchPowerHistory(organizationID 
 			return GET(path, s.client, getOrganizationSummarySwitchPowerHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4082,6 +4125,7 @@ func (s *SwitchService) GetOrganizationSwitchPortsBySwitch(organizationID string
 			return GET(path, s.client, getOrganizationSwitchPortsBySwitchQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSwitchGetOrganizationSwitchPortsBySwitch) ResponseSwitchGetOrganizationSwitchPortsBySwitch {
 			*dst.Ports = append(*dst.Ports, *src.Ports...) // Total arrays: 1
 			return dst
@@ -4117,6 +4161,7 @@ func (s *SwitchService) GetOrganizationSwitchPortsClientsOverviewByDevice(organi
 			return GET(path, s.client, getOrganizationSwitchPortsClientsOverviewByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice) ResponseSwitchGetOrganizationSwitchPortsClientsOverviewByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -4152,6 +4197,7 @@ func (s *SwitchService) GetOrganizationSwitchPortsOverview(organizationID string
 			return GET(path, s.client, getOrganizationSwitchPortsOverviewQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4178,6 +4224,7 @@ func (s *SwitchService) GetOrganizationSwitchPortsStatusesBySwitch(organizationI
 			return GET(path, s.client, getOrganizationSwitchPortsStatusesBySwitchQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch) ResponseSwitchGetOrganizationSwitchPortsStatusesBySwitch {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -4213,6 +4260,7 @@ func (s *SwitchService) GetOrganizationSwitchPortsTopologyDiscoveryByDevice(orga
 			return GET(path, s.client, getOrganizationSwitchPortsTopologyDiscoveryByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice) ResponseSwitchGetOrganizationSwitchPortsTopologyDiscoveryByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -4248,6 +4296,7 @@ func (s *SwitchService) GetOrganizationSwitchPortsUsageHistoryByDeviceByInterval
 			return GET(path, s.client, getOrganizationSwitchPortsUsageHistoryByDeviceByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval) ResponseSwitchGetOrganizationSwitchPortsUsageHistoryByDeviceByInterval {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -4282,6 +4331,7 @@ func (s *SwitchService) CycleDeviceSwitchPorts(serial string, requestSwitchCycle
 			return POST(path, s.client, requestSwitchCycleDeviceSwitchPorts, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4307,6 +4357,7 @@ func (s *SwitchService) CreateDeviceSwitchRoutingInterface(serial string, reques
 			return POST(path, s.client, requestSwitchCreateDeviceSwitchRoutingInterface, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4332,6 +4383,7 @@ func (s *SwitchService) CreateDeviceSwitchRoutingStaticRoute(serial string, requ
 			return POST(path, s.client, requestSwitchCreateDeviceSwitchRoutingStaticRoute, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4357,6 +4409,7 @@ func (s *SwitchService) CreateNetworkSwitchAccessPolicy(networkID string, reques
 			return POST(path, s.client, requestSwitchCreateNetworkSwitchAccessPolicy, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4382,6 +4435,7 @@ func (s *SwitchService) CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedS
 			return POST(path, s.client, requestSwitchCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4407,6 +4461,7 @@ func (s *SwitchService) CreateNetworkSwitchLinkAggregation(networkID string, req
 			return POST(path, s.client, requestSwitchCreateNetworkSwitchLinkAggregation, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4432,6 +4487,7 @@ func (s *SwitchService) CreateNetworkSwitchPortSchedule(networkID string, reques
 			return POST(path, s.client, requestSwitchCreateNetworkSwitchPortSchedule, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4457,6 +4513,7 @@ func (s *SwitchService) CreateNetworkSwitchQosRule(networkID string, requestSwit
 			return POST(path, s.client, requestSwitchCreateNetworkSwitchQosRule, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4482,6 +4539,7 @@ func (s *SwitchService) CreateNetworkSwitchRoutingMulticastRendezvousPoint(netwo
 			return POST(path, s.client, requestSwitchCreateNetworkSwitchRoutingMulticastRendezvousPoint, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4507,6 +4565,7 @@ func (s *SwitchService) CreateNetworkSwitchStack(networkID string, requestSwitch
 			return POST(path, s.client, requestSwitchCreateNetworkSwitchStack, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4534,6 +4593,7 @@ func (s *SwitchService) AddNetworkSwitchStack(networkID string, switchStackID st
 			return POST(path, s.client, requestSwitchAddNetworkSwitchStack, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4561,6 +4621,7 @@ func (s *SwitchService) RemoveNetworkSwitchStack(networkID string, switchStackID
 			return POST(path, s.client, requestSwitchRemoveNetworkSwitchStack, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4588,6 +4649,7 @@ func (s *SwitchService) CreateNetworkSwitchStackRoutingInterface(networkID strin
 			return POST(path, s.client, requestSwitchCreateNetworkSwitchStackRoutingInterface, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4615,6 +4677,7 @@ func (s *SwitchService) CreateNetworkSwitchStackRoutingStaticRoute(networkID str
 			return POST(path, s.client, requestSwitchCreateNetworkSwitchStackRoutingStaticRoute, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4640,6 +4703,7 @@ func (s *SwitchService) CloneOrganizationSwitchDevices(organizationID string, re
 			return POST(path, s.client, requestSwitchCloneOrganizationSwitchDevices, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4664,6 +4728,7 @@ func (s *SwitchService) UpdateDeviceSwitchPort(serial string, portID string, req
 			return PUT(path, s.client, requestSwitchUpdateDeviceSwitchPort)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4688,6 +4753,7 @@ func (s *SwitchService) UpdateDeviceSwitchRoutingInterface(serial string, interf
 			return PUT(path, s.client, requestSwitchUpdateDeviceSwitchRoutingInterface)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4712,6 +4778,7 @@ func (s *SwitchService) UpdateDeviceSwitchRoutingInterfaceDhcp(serial string, in
 			return PUT(path, s.client, requestSwitchUpdateDeviceSwitchRoutingInterfaceDhcp)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4736,6 +4803,7 @@ func (s *SwitchService) UpdateDeviceSwitchRoutingStaticRoute(serial string, stat
 			return PUT(path, s.client, requestSwitchUpdateDeviceSwitchRoutingStaticRoute)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4758,6 +4826,7 @@ func (s *SwitchService) UpdateDeviceSwitchWarmSpare(serial string, requestSwitch
 			return PUT(path, s.client, requestSwitchUpdateDeviceSwitchWarmSpare)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4780,6 +4849,7 @@ func (s *SwitchService) UpdateNetworkSwitchAccessControlLists(networkID string, 
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchAccessControlLists)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4804,6 +4874,7 @@ func (s *SwitchService) UpdateNetworkSwitchAccessPolicy(networkID string, access
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchAccessPolicy)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4826,6 +4897,7 @@ func (s *SwitchService) UpdateNetworkSwitchAlternateManagementInterface(networkI
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchAlternateManagementInterface)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4848,6 +4920,7 @@ func (s *SwitchService) UpdateNetworkSwitchDhcpServerPolicy(networkID string, re
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchDhcpServerPolicy)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4872,6 +4945,7 @@ func (s *SwitchService) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedS
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4894,6 +4968,7 @@ func (s *SwitchService) UpdateNetworkSwitchDscpToCosMappings(networkID string, r
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchDscpToCosMappings)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4918,6 +4993,7 @@ func (s *SwitchService) UpdateNetworkSwitchLinkAggregation(networkID string, lin
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchLinkAggregation)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4940,6 +5016,7 @@ func (s *SwitchService) UpdateNetworkSwitchMtu(networkID string, requestSwitchUp
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchMtu)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4964,6 +5041,7 @@ func (s *SwitchService) UpdateNetworkSwitchPortSchedule(networkID string, portSc
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchPortSchedule)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4986,6 +5064,7 @@ func (s *SwitchService) UpdateNetworkSwitchQosRulesOrder(networkID string, reque
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchQosRulesOrder)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5010,6 +5089,7 @@ func (s *SwitchService) UpdateNetworkSwitchQosRule(networkID string, qosRuleID s
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchQosRule)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5032,6 +5112,7 @@ func (s *SwitchService) UpdateNetworkSwitchRoutingMulticast(networkID string, re
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchRoutingMulticast)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5056,6 +5137,7 @@ func (s *SwitchService) UpdateNetworkSwitchRoutingMulticastRendezvousPoint(netwo
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchRoutingMulticastRendezvousPoint)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5078,6 +5160,7 @@ func (s *SwitchService) UpdateNetworkSwitchRoutingOspf(networkID string, request
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchRoutingOspf)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5100,6 +5183,7 @@ func (s *SwitchService) UpdateNetworkSwitchSettings(networkID string, requestSwi
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchSettings)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5126,6 +5210,7 @@ func (s *SwitchService) UpdateNetworkSwitchStackRoutingInterface(networkID strin
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchStackRoutingInterface)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5152,6 +5237,7 @@ func (s *SwitchService) UpdateNetworkSwitchStackRoutingInterfaceDhcp(networkID s
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchStackRoutingInterfaceDhcp)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5178,6 +5264,7 @@ func (s *SwitchService) UpdateNetworkSwitchStackRoutingStaticRoute(networkID str
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchStackRoutingStaticRoute)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5200,6 +5287,7 @@ func (s *SwitchService) UpdateNetworkSwitchStormControl(networkID string, reques
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchStormControl)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5222,6 +5310,7 @@ func (s *SwitchService) UpdateNetworkSwitchStp(networkID string, requestSwitchUp
 			return PUT(path, s.client, requestSwitchUpdateNetworkSwitchStp)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5250,6 +5339,7 @@ func (s *SwitchService) UpdateOrganizationConfigTemplateSwitchProfilePort(organi
 			return PUT(path, s.client, requestSwitchUpdateOrganizationConfigTemplateSwitchProfilePort)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5274,6 +5364,7 @@ func (s *SwitchService) DeleteDeviceSwitchRoutingInterface(serial string, interf
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -5296,6 +5387,7 @@ func (s *SwitchService) DeleteDeviceSwitchRoutingStaticRoute(serial string, stat
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -5318,6 +5410,7 @@ func (s *SwitchService) DeleteNetworkSwitchAccessPolicy(networkID string, access
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -5340,6 +5433,7 @@ func (s *SwitchService) DeleteNetworkSwitchDhcpServerPolicyArpInspectionTrustedS
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -5362,6 +5456,7 @@ func (s *SwitchService) DeleteNetworkSwitchLinkAggregation(networkID string, lin
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -5384,6 +5479,7 @@ func (s *SwitchService) DeleteNetworkSwitchPortSchedule(networkID string, portSc
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -5406,6 +5502,7 @@ func (s *SwitchService) DeleteNetworkSwitchQosRule(networkID string, qosRuleID s
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -5428,6 +5525,7 @@ func (s *SwitchService) DeleteNetworkSwitchRoutingMulticastRendezvousPoint(netwo
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -5450,6 +5548,7 @@ func (s *SwitchService) DeleteNetworkSwitchStack(networkID string, switchStackID
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -5474,6 +5573,7 @@ func (s *SwitchService) DeleteNetworkSwitchStackRoutingInterface(networkID strin
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -5498,5 +5598,6 @@ func (s *SwitchService) DeleteNetworkSwitchStackRoutingStaticRoute(networkID str
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }

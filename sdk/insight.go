@@ -105,6 +105,7 @@ func (s *InsightService) GetNetworkInsightApplicationHealthByTime(networkID stri
 			return GET(path, s.client, getNetworkInsightApplicationHealthByTimeQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -130,6 +131,7 @@ func (s *InsightService) GetOrganizationInsightApplications(organizationID strin
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -155,6 +157,7 @@ func (s *InsightService) GetOrganizationInsightMonitoredMediaServers(organizatio
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -182,6 +185,7 @@ func (s *InsightService) GetOrganizationInsightMonitoredMediaServer(organization
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -207,6 +211,7 @@ func (s *InsightService) CreateOrganizationInsightMonitoredMediaServer(organizat
 			return POST(path, s.client, requestInsightCreateOrganizationInsightMonitoredMediaServer, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -231,6 +236,7 @@ func (s *InsightService) UpdateOrganizationInsightMonitoredMediaServer(organizat
 			return PUT(path, s.client, requestInsightUpdateOrganizationInsightMonitoredMediaServer)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -255,5 +261,6 @@ func (s *InsightService) DeleteOrganizationInsightMonitoredMediaServer(organizat
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }

@@ -2757,6 +2757,7 @@ type ResponseOrganizationsGetOrganizationPolicyObjects []ResponseItemOrganizatio
 type ResponseItemOrganizationsGetOrganizationPolicyObjects struct {
 	Category   string   `json:"category,omitempty"`   // Category of a policy object (one of: adaptivePolicy, network)
 	Cidr       string   `json:"cidr,omitempty"`       // CIDR Value of a policy object
+	Fqdn       string   `json:"fqdn,omitempty"`       // FQDN Value of a policy object
 	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
 	GroupIDs   []string `json:"groupIds,omitempty"`   // The IDs of policy object groups the policy object belongs to.
 	ID         string   `json:"id,omitempty"`         // Policy object ID
@@ -2768,6 +2769,7 @@ type ResponseItemOrganizationsGetOrganizationPolicyObjects struct {
 type ResponseOrganizationsCreateOrganizationPolicyObject struct {
 	Category   string   `json:"category,omitempty"`   // Category of a policy object (one of: adaptivePolicy, network)
 	Cidr       string   `json:"cidr,omitempty"`       // CIDR Value of a policy object
+	Fqdn       string   `json:"fqdn,omitempty"`       // FQDN Value of a policy object
 	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
 	GroupIDs   []string `json:"groupIds,omitempty"`   // The IDs of policy object groups the policy object belongs to.
 	ID         string   `json:"id,omitempty"`         // Policy object ID
@@ -2818,6 +2820,7 @@ type ResponseOrganizationsUpdateOrganizationPolicyObjectsGroup struct {
 type ResponseOrganizationsGetOrganizationPolicyObject struct {
 	Category   string   `json:"category,omitempty"`   // Category of a policy object (one of: adaptivePolicy, network)
 	Cidr       string   `json:"cidr,omitempty"`       // CIDR Value of a policy object
+	Fqdn       string   `json:"fqdn,omitempty"`       // FQDN Value of a policy object
 	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
 	GroupIDs   []string `json:"groupIds,omitempty"`   // The IDs of policy object groups the policy object belongs to.
 	ID         string   `json:"id,omitempty"`         // Policy object ID
@@ -2829,6 +2832,7 @@ type ResponseOrganizationsGetOrganizationPolicyObject struct {
 type ResponseOrganizationsUpdateOrganizationPolicyObject struct {
 	Category   string   `json:"category,omitempty"`   // Category of a policy object (one of: adaptivePolicy, network)
 	Cidr       string   `json:"cidr,omitempty"`       // CIDR Value of a policy object
+	Fqdn       string   `json:"fqdn,omitempty"`       // FQDN Value of a policy object
 	CreatedAt  string   `json:"createdAt,omitempty"`  // Time Stamp of policy object creation.
 	GroupIDs   []string `json:"groupIds,omitempty"`   // The IDs of policy object groups the policy object belongs to.
 	ID         string   `json:"id,omitempty"`         // Policy object ID
@@ -3894,6 +3898,7 @@ func (s *OrganizationsService) GetOrganizations(getOrganizationsQueryParams *Get
 			return GET(path, s.client, getOrganizationsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizations) ResponseOrganizationsGetOrganizations {
 			dst = append(dst, src...)
 			return dst
@@ -3928,6 +3933,7 @@ func (s *OrganizationsService) GetOrganization(organizationID string) (*Response
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3954,6 +3960,7 @@ func (s *OrganizationsService) GetOrganizationActionBatches(organizationID strin
 			return GET(path, s.client, getOrganizationActionBatchesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3981,6 +3988,7 @@ func (s *OrganizationsService) GetOrganizationActionBatch(organizationID string,
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4006,6 +4014,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyACLs(organizationID 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4033,6 +4042,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyACL(organizationID s
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4058,6 +4068,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyGroups(organizationI
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4085,6 +4096,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyGroup(organizationID
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4110,6 +4122,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyOverview(organizatio
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4135,6 +4148,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyPolicies(organizatio
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4162,6 +4176,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicyPolicy(organizationI
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4187,6 +4202,7 @@ func (s *OrganizationsService) GetOrganizationAdaptivePolicySettings(organizatio
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4213,6 +4229,7 @@ func (s *OrganizationsService) GetOrganizationAdmins(organizationID string, getO
 			return GET(path, s.client, getOrganizationAdminsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4238,6 +4255,7 @@ func (s *OrganizationsService) GetOrganizationAlertsProfiles(organizationID stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4264,6 +4282,7 @@ func (s *OrganizationsService) GetOrganizationAPIRequests(organizationID string,
 			return GET(path, s.client, getOrganizationApiRequestsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationAPIRequests) ResponseOrganizationsGetOrganizationAPIRequests {
 			dst = append(dst, src...)
 			return dst
@@ -4299,6 +4318,7 @@ func (s *OrganizationsService) GetOrganizationAPIRequestsOverview(organizationID
 			return GET(path, s.client, getOrganizationApiRequestsOverviewQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4325,6 +4345,7 @@ func (s *OrganizationsService) GetOrganizationAPIRequestsOverviewResponseCodesBy
 			return GET(path, s.client, getOrganizationApiRequestsOverviewResponseCodesByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4351,6 +4372,7 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlerts(organizationID str
 			return GET(path, s.client, getOrganizationAssuranceAlertsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationAssuranceAlerts) ResponseOrganizationsGetOrganizationAssuranceAlerts {
 			dst = append(dst, src...)
 			return dst
@@ -4386,6 +4408,7 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverview(organizati
 			return GET(path, s.client, getOrganizationAssuranceAlertsOverviewQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4412,6 +4435,7 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewByNetwork(o
 			return GET(path, s.client, getOrganizationAssuranceAlertsOverviewByNetworkQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByNetwork) ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByNetwork {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -4447,6 +4471,7 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewByType(orga
 			return GET(path, s.client, getOrganizationAssuranceAlertsOverviewByTypeQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByType) ResponseOrganizationsGetOrganizationAssuranceAlertsOverviewByType {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -4482,6 +4507,7 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlertsOverviewHistorical(
 			return GET(path, s.client, getOrganizationAssuranceAlertsOverviewHistoricalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4509,6 +4535,7 @@ func (s *OrganizationsService) GetOrganizationAssuranceAlert(organizationID stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4534,6 +4561,7 @@ func (s *OrganizationsService) GetOrganizationBrandingPolicies(organizationID st
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4559,6 +4587,7 @@ func (s *OrganizationsService) GetOrganizationBrandingPoliciesPriorities(organiz
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4586,6 +4615,7 @@ func (s *OrganizationsService) GetOrganizationBrandingPolicy(organizationID stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4612,6 +4642,7 @@ func (s *OrganizationsService) GetOrganizationClientsBandwidthUsageHistory(organ
 			return GET(path, s.client, getOrganizationClientsBandwidthUsageHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4638,6 +4669,7 @@ func (s *OrganizationsService) GetOrganizationClientsOverview(organizationID str
 			return GET(path, s.client, getOrganizationClientsOverviewQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4664,6 +4696,7 @@ func (s *OrganizationsService) GetOrganizationClientsSearch(organizationID strin
 			return GET(path, s.client, getOrganizationClientsSearchQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationClientsSearch) ResponseOrganizationsGetOrganizationClientsSearch {
 			*dst.Records = append(*dst.Records, *src.Records...) // Total arrays: 1
 			return dst
@@ -4698,6 +4731,7 @@ func (s *OrganizationsService) GetOrganizationConfigTemplates(organizationID str
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4725,6 +4759,7 @@ func (s *OrganizationsService) GetOrganizationConfigTemplate(organizationID stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4751,6 +4786,7 @@ func (s *OrganizationsService) GetOrganizationConfigurationChanges(organizationI
 			return GET(path, s.client, getOrganizationConfigurationChangesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationConfigurationChanges) ResponseOrganizationsGetOrganizationConfigurationChanges {
 			dst = append(dst, src...)
 			return dst
@@ -4786,6 +4822,7 @@ func (s *OrganizationsService) GetOrganizationDevices(organizationID string, get
 			return GET(path, s.client, getOrganizationDevicesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationDevices) ResponseOrganizationsGetOrganizationDevices {
 			dst = append(dst, src...)
 			return dst
@@ -4821,6 +4858,7 @@ func (s *OrganizationsService) GetOrganizationDevicesAvailabilities(organization
 			return GET(path, s.client, getOrganizationDevicesAvailabilitiesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationDevicesAvailabilities) ResponseOrganizationsGetOrganizationDevicesAvailabilities {
 			dst = append(dst, src...)
 			return dst
@@ -4856,6 +4894,7 @@ func (s *OrganizationsService) GetOrganizationDevicesAvailabilitiesChangeHistory
 			return GET(path, s.client, getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory) ResponseOrganizationsGetOrganizationDevicesAvailabilitiesChangeHistory {
 			dst = append(dst, src...)
 			return dst
@@ -4891,6 +4930,7 @@ func (s *OrganizationsService) GetOrganizationDevicesControllerMigrations(organi
 			return GET(path, s.client, getOrganizationDevicesControllerMigrationsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationDevicesControllerMigrations) ResponseOrganizationsGetOrganizationDevicesControllerMigrations {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -4926,6 +4966,7 @@ func (s *OrganizationsService) GetOrganizationDevicesOverviewByModel(organizatio
 			return GET(path, s.client, getOrganizationDevicesOverviewByModelQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4952,6 +4993,7 @@ func (s *OrganizationsService) GetOrganizationDevicesPowerModulesStatusesByDevic
 			return GET(path, s.client, getOrganizationDevicesPowerModulesStatusesByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice) ResponseOrganizationsGetOrganizationDevicesPowerModulesStatusesByDevice {
 			dst = append(dst, src...)
 			return dst
@@ -4987,6 +5029,7 @@ func (s *OrganizationsService) GetOrganizationDevicesProvisioningStatuses(organi
 			return GET(path, s.client, getOrganizationDevicesProvisioningStatusesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationDevicesProvisioningStatuses) ResponseOrganizationsGetOrganizationDevicesProvisioningStatuses {
 			dst = append(dst, src...)
 			return dst
@@ -5022,6 +5065,7 @@ func (s *OrganizationsService) GetOrganizationDevicesStatuses(organizationID str
 			return GET(path, s.client, getOrganizationDevicesStatusesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationDevicesStatuses) ResponseOrganizationsGetOrganizationDevicesStatuses {
 			dst = append(dst, src...)
 			return dst
@@ -5057,6 +5101,7 @@ func (s *OrganizationsService) GetOrganizationDevicesStatusesOverview(organizati
 			return GET(path, s.client, getOrganizationDevicesStatusesOverviewQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5083,6 +5128,7 @@ func (s *OrganizationsService) GetOrganizationDevicesSystemMemoryUsageHistoryByI
 			return GET(path, s.client, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval) ResponseOrganizationsGetOrganizationDevicesSystemMemoryUsageHistoryByInterval {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -5118,6 +5164,7 @@ func (s *OrganizationsService) GetOrganizationDevicesUplinksAddressesByDevice(or
 			return GET(path, s.client, getOrganizationDevicesUplinksAddressesByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice) ResponseOrganizationsGetOrganizationDevicesUplinksAddressesByDevice {
 			dst = append(dst, src...)
 			return dst
@@ -5153,6 +5200,7 @@ func (s *OrganizationsService) GetOrganizationDevicesUplinksLossAndLatency(organ
 			return GET(path, s.client, getOrganizationDevicesUplinksLossAndLatencyQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5178,6 +5226,7 @@ func (s *OrganizationsService) GetOrganizationEarlyAccessFeatures(organizationID
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5203,6 +5252,7 @@ func (s *OrganizationsService) GetOrganizationEarlyAccessFeaturesOptIns(organiza
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5230,6 +5280,7 @@ func (s *OrganizationsService) GetOrganizationEarlyAccessFeaturesOptIn(organizat
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5256,6 +5307,7 @@ func (s *OrganizationsService) GetOrganizationFirmwareUpgrades(organizationID st
 			return GET(path, s.client, getOrganizationFirmwareUpgradesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationFirmwareUpgrades) ResponseOrganizationsGetOrganizationFirmwareUpgrades {
 			dst = append(dst, src...)
 			return dst
@@ -5291,6 +5343,7 @@ func (s *OrganizationsService) GetOrganizationFirmwareUpgradesByDevice(organizat
 			return GET(path, s.client, getOrganizationFirmwareUpgradesByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationFirmwareUpgradesByDevice) ResponseOrganizationsGetOrganizationFirmwareUpgradesByDevice {
 			dst = append(dst, src...)
 			return dst
@@ -5326,6 +5379,7 @@ func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateDevices(organi
 			return GET(path, s.client, getOrganizationFloorPlansAutoLocateDevicesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationFloorPlansAutoLocateDevices) ResponseOrganizationsGetOrganizationFloorPlansAutoLocateDevices {
 			dst = append(dst, src...)
 			return dst
@@ -5361,6 +5415,7 @@ func (s *OrganizationsService) GetOrganizationFloorPlansAutoLocateStatuses(organ
 			return GET(path, s.client, getOrganizationFloorPlansAutoLocateStatusesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationFloorPlansAutoLocateStatuses) ResponseOrganizationsGetOrganizationFloorPlansAutoLocateStatuses {
 			dst = append(dst, src...)
 			return dst
@@ -5396,6 +5451,7 @@ func (s *OrganizationsService) GetOrganizationIntegrationsXdrNetworks(organizati
 			return GET(path, s.client, getOrganizationIntegrationsXdrNetworksQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks) ResponseOrganizationsGetOrganizationIntegrationsXdrNetworks {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -5431,6 +5487,7 @@ func (s *OrganizationsService) GetOrganizationInventoryDevices(organizationID st
 			return GET(path, s.client, getOrganizationInventoryDevicesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationInventoryDevices) ResponseOrganizationsGetOrganizationInventoryDevices {
 			dst = append(dst, src...)
 			return dst
@@ -5467,6 +5524,7 @@ func (s *OrganizationsService) GetOrganizationInventoryDevicesSwapsBulk(organiza
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5494,6 +5552,7 @@ func (s *OrganizationsService) GetOrganizationInventoryDevice(organizationID str
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5520,6 +5579,7 @@ func (s *OrganizationsService) GetOrganizationInventoryOnboardingCloudMonitoring
 			return GET(path, s.client, getOrganizationInventoryOnboardingCloudMonitoringImportsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5546,6 +5606,7 @@ func (s *OrganizationsService) GetOrganizationInventoryOnboardingCloudMonitoring
 			return GET(path, s.client, getOrganizationInventoryOnboardingCloudMonitoringNetworksQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringNetworks) ResponseOrganizationsGetOrganizationInventoryOnboardingCloudMonitoringNetworks {
 			dst = append(dst, src...)
 			return dst
@@ -5581,6 +5642,7 @@ func (s *OrganizationsService) GetOrganizationLicenses(organizationID string, ge
 			return GET(path, s.client, getOrganizationLicensesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationLicenses) ResponseOrganizationsGetOrganizationLicenses {
 			dst = append(dst, src...)
 			return dst
@@ -5615,6 +5677,7 @@ func (s *OrganizationsService) GetOrganizationLicensesOverview(organizationID st
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5642,6 +5705,7 @@ func (s *OrganizationsService) GetOrganizationLicense(organizationID string, lic
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5667,6 +5731,7 @@ func (s *OrganizationsService) GetOrganizationLoginSecurity(organizationID strin
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5693,6 +5758,7 @@ func (s *OrganizationsService) GetOrganizationNetworks(organizationID string, ge
 			return GET(path, s.client, getOrganizationNetworksQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationNetworks) ResponseOrganizationsGetOrganizationNetworks {
 			dst = append(dst, src...)
 			return dst
@@ -5728,6 +5794,7 @@ func (s *OrganizationsService) GetOrganizationOpenapiSpec(organizationID string,
 			return GET(path, s.client, getOrganizationOpenapiSpecQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5754,6 +5821,7 @@ func (s *OrganizationsService) GetOrganizationPolicyObjects(organizationID strin
 			return GET(path, s.client, getOrganizationPolicyObjectsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationPolicyObjects) ResponseOrganizationsGetOrganizationPolicyObjects {
 			dst = append(dst, src...) // Total arrays: 2
 			return dst
@@ -5789,6 +5857,7 @@ func (s *OrganizationsService) GetOrganizationPolicyObjectsGroups(organizationID
 			return GET(path, s.client, getOrganizationPolicyObjectsGroupsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray) ResponseOrganizationsGetOrganizationPolicyObjectsGroupsArray {
 			dst = append(dst, src...) // Total arrays: 2
 			return dst
@@ -5825,6 +5894,7 @@ func (s *OrganizationsService) GetOrganizationPolicyObjectsGroup(organizationID 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5852,6 +5922,7 @@ func (s *OrganizationsService) GetOrganizationPolicyObject(organizationID string
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5877,6 +5948,7 @@ func (s *OrganizationsService) GetOrganizationSaml(organizationID string) (*Resp
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5902,6 +5974,7 @@ func (s *OrganizationsService) GetOrganizationSamlIDps(organizationID string) (*
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5929,6 +6002,7 @@ func (s *OrganizationsService) GetOrganizationSamlIDp(organizationID string, idp
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5954,6 +6028,7 @@ func (s *OrganizationsService) GetOrganizationSamlRoles(organizationID string) (
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -5981,6 +6056,7 @@ func (s *OrganizationsService) GetOrganizationSamlRole(organizationID string, sa
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6006,6 +6082,7 @@ func (s *OrganizationsService) GetOrganizationSNMP(organizationID string) (*Resp
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6033,6 +6110,7 @@ func (s *OrganizationsService) GetOrganizationSplashAsset(organizationID string,
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6058,6 +6136,7 @@ func (s *OrganizationsService) GetOrganizationSplashThemes(organizationID string
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6084,6 +6163,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopAppliancesByUtilization(
 			return GET(path, s.client, getOrganizationSummaryTopAppliancesByUtilizationQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6110,6 +6190,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopApplicationsByUsage(orga
 			return GET(path, s.client, getOrganizationSummaryTopApplicationsByUsageQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6136,6 +6217,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopApplicationsCategoriesBy
 			return GET(path, s.client, getOrganizationSummaryTopApplicationsCategoriesByUsageQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6162,6 +6244,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopClientsByUsage(organizat
 			return GET(path, s.client, getOrganizationSummaryTopClientsByUsageQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6188,6 +6271,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopClientsManufacturersByUs
 			return GET(path, s.client, getOrganizationSummaryTopClientsManufacturersByUsageQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6214,6 +6298,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopDevicesByUsage(organizat
 			return GET(path, s.client, getOrganizationSummaryTopDevicesByUsageQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6240,6 +6325,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopDevicesModelsByUsage(org
 			return GET(path, s.client, getOrganizationSummaryTopDevicesModelsByUsageQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6266,6 +6352,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopNetworksByStatus(organiz
 			return GET(path, s.client, getOrganizationSummaryTopNetworksByStatusQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus) ResponseOrganizationsGetOrganizationSummaryTopNetworksByStatus {
 			dst = append(dst, src...)
 			return dst
@@ -6301,6 +6388,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopSSIDsByUsage(organizatio
 			return GET(path, s.client, getOrganizationSummaryTopSsidsByUsageQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6327,6 +6415,7 @@ func (s *OrganizationsService) GetOrganizationSummaryTopSwitchesByEnergyUsage(or
 			return GET(path, s.client, getOrganizationSummaryTopSwitchesByEnergyUsageQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6353,6 +6442,7 @@ func (s *OrganizationsService) GetOrganizationUplinksStatuses(organizationID str
 			return GET(path, s.client, getOrganizationUplinksStatusesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationUplinksStatuses) ResponseOrganizationsGetOrganizationUplinksStatuses {
 			dst = append(dst, src...)
 			return dst
@@ -6388,6 +6478,7 @@ func (s *OrganizationsService) GetOrganizationWebhooksAlertTypes(organizationID 
 			return GET(path, s.client, getOrganizationWebhooksAlertTypesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6415,6 +6506,7 @@ func (s *OrganizationsService) GetOrganizationWebhooksCallbacksStatus(organizati
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6441,6 +6533,7 @@ func (s *OrganizationsService) GetOrganizationWebhooksLogs(organizationID string
 			return GET(path, s.client, getOrganizationWebhooksLogsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseOrganizationsGetOrganizationWebhooksLogs) ResponseOrganizationsGetOrganizationWebhooksLogs {
 			dst = append(dst, src...)
 			return dst
@@ -6473,6 +6566,7 @@ func (s *OrganizationsService) CreateOrganization(requestOrganizationsCreateOrga
 			return POST(path, s.client, requestOrganizationsCreateOrganization, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6498,6 +6592,7 @@ func (s *OrganizationsService) CreateOrganizationActionBatch(organizationID stri
 			return POST(path, s.client, requestOrganizationsCreateOrganizationActionBatch, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6523,6 +6618,7 @@ func (s *OrganizationsService) CreateOrganizationAdaptivePolicyACL(organizationI
 			return POST(path, s.client, requestOrganizationsCreateOrganizationAdaptivePolicyAcl, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6548,6 +6644,7 @@ func (s *OrganizationsService) CreateOrganizationAdaptivePolicyGroup(organizatio
 			return POST(path, s.client, requestOrganizationsCreateOrganizationAdaptivePolicyGroup, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6573,6 +6670,7 @@ func (s *OrganizationsService) CreateOrganizationAdaptivePolicyPolicy(organizati
 			return POST(path, s.client, requestOrganizationsCreateOrganizationAdaptivePolicyPolicy, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6598,6 +6696,7 @@ func (s *OrganizationsService) CreateOrganizationAdmin(organizationID string, re
 			return POST(path, s.client, requestOrganizationsCreateOrganizationAdmin, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6623,6 +6722,7 @@ func (s *OrganizationsService) CreateOrganizationAlertsProfile(organizationID st
 			return POST(path, s.client, requestOrganizationsCreateOrganizationAlertsProfile, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6647,6 +6747,7 @@ func (s *OrganizationsService) DismissOrganizationAssuranceAlerts(organizationID
 		func() (*resty.Response, error) {
 			return POST(path, s.client, requestOrganizationsDismissOrganizationAssuranceAlerts, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -6670,6 +6771,7 @@ func (s *OrganizationsService) RestoreOrganizationAssuranceAlerts(organizationID
 		func() (*resty.Response, error) {
 			return POST(path, s.client, requestOrganizationsRestoreOrganizationAssuranceAlerts, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -6694,6 +6796,7 @@ func (s *OrganizationsService) CreateOrganizationBrandingPolicy(organizationID s
 			return POST(path, s.client, requestOrganizationsCreateOrganizationBrandingPolicy, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6719,6 +6822,7 @@ func (s *OrganizationsService) ClaimIntoOrganization(organizationID string, requ
 			return POST(path, s.client, requestOrganizationsClaimIntoOrganization, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6744,6 +6848,7 @@ func (s *OrganizationsService) CloneOrganization(organizationID string, requestO
 			return POST(path, s.client, requestOrganizationsCloneOrganization, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6769,6 +6874,7 @@ func (s *OrganizationsService) CreateOrganizationConfigTemplate(organizationID s
 			return POST(path, s.client, requestOrganizationsCreateOrganizationConfigTemplate, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6794,6 +6900,7 @@ func (s *OrganizationsService) CreateOrganizationDevicesControllerMigration(orga
 			return POST(path, s.client, requestOrganizationsCreateOrganizationDevicesControllerMigration, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6819,6 +6926,7 @@ func (s *OrganizationsService) BulkUpdateOrganizationDevicesDetails(organization
 			return POST(path, s.client, requestOrganizationsBulkUpdateOrganizationDevicesDetails, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6844,6 +6952,7 @@ func (s *OrganizationsService) CreateOrganizationEarlyAccessFeaturesOptIn(organi
 			return POST(path, s.client, requestOrganizationsCreateOrganizationEarlyAccessFeaturesOptIn, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6869,6 +6978,7 @@ func (s *OrganizationsService) DisableOrganizationIntegrationsXdrNetworks(organi
 			return POST(path, s.client, requestOrganizationsDisableOrganizationIntegrationsXdrNetworks, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6894,6 +7004,7 @@ func (s *OrganizationsService) EnableOrganizationIntegrationsXdrNetworks(organiz
 			return POST(path, s.client, requestOrganizationsEnableOrganizationIntegrationsXdrNetworks, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6919,6 +7030,7 @@ func (s *OrganizationsService) ClaimIntoOrganizationInventory(organizationID str
 			return POST(path, s.client, requestOrganizationsClaimIntoOrganizationInventory, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6944,6 +7056,7 @@ func (s *OrganizationsService) CreateOrganizationInventoryDevicesSwapsBulk(organ
 			return POST(path, s.client, requestOrganizationsCreateOrganizationInventoryDevicesSwapsBulk, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -6968,6 +7081,7 @@ func (s *OrganizationsService) CreateOrganizationInventoryOnboardingCloudMonitor
 		func() (*resty.Response, error) {
 			return POST(path, s.client, requestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringExportEvent, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -6992,6 +7106,7 @@ func (s *OrganizationsService) CreateOrganizationInventoryOnboardingCloudMonitor
 			return POST(path, s.client, requestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringImport, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7017,6 +7132,7 @@ func (s *OrganizationsService) CreateOrganizationInventoryOnboardingCloudMonitor
 			return POST(path, s.client, requestOrganizationsCreateOrganizationInventoryOnboardingCloudMonitoringPrepare, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7042,6 +7158,7 @@ func (s *OrganizationsService) ReleaseFromOrganizationInventory(organizationID s
 			return POST(path, s.client, requestOrganizationsReleaseFromOrganizationInventory, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7067,6 +7184,7 @@ func (s *OrganizationsService) AssignOrganizationLicensesSeats(organizationID st
 			return POST(path, s.client, requestOrganizationsAssignOrganizationLicensesSeats, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7092,6 +7210,7 @@ func (s *OrganizationsService) MoveOrganizationLicenses(organizationID string, r
 			return POST(path, s.client, requestOrganizationsMoveOrganizationLicenses, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7117,6 +7236,7 @@ func (s *OrganizationsService) MoveOrganizationLicensesSeats(organizationID stri
 			return POST(path, s.client, requestOrganizationsMoveOrganizationLicensesSeats, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7142,6 +7262,7 @@ func (s *OrganizationsService) RenewOrganizationLicensesSeats(organizationID str
 			return POST(path, s.client, requestOrganizationsRenewOrganizationLicensesSeats, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7167,6 +7288,7 @@ func (s *OrganizationsService) CreateOrganizationNetwork(organizationID string, 
 			return POST(path, s.client, requestOrganizationsCreateOrganizationNetwork, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7192,6 +7314,7 @@ func (s *OrganizationsService) CombineOrganizationNetworks(organizationID string
 			return POST(path, s.client, requestOrganizationsCombineOrganizationNetworks, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7217,6 +7340,7 @@ func (s *OrganizationsService) CreateOrganizationPolicyObject(organizationID str
 			return POST(path, s.client, requestOrganizationsCreateOrganizationPolicyObject, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7242,6 +7366,7 @@ func (s *OrganizationsService) CreateOrganizationPolicyObjectsGroup(organization
 			return POST(path, s.client, requestOrganizationsCreateOrganizationPolicyObjectsGroup, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7267,6 +7392,7 @@ func (s *OrganizationsService) CreateOrganizationSamlIDp(organizationID string, 
 			return POST(path, s.client, requestOrganizationsCreateOrganizationSamlIdp, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7292,6 +7418,7 @@ func (s *OrganizationsService) CreateOrganizationSamlRole(organizationID string,
 			return POST(path, s.client, requestOrganizationsCreateOrganizationSamlRole, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7317,6 +7444,7 @@ func (s *OrganizationsService) CreateOrganizationSplashTheme(organizationID stri
 			return POST(path, s.client, requestOrganizationsCreateOrganizationSplashTheme, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7344,6 +7472,7 @@ func (s *OrganizationsService) CreateOrganizationSplashThemeAsset(organizationID
 			return POST(path, s.client, requestOrganizationsCreateOrganizationSplashThemeAsset, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7366,6 +7495,7 @@ func (s *OrganizationsService) UpdateOrganization(organizationID string, request
 			return PUT(path, s.client, requestOrganizationsUpdateOrganization)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7390,6 +7520,7 @@ func (s *OrganizationsService) UpdateOrganizationActionBatch(organizationID stri
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationActionBatch)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7414,6 +7545,7 @@ func (s *OrganizationsService) UpdateOrganizationAdaptivePolicyACL(organizationI
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationAdaptivePolicyAcl)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7438,6 +7570,7 @@ func (s *OrganizationsService) UpdateOrganizationAdaptivePolicyGroup(organizatio
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationAdaptivePolicyGroup)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7462,6 +7595,7 @@ func (s *OrganizationsService) UpdateOrganizationAdaptivePolicyPolicy(organizati
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationAdaptivePolicyPolicy)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7484,6 +7618,7 @@ func (s *OrganizationsService) UpdateOrganizationAdaptivePolicySettings(organiza
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationAdaptivePolicySettings)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7508,6 +7643,7 @@ func (s *OrganizationsService) UpdateOrganizationAdmin(organizationID string, ad
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationAdmin)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7532,6 +7668,7 @@ func (s *OrganizationsService) UpdateOrganizationAlertsProfile(organizationID st
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationAlertsProfile)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7554,6 +7691,7 @@ func (s *OrganizationsService) UpdateOrganizationBrandingPoliciesPriorities(orga
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationBrandingPoliciesPriorities)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7578,6 +7716,7 @@ func (s *OrganizationsService) UpdateOrganizationBrandingPolicy(organizationID s
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationBrandingPolicy)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7602,6 +7741,7 @@ func (s *OrganizationsService) UpdateOrganizationConfigTemplate(organizationID s
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationConfigTemplate)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7626,6 +7766,7 @@ func (s *OrganizationsService) UpdateOrganizationEarlyAccessFeaturesOptIn(organi
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationEarlyAccessFeaturesOptIn)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7650,6 +7791,7 @@ func (s *OrganizationsService) UpdateOrganizationLicense(organizationID string, 
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationLicense)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7672,6 +7814,7 @@ func (s *OrganizationsService) UpdateOrganizationLoginSecurity(organizationID st
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationLoginSecurity)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7696,6 +7839,7 @@ func (s *OrganizationsService) UpdateOrganizationPolicyObjectsGroup(organization
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationPolicyObjectsGroup)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7720,6 +7864,7 @@ func (s *OrganizationsService) UpdateOrganizationPolicyObject(organizationID str
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationPolicyObject)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7742,6 +7887,7 @@ func (s *OrganizationsService) UpdateOrganizationSaml(organizationID string, req
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationSaml)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7766,6 +7912,7 @@ func (s *OrganizationsService) UpdateOrganizationSamlIDp(organizationID string, 
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationSamlIdp)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7790,6 +7937,7 @@ func (s *OrganizationsService) UpdateOrganizationSamlRole(organizationID string,
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationSamlRole)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7812,6 +7960,7 @@ func (s *OrganizationsService) UpdateOrganizationSNMP(organizationID string, req
 			return PUT(path, s.client, requestOrganizationsUpdateOrganizationSnmp)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -7834,6 +7983,7 @@ func (s *OrganizationsService) DeleteOrganization(organizationID string) (*resty
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -7856,6 +8006,7 @@ func (s *OrganizationsService) DeleteOrganizationActionBatch(organizationID stri
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -7878,6 +8029,7 @@ func (s *OrganizationsService) DeleteOrganizationAdaptivePolicyACL(organizationI
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -7900,6 +8052,7 @@ func (s *OrganizationsService) DeleteOrganizationAdaptivePolicyGroup(organizatio
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -7922,6 +8075,7 @@ func (s *OrganizationsService) DeleteOrganizationAdaptivePolicyPolicy(organizati
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -7944,6 +8098,7 @@ func (s *OrganizationsService) DeleteOrganizationAdmin(organizationID string, ad
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -7966,6 +8121,7 @@ func (s *OrganizationsService) DeleteOrganizationAlertsProfile(organizationID st
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -7988,6 +8144,7 @@ func (s *OrganizationsService) DeleteOrganizationBrandingPolicy(organizationID s
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -8010,6 +8167,7 @@ func (s *OrganizationsService) DeleteOrganizationConfigTemplate(organizationID s
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -8032,6 +8190,7 @@ func (s *OrganizationsService) DeleteOrganizationEarlyAccessFeaturesOptIn(organi
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -8054,6 +8213,7 @@ func (s *OrganizationsService) DeleteOrganizationPolicyObjectsGroup(organization
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -8076,6 +8236,7 @@ func (s *OrganizationsService) DeleteOrganizationPolicyObject(organizationID str
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -8098,6 +8259,7 @@ func (s *OrganizationsService) DeleteOrganizationSamlIDp(organizationID string, 
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -8120,6 +8282,7 @@ func (s *OrganizationsService) DeleteOrganizationSamlRole(organizationID string,
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -8142,6 +8305,7 @@ func (s *OrganizationsService) DeleteOrganizationSplashAsset(organizationID stri
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }
 
@@ -8164,5 +8328,6 @@ func (s *OrganizationsService) DeleteOrganizationSplashTheme(organizationID stri
 		func() (*resty.Response, error) {
 			return DELETE(path, s.client, &QueryParamsDefault)
 		},
+		s.backoff,
 	)
 }

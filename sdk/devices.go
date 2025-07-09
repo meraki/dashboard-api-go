@@ -1932,6 +1932,7 @@ func (s *DevicesService) GetDevice(serial string) (*ResponseDevicesGetDevice, *r
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1957,6 +1958,7 @@ func (s *DevicesService) GetDeviceCellularSims(serial string) (*ResponseDevicesG
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -1983,6 +1985,7 @@ func (s *DevicesService) GetDeviceClients(serial string, getDeviceClientsQueryPa
 			return GET(path, s.client, getDeviceClientsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2010,6 +2013,7 @@ func (s *DevicesService) GetDeviceLiveToolsArpTable(serial string, arpTableID st
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2037,6 +2041,7 @@ func (s *DevicesService) GetDeviceLiveToolsCableTest(serial string, id string) (
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2064,6 +2069,7 @@ func (s *DevicesService) GetDeviceLiveToolsLedsBlink(serial string, ledsBlinkID 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2091,6 +2097,7 @@ func (s *DevicesService) GetDeviceLiveToolsPing(serial string, id string) (*Resp
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2118,6 +2125,7 @@ func (s *DevicesService) GetDeviceLiveToolsPingDevice(serial string, id string) 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2145,6 +2153,7 @@ func (s *DevicesService) GetDeviceLiveToolsThroughputTest(serial string, through
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2172,6 +2181,7 @@ func (s *DevicesService) GetDeviceLiveToolsWakeOnLan(serial string, wakeOnLanID 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2197,6 +2207,7 @@ func (s *DevicesService) GetDeviceLldpCdp(serial string) (*ResponseDevicesGetDev
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2223,6 +2234,7 @@ func (s *DevicesService) GetDeviceLossAndLatencyHistory(serial string, getDevice
 			return GET(path, s.client, getDeviceLossAndLatencyHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2248,6 +2260,7 @@ func (s *DevicesService) GetDeviceManagementInterface(serial string) (*ResponseD
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2273,6 +2286,7 @@ func (s *DevicesService) GetNetworkDevices(networkID string) (*ResponseDevicesGe
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2300,6 +2314,7 @@ func (s *DevicesService) GetNetworkSmDeviceCellularUsageHistory(networkID string
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2327,6 +2342,7 @@ func (s *DevicesService) GetNetworkSmDeviceCerts(networkID string, deviceID stri
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2354,6 +2370,7 @@ func (s *DevicesService) GetNetworkSmDeviceDeviceProfiles(networkID string, devi
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2381,6 +2398,7 @@ func (s *DevicesService) GetNetworkSmDeviceNetworkAdapters(networkID string, dev
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2408,6 +2426,7 @@ func (s *DevicesService) GetNetworkSmDeviceRestrictions(networkID string, device
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2435,6 +2454,7 @@ func (s *DevicesService) GetNetworkSmDeviceSecurityCenters(networkID string, dev
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2462,6 +2482,7 @@ func (s *DevicesService) GetNetworkSmDeviceSoftwares(networkID string, deviceID 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2489,6 +2510,7 @@ func (s *DevicesService) GetNetworkSmDeviceWLANLists(networkID string, deviceID 
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2515,6 +2537,7 @@ func (s *DevicesService) GetOrganizationDevicesAvailabilitiesChangeHistory(organ
 			return GET(path, s.client, getOrganizationDevicesAvailabilitiesChangeHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationDevicesAvailabilitiesChangeHistory) ResponseDevicesGetOrganizationDevicesAvailabilitiesChangeHistory {
 			dst = append(dst, src...)
 			return dst
@@ -2550,6 +2573,7 @@ func (s *DevicesService) GetOrganizationDevicesControllerMigrations(organization
 			return GET(path, s.client, getOrganizationDevicesControllerMigrationsQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationDevicesControllerMigrations) ResponseDevicesGetOrganizationDevicesControllerMigrations {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -2585,6 +2609,7 @@ func (s *DevicesService) GetOrganizationDevicesOverviewByModel(organizationID st
 			return GET(path, s.client, getOrganizationDevicesOverviewByModelQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2611,6 +2636,7 @@ func (s *DevicesService) GetOrganizationDevicesSystemMemoryUsageHistoryByInterva
 			return GET(path, s.client, getOrganizationDevicesSystemMemoryUsageHistoryByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval) ResponseDevicesGetOrganizationDevicesSystemMemoryUsageHistoryByInterval {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -2646,6 +2672,7 @@ func (s *DevicesService) GetOrganizationFloorPlansAutoLocateDevices(organization
 			return GET(path, s.client, getOrganizationFloorPlansAutoLocateDevicesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationFloorPlansAutoLocateDevices) ResponseDevicesGetOrganizationFloorPlansAutoLocateDevices {
 			dst = append(dst, src...)
 			return dst
@@ -2682,6 +2709,7 @@ func (s *DevicesService) GetOrganizationInventoryDevicesSwapsBulk(organizationID
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2709,6 +2737,7 @@ func (s *DevicesService) GetOrganizationInventoryDevice(organizationID string, s
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -2735,6 +2764,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesChannelUtilizationByDevic
 			return GET(path, s.client, getOrganizationWirelessDevicesChannelUtilizationByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessDevicesChannelUtilizationByDevice) ResponseDevicesGetOrganizationWirelessDevicesChannelUtilizationByDevice {
 			dst = append(dst, src...)
 			return dst
@@ -2770,6 +2800,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesChannelUtilizationByNetwo
 			return GET(path, s.client, getOrganizationWirelessDevicesChannelUtilizationByNetworkQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessDevicesChannelUtilizationByNetwork) ResponseDevicesGetOrganizationWirelessDevicesChannelUtilizationByNetwork {
 			dst = append(dst, src...)
 			return dst
@@ -2805,6 +2836,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesChannelUtilizationHistory
 			return GET(path, s.client, getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval) ResponseDevicesGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval {
 			dst = append(dst, src...)
 			return dst
@@ -2840,6 +2872,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesChannelUtilizationHistory
 			return GET(path, s.client, getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval) ResponseDevicesGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval {
 			dst = append(dst, src...)
 			return dst
@@ -2875,6 +2908,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesPacketLossByClient(organi
 			return GET(path, s.client, getOrganizationWirelessDevicesPacketLossByClientQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessDevicesPacketLossByClient) ResponseDevicesGetOrganizationWirelessDevicesPacketLossByClient {
 			dst = append(dst, src...)
 			return dst
@@ -2910,6 +2944,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesPacketLossByDevice(organi
 			return GET(path, s.client, getOrganizationWirelessDevicesPacketLossByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessDevicesPacketLossByDevice) ResponseDevicesGetOrganizationWirelessDevicesPacketLossByDevice {
 			dst = append(dst, src...)
 			return dst
@@ -2945,6 +2980,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesPacketLossByNetwork(organ
 			return GET(path, s.client, getOrganizationWirelessDevicesPacketLossByNetworkQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessDevicesPacketLossByNetwork) ResponseDevicesGetOrganizationWirelessDevicesPacketLossByNetwork {
 			dst = append(dst, src...)
 			return dst
@@ -2980,6 +3016,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesPowerModeHistory(organiza
 			return GET(path, s.client, getOrganizationWirelessDevicesPowerModeHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessDevicesPowerModeHistory) ResponseDevicesGetOrganizationWirelessDevicesPowerModeHistory {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -3015,6 +3052,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesSystemCPULoadHistory(orga
 			return GET(path, s.client, getOrganizationWirelessDevicesSystemCpuLoadHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessDevicesSystemCPULoadHistory) ResponseDevicesGetOrganizationWirelessDevicesSystemCPULoadHistory {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -3050,6 +3088,7 @@ func (s *DevicesService) GetOrganizationWirelessDevicesWirelessControllersByDevi
 			return GET(path, s.client, getOrganizationWirelessDevicesWirelessControllersByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessDevicesWirelessControllersByDevice) ResponseDevicesGetOrganizationWirelessDevicesWirelessControllersByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -3085,6 +3124,7 @@ func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesL2ByD
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL2ByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesL2ByDevice) ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesL2ByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -3120,6 +3160,7 @@ func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesL2Sta
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice) ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesL2StatusesChangeHistoryByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -3155,6 +3196,7 @@ func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesL2Usa
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval) ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesL2UsageHistoryByInterval {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -3190,6 +3232,7 @@ func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesL3ByD
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL3ByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesL3ByDevice) ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesL3ByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -3225,6 +3268,7 @@ func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesL3Sta
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice) ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesL3StatusesChangeHistoryByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -3260,6 +3304,7 @@ func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesL3Usa
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval) ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesL3UsageHistoryByInterval {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -3295,6 +3340,7 @@ func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesPacke
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDeviceQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice) ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesPacketsOverviewByDevice {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -3330,6 +3376,7 @@ func (s *DevicesService) GetOrganizationWirelessControllerDevicesInterfacesUsage
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesInterfacesUsageHistoryByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval) ResponseDevicesGetOrganizationWirelessControllerDevicesInterfacesUsageHistoryByInterval {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -3365,6 +3412,7 @@ func (s *DevicesService) GetOrganizationWirelessControllerDevicesRedundancyFailo
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesRedundancyFailoverHistoryQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory) ResponseDevicesGetOrganizationWirelessControllerDevicesRedundancyFailoverHistory {
 			dst = append(dst, src...)
 			return dst
@@ -3400,6 +3448,7 @@ func (s *DevicesService) GetOrganizationWirelessControllerDevicesRedundancyStatu
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesRedundancyStatusesQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessControllerDevicesRedundancyStatuses) ResponseDevicesGetOrganizationWirelessControllerDevicesRedundancyStatuses {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -3435,6 +3484,7 @@ func (s *DevicesService) GetOrganizationWirelessControllerDevicesSystemUtilizati
 			return GET(path, s.client, getOrganizationWirelessControllerDevicesSystemUtilizationHistoryByIntervalQueryParams, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		func(dst, src ResponseDevicesGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval) ResponseDevicesGetOrganizationWirelessControllerDevicesSystemUtilizationHistoryByInterval {
 			*dst.Items = append(*dst.Items, *src.Items...)
 			return dst
@@ -3469,6 +3519,7 @@ func (s *DevicesService) BlinkDeviceLeds(serial string, requestDevicesBlinkDevic
 			return POST(path, s.client, requestDevicesBlinkDeviceLeds, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3494,6 +3545,7 @@ func (s *DevicesService) CreateDeviceLiveToolsArpTable(serial string, requestDev
 			return POST(path, s.client, requestDevicesCreateDeviceLiveToolsArpTable, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3519,6 +3571,7 @@ func (s *DevicesService) CreateDeviceLiveToolsCableTest(serial string, requestDe
 			return POST(path, s.client, requestDevicesCreateDeviceLiveToolsCableTest, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3544,6 +3597,7 @@ func (s *DevicesService) CreateDeviceLiveToolsLedsBlink(serial string, requestDe
 			return POST(path, s.client, requestDevicesCreateDeviceLiveToolsLedsBlink, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3569,6 +3623,7 @@ func (s *DevicesService) CreateDeviceLiveToolsPing(serial string, requestDevices
 			return POST(path, s.client, requestDevicesCreateDeviceLiveToolsPing, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3594,6 +3649,7 @@ func (s *DevicesService) CreateDeviceLiveToolsPingDevice(serial string, requestD
 			return POST(path, s.client, requestDevicesCreateDeviceLiveToolsPingDevice, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3619,6 +3675,7 @@ func (s *DevicesService) CreateDeviceLiveToolsThroughputTest(serial string, requ
 			return POST(path, s.client, requestDevicesCreateDeviceLiveToolsThroughputTest, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3644,6 +3701,7 @@ func (s *DevicesService) CreateDeviceLiveToolsWakeOnLan(serial string, requestDe
 			return POST(path, s.client, requestDevicesCreateDeviceLiveToolsWakeOnLan, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3669,6 +3727,7 @@ func (s *DevicesService) RebootDevice(serial string) (*ResponseDevicesRebootDevi
 			return POST(path, s.client, nil, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3695,6 +3754,7 @@ func (s *DevicesService) ClaimNetworkDevices(networkID string, requestDevicesCla
 			return POST(path, s.client, requestDevicesClaimNetworkDevices, claimNetworkDevicesQueryParams)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3720,6 +3780,7 @@ func (s *DevicesService) VmxNetworkDevicesClaim(networkID string, requestDevices
 			return POST(path, s.client, requestDevicesVmxNetworkDevicesClaim, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3744,6 +3805,7 @@ func (s *DevicesService) RemoveNetworkDevices(networkID string, requestDevicesRe
 		func() (*resty.Response, error) {
 			return POST(path, s.client, requestDevicesRemoveNetworkDevices, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -3768,6 +3830,7 @@ func (s *DevicesService) BatchNetworkFloorPlansDevicesUpdate(networkID string, r
 			return POST(path, s.client, requestDevicesBatchNetworkFloorPlansDevicesUpdate, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3793,6 +3856,7 @@ func (s *DevicesService) CheckinNetworkSmDevices(networkID string, requestDevice
 			return POST(path, s.client, requestDevicesCheckinNetworkSmDevices, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3818,6 +3882,7 @@ func (s *DevicesService) LockNetworkSmDevices(networkID string, requestDevicesLo
 			return POST(path, s.client, requestDevicesLockNetworkSmDevices, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3843,6 +3908,7 @@ func (s *DevicesService) ModifyNetworkSmDevicesTags(networkID string, requestDev
 			return POST(path, s.client, requestDevicesModifyNetworkSmDevicesTags, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3868,6 +3934,7 @@ func (s *DevicesService) MoveNetworkSmDevices(networkID string, requestDevicesMo
 			return POST(path, s.client, requestDevicesMoveNetworkSmDevices, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3893,6 +3960,7 @@ func (s *DevicesService) RebootNetworkSmDevices(networkID string, requestDevices
 			return POST(path, s.client, requestDevicesRebootNetworkSmDevices, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3918,6 +3986,7 @@ func (s *DevicesService) ShutdownNetworkSmDevices(networkID string, requestDevic
 			return POST(path, s.client, requestDevicesShutdownNetworkSmDevices, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3943,6 +4012,7 @@ func (s *DevicesService) WipeNetworkSmDevices(networkID string, requestDevicesWi
 			return POST(path, s.client, requestDevicesWipeNetworkSmDevices, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -3969,6 +4039,7 @@ func (s *DevicesService) InstallNetworkSmDeviceApps(networkID string, deviceID s
 		func() (*resty.Response, error) {
 			return POST(path, s.client, requestDevicesInstallNetworkSmDeviceApps, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -3994,6 +4065,7 @@ func (s *DevicesService) RefreshNetworkSmDeviceDetails(networkID string, deviceI
 		func() (*resty.Response, error) {
 			return POST(path, s.client, nil, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -4020,6 +4092,7 @@ func (s *DevicesService) UnenrollNetworkSmDevice(networkID string, deviceID stri
 			return POST(path, s.client, nil, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4046,6 +4119,7 @@ func (s *DevicesService) UninstallNetworkSmDeviceApps(networkID string, deviceID
 		func() (*resty.Response, error) {
 			return POST(path, s.client, requestDevicesUninstallNetworkSmDeviceApps, nil)
 		},
+		s.backoff,
 	)
 
 }
@@ -4070,6 +4144,7 @@ func (s *DevicesService) CreateOrganizationDevicesControllerMigration(organizati
 			return POST(path, s.client, requestDevicesCreateOrganizationDevicesControllerMigration, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4095,6 +4170,7 @@ func (s *DevicesService) BulkUpdateOrganizationDevicesDetails(organizationID str
 			return POST(path, s.client, requestDevicesBulkUpdateOrganizationDevicesDetails, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4120,6 +4196,7 @@ func (s *DevicesService) CreateOrganizationInventoryDevicesSwapsBulk(organizatio
 			return POST(path, s.client, requestDevicesCreateOrganizationInventoryDevicesSwapsBulk, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4145,6 +4222,7 @@ func (s *DevicesService) CloneOrganizationSwitchDevices(organizationID string, r
 			return POST(path, s.client, requestDevicesCloneOrganizationSwitchDevices, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4167,6 +4245,7 @@ func (s *DevicesService) UpdateDevice(serial string, requestDevicesUpdateDevice 
 			return PUT(path, s.client, requestDevicesUpdateDevice)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4189,6 +4268,7 @@ func (s *DevicesService) UpdateDeviceCellularSims(serial string, requestDevicesU
 			return PUT(path, s.client, requestDevicesUpdateDeviceCellularSims)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4211,6 +4291,7 @@ func (s *DevicesService) UpdateDeviceManagementInterface(serial string, requestD
 			return PUT(path, s.client, requestDevicesUpdateDeviceManagementInterface)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -4233,6 +4314,7 @@ func (s *DevicesService) UpdateNetworkSmDevicesFields(networkID string, requestD
 			return PUT(path, s.client, requestDevicesUpdateNetworkSmDevicesFields)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 

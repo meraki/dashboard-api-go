@@ -60,6 +60,7 @@ func (s *AdministeredService) GetAdministeredIDentitiesMe() (*ResponseAdminister
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -83,6 +84,7 @@ func (s *AdministeredService) GetAdministeredIDentitiesMeAPIKeys() (*ResponseAdm
 			return GET(path, s.client, &QueryParamsDefault, &HeaderDefault)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -106,6 +108,7 @@ func (s *AdministeredService) GenerateAdministeredIDentitiesMeAPIKeys() (*Respon
 			return POST(path, s.client, nil, nil)
 		},
 		s.client,
+		s.backoff,
 		nil,
 	)
 
@@ -130,6 +133,7 @@ func (s *AdministeredService) RevokeAdministeredIDentitiesMeAPIKeys(suffix strin
 		func() (*resty.Response, error) {
 			return POST(path, s.client, nil, nil)
 		},
+		s.backoff,
 	)
 
 }
