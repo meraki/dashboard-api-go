@@ -1671,7 +1671,7 @@ type ResponseItemOrganizationsGetOrganizationDevices struct {
 	Address     string                                                    `json:"address,omitempty"`     // Physical address of the device
 	Details     *[]ResponseItemOrganizationsGetOrganizationDevicesDetails `json:"details,omitempty"`     // Additional device information
 	Firmware    string                                                    `json:"firmware,omitempty"`    // Firmware version of the device
-	Imei        *float64                                                  `json:"imei,omitempty"`        // IMEI of the device, if applicable
+	Imei        string                                                    `json:"imei,omitempty"`        // IMEI of the device, if applicable
 	LanIP       string                                                    `json:"lanIp,omitempty"`       // LAN IP address of the device
 	Lat         *float64                                                  `json:"lat,omitempty"`         // Latitude of the device
 	Lng         *float64                                                  `json:"lng,omitempty"`         // Longitude of the device
