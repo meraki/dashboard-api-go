@@ -1491,4 +1491,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [5.0.3]: https://github.com/meraki/dashboard-api-go/compare/v5.0.2...5.0.3
 [5.0.4]: https://github.com/meraki/dashboard-api-go/compare/v5.0.3...5.0.4
 [5.0.5]: https://github.com/meraki/dashboard-api-go/compare/v5.0.4...5.0.5
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v5.0.5...main
+[5.0.6]: https://github.com/meraki/dashboard-api-go/compare/v5.0.5...5.0.6
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v5.0.6...main
