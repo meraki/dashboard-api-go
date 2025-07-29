@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.6] - 2025-07-29
+### Added
+- Fix `port` type, from `*int` to `string`.
+
 ## [5.0.5] - 2025-07-21
 - Change IMEI field type from float64 to string in ResponseItemOrganizationsGetOrganizationDevices struct for better compatibility with device identifiers.
 
