@@ -2428,8 +2428,8 @@ type RequestApplianceUpdateNetworkApplianceFirewallInboundFirewallRulesRules str
 	SyslogEnabled *bool  `json:"syslogEnabled,omitempty"` // Log this rule to syslog (true or false, boolean value) - only applicable if a syslog has been configured (optional)
 }
 type RequestApplianceUpdateNetworkApplianceFirewallL3FirewallRules struct {
-	Rules             *[]RequestApplianceUpdateNetworkApplianceFirewallL3FirewallRulesRules `json:"rules,omitempty"`             // An ordered array of the firewall rules (not including the default rule)
-	SyslogDefaultRule *bool                                                                 `json:"syslogDefaultRule,omitempty"` // Log the special default rule (boolean value - enable only if you've configured a syslog server) (optional)
+	Rules             []RequestApplianceUpdateNetworkApplianceFirewallL3FirewallRulesRules `json:"rules"`                       // An ordered array of the firewall rules (not including the default rule)
+	SyslogDefaultRule *bool                                                                `json:"syslogDefaultRule,omitempty"` // Log the special default rule (boolean value - enable only if you've configured a syslog server) (optional)
 }
 type RequestApplianceUpdateNetworkApplianceFirewallL3FirewallRulesRules struct {
 	Comment       string `json:"comment,omitempty"`       // Description of the rule (optional)
