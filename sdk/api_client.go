@@ -719,6 +719,9 @@ func doWithRetriesAndNotResult(
 		}
 
 		if resp != nil && resp.StatusCode() != http.StatusTooManyRequests {
+			if resp.IsError() {
+				return resp, fmt.Errorf("error with operation: %s", resp.Request.URL)
+			}
 			return resp, nil
 		}
 
