@@ -501,16 +501,24 @@ func changeParams(params interface{}, newValue string) interface{} {
 	newParams := reflect.New(valueA.Type()).Elem()
 	newParams.FieldByName("PerPage").SetInt(perPage)
 	newParams.FieldByName(("StartingAfter")).SetString(newValue)
-	// copiar los demas valores en newParams
+	// copy the other values into newParams
 	for i := 0; i < valueA.NumField(); i++ {
 		if valueA.Type().Field(i).Name != "PerPage" && valueA.Type().Field(i).Name != "StartingAfter" {
 			newParams.Field(i).Set(valueA.Field(i))
 		}
 	}
-	//
 
-	fmt.Println("New Params: ", newParams)
-	// Devolver el nuevo objeto como interface{}
+	debug, err := strconv.ParseBool(MERAKI_DEBUG)
+	if err != nil {
+		log.Printf("Error parsing MERAKI_DEBUG: %v", err)
+		return nil
+	}
+
+	if debug {
+		fmt.Println("New Params: ", newParams)
+	}
+	
+	// Return the new object as interface{}
 	return newParams.Addr().Interface()
 }
 
@@ -580,8 +588,16 @@ func doWithRetriesAndResult[T any](
 	var err error
 	maxRetries, maxRetryDelay, maxRetryJitter, useRetryHeader := getBackoffValues(backoff)
 
+	debug, err := strconv.ParseBool(MERAKI_DEBUG)
+	if err != nil {
+		log.Printf("Error parsing MERAKI_DEBUG: %v", err)
+		return nil, nil, err
+	}
+
 	for attempt := 0; attempt <= maxRetries; attempt++ {
-		fmt.Println("MAX_RETRIES: ", maxRetries+1)
+		if debug {
+			fmt.Println("MAX_RETRIES: ", maxRetries+1)
+		}
 		resp, err = operation()
 
 		if err != nil && resp.StatusCode() != http.StatusTooManyRequests {
@@ -706,6 +722,16 @@ func doWithRetriesAndNotResult(
 	var resp *resty.Response
 	var err error
 	maxRetries, maxRetryDelay, maxRetryJitter, useRetryHeader := getBackoffValues(backoff)
+
+	debug, err := strconv.ParseBool(MERAKI_DEBUG)
+	if err != nil {
+		log.Printf("Error parsing MERAKI_DEBUG: %v", err)
+		return nil, err
+	}
+
+	if debug {
+		fmt.Println("MAX_RETRIES: ", maxRetries+1)
+	}
 	fmt.Println("MAX_RETRIES: ", maxRetries+1)
 	for attempt := 0; attempt <= maxRetries; attempt++ {
 		resp, err = operation()
