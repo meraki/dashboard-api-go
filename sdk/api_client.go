@@ -706,7 +706,6 @@ func doWithRetriesAndNotResult(
 	var resp *resty.Response
 	var err error
 	maxRetries, maxRetryDelay, maxRetryJitter, useRetryHeader := getBackoffValues(backoff)
-	fmt.Println("MAX_RETRIES: ", maxRetries+1)
 	for attempt := 0; attempt <= maxRetries; attempt++ {
 		resp, err = operation()
 
