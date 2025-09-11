@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [5.0.7] - 2025-01-27
+## [5.0.8] - 2025-08-10
+### Fixed
+- Add 'name' field to ResponseNetworksGetNetworkGroupPolicy struct for enhanced configuration options
+
+## [5.0.7] - 2025-07-27
 ### Fixed
 - Enhanced error handling in API client retry logic by adding `resp.IsError()` check before returning responses.
 - Fixed type definition in `RequestApplianceUpdateNetworkApplianceFirewallL3FirewallRules` struct by changing `Rules` field from `*[]RequestApplianceUpdateNetworkApplianceFirewallL3FirewallRulesRules` to `[]RequestApplianceUpdateNetworkApplianceFirewallL3FirewallRulesRules` (removed pointer from slice).
@@ -1498,4 +1502,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [5.0.5]: https://github.com/meraki/dashboard-api-go/compare/v5.0.4...5.0.5
 [5.0.6]: https://github.com/meraki/dashboard-api-go/compare/v5.0.5...5.0.6
 [5.0.7]: https://github.com/meraki/dashboard-api-go/compare/v5.0.6...5.0.7
-[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v5.0.7...main
+[5.0.8]: https://github.com/meraki/dashboard-api-go/compare/v5.0.7...5.0.8
+[Unreleased]: https://github.com/meraki/dashboard-api-go/compare/v5.0.8...main

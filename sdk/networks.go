@@ -2385,6 +2385,7 @@ type ResponseNetworksGetNetworkGroupPolicy struct {
 	Scheduling                *ResponseNetworksGetNetworkGroupPolicyScheduling                `json:"scheduling,omitempty"`                //     The schedule for the group policy. Schedules are applied to days of the week.
 	SplashAuthSettings        string                                                          `json:"splashAuthSettings,omitempty"`        // Whether clients bound to your policy will bypass splash authorization or behave according to the network's rules. Can be one of 'network default' or 'bypass'. Only available if your network has a wireless configuration.
 	VLANTagging               *ResponseNetworksGetNetworkGroupPolicyVLANTagging               `json:"vlanTagging,omitempty"`               // The VLAN tagging settings for your group policy. Only available if your network has a wireless configuration.
+	Name                      string                                                          `json:"name,omitempty"`
 }
 type ResponseNetworksGetNetworkGroupPolicyBandwidth struct {
 	BandwidthLimits *ResponseNetworksGetNetworkGroupPolicyBandwidthBandwidthLimits `json:"bandwidthLimits,omitempty"` // The bandwidth limits object, specifying upload and download speed for clients bound to the group policy. These are only enforced if 'settings' is set to 'custom'.
