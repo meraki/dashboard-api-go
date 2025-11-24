@@ -134,7 +134,7 @@ client, err = meraki.NewClientWithOptions("https://api.meraki.com/",
 
 The client allows you to configure automatic retry (backoff) behavior for rate-limited (HTTP 429) responses using the `SetBackoff` method. This is useful to control how and how many times the SDK retries requests when the API responds with rate limits.
 
-#### Using SetBackoff
+#### Using SetBackoff example
 
 ```go
 // Example of custom backoff configuration

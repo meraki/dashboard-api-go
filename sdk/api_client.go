@@ -164,7 +164,7 @@ func (c *Client) SetAuthToken(accessToken string) {
 
 // SetUserAgent sets the User-Agent header in the request
 func (c *Client) SetUserAgent() {
-	userAgent := fmt.Sprintf("%s %s", DEFAULT_USER_AGENT, os.Getenv("MERAKI_USER_AGENT"))
+	userAgent := fmt.Sprintf("%s %s", os.Getenv("MERAKI_USER_AGENT"), DEFAULT_USER_AGENT)
 	c.common.client.SetHeader("User-Agent", userAgent)
 }
 
