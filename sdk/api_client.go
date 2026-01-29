@@ -581,7 +581,6 @@ func doWithRetriesAndResult[T any](
 	maxRetries, maxRetryDelay, maxRetryJitter, useRetryHeader := getBackoffValues(backoff)
 
 	for attempt := 0; attempt <= maxRetries; attempt++ {
-		fmt.Println("MAX_RETRIES: ", maxRetries+1)
 		resp, err = operation()
 
 		if err != nil && resp.StatusCode() != http.StatusTooManyRequests {
