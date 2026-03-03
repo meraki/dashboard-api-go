@@ -509,7 +509,6 @@ func changeParams(params interface{}, newValue string) interface{} {
 	}
 	//
 
-	fmt.Println("New Params: ", newParams)
 	// Devolver el nuevo objeto como interface{}
 	return newParams.Addr().Interface()
 }
@@ -581,18 +580,21 @@ func doWithRetriesAndResult[T any](
 	maxRetries, maxRetryDelay, maxRetryJitter, useRetryHeader := getBackoffValues(backoff)
 
 	for attempt := 0; attempt <= maxRetries; attempt++ {
-		fmt.Println("MAX_RETRIES: ", maxRetries+1)
+		if client.Debug {
+			log.Printf("[debug] max retries: %d", maxRetries+1)
+		}
 		resp, err = operation()
 
 		if err != nil && resp.StatusCode() != http.StatusTooManyRequests {
-
-			log.Printf("Error 1: %v", err)
-			log.Printf("Response: %v", resp.StatusCode())
+			if client.Debug {
+				log.Printf("[debug] request error: %v, response status: %d", err, resp.StatusCode())
+			}
 			return nil, resp, err
 		}
 		if resp.IsError() && resp.StatusCode() != http.StatusTooManyRequests {
-			log.Printf("Error 2: %v", resp)
-			log.Printf("Status code: %v", resp.StatusCode())
+			if client.Debug {
+				log.Printf("[debug] response error: %v, status: %d", resp, resp.StatusCode())
+			}
 			return nil, resp, fmt.Errorf("error with operation: %s Error:\n %s", resp.Request.URL, resp)
 		}
 		if resp != nil && resp.StatusCode() != http.StatusTooManyRequests {
@@ -622,7 +624,9 @@ func doWithRetriesAndResult[T any](
 							break
 						}
 						if resp.IsError() {
-							log.Printf("Error 3: %v", resp)
+							if client.Debug {
+								log.Printf("[debug] pagination error: %v", resp)
+							}
 							if resp.StatusCode() != http.StatusTooManyRequests {
 								return result, resp, fmt.Errorf("error with get operation: %s", link)
 							}
@@ -630,7 +634,9 @@ func doWithRetriesAndResult[T any](
 						delay := maxRetryDelay * time.Duration(1<<attempt)
 						jitter := time.Duration(rand.Int63n(int64(maxRetryJitter)))
 						wait := delay + jitter
-						log.Printf("[retry] attempt %d: received 429, waiting %v", attempt, wait)
+						if client.Debug {
+							log.Printf("[retry] attempt %d: received 429, waiting %v", attempt, wait)
+						}
 						time.Sleep(wait)
 					}
 					json.Unmarshal(resp.Body(), &result2)
@@ -664,12 +670,16 @@ func doWithRetriesAndResult[T any](
 			}
 		}
 
-		log.Printf("[retry] attempt %d: received 429, waiting %v", attempt+1, wait)
+		if client.Debug {
+			log.Printf("[retry] attempt %d: received 429, waiting %v", attempt+1, wait)
+		}
 		time.Sleep(wait)
 	}
 
 	// If result is nil, return zero value
-	log.Printf("error 4: %v", err)
+	if client.Debug {
+		log.Printf("[debug] retry error: %v", err)
+	}
 	if result != nil {
 
 		return result, resp, fmt.Errorf("failed after %d retries", maxRetries+1)
